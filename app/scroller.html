@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Bible - Scroller</title>
+	
+	<!-- Apple specific code -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta name="viewport" content="maximum-scale=1.0">
+	<meta name="viewport" content="user-scalable=no">
+	<meta name="viewport" content="width=device-width">		
+
+	<link rel="stylesheet" href="css/common-ui.css" />	
+	<link rel="stylesheet" href="css/bible.css" />
+	<link rel="stylesheet" href="css/scroller.css" />
+	
+	
+	<!-- replacement console for IE -->
+	<script>
+	if (typeof console == 'undefined') { window.console = {log:function() {}}; }
+	</script>
+	
+	
+	
+	<script src="js/lib/jquery.min.js"></script>
+	<script src="js/lib/jquery.mobile.min.js"></script>
+
+	
+	<!- data -->
+	<script src="js/common/data.languages.js"></script>	
+	<script src="js/common/appsettings.js"></script>		
+	
+	<!- bible -->
+	<script src="js/bible/bible.data.js"></script>
+	<script src="js/bible/bible.reference.js"></script>	
+	
+	<!-- text loading -->
+	<script src="js/texts/texts.js"></script>	
+	<script src="js/texts/loader.js"></script>	
+	
+	<!-- scroller -->	
+	<script src="js/ui/textnavigator.js"></script>
+	<script src="js/ui/textchooser.js"></script>	
+	<script src="js/scroller/scrollerapp.js"></script>
+	
+</head>
+<body>	
+
+<div id="scroller-app" class="scroller-container">
+	<div class="scroller-header">
+		<div class="scroller-header-inner">
+			<div class="text-nav"></div>
+			<div class="text-list"></div>
+		</div>
+	</div>		
+	<div class="scroller-main"></div>
+</div>
+
+</body>
+</html>

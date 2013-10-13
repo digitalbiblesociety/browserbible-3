@@ -1,0 +1,184 @@
+	/* NAV */
+	
+	.text-navigator {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index:100;
+		background: #ccc;
+		padding: 1px 0 0 1px;
+		font-family: Avenir;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	
+	.text-navigator .text-navigator-header {
+		background: #333;
+		padding: 8px;
+		color: #fff;
+	}
+	
+	.text-navigator .text-navigator-division {
+		float: left;
+		width: 40px;
+		height: 40px;
+		margin: 1px 1px 0 0;
+		background: #eee;
+		color: #333;
+		text-align: center;
+		padding: 10px 0 0 0;
+	}
+	
+	/* penta */
+	.text-navigator .divisionid-GN,
+	.text-navigator .divisionid-EX,
+	.text-navigator .divisionid-LV,
+	.text-navigator .divisionid-NU,
+	.text-navigator .divisionid-DT	 {
+		background: #efe;
+	}
+	
+	.text-navigator .divisionid-JS,
+	.text-navigator .divisionid-JG,
+	.text-navigator .divisionid-RT,
+	.text-navigator .divisionid-S1,
+	.text-navigator .divisionid-S2,
+	.text-navigator .divisionid-K1,
+	.text-navigator .divisionid-K2,
+	.text-navigator .divisionid-R1,
+	.text-navigator .divisionid-R2,
+	.text-navigator .divisionid-ER,
+	.text-navigator .divisionid-NH,
+	.text-navigator .divisionid-ET {	
+		background: #eef;
+	}
+	
+	.text-navigator .divisionid-JB,
+	.text-navigator .divisionid-PS,
+	.text-navigator .divisionid-PR,
+	.text-navigator .divisionid-EC,
+	.text-navigator .divisionid-SS {
+		background: #fef;
+	}
+	
+	.text-navigator .divisionid-IS,
+	.text-navigator .divisionid-JR,
+	.text-navigator .divisionid-LM,
+	.text-navigator .divisionid-EK,
+	.text-navigator .divisionid-DN {
+		background: #fee;
+	}
+	
+	.text-navigator .divisionid-HS,
+	.text-navigator .divisionid-JL,
+	.text-navigator .divisionid-AM,
+	.text-navigator .divisionid-OB,
+	.text-navigator .divisionid-JH,
+	.text-navigator .divisionid-MC,
+	.text-navigator .divisionid-NM,
+	.text-navigator .divisionid-HK,
+	.text-navigator .divisionid-ZP,
+	.text-navigator .divisionid-HG,
+	.text-navigator .divisionid-ZC,
+	.text-navigator .divisionid-ML {
+		background: #ffe;
+	}
+	
+
+	/* gospels */
+	.text-navigator .divisionid-MT,
+	.text-navigator .divisionid-MK,
+	.text-navigator .divisionid-LK,
+	.text-navigator .divisionid-JN {
+		background: #fee;
+	}	
+	
+	.text-navigator .divisionid-AC {
+		background: #fce;
+	}			
+	
+	
+	.text-navigator .divisionid-RM,
+	.text-navigator .divisionid-C1,
+	.text-navigator .divisionid-C2,
+	.text-navigator .divisionid-GL,
+	.text-navigator .divisionid-EP,
+	.text-navigator .divisionid-PP,
+	.text-navigator .divisionid-CL,
+	.text-navigator .divisionid-H1,
+	.text-navigator .divisionid-H2,
+	.text-navigator .divisionid-T1,
+	.text-navigator .divisionid-T2,
+	.text-navigator .divisionid-TT,
+	.text-navigator .divisionid-PM {
+		background: #eef;	
+	}
+	
+	
+	.text-navigator .divisionid-HB,
+	.text-navigator .divisionid-JM,
+	.text-navigator .divisionid-P1,
+	.text-navigator .divisionid-P2,
+	.text-navigator .divisionid-J1,
+	.text-navigator .divisionid-J2,
+	.text-navigator .divisionid-J3,
+	.text-navigator .divisionid-JD {
+		background: #eff;
+	}
+	
+	.text-navigator .divisionid-RV {
+		background: #fef;
+	}
+	
+	
+	.text-navigator .text-navigator-section {
+		float: left;
+		width: 40px;
+		height: 40px;
+		margin: 1px 1px 0 0;
+		background: #eee;
+		color: #333;
+		text-align: center;
+		padding: 10px 0 0 0;
+	}		
+	
+	.text-chooser {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index:100;
+		background: #eee;
+		padding: 1px 0 0 1px;
+		font-family: Avenir;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;		
+	}
+	
+	.text-chooser-row-header {
+		background: #ccc;
+		font-size: bold;
+		height: 2.0em;
+		line-height: 2.0em;		
+	}
+	
+	.text-chooser-row {
+		overflow: hidden;
+		height: 2.0em;
+		line-height: 2.0em;
+	}	
+	
+	.text-chooser-row .text-chooser-abbr {
+
+		font-size: bold;
+		width: 60px;
+		margin: 0 10px 0;
+		text-align: right;
+		display: inline-block;
+	}	
+	.text-chooser-row .text-chooser-name {
+		display: inline-block;
+		
+	}
+	
+
+	

@@ -1,73 +1,35 @@
 
-/*
+
+var ScrollerApp = function(node) {
 	
-	APP
-		-- load text_header from settings
-			-- load section
-		-- load all texts
-		-- create choser
-	
-	Chooser				
-		Events: 'textchose'	
-		Methods: render
-	
-	Navigator
-		Events: 'navigated'
-		Methods: setText, renderDivisions, renderSections
-
-
-
-
-*/
-
-var ScrollerApp = function($, id) {
-	
-	var 
+	var 		
+		container =
+			$('<div class="scroller-container">'+
+				'<div class="scroller-header">'+
+					'<div class="scroller-header-inner">'+
+						'<div class="text-nav"></div>'+
+						'<div class="text-list"></div>'+
+					'</div>'+
+				'</div>'+
+				'<div class="scroller-main">' + 
+					'<div class="scroller-text-wrapper"></div>' +
+				'</div>'+
+			'</div>').appendTo(node),
 		
-		win = $(window),
-
-		
-		container = $('#' + id)
-					.css('width',win.width())
-					.css('height',win.height()),
-		
-		header = container.find('.scroller-header'),
-							
-		main = container.find('.scroller-main')
-					.css('width',container.width())
-					.css('height',container.height() - header.outerHeight(true)),
-		
-		wrapper = $('<div class="scroller-text-wrapper"></div>')
-					.appendTo(main),
-					
-		
-		// stuff in heaader
+		// dom nodes
+		header = container.find('.scroller-header'),							
+		main = container.find('.scroller-main'),		
+		wrapper = container.find('.scroller-text-wrapper'),												
 		navui = header.find('.text-nav'),
 		textlistui = header.find('.text-list'),					
 		
-		textChooser = new TextChooser(textlistui, text_changed),
-		
+		// objects
+		textChooser = new TextChooser(textlistui, text_changed),		
 		textNavigator = new TextNavigator('eng', textnavigation_changed),
-		
+		scroller = new Scroller(main),		
 		currentTextInfo = null;
-
-
-		
-	main.on('scroll', function() {
-		update_textnav();
-		
-		start_load_more_timeout();
-	});
 	
-	$(document).on('keypress', function(e) {
-		if (e.which == 109) {
-			load_more();
-		}
-		
-		console.log(e.type, e.which);
-	});
-	
-	// 
+	// DOM to object stuff
 	textlistui.on('click', function() {
 		textChooser.show();
 	});
@@ -78,13 +40,11 @@ var ScrollerApp = function($, id) {
 		
 	function textnavigation_changed(sectionid) {
 		// load new content
-		load(sectionid, 'text');
+		scroller.load(sectionid, 'text');
 	}
 	
 	function text_changed(newTextInfo) {
-	
-		console.log('text_changed', newTextInfo);
-	
+		
 		// update the navigator with the latest header
 		textNavigator.setTextInfo(newTextInfo);		
 	
@@ -105,126 +65,13 @@ var ScrollerApp = function($, id) {
 			
 			// load new text
 			wrapper.html('');
-			load( nearestSectionId, 'text' );
+			scroller.set_textinfo(currentTextInfo);
+			scroller.load( nearestSectionId, 'text' );
 		}	
 		
 		store_settings();	
 	}
-	
-	var load_more_timeout = null;
-	function start_load_more_timeout() {
 			
-		if (load_more_timeout === null) {
-			
-			load_more_timeout = setTimeout(function() {
-				load_more();
-				clearTimeout( load_more_timeout );
-				load_more_timeout = null;				
-			}, 100);				
-			
-		}	
-	}
-	
-	function load_more() {
-		
-		//console.log('load_more');
-		
-		// measure top and bottom height
-		var
-			fragmentid = null;
-			wrapper_height = wrapper.height(),
-			main_height = main.height(),
-			above_top = main_scrolltop = main.scrollTop(),			
-			sections = wrapper.find( '.section' ),
-			total_height = 0,
-			below_bottom = wrapper_height /*total_height*/ - main_height - main_scrolltop;
-			
-		//console.log('above_top', above_top, main_height, above_top < main_height);
-		//console.log('below_bottom', below_bottom, main_height, below_bottom < main_height);
-		//return;
-		
-		// add below
-		if (below_bottom < main_height) {
-		
-			//console.warn('next');
-		
-			fragmentid = sections
-							.last() // the last chapter (bottom)
-							.attr( 'data-nextid' );
-							
-			//console.log('load next', fragmentid);
-				
-			if (fragmentid != null && sections.length < 50) {			
-				load(fragmentid, 'next');
-			}
-		}
-					
-		// add above
-		else if (above_top < main_height) {
-		
-			//console.warn('prev');
-					
-			fragmentid = sections
-							.first() // the first chapter (top)
-							.attr( 'data-previd' );
-							
-			//console.log('load prev', fragmentid);
-
-			if (fragmentid != null && sections.length < 50) {
-				load(fragmentid, 'prev');
-			}
-		
-		} 		
-
-		
-		// remove above
-		else if (above_top > main_height*15) {
-			//console.warn('remove above');
-			
-			var first_node_of_second_section = wrapper.find('.section:eq(1)').children().first(),
-				first_node_offset_before = first_node_of_second_section.offset().top;
-			
-			//console.log('first_node_of_second_section',first_node_of_second_section);
-			//console.log('first_node_offset_before',first_node_offset_before);			
-			
-			wrapper.find('.section:first').remove();
-			
-			/*
-			var new_wrapper_height = wrapper.height(),
-				height_difference = new_wrapper_height - wrapper_height;
-				new_scrolltop = main_scrolltop - height_difference;
-			
-			main.scrollTop(new_scrolltop);
-			*/
-			var
-				first_node_offset_after = first_node_of_second_section.offset().top,
-				offset_difference = first_node_offset_after - first_node_offset_before;
-				new_scrolltop = main.scrollTop();	
-				updated_scrolltop = new_scrolltop - Math.abs(offset_difference);	
-				
-			/*
-			console.log('first_node_offset_after',first_node_offset_after);													
-			console.log('offset_difference',offset_difference);													
-			console.log('main_scrolltop',main_scrolltop);																			
-			console.log('new_scrolltop',new_scrolltop);																			
-			console.log('updated_scrolltop',updated_scrolltop);	
-			*/
-			
-			main.scrollTop(updated_scrolltop);			
-			
-			//console.log('first_node_offset_after2',first_node_of_second_section.offset().top);																			
-		} 
-		
-		// remove below
-		else if (below_bottom > main_height*15) {
-			//console.warn('remove below');
-			
-			wrapper.find('.section:last').remove();		
-		} 
-
-			
-	}
-		
 	// show the current position to the user
 	function update_textnav() {
 				
@@ -303,105 +150,11 @@ var ScrollerApp = function($, id) {
 	
 		AppSettings.setValue('scroller-settings', 
 			{	
-				textheader: currentTextInfo, 
+				textinfo: currentTextInfo, 
 				sectionid: navui.attr('data-sectionid')
 			});
 	}
 	
-	
-	function load(sectionid, loadType) {
-
-		// check if this exists
-		if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
-			return;
-		}
-
-		texts.TextLoader.load( currentTextInfo, sectionid, function(content) {
-		
-			// check if this exists
-			if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
-				return;
-			}
-						
-			switch (loadType) {
-				default:
-				case 'text':
-					wrapper.html('');
-					main.scrollTop(0);
-					wrapper.append(content);
-												
-					break;
-				
-				case 'next':
-				
-					//var main_scrolltop_before = main.scrollTop();
-					
-					wrapper.append(content);	
-					
-					///var main_scrolltop_after = main.scrollTop();
-					
-					//console.log('main_scrolltop_before',main_scrolltop_before);
-					//console.log('main_scrolltop_after',main_scrolltop_after);
-					
-					
-					//return;	
-					
-					break;
-									
-				case 'prev':
-					/*
-					var wrapper_height_before = wrapper.height(),
-						main_scrolltop_before = main.scrollTop();
-						
-					wrapper.prepend(content);
-					
-					var wrapper_height_after = wrapper.height(),
-						new_content_height = wrapper_height_after - wrapper_height_before,
-						new_scrolltop = main_scrolltop_before - new_content_height
-			
-					main.scrollTop( Math.abs(new_scrolltop));
-										
-										*/	
-					
-					/*
-					console.log('wrapper_height_before',wrapper_height_before);
-					console.log('main_scrolltop_before',main_scrolltop_before);
-					console.log('wrapper_height_after',wrapper_height_after);
-					console.log('new_content_height',new_content_height);
-					console.log('new_scrolltop',new_scrolltop);																							*/
-										
-										
-					var	main_scrolltop_before = main.scrollTop(),
-						first_item = main.find('.section').children().first();
-						first_item_offset_top_before = first_item.offset().top;
-						
-					wrapper.prepend(content);
-					
-					var first_item_offset_top_after = first_item.offset().top,
-						offest_difference = first_item_offset_top_after - first_item_offset_top_before,
-						new_scrolltop = main_scrolltop_before - offest_difference;
-			
-					main.scrollTop( Math.abs(new_scrolltop));										
-					
-					/*
-					console.log('first_item_offset_top_before',first_item_offset_top_before);
-					console.log('first_item_offset_top_after',first_item_offset_top_after);
-					console.log('offest_difference',offest_difference);
-					console.log('new_scrolltop',new_scrolltop);
-					*/
-					
-					break;			
-			
-			}
-			
-			update_textnav();
-						
-			load_more();
-			
-			store_settings();
-		});		
-	
-	}
 	
 	// START UP
 	
@@ -413,9 +166,9 @@ var ScrollerApp = function($, id) {
 		textlistui.html('Version');
 		
 		// get stored settings
-		var default_reader_settings = {
+		var default_settings = {
 				sectionid: 'JN1',
-				textheader: {
+				textinfo: {
 					"id":"eng_kjv",
 					"type":"bible",
 					"name":"King James Version",
@@ -423,10 +176,10 @@ var ScrollerApp = function($, id) {
 					"lang":"eng"
 				}
 			},		
-			reader_settings = AppSettings.getValue('scroller-settings', default_reader_settings);
+			settings = AppSettings.getValue('scroller-settings', default_settings);
 			
 		// using the stored settings temporarily store the text
-		currentTextInfo = reader_settings.textheader;		
+		currentTextInfo = settings.textinfo;		
 		textChooser.setSelectedText(currentTextInfo);
 		
 		// start loading text headers
@@ -439,16 +192,42 @@ var ScrollerApp = function($, id) {
 			textChooser.renderTexts();	
 		});
 	
-	
-		load(reader_settings.sectionid, 'text');
+		scroller.set_textinfo(settings.textinfo);
+		scroller.load('text', settings.sectionid);
 	}
 	
 	init();
+	
+	function size(width, height) {
+		
+		console.log('newsize',width,height);
+	
+		container
+			.outerWidth(width)
+			.outerHeight(height);
+		
+		main
+			.outerWidth(width)
+			.outerHeight( container.height() - header.outerHeight(true));
+	}
+	
+	return {
+		size :size	
+	}
 	
 };
 
 $(function() {
 	
-	scrollerApp = new ScrollerApp(jQuery, 'scroller-app');
+	var 
+		win = $(window),
+		scrollerApp = new ScrollerApp($(document.body));
+	
+	function setScrollerSize() {
+		scrollerApp.size( win.width(), win.height() );	
+	}
+	setScrollerSize();
+	
+	win.on('resize', setScrollerSize); 
 
 });

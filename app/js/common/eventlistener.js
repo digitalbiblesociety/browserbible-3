@@ -29,5 +29,13 @@ var EventEmitter = {
 				callbacks[i].apply(null, args);
 			}
 		}
+	},
+	
+	// jQuery like names
+	on: function(eventName, callback, bubble) {
+		this.addEventListener.call(this, eventName, callback, bubble);	
+	},
+	trigger: function(eventName, value) {
+		this.dispatchEvent.call(this, eventName, value);	
 	}
 };

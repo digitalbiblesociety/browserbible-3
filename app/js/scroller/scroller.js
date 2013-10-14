@@ -10,7 +10,7 @@ var Scroller = function(node) {
 		//
 		//update_textnav();
 		
-		emit_event('scroll');
+		obj.trigger('scroll');
 		
 		start_load_more_timeout();
 	});
@@ -163,7 +163,7 @@ var Scroller = function(node) {
 			
 			}
 			
-			emit_event('loaded', content);
+			obj.trigger('loaded', content);
 						
 			load_more();
 		});		
@@ -192,21 +192,13 @@ var Scroller = function(node) {
 		currentTextInfo = textinfo;
 	}
 	
-	
-	function on(eventName, method) {
-		obj.addEventListener(eventName, method);
-	}	
-	
-	function emit_event(eventName) {
-		obj.dispatchEvent(eventName);
-	}
-	
+
 	var obj = {
 		load_more: load_more,
 		load: load,
 		set_size: set_size,
 		get_settings: get_settings,
-		set_textinfo: set_textinfo,
+		set_textinfo: set_textinfo
 	};
 	
 	obj = $.extend(obj, EventEmitter);

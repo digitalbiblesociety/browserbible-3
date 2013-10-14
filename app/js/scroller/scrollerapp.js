@@ -25,7 +25,7 @@ var ScrollerApp = function(node) {
 		
 		// objects
 		textChooser = new TextChooser(textlistui, text_changed),		
-		textNavigator = new TextNavigator('eng', textnavigation_changed),
+		textNavigator = new TextNavigator('eng'),
 		scroller = new Scroller(main),		
 		currentTextInfo = null;
 	
@@ -37,11 +37,14 @@ var ScrollerApp = function(node) {
 	navui.on('click', function() {
 		textNavigator.show();
 	});
-		
-	function textnavigation_changed(sectionid) {
+	
+	textNavigator.on('change', function (sectionid) {
 		// load new content
-		scroller.load(sectionid, 'text');
-	}
+		scroller.load('text', sectionid);
+	});
+	
+	scroller.on('scroll', update_textnav);
+
 	
 	function text_changed(newTextInfo) {
 		
@@ -66,7 +69,7 @@ var ScrollerApp = function(node) {
 			// load new text
 			wrapper.html('');
 			scroller.set_textinfo(currentTextInfo);
-			scroller.load( nearestSectionId, 'text' );
+			scroller.load( 'text', nearestSectionId);
 		}	
 		
 		store_settings();	

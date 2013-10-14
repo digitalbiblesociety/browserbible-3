@@ -2,7 +2,7 @@
 Text Navigator
 *******************/
 
-var TextNavigator = function(lang, navigation_changed_callback) {
+var TextNavigator = function(lang) {
 	// create me
 	
 	var changer = $('<div class="text-navigator">' + 
@@ -132,12 +132,15 @@ var TextNavigator = function(lang, navigation_changed_callback) {
 							.addClass('selected')
 							.attr('data-id');
 	
-		navigation_changed_callback(sectionid);
+		obj.trigger('change', sectionid);
+		//navigation_changed_callback(sectionid);
 		
 		changer.hide();
 	});	
 	
-	return {
+	
+	// this is the return object!
+	var obj = {
 		show: showChanger,
 		hide: function() {
 			changer.hide();
@@ -148,5 +151,9 @@ var TextNavigator = function(lang, navigation_changed_callback) {
 			changer.find('.text-navigator-header').html( textInfo.title );
 		}
 	}
+	
+	obj = $.extend(obj, EventEmitter);
+	
+	return obj;
 		
 }

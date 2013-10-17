@@ -2,7 +2,7 @@
 Text Navigator
 *******************/
 
-var TextNavigator = function(lang) {
+var TextNavigator = function(container) {
 	// create me
 	
 	var changer = $('<div class="text-navigator">' + 
@@ -20,12 +20,11 @@ var TextNavigator = function(lang) {
 		
 	function showChanger() {
 		// reset width
-		changer.width( $(window).width()) .show();
+		size();
+		changer.show();
 		
 		// remove all selections
 		changer.find('.selected').removeClass('selected');	
-		
-		console.log('showChanger', textInfo);
 		
 		switch (textInfo.type) {
 			case 'bible': 
@@ -44,13 +43,18 @@ var TextNavigator = function(lang) {
 	
 	// divisions = Bible books
 	function renderDivisions() {
-		console.log('renderDivisions', textInfo);
+		//console.log('renderDivisions', textInfo);
 		
 		// render books
 		var html = [];
 		for (var i=0, il= textInfo.divisions.length ; i<il; i++) {
 	
 			var divisionid = textInfo.divisions[i],
+				divisionAbbr = (textInfo.divisionAbbreviations) ? textInfo.divisionAbbreviations[i] : null,
+				divisionName = (textInfo.divisionNames) ? textInfo.divisionNames[i] : null,
+				shortName = divisionAbbr != null ? divisionAbbr.replace(/\s/i,'').substring(0,3) :
+							divisionName != null ? divisionName.replace(/\s/i,'').substring(0,3) : 
+							divisionid,
 				book = bible.BOOK_DATA[divisionid];
 				
 			if (typeof book == 'undefined')
@@ -60,7 +64,7 @@ var TextNavigator = function(lang) {
 				html.push('<div class="clear"></div>');
 			}
 			
-			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + book.chapters.length + '">' + divisionid + '</span>');
+			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + book.chapters.length + '">' + shortName + '</span>');
 		} //
 		
 		changer.find('.text-navigator-divisions').html(html).show();
@@ -77,11 +81,10 @@ var TextNavigator = function(lang) {
 			.siblings()
 				.removeClass('selected')
 		
-		console.log('division click', this);
+		//console.log('division click', this);
 		
 		
-		renderSections();
-			
+		renderSections();			
 	});
 	
 	
@@ -132,15 +135,27 @@ var TextNavigator = function(lang) {
 							.addClass('selected')
 							.attr('data-id');
 	
-		obj.trigger('change', sectionid);
+		ext.trigger('change', sectionid);
 		//navigation_changed_callback(sectionid);
 		
 		changer.hide();
 	});	
 	
+	function size(width,height) {
+		if (!(width && height)) {
+			width = container.width();
+			height = container.height();			
+		}	
+	
+		changer
+			.width(width)
+			.height(height)
+			.css({top: container.offset().top,left: container.offset().left});
+	}
+	
 	
 	// this is the return object!
-	var obj = {
+	var ext = {
 		show: showChanger,
 		hide: function() {
 			changer.hide();
@@ -149,11 +164,12 @@ var TextNavigator = function(lang) {
 			textInfo = value;
 			
 			changer.find('.text-navigator-header').html( textInfo.title );
-		}
+		},
+		size: size
 	}
 	
-	obj = $.extend(obj, EventEmitter);
+	ext = $.extend(true, ext, EventEmitter);
 	
-	return obj;
+	return ext;
 		
 }

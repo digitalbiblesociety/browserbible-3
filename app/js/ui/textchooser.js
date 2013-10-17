@@ -4,11 +4,10 @@
 TextChooser
 *******************/
 
-var TextChooser = function(node, callback) {
+var TextChooser = function(container) {
 	// create me
 	var selectedTextInfo = null,
 		textSelector = $('<div class="text-chooser">' + '</div>')
-					.css({height: $(window).height(), width: $(window).width()})
 					.appendTo( $('body') )
 					.hide();
 	
@@ -24,9 +23,10 @@ var TextChooser = function(node, callback) {
 				
 		selectedTextInfo = texts.Texts.textData[textid];
 		
-		callback(selectedTextInfo);
-		
 		hide();
+		
+		console.log('chooser:change', selectedTextInfo);
+		ext.trigger('change', selectedTextInfo);
 	});
 	
 	
@@ -54,13 +54,17 @@ var TextChooser = function(node, callback) {
 					.addClass('selected');
 					
 	
-		callback(selectedTextInfo);	
+		//callback(selectedTextInfo);	
+		console.log('chooser:change', selectedTextInfo);
+		ext.trigger('change', selectedTextInfo);
 		
 		// show the text to the user
-		node.html( selectedTextInfo.name );	
+		//node.html( selectedTextInfo.name );	
 	}
 	
 	function show() {
+		size();
+	
 		textSelector.show();
 	}
 	
@@ -70,20 +74,38 @@ var TextChooser = function(node, callback) {
 	
 	function setSelectedText(text) {
 		selectedTextInfo = text;
-		node.html( selectedTextInfo.name );	
+		//node.html( selectedTextInfo.name );	
 	}
 
 	function getSelectedText() {
 		return selectedTextInfo;
 	}
 	
-
-	return {
+	function size(width,height) {
+	
+		if (!(width && height)) {
+			width = container.width();
+			height = container.height();			
+		}
+	
+		textSelector
+			.width(width)
+			.height(height)
+			.css({top: container.offset().top,left: container.offset().left});
+	}	
+	
+	var ext = {
 		show: show,
 		hide: hide,
 		getSelectedText: getSelectedText,
 		setSelectedText: setSelectedText,
-		renderTexts: renderTexts
-	}
+		renderTexts: renderTexts,
+		size: size
+	};
+	ext = $.extend(true, ext, EventEmitter);
+
+	
+
+	return ext;
 	
 }

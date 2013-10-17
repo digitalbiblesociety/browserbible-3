@@ -35,11 +35,43 @@ var App = function() {
 	// combine nodes and objects
 	win.on('resize', resize);
 	resize();	
+	
+	var settingsKey = 'windowapp'
+		defaultSettings = {
+			windows: [
+				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
+				{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
+				{type: 'MapsWindow', data: {'latitude': -34.397, 'longitude': 150.644}}
+			]
+		},
+		settings = AppSettings.getValue(settingsKey, defaultSettings);
+		
+	
+	// TEMP
+	settings = defaultSettings;
+	
+	// create windows
+	for (var i=0, il=settings.windows.length; i<il; i++) {
+		var windowSetting = settings.windows[i];
+		console.log('creating', windowSetting);
+		windowManager.add(windowSetting.type, windowSetting.data);	
+	}
+	
+	windowManager.on('settingschange', function(windowsSettings) {
+		var settings = {
+			windows: windowsSettings
+		};
+		
+		console.log('appsettings', settings);
+		
+		//AppSettings.setValue(settingsKey, settings);
+	});
+	
 		
 	// dummy
-	windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'});	
-	windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'GN1','fragmentid':'GN1_10'});		
-	windowManager.add('MapsWindow', {'data':'stuff'});
+	//windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'});	
+	//windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'GN1','fragmentid':'GN1_10'});		
+	//windowManager.add('MapsWindow', {'data':'stuff'});
 	
 	return app;	
 }

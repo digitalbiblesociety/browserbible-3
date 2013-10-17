@@ -7,17 +7,24 @@ ReaderSettings
 var AppSettings = (function() {
 	// create me	
 	function getValue(key, defaultValue) {
-		var value = defaultValue,
+		var value = {},
 			storedValue = null;
+			
+			
+		// put all default values on the value object
+		for (var key in defaultValue) {
+			value[key] = defaultValue[key];
+		}		
 	
+		// require localStorage (no cookies!)
 		if (typeof window.localStorage == 'undefined') {
-			return defaultValue;
+			return value;
 		}
 		
 		storedValue = window.localStorage[key];
 		
 		if (storedValue == null) {
-			return defaultValue;
+			return value;
 		} else {
 			try {
 				storedValue = JSON.parse(storedValue);

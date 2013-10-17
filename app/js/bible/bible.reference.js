@@ -7,7 +7,7 @@
  
 // Depends on bible.data.js
 
-bible.parseReference = function (textReference) {
+bible.parseReference = function (textReference, language) {
 
 	var 
 		bookIndex = -1,
@@ -154,7 +154,7 @@ bible.parseReference = function (textReference) {
 	}
 
 	// finalize
-	return bible.Reference(matchingbookid, chapter1, verse1, chapter2, verse2);
+	return bible.Reference(matchingbookid, chapter1, verse1, chapter2, verse2, language);
 
 }
 
@@ -166,20 +166,27 @@ bible.Reference = function () {
 		_verse1 = -1,
 		_chapter2 = -1,
 		_verse2 = -1,
-		_language = 'en';
+		_language = 'eng';
 
 	if (arguments.length == 0) {
 		// error		
 	} else if (arguments.length == 1 && typeof arguments[0] == 'string') { // a string that needs to be parsed
 		return bible.parseReference(arguments[0]);
+					
 	} else if (arguments.length == 1) { // unknonw
 		return null;
+		
+	} else if (arguments.length == 2) { // a string that needs to be parsed
+		_language = arguments[2];
+		return bible.parseReference(arguments[0], arguments[1]);
+		
 	} else {
 		_bookid = arguments[0];
 		_chapter1 = arguments[1];
 		if (arguments.length >= 3) _verse1 = arguments[2];
 		if (arguments.length >= 4) _chapter2 = arguments[3];
 		if (arguments.length >= 5) _verse2 = arguments[4];
+		if (arguments.length >= 6) _language = arguments[5];		
 	}
 
 	function padLeft(input, length, s) {

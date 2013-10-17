@@ -1,5 +1,5 @@
 
-var WindowManager = function(node, app) {
+var WindowManager = function(node) {
 	
 	var windows = []
 	
@@ -17,8 +17,8 @@ var WindowManager = function(node, app) {
 		windows.push(win);
 		
 		// when a window reports a settings change
-		win.on('settingschange', function() {
-			 
+		win.on('settingschange', function(e) {
+				 
 			 // get all windows settings, bubble up
 			 var settingsForAllWindows = [];
 			 
@@ -29,11 +29,18 @@ var WindowManager = function(node, app) {
 			 	});
 			 }
 			 
-			 ext.trigger('settingschange', settingsForAllWindows);
+			 ext.trigger('settingschange', {
+			 	type:'settingschange', 
+			 	target: this, 
+			 	data: {
+			 		active: e.data, 
+			 		settings: settingsForAllWindows
+			 	}
+			 });
 			
 		});
 		
-		win.on('globalmessage', function(message) {
+		win.on('globalmessage', function(e) {
 			// give to other windows
 
 			 for (var i=0, il=windows.length; i<il; i++) {
@@ -41,7 +48,7 @@ var WindowManager = function(node, app) {
 			 	
 			 	if (window.id != id) {
 			 		// pass message down
-			 		window.trigger('globalmessage', message);
+			 		window.trigger('globalmessage', e);
 			 	}
 			 }				
 		});
@@ -88,11 +95,11 @@ var Window = function(id, parentNode, className, data, manager) {
 	var controller = new window[className](id, node, data);
 	
 	// send settings up to th Manager, up to the app
-	controller.on('settingschange', function() {
-		ext.trigger('settingschange');
+	controller.on('settingschange', function(e) {
+		ext.trigger('settingschange', {type: e.type, target: this, data: e.data});
 	});
-	controller.on('sendmessage', function(data) {
-		ext.trigger('sendmessage', data);
+	controller.on('sendmessage', function(e) {
+		ext.trigger('sendmessage', {type: e.type, target: this, data: e.data});
 	});	
 	
 	function size(width, height) {
@@ -112,13 +119,14 @@ var Window = function(id, parentNode, className, data, manager) {
 		id: id,
 		getData: function() {
 			return controller.getData();
-		}
+		},
+		controller: controller
 	};
 	
 	ext = $.extend(ext, EventEmitter);
 	
-	ext.on('globalmessage', function(message) {
-		controller.trigger('globalmessage', message);
+	ext.on('globalmessage', function(e) {
+		controller.trigger('globalmessage', e);
 	});
 		
 	return ext;

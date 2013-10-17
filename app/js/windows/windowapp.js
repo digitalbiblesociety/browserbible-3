@@ -22,15 +22,10 @@ var App = function() {
 		
 		// pass new size down to area
 		windowManager.size(width, areaHeight);
-	}
-		
-			
+	}		
 	
 	// create objects
-	var app = {
-	
-		},
-		windowManager = new WindowManager(main, app);	
+	var windowManager = new WindowManager(main);	
 		
 	// combine nodes and objects
 	win.on('resize', resize);
@@ -53,14 +48,16 @@ var App = function() {
 	// create windows
 	for (var i=0, il=settings.windows.length; i<il; i++) {
 		var windowSetting = settings.windows[i];
-		console.log('creating', windowSetting);
+		//console.log('creating', windowSetting);
 		windowManager.add(windowSetting.type, windowSetting.data);	
 	}
 	
-	windowManager.on('settingschange', function(windowsSettings) {
+	windowManager.on('settingschange', function(e) {
 		var settings = {
-			windows: windowsSettings
+			windows: e.data.settings
 		};
+		
+		document.title = e.data.active.fragmentid;
 		
 		console.log('appsettings', settings);
 		
@@ -73,7 +70,7 @@ var App = function() {
 	//windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'GN1','fragmentid':'GN1_10'});		
 	//windowManager.add('MapsWindow', {'data':'stuff'});
 	
-	return app;	
+	return this;	
 }
 
 $(function() {

@@ -8,7 +8,7 @@ var Scroller = function(node) {
 
 		
 	node.on('scroll', function() {
-		ext.trigger('scroll');
+		ext.trigger('scroll', {type: 'scroll', target: this, data: null});
 		
 		update_location_info();
 		
@@ -71,7 +71,7 @@ var Scroller = function(node) {
 		
 		// found a fragment
 		if (newLocationInfo != null && (locationInfo == null || newLocationInfo.fragmentid != locationInfo.fragmentid)) {
-			ext.trigger('locationchange', newLocationInfo);			
+			ext.trigger('locationchange', {type:'locationchange', target: this, data: newLocationInfo});
 		}	
 		
 		console.log('location', newLocationInfo);	
@@ -231,7 +231,7 @@ var Scroller = function(node) {
 			
 			}
 			
-			ext.trigger('load', content);
+			ext.trigger('load', {type: 'load', target: this, data: content});
 						
 			load_more();
 		});		

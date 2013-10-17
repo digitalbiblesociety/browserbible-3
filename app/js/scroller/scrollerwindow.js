@@ -31,24 +31,26 @@ var ScrollerWindow = function(id, node, init_data) {
 		currentLocationInfo = null;
 	
 	// DOM to object stuff
-	textlistui.on('click', function() {
+	textlistui.on('click', function(e) {
 		textChooser.show();
 	});
 			
-	navui.on('click', function() {
+	navui.on('click', function(e) {
 		textNavigator.show();
 	});
 	
-	textNavigator.on('change', function (sectionid) {
-		console.log('app:navigator:change', sectionid);
+	textNavigator.on('change', function (e) {
+		console.log('app:navigator:change', e.sectionid);
 	
 		// load new content
-		scroller.load('text', sectionid);
+		scroller.load('text', e.sectionid);
 	});
 	
-	textChooser.on('change', function (newTextInfo) {
+	textChooser.on('change', function (e) {
 		
-		console.log('app:chooser:change', newTextInfo);
+		console.log('app:chooser:change', e.data);
+		
+		var newTextInfo = e.ddata;
 	
 		// ALWAYS UPDATE: for first load
 		// update version name
@@ -71,7 +73,7 @@ var ScrollerWindow = function(id, node, init_data) {
 			scroller.load( 'text', nearestSectionId);
 		}	
 		
-		ext.trigger('settingschange');	
+		ext.trigger('settingschange', {type: 'settingschange', target: this, data:getData()});	
 	});	
 	
 	scroller.on('scroll', update_textnav);
@@ -79,7 +81,7 @@ var ScrollerWindow = function(id, node, init_data) {
 	scroller.on('load', update_textnav);
 			
 	// show the current position to the user
-	function update_textnav() {
+	function update_textnav(e) {
 				
 		var newLocationInfo = scroller.getLocationInfo();
 		
@@ -109,21 +111,12 @@ var ScrollerWindow = function(id, node, init_data) {
 			}	
 			
 			
-			ext.trigger('settingschange');			
+			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
 		}
 		
 		
 	}
-	
-	function store_settings() {
-		AppSettings.setValue('scroller-' + id, 
-			{	
-				textinfo: currentTextInfo, 
-				sectionid: navui.attr('data-sectionid')
-			});
-	}
-	
-	
+
 	// START UP
 	
 	function init() {
@@ -174,7 +167,11 @@ var ScrollerWindow = function(id, node, init_data) {
 			currentLocationInfo = scroller.getLocationInfo();
 		}			
 		
-		var data = {textid: currentTextInfo.id, sectionid: currentLocationInfo.sectionid, fragmentid: currentLocationInfo.fragmentid};
+		var data = {
+			textid: currentTextInfo.id, 
+			sectionid: currentLocationInfo.sectionid, 
+			fragmentid: currentLocationInfo.fragmentid
+		};
 		
 		return data;	
 	}

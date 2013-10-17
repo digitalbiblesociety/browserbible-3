@@ -6,6 +6,8 @@ window.texts = window.texts || {};
 
 texts.Texts = {
 
+	finishedLoading: false,
+
 	locationBase: 'content/texts/',
 
 	// prebuild version array
@@ -20,7 +22,7 @@ texts.Texts = {
 	
 	loadingTextIndex: -1,
 	
-	loadingCallback: null,
+	loadingCallbacks: [],
 	
 	// loaded from content/texts/texts.js
 	allTexts: [],
@@ -83,21 +85,29 @@ texts.Texts = {
 	},
 	
 	loadingFinished: function() {
+	
+		this.finishedLoading = true;
+	
 		this.textIds.sort();
 	
 		//this.versionData = bible.versionData;
-		this.loadingCallback( this.textData );		
+		for (var i=0; i<this.loadingCallbacks.length; i++) {
+			this.loadingCallbacks[i]( this.textData );
+		}
+		
+		this.loadingCallbacks = [];
 	},
 	
 	loadTexts: function(callback) {
 	
-		this.loadingCallback = callback;
+		this.loadingCallbacks.push(callback);
 		
-		if (this.textData == null) {
+		if (this.finishedLoading) {
+			this.loadingFinished();
+
+		} else {
 			this.textData = {};
 			this.loadNextText();
-		} else {
-			this.loadingFinished();
 		}
 	}
 };

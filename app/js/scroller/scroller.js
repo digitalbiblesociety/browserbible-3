@@ -3,17 +3,83 @@ var Scroller = function(node) {
 	
 	var 
 		wrapper = node.find('.scroller-text-wrapper'),
-		currentTextInfo = null;
+		currentTextInfo = null,
+		locationInfo = {};
 
 		
 	node.on('scroll', function() {
-		get_nav();
+		ext.trigger('scroll');
 		
-		obj.trigger('scroll');
+		update_location_info();
 		
 		start_load_more_timeout();
 	});
 	
+	
+	// find the top most visible node (verse, page, etc.)
+	// pass it up as an event
+	function update_location_info() {
+		// reset info
+		
+		
+		var 
+			topOfContentArea = node.offset().top,
+			sectionid = '',
+			fragmentid = '',
+			fragmentSelector = currentTextInfo.fragmentSelector,
+			newLocationInfo = null;
+	
+		// magic for bibles or books				
+		if (typeof fragmentSelector == 'undefined' || fragmentSelector == '') {
+			switch (currentTextInfo.type) {
+				case 'bible':				
+					// find top				
+					fragmentSelector = '.verse';
+					
+					break;
+				case 'book':
+					// find top
+					fragmentSelector = '.page';
+					
+					break;		
+			}
+		}
+		
+		// look through all the markers and find the first one that is fully visible
+		node.find( fragmentSelector ).each(function(e) {
+			var fragment = $(this);
+			
+			// is the top of the fragment at the top of the scroll pane
+			if (fragment.offset().top - topOfContentArea > -2) {
+				
+				// pass the marker data
+				newLocationInfo = {
+					// verse ID
+					fragmentid: fragment.attr('data-id'),
+					
+					sectionid: fragment.hasClass('section') ? fragment.attr('data-id') : fragment.closest('.section').attr('data-id'),
+					
+					// extra positioning info
+					offset: topOfContentArea - fragment.offset().top
+				};
+				return false;
+			}
+			
+			// means "keep looking" :)
+			return true;
+		});
+		
+		// found a fragment
+		if (newLocationInfo != null && (locationInfo == null || newLocationInfo.fragmentid != locationInfo.fragmentid)) {
+			ext.trigger('locationchange', newLocationInfo);			
+		}	
+		
+		console.log('location', newLocationInfo);	
+		
+		locationInfo = newLocationInfo;
+	};
+	
+	/* load testing
 	$(document).on('keypress', function(e) {
 		if (e.which == 109) {
 			load_more();
@@ -21,11 +87,7 @@ var Scroller = function(node) {
 		
 		console.log(e.type, e.which);
 	});
-	
-	function get_nav() {
-		
-	}
-	
+	*/
 	
 	var load_more_timeout = null;
 	function start_load_more_timeout() {
@@ -137,6 +199,9 @@ var Scroller = function(node) {
 					node.scrollTop(0);
 					wrapper.append(content);
 					
+					locationInfo = null;
+					update_location_info();
+					
 					// TODO: scrollto fragmentid
 												
 					break;
@@ -166,46 +231,53 @@ var Scroller = function(node) {
 			
 			}
 			
-			obj.trigger('load', content);
+			ext.trigger('load', content);
 						
 			load_more();
 		});		
 	
 	}
 		
-	function set_size(width, height) {
+	function size(width, height) {
 		node
 			.width(width)
 			.height(height);
 	}
 	
-	function get_settings() {
+	function getSettings() {
 	
-		// find top node
-	
-	
+		// find top node	
 		return {
 			textinfo: currentTextInfo,
 			sectionid: '',
 			fragmentid: ''
 		}
 	}
+
+	function getTextInfo() {
+		return currentTextInfo;
+	}
 	
-	function set_textinfo(textinfo) {
+	function setTextInfo(textinfo) {
 		currentTextInfo = textinfo;
 	}
 	
+	function getLocationInfo() {
+		return locationInfo;
+	}
+	
 
-	var obj = {
+	var ext = {
 		load_more: load_more,
 		load: load,
-		set_size: set_size,
-		get_settings: get_settings,
-		set_textinfo: set_textinfo
+		size: size,
+		getTextInfo: getTextInfo,
+		setTextInfo: setTextInfo,
+		getLocationInfo: getLocationInfo
 	};
 	
-	obj = $.extend(true, obj, EventEmitter);
+	ext = $.extend(true, ext, EventEmitter);
 	
-	return obj;
+	return ext;
 	
 };

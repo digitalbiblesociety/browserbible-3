@@ -45,15 +45,19 @@
 	<script src="js/ui/textnavigator.js"></script>
 	<script src="js/ui/textchooser.js"></script>	
 	<script src="js/scroller/scroller.js"></script>
-	<script src="js/scroller/scrollerapp.js"></script>
+	<script src="js/scroller/scrollerwindow.js"></script>
 	
 	<script>
 
 $(function() {
 	
 	var 
+		defaultSettings = {textid: 'eng_kjv', sectionid: 'JN1', fragmentid: 'JN1_1'},
+		settingsKey = 'scroller-standalone',
+		settings = AppSettings.getValue(settingsKey, defaultSettings),
+	
 		win = $(window),
-		scrollerApp = new ScrollerApp('reader', $(document.body));
+		scrollerApp = new ScrollerWindow('reader', $(document.body), settings);
 	
 	function setScrollerSize() {
 		scrollerApp.size( win.width(), win.height() );	

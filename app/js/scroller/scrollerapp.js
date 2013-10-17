@@ -1,6 +1,6 @@
 
 
-var ScrollerApp = function(node) {
+var ScrollerApp = function(id, node) {
 	
 	var 		
 		container =
@@ -24,8 +24,8 @@ var ScrollerApp = function(node) {
 		textlistui = header.find('.text-list'),					
 		
 		// objects
-		textChooser = new TextChooser(textlistui, text_changed),		
-		textNavigator = new TextNavigator('eng'),
+		textChooser = new TextChooser(container),		
+		textNavigator = new TextNavigator(container),
 		scroller = new Scroller(main),		
 		currentTextInfo = null;
 	
@@ -39,13 +39,49 @@ var ScrollerApp = function(node) {
 	});
 	
 	textNavigator.on('change', function (sectionid) {
+		console.log('app:navigator:change', sectionid);
+	
 		// load new content
 		scroller.load('text', sectionid);
 	});
 	
-	scroller.on('scroll', update_textnav);
-
+	textChooser.on('change', function (newTextInfo) {
+		
+		console.log('app:chooser:change', newTextInfo);
 	
+		// ALWAYS UPDATE: for first load
+		// update version name
+		textlistui.html( newTextInfo.name );	
+		
+		// update the navigator with the latest header
+		textNavigator.setTextInfo(newTextInfo);		
+	
+		// if it has *changed* then we need to reload the text in the scroller
+		if (currentTextInfo == null || newTextInfo.id != currentTextInfo.id) {		
+				
+			// store
+			currentTextInfo = newTextInfo;
+			
+			var nearestSectionId = wrapper.find('.section:first').attr('data-id');
+			
+			// does the new one have this one?
+			if (typeof currentTextInfo.sections != 'undefined' && currentTextInfo.sections.indexOf(nearestSectionId) == -1) {
+				nearestSectionId = currentTextInfo.sections[0];
+			}
+			
+			// load new text
+			wrapper.html('');
+			scroller.set_textinfo(currentTextInfo);
+			scroller.load( 'text', nearestSectionId);
+		}	
+		
+		store_settings();	
+	});	
+	
+	scroller.on('scroll', update_textnav);
+	scroller.on('load', update_textnav);
+
+	/*
 	function text_changed(newTextInfo) {
 		
 		// update the navigator with the latest header
@@ -74,6 +110,7 @@ var ScrollerApp = function(node) {
 		
 		store_settings();	
 	}
+	*/
 			
 	// show the current position to the user
 	function update_textnav() {
@@ -133,6 +170,7 @@ var ScrollerApp = function(node) {
 				case 'bible':				
 					// find top				
 					var bibleref = new bible.Reference( visibleFragmentInfo.fragmentid );
+					bibleref.language = currentTextInfo.lang;
 					navui.html(  bibleref.toString() );		
 					navui.attr('data-fragmentid',visibleFragmentInfo.fragmentid);
 					navui.attr('data-sectionid',visibleFragmentInfo.sectionid);
@@ -151,7 +189,7 @@ var ScrollerApp = function(node) {
 	function store_settings() {
 		//console.log('store_settings');
 	
-		AppSettings.setValue('scroller-settings', 
+		AppSettings.setValue('scroller-' + id, 
 			{	
 				textinfo: currentTextInfo, 
 				sectionid: navui.attr('data-sectionid')
@@ -179,7 +217,9 @@ var ScrollerApp = function(node) {
 					"lang":"eng"
 				}
 			},		
-			settings = AppSettings.getValue('scroller-settings', default_settings);
+			settings = AppSettings.getValue('scroller-' + id, default_settings);
+			
+		console.log(id,'init',settings);
 			
 		// using the stored settings temporarily store the text
 		currentTextInfo = settings.textinfo;		
@@ -212,6 +252,9 @@ var ScrollerApp = function(node) {
 		main
 			.outerWidth(width)
 			.outerHeight( container.height() - header.outerHeight(true));
+			
+		textChooser.size(width, height);
+		textNavigator.size(width, height);		
 	}
 	
 	return {
@@ -219,18 +262,3 @@ var ScrollerApp = function(node) {
 	}
 	
 };
-
-$(function() {
-	
-	var 
-		win = $(window),
-		scrollerApp = new ScrollerApp($(document.body));
-	
-	function setScrollerSize() {
-		scrollerApp.size( win.width(), win.height() );	
-	}
-	setScrollerSize();
-	
-	win.on('resize', setScrollerSize); 
-
-});

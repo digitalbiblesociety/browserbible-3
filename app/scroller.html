@@ -47,6 +47,24 @@
 	<script src="js/scroller/scroller.js"></script>
 	<script src="js/scroller/scrollerapp.js"></script>
 	
+	<script>
+
+$(function() {
+	
+	var 
+		win = $(window),
+		scrollerApp = new ScrollerApp('reader', $(document.body));
+	
+	function setScrollerSize() {
+		scrollerApp.size( win.width(), win.height() );	
+	}
+	setScrollerSize();
+	
+	win.on('resize', setScrollerSize); 
+
+});	
+	</script>
+	
 </head>
 <body>	
 

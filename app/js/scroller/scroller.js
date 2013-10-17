@@ -7,8 +7,7 @@ var Scroller = function(node) {
 
 		
 	node.on('scroll', function() {
-		//
-		//update_textnav();
+		get_nav();
 		
 		obj.trigger('scroll');
 		
@@ -22,6 +21,10 @@ var Scroller = function(node) {
 		
 		console.log(e.type, e.which);
 	});
+	
+	function get_nav() {
+		
+	}
 	
 	
 	var load_more_timeout = null;
@@ -163,7 +166,7 @@ var Scroller = function(node) {
 			
 			}
 			
-			obj.trigger('loaded', content);
+			obj.trigger('load', content);
 						
 			load_more();
 		});		
@@ -201,7 +204,7 @@ var Scroller = function(node) {
 		set_textinfo: set_textinfo
 	};
 	
-	obj = $.extend(obj, EventEmitter);
+	obj = $.extend(true, obj, EventEmitter);
 	
 	return obj;
 	

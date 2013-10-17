@@ -10,10 +10,20 @@ texts.TextLoader = (function() {
 	}
 		
 		
-	function load(textid, sectionid, successCallback, errorCallback) {
+	function load(textInfo, sectionid, successCallback, errorCallback) {
 		
-		if (typeof textid != 'string') {
-			textid = textid.id;
+		var textid = '';
+		
+		if (typeof textInfo == 'string') {
+			textid = textInfo;
+		} else {		
+			textid = textInfo.id;
+			
+			if (textInfo.sections.indexOf(sectionid) == -1) {
+				//sectionid = textInfo.sections[0];
+			}
+						
+			console.log('hasit', sectionid, textInfo.sections.indexOf(sectionid), textInfo.sections[0]);
 		}
 		
 		

@@ -17,7 +17,7 @@ var MapsWindow = function(id, parentNode, data) {
 		
 		var map = new google.maps.Map(document.getElementById(id),
 			mapOptions);
-
+			
 	}
 	
 	// dynamically load map
@@ -43,8 +43,11 @@ var MapsWindow = function(id, parentNode, data) {
 	}
 
 	var ext = {
-		size: size
+		size: size,
+		getData: function() { return null; }		
 	};	
+	
+	ext = $.extend(true, ext, EventEmitter);
 	
 	return ext;
 }

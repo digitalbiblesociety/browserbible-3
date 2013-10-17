@@ -9,7 +9,8 @@ var SearchWindow = function(id, parentNode, data) {
 	}
 
 	var ext = {
-		size: size
+		size: size,
+		getData: function() { return null; }
 	};
 	
 	ext = $.extend(true, ext, EventEmitter);

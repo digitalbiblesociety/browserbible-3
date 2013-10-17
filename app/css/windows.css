@@ -1,0 +1,33 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+.windows-header {
+	height: 30px;
+	background: #bbb;
+}
+
+.windows-main {
+	background: #eee;
+}
+
+.windows-footer {
+	height: 30px;
+	background: #bbb;
+}
+
+
+.window {
+	/*border: solid 1px #444;
+	border-color: #ccc #444 #444 #ccc;
+	*/
+	/*position: absolute */
+	float:left;
+	overflow: hidden;
+	background: #fff;
+}	

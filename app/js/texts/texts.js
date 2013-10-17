@@ -11,14 +11,10 @@ texts.Texts = {
 	locationBase: 'content/texts/',
 
 	// prebuild version array
-	textData: null,
+	textData: {},
 	
 	// list of keys
 	textIds: [],
-	
-	getText: function(id) {
-		return this.textData[id];
-	},
 	
 	loadingTextIndex: -1,
 	
@@ -59,29 +55,50 @@ texts.Texts = {
 		
 		if (t.loadingTextIndex < t.allTexts.length) {	
 		
-			textInfo = this.allTexts[this.loadingTextIndex];
+			textManifestInfo = t.allTexts[t.loadingTextIndex];
 			
-
-		
-			$.ajax({
-				url: t.locationBase + textInfo.id + '/info.json',
-				dataType: 'json',
-				success: function(data) {
-										
-					t.textData[data.id] = data;
-					t.textIds.push(data.id);
-					
-					t.loadNextText();
-				},
-				error: function(error) {
-					//console.log(error)
-					t.loadNextText();
-				}
+			t.getText(textManifestInfo.id, function(data) {				
+				t.loadNextText();
 			});
+		
 		} else {
 			t.loadingFinished();
 		}
 		
+	},
+	
+	loadTextCallbacks: {},
+	
+	getText: function(textid, callback) {
+		
+		// if already loaded, then send it right bac
+		var t = this,
+			textinfo = this.textData[textid];
+		
+		if (typeof textinfo != 'undefined') {
+			callback(textinfo);
+			return;
+		}
+	
+		// load it!
+		$.ajax({
+			url: t.locationBase + textid + '/info.json',
+			dataType: 'json',
+			success: function(data) {
+				
+				// store thie one			
+				t.textData[data.id] = data;
+				t.textIds.push(data.id);
+				
+				callback(data);
+				//t.loadNextText();
+			},
+			error: function(error) {
+				//console.log(error)
+				callback(null);				
+				//t.loadNextText();
+			}
+		});		
 	},
 	
 	loadingFinished: function() {
@@ -106,7 +123,6 @@ texts.Texts = {
 			this.loadingFinished();
 
 		} else {
-			this.textData = {};
 			this.loadNextText();
 		}
 	}

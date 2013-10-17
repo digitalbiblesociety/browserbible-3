@@ -64,6 +64,18 @@ var TextChooser = function(container) {
 	
 	function show() {
 		size();
+		
+	
+		if (texts.Texts.finishedLoading) {
+			renderTexts();
+		} else {
+			textSelector.html('Loading');
+			
+			texts.Texts.loadTexts(function(data) {
+				renderTexts();
+			});
+			
+		}
 	
 		textSelector.show();
 	}
@@ -72,12 +84,12 @@ var TextChooser = function(container) {
 		textSelector.hide();
 	}
 	
-	function setSelectedText(text) {
+	function setTextInfo(text) {
 		selectedTextInfo = text;
 		//node.html( selectedTextInfo.name );	
 	}
 
-	function getSelectedText() {
+	function getTextInfo() {
 		return selectedTextInfo;
 	}
 	
@@ -97,8 +109,8 @@ var TextChooser = function(container) {
 	var ext = {
 		show: show,
 		hide: hide,
-		getSelectedText: getSelectedText,
-		setSelectedText: setSelectedText,
+		getTextInfo: getTextInfo,
+		setTextInfo: setTextInfo,
 		renderTexts: renderTexts,
 		size: size
 	};

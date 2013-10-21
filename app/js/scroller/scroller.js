@@ -4,10 +4,16 @@ var Scroller = function(node) {
 	var 
 		wrapper = node.find('.scroller-text-wrapper'),
 		currentTextInfo = null,
-		locationInfo = {};
+		locationInfo = {},
+		ignoreScrollEvent = false;
 
 		
 	node.on('scroll', function() {
+		
+		if (ignoreScrollEvent) {
+			return;
+		}
+	
 		ext.trigger('scroll', {type: 'scroll', target: this, data: null});
 		
 		update_location_info();
@@ -26,6 +32,7 @@ var Scroller = function(node) {
 			topOfContentArea = node.offset().top,
 			sectionid = '',
 			fragmentid = '',
+			label = '',
 			fragmentSelector = currentTextInfo.fragmentSelector,
 			newLocationInfo = null;
 	
@@ -51,7 +58,27 @@ var Scroller = function(node) {
 			
 			// is the top of the fragment at the top of the scroll pane
 			if (fragment.offset().top - topOfContentArea > -2) {
+			
+			
+				fragmentid = fragment.attr('data-id');
 				
+				
+				switch (currentTextInfo.type) {
+					case 'bible':				
+						// find top	
+						var bibleref = new bible.Reference( fragmentid );
+						bibleref.language = currentTextInfo.lang;
+						
+						label = bibleref.toString();						
+						
+						break;
+					case 'book':
+						label = currentTextInfo.name + ' ' + sectionid;
+						
+						break;		
+				}				
+				
+					
 				// pass the marker data
 				newLocationInfo = {
 					// verse ID
@@ -60,7 +87,10 @@ var Scroller = function(node) {
 					sectionid: fragment.hasClass('section') ? fragment.attr('data-id') : fragment.closest('.section').attr('data-id'),
 					
 					// extra positioning info
-					offset: topOfContentArea - fragment.offset().top
+					offset: topOfContentArea - fragment.offset().top,
+					
+					label: label
+					
 				};
 				return false;
 			}
@@ -74,7 +104,7 @@ var Scroller = function(node) {
 			ext.trigger('locationchange', {type:'locationchange', target: this, data: newLocationInfo});
 		}	
 		
-		console.log('location', newLocationInfo);	
+		//console.log('location', newLocationInfo);	
 		
 		locationInfo = newLocationInfo;
 	};
@@ -124,7 +154,7 @@ var Scroller = function(node) {
 							
 			//console.warn('load next', fragmentid);
 				
-			if (fragmentid != null && sections.length < 50) {			
+			if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {			
 				load('next', fragmentid);
 			}
 		}
@@ -136,9 +166,9 @@ var Scroller = function(node) {
 							.first() // the first chapter (top)
 							.attr( 'data-previd' );
 							
-			console.warn('load prev', fragmentid);
+			//console.warn('load prev', fragmentid);
 
-			if (fragmentid != null && sections.length < 50) {
+			if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {
 				load('prev',fragmentid);
 			}
 		
@@ -175,9 +205,17 @@ var Scroller = function(node) {
 	}
 	
 	function load(loadType, sectionid, fragmentid) {
+			
+		if (sectionid == 'null') {
+			return;
+		}
+
 
 		// check if this exists
 		if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
+			
+			scrollTo(fragmentid);
+		
 			return;
 		}
 
@@ -237,22 +275,28 @@ var Scroller = function(node) {
 		});		
 	
 	}
+	
+	function scrollTo(fragmentid, offset) {
+		var fragment = wrapper.find('.' + fragmentid),
+		
+			// calculate node position
+			paneTop = node.offset().top,
+			scrollTop = node.scrollTop(),
+			nodeTop = fragment.offset().top,
+			nodeTopAdjusted = nodeTop - paneTop + scrollTop;
+			
+		// go to it
+		ignoreScrollEvent = true;
+		main.scrollTop(nodeTopAdjusted + (offset || 0));
+		ignoreScrollEvent = false;		
+	}
 		
 	function size(width, height) {
 		node
 			.width(width)
 			.height(height);
 	}
-	
-	function getSettings() {
-	
-		// find top node	
-		return {
-			textinfo: currentTextInfo,
-			sectionid: '',
-			fragmentid: ''
-		}
-	}
+
 
 	function getTextInfo() {
 		return currentTextInfo;

@@ -51,9 +51,15 @@ var Scroller = function(node) {
 					break;		
 			}
 		}
+
+		var fragments = node.find( fragmentSelector );
+		
+		if (fragments.length == 1) {
+			fragments = node.find('.section');
+		}
 		
 		// look through all the markers and find the first one that is fully visible
-		node.find( fragmentSelector ).each(function(e) {
+		fragments.each(function(e) {
 			var fragment = $(this);
 			
 			// is the top of the fragment at the top of the scroll pane
@@ -179,21 +185,24 @@ var Scroller = function(node) {
 		else if (above_top > node_height*15) {
 			console.warn('remove above');
 			
-			// we're removing the first section, so we need to find the first one and 
-			// measure where it's first child should appear
-			var first_node_of_second_section = wrapper.find('.section:eq(1)').children().first(),
-				first_node_offset_before = first_node_of_second_section.offset().top;
+			if (wrapper.children().length >= 2) {
 			
-			wrapper.find('.section:first').remove();
-			
-			// now, remeasure where the first node appears and adjust the scrolltop
-			var
-				first_node_offset_after = first_node_of_second_section.offset().top,
-				offset_difference = first_node_offset_after - first_node_offset_before;
-				new_scrolltop = node.scrollTop();	
-				updated_scrolltop = new_scrolltop - Math.abs(offset_difference);	
-
-			node.scrollTop(updated_scrolltop);										
+				// we're removing the first section, so we need to find the first one and 
+				// measure where it's first child should appear
+				var first_node_of_second_section = wrapper.find('.section:eq(1)').children().first(),
+					first_node_offset_before = first_node_of_second_section.offset().top;
+				
+				wrapper.find('.section:first').remove();
+				
+				// now, remeasure where the first node appears and adjust the scrolltop
+				var
+					first_node_offset_after = first_node_of_second_section.offset().top,
+					offset_difference = first_node_offset_after - first_node_offset_before;
+					new_scrolltop = node.scrollTop();	
+					updated_scrolltop = new_scrolltop - Math.abs(offset_difference);	
+	
+				node.scrollTop(updated_scrolltop);
+			}										
 		} 
 		
 		// remove below

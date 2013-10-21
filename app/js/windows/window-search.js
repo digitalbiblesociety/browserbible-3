@@ -13,7 +13,8 @@ var SearchWindow = function(id, parentNode, data) {
 		input = header.find('.search-text'),
 		button = header.find('.search-button'),		
 		list = header.find('.search-list'),
-		encoder = new base32.Encoder();					
+		//encoder = new base32.Encoder(),
+		textSearch = new texts.TextSearch();			
 	
 	// EVENTS
 	input.on('keypress', function(e) {
@@ -23,14 +24,46 @@ var SearchWindow = function(id, parentNode, data) {
 	});				
 	button.on('click', doSearch);
 	
+	textSearch.on('load', function(e) {
+		
+		console.log('searcher...');
+		
+	});
+	
 	
 	// ACTIONS
 	function doSearch()	{
-		var text = input.val();
 	
 		disable();	
-	
+
+		var text = input.val(),
+			textid = list.val();
 		
+		textSearch.start(text, textid);
+		
+		/*
+		var encoded = encoder.update(text),
+			url = 'content/texts/' + list.val() + '/index/' + encoded + '.json';
+				
+		main.html (encoded);
+		
+		$.ajax({
+			url: url,
+			success: function(data) {
+				console.log('search', text, encoded, data);
+			
+				main.html( '<h2>' + encoded + '</h2><div>' + JSON.stringify(data) + '</div>');
+			
+			},
+			error: function(a, b, c, d) {
+				console.log('search error', text, encoded, url, a, b, c, d);
+			}
+			
+		});
+		*/
+		
+		
+		enable();
 	
 	}
 	function disable() {
@@ -55,13 +88,10 @@ var SearchWindow = function(id, parentNode, data) {
 	function init() {
 		texts.Texts.loadTexts(function(data) {
 			
-			console.log('loaded texts for search', data);
-			
 			var html = '';
 			for (var index in data) {
 				html += '<option value="' + data[index].id + '">' + data[index].name + '</option>';
 			}
-			console.log(html);
 			list.html( html );
 			
 		});			

@@ -12,6 +12,11 @@ texts.TextLoader = (function() {
 		
 	function load(textInfo, sectionid, successCallback, errorCallback) {
 		
+		// double check
+		if (sectionid == 'null') {
+			return;
+		}
+		
 		var textid = '';
 		
 		if (typeof textInfo == 'string') {
@@ -20,10 +25,10 @@ texts.TextLoader = (function() {
 			textid = textInfo.id;
 			
 			if (textInfo.sections.indexOf(sectionid) == -1) {
-				//sectionid = textInfo.sections[0];
+				sectionid = textInfo.sections[0];
 			}
 						
-			console.log('hasit', sectionid, textInfo.sections.indexOf(sectionid), textInfo.sections[0]);
+			//console.log('hasit', sectionid, textInfo.sections.indexOf(sectionid), textInfo.sections[0]);
 		}
 		
 		
@@ -38,8 +43,7 @@ texts.TextLoader = (function() {
 		
 		var url = baseFolder + textid + '/' + sectionid + '.json?' + new Date();
 		
-		console.log(textid, sectionid, url);
-
+		//console.log(textid, sectionid, url);
 			
 		$.ajax({
 			url: url,

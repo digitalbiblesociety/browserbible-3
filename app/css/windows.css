@@ -8,7 +8,7 @@ html, body {
 }
 
 .windows-header {
-	height: 30px;
+	height: 40px;
 	background: #bbb;
 }
 
@@ -17,7 +17,7 @@ html, body {
 }
 
 .windows-footer {
-	height: 30px;
+	height: 20px;
 	background: #bbb;
 }
 

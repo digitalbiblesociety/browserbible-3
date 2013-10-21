@@ -35,9 +35,9 @@ var App = function() {
 		defaultSettings = {
 			windows: [
 				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
-				{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
-				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}},
-				{type: 'SearchWindow', data: {}}
+				//{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
+				{type: 'SearchWindow', data: {}},
+				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}}				
 			]
 		},
 		settings = AppSettings.getValue(settingsKey, {}); //defaultSettings);
@@ -79,12 +79,6 @@ var App = function() {
 		// reset settings timer
 		settingsTimer.start();		
 	});
-	
-		
-	// dummy
-	//windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'});	
-	//windowManager.add('TextScrollerWindow', {'textid':'eng_kjv','sectionid':'GN1','fragmentid':'GN1_10'});		
-	//windowManager.add('MapsWindow', {'data':'stuff'});
 	
 	return this;	
 }

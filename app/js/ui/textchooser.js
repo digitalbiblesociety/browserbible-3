@@ -49,17 +49,13 @@ var TextChooser = function(container) {
 		
 		
 		// find the selected text
-		textSelector
+		if (selectedTextInfo != null) {
+			textSelector
 					.find('div[data-id="' + selectedTextInfo.id + '"]')
 					.addClass('selected');
-					
-	
-		//callback(selectedTextInfo);	
-		//console.log('chooser:change:render', selectedTextInfo);
+		}
+				
 		//ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
-		
-		// show the text to the user
-		//node.html( selectedTextInfo.name );	
 	}
 	
 	function show() {

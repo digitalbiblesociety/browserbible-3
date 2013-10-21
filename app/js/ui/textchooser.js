@@ -25,8 +25,8 @@ var TextChooser = function(container) {
 		
 		hide();
 		
-		console.log('chooser:change', selectedTextInfo);
-		ext.trigger('change', selectedTextInfo);
+		console.log('chooser:change:click', selectedTextInfo);
+		ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 	});
 	
 	
@@ -55,8 +55,8 @@ var TextChooser = function(container) {
 					
 	
 		//callback(selectedTextInfo);	
-		console.log('chooser:change', selectedTextInfo);
-		ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
+		//console.log('chooser:change:render', selectedTextInfo);
+		//ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 		
 		// show the text to the user
 		//node.html( selectedTextInfo.name );	

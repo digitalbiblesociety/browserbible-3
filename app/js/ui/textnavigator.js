@@ -135,7 +135,8 @@ var TextNavigator = function(container) {
 							.addClass('selected')
 							.attr('data-id');
 	
-		ext.trigger('change', sectionid);
+		console.log('navigator selected', sectionid);
+		ext.trigger('change', {type:'change', target: this, data: sectionid});
 		//navigation_changed_callback(sectionid);
 		
 		changer.hide();

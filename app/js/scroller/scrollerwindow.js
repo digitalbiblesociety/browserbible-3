@@ -40,17 +40,17 @@ var ScrollerWindow = function(id, node, init_data) {
 	});
 	
 	textNavigator.on('change', function (e) {
-		console.log('app:navigator:change', e.sectionid);
+		//console.log('scrollerapp:navigator:change', e);
 	
 		// load new content
-		scroller.load('text', e.sectionid);
+		scroller.load('text', e.data);
 	});
 	
 	textChooser.on('change', function (e) {
 		
-		console.log('app:chooser:change', e.data);
+		console.log('scrollerapp:chooser:change', e.data);
 		
-		var newTextInfo = e.ddata;
+		var newTextInfo = e.data;
 	
 		// ALWAYS UPDATE: for first load
 		// update version name
@@ -72,8 +72,7 @@ var ScrollerWindow = function(id, node, init_data) {
 			scroller.setTextInfo(currentTextInfo);
 			scroller.load( 'text', nearestSectionId);
 		}	
-		
-		ext.trigger('settingschange', {type: 'settingschange', target: this, data:getData()});	
+	
 	});	
 	
 	scroller.on('scroll', update_textnav);
@@ -89,27 +88,7 @@ var ScrollerWindow = function(id, node, init_data) {
 		if (newLocationInfo != null) {
 		
 			currentLocationInfo = newLocationInfo;
-			
-			
-			// display fragment to user
-			switch (currentTextInfo.type) {
-				case 'bible':				
-					// find top				
-					var bibleref = new bible.Reference( currentLocationInfo.fragmentid );
-					bibleref.language = currentTextInfo.lang;
-					navui.html(  bibleref.toString() );		
-					//navui.attr('data-fragmentid', currentLocationInfo.fragmentid);
-					//navui.attr('data-sectionid', currentLocationInfo.sectionid);
-					//document.title = '' + bibleref.toString();
-					
-					break;
-				case 'book':
-					// find top
-					navui.html(  locationInfo.fragmentid );		
-					
-					break;		
-			}	
-			
+			navui.html(  currentLocationInfo.label );		
 			
 			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
 		}
@@ -168,9 +147,13 @@ var ScrollerWindow = function(id, node, init_data) {
 		}			
 		
 		var data = {
+			// textinfo
 			textid: currentTextInfo.id, 
+			
+			// location info
 			sectionid: currentLocationInfo.sectionid, 
-			fragmentid: currentLocationInfo.fragmentid
+			fragmentid: currentLocationInfo.fragmentid,
+			label: currentLocationInfo.label
 		};
 		
 		return data;	

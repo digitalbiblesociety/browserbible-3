@@ -107,16 +107,18 @@ var ScrollerWindow = function(id, node, init_data) {
 		// load the desired text		
 		texts.Texts.getText(init_data.textid, function(loadedTextInfo) {
 			
-			// store this setting
-			currentTextInfo = loadedTextInfo;		
-			
-			// send to objects
-			textChooser.setTextInfo(currentTextInfo);
-			textlistui.html(currentTextInfo.name);	
-			textNavigator.setTextInfo(currentTextInfo);			
-									
-			scroller.setTextInfo(currentTextInfo);
-			scroller.load('text', init_data.sectionid);			
+			if (currentTextInfo != null) {
+				// store this setting
+				currentTextInfo = loadedTextInfo;		
+				
+				// send to objects
+				textChooser.setTextInfo(currentTextInfo);
+				textlistui.html(currentTextInfo.name);	
+				textNavigator.setTextInfo(currentTextInfo);			
+										
+				scroller.setTextInfo(currentTextInfo);
+				scroller.load('text', init_data.sectionid);			
+			}
 		});
 	}
 	

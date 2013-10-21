@@ -19,6 +19,13 @@ var TextNavigator = function(container) {
 		
 		
 	function showChanger() {
+		
+		if (textInfo == null) {
+			console.warn('chooser has not textInfo!');
+			return;
+			
+		}
+	
 		// reset width
 		size();
 		changer.show();

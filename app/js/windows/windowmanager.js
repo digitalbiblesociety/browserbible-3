@@ -18,26 +18,9 @@ var WindowManager = function(node) {
 		
 		// when a window reports a settings change
 		win.on('settingschange', function(e) {
-				 
-			 // get all windows settings, bubble up
-			 var settingsForAllWindows = [];
-			 
-			 for (var i=0, il=windows.length; i<il; i++) {
-			 	settingsForAllWindows.push({
-			 		'type': className, 
-			 		data: windows[i].getData()
-			 	});
-			 }
-			 
-			 ext.trigger('settingschange', {
-			 	type:'settingschange', 
-			 	target: this, 
-			 	data: {
-			 		active: e.data, 
-			 		settings: settingsForAllWindows
-			 	}
-			 });
-			
+				
+			// pass up to root
+			ext.trigger('settingschange', e);			
 		});
 		
 		win.on('globalmessage', function(e) {
@@ -76,10 +59,24 @@ var WindowManager = function(node) {
 		}
 	}
 	
+	function getSettings() {
+		var settingsForAllWindows = [];
+		
+		for (var i=0, il=windows.length; i<il; i++) {
+			settingsForAllWindows.push({
+				'type': windows[i].className, 
+				data: windows[i].getData()
+			});
+		}	
+		
+		return settingsForAllWindows;
+	}
+	
 	var ext = {
 		add: addWindow,
 		remove: removeWindow,
-		size: size
+		size: size,
+		getSettings: getSettings
 	};
 	
 	ext = $.extend(true, ext, EventEmitter);
@@ -96,10 +93,10 @@ var Window = function(id, parentNode, className, data, manager) {
 	
 	// send settings up to th Manager, up to the app
 	controller.on('settingschange', function(e) {
-		ext.trigger('settingschange', {type: e.type, target: this, data: e.data});
+		ext.trigger('settingschange', e); // {type: e.type, target: this, data: e.data});
 	});
 	controller.on('sendmessage', function(e) {
-		ext.trigger('sendmessage', {type: e.type, target: this, data: e.data});
+		ext.trigger('sendmessage', e); // {type: e.type, target: this, data: e.data});
 	});	
 	
 	function size(width, height) {
@@ -117,6 +114,7 @@ var Window = function(id, parentNode, className, data, manager) {
 		size: size,
 		quit: quit,
 		id: id,
+		className: className,
 		getData: function() {
 			return controller.getData();
 		},

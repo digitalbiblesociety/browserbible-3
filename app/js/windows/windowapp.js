@@ -36,11 +36,13 @@ var App = function() {
 			windows: [
 				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
 				{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
-				{type: 'MapsWindow', data: {'latitude': -34.397, 'longitude': 150.644}}
+				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}},
+				{type: 'SearchWindow', data: {}}
 			]
 		},
-		settings = AppSettings.getValue(settingsKey, defaultSettings);
-		
+		settings = AppSettings.getValue(settingsKey, {}); //defaultSettings);
+	
+	console.log(settings);	
 	
 	// TEMP
 	settings = defaultSettings;
@@ -48,20 +50,55 @@ var App = function() {
 	// create windows
 	for (var i=0, il=settings.windows.length; i<il; i++) {
 		var windowSetting = settings.windows[i];
-		//console.log('creating', windowSetting);
 		windowManager.add(windowSetting.type, windowSetting.data);	
 	}
 	
+	var Timer = function(callback, seconds) {
+		
+		var timeoutValue = null;
+		function start() {
+			clear();
+			
+			timeoutValue = setTimeout(callback, seconds);
+		}
+		function clear() {
+			if (timeoutValue != null) {
+				clearTimeout(timeoutValue);
+				timeoutValue = null;
+			}
+		}
+		
+		return {
+			start: start,
+			clear: clear
+		}	
+	}
+	
+	function storeSettings() {
+			// get settings from al windows
+		var windowSettings = windowManager.getSettings(),		
+			// later we'll need these
+			headerSettings = {},
+			settings = {
+				windows: windowSettings
+			};	
+		
+		// store
+		AppSettings.setValue(settingsKey, settings );
+	}
+	
+	var settingsTimer = new Timer(storeSettings, 5000);
+
+	
 	windowManager.on('settingschange', function(e) {
-		var settings = {
-			windows: e.data.settings
-		};
 		
-		document.title = e.data.active.fragmentid;
+		// title to show active window's position
+		if (e.data && e.data.label) {
+			document.title = e.data.label;
+		}
 		
-		console.log('appsettings', settings);
-		
-		//AppSettings.setValue(settingsKey, settings);
+		// reset settings timer
+		settingsTimer.start();		
 	});
 	
 		

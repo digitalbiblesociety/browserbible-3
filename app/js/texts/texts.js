@@ -55,9 +55,9 @@ texts.Texts = {
 		
 		if (t.loadingTextIndex < t.allTexts.length) {	
 		
-			textManifestInfo = t.allTexts[t.loadingTextIndex];
+			textid = t.allTexts[t.loadingTextIndex];
 			
-			t.getText(textManifestInfo.id, function(data) {				
+			t.getText(textid, function(data) {				
 				t.loadNextText();
 			});
 		

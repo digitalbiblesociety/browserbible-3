@@ -38,30 +38,10 @@ var SearchWindow = function(id, parentNode, data) {
 
 		var text = input.val(),
 			textid = list.val();
+			
+		console.log('search', textid, text);
 		
 		textSearch.start(text, textid);
-		
-		/*
-		var encoded = encoder.update(text),
-			url = 'content/texts/' + list.val() + '/index/' + encoded + '.json';
-				
-		main.html (encoded);
-		
-		$.ajax({
-			url: url,
-			success: function(data) {
-				console.log('search', text, encoded, data);
-			
-				main.html( '<h2>' + encoded + '</h2><div>' + JSON.stringify(data) + '</div>');
-			
-			},
-			error: function(a, b, c, d) {
-				console.log('search error', text, encoded, url, a, b, c, d);
-			}
-			
-		});
-		*/
-		
 		
 		enable();
 	
@@ -94,6 +74,7 @@ var SearchWindow = function(id, parentNode, data) {
 			}
 			list.html( html );
 			
+			list.children().first().attr('selected', true);
 		});			
 	}
 	init();

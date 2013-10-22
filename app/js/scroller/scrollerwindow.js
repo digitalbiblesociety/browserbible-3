@@ -126,7 +126,7 @@ var ScrollerWindow = function(id, node, init_data) {
 	
 	function size(width, height) {
 		
-		console.log('newsize',width,height);
+		//console.log('newsize',width,height);
 	
 		container
 			.outerWidth(width)

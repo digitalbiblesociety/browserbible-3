@@ -1,20 +1,54 @@
+// truth AND Love
+// 1. load indexes
+// 2. find verses with both terms
+// 3. reduce to chapters
+// 4. load chapters
+// 5. extract verses
+
+
+// truth OR love
+// 1. load indexes
+// 2. merge lists of verses into canonical order
+// 3. reduce to chaptesr
+// 4. load chapters
+// 5. extract verses
+
+
+// "in truth"
+// 1. load indexes
+// 2. ...
+// 3. reduce to chaptesr
+// 4. load chapters
+// 5. extract verses
+
+
+// truth love
+// 1. NO INDEX
+// 2. load every chapter
+// 3. use regexp to find verses with words
+
+
 texts.TextSearch = function() {
 
 	var
-		encoder = new base32.Encoder(),
+		baseContentPath = 'content/texts/',
 		isSearching = false,
 		canceled = false,
 		searchText = '',
 		searchTextid = '',
-		searchTextEncoded = '',
 		isAsciiRegExp = new XRegExp('^[\040-\176]*$', 'gi'),
 		
 		startTime = null,
 		
 		searchTermsRegExp = [],
-		searchIndexLoader = new texts.SearchIndexLoader()
+		searchIndexLoader = new texts.SearchIndexLoader(),
+		searchIndexesData = [],
+		searchIndexesCurrentIndex = 0
 		
+		searchFinalResults = [];
 		;
+		
+	searchIndexLoader.on('complete', indexesLoaded);
 
 	function start(text, textid) {
 		
@@ -23,30 +57,87 @@ texts.TextSearch = function() {
 		if (isSearching) {
 			return false;
 		}
+		isSearching = true;
 		
 		// store variables
 		searchText = text;
 		searchTextid = textid;
 		textInfo = texts.Texts.getText(searchTextid);
-		searchTextEncoded = encoder.update(searchText);
+		
 		
 		// reset
 		canceled = false;
 		startTime = new Date();
+		searchFinalResults = [];
 	
 		createSearchTerms();
 		
 		// first attempt to load indexes
-		searchIndexLoader = new texts.SearchIndexLoader();
-		searchIndexLoader.on('complete', function(e) {
-			
-			console.log('searchIndexLoader:complete', e.indexedSections);
-			
-			
-		});
 		searchIndexLoader.loadIndexes(textInfo, searchText);
 	
 		return true;		
+	}
+	
+	// fires after indexer loader is done
+	function indexesLoaded(e) {
+		console.log('searchIndexLoader:complete', e.data);
+		
+		if (e.data.loadedIndexes.length == 0) {
+			// BRUTE FORCE?
+			
+			
+			
+		} else {
+			// begin loading
+			searchIndexesData = e.data.loadedResults;
+			searchIndexesCurrentIndex = -1;
+			loadNextSectionid();
+		}
+		
+	}
+	
+	function loadNextSectionid() {
+		searchIndexesCurrentIndex++;
+		
+		if (searchIndexesCurrentIndex == searchIndexesData.length) {
+			// DONE!
+			
+			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults}});
+			
+			isSearching = false;
+			
+		} else {
+			var sectionData = searchIndexesData[searchIndexesCurrentIndex],
+				sectionid = sectionData.sectionid,
+				fragmentids = sectionData.fragmentids,
+				url = baseContentPath + textInfo.id + '/' + sectionid + '.json';
+				
+			$.ajax({
+				url: url,
+				success: function(data) {
+					
+					var content = $(data.text);
+					
+					for (var i=0, il=fragmentids.length; i<il; i++) {
+						var 
+							fragmentid = fragmentids[i],
+							fragmentNode = content.find('.' + fragmentid);
+							
+						// highlight terms!
+							
+						searchFinalResults.push({fragmentid: fragmentid, fragmentNode: fragmentNode});
+					}
+					
+					
+					loadNextSectionid();
+					
+				}, 
+				error: function() {
+					loadNextSectionid();
+				}
+			});
+			
+		}
 	}
 	
 	function createSearchTerms() {
@@ -104,13 +195,20 @@ texts.SearchIndexLoader = function() {
 
 	var 
 		baseContentPath = 'content/texts/',
-		encoder = new base32.Encoder(),
+		//encoder = new base32.Encoder(),
 		textInfo = textInfo,
 		searchTerms = [],
 		searchTermsIndex = -1,
+		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
+		loadedIndexes = [], 
+		// final: [{sectionid:'GN1', fragmentids: ['GN1_2', 'GN1_3']}, {sectionid:'GN2', fragmentids: ['GN2_4']} }
+		loadedResults = [], 
+		
+		/*
 		indexedSections = [], // return data ['GN1', 'GN2', 'SS5' ... ]
 		divisionMatches = {}, // for OR search:  merge all sections (chapters) together {'GN': [4,5], 'EX': [1,2]
 		indexGroups = [],     // for AND search: sections (chapters) per word {'light': ['GN1'], 'love': ['JN3']} that we merge after ward
+		*/
 		searchType = 'AND'; // OR
 
 	// START
@@ -121,15 +219,9 @@ texts.SearchIndexLoader = function() {
 		// split up search into words for indexing
 		searchTerms = searchText.replace(/\sAND\s/gi,' ').replace(/\sOR\s/gi,' ').replace(/"/g,'').split(/\s+/g);
 		searchTermsIndex = -1;
+		loadedIndexes = [];
 		
-		// create an index of just the chapters (JN1) instead of all the verses (John.1.1 and John.1.7)
-		indexedSections = [];
-		divisionMatches = {};
-		indexGroups = [];	
-			
-		for (var i=0,il=searchTerms.length; i<il; i++) {
-			indexGroups.push([]);	
-		}
+		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
 		
 		// start it up
 		loadNextIndex();		
@@ -142,20 +234,20 @@ texts.SearchIndexLoader = function() {
 		
 		if (searchTermsIndex < searchTerms.length) {
 		
-			loadSearchTerm( searchTerms[searchTermsIndex] );
+			loadSearchTermIndex( searchTerms[searchTermsIndex] );
 			
 		} else {
 			
 			// if we've done all the indexes, then it's time to start combining them
-			combineIndexes();
+			//combineIndexes();
+			processIndexes();
 		}
 		
-	} 
+	}
 	
-	/*
-	function loadSearchTerm(searchTerm) {
+	function loadSearchTermIndex(searchTerm) {
 		var
-			searchTermEncoded = encoder.update(searchTerm);
+			searchTermEncoded = base32.encode(searchTerm);
 			indexUrl = baseContentPath + textInfo.id + '/index/' + searchTermEncoded + '.json';
 			
 		if (searchTerm == 'undefined') {
@@ -171,13 +263,12 @@ texts.SearchIndexLoader = function() {
 			url: indexUrl,
 			success: function(data) {
 			
-				console.log('index:', data);
+
 				
 				var fragmentidarray = data[searchTerm];
-			
-				processFragments(fragmentidarray);		
 				
-				console.log('load next index');
+				loadedIndexes.push({term: searchTerm, occurrences: fragmentidarray});
+				
 				loadNextIndex();
 			}, 
 			error: function() {
@@ -187,111 +278,105 @@ texts.SearchIndexLoader = function() {
 		
 		});
 	
-	}
-	
-	function processFragments(fragmentidarray) {
-		// spin through data
-		for (var i=0, il=fragmentidarray.length; i<il; i++) {
-			var fragmentid = fragmentidarray[i],
-				parts = fragmentid.split('_'), // JN1_5
-				fragmentNum = parts.length > 1 ? parts[1] : '',
-				sectionid = parts[0],
-				divisionid = sectionid.substring(0,2),
-				sectionNum = sectionid.substring(2);
-					
-			// for OR searches, we are combining the indexes into one LONGER list that we sort at the end	
-			if (searchType == 'OR') {
-				var divisionSectionArray = divisionMatches[divisionid];
-							
-				if (typeof divisionSectionArray == 'undefined') {
-					// create new array for this division (bible book) with this section (chapter)
-					divisionMatches[divisionid] = [sectionNum];
-				} else {
-					if (divisionSectionArray.indexOf(sectionNum) == -1) {
-						divisionSectionArray.push(sectionNum);
-					}
-				}
-			
-			// for AND searches, we store all the indexes and then combine them after we're done
-			} else if (searchType == 'AND') {
-			
-				var group = indexGroups[searchTermsIndex];
-					
-				if (group.indexOf(sectionid) == -1) {
-					group.push(sectionid);
-				}
-			
-			}
-		
-		}		
 	}	
 	
-	function combineIndexes() {
-		
-		// reset the final list of sections (Bible chapters) we are going to load
-		indexedSections = [];
-		
-		// OR Search
+	function processIndexes() {
+	
+		// we'll combine everything into this ['GN1_1', 'GN1_2']
+		fragmentids = [];
+		// then pair down to this [{sectionid:'GN1', fragmentids: ['GN1_1','GN1_2']}]
+		loadedResults = [];
+			
 		if (searchType == 'OR') {
-			// create unique indexed chapters
-			for (var i=0, il=textInfo.divisions.length; i<il; i++) {
-				var divisionid = textInfo.divisions[i],
-					divisionSections = divisionMatches[divisionid];
-					
-				if (typeof divisionSections != 'undefined') {
-					for (var j=0, jl=divisionSections.length; j<jl; j++) {
+			// combine all the fragments
+			for (var i=0, il=loadedIndexes.length; i<il; i++) {
+				fragmentids = fragmentids.concat( loadedIndexes[i].occurrences );
+				console.log(loadedIndexes[i].term);
+				console.log(loadedIndexes[i].occurrences);
+			}
+			
+			// sort!
+			fragmentids.sort(function(a, b) {
+				// split into parts
+				function splitFragment(fragmentid) {
+					var parts = fragmentid.split('_'),
+						sectionid = parts[0],
+						sectionIndex = textInfo.sections.indexOf(sectionid),
+						fragmentNum = parseInt(parts[1], 10),
+						value = {
+							sectionid: sectionid,
+							sectionIndex: sectionIndex,
+							fragmentNum: fragmentNum
+						};
 						
-						indexedSections.push(divisionid + divisionSections[j]);
-					}
+					return value;
 				}
-			}
+				
+				var fraga = splitFragment(a),
+					fragb = splitFragment(b);
+			
+			
+				if (fraga.sectionIndex < fragb.sectionIndex || 
+					(fraga.sectionIndex == fragb.sectionIndex && fraga.fragmentNum < fragb.fragmentNum) )
+					return -1;
+				if (fraga.sectionIndex > fragb.sectionIndex || 
+					(fraga.sectionIndex == fragb.sectionIndex && fraga.fragmentNum > fragb.fragmentNum) )
+					return 1;
+				// a must be equal to b
+				return 0;			
+			});
+				
+		
 		} else if (searchType == 'AND') {
-			console.log('COMBINING indexes',indexGroups);	
+		
+			// combine arrays to only include fragments (verses) where all indexes overlap (truth AND love)
+			var totalIndexes = loadedIndexes.length;	
+			if (totalIndexes == 1) {		
+				fragmentids = loadedIndexes[0].occurrences;
+			} else if (totalIndexes > 1) {
+				fragmentids = loadedIndexes[0].occurrences.filter(function(val) {
+					var inOtherArrays = true;
+					for (var i=1; i<totalIndexes; i++) {
+						if (loadedIndexes[i].occurrences.indexOf(val) == -1) {
+							inOtherArrays = false;
+							break;
+						}
+					}	
 					
-			var firstArray = indexGroups[0];
+					return inOtherArrays;				
+				});
+			}
+		}
+	
+		// reformat fragments into sectionids
+		for (var i=0, il=fragmentids.length; i<il; i++) {
+			var fragmentid = fragmentids[i],
+				sectionid = fragmentid.split('_')[0];
 				
-			// go through all the values of the first array and see if it's in the others
-			// LOVE => Gen.1, Gen.2
-			// TRUTH => Gen.2, Mark.3
-			// result => Gen.2
-			for (var i=1, il=firstArray.length; i<il; i++) {
-				var sectionid = firstArray[i],
-					inAllArrays = true;
-
-
-				// see if the other arrays have this value					
-				for (var j=1, jl=indexGroups.length; j<jl; j++) {
-					var group = indexGroups[j];
-					
-					if (group.indexOf(sectionid) == -1) {
-						inAllArrays = false;
-						//break;
-					}
-				}
-				
-				//console.log(osis, inAllArrays, s.indexGroups[1].indexOf
-				
-				if (inAllArrays) {
-					indexedSections.push(sectionid);
-				}
+			// see if we already created data for this section id
+			var sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });	
+			
+			// create new data
+			if (sectionidInfo.length == 0) { 
+				loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
+			} 
+			// add to this sectionid
+			else {	
+				sectionidInfo[0].fragmentids.push(fragmentid);
 			}
 			
-			//console.log('COMBINE', indexedSections.length, indexedSections);							
-		}
-			
-		if (indexedSections.length > 0) {		
-			// set the first one
-			indexedSectionsIndex = -1;
-			bookOsisID = indexedSections[indexedSectionsIndex+1].split('.')[0];
-			chapterIndex = parseInt(indexedSections[indexedSectionsIndex+1].split('.')[1])-1;	
+		
 		}
 		
-		//console.log( 'loaded indexes', indexedSections);
-			
-		ext.trigger('complete', {type:'complete', target: this, indexedSections: indexedSections});			
+		
+	
+		// send up the chain
+		ext.trigger('complete', {type:'complete', target: this, data: {
+																	loadedIndexes: loadedIndexes,
+																	loadedResults: loadedResults,
+																	fragmentids: fragmentids
+																}});
 	}
-	*/
-
 
 	var ext = {
 		loadIndexes: loadIndexes
@@ -299,47 +384,4 @@ texts.SearchIndexLoader = function() {
 	ext = $.extend(true, ext, EventEmitter);
 	
 	return ext;	
-
-}
-
-
-
-
-texts.TextSearch2 = function() {
-
-	var
-		encoder = new base32.Encoder(),
-		isSearching = false,
-		canceled = false,
-		searchText = '',
-		searchTextid = '',
-		searchTextEncoded = '',
-		
-		searchRegExp = null,
-		highlightRegExp = null,
-		
-		isAsciiRegExp = new XRegExp('^[\040-\176]*$', 'gi'),
-		verseRegExp = new XRegExp('<span class="verse[^>]*?>(.)*?</span>(\r|\n)', 'gi'),
-		verseNumRegExp = new XRegExp('\\w{1,6}\\.\\d{1,3}\\.\\d{1,3}','gi'),
-		//stripNotesRegExp = new RegExp('<span class="(note|cf)">.+?</span>','gi'),
-		stripNotesRegExp = new XRegExp('<span class="(note|cf)"><span class="key">[a-zA-Z0-9]+</span><span class="text">.+?</span></span>','gi'),
-		replaceLexRegExp = new XRegExp('<span class="word"[^>]+>(.+?)</span>','gi'),
-		
-		startTime = null,
-		searchResultsArray = [],
-		searchRegExp = [],
-		
-		searchTerms = [],
-		
-		isLemmaSearch = false,
-
-		textInfo = null,
-		baseBiblePath = 'content/bibles/',
-		baseLemmaPath = 'content/lexicons/index/',
-		
-		indexedSections = [],
-		indexedSectionsInidex = -1,
-		divisionMatches = {},
-		indexGroups = [],
-		searchType = 'single'; // single, multiple, exact
 }

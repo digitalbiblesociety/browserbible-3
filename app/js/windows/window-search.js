@@ -9,7 +9,8 @@ var SearchWindow = function(id, parentNode, data) {
 						'<input type="button" value="Search" class="search-button" />' + 						
 						
 					'</div>').appendTo(parentNode),
-		main = $('<div class="search-main"></div>').appendTo(parentNode),
+		main = $('<div class="search-main" style="overflow: auto;"><div style="padding: 10px;" class="search-wrapper"></div></div>').appendTo(parentNode),
+		wrapper = main.find('.search-wrapper'),
 		input = header.find('.search-text'),
 		button = header.find('.search-button'),		
 		list = header.find('.search-list'),
@@ -29,6 +30,34 @@ var SearchWindow = function(id, parentNode, data) {
 		console.log('searcher...');
 		
 	});
+	
+	textSearch.on('complete', function(e) {
+		
+		console.log('searcher:complete', e.data.results);
+		
+		var results = e.data.results,
+			html = '<h2>Results: ' + results.length + '</h2>' + 
+					'<table cellpadding="2">';
+		
+		for (var i=0, il=results.length; i<il; i++) {
+			var result = results[i],
+				label = '';
+			
+			if (textInfo.type == 'bible') {
+				var br = new bible.Reference(result.fragmentid);
+				br.lang = textInfo.lang;
+				label = br.toString();	
+			} else {
+				label = results.fragmentid;
+			}
+				
+			html += '<tr><th style="text-align: left;vertical-align:top; white-space:nowrap;">' + label + '</th><td>' + result.fragmentNode.html() + '</td></tr>';
+		}
+		html += '</table>';
+		
+		wrapper.html( html );
+		
+	});	
 	
 	
 	// ACTIONS

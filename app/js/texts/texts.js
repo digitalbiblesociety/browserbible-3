@@ -76,8 +76,11 @@ texts.Texts = {
 			textinfo = this.textData[textid];
 		
 		if (typeof textinfo != 'undefined') {
-			callback(textinfo);
-			return;
+			if (typeof callback != 'undefined') {
+				callback(textinfo);
+			}
+			
+			return textinfo;
 		}
 	
 		// load it!

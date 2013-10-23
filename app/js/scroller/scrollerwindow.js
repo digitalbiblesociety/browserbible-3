@@ -78,6 +78,9 @@ var ScrollerWindow = function(id, node, init_data) {
 	scroller.on('scroll', update_textnav);
 	scroller.on('locationchange', update_textnav);	
 	scroller.on('load', update_textnav);
+	scroller.on('globalmessage', function(e) {
+		ext.trigger('globalmessage', {type: e.type, target: this, data: e.data});	
+	});	
 			
 	// show the current position to the user
 	function update_textnav(e) {
@@ -103,11 +106,13 @@ var ScrollerWindow = function(id, node, init_data) {
 		// TEMP
 		navui.html('Reference');
 		textlistui.html('Version');
+		
+		//console.log('win ' + id + ': startup', init_data);
 						
 		// load the desired text		
 		texts.Texts.getText(init_data.textid, function(loadedTextInfo) {
 			
-			if (currentTextInfo != null) {
+			if (loadedTextInfo != null) {
 				// store this setting
 				currentTextInfo = loadedTextInfo;		
 				
@@ -162,13 +167,32 @@ var ScrollerWindow = function(id, node, init_data) {
 	}
 	
 	
+	function sendMessage(data) {
+		//console.log(id, 'sendMessage', data);
+		
+		if (data.messagetype == 'nav' && data.type == 'bible') {
+			console.log(id, data.locationInfo.fragmentid, data.locationInfo.offset)
+			//scroller.scrollTo( data.locationInfo.fragmentid,data.locationInfo.offset);
+		}		
+		
+		/*
+		
+		if (e.data.messageType == 'nav' && e.data.type == 'bible') {
+			//console.log(id, e.data.sectionid)
+			scroller.scrollTo( e.data.sectionid);
+		}
+		
+		*/		
+	}
+	
+	
 	var ext = {
 		size: size,
-		getData: getData
+		getData: getData,
+		sendMessage: sendMessage
 	}
 	
 	ext = $.extend(true, ext, EventEmitter);
-	
 	
 	return ext;
 	

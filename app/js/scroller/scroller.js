@@ -13,10 +13,13 @@ var Scroller = function(node) {
 		if (ignoreScrollEvent) {
 			return;
 		}
-	
-		ext.trigger('scroll', {type: 'scroll', target: this, data: null});
-		
+		//console.log('sendingscroll');
+
 		update_location_info();
+	
+		ext.trigger('scroll', {type: 'scroll', target: this, data: {locationInfo: locationInfo}});
+		ext.trigger('globalmessage', {type: 'globalmessage', target: this, data: {messagetype: 'nav', type: currentTextInfo.type, locationInfo: locationInfo}});		
+		
 		
 		start_load_more_timeout();
 	});
@@ -25,9 +28,8 @@ var Scroller = function(node) {
 	// find the top most visible node (verse, page, etc.)
 	// pass it up as an event
 	function update_location_info() {
-		// reset info
-		
-		
+
+		// reset info		
 		var 
 			topOfContentArea = node.offset().top,
 			sectionid = '',
@@ -148,6 +150,7 @@ var Scroller = function(node) {
 			node_height = node.height(),
 			above_top = node_scrolltop = node.scrollTop(),			
 			sections = wrapper.find( '.section' ),
+			sections_count = sections.length,
 			total_height = 0,
 			below_bottom = wrapper_height /*total_height*/ - node_height - node_scrolltop;
 			
@@ -183,7 +186,7 @@ var Scroller = function(node) {
 		
 		// remove above
 		else if (above_top > node_height*15) {
-			console.warn('remove above');
+			//console.warn('remove above');
 			
 			if (wrapper.children().length >= 2) {
 			
@@ -206,8 +209,8 @@ var Scroller = function(node) {
 		} 
 		
 		// remove below
-		else if (below_bottom > node_height*15) {
-			console.warn('remove below');
+		else if (sections_count > 4 && below_bottom > node_height*15) {
+			console.warn('remove below', below_bottom, node_height);
 			
 			wrapper.find('.section:last').remove();		
 		}			
@@ -219,6 +222,7 @@ var Scroller = function(node) {
 			return;
 		}
 
+		
 
 		// check if this exists
 		if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
@@ -227,6 +231,8 @@ var Scroller = function(node) {
 		
 			return;
 		}
+		
+		//console.log(loadType, sectionid, fragmentid);
 
 		texts.TextLoader.load( currentTextInfo, sectionid, function(content) {
 		
@@ -286,18 +292,26 @@ var Scroller = function(node) {
 	}
 	
 	function scrollTo(fragmentid, offset) {
-		var fragment = wrapper.find('.' + fragmentid),
+		var fragment = wrapper.find('.' + fragmentid);
 		
-			// calculate node position
-			paneTop = node.offset().top,
-			scrollTop = node.scrollTop(),
-			nodeTop = fragment.offset().top,
-			nodeTopAdjusted = nodeTop - paneTop + scrollTop;
+		if (fragment.length > 0) {
+		
+			var
+				// calculate node position
+				paneTop = node.offset().top,
+				scrollTop = node.scrollTop(),
+				nodeTop = fragment.offset().top,
+				nodeTopAdjusted = nodeTop - paneTop + scrollTop;
 			
-		// go to it
-		ignoreScrollEvent = true;
-		main.scrollTop(nodeTopAdjusted + (offset || 0));
-		ignoreScrollEvent = false;		
+			// go to it
+			ignoreScrollEvent = true;
+			node.scrollTop(nodeTopAdjusted + (offset || 0));
+			ignoreScrollEvent = false;	
+		} else {
+			// need to load it!
+			console.log('need to load', fragmentid);
+		
+		}
 	}
 		
 	function size(width, height) {
@@ -326,7 +340,8 @@ var Scroller = function(node) {
 		size: size,
 		getTextInfo: getTextInfo,
 		setTextInfo: setTextInfo,
-		getLocationInfo: getLocationInfo
+		getLocationInfo: getLocationInfo,
+		scrollTo: scrollTo
 	};
 	
 	ext = $.extend(true, ext, EventEmitter);

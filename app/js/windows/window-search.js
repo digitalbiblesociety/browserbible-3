@@ -51,7 +51,7 @@ var SearchWindow = function(id, parentNode, data) {
 				label = results.fragmentid;
 			}
 				
-			html += '<tr><th style="text-align: left;vertical-align:top; white-space:nowrap;">' + label + '</th><td>' + result.fragmentNode.html() + '</td></tr>';
+			html += '<tr><th style="text-align: left;vertical-align:top; white-space:nowrap;">' + label + '</th><td>' + result.html + '</td></tr>';
 		}
 		html += '</table>';
 		

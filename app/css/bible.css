@@ -68,3 +68,7 @@
 /* special display for Psalms */
 span[class^='verse PSA_']                                    {display:block;}
 
+.search-main .highlight {
+	background: #ffff00;
+	border-bottom: solid 1px #ffcc00;
+}

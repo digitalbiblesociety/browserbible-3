@@ -121,16 +121,29 @@ texts.TextSearch = function() {
 					for (var i=0, il=fragmentids.length; i<il; i++) {
 						var 
 							fragmentid = fragmentids[i],
-							fragmentNode = content.find('.' + fragmentid);
+							fragmentNode = content.find('.' + fragmentid),
+							html = fragmentNode.html();
 							
-						// highlight terms!
+						if (fragmentNode.length > 0) {
 							
-						searchFinalResults.push({fragmentid: fragmentid, fragmentNode: fragmentNode});
-					}
+							var foundMatch = false;
+						
+							for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+								
+								searchTermsRegExp.lastIndex = 0;
+								html = html.replace(searchTermsRegExp[j], function(match) {
+									foundMatch = true;
+									return '<span class="highlight">' + match + '</span>';
+								});
+							}
+						
+							if (foundMatch) {
+								searchFinalResults.push({fragmentid: fragmentid, html: html});
+							}
+						}
+					}					
 					
-					
-					loadNextSectionid();
-					
+					loadNextSectionid();					
 				}, 
 				error: function() {
 					loadNextSectionid();
@@ -144,6 +157,7 @@ texts.TextSearch = function() {
 		searchTermsRegExp = [];
 		
 		// ASCII characters have predictable word boundaries (space ' ')
+		isAsciiRegExp.lastIndex = 0;
 		if (isAsciiRegExp.test( searchText )) {
 					
 			// check for quoted search "jesus christ"
@@ -195,20 +209,13 @@ texts.SearchIndexLoader = function() {
 
 	var 
 		baseContentPath = 'content/texts/',
-		//encoder = new base32.Encoder(),
 		textInfo = textInfo,
 		searchTerms = [],
 		searchTermsIndex = -1,
 		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
 		loadedIndexes = [], 
 		// final: [{sectionid:'GN1', fragmentids: ['GN1_2', 'GN1_3']}, {sectionid:'GN2', fragmentids: ['GN2_4']} }
-		loadedResults = [], 
-		
-		/*
-		indexedSections = [], // return data ['GN1', 'GN2', 'SS5' ... ]
-		divisionMatches = {}, // for OR search:  merge all sections (chapters) together {'GN': [4,5], 'EX': [1,2]
-		indexGroups = [],     // for AND search: sections (chapters) per word {'light': ['GN1'], 'love': ['JN3']} that we merge after ward
-		*/
+		loadedResults = [],
 		searchType = 'AND'; // OR
 
 	// START

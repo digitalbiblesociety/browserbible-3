@@ -41,7 +41,7 @@ texts.TextLoader = (function() {
 			successCallback (data[textid][sectionid]);
 		}
 		
-		var url = baseFolder + textid + '/' + sectionid + '.json?' + new Date();
+		var url = baseFolder + textid + '/' + sectionid + '.json?'; // + new Date();
 		
 		//console.log(textid, sectionid, url);
 			
@@ -52,6 +52,10 @@ texts.TextLoader = (function() {
 				var doc = $(d.text);
 					
 				data[textid][sectionid] = doc;
+				
+				if (!doc.hasClass('section')) {
+					doc.addClass('section');
+				}
 				
 				//console.log(textid, sectionid, d.text);
 		

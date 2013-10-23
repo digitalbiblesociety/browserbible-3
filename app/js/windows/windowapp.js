@@ -54,7 +54,6 @@ var App = function() {
 	}
 	
 	function storeSettings() {
-		console.log('storeSettings');
 	
 			// get settings from al windows
 		var windowSettings = windowManager.getSettings(),		
@@ -63,6 +62,8 @@ var App = function() {
 			settings = {
 				windows: windowSettings
 			};	
+			
+		console.log('storeSettings', settings);
 		
 		// store
 		AppSettings.setValue(settingsKey, settings );

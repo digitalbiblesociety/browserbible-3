@@ -110,7 +110,10 @@ var SearchWindow = function(id, parentNode, data) {
 
 	var ext = {
 		size: size,
-		getData: function() { return null; }
+		getData: function() { return null; },
+		sendMessage: function(data) {
+			
+		}
 	};	
 	ext = $.extend(true, ext, EventEmitter);
 		

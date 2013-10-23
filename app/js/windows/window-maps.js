@@ -134,7 +134,8 @@ var MapsWindow = function(id, parentNode, data) {
 
 	var ext = {
 		size: size,
-		getData: getData
+		getData: getData,
+		sendMessage: function() {}
 	};	
 	
 	ext = $.extend(true, ext, EventEmitter);

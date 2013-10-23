@@ -34,8 +34,8 @@
 
 
 /* main bible verse, text formating */
-.section													{line-height: 1.8;}
-.section p, .section div.p 									{text-indent:1em;}
+.section, .chapter											{line-height: 1.8;}
+.section p, .section div.p, .chapter div.p					{text-indent:1em;}
 
 .section[lang=he] p, .chapter[lang=heb] p					{ font-family:'SBL Hebrew', EzraSILRegular; font-size: 125%;}
 .section[lang=el] p, .chapter[lang=gre] p					{font-family:GentiumPlus; line-height: 1.8;}

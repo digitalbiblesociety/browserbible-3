@@ -28,7 +28,13 @@ var ScrollerWindow = function(id, node, init_data) {
 		textNavigator = new TextNavigator(container),
 		scroller = new Scroller(main),		
 		currentTextInfo = null,
-		currentLocationInfo = null;
+		currentLocationInfo = null,
+		
+		// settings
+		hasFocus = false;
+
+		
+		
 	
 	// DOM to object stuff
 	textlistui.on('click', function(e) {
@@ -47,8 +53,6 @@ var ScrollerWindow = function(id, node, init_data) {
 	});
 	
 	textChooser.on('change', function (e) {
-		
-		console.log('scrollerapp:chooser:change', e.data);
 		
 		var newTextInfo = e.data;
 	
@@ -79,7 +83,10 @@ var ScrollerWindow = function(id, node, init_data) {
 	scroller.on('locationchange', update_textnav);	
 	scroller.on('load', update_textnav);
 	scroller.on('globalmessage', function(e) {
-		ext.trigger('globalmessage', {type: e.type, target: this, data: e.data});	
+		if (hasFocus) {
+			//console.log('sending global');
+			ext.trigger('globalmessage', {type: e.type, target: this, data: e.data});	
+		}
 	});	
 			
 	// show the current position to the user
@@ -122,7 +129,7 @@ var ScrollerWindow = function(id, node, init_data) {
 				textNavigator.setTextInfo(currentTextInfo);			
 										
 				scroller.setTextInfo(currentTextInfo);
-				scroller.load('text', init_data.sectionid);			
+				scroller.load('text', init_data.sectionid, init_data.fragmentid);			
 			}
 		});
 	}
@@ -165,34 +172,30 @@ var ScrollerWindow = function(id, node, init_data) {
 		
 		return data;	
 	}
-	
-	
-	function sendMessage(data) {
-		//console.log(id, 'sendMessage', data);
-		
-		if (data.messagetype == 'nav' && data.type == 'bible') {
-			console.log(id, data.locationInfo.fragmentid, data.locationInfo.offset)
-			//scroller.scrollTo( data.locationInfo.fragmentid,data.locationInfo.offset);
-		}		
-		
-		/*
-		
-		if (e.data.messageType == 'nav' && e.data.type == 'bible') {
-			//console.log(id, e.data.sectionid)
-			scroller.scrollTo( e.data.sectionid);
-		}
-		
-		*/		
-	}
-	
+
 	
 	var ext = {
 		size: size,
-		getData: getData,
-		sendMessage: sendMessage
+		getData: getData
 	}
-	
 	ext = $.extend(true, ext, EventEmitter);
+
+	ext.on('focus', function() {
+		hasFocus = true;
+	});	
+	ext.on('blur', function() {
+		hasFocus = false;
+	});
+	ext.on('message', function(e) {
+		var data = e.data;
+		
+		if (data.messagetype == 'nav' && data.type == 'bible') {
+			//console.log(id, data.locationInfo.fragmentid, data.locationInfo.offset)
+			scroller.scrollTo( data.locationInfo.fragmentid, data.locationInfo.offset);
+		}			
+	});	
+	
+	
 	
 	return ext;
 	

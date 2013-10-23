@@ -238,10 +238,14 @@ var Scroller = function(node) {
 		
 			// check if this exists
 			if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
-				// TODO: scroll to this one
-			
+				
+				if (fragmentid) {
+					scrollTo(fragmentid);
+				}			
 				return;
 			}
+			
+			ignoreScrollEvent = true;
 						
 			switch (loadType) {
 				default:
@@ -256,6 +260,9 @@ var Scroller = function(node) {
 					update_location_info();
 					
 					// TODO: scrollto fragmentid
+					if (fragmentid) {
+						scrollTo(fragmentid);
+					}
 												
 					break;
 				
@@ -284,6 +291,9 @@ var Scroller = function(node) {
 			
 			}
 			
+			ignoreScrollEvent = false;
+			
+			// send load event up to Window
 			ext.trigger('load', {type: 'load', target: this, data: content});
 						
 			load_more();
@@ -292,6 +302,12 @@ var Scroller = function(node) {
 	}
 	
 	function scrollTo(fragmentid, offset) {
+		
+		if (typeof loadIfNotPresent == 'undefined') {
+			loadIfNotPresent = false;
+		}
+	
+	
 		var fragment = wrapper.find('.' + fragmentid);
 		
 		if (fragment.length > 0) {
@@ -309,7 +325,14 @@ var Scroller = function(node) {
 			ignoreScrollEvent = false;	
 		} else {
 			// need to load it!
-			console.log('need to load', fragmentid);
+			//console.log('need to load', fragmentid);
+			
+			var sectionid = fragmentid.split('_')[0],
+				hasSection = currentTextInfo.sections.indexOf(sectionid) > -1; 
+						
+			if (hasSection) {
+				load('text', fragmentid.split('_')[0], fragmentid);
+			}
 		
 		}
 	}

@@ -18,20 +18,21 @@ var WindowManager = function(node) {
 		
 		// when a window reports a settings change
 		win.on('settingschange', function(e) {
-				
+			
 			// pass up to root
 			ext.trigger('settingschange', e);			
 		});
 		
 		win.on('globalmessage', function(e) {
 			// give to other windows
+			
 
 			 for (var i=0, il=windows.length; i<il; i++) {
-			 	window = windows[i];
+			 	w = windows[i];
 			 	
-			 	if (window.id != id) {
+			 	if (w.id != id) {
 			 		// pass message down
-			 		window.trigger('globalmessage', e);
+			 		w.sendMessage(e.data);
 			 	}
 			 }				
 		});
@@ -93,10 +94,11 @@ var Window = function(id, parentNode, className, data, manager) {
 	
 	// send settings up to th Manager, up to the app
 	controller.on('settingschange', function(e) {
+		// console.log(id, 'win settingschange');
 		ext.trigger('settingschange', e); // {type: e.type, target: this, data: e.data});
 	});
-	controller.on('sendmessage', function(e) {
-		ext.trigger('sendmessage', e); // {type: e.type, target: this, data: e.data});
+	controller.on('globalmessage', function(e) {
+		ext.trigger('globalmessage', e); // {type: e.type, target: this, data: e.data});
 	});	
 	
 	function size(width, height) {
@@ -109,23 +111,29 @@ var Window = function(id, parentNode, className, data, manager) {
 	function quit() {
 		controller.quit();
 	}
+	
+	function sendMessage(data) {
+		if (typeof controller.sendMessage != 'undefined') {
+			controller.sendMessage(data);
+		} else {
+			console.log(className, 'NO sendMessage');	
+		}	
+	}
 
 	var ext = {
 		size: size,
 		quit: quit,
 		id: id,
 		className: className,
+		sendMessage: sendMessage,
 		getData: function() {
 			return controller.getData();
 		},
 		controller: controller
 	};
 	
-	ext = $.extend(ext, EventEmitter);
+	ext = $.extend(true, ext, EventEmitter);
 	
-	ext.on('globalmessage', function(e) {
-		controller.trigger('globalmessage', e);
-	});
 		
 	return ext;
 }

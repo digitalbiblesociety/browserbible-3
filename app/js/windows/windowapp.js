@@ -35,17 +35,17 @@ var App = function() {
 		defaultSettings = {
 			windows: [
 				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
-				//{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
-				{type: 'SearchWindow', data: {}},
+				{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
+				//{type: 'SearchWindow', data: {}},
 				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}}				
 			]
 		},
 		settings = AppSettings.getValue(settingsKey, {}); //defaultSettings);
 	
-	console.log(settings);	
+	//console.log('startup settings', settings);	
 	
 	// TEMP
-	settings = defaultSettings;
+	//settings = defaultSettings;
 	
 	// create windows
 	for (var i=0, il=settings.windows.length; i<il; i++) {
@@ -54,6 +54,8 @@ var App = function() {
 	}
 	
 	function storeSettings() {
+		console.log('storeSettings');
+	
 			// get settings from al windows
 		var windowSettings = windowManager.getSettings(),		
 			// later we'll need these
@@ -66,8 +68,7 @@ var App = function() {
 		AppSettings.setValue(settingsKey, settings );
 	}
 	
-	var settingsTimer = new Timer(storeSettings, 5000);
-
+	var settingsTimer = new Timer(storeSettings, 1000);
 	
 	windowManager.on('settingschange', function(e) {
 		
@@ -76,8 +77,8 @@ var App = function() {
 			document.title = e.data.label;
 		}
 		
-		// reset settings timer
 		settingsTimer.start();		
+		
 	});
 	
 	return this;	

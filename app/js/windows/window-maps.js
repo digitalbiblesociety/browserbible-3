@@ -16,7 +16,9 @@ var MapsWindow = function(id, parentNode, data) {
 		
 		mapContainer = $('<div class="window-maps" id="' + id + '"></div>').appendTo(parentNode),
 		map = null,
-		geocoder = null;
+		geocoder = null,
+		infowindow = null,
+		locationData = null;
 		
 
 	// bind init method to window object
@@ -52,8 +54,7 @@ var MapsWindow = function(id, parentNode, data) {
 			}			
 		};
 		
-		map = new google.maps.Map(document.getElementById(id),
-			mapOptions);
+		map = new google.maps.Map(document.getElementById(id), mapOptions);
 			
 		google.maps.event.addListener(map, 'center_changed', function() {
 		
@@ -73,28 +74,73 @@ var MapsWindow = function(id, parentNode, data) {
 		
 			
 		geocoder = new google.maps.Geocoder();	
+		
+		infowindow = new google.maps.InfoWindow({
+			content: 'Empty for now'
+		});		
+		
+		
+		loadPins();
 	}
 	
 	mapSearchInput.on('keypress', function(e) {
 		if (map != null && e.which == 13) {
 			
-			var address = mapSearchInput.val();
-		
-			console.log('search', address);
+			var search_value = mapSearchInput.val();
 			
-			geocoder.geocode( { 'address': address}, function(results, status) {
+			
+			// find a marker!
+			for (var i=0, il=locationData.length; i<il; i++) {
+				var location = locationData[i];
+				
+				if (location.name.toLowerCase().indexOf(search_value.toLowerCase()) > -1) {
+					
+					openLocation(location);
+					
+					break;
+				}
+					
+					
+			}
+			
+		
+			//console.log('search', search_value);
+			/*
+			geocoder.geocode( { 'address': search_value}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					map.setCenter(results[0].geometry.location);
+					
 					var marker = new google.maps.Marker({
 						map: map,
 						position: results[0].geometry.location
-					});
-
-					
+					});									
 				}
-			});			
+			});	
+			*/		
 			
 		}
+	});
+	
+	mapContainer.on('click', '.verse', function() {
+		var link = $(this),
+			sectionid = link.attr('data-sectionid'),
+			fragmentid = link.attr('data-fragmentid');
+			
+		ext.trigger('globalmessage', {
+									type: 'globalmessage', 
+									target: this, 
+									data: {
+										messagetype: 'nav', 
+										type: 'bible',
+										locationInfo: {
+											sectionid: sectionid, 
+											fragmentid: fragmentid
+										}
+									}
+								});
+	
+		console.log('clicked', this);
+	
 	});
 	
 	// dynamically load map
@@ -112,6 +158,65 @@ var MapsWindow = function(id, parentNode, data) {
 		window[loadMapFunctionName]
 	}
 	
+	
+	function loadPins() {
+		
+		console.log('MAP: loading pins');
+	
+		$.ajax({
+			url: 'content/maps/maps.json',
+			success: function(data) {
+			
+				locationData = data;
+			
+				for (var i=0, il=locationData.length; i<il; i++) {
+					var location = locationData[i];
+					
+					(function(location) {
+						
+						var marker = new google.maps.Marker({
+							position: new google.maps.LatLng(location.coordinates[1], location.coordinates[0]),
+							map: map,
+							title: location.name
+						});		
+				
+						location.marker = marker;
+						
+						google.maps.event.addListener(marker, 'click', function() {
+						
+							openLocation(location);
+							
+						});											
+							
+					
+					})(location);
+					
+				}			
+			}
+		});	
+	}
+	
+	function openLocation(location) {
+		var verses_html = $.map(location.verses, function(a) {
+			var bible_ref = new bible.Reference(a),
+				sectionid = bible_ref.bookid + bible_ref.chapter,
+				fragmentid = sectionid + '_' + bible_ref.verse1;
+		
+			return '<span class="verse" style="text-decoration:underline; cursor: pointer" data-sectionid="' + sectionid + '" data-fragmentid="' + fragmentid + '">' + a + '</span>';
+		});
+		
+	
+	
+	
+		infowindow.setContent(
+							'<div style="width: 200px; height: 150px; overflow: auto;">' + 
+								'<h2>' + location.name + '</h2>' + 
+								'<p>' + 
+								verses_html.join('; ') + 
+								'</p>' + 
+							'</div>');						
+		infowindow.open(map, location.marker);	
+	}
 	
 	function size(width, height) {
 		

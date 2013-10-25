@@ -26,6 +26,7 @@ var App = function() {
 	
 	// create objects
 	var windowManager = new WindowManager(main);	
+	this.windowManager = windowManager;
 		
 	// combine nodes and objects
 	win.on('resize', resize);
@@ -42,7 +43,7 @@ var App = function() {
 		},
 		settings = AppSettings.getValue(settingsKey, defaultSettings);
 	
-	//console.log('startup settings', settings);	
+	console.log('startup settings', settings);	
 	
 	// TEMP
 	//settings = defaultSettings;
@@ -86,5 +87,5 @@ var App = function() {
 }
 
 $(function() {
-	app = new App();
+	window.app = new App();
 });

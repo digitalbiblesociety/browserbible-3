@@ -158,7 +158,7 @@ var ScrollerWindow = function(id, node, init_data) {
 		}
 		if (currentLocationInfo == null) {
 			currentLocationInfo = scroller.getLocationInfo();
-		}			
+		}	
 		
 		var data = {
 			// textinfo

@@ -7,9 +7,23 @@ TextChooser
 var TextChooser = function(container) {
 	// create me
 	var selectedTextInfo = null,
-		textSelector = $('<div class="text-chooser">' + '</div>')
-					.appendTo( $('body') )
-					.hide();
+		textSelector = $('<div class="text-chooser">' + 
+							'<div class="text-chooser-header">' +
+								'<span class="text-chooser-title"></span>' +  
+								'<span class="text-chooser-close">Close</span>' +  
+							'</div>' +
+							'<div class="text-chooser-main"></div>' +		
+						'</div>')
+						.appendTo( $('body') )
+						.hide(),
+		main = textSelector.find('.text-chooser-main'),
+		title = textSelector.find('.text-chooser-title'),
+		close = textSelector.find('.text-chooser-close');
+		
+		
+	title.html("Texts");
+	
+	close.on('click', hide);
 	
 	// handle when user clicks on a text
 	textSelector.on('click', '.text-chooser-row', function() {
@@ -45,7 +59,7 @@ var TextChooser = function(container) {
 						'</div>'
 			);
 		}		
-		textSelector.html(html);
+		main.html(html);
 		
 		
 		// find the selected text

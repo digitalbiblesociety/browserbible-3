@@ -6,7 +6,11 @@ var TextNavigator = function(container) {
 	// create me
 	
 	var changer = $('<div class="text-navigator">' + 
-						'<div class="text-navigator-header">Bible</div>' + 
+						'<div class="text-navigator-header">' + 
+							'<span class="text-navigator-title"></span>' + 
+							'<span class="text-navigator-back">Back</span>' + 
+							'<span class="text-navigator-close">Close</span>' + 													
+						'</div>' + 
 						'<div class="text-navigator-divisions"></div>' + 
 						'<div class="text-navigator-sections"></div>' + 
  					'</div>'
@@ -14,11 +18,18 @@ var TextNavigator = function(container) {
 					.css({height: $(window).height(), width: $(window).width()})
 					.appendTo( $('body') )
 					.hide(),
-					
+		title = changer.find('.text-navigator-title'),
+		back = changer.find('.text-navigator-back').hide(),
+		close = changer.find('.text-navigator-close'),							
 		textInfo = null;
 		
+	close.on('click', function() {
+		changer.hide();
+	});
 		
 	function showChanger() {
+		
+		title.html( textInfo.name );	
 		
 		if (textInfo == null) {
 			console.warn('chooser has not textInfo!');
@@ -70,7 +81,7 @@ var TextNavigator = function(container) {
 				html.push('<div class="clear"></div>');
 			}
 			
-			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + book.chapters.length + '">' + shortName + '</span>');
+			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + book.chapters.length + '" data-name="' + divisionName + '">' + shortName + '</span>');
 		} //
 		
 		changer.find('.text-navigator-divisions').html(html).show();
@@ -107,7 +118,10 @@ var TextNavigator = function(container) {
 				// print out chapters
 				var selected_division = changer.find('.text-navigator-division.selected'),
 					divisionid = selected_division.attr('data-id'),					
+					divisionname = selected_division.attr('data-name'),					
 					num_of_chapters = parseInt(selected_division.attr('data-chapters'), 10);
+				
+				title.html( divisionname );
 					
 				for (var chapter=1; chapter<=num_of_chapters; chapter++) {
 					html.push('<span class="text-navigator-section" data-id="' + divisionid + chapter + '">' + chapter.toString() + '</span>');		

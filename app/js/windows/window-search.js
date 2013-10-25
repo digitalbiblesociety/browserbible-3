@@ -1,7 +1,7 @@
 
 
 // test/sample types
-var SearchWindow = function(id, parentNode, data) {
+var SearchWindow = function(id, parentNode, init_data) {
 
 	var header = $('<div class="search-header" style="background:#eee; padding: 10px;">' + 
 						'<select class="search-list" ></select><br>' + 
@@ -31,6 +31,29 @@ var SearchWindow = function(id, parentNode, data) {
 		
 	});
 	
+	wrapper.on('click', 'tr', function(e) {
+		
+		var tr = $(this),
+			fragmentid = tr.attr('data-fragmentid');
+			
+		console.log('search click', fragmentid);	
+		
+		ext.trigger('globalmessage', {
+								type: 'globalmessage',
+								target: this, 
+								data: {
+									messagetype:'nav',
+									type: 'bible', 
+									locationInfo: {
+										fragmentid: fragmentid,
+										sectionid: fragmentid.split('_')[0],
+										offset: 0
+									}
+								}
+							});
+	
+	});
+	
 	textSearch.on('complete', function(e) {
 		
 		console.log('searcher:complete', e.data.results);
@@ -51,7 +74,7 @@ var SearchWindow = function(id, parentNode, data) {
 				label = results.fragmentid;
 			}
 				
-			html += '<tr><th style="text-align: left;vertical-align:top; white-space:nowrap;">' + label + '</th><td>' + result.html + '</td></tr>';
+			html += '<tr data-fragmentid="' + result.fragmentid + '"><th style="text-align: left;vertical-align:top; white-space:nowrap;">' + label + '</th><td>' + result.html + '</td></tr>';
 		}
 		html += '</table>';
 		
@@ -103,16 +126,31 @@ var SearchWindow = function(id, parentNode, data) {
 			}
 			list.html( html );
 			
-			list.children().first().attr('selected', true);
+			console.log('search versions loaded', init_data);	
+			
+			if (init_data.textid) {
+				list.find('option[value="' + init_data.textid + '"]').attr('selected', true);
+			} else {		
+				list.children().first().attr('selected', true);
+			}
+			
+			if (init_data.searchString && init_data.searchString != '') {
+				input.val(init_data.searchString);
+				doSearch();
+			}
+			
 		});			
 	}
 	init();
 
 	var ext = {
 		size: size,
-		getData: function() { return null; },
-		sendMessage: function(data) {
-			
+		getData: function() { 
+		
+			return {
+				searchString: input.val(),
+				textid: list.val()
+			}			
 		}
 	};	
 	ext = $.extend(true, ext, EventEmitter);

@@ -133,7 +133,7 @@ bible.parseReference = function (textReference, language) {
 	// validate max chapter
 	if (chapter1 == -1) {
 		chapter1 = 1;
-	} else if (chapter1 > bible.BOOK_DATA[matchingbookid].chapters.length) {
+	} else if (bible.BOOK_DATA[matchingbookid].chapters && chapter1 > bible.BOOK_DATA[matchingbookid].chapters.length) {
 		chapter1 = bible.BOOK_DATA[matchingbookid].chapters.length;
 		if (verse1 > 0)
 			verse1 = 1;
@@ -145,7 +145,7 @@ bible.parseReference = function (textReference, language) {
 	verse1 = 1;
 	} else 
 	*/
-	if (verse1 > bible.BOOK_DATA[matchingbookid].chapters[chapter1 - 1]) {
+	if (bible.BOOK_DATA[matchingbookid].chapters && verse1 > bible.BOOK_DATA[matchingbookid].chapters[chapter1 - 1]) {
 		verse1 = bible.BOOK_DATA[matchingbookid].chapters[chapter1 - 1];
 	}
 	if (verse2 <= verse1) {

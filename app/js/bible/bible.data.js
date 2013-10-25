@@ -696,6 +696,8 @@ bible.BOOK_DATA = {
 /**
  * @description Default order of Old Testament books
  */
+bible.OT_BOOKS_OSIS = ["Gen","Exod","Lev","Num","Deut","Josh","Judg","Ruth","1Sam","2Sam","1Kgs","2Kgs","1Chr","2Chr","Ezra","Neh","Esth","Job","Ps","Prov","Eccl","Song","Isa","Jer","Lam","Ezek","Dan","Hos","Joel","Amos","Obad","Jonah","Mic","Nah","Hab","Zeph","Hag","Zech","Mal"];
+ 
 bible.OT_BOOKS_USFM = ["GEN","EXO","LEV","NUM","DEU","JOS","JDG","RUT","SA1","SA2","KI1","KI2","CH1","CH2","EZR","NEH","EST","JOB","PSA","PRO","ECC","SNG","ISA","JER","LAM","EZK","DAN","HOS","JOL","AMO","OBA","JNA","MIC","NAH","HAB","ZEP","HAG","ZEC","MAL"];
 
 bible.OT_BOOKS = 
@@ -705,6 +707,8 @@ bible.OT_BOOKS =
 /**
  * @description Default order of New Testament books
  */
+bible.NT_BOOKS_OSIS = ["Matt","Mark","Luke","John","Acts","Rom","1Cor","2Cor","Gal","Eph","Phil","Col","1Thess","2Thess","1Tim","2Tim","Titus","Phlm","Heb","Jas","1Pet","2Pet","1John","2John","3John","Jude","Rev"];
+
 bible.NT_BOOKS_USFM = ["MAT","MRK","LUK","JHN","ACT","ROM","CO1","CO2","GAL","EPH","PHP","COL","TH1","TH2","TI1","TI2","TIT","PHM","HEB","JAM","PE1","PE2","JN1","JN2","JN3","JDE","REV"];
 
 bible.NT_BOOKS = ["MT","MK","LK","JN","AC","RM","C1","C2","GL","EP","PP","CL","H1","H2","T1","T2","TT","PM","HB","JM","P1","P2","J1","J2","J3","JD","RV"];
@@ -712,6 +716,8 @@ bible.NT_BOOKS = ["MT","MK","LK","JN","AC","RM","C1","C2","GL","EP","PP","CL","H
 /**
  * @description Default order of Apocryphal books
  */
+bible.AP_BOOKS_OSIS = ["Tob","Jdt","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
+ 
 bible.AP_BOOKS = 
 ["BEL","SUS","JDT","MAN","SIR","SIP","TOB","WIS","PAZ","LJE","BAR","LJB","BA2","LBA","MAC","MA1","MA2","MA3","MA4","ODE","PSO","PJE","JUB"]
 //["Tob","Jdt","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
@@ -720,6 +726,7 @@ bible.AP_BOOKS =
  * @description Default order of Apocryphal books
  */
 bible.DEFAULT_BIBLE = bible.OT_BOOKS.concat(bible.NT_BOOKS);
+bible.DEFAULT_BIBLE_OSIS = bible.OT_BOOKS_OSIS.concat(bible.NT_BOOKS_OSIS);
 
 /**
  * @description Default order of Bible's with Apocryphal books

@@ -8,6 +8,22 @@ var Scroller = function(node) {
 		ignoreScrollEvent = false;
 
 		
+	var globalTimeout = null;
+	
+	function startGlobalTimeout() {
+		if (globalTimeout == null) {
+			setTimeout(triggerGlobalEvent, 25);
+		}
+	}
+	
+	function triggerGlobalEvent() {
+		
+		ext.trigger('globalmessage', {type: 'globalmessage', target: this, data: {messagetype: 'nav', type: currentTextInfo.type, locationInfo: locationInfo}});		
+		
+		clearTimeout(globalTimeout);
+		globalTimeout = null;
+	}
+		
 	node.on('scroll', function() {
 		
 		if (ignoreScrollEvent) {
@@ -18,8 +34,7 @@ var Scroller = function(node) {
 		update_location_info();
 	
 		ext.trigger('scroll', {type: 'scroll', target: this, data: {locationInfo: locationInfo}});
-		ext.trigger('globalmessage', {type: 'globalmessage', target: this, data: {messagetype: 'nav', type: currentTextInfo.type, locationInfo: locationInfo}});		
-		
+		startGlobalTimeout();
 		
 		start_load_more_timeout();
 	});
@@ -218,18 +233,18 @@ var Scroller = function(node) {
 	
 	function load(loadType, sectionid, fragmentid) {
 			
-		if (sectionid == 'null') {
+		if (sectionid === 'null' || sectionid === null || sectionid == '') {
 			return;
 		}
-
 		
-
 		// check if this exists
-		if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
+		//if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
+		if ( wrapper.find('.' + sectionid).length > 0 ) {
 			
-			scrollTo(fragmentid);
-		
-			return;
+			if (fragmentid && fragmentid.trim() != '' && wrapper.find('.' + fragmentid).length > 0) {
+				scrollTo(fragmentid);
+				return;
+			}
 		}
 		
 		//console.log(loadType, sectionid, fragmentid);
@@ -237,12 +252,14 @@ var Scroller = function(node) {
 		texts.TextLoader.load( currentTextInfo, sectionid, function(content) {
 		
 			// check if this exists
-			if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
+			//if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {
+			if ( wrapper.find('.' + sectionid).length > 0 ) {
 				
-				if (fragmentid) {
+				if (fragmentid && fragmentid.trim() != '' && wrapper.find('.' + fragmentid).length > 0) {
 					scrollTo(fragmentid);
-				}			
-				return;
+					return;
+				}
+				
 			}
 			
 			ignoreScrollEvent = true;
@@ -256,13 +273,15 @@ var Scroller = function(node) {
 					node.scrollTop(0);
 					wrapper.append(content);
 					
-					locationInfo = null;
-					update_location_info();
+
 					
 					// TODO: scrollto fragmentid
 					if (fragmentid) {
 						scrollTo(fragmentid);
 					}
+					
+					locationInfo = null;
+					update_location_info();					
 												
 					break;
 				
@@ -303,13 +322,12 @@ var Scroller = function(node) {
 	
 	function scrollTo(fragmentid, offset) {
 		
-		if (typeof loadIfNotPresent == 'undefined') {
-			loadIfNotPresent = false;
-		}
-	
-	
+		// find the fragment	
 		var fragment = wrapper.find('.' + fragmentid);
 		
+		//console.log('scrollTo', fragmentid, fragment.length);
+		
+		// if it exists, we'll move to it
 		if (fragment.length > 0) {
 		
 			var
@@ -323,7 +341,9 @@ var Scroller = function(node) {
 			ignoreScrollEvent = true;
 			node.scrollTop(nodeTopAdjusted + (offset || 0));
 			ignoreScrollEvent = false;	
-		} else {
+		} 
+		// if it's not there, we'll see if we can load it for this book (or bible version)
+		else {
 			// need to load it!
 			//console.log('need to load', fragmentid);
 			
@@ -331,7 +351,7 @@ var Scroller = function(node) {
 				hasSection = currentTextInfo.sections.indexOf(sectionid) > -1; 
 						
 			if (hasSection) {
-				load('text', fragmentid.split('_')[0], fragmentid);
+				load('text', sectionid, fragmentid);
 			}
 		
 		}

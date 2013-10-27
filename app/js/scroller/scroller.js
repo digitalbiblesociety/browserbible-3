@@ -312,8 +312,19 @@ var Scroller = function(node) {
 			
 			ignoreScrollEvent = false;
 			
-			// send load event up to Window
-			ext.trigger('load', {type: 'load', target: this, data: content});
+			// send load event up to Window/App
+			//console.log('loaded', sectionid);
+			ext.trigger('globalmessage', {type: 'globalmessage', 
+											target: this, 
+											data: {
+												messagetype: 'textload',
+												texttype: currentTextInfo.type, 
+												textid: currentTextInfo.id, 
+												sectionid: sectionid,
+												fragmentid: fragmentid,
+												content:content
+											}
+										});
 						
 			load_more();
 		});		

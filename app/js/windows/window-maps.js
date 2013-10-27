@@ -18,7 +18,8 @@ var MapsWindow = function(id, parentNode, data) {
 		map = null,
 		geocoder = null,
 		infowindow = null,
-		locationData = null;
+		locationData = null,
+		locationDataByVerse = null;
 		
 
 	// bind init method to window object
@@ -90,18 +91,7 @@ var MapsWindow = function(id, parentNode, data) {
 			
 			
 			// find a marker!
-			for (var i=0, il=locationData.length; i<il; i++) {
-				var location = locationData[i];
-				
-				if (location.name.toLowerCase().indexOf(search_value.toLowerCase()) > -1) {
-					
-					openLocation(location);
-					
-					break;
-				}
-					
-					
-			}
+			findMarkerByText(search_value);
 			
 		
 			//console.log('search', search_value);
@@ -120,6 +110,20 @@ var MapsWindow = function(id, parentNode, data) {
 			
 		}
 	});
+	
+	function findMarkerByText(value) {
+		for (var i=0, il=locationData.length; i<il; i++) {
+			var location = locationData[i];
+			
+			//if (location.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+			if (location.name.toLowerCase() == value.toLowerCase()) {
+				
+				openLocation(location);
+				
+				break;
+			}				
+		}	
+	}
 	
 	mapContainer.on('click', '.verse', function() {
 		var link = $(this),
@@ -167,33 +171,70 @@ var MapsWindow = function(id, parentNode, data) {
 			url: 'content/maps/maps.json',
 			success: function(data) {
 			
+				// store data
 				locationData = data;
-			
-				for (var i=0, il=locationData.length; i<il; i++) {
-					var location = locationData[i];
-					
-					(function(location) {
-						
-						var marker = new google.maps.Marker({
-							position: new google.maps.LatLng(location.coordinates[1], location.coordinates[0]),
-							map: map,
-							title: location.name
-						});		
 				
-						location.marker = marker;
-						
-						google.maps.event.addListener(marker, 'click', function() {
-						
-							openLocation(location);
-							
-						});											
-							
-					
-					})(location);
-					
-				}			
+				createPins();
+				//setTimeout(createPins, 50);
 			}
 		});	
+	}
+	
+	
+	function createPins() {
+		for (var i=0, il=locationData.length; i<il; i++) {
+			var location = locationData[i];
+			
+			// create pin
+			(function(location) {
+				
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(location.coordinates[1], location.coordinates[0]),
+					map: map,
+					title: location.name
+				});		
+		
+				location.marker = marker;
+				
+				google.maps.event.addListener(marker, 'click', function() {
+				
+					openLocation(location);
+					
+				});											
+					
+			
+			})(location);
+			
+		}
+		
+		
+		// SO SLOWWWWW!!!!
+		
+		// create locationDataByVerse				
+		locationDataByVerse = {};
+		for (var i=0, il=locationData.length; i<il; i++) {
+			var location = locationData[i];
+			
+			for (var j=0, jl=location.verses.length; j<jl; j++) {
+			
+				var verse = location.verses[j],
+					bible_ref = new bible.Reference(verse),
+					verseid = bible_ref.bookid + bible_ref.chapter + '_' + bible_ref.verse,
+					verseInfo = locationDataByVerse[verseid];
+					
+				if (typeof verseInfo == 'undefined')	{
+					verseInfo = [];
+					locationDataByVerse[verseid] = verseInfo;
+				}
+			
+				verseInfo.push(location);
+			} 
+		}
+		
+		console.log(locationDataByVerse);
+		
+	
+		highlightStoredLocations();
 	}
 	
 	function openLocation(location) {
@@ -205,17 +246,16 @@ var MapsWindow = function(id, parentNode, data) {
 			return '<span class="verse" style="text-decoration:underline; cursor: pointer" data-sectionid="' + sectionid + '" data-fragmentid="' + fragmentid + '">' + a + '</span>';
 		});
 		
-	
-	
-	
 		infowindow.setContent(
-							'<div style="width: 200px; height: 150px; overflow: auto;">' + 
+							'<div style="width: 250px; height: 150px; overflow: auto;">' + 
 								'<h2>' + location.name + '</h2>' + 
 								'<p>' + 
 								verses_html.join('; ') + 
 								'</p>' + 
 							'</div>');						
 		infowindow.open(map, location.marker);	
+		
+		map.setCenter(location.marker.getPosition());
 	}
 	
 	function size(width, height) {
@@ -236,14 +276,111 @@ var MapsWindow = function(id, parentNode, data) {
 		
 		return data
 	}	
+	
+	var contentToHighlight = [];
+	function highlightStoredLocations() {
+		if (contentToHighlight.length > 0) {
+			for (var i=0, il=contentToHighlight.length; i<il; i++) {
+				highlightLocations(contentToHighlight[i]);
+			}
+			contentToHighlight = [];
+		}	
+	}
+	
+	function highlightLocations(content) {
+
+		// highlight in text		
+		//
+		/*
+		
+		
+		var html = content.html();
+		
+		for (var i=0, il=locationData.length; i<il; i++) {
+			var location = locationData[i],
+				regexp = new RegExp('\\b' + location.name+ '\\b', 'gi');
+				
+			// test match by verse?
+				
+			html = html.replace(regexp , '<span class="location" style="background: #00ff00; border-bottom: solid 1px #00aa00;">' + location.name + '</span>');	
+		}
+		
+		if (html.indexOf('class="location"') > -1) {
+			content.html(html);
+			content.on('click', '.location', text_location_clicked);
+		}
+		*/
+		
+		console.log('highlightLocations', content.attr('data-id'));
+		
+		content.find('.verse').each(function() {
+			var verse = $(this),
+				verseid = verse.attr('data-id');
+				verseLocations = locationDataByVerse[verseid],
+				html = verse.html();
+				
+			//console.log(verseid, verseLocations);
+							
+			if (typeof verseLocations != 'undefined') {
+					
+				for (var i=0, il=verseLocations.length; i<il; i++) {
+					var location = verseLocations[i],
+						regexp = new RegExp('\\b' + location.name + '\\b', 'gi'),						
+					html = html.replace(regexp , '<span class="location" style="cursor: pointer; background: #B7DBB4; border-bottom: solid 1px #6BA865;">' + location.name + '</span>');	
+					
+					//location.marker.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/purple-dot.png');
+					location.marker.setIcon('http://mt.google.com/vt/icon?color=ff135C13&name=icons/spotlight/spotlight-waypoint-a.png');
+				}			
+			}
+			
+			verse.html( html );
+			
+		});
+		
+		
+		content.on('click', '.location', text_location_clicked);
+
+
+		// highlight pins?
+		
+
+	}
+
+	function text_location_clicked() {
+		var element = $(this);
+		
+		findMarkerByText( element.html() );
+	}
 
 	var ext = {
 		size: size,
 		getData: getData,
 		sendMessage: function() {}
 	};	
-	
 	ext = $.extend(true, ext, EventEmitter);
+	
+	
+	ext.on('message', function(e) {
+		if (e.data.messagetype == 'textload') {
+			//console.log('maps got text load', e.data.sectionid);
+			
+			// store until data is loaded
+			if (locationDataByVerse == null) {
+				contentToHighlight.push(e.data.content);
+				return;
+			} else {
+				// are there ones left to do
+				highlightStoredLocations();
+				
+				// do this one
+				
+				highlightLocations(e.data.content);
+			}			
+			
+			
+		}
+			
+	});	
 	
 	return ext;
 }

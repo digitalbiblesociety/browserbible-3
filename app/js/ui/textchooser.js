@@ -79,7 +79,7 @@ var TextChooser = function(container) {
 		if (texts.Texts.finishedLoading) {
 			renderTexts();
 		} else {
-			textSelector.html('Loading');
+			main.html('Loading');
 			
 			texts.Texts.loadTexts(function(data) {
 				renderTexts();

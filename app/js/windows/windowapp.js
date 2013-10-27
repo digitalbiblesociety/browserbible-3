@@ -8,6 +8,37 @@ var App = function() {
 		footer = $('<div class="windows-footer"></div>').appendTo(body);				
 		
 		
+	
+	
+	
+	var windowTools = [
+		{type: 'ScrollerWindow', label: 'Bible', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
+		{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}},
+		{type: 'SearchWindow', label: 'Search', data: {}}	
+	];
+	
+	for (var x in windowTools) {
+		var tool = windowTools[x];
+	// ADD Button
+	var addButton = $('<span class="window-add">' + tool.label + '</span>')
+					.appendTo(header) 
+					.data('init', tool);		
+
+	}
+	
+	header.on('click', '.window-add', function() {
+	
+		var label = $(this),
+			settings = label.data('init');
+
+		console.log('clicked add', settings);
+			
+		windowManager.add(settings.type, settings.data);	
+		
+		//windowManager.trigger('settingschange',{});
+	});
+
+	
 		
 	function resize() {
 		// get window size

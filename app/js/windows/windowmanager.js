@@ -1,7 +1,7 @@
 
 var WindowManager = function(node) {
 	
-	var windows = []
+	var windows = [];
 	
 	
 	function addWindow(className, data) {
@@ -39,8 +39,38 @@ var WindowManager = function(node) {
 		
 		size();
 	}
-	function removeWindow(index) {
-		var window = windows[index];
+	function removeWindow(window_to_close) {
+	
+		
+		
+		
+		var windowIndex = -1;
+		
+		for (var i=0, il=windows.length; i<il; i++) {
+			var win = windows[i];
+			
+			if (win.id == window_to_close.id) {
+				
+				windowIndex = i				
+				break;
+			}
+		}
+		
+		// remove this window from the array
+		windows.splice(windowIndex, 1);
+		
+		// remove from DOM
+		window_to_close.node.remove();
+		
+		// resize
+		size();
+		
+		// trigger save
+		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});			
+		
+		// find window in array
+	
+		//var window = windows[index];
 	}
 	
 	function size(width, height) {
@@ -88,7 +118,14 @@ var WindowManager = function(node) {
 var Window = function(id, parentNode, className, data, manager) {
 	
 	var node = $('<div class="window"></div>')
-					.appendTo(parentNode);
+					.appendTo(parentNode),
+		close = $('<span class="window-close" style="font-family: arial; font-size: 15px; position: absolute; z-index:10; top: 3px; right: 6px; cursor: pointer; color: #999;">x</span>')
+					.appendTo(node)
+					.on('click', function() {
+						console.log(id, 'remove', manager);
+					
+						manager.remove(ext);
+					});
 					
 	var controller = new window[className](id, node, data);
 	
@@ -128,7 +165,8 @@ var Window = function(id, parentNode, className, data, manager) {
 		getData: function() {
 			return controller.getData();
 		},
-		controller: controller
+		controller: controller,
+		node: node
 	};
 	ext = $.extend(true, ext, EventEmitter);
 	

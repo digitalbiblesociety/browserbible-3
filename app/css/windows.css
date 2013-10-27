@@ -30,4 +30,75 @@ html, body {
 	float:left;
 	overflow: hidden;
 	background: #fff;
+	position: relative;
 }
+
+
+	.window .window-header {
+		margin: 0;
+		padding: 20px;
+		background: #f8f8f8;
+		border-bottom: solid 1px #ccc;
+		border-right: solid 1px #eee;
+		height: 60px;
+		-x-box-shadow: 0 0 8px rgba(0,0,0,0.5);
+		z-index: 1;		
+	}
+	
+	.window .window-header .header-input {
+		/*
+		padding: 5px 5px 5px 5px;
+		background: #dedede;
+		border-radius: 5px;
+		cursor: pointer;
+		color: #020202;
+		border: 0;	
+		font-size: 12px;
+		*/
+		border: solid 1px #ccc;
+		padding: 5px 5px 5px 5px;
+		color: #999;
+		background : #fff;	
+		margin: 0;		
+	}
+	
+	
+	.window .window-header .header-button {
+		padding: 5px 5px 5px 5px;
+		background: transparent;
+		border-radius: 5px;
+		cursor: pointer;
+		color: #0071ff;
+		border: 0;		
+		font-size: 12px;
+	}	
+	
+	
+	.window .window-header .header-list {
+		padding: 5px 25px 5px 5px;
+		background: #dedede;
+		border-radius: 5px;
+		cursor: pointer;
+		color: #020202;
+		border: 0;	
+		font-size: 12px;
+		margin: 0;
+		-webkit-appearance:none;
+		
+		background-image: url(icon-downarrow.png);
+		background-size: 10px 10px;
+		background-position: right center;
+		background-repeat: no-repeat;
+	}		
+
+	
+	.window .window-main {
+		margin: 0;
+		padding: 20px;
+		background: #EEE;
+		border-bottom: solid 1px #ccc;
+		border-right: solid 1px #ccc;
+		height: 70px;
+		box-shadow: 0 0 8px rgba(0,0,0,0.5);
+		z-index: 1;		
+	}	

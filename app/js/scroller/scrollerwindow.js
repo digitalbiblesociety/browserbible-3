@@ -5,10 +5,10 @@ var ScrollerWindow = function(id, node, init_data) {
 	var 		
 		container =
 			$('<div class="scroller-container">'+
-				'<div class="scroller-header">'+
+				'<div class="window-header scroller-header">'+
 					'<div class="scroller-header-inner">'+
 						'<div class="text-nav"></div>'+
-						'<div class="text-list"></div>'+
+						'<div class="text-list header-list"></div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="scroller-main">' + 
@@ -83,7 +83,8 @@ var ScrollerWindow = function(id, node, init_data) {
 	scroller.on('locationchange', update_textnav);	
 	scroller.on('load', update_textnav);
 	scroller.on('globalmessage', function(e) {
-		if (hasFocus) {
+		if ((e.data.messagetype == 'nav' && hasFocus) || e.data.messagetype != 'nav') {
+		
 			//console.log('sending global');
 			ext.trigger('globalmessage', {type: e.type, target: this, data: e.data});	
 		}

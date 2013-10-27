@@ -173,3 +173,50 @@
 	}
 	*/	
 	
+	
+	
+	/*
+	.windows-main .scroller-container .scroller-header {
+		margin: 0;
+		padding: 20px;
+		background: #EEE;
+		border-bottom: solid 1px #ccc;
+		height: 70px;
+		box-shadow: 0 5px 10px rbga(0,0,0,0.5);
+		z-index: 1;
+	}
+	*/
+	
+	.windows-main .scroller-container .scroller-header-inner {
+		font-size: 12px;
+		box-shadow: none;
+		padding: 0;
+		border: 0;
+	
+	}
+	
+	.windows-main .scroller-container .scroller-header-inner .text-nav {
+		
+		border: solid 1px #ccc;
+		padding: 5px 5px 5px 5px;
+		color: #999;
+		background : #fff;
+		
+		/*
+		padding: 5px 5px 5px 5px;
+		background: #dedede;
+		border-radius: 5px;
+		cursor: pointer;
+		color: #020202;
+		*/
+	}
+	.windows-main .scroller-container .scroller-header-inner .text-list {
+		/*
+		padding: 5px  5px 5px 20px;
+		background: #dedede;
+		border-radius: 5px;
+		cursor: pointer;
+		color: #020202;
+		cursor: pointer;
+		*/	
+	}

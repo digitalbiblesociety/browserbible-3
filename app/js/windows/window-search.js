@@ -3,10 +3,11 @@
 // test/sample types
 var SearchWindow = function(id, parentNode, init_data) {
 
-	var header = $('<div class="search-header" style="background:#eee; padding: 10px;">' + 
-						'<select class="search-list" ></select><br>' + 
-						'<input type="text" class="search-text" placeholder="Search" style="font-size: 14px;" />' + 
-						'<input type="button" value="Search" class="search-button" />' + 						
+	var header = $('<div class="window-header search-header" >' + 
+						
+						'<input type="text" class="search-text header-input" placeholder="Search" />' + 
+						'<input type="button" value="Search" class="search-button header-button" />' + 		
+						'<select class="search-list header-list" style="max-width: 150px; float: right;" ></select>' + 				
 						
 					'</div>').appendTo(parentNode),
 		main = $('<div class="search-main" style="overflow: auto;"><div style="padding: 10px;" class="search-wrapper"></div></div>').appendTo(parentNode),
@@ -126,7 +127,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 			}
 			list.html( html );
 			
-			console.log('search versions loaded', init_data);	
+			//console.log('search versions loaded', init_data);	
 			
 			if (init_data.textid) {
 				list.find('option[value="' + init_data.textid + '"]').attr('selected', true);

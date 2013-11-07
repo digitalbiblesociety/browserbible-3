@@ -199,4 +199,4 @@ var ScrollerWindow = function(id, node, init_data) {
 	return ext;	
 };
 
-sofia.windowTypes.add('ScrollerWindow');
+sofia.windowTypes.push('ScrollerWindow');

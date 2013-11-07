@@ -41,12 +41,13 @@ texts.TextLoader = (function() {
 			successCallback (data[textid][sectionid]);
 		}
 		
-		var url = baseFolder + textid + '/' + sectionid + '.json?'; // + new Date();
+		var url = baseFolder + textid + '/' + sectionid + '.json?' + new Date();
 		
 		//console.log(textid, sectionid, url);
 			
 		$.ajax({
 			url: url,
+			dataType: 'json',
 			success: function(d) {
 				
 				var doc = $(d.text);

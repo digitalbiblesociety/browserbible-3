@@ -62,12 +62,12 @@ var App = function() {
 	win.on('resize', resize);
 	resize();	
 	
-	var settingsKey = 'windowapp'
+	var settingsKey = 'windowapp-3'
 		defaultSettings = {
 			windows: [
 				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
-				{type: 'ScrollerWindow', data: {'textid':'eng_web','sectionid':'GN1','fragmentid':'GN1_10'}},
-				{type: 'SearchWindow', data: {textid: 'eng_kjv', searchString: 'truth love'}},
+				{type: 'ScrollerWindow', data: {'textid':'gre_tisch','sectionid':'JN1','fragmentid':'JN1_10'}},
+				{type: 'SearchWindow', data: {textid: 'eng_web', searchString: 'truth love'}},
 				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}}				
 			]
 		},

@@ -18,7 +18,7 @@ var MainMenu = function(node) {
 
 
 var MainLogo = function(node) {
-	var logo = $('<div id="logo" style="background-image: url(css/images/dbs-logo.png); cursor: pointer; position: absolute; top: 2px; left: 20px; width: 68px; height: 38px;"></div>')
+	var logo = $('<div id="app-logo"></div>')
 					.appendTo(node)
 					.on('click', logoClick);
 					
@@ -35,24 +35,37 @@ MenuComponents.push('MainLogo');
 
 var MainSearchBox = function(node) {
 		
-	var searchBox = $('<input type="search" placeholder="Search" id="main-search" style="position: absolute; top: 6px; left: 120px; width: 250px; height: 24px; font-size: 16px; padding: 10px; border: solid 1px #ccc;" />')
-			.appendTo(node)
-			.on('keypress', doMainSearch);
+	var searchBox = $('<div id="main-search-box">' + 
+							'<input type="search" placeholder="Search" id="main-search-input" />' +
+							'<input type="button" id="main-search-button" value="" />' +
+					'</div>')
+			.appendTo(node),
+			
+		searchInput = searchBox.find('#main-search-input')
+								.on('keypress', checkInput),
+		searchButton = searchBox.find('#main-search-button')
+								.on('click', doMainSearch);							
+						
+			
+	function checkInput(e) {
+		if (e.which == 13) {
+			doMainSearch();
+		}			
+	}		
 			
 	function doMainSearch(e) {
-		if (e.which == 13) {
 		
-			// do a search		
-			var searchString = searchBox.val(),
-				textid = app.windowManager.getSettings()[0].data.textid;
-				
+		// do a search		
+		var searchString = searchInput.val(),
+			textid = app.windowManager.getSettings()[0].data.textid;
 			
-			app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
+		
+		app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
 
-			
-			searchBox.val('');
-			
-		}	
+		
+		searchBox.val('');
+		
+
 	}
 	
 	
@@ -65,10 +78,10 @@ MenuComponents.push('MainSearchBox');
 var AddWindowButton = function(node) {
 
 
-	var addButton = $('<div id="add-button" class="main-menu-button" style="background-image: url(css/images/36.png); cursor: pointer; position: absolute; top: 5px; right: 100px; width: 25px; height: 25px; background-repeat: no-repeat; background-position: center center; background-size: 24px 24px;"></div>')
+	var addButton = $('<div id="main-add-button" class="main-menu-button"></div>')
 					.appendTo(node)
 					.on('click', buttonClick),
-		buttonMenu = $('<div id="add-button-box" class="main-menu-button" style="position: absolute; top: 38px; right: 10px; width: 300px; height: 300px; padding: 30px 20px 20px 30px; background: #fff; border: solid 1px #ccc; box-shadow: 0 0 10px rbga(0,0,0,0.5);display: none; z-index: 50;"></div>')
+		buttonMenu = $('<div id="add-button-box" class="window-overlay"></div>')
 					.appendTo($('body')) 
 	
 	function buttonClick(e) {
@@ -90,7 +103,7 @@ var AddWindowButton = function(node) {
 	for (var x in windowTools) {
 		var tool = windowTools[x];
 		// ADD Button
-		var addButton = $('<div class="window-add" style="cursor: pointer; width: 70px; height: 60px; margin: 0 10px 10px 0; padding: 50px 0 0 0; float: left; border: solid 1px #eee; text-align: center;">' + tool.label + '</div>')
+		var addButton = $('<div class="window-add" id="add-' + tool.type + '">' + tool.label + '</div>')
 					.appendTo(buttonMenu) 
 					.data('init', tool);		
 
@@ -113,10 +126,10 @@ var AddWindowButton = function(node) {
 MenuComponents.push('AddWindowButton');
 
 var ConfigButton = function(node) {
-	var configButton = $('<div id="add-button" class="main-menu-button" style="background-image: url(css/images/19.png); cursor: pointer; position: absolute; top: 5px; right: 60px; width: 25px; height: 25px; background-repeat: no-repeat; background-position: center center; background-size: 24px 24px;"></div>')
+	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
 					.appendTo(node)
 					.on('click', buttonClick),
-		configMenu = $('<div id="add-button-box" class="main-menu-button" style="position: absolute; top: 38px; right: 10px; width: 300px; height: 300px; padding: 30px 20px 20px 30px; background: #fff; border: solid 1px #ccc; box-shadow: 0 0 10px rbga(0,0,0,0.5);display: none; z-index: 50;"></div>')
+		configMenu = $('<div id="main-config-box" class="window-overlay"></div>')
 					.appendTo($('body')) 
 	
 	function buttonClick(e) {
@@ -138,7 +151,7 @@ var FullScreenButton = function(node) {
 	
 	var 
 		el = document.body,
-		fullscreenButton = $('<div id="fullcreen-button" class="main-menu-button" style="background-image: url(css/images/48.png); cursor: pointer; position: absolute; top: 5px; right: 20px; width: 25px; height: 25px; background-repeat: no-repeat; background-position: center center; background-size: 24px 24px;"></div>')
+		fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-button"></div>')
 			.appendTo(node)
 			.on('click', toggleFullscreen),
 		

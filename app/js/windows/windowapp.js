@@ -1,3 +1,6 @@
+var sofia = {};
+sofia.plugins = [];
+
 var App = function() {
 		
 	// create nodes
@@ -5,25 +8,50 @@ var App = function() {
 		body = $(document.body),
 		header = $('<div class="windows-header"></div>').appendTo(body),
 		main = $('<div class="windows-main"></div>').appendTo(body),
-		footer = $('<div class="windows-footer"></div>').appendTo(body);				
+		footer = $('<div class="windows-footer"></div>').appendTo(body),
 		
+		floatingHeader = false;
 	
+	if (floatingHeader) {
+		var width = win.width(),
+			css = {
+				position: 'absolute',
+				zIndex: 100,
+				top: 0,
+				left: 0,
+				width: width + 'px'
+			}
+		header.css(css).hide();		
+		
+		css.top = undefined;
+		css.bottom = 0;			
+		
+		footer.css(css).hide();
+		
+		setTimeout(function()  {
+			header.slideDown();
+		}, 1000);
+	}
 	
 	
 		
 	function resize() {
+		console.log('app resize');
+	
 		// get window size
 		var width = win.width(),
 			height = win.height(),
 			
 			// calculate size
-			areaHeight = height - header.outerHeight() - footer.outerHeight();
+			areaHeight = height - (floatingHeader ? 0 : header.outerHeight() + footer.outerHeight()),
+			areaWidth = width - parseInt(main.css('margin-left'), 10) - parseInt(main.css('margin-right'), 10);
 
 		// set height
 		main.height(areaHeight);	
+		main.width(areaWidth);
 		
 		// pass new size down to area
-		windowManager.size(width, areaHeight);
+		windowManager.size(areaWidth, areaHeight);
 	}	
 	
 	var mainMenu = new MainMenu(header);	
@@ -78,14 +106,21 @@ var App = function() {
 	
 	windowManager.on('settingschange', function(e) {
 		
+	
 		// title to show active window's position
-		if (e.data && e.data.label) {
+		if (e.data && e.data.label && e.data.hasFocus) {
 			document.title = e.data.label;
 		}
 		
 		settingsTimer.start();		
 		
 	});
+	
+	// run plugins
+	for (var x in plugins) {
+		console.log(x);
+		plugin = new window[ plugins[x] ](this);		
+	}
 	
 	return this;	
 }

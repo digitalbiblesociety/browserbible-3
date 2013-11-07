@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html class="light">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="css/images/favicon.png" rel="icon" />
 	<title>Bible - Windows</title>
 	
 	<!-- Apple specific code -->
@@ -14,7 +15,7 @@
 	<link rel="stylesheet" href="css/common-ui.css" />	
 	<link rel="stylesheet" href="css/bible.css" />
 	<link rel="stylesheet" href="css/windows.css" />
-	<link rel="stylesheet" href="css/scroller.css" />	
+	<link rel="stylesheet" href="css/scroller.cssx" />	
 	
 	<!-- replacement console for IE -->
 	<script>
@@ -36,9 +37,13 @@
 	
 	<!- bible -->
 	<script src="js/bible/bible.data.js"></script>
-	<script src="js/bible/bible.reference.js"></script>		
+	<script src="js/bible/bible.reference.js"></script>	
+	<script src="js/bible/morphology.js"></script>			
 		
-	<!-- text loading -->
+	<!-- app start -->
+	<script src="js/windows/namespace.js"></script>		
+
+	<!-- text loading -->	
 	<script src="js/texts/texts.js"></script>	
 	<script src="js/texts/loader.js"></script>	
 	<script src="js/texts/search.js"></script>		
@@ -46,12 +51,17 @@
 
 	<script src="js/ui/textchooser.js"></script>		
 	<script src="js/ui/textnavigator.js"></script>			
-	<script src="js/scroller/scroller.js"></script>		
-	<script src="js/scroller/scrollerwindow.js"></script>	
+
+	<script src="js/plugins/lemmainfo.js"></script>
+	<script src="js/plugins/lemmamatch.js"></script>
+	<script src="js/plugins/lemmapopup.js"></script>
+	<script src="js/plugins/versematch.js"></script>			
 	
 	<script src="js/windows/windowmanager.js"></script>		
-	<script src="js/windows/window-search.js"></script>	
-	<script src="js/windows/window-maps.js"></script>				
+	<script src="js/windows/searchwindow.js"></script>	
+	<script src="js/windows/mapswindow.js"></script>
+	<script src="js/windows/scroller.js"></script>		
+	<script src="js/windows/scrollerwindow.js"></script>		
 	<script src="js/windows/menu.js"></script>		
 	<script src="js/windows/windowapp.js"></script>		
 					

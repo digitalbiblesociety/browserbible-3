@@ -145,8 +145,10 @@ var MapsWindow = function(id, parentNode, data) {
 		
 		document.body.appendChild(script);
 	} else {
+		console.log('gogole is loaded');
+	
 		// load now!
-		window[loadMapFunctionName]
+		window[loadMapFunctionName]();
 	}
 	
 	
@@ -377,4 +379,5 @@ var MapsWindow = function(id, parentNode, data) {
 	return ext;
 };
 
+console.log('map', sofia);
 sofia.windowTypes.push('MapsWindow');

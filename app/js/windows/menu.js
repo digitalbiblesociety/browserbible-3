@@ -127,7 +127,8 @@ var AddWindowButton = function(node) {
 		{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}},
 		{type: 'SearchWindow', label: 'Search', data: {}},
 		{type: 'VideoWindow', label: 'Video', data: {}},
-		{type: 'AudioWindow', label: 'Audio', data: {}}			
+		{type: 'AudioWindow', label: 'Audio', data: {}},
+		{type: 'PicturesWindow', label: 'Pictures', data: {}},		
 	];
 	
 	for (var x in windowTools) {

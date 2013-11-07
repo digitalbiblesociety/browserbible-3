@@ -115,9 +115,8 @@ var App = function() {
 	});
 	
 	// run plugins
-	for (var x in plugins) {
-		console.log(x);
-		plugin = new window[ plugins[x] ](this);		
+	for (var x in sofia.plugins) {
+		plugin = new window[ sofia.plugins[x] ](this);		
 	}
 	
 	return this;	

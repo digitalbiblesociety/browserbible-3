@@ -270,12 +270,11 @@ texts.SearchIndexLoader = function() {
 			dataType: 'json',
 			url: indexUrl,
 			success: function(data) {
-			
-
-				
-				var fragmentidarray = data[searchTerm];
-				
-				loadedIndexes.push({term: searchTerm, occurrences: fragmentidarray});
+		
+				// old code
+				//var fragmentidarray = data[searchTerm];
+				//loadedIndexes.push({term: searchTerm, occurrences: fragmentidarray});
+				loadedIndexes.push(data);
 				
 				loadNextIndex();
 			}, 

@@ -1,5 +1,4 @@
 
-
 var ScrollerWindow = function(id, node, init_data) {
 	
 	var 		
@@ -196,9 +195,8 @@ var ScrollerWindow = function(id, node, init_data) {
 			scroller.scrollTo( data.locationInfo.fragmentid, data.locationInfo.offset);
 		}			
 	});	
-	
-	
-	
-	return ext;
-	
+
+	return ext;	
 };
+
+sofia.windowTypes.add('ScrollerWindow');

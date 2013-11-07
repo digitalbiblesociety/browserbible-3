@@ -1,5 +1,5 @@
-var sofia = {};
 sofia.plugins = [];
+sofia.windowTypes = [];
 
 var App = function() {
 		

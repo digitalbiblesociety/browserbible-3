@@ -375,4 +375,6 @@ var MapsWindow = function(id, parentNode, data) {
 	});	
 	
 	return ext;
-}
+};
+
+sofia.windowTypes.push('MapsWindow');

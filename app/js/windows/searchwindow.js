@@ -209,4 +209,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 	return ext;
 	
-}
+};
+sofia.windowTypes.push('SearchWindow');
+

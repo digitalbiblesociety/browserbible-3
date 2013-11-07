@@ -1,7 +1,7 @@
 
 var MapsWindow = function(id, parentNode, data) {
 
-	parentNode.css({position: 'relative'});
+	//parentNode.css({position: 'relative'});
 
 	var now = new Date(),
 		//id = 'maps_' + now.getYear() + '_' + (now.getMonth()+1) + '_' + now.getDate() + '_' + now.getHours() + '_' + now.getMinutes() + '_' + now.getSeconds(),
@@ -9,8 +9,10 @@ var MapsWindow = function(id, parentNode, data) {
 		//header = $('<div id="map-header" style="height: 40px; background: #ddd; padding: 9px;"><input type="text" style="width:100%;" /</div>').appendTo(parentNode),
 		
 		
-		inputMargin = 15,		
-		mapSearchInput = $('<input placeholder="Search..." type="text" style="height: 35px; background: #fff; border: solid 0px #333; padding: 8px; position: absolute; top: ' + inputMargin + 'px; left: ' + inputMargin + 'px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); z-index: 2; font-size: 14px;" />').appendTo(parentNode),
+		inputMarginLeft = 10,		
+		inputMarginRight = 45,	
+		inputMarginTop = 10,				
+		mapSearchInput = $('<input placeholder="Search..." type="text" style="height: 32px; background: #fff; border: solid 0px #333; padding: 7px; position: absolute; top: ' + inputMarginTop + 'px; left: ' + inputMarginLeft + 'px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); z-index: 2; font-size: 14px;" />').appendTo(parentNode),
 		
 		//mapSearchInput = header.find('input'),
 		
@@ -93,21 +95,6 @@ var MapsWindow = function(id, parentNode, data) {
 			// find a marker!
 			findMarkerByText(search_value);
 			
-		
-			//console.log('search', search_value);
-			/*
-			geocoder.geocode( { 'address': search_value}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					map.setCenter(results[0].geometry.location);
-					
-					var marker = new google.maps.Marker({
-						map: map,
-						position: results[0].geometry.location
-					});									
-				}
-			});	
-			*/		
-			
 		}
 	});
 	
@@ -168,11 +155,12 @@ var MapsWindow = function(id, parentNode, data) {
 		console.log('MAP: loading pins');
 	
 		$.ajax({
+			dataType: 'json',
 			url: 'content/maps/maps.json',
 			success: function(data) {
 			
 				// store data
-				locationData = data;
+				locationData = data.names;
 				
 				createPins();
 				//setTimeout(createPins, 50);
@@ -182,6 +170,10 @@ var MapsWindow = function(id, parentNode, data) {
 	
 	
 	function createPins() {
+		
+		locationDataByVerse = {};
+		
+		var before = new Date();
 		for (var i=0, il=locationData.length; i<il; i++) {
 			var location = locationData[i];
 			
@@ -205,21 +197,41 @@ var MapsWindow = function(id, parentNode, data) {
 			
 			})(location);
 			
+			// create back link
+			for (var j=0, jl=location.verses.length; j<jl; j++) {
+			
+				var verseid = location.verses[j],
+					//bible_ref = new bible.Reference(verse),
+					//verseid = bible_ref.bookid + bible_ref.chapter + '_' + bible_ref.verse,
+					verseInfo = locationDataByVerse[verseid];
+					
+				if (typeof verseInfo == 'undefined')	{
+					verseInfo = [];
+					locationDataByVerse[verseid] = verseInfo;
+				}
+			
+				verseInfo.push(location);
+			} 	
 		}
+		var after = new Date();
+		
+		console.log('process time', after - before);
 		
 		
 		// SO SLOWWWWW!!!!
 		
 		// create locationDataByVerse				
-		locationDataByVerse = {};
+		
+		/*var before = new Date();
+		
 		for (var i=0, il=locationData.length; i<il; i++) {
 			var location = locationData[i];
 			
 			for (var j=0, jl=location.verses.length; j<jl; j++) {
 			
-				var verse = location.verses[j],
-					bible_ref = new bible.Reference(verse),
-					verseid = bible_ref.bookid + bible_ref.chapter + '_' + bible_ref.verse,
+				var verseid = location.verses[j],
+					//bible_ref = new bible.Reference(verse),
+					//verseid = bible_ref.bookid + bible_ref.chapter + '_' + bible_ref.verse,
 					verseInfo = locationDataByVerse[verseid];
 					
 				if (typeof verseInfo == 'undefined')	{
@@ -230,9 +242,13 @@ var MapsWindow = function(id, parentNode, data) {
 				verseInfo.push(location);
 			} 
 		}
+		var after = new Date();
 		
-		console.log(locationDataByVerse);
+		console.log('process time', after - before);
+		*/
 		
+		//parentNode.html( JSON.stringify(locationDataByVerse) );
+		//return;
 	
 		highlightStoredLocations();
 	}
@@ -243,7 +259,7 @@ var MapsWindow = function(id, parentNode, data) {
 				sectionid = bible_ref.bookid + bible_ref.chapter,
 				fragmentid = sectionid + '_' + bible_ref.verse1;
 		
-			return '<span class="verse" style="text-decoration:underline; cursor: pointer" data-sectionid="' + sectionid + '" data-fragmentid="' + fragmentid + '">' + a + '</span>';
+			return '<span class="verse" style="text-decoration:underline; cursor: pointer" data-sectionid="' + sectionid + '" data-fragmentid="' + fragmentid + '">' + bible_ref.toString() + '</span>';
 		});
 		
 		infowindow.setContent(
@@ -260,7 +276,7 @@ var MapsWindow = function(id, parentNode, data) {
 	
 	function size(width, height) {
 		
-		mapSearchInput.outerWidth(width - (inputMargin*2));
+		mapSearchInput.outerWidth(width - (inputMarginLeft+inputMarginRight));
 	
 		mapContainer
 				.width(width)
@@ -288,31 +304,7 @@ var MapsWindow = function(id, parentNode, data) {
 	}
 	
 	function highlightLocations(content) {
-
-		// highlight in text		
-		//
-		/*
-		
-		
-		var html = content.html();
-		
-		for (var i=0, il=locationData.length; i<il; i++) {
-			var location = locationData[i],
-				regexp = new RegExp('\\b' + location.name+ '\\b', 'gi');
-				
-			// test match by verse?
-				
-			html = html.replace(regexp , '<span class="location" style="background: #00ff00; border-bottom: solid 1px #00aa00;">' + location.name + '</span>');	
-		}
-		
-		if (html.indexOf('class="location"') > -1) {
-			content.html(html);
-			content.on('click', '.location', text_location_clicked);
-		}
-		*/
-		
-		console.log('highlightLocations', content.attr('data-id'));
-		
+	
 		content.find('.verse').each(function() {
 			var verse = $(this),
 				verseid = verse.attr('data-id');

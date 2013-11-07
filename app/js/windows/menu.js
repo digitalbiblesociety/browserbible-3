@@ -1,10 +1,8 @@
-var MenuComponents = [];
-
 
 var MainMenu = function(node) {
 	
-	for (var i=0, il=MenuComponents.length; i<il; i++) {
-		var component = new window[MenuComponents[i]](node);
+	for (var i=0, il=sofia.menuComponents.length; i<il; i++) {
+		var component = new window[sofia.menuComponents[i]](node);
 	}
 	
 	var ext = {
@@ -31,7 +29,7 @@ var MainLogo = function(node) {
 	
 	return logo;
 }
-MenuComponents.push('MainLogo');
+sofia.menuComponents.push('MainLogo');
 
 var MainSearchBox = function(node) {
 		
@@ -72,7 +70,7 @@ var MainSearchBox = function(node) {
 	return searchBox;			
 
 }
-MenuComponents.push('MainSearchBox');
+sofia.menuComponents.push('MainSearchBox');
 
 
 var AddWindowButton = function(node) {
@@ -123,7 +121,7 @@ var AddWindowButton = function(node) {
 	return addButton;
 
 }
-MenuComponents.push('AddWindowButton');
+sofia.menuComponents.push('AddWindowButton');
 
 var ConfigButton = function(node) {
 	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
@@ -144,7 +142,7 @@ var ConfigButton = function(node) {
 
 
 }
-MenuComponents.push('ConfigButton');
+sofia.menuComponents.push('ConfigButton');
 
 
 var FullScreenButton = function(node) {
@@ -175,8 +173,8 @@ var FullScreenButton = function(node) {
 	}
 	
 	return fullscreenButton;
-
 };
+sofia.menuComponents.push('FullScreenButton');
 
 (function() {
     var
@@ -245,7 +243,7 @@ var FullScreenButton = function(node) {
 })();
 
 
-MenuComponents.push('FullScreenButton');
+
 
 
 

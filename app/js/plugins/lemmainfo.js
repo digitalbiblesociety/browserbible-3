@@ -1,5 +1,5 @@
 
-var LemmaPlugin = function(app) {
+var LemmaInfoPlugin = function(app) {
 
 	$(
 '<style>' + 
@@ -42,11 +42,11 @@ var LemmaPlugin = function(app) {
 	});
 }
 
-plugins.push('LemmaPlugin');
+sofia.plugins.push('LemmaInfoPlugin');
 
 
 
-var VerseHighlightPlugin = function(app) {
+var VerseMatchPlugin = function(app) {
 
 	$(
 '<style>' + 
@@ -73,10 +73,10 @@ var VerseHighlightPlugin = function(app) {
 	});
 }
 
-plugins.push('VerseHighlightPlugin');
+sofia.plugins.push('VerseMatchPlugin');
 
 
-var LemmaHighlightPlugin = function(app) {
+var LemmaMatchPlugin = function(app) {
 
 	$(
 '<style>' + 
@@ -102,4 +102,4 @@ var LemmaHighlightPlugin = function(app) {
 	});
 }
 
-plugins.push('LemmaHighlightPlugin');
+sofia.plugins.push('LemmaMatchPlugin');

@@ -85,8 +85,6 @@ texts.TextSearch = function() {
 		if (e.data.loadedIndexes.length == 0) {
 			// BRUTE FORCE?
 			
-			
-			
 		} else {
 			// begin loading
 			searchIndexesData = e.data.loadedResults;
@@ -111,8 +109,11 @@ texts.TextSearch = function() {
 				sectionid = sectionData.sectionid,
 				fragmentids = sectionData.fragmentids,
 				url = baseContentPath + textInfo.id + '/' + sectionid + '.json';
+			
+			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
 				
 			$.ajax({
+				dataType: 'json',
 				url: url,
 				success: function(data) {
 					

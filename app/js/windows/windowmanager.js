@@ -41,9 +41,6 @@ var WindowManager = function(node) {
 	}
 	function removeWindow(window_to_close) {
 	
-		
-		
-		
 		var windowIndex = -1;
 		
 		for (var i=0, il=windows.length; i<il; i++) {
@@ -66,11 +63,7 @@ var WindowManager = function(node) {
 		size();
 		
 		// trigger save
-		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});			
-		
-		// find window in array
-	
-		//var window = windows[index];
+		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
 	}
 	
 	function size(width, height) {
@@ -83,10 +76,15 @@ var WindowManager = function(node) {
 			height = node.height();			
 		}
 			
-		var windowWidth = Math.floor(width/windows.length);		
-	
-		for (var i=0, il=windows.length; i<il; i++) {
-			windows[i].size(windowWidth, height);
+			
+		if (windows.length > 0) {
+			var windowWidth = Math.floor(width/windows.length) 
+									- parseInt(windows[0].node.css('margin-left'), 10)
+									- parseInt(windows[0].node.css('margin-right'), 10);		
+		
+			for (var i=0, il=windows.length; i<il; i++) {
+				windows[i].size(windowWidth, height);
+			}
 		}
 	}
 	
@@ -119,8 +117,8 @@ var Window = function(id, parentNode, className, data, manager) {
 	
 	var node = $('<div class="window"></div>')
 					.appendTo(parentNode),
-		close = $('<span class="window-close" style="font-family: arial; font-size: 15px; position: absolute; z-index:10; top: 3px; right: 6px; cursor: pointer; color: #999;">x</span>')
-					.appendTo(node)
+		close = $('<span class="window-close-button"></span>')
+					.appendTo(node)			
 					.on('click', function() {
 						console.log(id, 'remove', manager);
 					

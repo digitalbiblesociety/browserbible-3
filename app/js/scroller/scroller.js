@@ -12,7 +12,7 @@ var Scroller = function(node) {
 	
 	function startGlobalTimeout() {
 		if (globalTimeout == null) {
-			setTimeout(triggerGlobalEvent, 25);
+			setTimeout(triggerGlobalEvent, 10);
 		}
 	}
 	

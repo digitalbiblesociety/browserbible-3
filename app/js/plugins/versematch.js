@@ -11,8 +11,6 @@ var VerseMatchPlugin = function(app) {
 
 	$('.windows-main').on('mouseover','.verse', function(e) {
 		
-		console.log('over', this);
-		
 		var verse = $(this),	
 			verseid = verse.attr('data-id');
 						

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
+You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path id="book-16-icon" d="M422,99.775v248.172c-57.842,4.348-106.682,14.386-146,29.986V177.696
+	c10.152-6.315,21.41-11.648,33.323-16.166v-42.394c-19.793,6.357-37.811,14.236-53.323,23.894
+	c-50.446-31.404-127.301-44.056-206-46.457v289.334c67.575,2.062,133.791,11.682,183.096,34.24
+	c14.525,6.646,31.268,6.654,45.793,0.008C328.194,397.591,394.417,387.97,462,385.907V94.573
+	C449.25,94.774,433.441,96.898,422,99.775z M236,377.934c-39.318-15.601-88.158-25.639-146-29.986V138.869
+	c47.504,3.985,105.514,13.64,146,38.827V377.934z M335.187,125.126c0,11.271,0,105.906,0,105.906l29.809-36.729l29.809,25.692
+	V112.089c0-14.314,6.287-21.604,16.791-25.226c-22.095,3.286-46.345,8.911-59.009,12.946
+	C343.608,102.67,335.187,111.345,335.187,125.126z"/>
+</svg>

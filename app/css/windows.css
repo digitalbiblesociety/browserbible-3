@@ -7,89 +7,128 @@ html, body {
 	padding: 0;
 }
 
+body {
+	background: #ffffff;
+}
+
+input:focus {
+	outline: none;
+}
+
+
+
+/* MAIN APP */
 .windows-header {
-	height: 40px;
-	background: #bbb;
+	background-color: #333;
+	height: 60px;
 }
-
 .windows-main {
-	background: #eee;
-}
 
+}
 .windows-footer {
-	height: 20px;
-	background: #bbb;
+	height: 0;
 }
 
+
+/* WINDOWS */
 
 .window {
-	/*border: solid 1px #444;
-	border-color: #ccc #444 #444 #ccc;
-	*/
-	/*position: absolute */
 	float:left;
 	overflow: hidden;
-	background: #fff;
 	position: relative;
+	margin: 0;
+	padding: 0;
+	
+		border-right: solid 1px #eee;
 }
-
-
 	.window .window-header {
 		margin: 0;
-		padding: 20px;
+		padding: 10px;
 		background: #f8f8f8;
 		border-bottom: solid 1px #ccc;
-		border-right: solid 1px #eee;
-		height: 60px;
-		-x-box-shadow: 0 0 8px rgba(0,0,0,0.5);
-		z-index: 1;		
+		height: 50px;
+		z-index: 1;
+		font-family: Avenir, Helvetica;
+		font-size: 12px;	
 	}
 	
-	.window .window-header .header-input {
-		/*
-		padding: 5px 5px 5px 5px;
-		background: #dedede;
-		border-radius: 5px;
-		cursor: pointer;
-		color: #020202;
-		border: 0;	
-		font-size: 12px;
-		*/
-		border: solid 1px #ccc;
-		padding: 5px 5px 5px 5px;
-		color: #999;
-		background : #fff;	
-		margin: 0;		
-	}
+		.window .window-header .header-input, 
+		.window .window-header .header-list {
+			float: left;
+			border: solid 1px #ddd;
+			padding: 6px 6px 6px 10px;
+			background : #fff;	
+			margin: 0 5px 0 0 ;	
+			color: #919191;	
+			-webkit-appearance: none;	
+			height: 30px;				
+		}	
+		.window .window-header .header-input:hover,
+		.window .window-header .header-list:hover {
+			border-color: #ccc;
+
+		}
+
+		.window .window-header .header-input {
+			min-width: 140px;
+
+		}	
+
 	
 	
-	.window .window-header .header-button {
-		padding: 5px 5px 5px 5px;
-		background: transparent;
-		border-radius: 5px;
-		cursor: pointer;
-		color: #0071ff;
-		border: 0;		
-		font-size: 12px;
-	}	
-	
-	
-	.window .window-header .header-list {
-		padding: 5px 25px 5px 5px;
-		background: #dedede;
-		border-radius: 5px;
-		cursor: pointer;
-		color: #020202;
-		border: 0;	
-		font-size: 12px;
-		margin: 0;
-		-webkit-appearance:none;
+		.window .window-header .header-list {
+			padding-right: 20px;
+			cursor: pointer;
+
+
+			-x-background-image: url(images/icon-downarrow2.png);
+			background-image: url(images/search-button.svg);
+			-x-background-color: red;
+			background-image: url(images/down-arrow.svg);			
+			--xbackground-size: 6px 4px;
+			background-position: right center;
+			background-repeat: no-repeat;		
+		}	
 		
-		background-image: url(icon-downarrow.png);
-		background-size: 10px 10px;
-		background-position: right center;
-		background-repeat: no-repeat;
-	}		
+		
+		.window .window-header .header-button {
+			padding: 5px 5px 5px 5px;
+			background: transparent;
+			border-radius: 5px;
+			cursor: pointer;
+			color: #0071ff;
+			border: 0;		
+			font-size: 12px;
+		}		
+		
+		
+		.window .window-close-button {
+			-x-display:none;
+			font-family: arial; 
+			font-size: 15px; 
+			position: absolute; 
+			z-index:10; 
+			top: 15px; 
+			right: 10px; 
+			cursor: pointer; 
+			color: #666; 
+			width: 20px; 
+			height: 20px; 
+			border-radius: 10px; 
+			text-align: center;	
+			background: url(images/close-button.svg) top center no-repeat;	
+			background-position: 0 0;
+		}
+		.window:hover .window-close-button {
+			display:block;
+		}
+		.window .window-close-button:hover {
+			background-color: #d5998b; 
+			background-position: 0 -20px;
+
+			color: #fff;	
+		}		
+				
 
 	
 	.window .window-main {
@@ -99,6 +138,141 @@ html, body {
 		border-bottom: solid 1px #ccc;
 		border-right: solid 1px #ccc;
 		height: 70px;
-		box-shadow: 0 0 8px rgba(0,0,0,0.5);
 		z-index: 1;		
+	}
+	
+	.window .scroller-main {
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		font-size: 18px;
+		padding: 0 30px;
+		background: #fff;
+		font-family: Cambria;
 	}	
+	
+	.window .window-footer {
+		font: 10px Helvetica;
+		height: 30px;
+		padding: 8px;
+		background: #f8f8f8;
+		border-top: solid 1px #ccc;
+	}	
+	
+	
+/* header */
+#app-logo {
+	background-image: url(images/dbs-logo-blue.png); 
+	cursor: pointer; 
+	position: absolute; 
+	top: 15px; 
+	left: 10px; 
+	width: 54px; 
+	height: 30px; 
+	background-size: 54px 30px;
+	
+}
+
+#main-search-box {
+	position: absolute; 
+	top: 18px; 
+	left: 100px; 
+	width: 250px; 
+	height: 26px; 
+	font-size: 15px; 
+	padding: 0; 
+
+}
+
+	#main-search-input {
+		width: 200px; 
+		height: 26px; 
+		font-size: 13px; 
+		padding: 0; 
+		border: solid 1px #ccc;
+		-x-border-radius: 5px 0 0 5px;
+		vertical-align: middle;
+			-webkit-appearance: none;		
+	}
+	#main-search-input:focus {
+		outline: none;
+	}
+	#main-search-button {
+		width: 30px; 
+		cursor: pointer;
+		height: 26px; 
+		border: solid 1px #ccc;
+		-x-border-radius: 0 5px 5px 0;
+		vertical-align: middle;
+		border-width: 1px 1px 1px 0;
+		border: 0;
+		background: #2a85e8 url(images/search-button.svg) center center no-repeat;	
+	}
+	
+.main-menu-button {
+	cursor: pointer; 
+	position: absolute; 
+	top: 15px; 
+	width: 30px; 
+	height: 30px; 
+	background-repeat: no-repeat; 
+	background-position: center center; 
+	background-size: 30px 30px;		
+}
+	#main-add-button {
+		background-image: url(images/add-document.svg); 
+		right: 100px;
+	}
+	#main-fullscreen-button {
+		background-image: url(images/fullscreen.svg); 
+		right: 20px;
+	}
+	#main-config-button {
+		background-image: url(images/gear.svg); 
+		right: 60px;
+	}		
+	
+	
+.window-overlay {
+	position: absolute; 
+	top: 50px; 
+	right: 10px; 
+	width: 300px; 
+	height: 300px; 
+	padding: 30px 20px 20px 30px; 
+	background: #fff; 
+	border: solid 1px #ccc; 
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	display: none; 
+	z-index: 50;
+}
+
+
+.window-add {
+	cursor: pointer; 
+	width: 70px; 
+	height: 60px; 
+	margin: 0 10px 10px 0; 
+	padding: 50px 0 0 0; 
+	float: left; 
+	-x-border: solid 1px #eee; 
+	text-align: center;
+	background-size: 45px 45px;
+	background-position: center top;
+	background-repeat: no-repeat;	
+	font-family: Avenir, Helvetica;
+	font-size: 12px;
+}
+.window-add:hover {	
+	color: #0071ff;
+
+}
+#add-SearchWindow {
+	background-image: url(images/search.svg);
+}
+#add-ScrollerWindow {
+	background-image: url(images/bible1.svg);
+}
+#add-MapsWindow {
+	background-image: url(images/map.svg);
+
+}

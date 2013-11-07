@@ -72,3 +72,10 @@ span[class^='verse PSA_']                                    {display:block;}
 	background: #ffff00;
 	border-bottom: solid 1px #ffcc00;
 }
+
+
+
+.heb_bhs {
+	dir: rtl;
+	font-family: 'Ezra SIL';
+}	

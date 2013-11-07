@@ -28,6 +28,7 @@
 		font-family: Palatino;
 		font-size: 18px;
 		padding: 0 30px;
+		background: #fff;
 	}
 
 	.scroller-header {
@@ -49,13 +50,14 @@
 	}
 	
 	.text-nav {
-		min-width: 100px;
+		min-width: 120px;
 		float: left;
+		margin-right: 15px;
 	}		
 	.text-list {
-		min-width: 100px;
-		float: right;
-		text-align: right;
+		-x-min-width: 100px;
+		float: left;
+		text-align: left;
 	}			
 	
 	

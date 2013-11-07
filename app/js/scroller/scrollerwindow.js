@@ -7,8 +7,8 @@ var ScrollerWindow = function(id, node, init_data) {
 			$('<div class="scroller-container">'+
 				'<div class="window-header scroller-header">'+
 					'<div class="scroller-header-inner">'+
-						'<div class="text-nav"></div>'+
-						'<div class="text-list header-list"></div>'+
+						'<div class="header-input text-nav"></div>'+
+						'<div class="header-list text-list"></div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="scroller-main">' + 
@@ -58,7 +58,7 @@ var ScrollerWindow = function(id, node, init_data) {
 	
 		// ALWAYS UPDATE: for first load
 		// update version name
-		textlistui.html( newTextInfo.name );	
+		textlistui.html( newTextInfo.abbr );	
 		
 		// update the navigator with the latest header
 		textNavigator.setTextInfo(newTextInfo);		
@@ -86,7 +86,7 @@ var ScrollerWindow = function(id, node, init_data) {
 		if ((e.data.messagetype == 'nav' && hasFocus) || e.data.messagetype != 'nav') {
 		
 			//console.log('sending global');
-			ext.trigger('globalmessage', {type: e.type, target: this, data: e.data});	
+			ext.trigger('globalmessage', {type: e.type, target: ext, data: e.data});	
 		}
 	});	
 			
@@ -126,7 +126,7 @@ var ScrollerWindow = function(id, node, init_data) {
 				
 				// send to objects
 				textChooser.setTextInfo(currentTextInfo);
-				textlistui.html(currentTextInfo.name);	
+				textlistui.html(currentTextInfo.abbr);	
 				textNavigator.setTextInfo(currentTextInfo);			
 										
 				scroller.setTextInfo(currentTextInfo);
@@ -168,7 +168,8 @@ var ScrollerWindow = function(id, node, init_data) {
 			// location info
 			sectionid: currentLocationInfo.sectionid, 
 			fragmentid: currentLocationInfo.fragmentid,
-			label: currentLocationInfo.label
+			label: currentLocationInfo.label,
+			hasFocus: hasFocus
 		};
 		
 		return data;	

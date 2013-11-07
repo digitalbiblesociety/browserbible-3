@@ -55,10 +55,40 @@ var MainSearchBox = function(node) {
 		
 		// do a search		
 		var searchString = searchInput.val(),
-			textid = app.windowManager.getSettings()[0].data.textid;
+			appSettings = app.windowManager.getSettings(),
+			searchWindow = null,
+			firstTextWindow = null;
 			
+		for (var i=0,il=appSettings.length; i<il; i++) {
+			var settings = appSettings[i];
+			
+			// first text 
+			if (settings.type == 'ScrollerWindow' && firstTextWindow == null) {
+				firstTextWindow = settings;
+			}
+			
+			// first search
+			if (settings.type == 'SearchWindow' && searchWindow == null) {
+				searchWindow = settings;
+			}			
+		}
 		
-		app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
+		
+		//if (searchWindow == null) {
+			
+			// search based on first open window
+			textid = firstTextWindow.data.textid;		
+			app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
+			
+		//} else {
+			
+			// restart search
+			
+		//	console.log( searchWindow );
+			
+		//}
+
+
 
 		
 		searchBox.val('');
@@ -95,7 +125,9 @@ var AddWindowButton = function(node) {
 	var windowTools = [
 		{type: 'ScrollerWindow', label: 'Bible', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
 		{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}},
-		{type: 'SearchWindow', label: 'Search', data: {}}	
+		{type: 'SearchWindow', label: 'Search', data: {}},
+		{type: 'VideoWindow', label: 'Video', data: {}},
+		{type: 'AudioWindow', label: 'Audio', data: {}}			
 	];
 	
 	for (var x in windowTools) {

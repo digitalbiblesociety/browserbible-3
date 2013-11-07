@@ -80,12 +80,7 @@ input:focus {
 			padding-right: 20px;
 			cursor: pointer;
 
-
-			-x-background-image: url(images/icon-downarrow2.png);
-			background-image: url(images/search-button.svg);
-			-x-background-color: red;
 			background-image: url(images/down-arrow.svg);			
-			--xbackground-size: 6px 4px;
 			background-position: right center;
 			background-repeat: no-repeat;		
 		}	
@@ -250,7 +245,7 @@ input:focus {
 .window-add {
 	cursor: pointer; 
 	width: 70px; 
-	height: 60px; 
+	height: 70px; 
 	margin: 0 10px 10px 0; 
 	padding: 50px 0 0 0; 
 	float: left; 
@@ -274,5 +269,15 @@ input:focus {
 }
 #add-MapsWindow {
 	background-image: url(images/map.svg);
-
 }
+#add-VideoWindow {
+	background-image: url(images/video.svg);
+}
+#add-AudioWindow {
+	background-image: url(images/audio.svg);
+}
+#add-PicturesWindow {
+	background-image: url(images/pictures.svg);
+}
+
+

@@ -94,7 +94,7 @@ var App = function() {
 				windows: windowSettings
 			};	
 			
-		console.log('storeSettings', settings);
+		//console.log('storeSettings', settings);
 		
 		// store
 		AppSettings.setValue(settingsKey, settings );

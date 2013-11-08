@@ -11,19 +11,20 @@ var LemmaPopupPlugin = function(app) {
 	position: absolute;\
 	background: #ffffff;\
 	border: solid 1px #ccc;\
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);\
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #eeeeee inset;\
 	z-index: 100;\
 	top: 100px;\
 	left: 100px;\
 	font-size: 14px;\
 	color: #111;\
 	font-family: avenir, helvetica;\
+	padding: 15px 0 15px 15px;\
 }\
 .info-window .info-body {\
 	width: 300px;\
 	height: 200px;\
 	overflow: auto;\
-	padding: 15px;\
+	padding: 0 15px 0 0;\
 }\
 .info-window .close-button {\
 	position: absolute;\

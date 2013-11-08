@@ -66,15 +66,34 @@ input:focus {
 		.window .window-header .header-input:hover,
 		.window .window-header .header-list:hover {
 			border-color: #ccc;
-
 		}
 
 		.window .window-header .header-input {
 			min-width: 140px;
-
 		}	
 
-	
+		.window .window-header .header-icon {
+			float: left;
+			margin: 3px;
+			width: 24px;
+			height: 24px;
+			background-size: 20px 20px;
+			background-position: center center;
+			background-repeat: no-repeat;
+			cursor: pointer
+		}	
+		.window .window-header .header-icon:hover {
+			border: 1px solid #ccc;
+			border-radius: 20px;
+		}
+		.window .info-button {
+			background-image: url(images/info.svg);
+		}
+		.window .audio-button {
+			display: none;
+			background-image: url(images/audio.svg);
+		}
+		
 	
 		.window .window-header .header-list {
 			padding-right: 20px;
@@ -134,16 +153,69 @@ input:focus {
 		border-right: solid 1px #ccc;
 		height: 70px;
 		z-index: 1;		
+		
+	}
+	
+	.window .scroller-container {
+		
+      -webkit-perspective: 800px;
+         -moz-perspective: 800px;
+           -o-perspective: 800px;
+              perspective: 800px;				
+		
 	}
 	
 	.window .scroller-main {
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
+		position: absolute;		
 		font-size: 18px;
 		padding: 0 30px;
 		background: #fff;
 		font-family: Cambria;
+
+      -webkit-backface-visibility: hidden;
+         -moz-backface-visibility: hidden;
+           -o-backface-visibility: hidden;
+              backface-visibility: hidden;
+              		
 	}	
+
+	.window .scroller-info {
+		position: absolute;
+		background: #e6f5fd;
+		overflow: auto;
+		padding: 20px;
+		
+      -webkit-backface-visibility: hidden;
+         -moz-backface-visibility: hidden;
+           -o-backface-visibility: hidden;
+              backface-visibility: hidden;	
+              
+      -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+           -o-transform: rotateY( 180deg );
+              transform: rotateY( 180deg );              	
+	}
+	
+	.scroller-flipper {
+      -webkit-transition: -webkit-transform 1s;
+         -moz-transition: -moz-transform 1s;
+           -o-transition: -o-transform 1s;
+              transition: transform 1s;
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;		
+	}
+	
+	.showinfo.scroller-flipper {
+      -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+           -o-transform: rotateY( 180deg );
+              transform: rotateY( 180deg );		
+	}
+
 	
 	.window .window-footer {
 		font: 10px Helvetica;

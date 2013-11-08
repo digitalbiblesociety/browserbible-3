@@ -8,16 +8,24 @@ var ScrollerWindow = function(id, node, init_data) {
 					'<div class="scroller-header-inner">'+
 						'<div class="header-input text-nav"></div>'+
 						'<div class="header-list text-list"></div>'+
+						'<span class="header-icon info-button"></span>'+
+						'<span class="header-icon audio-button"></span>'+
 					'</div>'+
 				'</div>'+
-				'<div class="scroller-main">' + 
-					'<div class="scroller-text-wrapper"></div>' +
-				'</div>'+
+				'<div class="scroller-flipper">' + 
+					'<div class="scroller-main">' + 
+						'<div class="scroller-text-wrapper"></div>' +
+					'</div>'+
+					'<div class="scroller-info">Text info</div>' + 
+				'</div>' +
 			'</div>').appendTo(node),
 		
 		// dom nodes
+		flipper = container.find('.scroller-flipper'),							
 		header = container.find('.scroller-header'),							
 		main = container.find('.scroller-main'),		
+		info = container.find('.scroller-info'),		
+		infoBtn = container.find('.info-button'),		
 		wrapper = container.find('.scroller-text-wrapper'),												
 		navui = header.find('.text-nav'),
 		textlistui = header.find('.text-list'),					
@@ -32,7 +40,31 @@ var ScrollerWindow = function(id, node, init_data) {
 		// settings
 		hasFocus = false;
 
+	infoBtn.on('click', function() {
+	
+		flipper.toggleClass('showinfo');
 		
+		if (flipper.hasClass('showinfo')) {
+			$.ajax({
+				dataType: 'html',
+				url: 'content/texts/' + currentTextInfo.id + '/about.html',
+				success: function(data) {					
+					info.html( data );
+				}				
+			});
+		}
+		
+		return;
+			
+		if (info.is(':visible')) {
+			info.hide();
+			main.show();
+		} else {
+			info.show();
+			main.hide();			
+		}
+	
+	});
 		
 	
 	// DOM to object stuff
@@ -143,10 +175,18 @@ var ScrollerWindow = function(id, node, init_data) {
 		container
 			.outerWidth(width)
 			.outerHeight(height);
+
+		flipper
+			.outerWidth(width)
+			.outerHeight( container.height() - header.outerHeight(true));
 		
 		main
 			.outerWidth(width)
 			.outerHeight( container.height() - header.outerHeight(true));
+			
+		info
+			.outerWidth(width)
+			.outerHeight( container.height() - header.outerHeight(true));			
 			
 		textChooser.size(width, height);
 		textNavigator.size(width, height);		

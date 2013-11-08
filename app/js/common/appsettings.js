@@ -9,7 +9,7 @@ var AppSettings = (function() {
 	function getValue(key, defaultValue) {
 	
 	
-		console.log('getValue', key, defaultValue);
+		//console.log('getValue', key, defaultValue);
 	
 		var returnValue = {},
 			storedValue = null;
@@ -20,7 +20,7 @@ var AppSettings = (function() {
 			returnValue[objkey] = defaultValue[objkey];
 		}	
 		
-		console.log('default', returnValue);	
+		//console.log('default', returnValue);	
 	
 		// require localStorage (no cookies!)
 		if (typeof window.localStorage == 'undefined') {
@@ -28,8 +28,8 @@ var AppSettings = (function() {
 		}
 		
 		storedValue = window.localStorage[key];
-		
-		console.log('storedValue', 'key:' + key, storedValue);
+	
+		//console.log('storedValue', 'key:' + key, storedValue);
 		
 		if (storedValue == null) {
 			return returnValue;
@@ -41,13 +41,13 @@ var AppSettings = (function() {
 			}
 		}
 		
-		console.log('storedValue', storedValue);
+		//console.log('storedValue', storedValue);
 		
 		for (var objkey in storedValue) {
 			returnValue[objkey] = storedValue[objkey];
 		}
 
-		console.log('combined', returnValue);
+		//console.log('combined', returnValue);
 		
 		return returnValue;
 	}
@@ -56,7 +56,7 @@ var AppSettings = (function() {
 	
 		if (typeof window.localStorage != 'undefined') {
 			
-			console.log('STORE', 'key:' + key, value);
+			//console.log('STORE', 'key:' + key, value);
 		
 			window.localStorage[key] = JSON.stringify(value);
 		}		

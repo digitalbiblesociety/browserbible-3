@@ -203,6 +203,7 @@ var ScrollerWindow = function(id, node, init_data) {
 		var data = {
 			// textinfo
 			textid: currentTextInfo.id, 
+			abbr: currentTextInfo.abbr, 
 			
 			// location info
 			sectionid: currentLocationInfo.sectionid, 

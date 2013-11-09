@@ -320,6 +320,7 @@ var Scroller = function(node) {
 												messagetype: 'textload',
 												texttype: currentTextInfo.type, 
 												textid: currentTextInfo.id, 
+												abbr: currentTextInfo.abbr, 
 												sectionid: sectionid,
 												fragmentid: fragmentid,
 												content:content

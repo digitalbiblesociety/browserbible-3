@@ -47,6 +47,9 @@ var LemmaPopupPlugin = function(app) {
 	font-weight: bold;\
 	margin: 0 0 10px 0;\
 }\
+.lemma-strongs {\
+	font-weight: normal;\
+}\
 .lemma-morphology {\
 	font-style: italic;\
 }\
@@ -116,7 +119,7 @@ var LemmaPopupPlugin = function(app) {
 				
 					popupBody.html('');
 					
-					popupBody.append('<span class="lemma-word">' + data.lemma + '</span>');
+					popupBody.append('<span class="lemma-word">' + data.lemma + ' <span class="lemma-strongs">(' + strongs + ')</span></span>');
 					popupBody.append('<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology(morph) + '</span>');
 					popupBody.append('<div class="lemma-outline">' + data.outline + '</div>');
 					

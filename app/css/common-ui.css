@@ -161,51 +161,125 @@
 		top: 0;
 		left: 0;
 		z-index:100;
-		background: #eee;
+		background: #fff;
 		padding: 1px 0 0 1px;
 		font-family: Avenir;
-		overflow: auto;
-		-webkit-overflow-scrolling: touch;		
+		
+		font-size: 14px;		
+		border: solid 1px #ccc;
+		box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #eeeeee inset;
+	}
+	
+	.up-arrow {
+		position: absolute;
+		top: -10px;
+		left: 20px;
+		z-index: 102;
+		width: 0;
+		height: 0;
+		display: block;
+		border-bottom: 10px solid #f8f8f8;
+		border-right: 10px solid transparent;
+		border-left: 10px solid transparent;
+	}
+	.up-arrow-border {
+		position: absolute;
+		top: -11px;
+		left: 20px;
+		z-index: 101;
+		width: 0;
+		height: 0;
+		display: block;
+		border-bottom: 10px solid #ccc;
+		border-right: 10px solid transparent;
+		border-left: 10px solid transparent;
 	}
 
+
 	.text-chooser .text-chooser-header {
-		background: #333;
 		padding: 8px;
 		color: #fff;
 		position: relative;
+		border-bottom: solid 1px #ccc;
+		background: #f8f8f8;
+	}
+
+	.text-chooser .text-chooser-main {
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;	
+		padding: 5px;
 	}
 	
 	.text-chooser .text-chooser-close {
 		cursor: pointer;
 		position: absolute;
-		top: 8;
+		top: 8px;
 		right: 8px;
+		width: 20px;
+		height: 20px;
+		border-radius: 20px;
+		background: url(images/close-button.svg);
+		background-size: 15px 30px;
+		background-position: 2px 2px;
+		background-repeat: no-repeat;
+		text-indent: -9999px;
+		border: solid 1px transparent;		
+	}
+	.text-chooser .text-chooser-close:hover {
+		border: solid 1px #aaa;
 	}
 	
 	.text-chooser-row-header {
-		background: #ccc;
+		background: #ededed;
+		border-bottom: solid 1px #ccc;
+		color: #333;
 		font-size: bold;
 		height: 2.0em;
 		line-height: 2.0em;		
+		padding: 0 5px;
+	}
+
+	.text-chooser-filter-text {
+		font-size: 11px;
+		padding: 5px;
+		width: 80%;
 	}
 	
 	.text-chooser-row {
 		overflow: hidden;
 		height: 2.0em;
 		line-height: 2.0em;
-	}	
+		width: 320px;
+		cursor: pointer;
+	}
+	.text-chooser-row.filtered {
+		background: #ecf4f8;	
+	}
+	.text-chooser-row:hover {
+		background: #d9e8ef;
+		
+	}
+	.text-chooser-row.selected {
+		background: #7da2c8;
+		color: #fff;
+	}		
 	
 	.text-chooser-row .text-chooser-abbr {
 
-		font-size: bold;
+		font-weight: bold;
 		width: 60px;
-		margin: 0 10px 0;
+		padding: 0 10px 0;
 		text-align: right;
 		display: inline-block;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}	
 	.text-chooser-row .text-chooser-name {
 		display: inline-block;
-		
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 260px;
+		padding: 0 10px 0 0 ; 		
 	}
 	
 

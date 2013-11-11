@@ -281,6 +281,7 @@ var TextChooser = function(container, target) {
 				winHeight = $(window).height() - 40,
 				maxHeight = winHeight - top;
 			
+			
 			textSelector
 				.outerHeight(maxHeight)
 				.css({top: top,left: left});

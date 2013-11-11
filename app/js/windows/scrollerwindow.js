@@ -31,8 +31,8 @@ var ScrollerWindow = function(id, node, init_data) {
 		textlistui = header.find('.text-list'),					
 		
 		// objects
-		textChooser = new TextChooser(container),		
-		textNavigator = new TextNavigator(container),
+		textChooser = new TextChooser(container, textlistui),		
+		textNavigator = new TextNavigator(container, navui),
 		scroller = new Scroller(main),		
 		currentTextInfo = null,
 		currentLocationInfo = null,
@@ -69,11 +69,11 @@ var ScrollerWindow = function(id, node, init_data) {
 	
 	// DOM to object stuff
 	textlistui.on('click', function(e) {
-		textChooser.show();
+		textChooser.toggle();
 	});
 			
 	navui.on('click', function(e) {
-		textNavigator.show();
+		textNavigator.toggle();
 	});
 	
 	textNavigator.on('change', function (e) {
@@ -209,6 +209,7 @@ var ScrollerWindow = function(id, node, init_data) {
 			sectionid: currentLocationInfo.sectionid, 
 			fragmentid: currentLocationInfo.fragmentid,
 			label: currentLocationInfo.label,
+			labelLong: currentLocationInfo.labelLong,
 			hasFocus: hasFocus
 		};
 		

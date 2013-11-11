@@ -2,10 +2,14 @@
 Text Navigator
 *******************/
 
-var TextNavigator = function(container) {
+var TextNavigator = function(container, target) {
 	// create me
 	
-	var changer = $('<div class="text-navigator">' + 
+	var 
+		isFull = false,
+		changer = $('<div class="text-navigator nav-drop-list">' + 
+							'<span class="up-arrow"></span>' +
+							'<span class="up-arrow-border"></span>' +						
 						'<div class="text-navigator-header">' + 
 							'<span class="text-navigator-title"></span>' + 
 							'<span class="text-navigator-back">Back</span>' + 
@@ -15,19 +19,36 @@ var TextNavigator = function(container) {
 						'<div class="text-navigator-sections"></div>' + 
  					'</div>'
 					)
-					.css({height: $(window).height(), width: $(window).width()})
+					//.css({height: $(window).height(), width: $(window).width()})
 					.appendTo( $('body') )
 					.hide(),
+		header = changer.find('.text-navigator-header'),
 		title = changer.find('.text-navigator-title'),
 		back = changer.find('.text-navigator-back').hide(),
 		close = changer.find('.text-navigator-close'),							
 		textInfo = null;
 		
 	close.on('click', function() {
-		changer.hide();
+		hide();
 	});
+	
+	function hide() {
+		changer.hide();
+	}
+	
+	function toggle() {
 		
-	function showChanger() {
+		if (changer.is(':visible')) {
+			hide();
+		} else {
+			show();
+		}
+		
+	}
+		
+	function show() {
+	
+		$('.nav-drop-list').hide();	
 		
 		title.html( textInfo.name );	
 		
@@ -77,9 +98,17 @@ var TextNavigator = function(container) {
 			if (typeof book == 'undefined')
 				continue;
 				
-			if (divisionid === 'MA') {
-				html.push('<div class="clear"></div>');
+			if (divisionid === 'GN') {
+				html.push('<div class="text-navigator-division-header">Old Testament</div>');
 			}
+			if (divisionid === 'MT') {
+				html.push('<div class="text-navigator-division-header">New Testament</div>');
+			}
+			if (divisionid === 'TB') {
+				html.push('<div class="text-navigator-division-header">Deutro-Canonical</div>');
+			}
+
+
 			
 			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + book.chapters.length + '" data-name="' + divisionName + '">' + shortName + '</span>');
 		} //
@@ -163,24 +192,41 @@ var TextNavigator = function(container) {
 	});	
 	
 	function size(width,height) {
-		if (!(width && height)) {
-			width = container.width();
-			height = container.height();			
-		}	
+		
+		if (isFull) {
 	
-		changer
-			.width(width)
-			.height(height)
-			.css({top: container.offset().top,left: container.offset().left});
+			if (!(width && height)) {
+				width = container.width();
+				height = container.height();			
+			}	
+		
+			changer
+				.width(width)
+				.height(height)
+				.css({top: container.offset().top,left: container.offset().left});
+		} else {
+			
+			var top = target.offset().top + target.outerHeight() + 10,
+				left = target.offset().left,
+				windowHeight = $(window).height(),
+				maxHeight = windowHeight - top - 20;
+			
+			changer
+				.outerHeight(maxHeight)
+				.css({top: top, left: left});
+				
+			changer.find('.text-navigator-divisions, .text-navigator-sections')
+				.outerHeight(maxHeight - header.outerHeight());
+			
+		}
 	}
 	
 	
 	// this is the return object!
 	var ext = {
-		show: showChanger,
-		hide: function() {
-			changer.hide();
-		},
+		show: show,
+		toggle: toggle,
+		hide: hide,
 		setTextInfo: function(value) {
 			textInfo = value;
 			

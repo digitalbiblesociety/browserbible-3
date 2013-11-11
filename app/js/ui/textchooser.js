@@ -10,7 +10,7 @@ var TextChooser = function(container, target) {
 		isFull = false,
 		showHeaders = true,
 		selectedTextInfo = null,
-		textSelector = $('<div class="text-chooser">' + 
+		textSelector = $('<div class="text-chooser nav-drop-list">' + 
 							'<span class="up-arrow"></span>' +
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
@@ -25,7 +25,7 @@ var TextChooser = function(container, target) {
 		main = textSelector.find('.text-chooser-main'),
 		filter = textSelector.find('.text-chooser-filter-text'),
 		title = textSelector.find('.text-chooser-title'),
-		close = textSelector.find('.text-chooser-close');
+		close = textSelector.find('.text-chooser-close').hide();
 		
 		
 	title.html("Texts");
@@ -209,7 +209,18 @@ var TextChooser = function(container, target) {
 		//ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 	}
 	
+	function toggle() {
+		
+		if (textSelector.is(':visible') ) {
+			hide();
+		} else {
+			show();			
+		}
+		
+	}
+	
 	function show() {
+		$('.nav-drop-list').hide();		
 		
 		size();
 	
@@ -227,6 +238,7 @@ var TextChooser = function(container, target) {
 		textSelector.show();
 		size();
 		filter.val('').focus();
+
 
 	}
 	

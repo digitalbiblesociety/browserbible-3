@@ -107,7 +107,7 @@ var App = function() {
 	
 		// title to show active window's position
 		if (e.data && e.data.label && e.data.hasFocus) {
-			document.title = e.data.label;
+			document.title = e.data.labelLong;
 		}
 		
 		settingsTimer.start();		

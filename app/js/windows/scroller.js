@@ -50,6 +50,7 @@ var Scroller = function(node) {
 			sectionid = '',
 			fragmentid = '',
 			label = '',
+			labelLong = '',
 			fragmentSelector = currentTextInfo.fragmentSelector,
 			newLocationInfo = null;
 	
@@ -93,10 +94,11 @@ var Scroller = function(node) {
 						bibleref.language = currentTextInfo.lang;
 						
 						label = bibleref.toString();						
+						labelLong = label +  ' (' + currentTextInfo.abbr + ')';
 						
 						break;
 					case 'book':
-						label = currentTextInfo.name + ' ' + sectionid;
+						labelLong = label = currentTextInfo.name + ' ' + sectionid;
 						
 						break;		
 				}				
@@ -112,7 +114,8 @@ var Scroller = function(node) {
 					// extra positioning info
 					offset: topOfContentArea - fragment.offset().top,
 					
-					label: label
+					label: label,
+					labelLong: labelLong
 					
 				};
 				return false;

@@ -11,7 +11,7 @@ var TextNavigator = function(container, target) {
 							'<span class="up-arrow"></span>' +
 							'<span class="up-arrow-border"></span>' +						
 						'<div class="text-navigator-header">' + 
-							'<span class="text-navigator-title"></span>' + 
+							'<span class="text-navigator-title">&nbsp;</span>' + 
 							'<span class="text-navigator-back">Back</span>' + 
 							'<span class="text-navigator-close">Close</span>' + 													
 						'</div>' + 
@@ -25,7 +25,7 @@ var TextNavigator = function(container, target) {
 		header = changer.find('.text-navigator-header'),
 		title = changer.find('.text-navigator-title'),
 		back = changer.find('.text-navigator-back').hide(),
-		close = changer.find('.text-navigator-close'),							
+		close = changer.find('.text-navigator-close').hide(),							
 		textInfo = null;
 		
 	close.on('click', function() {
@@ -60,6 +60,7 @@ var TextNavigator = function(container, target) {
 		// reset width
 		size();
 		changer.show();
+		size();
 		
 		// remove all selections
 		changer.find('.selected').removeClass('selected');	
@@ -85,6 +86,12 @@ var TextNavigator = function(container, target) {
 		
 		// render books
 		var html = [];
+		
+		var hasPrintedOt = false,
+			hasPrintedNt = false,
+			hasPrintedAp = false;
+		
+		
 		for (var i=0, il= textInfo.divisions.length ; i<il; i++) {
 	
 			var divisionid = textInfo.divisions[i],
@@ -98,14 +105,17 @@ var TextNavigator = function(container, target) {
 			if (typeof book == 'undefined')
 				continue;
 				
-			if (divisionid === 'GN') {
+			if (bible.OT_BOOKS.indexOf(divisionid) > -1 && !hasPrintedOt) {
 				html.push('<div class="text-navigator-division-header">Old Testament</div>');
+				hasPrintedOt = true;
 			}
-			if (divisionid === 'MT') {
+			if (bible.NT_BOOKS.indexOf(divisionid) > -1 && !hasPrintedNt) {
 				html.push('<div class="text-navigator-division-header">New Testament</div>');
+				hasPrintedNt = true;
 			}
-			if (divisionid === 'TB') {
-				html.push('<div class="text-navigator-division-header">Deutro-Canonical</div>');
+			if (bible.AP_BOOKS.indexOf(divisionid) > -1 && !hasPrintedAp) {
+				html.push('<div class="text-navigator-division-header">Deuterocanonical Books</div>');
+				hasPrintedAp = true;
 			}
 
 
@@ -209,7 +219,7 @@ var TextNavigator = function(container, target) {
 			var top = target.offset().top + target.outerHeight() + 10,
 				left = target.offset().left,
 				windowHeight = $(window).height(),
-				maxHeight = windowHeight - top - 20;
+				maxHeight = windowHeight - top - 40;
 			
 			changer
 				.outerHeight(maxHeight)

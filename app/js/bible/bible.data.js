@@ -716,10 +716,57 @@ bible.NT_BOOKS = ["MT","MK","LK","JN","AC","RM","C1","C2","GL","EP","PP","CL","H
 /**
  * @description Default order of Apocryphal books
  */
-bible.AP_BOOKS_OSIS = ["Tob","Jdt","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
+//bible.AP_BOOKS_USFM = 
+//["BEL","SUS","JDT","MAN","SIR","SIP","TOB","WIS","PAZ","LJE","BAR","LJB","BA2","LBA","MAC","MA1","MA2","MA3","MA4","ODE","PSO","PJE","JUB"]
+
+ 
+bible.AP_BOOKS_OSIS = ["Tob","Jdt","EsthGr","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];  
+ 
+bible.AP_BOOKS_USFM = 
+["TOB","JDT","ESG","ADE","WIS","SIR","BAR","LJE","PA","SUS","BEL","1MA","2MA","1ES"] 
  
 bible.AP_BOOKS = 
-["BEL","SUS","JDT","MAN","SIR","SIP","TOB","WIS","PAZ","LJE","BAR","LJB","BA2","LBA","MAC","MA1","MA2","MA3","MA4","ODE","PSO","PJE","JUB"]
+["TB","JT","ED","AE","WS","SR","BR","LJ","S3Y","SN","BL","M1","M2","E1"]
+
+/*
+"PM":{"name":"Paul's Letter to Philemon","sortOrder":87,"shortCode":"PM","usfm":"PHM","osis":"Phlm",
+    "chapters":[25],
+    "names":{"eng":["Philemon","Pm","Phile","Phile","Philm","Pm"]}},
+"PX":{"name":"Psalm 151","sortOrder":56,"shortCode":"PX","usfm":"PS2","osis":"AddPs",
+    "chapters":[null],
+    "names":{"eng":["Psalm 151"]}},
+"M3":{"name":"3 Maccabees","sortOrder":57,"shortCode":"M3","usfm":"3MA","osis":"3Macc",
+    "chapters":[],
+    "names":{"eng":["3 Maccabees"]}},
+"E2":{"name":"2 Esdras","sortOrder":58,"shortCode":"E2","usfm":"2ES","osis":"2Esd",
+    "chapters":[],
+    "names":{"eng":["2 Esdras","5 Ezra"]}},
+"M4":{"name":"4 Maccabees","sortOrder":59,"shortCode":"M4","usfm":"4MA","osis":"4Macc",
+    "chapters":[],
+    "names":{"eng":["4 Maccabees"]}},
+"OS":{"name":"Odes of Solomon","sortOrder":60,"shortCode":"OS","usfm":"ODS","osis":"OdesSol",
+    "chapters":[],
+    "names":{"eng":["Odes of Solomon"]}},
+"SP":{"name":"Psalms of Solomon","sortOrder":61,"shortCode":"SP","usfm":"PSS","osis":"PssSol",
+    "chapters":[],
+    "names":{"eng":["Psalms of Solomon"]}},
+"LL":{"name":"Epistle to the Laodiceans","sortOrder":62,"shortCode":"LL","usfm":"EPL","osis":"EpLao",
+    "chapters":[],
+    "names":{"eng":["Epistle to the Laodiceans"]}},
+"N1":{"name":"Ethiopic Apocalypse of Enoch","sortOrder":63,"shortCode":"N1","usfm":"1EN","osis":"1En",
+    "chapters":[],
+    "names":{"eng":["Ethiopic Apocalypse of Enoch"]}},
+"JE":{"name":"Jubilees","sortOrder":64,"shortCode":"JE","usfm":"JUB","osis":"Jub",
+    "chapters":[],
+    "names":{"eng":["Jubilees"]}},
+"AD":{"name":"Additions to Daniel","sortOrder":65,"shortCode":"AD","usfm":"DNT","osis":"AddDan",
+    "chapters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    "names":{"eng":["Additions to Daniel"]}},
+"DG":{"name":"Daniel (Greek)","sortOrder":66,"shortCode":"DG","usfm":"DAG","osis":"DanGr",
+    "chapters":[null,null,null,null,null,null,null,null,null,null,null,null],
+    "names":{"eng":["Daniel (Greek)"]}},
+*/
+
 //["Tob","Jdt","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
 
 /**

@@ -14,7 +14,7 @@ var TextChooser = function(container, target) {
 							'<span class="up-arrow"></span>' +
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
-								'<input type="text" class="text-chooser-filter-text" />' +
+								'<input type="text" class="text-chooser-filter-text" placeholder="Filter..." />' +
 								'<span class="text-chooser-close">Close</span>' +  						
 							'</div>' +
 							'<div class="text-chooser-main"></div>' +		
@@ -151,7 +151,7 @@ var TextChooser = function(container, target) {
 				
 					
 				html.push('<div class="text-chooser-row-header">' +
-						textsInLang[0].nativeName + ' ('  + textsInLang[0].englishName + ')' +
+						textsInLang[0].langName + ' ('  + textsInLang[0].langNameEnglish + ')' +
 							'</div>'
 				);				
 				
@@ -161,7 +161,7 @@ var TextChooser = function(container, target) {
 					
 					html.push('<div class="text-chooser-row" data-id="' + text.id + '" data-native-name="' + text.nativeName + '" data-english-name="' + text.englishName + '">' +
 									'<span class="text-chooser-abbr">' + text.abbr + '</span>' +
-									'<span class="text-chooser-name">' + text.name + '</span>' +
+									'<span class="text-chooser-name">' + text.name + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span>' +
 								'</div>'
 					);					
 				}
@@ -276,7 +276,7 @@ var TextChooser = function(container, target) {
 				
 		} else {
 			// reasonable size!
-			var top = target.offset().top + target.outerHeight() + 5,
+			var top = target.offset().top + target.outerHeight() + 10,
 				left = target.offset().left,
 				winHeight = $(window).height() - 40,
 				maxHeight = winHeight - top;

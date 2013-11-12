@@ -51,6 +51,19 @@ input:focus {
 		font-family: Avenir, Helvetica;
 		font-size: 12px;	
 	}
+/*
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+	only screen and (min-device-pixel-ratio:1.5) {
+	
+	.window .window-header {
+		border:none;
+		box-shadow: inset 0 0 1px #000,
+
+                0 1px 1px -1px rgba(0, 0, 0, .5);
+	}
+
+}
+*/	
 	
 		.window .window-header .header-input, 
 		.window .window-header .header-list {
@@ -183,9 +196,11 @@ input:focus {
 
 	.window .scroller-info {
 		position: absolute;
-		background: #e6f5fd;
+		-x-background: #e6f5fd;
+		background: #efefef;
 		overflow: auto;
 		padding: 20px;
+		box-shadow: 0 0 10px #ddd inset;
 		
       -webkit-backface-visibility: hidden;
          -moz-backface-visibility: hidden;

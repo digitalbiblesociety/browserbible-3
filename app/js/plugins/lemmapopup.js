@@ -90,16 +90,48 @@ var LemmaPopupPlugin = function(app) {
 	
 
 	$('.windows-main').on('click','l', function(e) {
+
+		console.log( lemmaPopup.is(':visible'), lemmaPopup.currentWord);
+			
+		var l = $(this);
 		
-		console.log('lemma click', this);
+		if (lemmaPopup.is(':visible') && lemmaPopup.currentWord == this) {
+			lemmaPopup.hide();
+			lemmaPopup.currentWord == null;
+			l.removeClass('selected-lemma');
+			return;	
+		}
 		
-		var l = $(this).addClass('selected-lemma'),	
+
+		
+		lemmaPopup.currentWord = this;
+		
+		l.addClass('selected-lemma');
+			
+		var
 			morph = l.attr('m'),
 			strongs = l.attr('s'),
 			main = l.closest('.scroller-main'),
-			lOffset = l.offset(),
+			verse = l.closest('.verse')
+			verse_code = verse.attr('data-id'),
+			book_id = verse_code.substring(0,2),
+			lOffset = l.offset(),			
+			langPrefix = 'G',
+			langCode = 'gre',
+			dir = 'ltr';		
 			
-			lang = 'G';
+		/*
+		while (strongs.substring(0,1) == '0') {
+			strongs = strongs.substring(1);
+			
+		}
+		*/
+			
+		if (bible.OT_BOOKS.indexOf(book_id) > -1) {			
+			langPrefix = 'H';
+			langCode = 'gre';
+			dir = 'rtl';			
+		}
 			
 		// show popup
 		lemmaPopup.show();
@@ -113,14 +145,19 @@ var LemmaPopupPlugin = function(app) {
 		if (strongs != null) {
 			$.ajax({
 				dataType: 'json',
-				url: 'content/lexicons/strongs/entries/' + lang + strongs + '.json',
+				url: 'content/lexicons/strongs/entries/' + langPrefix + strongs + '.json',
 				success: function(data) {
 					
 				
 					popupBody.html('');
 					
-					popupBody.append('<span class="lemma-word">' + data.lemma + ' <span class="lemma-strongs">(' + strongs + ')</span></span>');
-					popupBody.append('<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology(morph) + '</span>');
+					popupBody.append('<span class="lemma-word">' + 
+											'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' + 
+											'  <span class="lemma-strongs">(' + strongs + ')</span>' + 
+										'</span>');
+					if (typeof morph != 'undefined') {
+						popupBody.append('<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology(morph) + '</span>');
+					}
 					popupBody.append('<div class="lemma-outline">' + data.outline + '</div>');
 					
 				}, 

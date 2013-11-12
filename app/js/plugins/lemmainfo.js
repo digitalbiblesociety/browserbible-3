@@ -27,7 +27,7 @@ border-bottom: solid 1px #ccc;\
 			strongs = l.attr('s'),
 			main = l.closest('.scroller-main'),
 			mainOffset = main.offset(),
-			morphInfo = bible.morphology.Greek.getMorphology(morph);
+			morphInfo = (typeof morph == 'undefined') ? '' : bible.morphology.Greek.getMorphology(morph);
 			
 		
 		if (morphInfo != null && morphInfo != '') {

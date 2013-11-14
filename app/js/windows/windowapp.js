@@ -114,14 +114,17 @@ var App = function() {
 		
 	});
 	
+	var plugins = []
+	this.plugins = plugins;
 	// run plugins
 	for (var x in sofia.plugins) {
 		plugin = new window[ sofia.plugins[x] ](this);		
+		plugins.push(plugin);
 	}
 	
 	return this;	
 }
 
 $(function() {
-	window.app = new App();
+	sofia.app = new App();
 });

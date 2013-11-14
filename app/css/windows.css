@@ -166,7 +166,7 @@ input:focus {
 		border-right: solid 1px #ccc;
 		height: 70px;
 		z-index: 1;		
-		
+		overflow: auto;
 	}
 	
 	.window .scroller-container {

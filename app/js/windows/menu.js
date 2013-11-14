@@ -78,7 +78,7 @@ var MainSearchBox = function(node) {
 			
 			// search based on first open window
 			textid = firstTextWindow.data.textid;		
-			app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
+			sofia.app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
 			
 		//} else {
 			
@@ -145,7 +145,7 @@ var AddWindowButton = function(node) {
 		var label = $(this),
 			settings = label.data('init');
 	
-		app.windowManager.add(settings.type, settings.data);	
+		sofia.app.windowManager.add(settings.type, settings.data);	
 		
 		buttonMenu.hide();
 		//windowManager.trigger('settingschange',{});

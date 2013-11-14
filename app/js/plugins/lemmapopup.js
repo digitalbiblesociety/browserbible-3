@@ -1,45 +1,11 @@
 
+
 var LemmaPopupPlugin = function(app) {
 
 	$(
 '<style>\
 .selected-lemma {\
 	background: #33f;\
-	color: #fff;\
-}\
-.info-window {\
-	position: absolute;\
-	background: #ffffff;\
-	border: solid 1px #ccc;\
-	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #eeeeee inset;\
-	z-index: 100;\
-	top: 100px;\
-	left: 100px;\
-	font-size: 14px;\
-	color: #111;\
-	font-family: avenir, helvetica;\
-	padding: 15px 0 15px 15px;\
-}\
-.info-window .info-body {\
-	width: 300px;\
-	height: 200px;\
-	overflow: auto;\
-	padding: 0 15px 0 0;\
-}\
-.info-window .close-button {\
-	position: absolute;\
-	top: 5px;\
-	right: 5px;\
-	cursor: pointer;\
-	width: 20px; \
-	height: 20px; \
-	border-radius: 10px; \
-	text-align: center;	\
-	background: url(css/images/close-button.svg) top center no-repeat;\
-}\
-.info-window .close-button:hover {\
-	background-color: #d5998b;\
-	background-position: 0 -20px;\
 	color: #fff;\
 }\
 .lemma-word {\
@@ -61,15 +27,7 @@ var LemmaPopupPlugin = function(app) {
 .lemma-outline ol li ol li ol li ol li       {list-style-type:decimal;}\
 </style>').appendTo( $('head') );
 
-	var lemmaPopup = $(	'<div class="info-window">'+ 
-							'<span class="close-button"></span>' + 
-							'<div class="info-body"></div>' +
-						'</div>')
-							.appendTo( $(document.body) )
-							.hide(),
-							
-		popupBody = lemmaPopup.find('.info-body'),
-		close = lemmaPopup.find('.close-button'),
+	var lemmaPopup = new InfoWindow(),							
 		timer = new Timer(hidePopup, 500);
 	
 	
@@ -77,10 +35,8 @@ var LemmaPopupPlugin = function(app) {
 		lemmaPopup.hide();	
 		$('.selected-lemma').removeClass('selected-lemma');
 	}
-	
-	close.on('click', hidePopup);
 		
-	lemmaPopup
+	lemmaPopup.container
 		.on('mouseout', function() {
 			timer.start();
 		})
@@ -91,21 +47,19 @@ var LemmaPopupPlugin = function(app) {
 
 	$('.windows-main').on('click','l', function(e) {
 
-		console.log( lemmaPopup.is(':visible'), lemmaPopup.currentWord);
 			
 		var l = $(this);
 		
-		if (lemmaPopup.is(':visible') && lemmaPopup.currentWord == this) {
+		if (lemmaPopup.container.is(':visible') && lemmaPopup.currentWord == this) {
 			lemmaPopup.hide();
 			lemmaPopup.currentWord == null;
 			l.removeClass('selected-lemma');
 			return;	
 		}
 		
-
-		
 		lemmaPopup.currentWord = this;
 		
+		$('.selected-lemma').removeClass('selected-lemma');
 		l.addClass('selected-lemma');
 			
 		var
@@ -115,7 +69,7 @@ var LemmaPopupPlugin = function(app) {
 			verse = l.closest('.verse')
 			verse_code = verse.attr('data-id'),
 			book_id = verse_code.substring(0,2),
-			lOffset = l.offset(),			
+			//lOffset = l.offset(),
 			langPrefix = 'G',
 			langCode = 'gre',
 			dir = 'ltr';		
@@ -135,12 +89,16 @@ var LemmaPopupPlugin = function(app) {
 			
 		// show popup
 		lemmaPopup.show();
-		lemmaPopup.css({
+		lemmaPopup.position(l);
+		
+		/*
+		lemmaPopup.container.css({
 			top: lOffset.top + 20,
 			left: lOffset.left - 20			
 		});
+		*/
 		
-		popupBody.html('Loading...');
+		lemmaPopup.body.html('Loading...');
 			
 		if (strongs != null) {
 			$.ajax({
@@ -149,16 +107,16 @@ var LemmaPopupPlugin = function(app) {
 				success: function(data) {
 					
 				
-					popupBody.html('');
+					lemmaPopup.body.html('');
 					
-					popupBody.append('<span class="lemma-word">' + 
+					lemmaPopup.body.append('<span class="lemma-word">' + 
 											'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' + 
 											'  <span class="lemma-strongs">(' + strongs + ')</span>' + 
 										'</span>');
 					if (typeof morph != 'undefined') {
-						popupBody.append('<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology(morph) + '</span>');
+						lemmaPopup.body.append('<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology(morph) + '</span>');
 					}
-					popupBody.append('<div class="lemma-outline">' + data.outline + '</div>');
+					lemmaPopup.body.append('<div class="lemma-outline">' + data.outline + '</div>');
 					
 				}, 
 				error: function() {

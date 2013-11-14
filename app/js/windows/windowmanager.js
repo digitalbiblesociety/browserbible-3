@@ -26,15 +26,26 @@ var WindowManager = function(node) {
 		win.on('globalmessage', function(e) {
 			// give to other windows
 			
-
-			 for (var i=0, il=windows.length; i<il; i++) {
-			 	w = windows[i];
+				
+			for (var i=0, il=windows.length; i<il; i++) {
+				w = windows[i];
 			 	
-			 	if (w.id != id) {
+				if (w.id != id) {
 			 		// pass message down
 			 		w.trigger('message', e);
-			 	}
-			 }				
+				}
+			}				
+			 
+			// plugins
+			for (var i=0, il=sofia.app.plugins.length; i<il; i++) {
+				p = sofia.app.plugins[i];
+			 	
+				if (p.trigger) {
+					// pass message down
+					p.trigger('message', e);
+				}
+			}				
+			 
 		});
 		
 		size();

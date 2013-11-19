@@ -228,6 +228,120 @@ bible.Reference = function () {
 			else
 				return 'unknown';
 		},
+		
+		toFormat: function(format) {
+		
+			function padLeft(nr, n, str){
+			    return Array(n-String(nr).length+1).join(str||'0')+nr;
+			}	
+			
+		
+			var t = this, 
+				output = format,
+				bookInfo = bible.BOOK_DATA[this.bookid],
+				flags = {
+					// book number
+					'I': function() { 
+						return bookInfo.sortOrder.toString();
+					},
+					'II': function() { 
+						return padLeft(bookInfo.sortOrder.toString(), 2);
+					},
+					'III': function() { 
+						return padLeft(bookInfo.sortOrder.toString(), 3);
+					},
+					// book USFM
+					'UUU': function() { 
+						return bookInfo.usfm.toUpperCase();
+					},
+					'uuu': function() { 
+						return bookInfo.usfm.toLowerCase();
+					},
+					'Uuu': function() { 
+						return bookInfo.usfm.substring(0,1).toUpperCase() + bookInfo.usfm.substring(1).toLowerCase();
+					},				
+					// DBS format
+					'DD': function() { 
+						return bookInfo.shortCode.toUpperCase();
+					},
+					'dd': function() { 
+						return bookInfo.shortCode.toLowerCase();
+					},
+					
+					// Name
+					'NNN': function() { 
+						var bookName = '',
+							bookNames = bookInfo.names[t.language];
+						
+						if (typeof bookNames != 'undefined') {
+							bookName = bookNames[0];
+						} else {
+							bookName = bookInfo.names['eng'][0]
+						}					
+					
+						return bookName;
+					},
+					'N': function() { 
+						return bookInfo.usfm.substring(0,1).toUpperCase() + bookInfo.usfm.substring(1).toLowerCase();
+					},							
+	
+					// chapter
+					'C': function() { 
+						return t.chapter1.toString();
+					},
+					'CC': function() { 
+						return padLeft(t.chapter1.toString(), 2);
+					},
+					'CCC': function() { 
+						return padLeft(t.chapter1.toString(), 3);
+					},
+					// verse
+					'V': function() { 
+						return t.verse1.toString();
+					},
+					'VV': function() { 
+						return padLeft(t.verse1.toString(), 2);
+					},
+					'VVV': function() { 
+						return padLeft(t.verse1.toString(), 3);
+					},
+					'##': function() { 
+						return t.chapterAndVerse();
+					}					
+				};
+				
+				// copy number/chapter/verse
+				flags['i'] = flags['I'];
+				flags['ii'] = flags['II'];
+				flags['iii'] = flags['III'];
+				flags['c'] = flags['C'];
+				flags['cc'] = flags['CC'];
+				flags['ccc'] = flags['CCC'];
+				flags['v'] = flags['V'];
+				flags['vv'] = flags['VV'];
+				flags['vvv'] = flags['VVV'];
+				
+												
+			// create and sort keys
+			var keys = Object.keys(flags);			
+			keys = keys.sort(function(b, a) {
+				if (a.length > b.length) {
+					return 1;
+				} else if (a.length < b.length) {
+					return -1;
+				} else {
+					return 0;
+				}
+			});
+						
+			// do replacement
+			for (var i in keys) {
+				var key = keys[i];
+				output = output.replace(new RegExp(key, 'g'), flags[key]());
+			}
+							
+			return output;
+		},
 
 		toString: function () {
 			if (this.bookid == null) return "invalid";

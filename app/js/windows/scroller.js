@@ -391,6 +391,10 @@ var Scroller = function(node) {
 		return locationInfo;
 	}
 	
+	function setFocus(newHasFocus) {
+		hasFocus = newHasFocus;		
+	}
+	
 
 	var ext = {
 		load_more: load_more,
@@ -399,7 +403,8 @@ var Scroller = function(node) {
 		getTextInfo: getTextInfo,
 		setTextInfo: setTextInfo,
 		getLocationInfo: getLocationInfo,
-		scrollTo: scrollTo
+		scrollTo: scrollTo,
+		setFocus: setFocus
 	};
 	
 	ext = $.extend(true, ext, EventEmitter);

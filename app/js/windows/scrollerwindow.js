@@ -28,16 +28,19 @@ var ScrollerWindow = function(id, node, init_data) {
 		infoBtn = container.find('.info-button'),		
 		wrapper = container.find('.scroller-text-wrapper'),												
 		navui = header.find('.text-nav'),
-		textlistui = header.find('.text-list'),					
+		textlistui = header.find('.text-list'),	
 		
 		// objects
 		textChooser = new TextChooser(container, textlistui),		
 		textNavigator = new TextNavigator(container, navui),
 		scroller = new Scroller(main),		
-		currentTextInfo = null,
-		currentLocationInfo = null,
+
+		audioui = container.find('.audio-button'),	
+		audioController = new AudioController(container, audioui, scroller),				
 		
 		// settings
+		currentTextInfo = null,
+		currentLocationInfo = null,		
 		hasFocus = false;
 
 	infoBtn.on('click', function() {
@@ -92,7 +95,9 @@ var ScrollerWindow = function(id, node, init_data) {
 		textlistui.html( newTextInfo.abbr );	
 		
 		// update the navigator with the latest header
-		textNavigator.setTextInfo(newTextInfo);		
+		textNavigator.setTextInfo(newTextInfo);	
+		
+		audioController.setTextInfo(newTextInfo);
 	
 		// if it has *changed* then we need to reload the text in the scroller
 		if (currentTextInfo == null || newTextInfo.id != currentTextInfo.id) {		
@@ -156,9 +161,10 @@ var ScrollerWindow = function(id, node, init_data) {
 				currentTextInfo = loadedTextInfo;		
 				
 				// send to objects
-				textChooser.setTextInfo(currentTextInfo);
+				textChooser.setTextInfo(currentTextInfo);				
 				textlistui.html(currentTextInfo.abbr);	
 				textNavigator.setTextInfo(currentTextInfo);			
+				audioController.setTextInfo(currentTextInfo);				
 										
 				scroller.setTextInfo(currentTextInfo);
 				scroller.load('text', init_data.sectionid, init_data.fragmentid);			

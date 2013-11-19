@@ -285,9 +285,7 @@ var TextChooser = function(container, target) {
 			textSelector
 				.outerHeight(maxHeight)
 				.css({top: top,left: left});
-				
-			console.log('CHOOSER size', maxHeight, header.outerHeight(), maxHeight -  header.outerHeight());
-				
+					
 			main
 				.outerHeight(maxHeight - header.outerHeight())				
 			

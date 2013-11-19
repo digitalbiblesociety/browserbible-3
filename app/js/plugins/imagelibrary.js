@@ -21,7 +21,7 @@ var ImageLibraryPlugin = function(app) {
 	// process chapters, add image icon to verses
 	function addImages() {
 		
-		console.log('addImages');
+		//console.log('addImages');
 	
 		if (imageData == null) {
 			return;
@@ -29,6 +29,10 @@ var ImageLibraryPlugin = function(app) {
 		
 		while (contentToProcess.length > 0) {
 			var content = contentToProcess.pop();
+			
+			if (content.data('has-images') != undefined) {
+				continue;
+			}
 			
 			// add images to verses	
 			content.find('.verse').each(function() {
@@ -77,6 +81,8 @@ var ImageLibraryPlugin = function(app) {
 				//imagePopup.center().show();
 				imagePopup.position( imageIcon ).show();
 			});
+			
+			content.data('has-images', true);
 			
 		} // while	
 		

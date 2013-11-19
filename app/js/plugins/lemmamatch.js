@@ -14,9 +14,7 @@ var LemmaMatchPlugin = function(app) {
 			strongs = l.attr('s'),
 			verse = l.closest('.verse'),
 			verseid = verse.attr('data-id');
-			
-		console.log('mouseover', strongs, verseid);
-						
+									
 		$('.' + verseid ).find('l[s="' + strongs + '"]').addClass('lemma-highlight');		
 		
 	}).on('mouseout','l', function(e) {

@@ -6,7 +6,7 @@ var ScrollerWindow = function(id, node, init_data) {
 			$('<div class="scroller-container">'+
 				'<div class="window-header scroller-header">'+
 					'<div class="scroller-header-inner">'+
-						'<div class="header-input text-nav"></div>'+
+						'<input type="text" class="header-input text-nav" />'+
 						'<div class="header-list text-list"></div>'+
 						'<span class="header-icon info-button"></span>'+
 						'<span class="header-icon audio-button"></span>'+
@@ -42,7 +42,9 @@ var ScrollerWindow = function(id, node, init_data) {
 		currentTextInfo = null,
 		currentLocationInfo = null,		
 		hasFocus = false;
+		
 
+			
 	infoBtn.on('click', function() {
 	
 		flipper.toggleClass('showinfo');
@@ -75,9 +77,24 @@ var ScrollerWindow = function(id, node, init_data) {
 		textChooser.toggle();
 	});
 			
-	navui.on('click', function(e) {
-		textNavigator.toggle();
-	});
+	navui
+		.on('click', function(e) {
+			textNavigator.toggle();
+			navui[0].focus();
+			navui[0].select();
+		})
+		.on('keypress', function(e) {
+			if (e.keyCode == 13) {
+				var bibleref = new bible.Reference(navui.val());
+				
+				//console.log(navui.val(), bibleref, bibleref.toSection());
+				
+				scroller.load('text', bibleref.toSection());	
+				textNavigator.hide();
+				navui[0].blur();
+			}
+		})
+		;	
 	
 	textNavigator.on('change', function (e) {
 		//console.log('scrollerapp:navigator:change', e);
@@ -135,7 +152,9 @@ var ScrollerWindow = function(id, node, init_data) {
 		if (newLocationInfo != null) {
 		
 			currentLocationInfo = newLocationInfo;
-			navui.html(  currentLocationInfo.label );		
+			navui
+				.html(  currentLocationInfo.label )
+				.val(  currentLocationInfo.label );		
 			
 			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
 		}
@@ -148,7 +167,7 @@ var ScrollerWindow = function(id, node, init_data) {
 	function init() {
 			
 		// TEMP
-		navui.html('Reference');
+		navui.html('Reference').val('Reference');
 		textlistui.html('Version');
 		
 		//console.log('win ' + id + ': startup', init_data);

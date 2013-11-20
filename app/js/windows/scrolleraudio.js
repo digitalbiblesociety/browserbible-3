@@ -32,6 +32,8 @@ var AudioController = function(container, ui, scroller) {
 		sectionNode = null,
 		hasAudio = false;
 		
+	autoplayCheckbox.parent().hide();
+		
 	//block.hide();
 		
 		
@@ -57,43 +59,53 @@ var AudioController = function(container, ui, scroller) {
 		}		
 	});
 			
-	nextButton.on('click', function() {
-		var sectionidIndex = audioInfo.sections.indexOf(sectionid),
-			nextSectionid = (sectionidIndex < audioInfo.sections.length-1) ? audioInfo.sections[sectionidIndex+1] : null;
-			
-		if (nextSectionid != null) {
-
-			$(audio).on('loaded', playWhenLoaded);	
-				
-			loadAudio(nextSectionid);
-			
-			scroller.scrollTo(nextSectionid);
-		}
-	});	
+	
 	prevButton.on('click', function() {
 		var sectionidIndex = audioInfo.sections.indexOf(sectionid),
 			prevSectionid = (sectionidIndex > 0 ) ? audioInfo.sections[sectionidIndex - 1] : null;
 			
 		if (prevSectionid != null) {
-			$(audio).on('loaded', playWhenLoaded);	
+			if (!audio.paused) {
+				$(audio).on('loadeddata', playWhenLoaded);	
+			}
 			
 			loadAudio(prevSectionid);
 			
-			scroller.scrollTo(prevSectionid + '_1', 10);
+			if (scrollCheckbox.is(':checked')) {
+				//scroller.scrollTo(prevSectionid + '_1', -10);
+				scroller.load('text',prevSectionid);
+			}
 		}
-	});	
+	});
+	nextButton.on('click', function() {
+		var sectionidIndex = audioInfo.sections.indexOf(sectionid),
+			nextSectionid = (sectionidIndex < audioInfo.sections.length-1) ? audioInfo.sections[sectionidIndex+1] : null;
+			
+		if (nextSectionid != null) {
+			
+			if (!audio.paused) {
+				$(audio).on('loadeddata', playWhenLoaded);	
+			}
+				
+			loadAudio(nextSectionid);
+			
+			
+			if (scrollCheckbox.is(':checked')) {
+				//scroller.scrollTo(nextSectionid + '_1', -10);
+				scroller.load('text',nextSectionid);
+			}
+		}
+	});		
 	
 	scroller.on('locationchange', updateLocation);
 	//scroller.on('load', loadAudio);
 	
 	function updateLocation(e) {
+
+		var newLocationInfo = e.data;
 		
-		if (!hasAudio) {
-			return;
-		}	
-				
-		var newLocationInfo = scroller.getLocationInfo();
-		
+		//console.log('audio locationchange', e, newLocationInfo);
+						
 		// found a fragment
 		if (newLocationInfo != null) {
 		
@@ -121,15 +133,15 @@ var AudioController = function(container, ui, scroller) {
 			
 			sectionHeight = sectionNode.height();
 			
-			title.html( new bible.Reference(sectionid).toString() );
-						
+			title.html( new bible.Reference(sectionid).toString() );						
 		}			
 	}
 	
 				
 	function playWhenLoaded(){
+		console.log('playWhenLoaded');
 		audio.play();
-		audio.off('loaded', playWhenLoaded);					
+		$(audio).off('loadeddata', playWhenLoaded);					
 	}	
 
 	
@@ -158,51 +170,50 @@ var AudioController = function(container, ui, scroller) {
 		.on('ended', function() {
 			if (autoplayCheckbox.is(':checked')) {
 				
+				$(audio).on('loadeddata', playWhenLoaded);			
+				
 				nextButton.trigger('click');
 				//audio.play();
 				
-				$(audio).on('loaded', playWhenLoaded);			
+				
 			}							
 		})		
 		.on('timeupdate', function() {	
 			currenttime.html( secondsToTimeCode(audio.currentTime) );		
 			duration.html( secondsToTimeCode(audio.duration) );
-			
-			
-			var 
-				chapter = parseInt(sectionid.substring(2), 10),
-				skipSeconds = (chapter == 1) ? 10 : 8;
-			
-			//if (audio.currentTime <= skipSeconds) {
-			//	return;				
-			//}
+	
+	
 			
 			if (!scrollCheckbox.is(':checked')) {
 				return;				
-			}	
+			}
 			
 			if (sectionNode.length == 0) {
-				sectionNode = container.find('.section[data-id="' + sectionid + '"]');
 				
+				sectionNode = container.find('.section[data-id="' + sectionid + '"]');				
 				sectionHeight = sectionNode.height();				
-			}		
-						
-			var
+			}			
+			
+			var 
+				// calculate percent to scroll
+				chapter = parseInt(sectionid.substring(2), 10),
+				skipSeconds = (chapter == 1) ? 10 : 8,
 				fraction = (audio.currentTime-skipSeconds) / (audio.duration-skipSeconds);	
 			
 				// calculate node position
-				pane = sectionNode.closest('.scroller-main'),
+				pane = container.find('.scroller-main'),
 				paneTop = pane.offset().top,
 				scrollTop = pane.scrollTop(),
 				nodeTop = sectionNode.offset().top,
 				nodeTopAdjusted = nodeTop - paneTop + scrollTop,
 				
-				offset = sectionHeight * fraction;							
+				offset = sectionHeight * fraction							
 							// adjust the offset by two lines or so
-							//- 50;
+							- 20;
 				
-			if (offset <= 0)
-				offset = 0;			
+			if (offset <= 0) {
+				offset = 0;	
+			}		
 			
 			// go to it
 			scroller.setFocus(true);
@@ -224,6 +235,10 @@ var AudioController = function(container, ui, scroller) {
 					console.log('loaded audio', textInfo, audioInfo);
 					
 					hasAudio = true;
+					
+					if (sectionid != '') {
+						loadAudio(sectionid);
+					}
 					
 					// start load
 					block.show();

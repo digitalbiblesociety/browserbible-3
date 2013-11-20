@@ -361,7 +361,7 @@ bible.Reference = function () {
 		toSection: function () {
 			if (this.bookid == null) return "invalid";
 			
-			return this.bookid + '_' + this.chapter1 + (this.verse1 > 0 ? '_' + this.verse1 : '');
+			return this.bookid + '' + this.chapter1 + (this.verse1 > 0 ? '_' + this.verse1 : '');
 		},
 
 /*

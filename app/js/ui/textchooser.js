@@ -9,6 +9,7 @@ var TextChooser = function(container, target) {
 	var 
 		isFull = false,
 		showHeaders = true,
+		textsHaveRendered = false,
 		selectedTextInfo = null,
 		textSelector = $('<div class="text-chooser nav-drop-list">' + 
 							'<span class="up-arrow"></span>' +
@@ -98,26 +99,30 @@ var TextChooser = function(container, target) {
 			.removeClass('selected');
 			
 				
-		selectedTextInfo = texts.Texts.textData[textid];
+		texts.Texts.getText(textid, function(data) {
 		
-		hide();
+			selectedTextInfo = data;
 		
-		//console.log('chooser:change:click', selectedTextInfo);
-		ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
+			hide();
+			
+			//console.log('chooser:change:click', selectedTextInfo);
+			ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
+		
+		});
+		
 	});
 	
 	
-	function renderTexts() {
+	function renderTexts(data) {
 	
 		// render all the rows
 		var html = [],
-			arrayOfTexts = [];
+			arrayOfTexts = data;
 		
 		// turn object into array
-		for (var key in texts.Texts.textData) {
-			arrayOfTexts.push(texts.Texts.textData[key]);	
-		
-		}
+		//for (var key in texts.Texts.textData) {
+		//	arrayOfTexts.push(texts.Texts.textData[key]);			
+		//}
 			
 		
 		if (showHeaders) {
@@ -205,6 +210,8 @@ var TextChooser = function(container, target) {
 					.find('div[data-id="' + selectedTextInfo.id + '"]')
 					.addClass('selected');
 		}
+		
+		textsHaveRendered = true;
 				
 		//ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 	}
@@ -223,16 +230,13 @@ var TextChooser = function(container, target) {
 		$('.nav-drop-list').hide();		
 		
 		size();
-	
-		if (texts.Texts.finishedLoading) {
-			renderTexts();
-		} else {
+		
+		if (!textsHaveRendered) {
 			main.html('Loading');
 			
 			texts.Texts.loadTexts(function(data) {
-				renderTexts();
-			});
-			
+				renderTexts(data);
+			});			
 		}
 	
 		textSelector.show();

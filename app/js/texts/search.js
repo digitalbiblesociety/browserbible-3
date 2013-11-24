@@ -112,6 +112,41 @@ texts.TextSearch = function() {
 			
 			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
 				
+			
+			texts.TextLoader.load(textInfo, sectionid, function(content) {
+					for (var i=0, il=fragmentids.length; i<il; i++) {
+						var 
+							fragmentid = fragmentids[i],
+							fragmentNode = content.find('.' + fragmentid),
+							html = fragmentNode.html();
+							
+						if (fragmentNode.length > 0) {
+							
+							var foundMatch = false;
+						
+							for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+								
+								searchTermsRegExp.lastIndex = 0;
+								html = html.replace(searchTermsRegExp[j], function(match) {
+									foundMatch = true;
+									return '<span class="highlight">' + match + '</span>';
+								});
+							}
+						
+							if (foundMatch) {
+								searchFinalResults.push({fragmentid: fragmentid, html: html});
+							}
+						}
+					}					
+					
+					loadNextSectionid();				
+			
+			
+			}, function(error) {				
+				loadNextSectionid();
+			});
+			
+			/*
 			$.ajax({
 				dataType: 'json',
 				url: url,
@@ -150,6 +185,7 @@ texts.TextSearch = function() {
 					loadNextSectionid();
 				}
 			});
+			*/
 			
 		}
 	}

@@ -55,7 +55,7 @@ var MainSearchBox = function(node) {
 		
 		// do a search		
 		var searchString = searchInput.val(),
-			appSettings = app.windowManager.getSettings(),
+			appSettings = sofia.app.windowManager.getSettings(),
 			searchWindow = null,
 			firstTextWindow = null;
 			

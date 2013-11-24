@@ -2,7 +2,8 @@ window.texts = window.texts || {};
 
 texts.TextLoader = (function() {
 	
-	var data = {},
+	var dataType = 'html',
+		cachedTexts = {},
 		baseFolder = 'content/texts/';
 	
 	function setBaseFolder(folder) {
@@ -33,30 +34,43 @@ texts.TextLoader = (function() {
 		
 		
 		// store texts during loading?		
-		if (typeof data[textid] == 'undefined') {
-			data[textid] = {};
+		if (typeof cachedTexts[textid] == 'undefined') {
+			cachedTexts[textid] = {};
 		}
 		
-		if (typeof data[textid][sectionid] != 'undefined') {
-			successCallback (data[textid][sectionid]);
+		if (typeof cachedTexts[textid][sectionid] != 'undefined') {
+			successCallback (cachedTexts[textid][sectionid]);
 		}
 		
-		var url = baseFolder + textid + '/' + sectionid + '.json?' + new Date();
+		var url = baseFolder + textid + '/' + sectionid + '.' + dataType; // ?' + new Date();
 		
 		//console.log(textid, sectionid, url);
 			
 		$.ajax({
 			url: url,
-			dataType: 'json',
-			success: function(d) {
+			dataType: dataType,
+			success: function(data) {
 				
-				var doc = $(d.text);
+				var doc = $( dataType == 'html' ? data : data.text );
 					
-				data[textid][sectionid] = doc;
+				cachedTexts[textid][sectionid] = doc;
 				
+
+				
+				// remove Michael's extra <div>s
+				var innerChapter = doc.find('div[data-role="content"] .chapter');
+				
+				if (innerChapter.length > 0) {
+					innerChapter.attr('data-nextid', doc.attr('data-nextid'));
+					innerChapter.attr('data-previd', doc.attr('data-previd'));					
+				
+					doc = innerChapter;					
+				}
+				
+				// add missing section class to Mike's
 				if (!doc.hasClass('section')) {
 					doc.addClass('section');
-				}
+				}				
 				
 				//console.log(textid, sectionid, d.text);
 		

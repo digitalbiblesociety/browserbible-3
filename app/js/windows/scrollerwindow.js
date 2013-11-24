@@ -122,7 +122,8 @@ var ScrollerWindow = function(id, node, init_data) {
 			// store
 			currentTextInfo = newTextInfo;
 			
-			var nearestSectionId = scroller.getLocationInfo().sectionid;
+			var oldLocationInfo = scroller.getLocationInfo(),
+				nearestSectionId = oldLocationInfo != null ? oldLocationInfo.sectionid : currentTextInfo.sections[0];
 
 			// load new text
 			wrapper.html('');

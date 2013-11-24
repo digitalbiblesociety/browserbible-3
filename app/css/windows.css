@@ -1,4 +1,6 @@
 * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -103,7 +105,7 @@ input:focus {
 			background-image: url(images/info.svg);
 		}
 		.window .audio-button {
-			background-image: url(images/audio.svg);
+			background-image: url(images/audio-ear.svg);
 		}
 		
 	
@@ -228,6 +230,11 @@ input:focus {
          -moz-transform: rotateY( 180deg );
            -o-transform: rotateY( 180deg );
               transform: rotateY( 180deg );		
+	}
+	
+	.scroller-text-wrapper {
+		max-width: 800px;
+		margin: 0 auto;
 	}
 
 	
@@ -379,6 +386,8 @@ input:focus {
 	padding: 5px;
 	height: 50px;
 	-x-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-family: Avenir;
+	font-size: 12px;
 }
 
 .audio-controller .audio-play,
@@ -435,4 +444,9 @@ input:focus {
 	display: inline-block;
 	margin-left: 5px;
 	
+}
+
+.audio-controller .audio-title {
+	display: inline-block;
+	margin-left: 20px;	
 }

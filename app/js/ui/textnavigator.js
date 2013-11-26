@@ -65,7 +65,7 @@ var TextNavigator = function(container, target) {
 		// remove all selections
 		changer.find('.selected').removeClass('selected');	
 		
-		switch (textInfo.type) {
+		switch (textInfo.type.toLowerCase()) {
 			case 'bible': 
 				renderDivisions();
 				changer.find('.text-navigator-divisions').show();
@@ -151,7 +151,7 @@ var TextNavigator = function(container, target) {
 	
 		var html = [];
 	
-		switch (textInfo.type) {
+		switch (textInfo.type.toLowerCase()) {
 			case 'bible': 	
 	
 				// print out chapters

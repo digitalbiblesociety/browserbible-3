@@ -11,7 +11,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' + 				
 						
 					'</div>').appendTo(parentNode),
-		main = $('<div class="search-main" style="background: #fff; overflow: auto;"><div style="padding: 10px;" class="search-wrapper"></div></div>').appendTo(parentNode),
+		main = $('<div class="search-main"><div class="search-wrapper"></div></div>').appendTo(parentNode),
 		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
 		wrapper = main.find('.search-wrapper'),
 		input = header.find('.search-text'),
@@ -75,7 +75,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 		var results = e.data.results,
 			html = '<h2>Results: ' + results.length + '</h2>' + 
-					'<table cellpadding="2">';
+					'<table>';
 					
 		footer.html('Results: ' + results.length );
 		
@@ -91,7 +91,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 				label = results.fragmentid;
 			}
 				
-			html += '<tr data-fragmentid="' + result.fragmentid + '"><th style="text-align: left;vertical-align:top; white-space:nowrap;">' + label + '</th><td>' + result.html + '</td></tr>';
+			html += '<tr data-fragmentid="' + result.fragmentid + '"><th>' + label + '</th><td>' + result.html + '</td></tr>';
 		}
 		html += '</table>';
 		
@@ -138,33 +138,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	// init
 	function init() {
-		/*
-		texts.Texts.loadTexts(function(data) {
-			
-			var html = '';
-			for (var index in data) {
-				html += '<option value="' + data[index].id + '">' + data[index].name + '</option>';
-			}
-			list.html( html );
-			
-			//console.log('search versions loaded', init_data);	
-			
-			if (init_data.textid) {
-				list.find('option[value="' + init_data.textid + '"]').attr('selected', true);
-			} else {		
-				list.children().first().attr('selected', true);
-			}
 
-			if (init_data.searchString && init_data.searchString != '') {
-				input.val(init_data.searchString);
-				doSearch();
-			}				
-			
-		});	
-		
-		*/	
-		
-		
 	
 		if (init_data.textid) {
 			texts.Texts.getText(init_data.textid, function(data) {

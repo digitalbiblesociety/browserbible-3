@@ -28,8 +28,6 @@ texts.TextLoader = (function() {
 			if (textInfo.sections.indexOf(sectionid) == -1) {
 				sectionid = textInfo.sections[0];
 			}
-						
-			//console.log('hasit', sectionid, textInfo.sections.indexOf(sectionid), textInfo.sections[0]);
 		}
 		
 		
@@ -42,39 +40,48 @@ texts.TextLoader = (function() {
 			successCallback (cachedTexts[textid][sectionid]);
 		}
 		
-		var url = baseFolder + textid + '/' + sectionid + '.' + dataType; // ?' + new Date();
-		
-		//console.log(textid, sectionid, url);
-			
+		var url = baseFolder + textid + '/' + sectionid + '.' + dataType + '?' + new Date();
+					
 		$.ajax({
 			url: url,
 			dataType: dataType,
 			success: function(data) {
 				
-				var doc = $( dataType == 'html' ? data : data.text );
+				var content = $( dataType == 'html' ? data : data.text );
 					
-				cachedTexts[textid][sectionid] = doc;
+				cachedTexts[textid][sectionid] = content;
+				
+				// Should be just 
+				/*
+				<div class="chapter section">
+				
+				</div>				
+				*/
+				
+				// but tring to account for 
+				/*
+				<html><body>
+				<div class="chapter">
+				
+				</div>
+				</body></html>			
+				*/
 				
 
-				
-				// remove Michael's extra <div>s
-				var innerChapter = doc.find('div[data-role="content"] .chapter');
-				
-				if (innerChapter.length > 0) {
-					innerChapter.attr('data-nextid', doc.attr('data-nextid'));
-					innerChapter.attr('data-previd', doc.attr('data-previd'));					
-				
-					doc = innerChapter;					
+				// when we dont' start with a div, it's probably a <!-- --> or <html> or something
+				if (!content[0].tagName || content[0].tagName.toLowerCase() != 'div') {
+					var innerNode = content.filter('.chapter, .section');
+					
+					if (innerNode.length > 0) {
+						content = innerNode;					
+					}
 				}
 				
-				// add missing section class to Mike's
-				if (!doc.hasClass('section')) {
-					doc.addClass('section');
-				}				
-				
-				//console.log(textid, sectionid, d.text);
-		
-				successCallback(doc);
+				if (!content.hasClass('section')) {
+					content.addClass('section');
+				}
+					
+				successCallback(content);
 			
 			}, error: function(jqXHR, textStatus, errorThrown) {
 				if (errorCallback) {

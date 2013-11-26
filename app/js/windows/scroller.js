@@ -18,7 +18,7 @@ var Scroller = function(node) {
 	
 	function triggerGlobalEvent() {
 		
-		ext.trigger('globalmessage', {type: 'globalmessage', target: this, data: {messagetype: 'nav', type: currentTextInfo.type, locationInfo: locationInfo}});		
+		ext.trigger('globalmessage', {type: 'globalmessage', target: this, data: {messagetype: 'nav', type: currentTextInfo.type.toLowerCase(), locationInfo: locationInfo}});		
 		
 		clearTimeout(globalTimeout);
 		globalTimeout = null;
@@ -56,7 +56,7 @@ var Scroller = function(node) {
 	
 		// magic for bibles or books				
 		if (typeof fragmentSelector == 'undefined' || fragmentSelector == '') {
-			switch (currentTextInfo.type) {
+			switch (currentTextInfo.type.toLowerCase()) {
 				case 'bible':				
 					// find top				
 					fragmentSelector = '.verse';
@@ -78,16 +78,38 @@ var Scroller = function(node) {
 		
 		// look through all the markers and find the first one that is fully visible
 		fragments.each(function(e) {
-			var fragment = $(this);
+			var fragment = $(this),
+				isFirstVisibleFragment = false;
 			
 			// is the top of the fragment at the top of the scroll pane
 			if (fragment.offset().top - topOfContentArea > -2) {
+				isFirstVisibleFragment = true;
+				
+				fragmentid = fragment.attr('data-id');
+				var totalFragments = fragment.parent().find('.' + fragmentid);
+				
+				// multi-line verses
+				if (totalFragments.length > 1) {
+					
+					fragment = totalFragments.first();
+				
+					if (fragment.offset().top - topOfContentArea > -2) {
+						isFirstVisibleFragment = true;
+					} else {
+						isFirstVisibleFragment = false;
+					}				
+				}
+				
+			} 
 			
+			if (isFirstVisibleFragment) {
 			
+				// TODO: are there other fragments with this id
+				
 				fragmentid = fragment.attr('data-id');
 				
 				
-				switch (currentTextInfo.type) {
+				switch (currentTextInfo.type.toLowerCase()) {
 					case 'bible':				
 						// find top	
 						var bibleref = new bible.Reference( fragmentid );
@@ -321,7 +343,7 @@ var Scroller = function(node) {
 											target: this, 
 											data: {
 												messagetype: 'textload',
-												texttype: currentTextInfo.type, 
+												texttype: currentTextInfo.type.toLowerCase(), 
 												textid: currentTextInfo.id, 
 												abbr: currentTextInfo.abbr, 
 												sectionid: sectionid,

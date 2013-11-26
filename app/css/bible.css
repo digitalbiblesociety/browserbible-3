@@ -23,12 +23,14 @@
 }
 
 /* book name */
+/*
 .mt {
 	display: block;
 	text-align:center;
 	font-size:2em;
 	margin:1.2em 0;
 }
+*/
 
 
 
@@ -62,20 +64,43 @@
 .woc                                                        {color:#aa0000;}
 
 
-.v-1,.chapter .note .text,.chapter .cf .text,
+.chapter .note .text,.chapter .cf .text,
 #search-results .note,#search-results .cf                   {display:none;}
 
 /* special display for Psalms */
 span[class^='verse PSA_']                                    {display:block;}
-
-.search-main .highlight {
-	background: #ffff00;
-	border-bottom: solid 1px #ffcc00;
-}
-
 
 
 .heb_bhs {
 	dir: rtl;
 	font-family: 'Ezra SIL';
 }	
+
+
+/* most books */
+.section .c {
+	float: left;
+	font-size: 2.0em;
+	line-height: 1;
+	font-weight: bold;
+	margin-top: 0.15em;
+	margin-right: 0.2em;
+}
+div.c + div.p {
+	text-indent: 0 !important;
+}
+.v-1 {
+	display: none;
+}
+
+/* Psalms */
+.PS .c {
+	font-size: 1.2em;
+	margin-top: 2.0em;
+	text-align: center;
+	float: none;
+}
+.PS .v-1 {
+	display: inline;
+}
+

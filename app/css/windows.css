@@ -450,3 +450,40 @@ input:focus {
 	display: inline-block;
 	margin-left: 20px;	
 }
+
+
+
+/* search */
+.search-main {
+	background: #fff; 
+	overflow: auto;
+}
+.search-wrapper {
+	padding: 10px;	
+}
+.search-wrapper table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.search-wrapper table td,
+.search-wrapper table th {
+	padding: 3px;
+}
+.search-wrapper table th {
+	text-align: left;
+	vertical-align:top; 
+	white-space:nowrap;
+}
+
+.search-wrapper table tr:hover {
+	cursor: pointer;
+	background-color: #dbe9fa;
+}
+
+
+.search-main .highlight {
+	background: #ffff00;
+	border-bottom: solid 1px #ffcc00;
+}
+

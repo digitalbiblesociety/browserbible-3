@@ -1,0 +1,178 @@
+
+/* Styles for USFM elements -- div for paragraph and span for character styles */
+span.add { font-style: italic }
+div.b { display: block; margin-left: 12em; text-indent: -2em; line-height: 1.4em }
+span.bd, span.em { font-weight: bold }
+span.bdit, span.bk {font-weight: bold; font-style: italic }
+div.cd, div.conc {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:justify; margin-top: 6pt; color: rgb(0,0,128) }
+div.cls { display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:right; margin-top: 6pt}
+div.cov {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:center; margin-top: 6pt}
+div.d {  font-weight: bold; display: block; line-height: 1.4em; margin-top: 1.4em}
+div.ebm {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt}
+div.ebp {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em}
+div.ebq div.ebq1 {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-left: 12em; text-indent: -4em}
+div.ebq2 {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-left: 8em; text-indent: -4em}
+div.ebq3 {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-left: 252em; text-indent: -4em}
+div.ebs, div.ebs1 {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em}
+div.ebs2 {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em}
+div.ebs3 {  font-size: 11pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em}
+span.fm, span.notemark {  font-size: 7pt; vertical-align: super; margin-left: 2pt; line-height: 0}
+div.fp {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-left: 12em}
+span.fq {  font-style: italic; color: rgb(0,0,128) }
+span.fqa {  font-style: italic; color: rgb(0,0,128) }
+span.fr {  color: rgb(0,0,16) }
+span.ft {  font-weight: normal; color: rgb(0,0,128) }
+span.fv {  color: maroon }
+div.f {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-left: 12em; text-indent: -12em }
+div.glo {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em }
+div.ib, div.idx, div.ie, div.iex, div.intro, div.ip, div.zp {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em }
+div.ili, div.ili1 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: square; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 2em }
+div.ili2 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: square; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 4em }
+div.ili3 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: square; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 8em }
+div.ili4 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: square; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 12em }
+div.io, div.io1 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: none; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 2em }
+div.io2 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: none; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 4em }
+div.io3 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: none; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 6em }
+div.io4 {  font-size: 11pt; color: rgb(0,0,128); display: list-item; list-style-type: none; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 0em; margin-left: 8em }
+div.im {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left }
+div.imi {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em; margin-left: 12em; margin-right: 12em }
+div.imq {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em; margin-left: 12em }
+div.imt, div.imt1 { font-weight: bold;  font-size: 13pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em }
+div.imt2, div.iot { font-weight: bold;  font-size: 13pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em }
+div.imt3, div.imte { font-weight: bold;  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: 2em }
+span.ior { font-weight: bold }
+div.ipi, div.ipq, div.pref, div.pub, div.pubinfo, div.spine {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-left: 2em; text-indent: 2em }
+div.ipr {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align: right; margin-top: 6pt; margin-left: 2em; text-indent: 2em }
+div.iq, div.iq1 {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: -8em; margin-left: 12em }
+div.iq2 {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: -4em; margin-left: 12em }
+div.iq3 {  font-size: 11pt; color: rgb(0,0,128); display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; text-indent: -2em; margin-left: 12em }
+span.iqt { color: rgb(0,0,255) }
+div.is, div.is1 {  font-size: 13pt; color: rgb(0,0,128); font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt }
+div.is2 {  font-size: 11pt; color: rgb(0,0,128); font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt }
+div.is3 {  font-size: 11pt; color: rgb(0,0,128); font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt }
+span.it { font-style: italic }
+span.k { font-weight: bold }
+div.keyword, div.keyword1 {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-right: 12em; text-indent: -12em }
+div.keyword2 {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-right: 12em; text-indent: -4em }
+div.keyword3 {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:left; margin-top: 6pt; margin-right: 12em; text-indent: -2em }
+div.li, div.li1, div.ph, div.ph1 { display: list-item; list-style-type: none; text-align:left; text-indent: 2em }
+div.li2, div.ph2, div.phi { display: list-item; list-style-type: none; text-align:left; text-indent: 4em }
+div.li3, div.ph3 { display: list-item; list-style-type: none; text-align:left; text-indent: 8em }
+div.li4, div.ph4 { display: list-item; list-style-type: none; text-align:left; text-indent: 12em }
+div.lit { text-align: right }
+div.m { text-indent: 0em; margin-top: 0 }
+div.mi { text-indent: 2em; text-align: left; margin-top: 0 }
+div.mr {  font-size: 11pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:center; margin-top: 6pt; text-indent: 2em }
+div.ms, div.ms1 { color: rgb(0,0,128); font-weight: bold;  font-size: 13pt; display: block; margin-bottom: 6pt; line-height: 1.4em; margin-top: 6pt }
+div.ms2 { font-weight: bold;  font-size: 13pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:center; margin-top: 6pt; text-indent: 2em }
+div.ms3 { font-weight: bold;  font-size: 13pt; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:center; margin-top: 6pt; text-indent: 2em }
+div.mt, div.mt1, div.mte, div.mte1, h1 { font-weight: bold; font-size: 16pt; text-align: center; line-height: 1.7em }
+div.mt2, div.mte2, h2 { font-weight: bold; font-size: 14pt; text-align: center; line-height: 1.7em }
+div.mt3, div.mte3, h3 { font-weight: bold; font-size: 13pt; text-align: center; line-height: 1.7em }
+div.nb, div.ps { text-indent: 0em; margin-top: 0em }
+div.k1 { text-indent: 0em; text-align: left; font-weight: bold }
+span.nd, span.sc { font-weight: bold;  font-variant: small-caps }
+span.ndx, span.no { font-style: normal }
+span.ord { vertical-align: super; font-size: 11pt; text-decoration: underline }
+div.p, div.p1, div.pb, div.pde, div.pdi {  text-indent: 2em; margin-top: 6pt; text-align: left; margin-left: 0em }
+div.pc { text-indent: 0em; margin-top: 6pt; text-align: center }
+div.pi, div.pi1 { text-indent: 2em; margin-top: 6pt; margin-left: 2em; text-align: justify }
+div.pi2 { text-indent: 2em; margin-top: 6pt; margin-left: 4em; text-align: justify }
+div.pi3 { text-indent: 2em; margin-top: 6pt; margin-left: 12em; text-align: justify }
+div.pm, div.pmo, div.pmc, div.psi { text-indent: 2em; margin-top: 6pt; margin-left: 2em; margin-right: 2em; text-align: justify }
+div.pmr, div.pr { text-indent: 2em; margin-top: 6pt; margin-left: 2em; margin-right: 2em; text-align: right; text-align: justify }
+span.pn { color: rgb(0,0,8) }
+span.pro { color: rgb(32,8,8) }
+div.q, div.q1 { text-align:left; margin-top: 0pt; text-indent: -4em; margin-left: 4em }
+div.q2 { text-align:left; margin-top: 0pt; text-indent: -2em; margin-left: 4em }
+div.q3 { text-align:left; margin-top: 0pt; text-indent: -2em; margin-left: 6em }
+div.qa {  font-weight: bold; display: block; margin-bottom: 6pt; line-height: 1.4em; text-align: center; margin-top: 6pt; text-indent: 0em }
+span.qac { font-weight: bold }
+div.qc { text-align: center; margin-top: 0pt; text-indent: 0em; margin-left: 0em }
+div.qm, div.qm1 { text-align:left; margin-top: 0pt; text-indent: -8em; margin-left: 12em }
+div.qm2 { text-align:left; margin-top: 0pt; text-indent: -12em; margin-left: 12em }
+div.qm3 { text-align:left; margin-top: 0pt; text-indent: -4em; margin-left: 12em }
+div.qr { text-align:right; margin-top: 0pt; text-indent: 0em }
+div.qs { text-align:right; }
+span.qt { font-variant: small-caps }
+div.r, div.sr {  font-size: 13pt; font-style: italic; text-align: center; margin-bottom: 6pt; color: rgb(0,0,128) }
+div.rr, div.rq, span.rq {  font-size: 11pt; font-style: italic; color: rgb(0,0,128); text-align: right }
+div.s, div.s1 {  font-style: bold; color: rgb(0,0,128); text-align: center; margin-top: 8pt }
+div.s2 {  font-size: 13pt; color: rgb(0,0,128); font-style: bold; text-align: center }
+div.s3 {  font-size: 13pt; color: rgb(0,0,128); text-align: center }
+span.sig { font-style: italic }
+span.sls { font-style: italic }
+div.sp { text-align: left;  font-size: 13pt; font-style: italic }
+span.w, span.wg, span.wh, span.wr, span.zc { font-style: normal }
+span.wj { color: rgb(192,0,0) }
+span.xk {  font-weight: bold; color: rgb(0,0,128) }
+span.xq {  color: rgb(0,0,128) }
+span.xt, span.xo, span.notebackref {  color: rgb(0,0,128) }
+
+div.maintitle        { display: block; text-align: center;  font-size: 18pt; font-weight: bold; margin-top: 10pt; margin-bottom: 10pt }
+div.maintitle1       { display: block; text-align: center;  font-size: 18pt; font-weight: bold; margin-top: 2pt }
+div.maintitle2       { display: block; text-align: center; font-size: 13pt; font-weight: bold; font-style: italic; margin-bottom: 2pt }
+div.copyright, div.fine { display: block; text-align: center;  font-size: 6pt; color: #808080; margin-bottom: 2pt }
+div.toc {display: block;  font-size: 13pt; text-align: left; text-indent: -1em; margin-left: 1em }
+div.toc1 {display: block;  font-size: 13pt; text-align: left; text-indent: -1em; margin-left: 2em }
+div.toc2 {display: block;  font-size: 11pt; text-align: left; text-indent: -1em; margin-left: 3em }
+
+div.sectionheading, div.chapterlabel   { display: block; text-align: center;  font-size: 13pt; font-weight: bold; margin-top: 12pt }
+div.sectionsubheading   { display: block; text-align: center;  font-weight: bold; font-style: italic; margin-top: 6pt; margin-left: 12pt } /* JohnT */
+div.sectionsubsubheading   { display: block; text-align: center;  font-size: 13pt; font-weight: bold; font-style: normal; margin-top: 6pt; margin-left: 12pt } /* JohnT */
+div.parallel		 {  display: block; text-align: center; font-style: italic; margin-top: 0pt; font-size:9pt } /* JohnT */
+div.parallelSub		 {  display: block; text-align: center; font-style: italic; margin-top: 0pt; margin-left: 12pt; font-size:9pt } /* JohnT */
+
+
+/* JohnT: based on a recommendation in http://www.xs4all.nl/~sbpoley/webmatters/superscripts.html,  to make line spacing
+as nearly as possible uniform despite superscripts, especially in FF, we set block elements that contain them to a line-height
+of 1.4 em, and the actual superscript elements have a line-height of zero.*/
+div.navButtons {  font-size: 13pt; font-weight: bold; display: block; margin-bottom: 6pt; line-height: 52pt; text-align: center; clear: both; border-radius: 5px }
+div.navButtons a { padding: 3px; background-color: #036; border-bottom: 1px solid #eee; border-radius: 5px; }
+div.navButtons a:visited { color: #ffff66; text-decoration: none; border-radius: 5px; }
+div.navButtons a:link { color: #ffffff; text-decoration: none; border-radius: 5px; }
+div.navButtons a:hover { background-color: #0520ff; color: #fff; border-radius: 5px; }
+div.navChapters {  font-size: 10pt; display: block; margin-bottom: 10pt; text-align: center; line-height: 28pt; border-radius: 5px; }
+div.navChapters a { padding: 3px; background-color: #036; border-bottom: 1px solid #eee; border-radius: 5px; }
+div.navChapters a:visited { color: #ffff66; text-decoration: none; border-radius: 5px; }
+div.navChapters a:link { color: #ffffff; text-decoration: none; border-radius: 5px; }
+div.navChapters a:hover { background-color: #0520ff; color: #fff; border-radius: 5px; }
+div.prose            { display: block; margin-bottom: 6pt; line-height: 1.4em; text-align:justify; margin-top: 6pt}
+div.proseblock       { display: block; line-height: 1.4em; text-align:justify}
+div.proseblockindent { display: block; margin-left: 1cm; line-height: 1.4em; text-align:justify }
+div.poetry           { display: block; margin-left: 1.5cm; text-indent: -0.5cm; line-height: 1.4em }
+div.embeddedPoetry   { display: block; margin-left: 2.0cm; text-indent: -0.5cm; line-height: 1.4em; margin-right: 1.0cm; text-align:justify }
+div.deepPoetry       { display: block; margin-left: 2.5cm; text-indent: -0.5cm; line-height: 1.4em; margin-right: 1.0cm; text-align:justify }
+div.list             { margin-left: 1cm; text-indent: -0.5cm; line-height: 1.4em }
+div.quoteSource		 { display:block; text-align:right; font-style:italic}
+div.introListItem    { margin-left: 1cm; text-indent: -0.5cm; line-height: 1.4em }
+div.pageFooter       { display: block; margin-bottom: 6pt; text-align: left; margin-top: 6pt; padding: 3px;  font-size: 11pt}
+div.text            {margin-left: 0;margin-right:0}
+div.bookList {  font-size: 11pt; line-height: 8pt; float: left; margin: 0px; padding: 3px; width: 120px; background: rgb(223,255,255) }
+div.main { /* margin-left: 132px; padding: 4px;*/ background: rgb(255,255,255) }
+div.mainindex { margin-left: 132px; padding: 4px; background: rgb(240,255,244) }
+div.bookLine  {  font-size: 11pt; line-height: 12pt; display: block; text-align:left; width: 120px; border-radius: 5px; }
+div.bookLine a { display: block; padding: 3px; background-color: #036; border-bottom: 1px solid #eee; border-radius: 5px; }
+div.bookLine a:visited { color: #ffff66; text-decoration: none; border-radius: 5px; }
+div.bookLine a:link { color: #ffffff; text-decoration: none; border-radius: 5px; }
+div.bookLine a:hover { background-color: #0520ff; color: #fff; border-radius: 5px; }
+div.dcbookLine  {  font-size: 11pt; line-height: 12pt; display: block; text-align:left; width: 120px; border-radius: 5px; border-radius: 5px; }
+div.dcbookLine a { display: block; padding: 3px; background-color: #404040; border-bottom: 1px solid #eee; border-radius: 5px; }
+div.dcbookLine a:visited { color: #ffff66; text-decoration: none; border-radius: 5px; }
+div.dcbookLine a:link { color: #ffffff; text-decoration: none; border-radius: 5px; }
+div.dcbookLine a:hover { background-color: #ababab; color: #fff; border-radius: 5px; }
+
+p.footnote, p.crossRefNote { display: block;   margin-top: 3pt; font-size: 13pt; text-align: left; margin-left: 0em }
+
+span.chapter         {  font-size: 18pt; font-weight: bold; float:left; margin-right: 4pt; line-height: 30pt; padding-top: 1pt; vertical-align:top }
+div.p span.chapter, div.q span.chapter, div.q1 span.chapter div.q2 span.chapter, div.q3 span.chapter, div.poetry span.chapter         {margin-right: 20pt }
+span.smallcaps       { font-size: smaller }
+span.crmark			 {  font-size: 11pt; vertical-align: super; margin-left: 2pt; line-height: 0}
+span.overlap        {} /* Where chapter number splits paragraph, used for part of paragraph in a different chapter. */
+div.figure {float:right;text-indent:0em;padding:5px;border:2px solid blue;margin:5px; }
+span.figcopr {font-size: 7pt; color: rgb(180,180,200); line-height: 7pt}
+span.figCaption {font-size: 10pt; color: rgb(0,0,128); line-height: 9pt}
+span.figref {font-size: 10pt; color: rgb(0,0,128); font-weight: bold}
+ 
+select, option { font-size: 13pt; line-height: 1.4em}
+

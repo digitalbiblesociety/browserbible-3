@@ -139,13 +139,15 @@
 	.text-navigator .divisionid-PS,
 	.text-navigator .divisionid-PR,
 	.text-navigator .divisionid-EC,
-	.text-navigator .divisionid-SS {
+	.text-navigator .divisionid-SS,
+	/* out of order in English! */
+	.text-navigator .divisionid-LM {
 		background: #fef;
 	}
 	
 	.text-navigator .divisionid-IS,
 	.text-navigator .divisionid-JR,
-	.text-navigator .divisionid-LM,
+	/*.text-navigator .divisionid-LM,*/
 	.text-navigator .divisionid-EK,
 	.text-navigator .divisionid-DN {
 		background: #fee;
@@ -378,19 +380,21 @@ border: solid 1px #ccc;
 	.text-chooser-row .text-chooser-abbr {
 
 		font-weight: bold;
-		width: 60px;
+		width: 80px;
 		padding: 0 10px 0;
 		text-align: right;
 		display: inline-block;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		height: 2.0em;
 	}	
 	.text-chooser-row .text-chooser-name {
 		display: inline-block;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 260px;
-		padding: 0 10px 0 0 ; 		
+		width: 240px;
+		padding: 0 10px 0 0 ; 
+		height: 2.0em;		
 	}
 	
 

@@ -70,8 +70,8 @@ var TextChooser = function(container, target) {
 					name = row.find('.text-chooser-name');
 					
 				if (
-					row.attr('data-native-name').toLowerCase().indexOf(text) > -1 ||
-					row.attr('data-english-name').toLowerCase().indexOf(text) > -1 ||					
+					row.attr('data-lang-name').toLowerCase().indexOf(text) > -1 ||
+					row.attr('data-lang-name-english').toLowerCase().indexOf(text) > -1 ||					
 					name.text().toLowerCase().indexOf(text) > -1 ||					
 					abbr.text().toLowerCase().indexOf(text) > -1) {
 						
@@ -156,7 +156,8 @@ var TextChooser = function(container, target) {
 				
 					
 				html.push('<div class="text-chooser-row-header">' +
-						textsInLang[0].langName + ' ('  + textsInLang[0].langNameEnglish + ')' +
+							textsInLang[0].langName + 
+								( textsInLang[0].langName != textsInLang[0].langNameEnglish ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
 							'</div>'
 				);				
 				
@@ -164,7 +165,7 @@ var TextChooser = function(container, target) {
 					var text = textsInLang[textIndex];
 					
 					
-					html.push('<div class="text-chooser-row" data-id="' + text.id + '" data-native-name="' + text.nativeName + '" data-english-name="' + text.englishName + '">' +
+					html.push('<div class="text-chooser-row" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
 									'<span class="text-chooser-abbr">' + text.abbr + '</span>' +
 									'<span class="text-chooser-name">' + text.name + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span>' +
 								'</div>'

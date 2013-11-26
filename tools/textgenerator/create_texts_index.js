@@ -47,7 +47,13 @@ for (var dirItemIndex in dirItem) {
 	if (fs.existsSync(info_path)) {
 		
 		var data = fs.readFileSync(info_path, 'utf8');	
-		data = JSON.parse(data);
+		
+		try {
+			data = JSON.parse(data);
+		} catch (e) {
+			console.log("Can't parse", info_path, data);
+			continue;			
+		}
 		
 		// add just the id
 		texts.textIds.push(data.id);

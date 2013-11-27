@@ -126,9 +126,10 @@ var AddWindowButton = function(node) {
 		{type: 'ScrollerWindow', label: 'Bible', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
 		{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}},
 		{type: 'SearchWindow', label: 'Search', data: {}},
-		{type: 'VideoWindow', label: 'Video', data: {}},
-		{type: 'AudioWindow', label: 'Audio', data: {}},
-		{type: 'PicturesWindow', label: 'Pictures', data: {}},		
+		{type: 'MediaWindow', label: 'Media', data: {}}
+		//{type: 'VideoWindow', label: 'Video', data: {}},
+		//{type: 'AudioWindow', label: 'Audio', data: {}},
+		//{type: 'PicturesWindow', label: 'Pictures', data: {}},		
 	];
 	
 	for (var x in windowTools) {

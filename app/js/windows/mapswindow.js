@@ -379,5 +379,4 @@ var MapsWindow = function(id, parentNode, data) {
 	return ext;
 };
 
-console.log('map', sofia);
 sofia.windowTypes.push('MapsWindow');

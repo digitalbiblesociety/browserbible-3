@@ -34,7 +34,7 @@ var App = function() {
 	
 		
 	function resize() {
-		console.log('app resize');
+		//console.log('app resize');
 	
 		// get window size
 		var width = win.width(),
@@ -62,11 +62,11 @@ var App = function() {
 	win.on('resize', resize);
 	resize();	
 	
-	var settingsKey = 'windowapp-3'
+	var settingsKey = 'windowapp-11-24'
 		defaultSettings = {
 			windows: [
 				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
-				{type: 'ScrollerWindow', data: {'textid':'gre_tisch','sectionid':'JN1','fragmentid':'JN1_10'}},
+				//{type: 'ScrollerWindow', data: {'textid':'gre_tisch','sectionid':'JN1','fragmentid':'JN1_10'}},
 				{type: 'SearchWindow', data: {textid: 'eng_web', searchString: 'truth love'}},
 				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}}				
 			]

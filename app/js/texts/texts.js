@@ -32,7 +32,7 @@ texts.Texts = (function() {
 			url: locationBase + textid + '/info.json',
 			dataType: 'json',
 			success: function(data) {
-				console.log(textid, data);
+				//console.log(textid, data);
 				
 				// store this one			
 				textData[data.id] = data;

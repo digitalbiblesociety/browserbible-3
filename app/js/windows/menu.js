@@ -368,7 +368,7 @@ var FontSizeSettings = function(node) {
 			body.removeClass(className);			
 		}
 	
-		$(body).addClass('config-font-size-' + newFontSize);
+		body.addClass('config-font-size-' + newFontSize);
 		
 		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
 	}
@@ -396,6 +396,7 @@ var ConfigToggles = function(node) {
 		main = $('<div class="config-section">' + 
 					'<span class="config-header">Settings</span>' + 
 					'<div class="config-body" id="config-toggles"></div>' +
+					'<div class="clear"></div>' + 
 				'</div>').appendTo(base),
 		body = main.find('.config-body'),
 		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ'],
@@ -407,10 +408,12 @@ var ConfigToggles = function(node) {
 		
 		var
 			toggleId = toggleName.replace(/\s/gi, '').toLowerCase(),
-			toggle = $('<span id="config-toggle-' + toggleId + '" class="config-toggle">' + 
-						'<input type="checkbox" value="' + toggleId + ' />' + 
-						'<label for="config-toggle-' + toggleId + '">' + toggleName + '</label>' + 
-					'</span>')
+			toggleDefaultSetting = {checked: true},
+			toggleSetting = AppSettings.getValue(toggleId, toggleDefaultSetting),			
+			toggle = $('<div id="config-toggle-' + toggleId + '" class="config-toggle">' + 
+						'<input id="config-toggle-' + toggleId + '-input" type="checkbox" value="' + toggleId + '" />' + 
+						'<label for="config-toggle-' + toggleId + '-input">' + toggleName + '</label>' + 
+					'</div>')
 						.appendTo(body);
 			
 		toggle
@@ -424,24 +427,39 @@ var ConfigToggles = function(node) {
 						
 				});
 
-		return toggleId;
+		setToggle(toggleId, toggleSetting);
 		
 	}
 	
 	function setToggle(toggleId, checked) {
+		var toggle = $('#config-toggle-' + toggleId),
+			body = $('body'),
+			onClass = 'toggle-' + toggleId + '-on',
+			offClass = 'toggle-' + toggleId + '-off';			
 		
+		if (checked) {
+			toggle.addClass('toggle-on');
+			toggle.find('input').prop('checked', true);
+			body
+				.addClass(onClass)
+				.removeClass(offClass);
+			
+		} else {
+			toggle.removeClass('toggle-on');
+			toggle.find('input').prop('checked', false);
+			body
+				.removeClass(onClass)
+				.addClass(offClass);
+		}
+		
+		AppSettings.setValue(toggleId, {checked: checked});
 		
 	}
 	
 	
 	for(var i=0, il=toggleNames.length; i<il; i++) {
-		var toggleName = toggleNames[i],
-			toggleId = createToggle(toggleName),
-			toggleDefaultSetting = {checked: true},
-			toggleSetting = AppSettings.getValue(toggleId, toggleDefaultSetting);
-			
-	
-		setToggle(toggleId, toggleSetting);
+		var toggleName = toggleNames[i]
+		sofia.createToggle(toggleName);
 	}
 	
 }

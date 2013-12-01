@@ -11,6 +11,11 @@ html, body {
 
 body {
 	background: #ffffff;
+	font-family: Avenir, Helvetica;
+}
+
+.clear {
+	clear: both;
 }
 
 input:focus {
@@ -162,7 +167,7 @@ input:focus {
 	.window .window-main {
 		margin: 0;
 		padding: 20px;
-		background: #EEE;
+		background: #fff;
 		border-bottom: solid 1px #ccc;
 		border-right: solid 1px #ccc;
 		height: 70px;
@@ -372,6 +377,9 @@ input:focus {
 #add-PicturesWindow {
 	background-image: url(images/pictures.svg);
 }
+#add-MediaWindow {
+	background-image: url(images/pictures.svg);
+}
 
 
 
@@ -487,3 +495,168 @@ input:focus {
 	border-bottom: solid 1px #ffcc00;
 }
 
+
+
+
+/* config options */
+.config-section {
+	margin: 0 0 15px 0;
+	clear:both;
+	
+}
+.config-header {
+	display:block;
+	font-weight: bold;
+}
+
+
+/* font names */
+#config-font-family-Helvetica,
+.config-font-family-Helvetica .section {
+	font-family: Helvetica;
+}
+#config-font-family-Georgia,
+.config-font-family-Georgia .section {
+	font-family: Georgia;
+}
+#config-font-family-Baskerville,
+.config-font-family-Baskerville .section {
+	font-family: Baskerville;
+}
+#config-font-family-Times,
+.config-font-family-Times .section {
+	font-family: 'Times New Roman';
+}
+#config-font-family-Cambria,
+.config-font-family-Cambria .section {
+	font-family: Cambria;
+}
+
+.config-font-family {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+
+/* font size */
+.config-font-size-10 .chapter {
+	font-size: 10px;
+} 
+.config-font-size-12 .chapter {
+	font-size: 12px;
+} 
+.config-font-size-14 .chapter {
+	font-size: 14px;
+} 
+.config-font-size-16 .chapter {
+	font-size: 16px;
+} 
+.config-font-size-18 .chapter {
+	font-size: 18px;
+} 
+.config-font-size-22 .chapter {
+	font-size: 22px;
+} 
+.config-font-size-24 .chapter {
+	font-size: 24px;
+} 
+.config-font-size-26 .chapter {
+	font-size: 26px;
+} 
+.config-font-size-28 .chapter {
+	font-size: 28px;
+} 
+
+
+/* toggles */
+.config-toggle {
+	width: 30px;
+	float: left;
+	margin: 10px 10px 0 0;
+	position: relative;
+}
+.config-toggle input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+.config-toggle label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	text-indent: -9999px;
+	cursor: pointer;
+	border-radius: 3px;
+	opacity: .5;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+	background-size: 100% 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-color: #fff;		
+}
+.toggle-on label {
+	opacity: 1;
+}
+
+/* VERSES */
+#config-toggle-verses label {
+	background-image: url(images/toggles/verses.svg);
+}
+
+.toggle-verses-off .verse-num {
+	display: none;
+}
+
+/* CHAPTERS */
+#config-toggle-chapters label {
+	background-image: url(images/toggles/chapters.svg);
+}
+.toggle-chapters-off .c,
+.toggle-chapters-off .chapter-num {
+	display: none;
+}
+/* special cases for verse 1 */
+.toggle-chapters-off .v-1 {
+	display: inline;
+}
+.toggle-chapters-off.toggle-verses-off .v-1 {
+	display: none;
+}
+
+/* always show Psalm headings */
+.PS .toggle-chapters-off .c,
+.PS .toggle-chapters-off .chapter-num {
+	display: block;
+}
+
+/* TITLES */
+#config-toggle-titles label {
+	background-image: url(images/toggles/titles.svg);
+}
+
+.toggle-titles-off .is1,
+.toggle-titles-off .is2 {
+	display: none;		
+} 
+
+
+/* WORD OF JESUS */
+#config-toggle-wordsofchrist label {
+	background-image: url(images/toggles/christwords.svg);
+}
+.toggle-wordsofchrist-off .woj,
+.toggle-wordsofchrist-off .wj,
+.toggle-wordsofchrist-off .woc {
+	color: inherit;	
+}
+
+/* NOTES  */
+#config-toggle-notes label {
+	background-image: url(images/toggles/notes.svg);
+}
+
+.toggle-notes-off .note,
+.toggle-notes-off .cf {
+	display: none;		
+} 

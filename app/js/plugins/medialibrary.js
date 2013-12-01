@@ -93,7 +93,7 @@ var MediaLibraryPlugin = function(app) {
 									html = imagesHtmlArray.join('');
 		
 								mediaPopup.body.append('<strong>' + reference.toString() + '</strong>');	
-								mediaPopup.body.append($('<ul class="image-library-thumbs">' + html + '</ul>'));
+								mediaPopup.body.append($('<ul class="inline-image-library-thumbs">' + html + '</ul>'));
 								
 								break;
 							
@@ -117,7 +117,7 @@ var MediaLibraryPlugin = function(app) {
 		
 	}
 	
-	mediaPopup.body.on('click', '.image-library-thumbs a', function() {
+	mediaPopup.body.on('click', '.inline-image-library-thumbs a', function() {
 		var link = $(this);
 		
 		if (link.parent().siblings().length == 0) {

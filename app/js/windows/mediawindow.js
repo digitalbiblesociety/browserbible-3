@@ -1,31 +1,29 @@
 
 var MediaWindow = function(id, parentNode, data) {
 		
-	var mediaData = null,
+	var mediaLibraries = null,
 		contentToProcess = null,
 		currentSectionId = '';
 		header = $('<div class="window-header">Media</div>').appendTo(parentNode),
-		main = $('<div class="window-main"></div>').appendTo(parentNode);
+		main = $('<div class="window-main">' + 
+					'<div class="media-video"></div>' + 
+					'<div class="media-content"></div>' + 
+				'</div>').appendTo(parentNode),
+		videoArea = main.find('media-video'),
+		contentArea = main.find('media-content');
 
-
-
-	MediaLibrary.getLibraries(function(data) {		
-			mediaData = data;
-			
-			processContent();
-		}
+	MediaLibrary.getMediaLibraries(function(data) {		
+		mediaLibraries = data;
+		
+		processContent();
 	});
 	
 	function processContent() {
-		if (mediaData == null) {
-			return;	
-		}
-		
-		if (contentToProcess == null) {
+		if (mediaLibraries == null || contentToProcess == null) {
 			return;	
 		}		
 		
-		var sectionid = content.attr('data-id');
+		var sectionid = contentToProcess.attr('data-id');
 		
 		if (currentSectionId == sectionid) {
 			return;			
@@ -34,44 +32,76 @@ var MediaWindow = function(id, parentNode, data) {
 		currentSectionId = sectionid;
 		
 		
+		// remove all previous checks
+		$('.checked-media').removeClass('checked-media');
+			
 		main.html('');
 		
-		content.find('.verse').each(function(i,el) {
+		contentToProcess.find('.verse').each(function(i,el) {
 			var verse = $(this),
 				verseid = verse.attr('data-id'),
-				reference = new bible.Reference(verseid),
-				images = mediaData[verseid];
+				reference = new bible.Reference(verseid);
 				
-			if (images != null) {
+			verse = verse.parent().find('.' + verseid).first();
 			
-				var node = $('<div class="verse-images"><h2 style="clear:both;">' + reference.toString() + '</h2><ul class="image-library-thumbs"></ul></div>').appendTo(main),
-					list = node.find('.image-library-thumbs');			
-			
-				for (var i=0, il = images.length; i<il; i++) {
-					var url = "content/images/" + images[i];
-					$('<li><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>').appendTo(list);				
-				}				
-			}			
-		});	
-		
-	}
-	
-	function renderImages() {
-		for (var verseid in mediaData) {
-			var reference = new bible.Reference(verseid),
-				images = mediaData[verseid],
-				node = $('<div class="verse-images"><h2 style="clear:both;">' + reference.toString() + '</h2><ul class="image-library-thumbs"></ul></div>').appendTo(main),
-				list = node.find('.image-library-thumbs');
-				
-			for (var i=0, il = images.length; i<il; i++) {
-				var url = "content/images/" + images[i];
-				$('<li><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>').appendTo(list);				
+			if (verse.hasClass('checked-media')) {
+				return;
 			}
 			
-		}
+			var node = $('<div class="verse-images">' + 
+							'<h2 style="clear:both;">' + reference.toString() + '</h2>' + 
+							'<ul class="image-library-thumbs"></ul>' + 
+						'</div>'),
+				list = node.find('.image-library-thumbs');
+							
+			
+			for (var i=0, il=mediaLibraries.length; i<il; i++) {
+			
+				var mediaLibrary = mediaLibraries[i],
+					mediaForVerse = mediaLibrary.data ? mediaLibrary.data[verseid] : undefined;
+				
+				
+				
+				// add media
+				if (typeof mediaForVerse != 'undefined') {	
+					
+					switch (mediaLibrary.type) {
+						case 'image':
+						
+							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
+								var url = 'content/media/' + mediaLibrary.folder  + '/' + mediaForVerse[j];
+								$('<li><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>').appendTo(list);
+								
+								
+							}
+							break;
+						case 'video':
+
+							var url = 'content/media/' + mediaLibrary.folder + '/' + mediaForVerse;
+							
+							console.log('appeending', url);				
+							
+							$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);				
+						
+							break;
+						
+					} 
+				}				
+			}
+			
+			// only add if we have some content
+			if (node.find('li,video').length > 0) {
+				node.appendTo(main);
+			}	
+			
+			verse.addClass('checked-media');
+				
+							
+		});	
+		
+		
 		
 	}
-	
 	
 	function size(width, height) {
 		// do notheirng?
@@ -100,9 +130,7 @@ var MediaWindow = function(id, parentNode, data) {
 			
 			processContent();	
 		}
-	});	
-	
-		
+	});
 		
 	return ext;		
 

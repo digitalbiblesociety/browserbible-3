@@ -1,6 +1,7 @@
 
 var MainMenu = function(node) {
 	
+	// simply create all 'menuComponents' define below
 	for (var i=0, il=sofia.menuComponents.length; i<il; i++) {
 		var component = new window[sofia.menuComponents[i]](node);
 	}
@@ -278,9 +279,59 @@ sofia.menuComponents.push('FullScreenButton');
 
 
 
+var FontFamilySettings = function(node) {
+	var base = $('#main-config-box'),
+		main = $('<div class="config-section">' + 
+					'<span class="config-header">Font</span>' + 
+					'<div class="config-body"></div>' +
+				'</div>').appendTo(base),
+		body = main.find('.config-body'),
+		fontFamilyNames = ['Cambria','Helvetica', 'Baskerville', 'Georgia', 'Times'],
+		defaultFont = {"fontName": fontFamilyNames[0]},
+		fontKey = 'config-font-family',
+		fontFamilySetting = AppSettings.getValue(fontKey, defaultFont);
+		
+	console.log('font', fontSetting)
+		
+		
+	for(var i=0, il=fontFamilyNames.length; i<il; i++) {
+		var fontName = fontFamilyNames[i];
+		
+		$('<label id="config-font-family-' + fontName + '" class="config-font-family"><input type="radio" name="config-font-family" value="' + fontName + '" />' + /* fontName */ 'Aa' + '</label>')
+			.appendTo(body);		
+	}
+	
+	
+	function setFontFamily(newFontName) {
+	
+		var body = $('body');
+	
+		// remove all others
+		for(var i=0, il=fontFamilyNames.length; i<il; i++) {		
+			var fontName = fontFamilyNames[i],
+				className = 'config-font-family-' + fontName;
+				
+			body.removeClass(className);			
+		}
+	
+		$(body).addClass('config-font-family-' + newFontName);
+		
+		AppSettings.setValue(fontKey, {fontName: newFontName});		
+	}
+ 	
+	// handle clciks
+	body.on('change', 'input', function() {
+		var radio = $(this),
+			newFontFamilyValue = radio.val();
+					
+		setFontFamily(newFontFamilyValue);
+	});
+	
+	// set default
+	body.find('#config-font-family-' + fontFamilySetting.fontName).trigger('click');
+}
 
 
-
-
+sofia.menuComponents.push('FontFamilySettings');
 
 

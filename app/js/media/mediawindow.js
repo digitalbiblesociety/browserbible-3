@@ -4,7 +4,7 @@ var MediaWindow = function(id, parentNode, data) {
 	var mediaLibraries = null,
 		contentToProcess = null,
 		currentSectionId = '';
-		header = $('<div class="window-header">Media</div>').appendTo(parentNode),
+		header = $('<div class="window-header"><span class="window-title">Media</span></div>').appendTo(parentNode),
 		main = $('<div class="window-main">' + 
 					'<div class="media-video"></div>' + 
 					'<div class="media-content"></div>' + 
@@ -36,14 +36,15 @@ var MediaWindow = function(id, parentNode, data) {
 		$('.checked-media').removeClass('checked-media');
 			
 		main.html('');
+		main.scrollTop(0);
 		
 		contentToProcess.find('.verse').each(function(i,el) {
 			var verse = $(this),
 				verseid = verse.attr('data-id'),
 				reference = new bible.Reference(verseid);
 				
-			verse = verse.parent().find('.' + verseid).first();
-			
+			verse = verse.closest('.chapter').find('.' + verseid + '').first();
+					
 			if (verse.hasClass('checked-media')) {
 				return;
 			}
@@ -70,18 +71,18 @@ var MediaWindow = function(id, parentNode, data) {
 						
 							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
 								var url = 'content/media/' + mediaLibrary.folder  + '/' + mediaForVerse[j];
-								$('<li><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>').appendTo(list);
-								
-								
+								$('<li class="media-image"><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>').appendTo(list);				
 							}
 							break;
 						case 'video':
 
 							var url = 'content/media/' + mediaLibrary.folder + '/' + mediaForVerse;
+
+								$('<li class="media-video"><a href="' + url + '" target="_blank"><img src="css/images/video.svg" /></a></li>').appendTo(list);				
 							
-							console.log('appeending', url);				
-							
-							$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);				
+							/*
+							$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	
+							*/			
 						
 							break;
 						
@@ -102,6 +103,12 @@ var MediaWindow = function(id, parentNode, data) {
 		
 		
 	}
+	
+	
+	main.on('click', '.image-library-thumbs .media-image a', sofia.globals.mediaImageClick);
+	
+	main.on('click', '.image-library-thumbs .media-video a', sofia.globals.mediaVideoClick);
+	
 	
 	function size(width, height) {
 		// do notheirng?
@@ -131,6 +138,22 @@ var MediaWindow = function(id, parentNode, data) {
 			processContent();	
 		}
 	});
+	
+	setTimeout(function() {
+		var firstWindowSettings = sofia.app.windowManager.getSettings()[0],
+			firstWin = $('.window:first'),
+			selectedChapter = firstWin.find('.section[data-id="' + firstWindowSettings.data.sectionid + '"]').first();
+			
+		contentToProcess = selectedChapter;
+		
+		processContent();	
+		
+	}, 500);
+	
+	// try to find the first one
+	//var firstWindow = sofia.windowManager.windows[0];
+
+	
 		
 	return ext;		
 

@@ -1,3 +1,85 @@
+sofia.globals.mediaImageClick = function(e) {
+	e.preventDefault();
+	
+	var link = $(this),
+		url = link.attr('href'),
+		img = link.find('img'),
+		imgWidth = img.width(),
+		imgHeight = img.height(),			
+		imgOffset = img.offset(),
+		win = $(window),
+		winHeight = win.height(),
+		winWidth = win.width(),
+					
+		clonedImage = img
+						.clone()
+						.appendTo($('body'))
+						.addClass('big-image')
+						.css({top: imgOffset.top, left: imgOffset.left, width: imgWidth, height: imgHeight }),
+						
+		newHeight = winHeight,
+		newWidth = winHeight * imgWidth / imgHeight,
+		newTop = 0,
+		newLeft = winWidth/2 - newWidth/2;
+						
+						
+	clonedImage.animate({
+		top: newTop,
+		left: newLeft,
+		width: newWidth,
+		height: newHeight			
+	});
+	
+	clonedImage.on('click', shrinkImage);
+	
+	function shrinkImage() {
+		clonedImage.animate(
+			{top: imgOffset.top, left: imgOffset.left, width: imgWidth, height: imgHeight },
+			{complete: function() { clonedImage.remove();}
+		});		
+		
+		// remove this listener
+		$('body').off('click', shrinkImage);		
+	}
+	
+	// click anywhere to remove
+	$('body').on('click', shrinkImage);
+	
+	return false;
+}
+
+
+sofia.globals.mediaVideoClick = function(e) {
+	e.preventDefault();
+	
+	var link = $(this),
+		url = link.attr('href'),
+		win = $(window),
+		winHeight = win.height(),
+		winWidth = win.width();
+					
+	
+	var movableWindow = new MovableWindow(640,360),
+		video = $('<video autoplay controls src="' + url + '" style="width:100%; height: auto;"></video>').appendTo(movableWindow.body);
+	
+	
+	movableWindow.show();
+	movableWindow.title.html('Video');
+	
+	movableWindow.container.find('.close-button').on('click', function() {
+		
+		console.log('close clicked');
+		
+		movableWindow.container.find('video')[0].pause();
+		movableWindow.container.remove();
+		
+		movableWindow = null;	
+	})
+	
+	
+	return false;
+}
+
 
 var MediaLibraryPlugin = function(app) {
 	

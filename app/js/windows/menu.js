@@ -346,15 +346,19 @@ var FontSizeSettings = function(node) {
 		defaultFontSize = {"fontSize": 18},
 		fontSizeKey = 'config-font-size',
 		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSize);
-		
 	
-	for(var i=0, il=fontSizes.length; i<il; i++) {
-		var fontSize = fontSizes[i];
-		
-		$('<label id="config-font-size-' + fontSize + '" class="config-font-size"><input type="radio" name="config-font-size" value="' + fontSize + '" />' + fontSize + '</label>')
-			.appendTo(body);		
-	}
 	
+	$('<div class="font-slider"></div>')
+		.appendTo(body)
+		.slider({
+			value: fontSizeSetting.fontSize,
+			min: fontSizes[0],
+			max: fontSizes[fontSizes.length-1],
+			step: 2,			
+			slide: function( event, ui ) {
+				setFontSize(ui.value);
+			}						
+		});
 	
 	function setFontSize(newFontSize) {
 	
@@ -371,7 +375,19 @@ var FontSizeSettings = function(node) {
 		body.addClass('config-font-size-' + newFontSize);
 		
 		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
+	}	
+	
+	/*	
+	
+	for(var i=0, il=fontSizes.length; i<il; i++) {
+		var fontSize = fontSizes[i];
+		
+		$('<label id="config-font-size-' + fontSize + '" class="config-font-size"><input type="radio" name="config-font-size" value="' + fontSize + '" />' + fontSize + '</label>')
+			.appendTo(body);		
 	}
+	
+	
+
  	
 	// handle clciks
 	body.on('change', 'input', function() {
@@ -383,6 +399,7 @@ var FontSizeSettings = function(node) {
 	
 	// set default
 	body.find('#config-font-size-' + fontSizeSetting.fontSize).trigger('click');
+	*/
 }
 
 
@@ -399,12 +416,12 @@ var ConfigToggles = function(node) {
 					'<div class="clear"></div>' + 
 				'</div>').appendTo(base),
 		body = main.find('.config-body'),
-		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ'],
+		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ', 'Media'],
 		prefix = 'config-toggle-';
 		
 	
 	
-	sofia.createToggle = function(toggleName) {
+	sofia.globals.createToggle = function(toggleName) {
 		
 		var
 			toggleId = toggleName.replace(/\s/gi, '').toLowerCase(),
@@ -412,7 +429,7 @@ var ConfigToggles = function(node) {
 			toggleSetting = AppSettings.getValue(toggleId, toggleDefaultSetting),			
 			toggle = $('<div id="config-toggle-' + toggleId + '" class="config-toggle">' + 
 						'<input id="config-toggle-' + toggleId + '-input" type="checkbox" value="' + toggleId + '" />' + 
-						'<label for="config-toggle-' + toggleId + '-input">' + toggleName + '</label>' + 
+						'<label for="config-toggle-' + toggleId + '-input" title="' + toggleName + '">' + toggleName + '</label>' + 
 					'</div>')
 						.appendTo(body);
 			
@@ -459,7 +476,7 @@ var ConfigToggles = function(node) {
 	
 	for(var i=0, il=toggleNames.length; i<il; i++) {
 		var toggleName = toggleNames[i]
-		sofia.createToggle(toggleName);
+		sofia.globals.createToggle(toggleName);
 	}
 	
 }
@@ -479,4 +496,4 @@ var ConfigAddIns = function(node) {
 }
 
 
-sofia.menuComponents.push('ConfigAddIns');
+//sofia.menuComponents.push('ConfigAddIns');

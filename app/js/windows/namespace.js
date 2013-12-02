@@ -5,3 +5,5 @@ window.sofia = {};
 sofia.plugins = [];
 sofia.windowTypes = [];
 sofia.menuComponents = [];
+
+sofia.globals = {};

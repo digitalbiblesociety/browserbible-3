@@ -15,15 +15,20 @@
 	<link rel="stylesheet" href="css/common-ui.css" />	
 	<link rel="stylesheet" href="css/bible.css" />
 	<link rel="stylesheet" href="css/windows.css" />
-	<link rel="stylesheet" href="css/plugins.css" />	
+	<link rel="stylesheet" href="css/plugins.css" />
+	<link rel="stylesheet" href="css/usfm.css" />		
 	
 	<!-- replacement console for IE -->
 	<script>
 	if (typeof console == 'undefined') { window.console = {log:function() {}}; }
 	</script>
-		
+	
+	<!-- external libraries -->	
 	<script src="js/lib/jquery.min.js"></script>
 	<script src="js/lib/jquery.mobile.min.js"></script>
+	<script src="js/lib/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>	
+	<link rel="stylesheet" href="js/lib/jquery-ui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
+	
 	<script src="js/lib/base32.js"></script>
 	<script src="js/lib/xregexp.js"></script>		
 	
@@ -33,7 +38,7 @@
 	<!-- common libraries -->
 	<script src="js/common/appsettings.js"></script>	
 	<script src="js/common/eventlistener.js"></script>
-	<script src="js/common/timer.js"></script>		
+	<script src="js/common/timer.js"></script>			
 	
 	<!- bible -->
 	<script src="js/bible/bible.data.js"></script>
@@ -51,19 +56,25 @@
 
 	<script src="js/ui/textchooser.js"></script>		
 	<script src="js/ui/textnavigator.js"></script>	
-	<script src="js/ui/infowindow.js"></script>				
+	<script src="js/ui/infowindow.js"></script>	
+	<script src="js/ui/movablewindow.js"></script>					
 
 	<script src="js/plugins/lemmainfo.js"></script>
 	<script src="js/plugins/lemmamatch.js"></script>
 	<script src="js/plugins/lemmapopup.js"></script>
 	<script src="js/plugins/versematch.js"></script>	
-	<script src="js/plugins/imagelibrary.js"></script>				
+	<script src="js/plugins/notes.js"></script>		
+
+	<script src="js/media/medialibrary.js"></script>				
+	<script src="js/media/mediaplugin.js"></script>	
+	<script src="js/media/mediawindow.js"></script>	
+
 	
 	<script src="js/windows/windowmanager.js"></script>		
 	<script src="js/windows/searchwindow.js"></script>	
-	<script src="js/windows/pictureswindow.js"></script>		
 	<script src="js/windows/mapswindow.js"></script>
 	<script src="js/windows/scroller.js"></script>		
+	<script src="js/windows/scrolleraudio.js"></script>			
 	<script src="js/windows/scrollerwindow.js"></script>		
 	<script src="js/windows/menu.js"></script>		
 	<script src="js/windows/windowapp.js"></script>		

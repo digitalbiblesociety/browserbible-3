@@ -13,12 +13,15 @@
 .image-icon {
 	background-image: url(images/pictures.svg);
 }
-.inline-image-library-thumbs {
+.inline-image-library-thumbs,
+.inline-video-library-thumbs {
 	margin:0;
 	padding:0;
 	list-style-type:none;
 }
-.inline-image-library-thumbs li {
+.inline-image-library-thumbs li,
+.inline-video-library-thumbs li {
+
 	display:block;
 	width:60px;
 	height:60px;
@@ -26,7 +29,8 @@
 	text-align:center;
 	margin:0 10px 10px 0;
 }
-.inline-image-library-thumbs li img {
+.inline-image-library-thumbs li img,
+.inline-video-library-thumbs li img {
 	display:inline;
 	cursor:pointer;
 	max-width:60px;
@@ -61,6 +65,12 @@
 .verse-images h2 {
 	text-align: left;
 }
+
+.big-image {
+	position: absolute;
+	z-index: 100;	
+}
+
 /* Video */
 .video-icon {
 	background-image: url(images/video.svg);

@@ -58,6 +58,12 @@ input:focus {
 		font-family: Avenir, Helvetica;
 		font-size: 12px;	
 	}
+	
+	.window-title {
+		display: block;
+		font-size: 18px;
+		margin: 5px 0 5px 10px;
+	}
 /*
 @media only screen and (-webkit-min-device-pixel-ratio:1.5),
 	only screen and (min-device-pixel-ratio:1.5) {
@@ -383,6 +389,39 @@ input:focus {
 
 
 
+.movable-window {
+	position: absolute;
+	z-index: 1000;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);	
+}
+.movable-header {
+	background: #f8f8f8;
+	height: 30px;
+	padding: 5px;
+}
+.movable-window-body {
+	overflow: auto;
+}
+.movable-window .close-button {
+	-x-display:none;
+	font-family: arial; 
+	font-size: 15px; 
+	position: absolute; 
+	z-index:10; 
+	top: 5px; 
+	right: 5px; 
+	cursor: pointer; 
+	color: #666; 
+	width: 20px; 
+	height: 20px; 
+	border-radius: 10px; 
+	text-align: center;	
+	background: url(images/close-button.svg) top center no-repeat;	
+	background-position: 0 0;
+}
+
+
+
 
 .audio-controller {
 	position: absolute;
@@ -658,5 +697,16 @@ input:focus {
 
 .toggle-notes-off .note,
 .toggle-notes-off .cf {
+	display: none;		
+} 
+
+
+/* MEDIA  */
+#config-toggle-media label {
+	background-image: url(images/toggles/media.svg);
+}
+
+.toggle-media-off .image-icon,
+.toggle-media-off .video-icon {
 	display: none;		
 } 

@@ -104,3 +104,20 @@ div.c + div.p {
 	display: inline;
 }
 
+div[lang="heb"] .c {
+	float: right;
+	margin-right: 0;
+	margin-left: 0.2em;
+}
+
+div[lang="heb"] {
+	font-family: 'Ezra SIL', 'SBL Hebrew';
+	direction: rtl;
+	text-align: right;	
+	
+}
+
+div[lang="heb"] div.p {
+	direction: rtl;
+	text-align: right;	
+}

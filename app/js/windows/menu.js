@@ -138,18 +138,21 @@ var AddWindowButton = function(node) {
 		// ADD Button
 		var addButton = $('<div class="window-add" id="add-' + tool.type + '">' + tool.label + '</div>')
 					.appendTo(buttonMenu) 
-					.data('init', tool);		
-
+					.data('init', tool);
+					
+				
+					
 	}
 	
 	buttonMenu.on('click', '.window-add', function() {
+		buttonMenu.hide();
 	
 		var label = $(this),
 			settings = label.data('init');
 	
 		sofia.app.windowManager.add(settings.type, settings.data);	
 		
-		buttonMenu.hide();
+
 		//windowManager.trigger('settingschange',{});
 	});	
 	
@@ -163,16 +166,42 @@ var ConfigButton = function(node) {
 					.appendTo(node)
 					.on('click', buttonClick),
 		configMenu = $('<div id="main-config-box" class="window-overlay"></div>')
-					.appendTo($('body')) 
+					.appendTo($('body'));
+					
+	/*
+
+	
+	
+
+	*/	
+	
+	/*
+	configMenu.on('click', function(e) {
+		e.preventDefault();
+		return false;
+	});	
+	*/
+	
+	function documentListener(e) {
+		configMenu.hide();
+		$(document).off('click', documentListener);
+	}	
 	
 	function buttonClick(e) {
+	
+		e.preventDefault();	
 	
 		if (configMenu.is(':visible')) {
 			configMenu.hide();
 		} else {
 			configMenu.show();
+			
+			//$(document).on('click', documentListener);
 		}
+		
+		return false;		
 	}
+
 		
 
 
@@ -295,7 +324,10 @@ var FontFamilySettings = function(node) {
 	for(var i=0, il=fontFamilyNames.length; i<il; i++) {
 		var fontName = fontFamilyNames[i];
 		
-		$('<label id="config-font-family-' + fontName + '" class="config-font-family"><input type="radio" name="config-font-family" value="' + fontName + '" />' + /* fontName */ 'Aa' + '</label>')
+		$('<label id="config-font-family-' + fontName + '" class="config-font-family">' + 
+				'<input type="radio" id="config-font-family-' + fontName + '-value" name="config-font-family" value="' + fontName + '" />' + 
+				/* fontName */ 'Aa' + 
+			'</label>')
 			.appendTo(body);		
 	}
 	
@@ -326,7 +358,7 @@ var FontFamilySettings = function(node) {
 	});
 	
 	// set default
-	body.find('#config-font-family-' + fontFamilySetting.fontName).trigger('click');
+	body.find('#config-font-family-' + fontFamilySetting.fontName + '-value').trigger('click');
 }
 
 
@@ -495,5 +527,4 @@ var ConfigAddIns = function(node) {
 				'</div>').appendTo(base);
 }
 
-
-//sofia.menuComponents.push('ConfigAddIns');
+sofia.menuComponents.push('ConfigAddIns');

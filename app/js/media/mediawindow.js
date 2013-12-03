@@ -78,7 +78,7 @@ var MediaWindow = function(id, parentNode, data) {
 
 							var url = 'content/media/' + mediaLibrary.folder + '/' + mediaForVerse;
 
-								$('<li class="media-video"><a href="' + url + '" target="_blank"><img src="css/images/video.svg" /></a></li>').appendTo(list);				
+								$('<li class="media-video"><a href="' + url + '" target="_blank"><img src="css/images/video.svg" style="background-image:url(' +  url.replace('mp4','png') + '); background-size: cover; background-repeat: no-repeat; background-position: center center;" /></a></li>').appendTo(list);				
 							
 							/*
 							$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	

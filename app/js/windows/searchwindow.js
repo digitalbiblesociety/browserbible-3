@@ -71,7 +71,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	textSearch.on('complete', function(e) {
 		
-		console.log('searcher:complete', e.data.results);
+		//console.log('searcher:complete', e.data.results);
 		
 		var results = e.data.results,
 			html = '<h2>Results: ' + results.length + '</h2>' + 

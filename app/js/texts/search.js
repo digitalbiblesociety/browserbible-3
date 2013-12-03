@@ -84,6 +84,8 @@ texts.TextSearch = function() {
 		
 		if (e.data.loadedIndexes.length == 0) {
 			// BRUTE FORCE?
+			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults}});
+			
 			
 		} else {
 			// begin loading
@@ -97,7 +99,7 @@ texts.TextSearch = function() {
 	function loadNextSectionid() {
 		searchIndexesCurrentIndex++;
 		
-		if (searchIndexesCurrentIndex == searchIndexesData.length) {
+		if (searchIndexesCurrentIndex > searchIndexesData.length) {
 			// DONE!
 			
 			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults}});
@@ -107,8 +109,8 @@ texts.TextSearch = function() {
 		} else {
 			var sectionData = searchIndexesData[searchIndexesCurrentIndex],
 				sectionid = sectionData.sectionid,
-				fragmentids = sectionData.fragmentids,
-				url = baseContentPath + textInfo.id + '/' + sectionid + '.json';
+				fragmentids = sectionData.fragmentids;
+				;// url = baseContentPath + textInfo.id + '/' + sectionid + '.json';
 			
 			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
 				
@@ -118,7 +120,15 @@ texts.TextSearch = function() {
 						var 
 							fragmentid = fragmentids[i],
 							fragmentNode = content.find('.' + fragmentid),
-							html = fragmentNode.html();
+							
+							// assuming a single node
+							//html = fragmentNode.html();
+							
+							html = '';
+						
+						fragmentNode.each(function(i,el) {
+							html += $(el).html() + ' ';
+						});					
 							
 						if (fragmentNode.length > 0) {
 							
@@ -145,48 +155,7 @@ texts.TextSearch = function() {
 			}, function(error) {				
 				loadNextSectionid();
 			});
-			
-			/*
-			$.ajax({
-				dataType: 'json',
-				url: url,
-				success: function(data) {
 					
-					var content = $(data.text);
-					
-					for (var i=0, il=fragmentids.length; i<il; i++) {
-						var 
-							fragmentid = fragmentids[i],
-							fragmentNode = content.find('.' + fragmentid),
-							html = fragmentNode.html();
-							
-						if (fragmentNode.length > 0) {
-							
-							var foundMatch = false;
-						
-							for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
-								
-								searchTermsRegExp.lastIndex = 0;
-								html = html.replace(searchTermsRegExp[j], function(match) {
-									foundMatch = true;
-									return '<span class="highlight">' + match + '</span>';
-								});
-							}
-						
-							if (foundMatch) {
-								searchFinalResults.push({fragmentid: fragmentid, html: html});
-							}
-						}
-					}					
-					
-					loadNextSectionid();					
-				}, 
-				error: function() {
-					loadNextSectionid();
-				}
-			});
-			*/
-			
 		}
 	}
 	

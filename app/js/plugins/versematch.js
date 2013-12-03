@@ -5,7 +5,7 @@ var VerseMatchPlugin = function(app) {
 '<style>' + 
 '.selected-verse {'+
 'background: #d9e8ef;'+
-'-webkit-transition: all 1s ease-in-out;' + 
+'-x-webkit-transition: all 1s ease-in-out;' + 
 '}' +
 '</style>').appendTo( $('head') );
 

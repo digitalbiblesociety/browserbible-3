@@ -139,7 +139,7 @@ bible.BOOK_DATA = {
     "chapters":[22,14,17,21,22,17,18],
     "names":{"eng":["Tobit"]}},
 "JT":{"name":"Judith","sortOrder":42,"shortCode":"JT","usfm":"JDT","osis":"Jdt",
-    "chapters":[],
+    "chapters":[16,28,10,15,24,21,32,36,14,23,23,20,20,19,13,25],
     "names":{"eng":["Judith"]}},
 "EG":{"name":"Esther (Greek)","sortOrder":43,"shortCode":"EG","usfm":"ESG","osis":"EsthGr",
     "chapters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],

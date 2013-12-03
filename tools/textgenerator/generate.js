@@ -12,7 +12,7 @@ var fs = require('fs'),
 var
 	baseOutput = '../../app/content/texts/',
 	baseInput = 'input',
-	createIndex = false;
+	createIndex = true;
 
 console.log('\r\r\r');
 
@@ -36,16 +36,31 @@ function convertFolder(inputPath) {
 		if (fs.existsSync(outputPath)) {
 			var files = fs.readdirSync(outputPath);
 			
-			// TODO
-		}
-		
-		// create directories
-		if (!fs.existsSync(outputPath)) {
+			// DELETE all files
+			files.forEach(function(data) {
+				var filePath = path.join(outputPath, data);
+				if (fs.statSync(filePath).isFile()) {
+					fs.unlinkSync(filePath);				
+				}
+			});
+		} else {
 			fs.mkdirSync(outputPath);
 		}
-		if (!fs.existsSync(indexOutputPath)) {
+		
+		// index data		
+		if (fs.existsSync(indexOutputPath)) {
+			var files = fs.readdirSync(indexOutputPath);
+			
+			// DELETE all files
+			files.forEach(function(data) {
+				var filePath = path.join(indexOutputPath, data);
+				if (fs.statSync(filePath).isFile()) {
+					fs.unlinkSync(filePath);				
+				}
+			});			
+		} else {
 			fs.mkdirSync(indexOutputPath);
-		}				
+		}			
 			
 		generator.generate(inputPath, outputPath, indexOutputPath, info, createIndex);
 		

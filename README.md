@@ -15,6 +15,7 @@ Building Texts
 
 Additional Texts
 -----–----------
+
 To create additional texts
 
 1. Create a folder under `/tools/input/MyNewVersion/` 

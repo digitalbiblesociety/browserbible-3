@@ -64,7 +64,7 @@ var LemmaPopupPlugin = function(app) {
 			
 		var
 			morph = l.attr('m'),
-			strongs = l.attr('s'),
+			strongs = l.attr('s').replace('H','').replace('G',''),
 			main = l.closest('.scroller-main'),
 			verse = l.closest('.verse')
 			verse_code = verse.attr('data-id'),

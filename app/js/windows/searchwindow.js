@@ -21,7 +21,13 @@ var SearchWindow = function(id, parentNode, init_data) {
 		textChooser = new TextChooser(parentNode, textui),
 		//encoder = new base32.Encoder(),
 		textSearch = new texts.TextSearch(),
-		selectedText = null;			
+		selectedText = null,
+		
+		
+		currentResults = null,
+		searchIndexesData = null, 
+		searchTermsRegExp = null
+		;		
 	
 	// EVENTS
 	input.on('keypress', function(e) {
@@ -68,10 +74,18 @@ var SearchWindow = function(id, parentNode, init_data) {
 							});
 	
 	});
+
+	textSearch.on('indexcomplete', function(e) {
+		var results = e.data.results;
+		console.log('searcher:indexcomplete', e.data);
+	
+	
+		footer.html('Results: ' + e.data.searchIndexesData.length );
+	});
 	
 	textSearch.on('complete', function(e) {
 		
-		//console.log('searcher:complete', e.data.results);
+		console.log('searcher:complete', e.data.results);
 		
 		var results = e.data.results,
 			html = '<h2>Results: ' + results.length + '</h2>' + 
@@ -97,6 +111,14 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 		wrapper.html( html );
 		
+		
+		
+		// store results
+		currentResults = e.data.results;
+		searchIndexesData = e.data.searchIndexesData;
+		searchTermsRegExp = e.data.searchTermsRegExp;
+			
+		createHighlights();		
 	});	
 	
 	
@@ -113,6 +135,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		console.log('search', textid, text);
 		
 		textSearch.start(text, textid);
+		
+		removeHighlights();
 		
 		enable();
 	
@@ -169,6 +193,39 @@ var SearchWindow = function(id, parentNode, init_data) {
 	}
 	init();
 
+	function removeHighlights() {	
+		
+	}
+	
+	function createHighlights() {
+		
+		if (currentResults == null) {
+			return;
+		}
+		
+		// try to highlight!
+		for (var i=0, il=currentResults.length; i<il; i++) {
+			var result = currentResults[i];
+
+			
+			$('.' + result.fragmentid).each(function(i,el) {
+				
+				//console.log(el);
+				
+				for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+					
+					searchTermsRegExp.lastIndex = 0;
+					el.innerHTML = el.innerHTML.replace(searchTermsRegExp[j], function(match) {
+						return '<span class="highlight">' + match + '</span>';
+					});
+				}					
+				
+			});
+			
+		}
+		
+	}
+
 	var ext = {
 		size: size,
 		getData: function() { 
@@ -180,6 +237,16 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}
 	};	
 	ext = $.extend(true, ext, EventEmitter);
+	
+	ext.on('message', function(e) {
+		
+		if (e.data.messagetype == 'textload') {
+			//console.log('search:textload', e.data.sectionid);
+			
+			createHighlights(e.data.content);
+			
+		}		
+	});
 		
 	return ext;
 	

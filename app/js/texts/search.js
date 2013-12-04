@@ -84,10 +84,12 @@ texts.TextSearch = function() {
 		
 		if (e.data.loadedIndexes.length == 0) {
 			// BRUTE FORCE?
-			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults}});
+			ext.trigger('indexerror', {type: 'indexerror', target:this, data: {results: searchFinalResults}});
 			
 			
 		} else {
+			ext.trigger('indexcomplete', {type: 'indexcomplete', target:this, data: {searchIndexesData: e.data.loadedResults }});
+			
 			// begin loading
 			searchIndexesData = e.data.loadedResults;
 			searchIndexesCurrentIndex = -1;
@@ -99,58 +101,66 @@ texts.TextSearch = function() {
 	function loadNextSectionid() {
 		searchIndexesCurrentIndex++;
 		
-		if (searchIndexesCurrentIndex > searchIndexesData.length) {
+		if (searchIndexesCurrentIndex >= searchIndexesData.length) {
 			// DONE!
 			
-			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults}});
+			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp}});
 			
 			isSearching = false;
 			
 		} else {
 			var sectionData = searchIndexesData[searchIndexesCurrentIndex],
-				sectionid = sectionData.sectionid,
-				fragmentids = sectionData.fragmentids;
+				sectionid = sectionData ? sectionData.sectionid : null,
+				fragmentids = sectionData ? sectionData.fragmentids : null;
 				;// url = baseContentPath + textInfo.id + '/' + sectionid + '.json';
+				
+			if (!sectionData) {
+				loadNextSectionid();
+				return;
+			}
 			
 			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
 				
 			
 			texts.TextLoader.load(textInfo, sectionid, function(content) {
-					for (var i=0, il=fragmentids.length; i<il; i++) {
-						var 
-							fragmentid = fragmentids[i],
-							fragmentNode = content.find('.' + fragmentid),
-							
-							// assuming a single node
-							//html = fragmentNode.html();
-							
-							html = '';
+
+				for (var i=0, il=fragmentids.length; i<il; i++) {
+					var 
+						fragmentid = fragmentids[i],
+						fragmentNode = content.find('.' + fragmentid),
 						
-						fragmentNode.each(function(i,el) {
-							html += $(el).html() + ' ';
-						});					
-							
-						if (fragmentNode.length > 0) {
-							
-							var foundMatch = false;
+						// assuming a single node
+						//html = fragmentNode.html();
 						
-							for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
-								
-								searchTermsRegExp.lastIndex = 0;
-								html = html.replace(searchTermsRegExp[j], function(match) {
-									foundMatch = true;
-									return '<span class="highlight">' + match + '</span>';
-								});
-							}
+						html = '';
 						
-							if (foundMatch) {
-								searchFinalResults.push({fragmentid: fragmentid, html: html});
-							}
-						}
-					}					
+					fragmentNode.find('.note, .cf').remove();
 					
-					loadNextSectionid();				
-			
+					fragmentNode.each(function(i,el) {
+						html += $(el).html() + ' ';
+					});					
+						
+					if (fragmentNode.length > 0) {
+						
+						var foundMatch = false;
+					
+						for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+							
+							searchTermsRegExp.lastIndex = 0;
+							html = html.replace(searchTermsRegExp[j], function(match) {
+								foundMatch = true;
+								return '<span class="highlight">' + match + '</span>';
+							});
+						}
+					
+						if (foundMatch) {
+							searchFinalResults.push({fragmentid: fragmentid, html: html});
+						}
+					}
+				}					
+				
+				loadNextSectionid();				
+		
 			
 			}, function(error) {				
 				loadNextSectionid();
@@ -260,7 +270,7 @@ texts.SearchIndexLoader = function() {
 	
 	function loadSearchTermIndex(searchTerm) {
 		var
-			searchTermEncoded = base32.encode(searchTerm);
+			searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm)));
 			indexUrl = baseContentPath + textInfo.id + '/index/' + searchTermEncoded + '.json';
 			
 		if (searchTerm == 'undefined') {

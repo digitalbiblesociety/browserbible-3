@@ -30,11 +30,23 @@ var LemmaPopupPlugin = function(app) {
 	var lemmaPopup = new InfoWindow(),							
 		timer = new Timer(hidePopup, 500);
 	
+	lemmaPopup.container.attr('id','lemma-popup');
 	
 	function hidePopup() {
 		lemmaPopup.hide();	
 		$('.selected-lemma').removeClass('selected-lemma');
+		
+		$(document).off('click', handleDocClick);
 	}
+	
+	function handleDocClick(e) {
+			
+		if ($(e.target).closest('#lemma-popup').length == 0) {
+		
+			hidePopup();		
+		}
+
+	}	
 		
 	lemmaPopup.container
 		.on('mouseout', function() {
@@ -47,6 +59,7 @@ var LemmaPopupPlugin = function(app) {
 
 	$('.windows-main').on('click','l', function(e) {
 
+		$(document).off('click', handleDocClick);
 			
 		var l = $(this);
 		
@@ -125,7 +138,12 @@ var LemmaPopupPlugin = function(app) {
 				
 				
 			});
-		}				
+		}
+		
+		$(document).on('click', handleDocClick);
+		
+		return false;
+						
 	});
 }
 

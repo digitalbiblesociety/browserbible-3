@@ -75,3 +75,12 @@
 .video-icon {
 	background-image: url(images/video.svg);
 }
+
+
+
+
+/* Eng 2p Texan */
+#config-eng2p th, config-eng2p td {
+	text-align: left;
+	
+}

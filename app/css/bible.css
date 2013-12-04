@@ -78,7 +78,7 @@ span[class^='verse PSA_']                                    {display:block;}
 
 
 /* most books */
-.section .c {
+.section .c, .section .chapter-num {
 	float: left;
 	font-size: 2.0em;
 	line-height: 1;
@@ -86,8 +86,12 @@ span[class^='verse PSA_']                                    {display:block;}
 	margin-top: 0.15em;
 	margin-right: 0.2em;
 }
-div.c + div.p {
+div.c + div.p,
+.chapter-num + div.p {
 	text-indent: 0 !important;
+}
+div.c + div.q {
+	clear: both; 
 }
 .v-1 {
 	display: none;
@@ -103,6 +107,12 @@ div.c + div.p {
 .PS .v-1 {
 	display: inline;
 }
+div.c + div.q .v-1{
+	display: inline;
+}
+
+
+
 
 div[lang="heb"] .c {
 	float: right;
@@ -120,4 +130,21 @@ div[lang="heb"] {
 div[lang="heb"] div.p {
 	direction: rtl;
 	text-align: right;	
+}
+
+.mt {
+	margin-top: 3em;
+}
+.mt2 {
+	margin-top: 3em;
+}
+.mt2 + .mt, .mt3 + .mt{
+	margin-top: 0em;
+}
+
+h3.is1, 
+div.s, 
+div.is1 {
+	color: #333;
+	font-weight: bold;
 }

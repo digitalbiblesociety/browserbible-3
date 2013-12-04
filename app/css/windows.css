@@ -399,8 +399,9 @@ input:focus {
 	height: 30px;
 	padding: 5px;
 }
-.movable-window-body {
+.movable-body {
 	overflow: auto;
+	background: #fff;
 }
 .movable-window .close-button {
 	-x-display:none;
@@ -419,6 +420,12 @@ input:focus {
 	background: url(images/close-button.svg) top center no-repeat;	
 	background-position: 0 0;
 }
+.movable-window .close-button:hover {
+	background-color: #d5998b; 
+	background-position: 0 -20px;
+
+	color: #fff;	
+}	
 
 
 
@@ -529,7 +536,7 @@ input:focus {
 }
 
 
-.search-main .highlight {
+.highlight {
 	background: #ffff00;
 	border-bottom: solid 1px #ffcc00;
 }
@@ -710,3 +717,6 @@ input:focus {
 .toggle-media-off .video-icon {
 	display: none;		
 } 
+
+
+

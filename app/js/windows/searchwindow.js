@@ -9,7 +9,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<input type="button" value="Search" class="search-button header-button" />' + 		
 						'<div class="text-list header-list" style="">&nbsp;</div>' + 
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' + 				
-						
 					'</div>').appendTo(parentNode),
 		main = $('<div class="search-main"><div class="search-wrapper"></div></div>').appendTo(parentNode),
 		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
@@ -97,12 +96,17 @@ var SearchWindow = function(id, parentNode, init_data) {
 			var result = results[i],
 				label = '';
 			
-			if (textInfo.type == 'bible') {
+			if (textInfo.type.toLowerCase() == 'bible') {
 				var br = new bible.Reference(result.fragmentid);
-				br.lang = textInfo.lang;
+				
+				//console.log(br, br.toString(), bible.BOOK_DATA['GN'].names[textInfo.lang]);
+				
+				if (bible.BOOK_DATA['GN'].names[textInfo.lang]) {				
+					br.lang = textInfo.lang;
+				}
 				label = br.toString();	
 			} else {
-				label = results.fragmentid;
+				label = result.fragmentid;
 			}
 				
 			html += '<tr data-fragmentid="' + result.fragmentid + '"><th>' + label + '</th><td>' + result.html + '</td></tr>';

@@ -27,6 +27,7 @@
 // 2. load every chapter
 // 3. use regexp to find verses with words
 
+texts.singleWordLanguages = ['cht','chs','chi','zho','cmn', 'jpn', 'kor'];
 
 texts.TextSearch = function() {
 
@@ -104,6 +105,8 @@ texts.TextSearch = function() {
 		if (searchIndexesCurrentIndex >= searchIndexesData.length) {
 			// DONE!
 			
+			console.log('textSearch:complete');
+			
 			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp}});
 			
 			isSearching = false;
@@ -162,7 +165,8 @@ texts.TextSearch = function() {
 				loadNextSectionid();				
 		
 			
-			}, function(error) {				
+			}, function(error) {	
+						
 				loadNextSectionid();
 			});
 					
@@ -205,8 +209,25 @@ texts.TextSearch = function() {
 					
 		}
 		// non-ASCII characters
-		else {		
-			searchTermsRegExp = [new XRegExp(searchText, 'gi')];
+		else {	
+
+			
+			if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
+				searchTermsRegExp = [];
+				var chText = searchText; // .split(' AND ').join('');
+				
+				for (var j=0, jl=chText.length; j<jl; j++) {
+					var chTerm = chText[j];
+					if (chTerm.trim().length > 0) {
+						searchTermsRegExp.push( new XRegExp(chText[j], 'gi') );
+					}
+				}
+				
+			} else {
+				searchTermsRegExp = [new XRegExp(searchText, 'gi')];				
+			}
+			
+			console.log('non ASCII', searchTermsRegExp);			
 		}			
 	}
 		
@@ -240,11 +261,23 @@ texts.SearchIndexLoader = function() {
 		textInfo = newTextInfo;
 	
 		// split up search into words for indexing
-		searchTerms = searchText.replace(/\sAND\s/gi,' ').replace(/\sOR\s/gi,' ').replace(/"/g,'').split(/\s+/g);
+		if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
+			searchTerms = [];
+			for (var i=0,il=searchText.length; i<il; i++) {
+				var text = searchText[i];
+				if (text.replace(/\s/gi, '').length > 0) {
+					searchTerms.push( text );
+				}
+			}
+		} else {
+			searchTerms = searchText.replace(/\sAND\s/gi,' ').replace(/\sOR\s/gi,' ').replace(/"/g,'').split(/\s+/g);
+		}
 		searchTermsIndex = -1;
 		loadedIndexes = [];
 		
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
+		
+		console.log(searchText, searchType, searchTerms);
 		
 		// start it up
 		loadNextIndex();		

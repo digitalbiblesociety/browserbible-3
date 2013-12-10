@@ -59,7 +59,7 @@ var Scroller = function(node) {
 			switch (currentTextInfo.type.toLowerCase()) {
 				case 'bible':				
 					// find top				
-					fragmentSelector = '.verse';
+					fragmentSelector = '.verse, .v';
 					
 					break;
 				case 'book':
@@ -250,7 +250,7 @@ var Scroller = function(node) {
 		
 		// remove below
 		else if (sections_count > 4 && below_bottom > node_height*15) {
-			console.warn('remove below', below_bottom, node_height);
+			//console.warn('remove below', below_bottom, node_height);
 			
 			wrapper.find('.section:last').remove();		
 		}			

@@ -9,14 +9,14 @@ var VerseMatchPlugin = function(app) {
 '}' +
 '</style>').appendTo( $('head') );
 
-	$('.windows-main').on('mouseover','.verse', function(e) {
+	$('.windows-main').on('mouseover','.verse, .v', function(e) {
 		
 		var verse = $(this),	
 			verseid = verse.attr('data-id');
 						
 		$('.' + verseid).addClass('selected-verse');		
 		
-	}).on('mouseout','.verse', function(e) {
+	}).on('mouseout','.verse, .v', function(e) {
 		var verse = $(this),	
 			verseid = verse.attr('data-id');
 			

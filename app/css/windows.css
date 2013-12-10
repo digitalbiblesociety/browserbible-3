@@ -438,7 +438,7 @@ input:focus {
 	background: #f8f8f8;
 	border-top: solid 1px #d9d9d9;
 	padding: 5px;
-	height: 50px;
+	height: 60px;
 	-x-box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	font-family: Avenir;
 	font-size: 12px;
@@ -449,9 +449,14 @@ input:focus {
 .audio-controller .audio-next  {
 	border: none;
 	background-color: #ddd;
-	-x-border: 2px solid #bbb;
-	-x-background: #ccc;
 	border-radius: 50px;
+	text-indent: -9999px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	
+	position: absolute;
+	left: 50%;
+		
 }
 
 .audio-controller .audio-play:hover,
@@ -461,6 +466,8 @@ input:focus {
 	cursor: pointer;
 }
 
+/* fixed/ floating */
+/*
 .audio-controller .audio-play {
 	width: 40px;
 	height: 40px;
@@ -504,6 +511,99 @@ input:focus {
 	display: inline-block;
 	margin-left: 20px;	
 }
+*/
+
+.audio-controller .audio-play {
+	width: 40px;
+	height: 40px;
+	background-image: url(images/audio/play-icon.svg);
+	background-size: 25px 25px;
+	
+	top: 15px;
+	margin-left: -20px;	
+}
+.audio-controller .audio-play.playing {
+	background-image: url(images/audio/pause-icon.svg);
+}
+
+.audio-controller .audio-prev, 
+.audio-controller .audio-next  {
+	width: 30px;
+	height: 30px;	
+	margin-left: 5px;
+	background-size: 15px 15px;
+	top: 20px;	
+}
+
+.audio-controller .audio-prev {
+	background-image: url(images/audio/previous-icon.svg);
+	margin-left: -52px;
+}
+.audio-controller .audio-next  {
+	background-image: url(images/audio/next-icon.svg);
+	margin-left: 24px;	
+}
+
+.audio-controller .audio-currenttime,
+.audio-controller .audio-duration,
+.audio-controller .audio-title {
+	display: block;
+	position: absolute;
+	top: 25px;
+}
+
+.audio-controller .audio-currenttime {
+	right: 50px;
+}
+.audio-controller .audio-duration {
+	right: 10px;
+}
+.audio-controller .audio-title {
+	left: 10px;	
+}
+
+.audio-controller label {
+	position: absolute;
+	bottom: 0;
+	left: 10px;	
+	display: none;
+}
+
+.audio-controller .audio-slider {
+	background: #ccc;
+	position: absolute;	
+	top: 0;
+	left: 0;
+	height: 10px;
+	width: 100%;
+}
+	.audio-controller .audio-slider .audio-slider-current {
+		background: #999;
+		position: absolute;	
+		top: 0;
+		left: 0;
+		height: 10px;
+	}
+	.audio-controller .audio-slider .audio-slider-loaded {
+		background: #cc9;
+		position: absolute;	
+		top: 0;
+		left: 0;
+		height: 10px;
+	}
+	.audio-controller .audio-slider .audio-slider-handle {
+		display: block;
+		border-radius: 2px;
+		border: solid 1px #aaa;
+		width: 16px;
+		height: 14px;
+		background: #bbb;		
+		position: absolute;	
+		top: -2px;
+		left: 0;
+		margin-left: -8px;
+		cursor: ew-resize;
+	}	
 
 
 

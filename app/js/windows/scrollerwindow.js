@@ -140,7 +140,9 @@ var ScrollerWindow = function(id, node, init_data) {
 		if ((e.data.messagetype == 'nav' && hasFocus) || e.data.messagetype != 'nav') {
 		
 			//console.log('sending global');
-			ext.trigger('globalmessage', {type: e.type, target: ext, data: e.data});	
+			if (ext) {
+				ext.trigger('globalmessage', {type: e.type, target: ext, data: e.data});	
+			}
 		}
 	});	
 			
@@ -187,6 +189,11 @@ var ScrollerWindow = function(id, node, init_data) {
 				audioController.setTextInfo(currentTextInfo);				
 										
 				scroller.setTextInfo(currentTextInfo);
+				
+				if (!init_data.sectionid && init_data.fragmentid) {
+					init_data.sectionid = init_data.fragmentid.split('_')[0];
+				}
+				
 				scroller.load('text', init_data.sectionid, init_data.fragmentid);			
 			}
 		});

@@ -1,0 +1,2 @@
+app/content/texts/*
+!app/content/texts/.gitkeep

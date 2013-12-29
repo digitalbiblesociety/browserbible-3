@@ -8,7 +8,7 @@ An update to https://github.com/digitalbiblesociety/browserbible.
 
 
 1. Install Node.js (http://nodejs.org/download/) for your platform
-2. Navigate to the `/tools/` folder
+2. Navigate to the `/tools/textgenerator/` folder
 3. Run `node generate.js` (optionally include versions `node generate.js usfm_websf`)
 4. Run `node create_texts_index.js`
 

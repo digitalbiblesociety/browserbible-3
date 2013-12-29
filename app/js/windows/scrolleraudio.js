@@ -44,7 +44,8 @@ var AudioController = function(container, ui, scroller) {
 		sectionNode = null,
 		hasAudio = false,
 		audioDataManager = new AudioDataManager();
-		
+	
+	autoplayCheckbox.prop('checked',false);	
 	autoplayCheckbox.parent().hide();
 		
 	//block.hide();

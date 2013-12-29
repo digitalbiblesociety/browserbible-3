@@ -1,0 +1,10 @@
+{
+  "name": "browserbible_generator",
+  "version": "0.0.1",
+  "author": "John Dyer <johndyer@gmail.com>",
+  "description": "Generates HTML bibles for BrowserBible",
+  "dependencies" : {
+    "jquery"   :  "*"
+  },
+  "license": "MIT"
+}

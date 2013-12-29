@@ -8,11 +8,11 @@ var LemmaMatchPlugin = function(app) {
 '}' +
 '</style>').appendTo( $('head') );
 
-	$('.windows-main').on('mouseover','l', function(e) {
+	$('.section').on('mouseover','l', function(e) {
 		
 		var l = $(this),	
 			strongs = l.attr('s').replace('G','').replace('H',''),
-			verse = l.closest('.verse'),
+			verse = l.closest('.verse, .v'),
 			verseid = verse.attr('data-id'),
 			bookid = verseid.substring(0,2);
 			langPrefix = (bible.OT_BOOKS.indexOf(bookid) > -1) ? 'H' : 'G';

@@ -47,21 +47,23 @@ function convertFolder(inputPath) {
 			fs.mkdirSync(outputPath);
 		}
 		
-		// index data		
-		if (fs.existsSync(indexOutputPath)) {
-			var files = fs.readdirSync(indexOutputPath);
-			
-			// DELETE all files
-			files.forEach(function(data) {
-				var filePath = path.join(indexOutputPath, data);
-				if (fs.statSync(filePath).isFile()) {
-					fs.unlinkSync(filePath);				
-				}
-			});			
-		} else {
-			fs.mkdirSync(indexOutputPath);
-		}			
-			
+		// index data
+		if (createIndex) {		
+			if (fs.existsSync(indexOutputPath)) {
+				var files = fs.readdirSync(indexOutputPath);
+				
+				// DELETE all files
+				files.forEach(function(data) {
+					var filePath = path.join(indexOutputPath, data);
+					if (fs.statSync(filePath).isFile()) {
+						fs.unlinkSync(filePath);				
+					}
+				});			
+			} else {
+				fs.mkdirSync(indexOutputPath);
+			}			
+		}
+					
 		generator.generate(inputPath, outputPath, indexOutputPath, info, createIndex);
 		
 		var endDate = new Date();		
@@ -104,7 +106,16 @@ function MillisecondsToDuration(n) {
 }
 
 
+// START
 
+
+// make /texts/ folder
+if (!fs.existsSync(baseInput)) {
+	fs.mkdirSync(baseInput);
+}
+
+
+// process 1 or more folders
 if (process.argv.length > 2) {
 
 	var folders = process.argv[2].split(',');

@@ -77,9 +77,9 @@ var LemmaPopupPlugin = function(app) {
 			
 		var
 			morph = l.attr('m'),
-			strongs = l.attr('s').replace('H','').replace('G',''),
+			strongs = parseInt(l.attr('s').replace('H','').replace('G',''), 10),
 			main = l.closest('.scroller-main'),
-			verse = l.closest('.verse')
+			verse = l.closest('.verse, .v')
 			verse_code = verse.attr('data-id'),
 			book_id = verse_code.substring(0,2),
 			//lOffset = l.offset(),
@@ -133,7 +133,7 @@ var LemmaPopupPlugin = function(app) {
 					
 				}, 
 				error: function() {
-					popupBody.html('Error');
+					lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs );
 				}
 				
 				

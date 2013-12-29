@@ -56,6 +56,7 @@ texts.TextSearch = function() {
 		console.log('TextSearch.start', text, textid);
 		
 		if (isSearching) {
+			console.log('already started ... return');
 			return false;
 		}
 		isSearching = true;
@@ -70,6 +71,9 @@ texts.TextSearch = function() {
 		canceled = false;
 		startTime = new Date();
 		searchFinalResults = [];
+		searchTermsRegExp = [];
+		searchIndexesData = []
+		searchIndexesCurrentIndex = 0;
 	
 		createSearchTerms();
 		
@@ -92,8 +96,12 @@ texts.TextSearch = function() {
 			ext.trigger('indexcomplete', {type: 'indexcomplete', target:this, data: {searchIndexesData: e.data.loadedResults }});
 			
 			// begin loading
+
+			
 			searchIndexesData = e.data.loadedResults;
 			searchIndexesCurrentIndex = -1;
+			
+			console.log('start loading indexes', searchIndexesData.length, searchIndexesCurrentIndex);			
 			loadNextSectionid();
 		}
 		
@@ -102,7 +110,13 @@ texts.TextSearch = function() {
 	function loadNextSectionid() {
 		searchIndexesCurrentIndex++;
 		
-		if (searchIndexesCurrentIndex >= searchIndexesData.length) {
+		console.log('loadNextSectionid', searchIndexesData.length, searchIndexesCurrentIndex);		
+		
+		if (searchIndexesCurrentIndex > searchIndexesData.length) {
+		
+			console.log('OVER');
+		
+		} else if (searchIndexesCurrentIndex == searchIndexesData.length) {
 			// DONE!
 			
 			console.log('textSearch:complete');
@@ -124,7 +138,6 @@ texts.TextSearch = function() {
 			
 			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
 				
-			
 			texts.TextLoader.load(textInfo, sectionid, function(content) {
 
 				for (var i=0, il=fragmentids.length; i<il; i++) {
@@ -166,6 +179,8 @@ texts.TextSearch = function() {
 		
 			
 			}, function(error) {	
+			
+				console.log('searchindex:error');
 						
 				loadNextSectionid();
 			});
@@ -176,7 +191,7 @@ texts.TextSearch = function() {
 	function createSearchTerms() {
 		searchTermsRegExp = [];
 		
-		// ASCII characters have predictable word boundaries (space ' ')
+		// ASCII characters have predictable word boundaries (space ' ' = \b)
 		isAsciiRegExp.lastIndex = 0;
 		if (isAsciiRegExp.test( searchText )) {
 					
@@ -211,7 +226,15 @@ texts.TextSearch = function() {
 		// non-ASCII characters
 		else {	
 
+			var words = texts.SearchTools.splitWords(searchText);
 			
+			for (var j=0, jl=words.length; j<jl; j++) {
+			
+				searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
+			
+			}
+			
+			/*
 			if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
 				searchTermsRegExp = [];
 				var chText = searchText; // .split(' AND ').join('');
@@ -226,6 +249,7 @@ texts.TextSearch = function() {
 			} else {
 				searchTermsRegExp = [new XRegExp(searchText, 'gi')];				
 			}
+			*/
 			
 			console.log('non ASCII', searchTermsRegExp);			
 		}			
@@ -241,12 +265,78 @@ texts.TextSearch = function() {
 	return ext;
 };
 
+texts.SearchTools = {
+	splitWords: function(input) {
+
+		var 
+			removeRegChars = ['\\', '^', '$', '.', '|', '?', '*', '+', '(', ')', '[', ']', '{', '}'];
+			otherRemoveChars = [
+				// roman
+				',',';', '!', '-', '–', '―', '—', '~', ':', '"','/', "'s", '’s', "'", '‘', '’', '“', '”', '¿', '<', '>', '&',
+				// chinese
+				'。', '：', '，', '”', '“', '）', '（', '~', '「', '」'
+			],
+			punctuation = [].concat(removeRegChars).concat(otherRemoveChars),		
+			innerWordExceptions = ["'", '’', '-'],
+			words = [],
+			word = '';
+			
+		function addWord() {
+			if (word != '')	{
+				words.push(word);
+			}
+			word = '';
+		}
+		
+		// formalize string
+		input = new String(input);
+		
+		// yes or no on apostrophes
+		input = input.replace(/(['’]s)/gi, '');
+	
+	    for (var i = 0, il = input.length; i<il; i++) {
+			var	letter = input.charAt(i),
+				charCode = input.charCodeAt(i),
+				isFirstChar = (i==0);
+				isLastChar = (i==il-1),
+				isPunctuation = punctuation.indexOf(letter) > -1,
+				isWhitespace = letter == ' ',
+				isLetter = !(isWhitespace || isPunctuation);
+			
+			// if this is a letter
+			if ( isLetter ) {
+				
+				 word += letter;
+				
+				// If this is a Chinese/Japanese/Korean ideograph, it is a word by itself. No separator is needed.
+				if (((charCode >= 0x4E00) && (charCode <= 0x9FFF)) || ((charCode >= 0x3400) && (charCode <= 0x4DFF)) || ((charCode >= 0x20000) && (charCode <= 0x2A6DF))) {   
+					
+	                addWord(); // Technically, some ideographs combine to make a compound word, but concordance/search will work without that refinement, possibly with extra hits.
+	            }			
+				
+			} else if (!isFirstChar && !isLastChar && innerWordExceptions.indexOf(letter) > -1 && punctuation.indexOf(input[i-1]) == -1 && punctuation.indexOf(input[i+1]) == -1) {
+				
+				word += letter;
+				
+			} else {
+				// it was puntuation!
+				addWord();
+			}
+				
+			//console.log(letter, charCode);
+	    }
+	    
+		addWord();
+	
+		return words;
+	}
+};
 
 texts.SearchIndexLoader = function() {
 
 	var 
 		baseContentPath = 'content/texts/',
-		textInfo = textInfo,
+		textInfo = null,
 		searchTerms = [],
 		searchTermsIndex = -1,
 		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
@@ -258,9 +348,11 @@ texts.SearchIndexLoader = function() {
 	// START
 	function loadIndexes(newTextInfo, searchText) {
 	
+	
 		textInfo = newTextInfo;
 	
 		// split up search into words for indexing
+		/*
 		if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
 			searchTerms = [];
 			for (var i=0,il=searchText.length; i<il; i++) {
@@ -272,12 +364,16 @@ texts.SearchIndexLoader = function() {
 		} else {
 			searchTerms = searchText.replace(/\sAND\s/gi,' ').replace(/\sOR\s/gi,' ').replace(/"/g,'').split(/\s+/g);
 		}
+		*/
+		searchTerms = texts.SearchTools.splitWords(searchText);
+		
 		searchTermsIndex = -1;
 		loadedIndexes = [];
+		loadedResults = [];
 		
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
 		
-		console.log(searchText, searchType, searchTerms);
+		console.log('SearchIndexLoader:loadIndexes', searchText, searchType, searchTerms);
 		
 		// start it up
 		loadNextIndex();		
@@ -424,7 +520,7 @@ texts.SearchIndexLoader = function() {
 		}
 		
 		
-	
+		console.log('SearchIndexLoader:processIndexes', 'DONe');
 		// send up the chain
 		ext.trigger('complete', {type:'complete', target: this, data: {
 																	loadedIndexes: loadedIndexes,

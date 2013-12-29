@@ -117,31 +117,51 @@ var AddWindowButton = function(node) {
 	
 		if (buttonMenu.is(':visible')) {
 			buttonMenu.hide();
+			$(document).off('click', docClick);			
 		} else {
 			buttonMenu.show();
+			$(document).on('click', docClick);
+		}
+		
+		return false;
+	}
+	
+	function docClick(e) {
+	
+		if ($(e.target).closest('#add-button-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {
+		
+			buttonMenu.hide();
+			
+			$(document).off('click', docClick);					
+		
 		}
 	}
 	
 
 	var windowTools = [
-		{type: 'ScrollerWindow', label: 'Bible', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
-		{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}},
-		{type: 'SearchWindow', label: 'Search', data: {}},
-		{type: 'MediaWindow', label: 'Media', data: {}}
-		//{type: 'VideoWindow', label: 'Video', data: {}},
-		//{type: 'AudioWindow', label: 'Audio', data: {}},
-		//{type: 'PicturesWindow', label: 'Pictures', data: {}},		
+		{type: 'ScrollerWindow', label: 'Bible', data: {'textid':sofia.config.defaultVersion,'sectionid':sofia.config.defaultChapter,'fragmentid':sofia.config.defaultVerse}}
 	];
+	
+	if (sofia.config.enableOnlineSources) {
+		windowTools.push(	
+			{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}}
+		);
+	}	
+	windowTools.push(		
+		{type: 'SearchWindow', label: 'Search', data: {}}
+	);
+	windowTools.push(	
+		{type: 'MediaWindow', label: 'Media', data: {}}
+	);
+	
+	
 	
 	for (var x in windowTools) {
 		var tool = windowTools[x];
 		// ADD Button
 		var addButton = $('<div class="window-add" id="add-' + tool.type + '">' + tool.label + '</div>')
 					.appendTo(buttonMenu) 
-					.data('init', tool);
-					
-				
-					
+					.data('init', tool);			
 	}
 	
 	buttonMenu.on('click', '.window-add', function() {
@@ -168,23 +188,13 @@ var ConfigButton = function(node) {
 		configMenu = $('<div id="main-config-box" class="window-overlay"></div>')
 					.appendTo($('body'));
 					
-	/*
-
 	
+	function docClick(e) {
 	
-
-	*/	
-	
-	/*
-	configMenu.on('click', function(e) {
-		e.preventDefault();
-		return false;
-	});	
-	*/
-	
-	function documentListener(e) {
-		configMenu.hide();
-		$(document).off('click', documentListener);
+		if ($(e.target).closest('#main-config-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {	
+			configMenu.hide();
+			$(document).off('click', docClick);
+		}
 	}	
 	
 	function buttonClick(e) {
@@ -193,10 +203,12 @@ var ConfigButton = function(node) {
 	
 		if (configMenu.is(':visible')) {
 			configMenu.hide();
+			
+			$(document).off('click', docClick);			
 		} else {
 			configMenu.show();
 			
-			//$(document).on('click', documentListener);
+			$(document).on('click', docClick);
 		}
 		
 		return false;		

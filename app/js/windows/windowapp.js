@@ -60,29 +60,102 @@ var App = function() {
 		
 	// combine nodes and objects
 	win.on('resize', resize);
-	resize();	
+	resize();
 	
+	
+	var settingsKey = 'windowapp-13-12-29'
+	
+	function getWindowSettings() {
+		
+		// ORDER
+		// 1. QueryString
+		// 2. Cookie/localStorage
+		// 3. Default
+		
+		var windowsData = [];
+			
+		// try querysring
+		var queryData = stringUtility.parseQuerystring();
+
+		for (var i=1; i<=4; i++) {
+			var winType = queryData["win" + i.toString()],
+				winData = queryData["data" + i.toString()];
+				
+			if (typeof winType != 'undefined' && typeof winData != 'undefined') {
+				windowsData.push({
+					type: winType,
+					data: winData
+				});
+			}				
+		}
+		
+		// return querystring data
+		if (windowsData.length > 0) {
+			return windowsData;
+			
+		} else {
+			
+			// get defaults from config
+			windowsData = sofia.config.windows;			
+			
+			//windowsData = AppSettings.getValue(settingsKey, windowsData);
+			
+		}
+		
+		return windowsData;
+	}
+	
+	var settings = getWindowSettings();
+	console.log('settings',settings, settings.length);	
+	
+	// create windows
+	for (var i=0, il=settings.length; i<il; i++) {
+		var setting = settings[i],
+			windowType = '';
+		
+		switch (setting.type) {
+			case 'bible':
+				windowType = 'ScrollerWindow';
+				break;
+			case 'map':
+				windowType = 'MapsWindow';
+				break;
+			case 'search':
+				windowType = 'SearchWindow'; 
+				break;			
+			default:
+				windowType = setting.type; 
+			
+		}
+
+		// create window
+		console.log('create',i, windowType, setting.data);
+		windowManager.add(windowType, setting.data);	
+	}	
+
+	
+	/*
 	var settingsKey = 'windowapp-11-24'
 		defaultSettings = {
 			windows: [
 				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
 				//{type: 'ScrollerWindow', data: {'textid':'gre_tisch','sectionid':'JN1','fragmentid':'JN1_10'}},
 				{type: 'SearchWindow', data: {textid: 'eng_web', searchString: 'truth love'}},
-				{type: 'MapsWindow', data: {'latitude': 31.7833 /*-34.397*/, 'longitude': 35.2167 /*150.644*/}}				
+				{type: 'MapsWindow', data: {'latitude': 31.7833, 'longitude': 35.2167}}				
 			]
 		},
 		settings = AppSettings.getValue(settingsKey, defaultSettings);
 	
 	console.log('startup settings', settings);	
-	
-	// TEMP
-	//settings = defaultSettings;
-	
 	// create windows
 	for (var i=0, il=settings.windows.length; i<il; i++) {
 		var windowSetting = settings.windows[i];
 		windowManager.add(windowSetting.type, windowSetting.data);	
-	}
+	}	
+	*/
+	
+	
+
 	
 	function storeSettings() {
 	

@@ -312,4 +312,4 @@ var TextChooser = function(container, target) {
 
 	return ext;
 	
-}
+};

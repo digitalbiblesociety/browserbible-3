@@ -72,4 +72,4 @@ var InfoWindow = function() {
 	
 	return ext;
 	
-}
+};

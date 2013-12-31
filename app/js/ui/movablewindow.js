@@ -93,4 +93,4 @@ var MovableWindow = function(width,height,titleText) {
 	
 	return ext;
 	
-}
+};

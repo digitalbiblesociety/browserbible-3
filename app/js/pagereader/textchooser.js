@@ -86,4 +86,4 @@ var TextChooser = function(node, callback) {
 		renderTexts: renderTexts
 	}
 	
-}
+};

@@ -122,7 +122,7 @@ var WindowManager = function(node) {
 	ext = $.extend(true, ext, EventEmitter);
 	
 	return ext;
-}
+};
 
 var Window = function(id, parentNode, className, data, manager) {
 	
@@ -185,4 +185,4 @@ var Window = function(id, parentNode, className, data, manager) {
 	});
 		
 	return ext;
-}
+};

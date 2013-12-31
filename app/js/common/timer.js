@@ -18,4 +18,4 @@ var Timer = function(callback, seconds) {
 		start: start,
 		clear: clear
 	}	
-}
+};

@@ -249,4 +249,4 @@ var TextNavigator = function(container, target) {
 	
 	return ext;
 		
-}
+};

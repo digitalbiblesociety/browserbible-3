@@ -535,4 +535,4 @@ SearchIndexLoader = function() {
 	ext = $.extend(true, ext, EventEmitter);
 	
 	return ext;	
-}
+};

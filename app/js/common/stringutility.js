@@ -16,4 +16,4 @@ var stringUtility = {
 		
 		return params;
 	}
-}
+};

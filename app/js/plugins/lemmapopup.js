@@ -145,7 +145,7 @@ var LemmaPopupPlugin = function(app) {
 		return false;
 						
 	});
-}
+};
 
 sofia.plugins.push('LemmaPopupPlugin');
 

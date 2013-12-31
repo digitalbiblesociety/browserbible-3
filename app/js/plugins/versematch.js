@@ -22,7 +22,7 @@ var VerseMatchPlugin = function(app) {
 			
 		$('.' + verseid).removeClass('selected-verse');
 	});
-}
+};
 
 sofia.plugins.push('VerseMatchPlugin');
 

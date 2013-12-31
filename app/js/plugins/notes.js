@@ -62,7 +62,7 @@ var NotesPopupPlugin = function(app) {
 		
 		return false;
 	});
-}
+};
 
 sofia.plugins.push('NotesPopupPlugin');
 

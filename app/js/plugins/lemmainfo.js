@@ -45,7 +45,7 @@ border-bottom: solid 1px #ccc;\
 	}).on('mouseout','l', function(e) {
 		lemmaInfo.hide();
 	});
-}
+};
 
 sofia.plugins.push('LemmaInfoPlugin');
 

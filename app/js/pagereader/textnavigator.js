@@ -149,4 +149,4 @@ var TextNavigator = function(lang, navigation_changed_callback) {
 		}
 	}
 		
-}
+};

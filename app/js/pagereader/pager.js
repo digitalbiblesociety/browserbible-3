@@ -539,4 +539,4 @@ var Pager = function(parent_node, paginate_callback) {
 	}
 
 	
-}
+};

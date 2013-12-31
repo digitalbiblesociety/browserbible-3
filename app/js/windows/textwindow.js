@@ -316,4 +316,4 @@ var TextWindow = function(id, node, init_data) {
 	return ext;	
 };
 
-sofia.windowTypes.push('ScrollerWindow');
+sofia.windowTypes.push('TextWindow');

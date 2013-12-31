@@ -24,6 +24,6 @@ var LemmaMatchPlugin = function(app) {
 	}).on('mouseout','l', function(e) {
 		$('.lemma-highlight').removeClass('lemma-highlight');
 	});
-}
+};
 
 sofia.plugins.push('LemmaMatchPlugin');

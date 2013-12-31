@@ -13,7 +13,7 @@ var MainMenu = function(node) {
 	ext = $.extend(true, ext, EventEmitter);
 	return ext;
 
-}
+};
 
 
 var MainLogo = function(node) {
@@ -29,7 +29,7 @@ var MainLogo = function(node) {
 	
 	
 	return logo;
-}
+};
 sofia.menuComponents.push('MainLogo');
 
 var MainSearchBox = function(node) {
@@ -104,7 +104,7 @@ var MainSearchBox = function(node) {
 	
 	return searchBox;			
 
-}
+};
 sofia.menuComponents.push('MainSearchBox');
 
 
@@ -182,7 +182,7 @@ var AddWindowButton = function(node) {
 	
 	return addButton;
 
-}
+};
 sofia.menuComponents.push('AddWindowButton');
 
 var ConfigButton = function(node) {
@@ -217,11 +217,7 @@ var ConfigButton = function(node) {
 		
 		return false;		
 	}
-
-		
-
-
-}
+};
 sofia.menuComponents.push('ConfigButton');
 
 
@@ -375,7 +371,7 @@ var FontFamilySettings = function(node) {
 	
 	// set default
 	body.find('#config-font-family-' + fontFamilySetting.fontName + '-value').trigger('click');
-}
+};
 
 
 sofia.menuComponents.push('FontFamilySettings');
@@ -424,31 +420,8 @@ var FontSizeSettings = function(node) {
 		
 		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
 	}	
-	
-	/*	
-	
-	for(var i=0, il=fontSizes.length; i<il; i++) {
-		var fontSize = fontSizes[i];
-		
-		$('<label id="config-font-size-' + fontSize + '" class="config-font-size"><input type="radio" name="config-font-size" value="' + fontSize + '" />' + fontSize + '</label>')
-			.appendTo(body);		
-	}
-	
-	
 
- 	
-	// handle clciks
-	body.on('change', 'input', function() {
-		var radio = $(this),
-			newFontSize = radio.val();
-					
-		setFontSize(newFontSize);
-	});
-	
-	// set default
-	body.find('#config-font-size-' + fontSizeSetting.fontSize).trigger('click');
-	*/
-}
+};
 
 
 sofia.menuComponents.push('FontSizeSettings');
@@ -527,7 +500,7 @@ var ConfigToggles = function(node) {
 		sofia.globals.createToggle(toggleName);
 	}
 	
-}
+};
 
 
 sofia.menuComponents.push('ConfigToggles');
@@ -541,6 +514,6 @@ var ConfigAddIns = function(node) {
 					'<span class="config-header">Add Ons</span>' + 
 					'<div class="config-body" id="config-addons"></div>' +
 				'</div>').appendTo(base);
-}
+};
 
 sofia.menuComponents.push('ConfigAddIns');

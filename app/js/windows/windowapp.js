@@ -182,7 +182,7 @@ var App = function() {
 	}
 	
 	return this;	
-}
+};
 
 $(function() {
 	sofia.app = new App();

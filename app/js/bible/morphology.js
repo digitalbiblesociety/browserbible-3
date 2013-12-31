@@ -150,4 +150,4 @@ bible.morphology.Greek = {
                 return info;
         }
     }
-}
+};

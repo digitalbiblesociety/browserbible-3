@@ -66,96 +66,83 @@ var App = function() {
 	var settingsKey = 'windowapp-13-12-29'
 	
 	function getWindowSettings() {
+	
+		// (1) get default settings
+		var settings = {
+			windows: sofia.config.windows
+		};
 		
-		// ORDER
-		// 1. QueryString
-		// 2. Cookie/localStorage
-		// 3. Default
+		// (2) replace defaults with user settings
+		settings = AppSettings.getValue(settingsKey, settings);
 		
-		var windowsData = [];
-			
-		// try querysring
+		// (3) overwrite with QueryString when present
 		var queryData = stringUtility.parseQuerystring();
-
-		for (var i=1; i<=4; i++) {
-			var winType = queryData["win" + i.toString()],
-				winData = queryData["data" + i.toString()];
+		if (queryData["win1"]) {
+		
+			var tempSettings = [];
+	
+			for (var i=1; i<=4; i++) {
+				var winType = queryData["win" + i.toString()],
+					setting = {
+						type: winType,
+						data: {}
+					};
+									
+				if (typeof winType != 'undefined') {
+					// go though all querystring values, and anything that ends with '1' goes with this data
+					for (var q in queryData) {
+						var key = q.substring(0, q.length-1),
+							number = q.substring(q.length-1),
+							value = queryData[q];
+					
+						if (key != 'win' && number == i.toString()) {
+							setting.data[key] = value;
+						}				
+					}
 				
-			if (typeof winType != 'undefined' && typeof winData != 'undefined') {
-				windowsData.push({
-					type: winType,
-					data: winData
-				});
-			}				
-		}
-		
-		// return querystring data
-		if (windowsData.length > 0) {
-			return windowsData;
+					tempSettings.push(setting);
+				}				
+			}
 			
-		} else {
+			// overwrite settings
+			if (tempSettings.length > 0) {
+				settings.windows = tempSettings;
+			}			
 			
-			// get defaults from config
-			windowsData = sofia.config.windows;			
-			
-			//windowsData = AppSettings.getValue(settingsKey, windowsData);
-			
-		}
-		
-		return windowsData;
+		}		
+		return settings;
 	}
 	
 	var settings = getWindowSettings();
 	console.log('settings',settings, settings.length);	
 	
 	// create windows
-	for (var i=0, il=settings.length; i<il; i++) {
-		var setting = settings[i],
-			windowType = '';
-		
-		switch (setting.type) {
-			case 'bible':
-				windowType = 'ScrollerWindow';
-				break;
-			case 'map':
-				windowType = 'MapsWindow';
-				break;
-			case 'search':
-				windowType = 'SearchWindow'; 
-				break;			
-			default:
-				windowType = setting.type; 
+	for (var i=0, il=settings.windows.length; i<il; i++) {
+		var setting = settings.windows[i],
+			windowType = setting.windowType;
 			
+		if (!setting.windowType) {
+			
+			switch (setting.type) {
+				case 'bible':
+					windowType = 'TextWindow';
+					break;
+				case 'map':
+					windowType = 'MapsWindow';
+					break;
+				case 'search':
+					windowType = 'SearchWindow'; 
+					break;			
+				default:
+					windowType = setting.type; 
+				
+			}
 		}
 
 		// create window
 		console.log('create',i, windowType, setting.data);
 		windowManager.add(windowType, setting.data);	
 	}	
-
-	
-	/*
-	var settingsKey = 'windowapp-11-24'
-		defaultSettings = {
-			windows: [
-				{type: 'ScrollerWindow', data: {'textid':'eng_kjv','sectionid':'JN1','fragmentid':'JN1_10'}},
-				//{type: 'ScrollerWindow', data: {'textid':'gre_tisch','sectionid':'JN1','fragmentid':'JN1_10'}},
-				{type: 'SearchWindow', data: {textid: 'eng_web', searchString: 'truth love'}},
-				{type: 'MapsWindow', data: {'latitude': 31.7833, 'longitude': 35.2167}}				
-			]
-		},
-		settings = AppSettings.getValue(settingsKey, defaultSettings);
-	
-	console.log('startup settings', settings);	
-	// create windows
-	for (var i=0, il=settings.windows.length; i<il; i++) {
-		var windowSetting = settings.windows[i];
-		windowManager.add(windowSetting.type, windowSetting.data);	
-	}	
-	*/
-	
-	
-
 	
 	function storeSettings() {
 	
@@ -177,7 +164,6 @@ var App = function() {
 	
 	windowManager.on('settingschange', function(e) {
 		
-	
 		// title to show active window's position
 		if (e.data && e.data.label && e.data.hasFocus) {
 			document.title = e.data.labelLong;

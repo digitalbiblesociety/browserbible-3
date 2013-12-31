@@ -104,8 +104,8 @@ var WindowManager = function(node) {
 		
 		for (var i=0, il=windows.length; i<il; i++) {
 			settingsForAllWindows.push({
-				'type': windows[i].className, 
-				data: windows[i].getData()
+				'windowType': windows[i].className, 
+				'data': windows[i].getData()
 			});
 		}	
 		

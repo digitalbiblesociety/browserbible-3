@@ -27,9 +27,9 @@
 // 2. load every chapter
 // 3. use regexp to find verses with words
 
-texts.singleWordLanguages = ['cht','chs','chi','zho','cmn', 'jpn', 'kor'];
+var singleWordLanguages = ['cht','chs','chi','zho','cmn', 'jpn', 'kor'];
 
-texts.TextSearch = function() {
+TextSearch = function() {
 
 	var
 		baseContentPath = 'content/texts/',
@@ -42,7 +42,7 @@ texts.TextSearch = function() {
 		startTime = null,
 		
 		searchTermsRegExp = [],
-		searchIndexLoader = new texts.SearchIndexLoader(),
+		searchIndexLoader = new SearchIndexLoader(),
 		searchIndexesData = [],
 		searchIndexesCurrentIndex = 0
 		
@@ -64,7 +64,7 @@ texts.TextSearch = function() {
 		// store variables
 		searchText = text;
 		searchTextid = textid;
-		textInfo = texts.Texts.getText(searchTextid);
+		textInfo = TextInfoLoader.getText(searchTextid);
 		
 		
 		// reset
@@ -138,7 +138,7 @@ texts.TextSearch = function() {
 			
 			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
 				
-			texts.TextLoader.load(textInfo, sectionid, function(content) {
+			TextLoader.load(textInfo, sectionid, function(content) {
 
 				for (var i=0, il=fragmentids.length; i<il; i++) {
 					var 
@@ -226,7 +226,7 @@ texts.TextSearch = function() {
 		// non-ASCII characters
 		else {	
 
-			var words = texts.SearchTools.splitWords(searchText);
+			var words = SearchTools.splitWords(searchText);
 			
 			for (var j=0, jl=words.length; j<jl; j++) {
 			
@@ -265,7 +265,7 @@ texts.TextSearch = function() {
 	return ext;
 };
 
-texts.SearchTools = {
+SearchTools = {
 	splitWords: function(input) {
 
 		var 
@@ -332,7 +332,7 @@ texts.SearchTools = {
 	}
 };
 
-texts.SearchIndexLoader = function() {
+SearchIndexLoader = function() {
 
 	var 
 		baseContentPath = 'content/texts/',
@@ -365,7 +365,7 @@ texts.SearchIndexLoader = function() {
 			searchTerms = searchText.replace(/\sAND\s/gi,' ').replace(/\sOR\s/gi,' ').replace(/"/g,'').split(/\s+/g);
 		}
 		*/
-		searchTerms = texts.SearchTools.splitWords(searchText);
+		searchTerms = SearchTools.splitWords(searchText);
 		
 		searchTermsIndex = -1;
 		loadedIndexes = [];

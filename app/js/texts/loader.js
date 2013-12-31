@@ -1,6 +1,4 @@
-window.texts = window.texts || {};
-
-texts.TextLoader = (function() {
+TextLoader = (function() {
 	
 	var dataType = 'html',
 		cachedTexts = {},
@@ -99,6 +97,3 @@ texts.TextLoader = (function() {
 	}
 	
 })();
-
-
-

@@ -99,7 +99,7 @@ var TextChooser = function(container, target) {
 			.removeClass('selected');
 			
 				
-		texts.Texts.getText(textid, function(data) {
+		TextInfoLoader.getText(textid, function(data) {
 		
 			selectedTextInfo = data;
 		
@@ -235,7 +235,7 @@ var TextChooser = function(container, target) {
 		if (!textsHaveRendered) {
 			main.html('Loading');
 			
-			texts.Texts.loadTexts(function(data) {
+			TextInfoLoader.loadTexts(function(data) {
 				renderTexts(data);
 			});			
 		}

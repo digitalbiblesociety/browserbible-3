@@ -19,15 +19,34 @@ var MainMenu = function(node) {
 var MainLogo = function(node) {
 	var logo = $('<div id="app-logo"></div>')
 					.appendTo(node)
-					.on('click', logoClick);
-					
+					.on('click', logoClick),
+		aboutWindow = new MovableWindow(500,250,'About'),
+		isLoaded = false;
+										
+	aboutWindow.body.css({padding: '20px'});
 					
 	function logoClick() {
+		console.log('logo clicked', aboutWindow.container.is(':visible'));
 	
-	
+		if (aboutWindow.container.is(':visible')) {
+			aboutWindow.hide();
+			
+		} else {
+			aboutWindow.show();
+			
+			if (!isLoaded) {
+				
+				$.ajax({
+					url: 'about.html',
+					success: function(html) {
+						aboutWindow.body.html(html);
+						isLoaded = true;						
+					}
+				});				
+			}
+		}	
 	}
-	
-	
+		
 	return logo;
 };
 sofia.menuComponents.push('MainLogo');

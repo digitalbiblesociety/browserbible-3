@@ -143,7 +143,7 @@ var AddWindowButton = function(node) {
 	
 
 	var windowTools = [
-		{type: 'ScrollerWindow', label: 'Bible', data: {'textid':sofia.config.defaultVersion,'sectionid':sofia.config.defaultChapter,'fragmentid':sofia.config.defaultVerse}}
+		{type: 'TextWindow', label: 'Bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
 	];
 	
 	if (sofia.config.enableOnlineSources) {

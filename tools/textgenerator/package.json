@@ -4,7 +4,8 @@
   "author": "John Dyer <johndyer@gmail.com>",
   "description": "Generates HTML bibles for BrowserBible",
   "dependencies" : {
-    "jquery"   :  "*"
+    "jquery"   :  "*",
+    "uglifyjs" : "*"
   },
   "license": "MIT"
 }

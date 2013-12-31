@@ -2,10 +2,11 @@ var MovableWindow = function(width,height,titleText) {
 
 	width = width || 300;
 	height = height || 200;
+	titleText = titleText || '';
 
 	var container = $(	'<div class="movable-window">' + 
 							'<div class="movable-header">' +
-								'<span class="movable-header-title"></span>' + 							
+								'<span class="movable-header-title">' + titleText + '</span>' + 							
 								'<span class="close-button"></span>' + 							
 							'</div>' +
 							'<div class="movable-body"></div>' +

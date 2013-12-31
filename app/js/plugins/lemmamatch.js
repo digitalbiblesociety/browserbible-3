@@ -8,7 +8,9 @@ var LemmaMatchPlugin = function(app) {
 '}' +
 '</style>').appendTo( $('head') );
 
-	$('.section').on('mouseover','l', function(e) {
+	$('.windows-main').on('mouseover','l', function(e) {
+		
+		console.log('over');
 		
 		var l = $(this),	
 			strongs = l.attr('s').replace('G','').replace('H',''),
@@ -20,8 +22,6 @@ var LemmaMatchPlugin = function(app) {
 		$('.' + verseid ).find('l[s="' + strongs + '"],l[s="' + langPrefix + strongs + '"]').addClass('lemma-highlight');		
 		
 	}).on('mouseout','l', function(e) {
-	
-			
 		$('.lemma-highlight').removeClass('lemma-highlight');
 	});
 }

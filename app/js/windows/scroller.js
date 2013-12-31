@@ -274,7 +274,7 @@ var Scroller = function(node) {
 		
 		//console.log(loadType, sectionid, fragmentid);
 
-		texts.TextLoader.load( currentTextInfo, sectionid, function(content) {
+		TextLoader.load( currentTextInfo, sectionid, function(content) {
 		
 			// check if this exists
 			//if ( wrapper.find('[data-id="' + sectionid + '"]').length > 0 ) {

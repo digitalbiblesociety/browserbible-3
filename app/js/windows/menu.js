@@ -63,16 +63,20 @@ var MainSearchBox = function(node) {
 		for (var i=0,il=appSettings.length; i<il; i++) {
 			var settings = appSettings[i];
 			
+			console.log(settings);
+			
 			// first text 
-			if (settings.type == 'ScrollerWindow' && firstTextWindow == null) {
+			if (settings.windowType == 'TextWindow' && firstTextWindow == null) {
 				firstTextWindow = settings;
 			}
 			
 			// first search
-			if (settings.type == 'SearchWindow' && searchWindow == null) {
+			if (settings.windowType == 'SearchWindow' && searchWindow == null) {
 				searchWindow = settings;
 			}			
 		}
+		
+		console.log(firstTextWindow);
 		
 		
 		//if (searchWindow == null) {

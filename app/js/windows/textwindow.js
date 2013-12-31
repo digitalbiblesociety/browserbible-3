@@ -172,31 +172,73 @@ var TextWindow = function(id, node, init_data) {
 		// TEMP
 		navui.html('Reference').val('Reference');
 		textlistui.html('Version');
-		
-		//console.log('win ' + id + ': startup', init_data);
+	
 						
-		// load the desired text		
-		texts.Texts.getText(init_data.textid, function(loadedTextInfo) {
+		// load the text specified by the init data		
+		TextInfoLoader.getText(init_data.textid, 
 			
-			if (loadedTextInfo != null) {
+			// success
+			function(loadedTextInfo) {		
+	
 				// store this setting
 				currentTextInfo = loadedTextInfo;		
+				startup();				
+			}, 
+			
+			// error handler
+			function() {
+					
+				console.log('ERROR', init_data.textid, 'doesnt exist');
+							
+				// load all possible versions
+				TextInfoLoader.loadTexts(function(textInfoData) {
 				
-				// send to objects
-				textChooser.setTextInfo(currentTextInfo);				
-				textlistui.html(currentTextInfo.abbr);	
-				textNavigator.setTextInfo(currentTextInfo);			
-				audioController.setTextInfo(currentTextInfo);				
-										
-				scroller.setTextInfo(currentTextInfo);
+					// find a text with the same language
+					var newTextInfo = null,
+						lang = init_data.textid.toString().split('-')[0].split('_')[0];
+						
+					for (var i=0, il=textInfoData.length; i<il; i++) {
+						var textInfo = textInfoData[i];
+						if (textInfo.lang == lang || textInfo.id.substring(0, lang.length) == lang) {
+							newTextInfo = textInfo;
+							break;							
+						}						
+					}
+					
+					// still nothing
+					if (newTextInfo == null) {
+						newTextInfo = textInfoData[0];
+					}
 				
-				if (!init_data.sectionid && init_data.fragmentid) {
-					init_data.sectionid = init_data.fragmentid.split('_')[0];
-				}
+					// let's try again with first one
+					TextInfoLoader.getText(newTextInfo.id, function(loadedTextInfo) {
+						// store this setting
+						currentTextInfo = loadedTextInfo;		
+						startup();				
+					
+					});			
 				
-				scroller.load('text', init_data.sectionid, init_data.fragmentid);			
-			}
+				});
+					
 		});
+	}
+	
+	function startup() {
+				
+		// send to objects
+		textChooser.setTextInfo(currentTextInfo);				
+		textlistui.html(currentTextInfo.abbr);	
+		textNavigator.setTextInfo(currentTextInfo);			
+		audioController.setTextInfo(currentTextInfo);				
+								
+		scroller.setTextInfo(currentTextInfo);
+		
+		if (!init_data.sectionid && init_data.fragmentid) {
+			init_data.sectionid = init_data.fragmentid.split('_')[0];
+		}
+		
+		scroller.load('text', init_data.sectionid, init_data.fragmentid);			
+		
 	}
 	
 	init();

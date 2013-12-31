@@ -126,7 +126,7 @@ var WindowManager = function(node) {
 
 var Window = function(id, parentNode, className, data, manager) {
 	
-	var node = $('<div class="window"></div>')
+	var node = $('<div class="window ' + className + '"></div>')
 					.appendTo(parentNode),
 		close = $('<span class="window-close-button"></span>')
 					.appendTo(node)			

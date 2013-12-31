@@ -1,5 +1,5 @@
 
-var ScrollerWindow = function(id, node, init_data) {
+var TextWindow = function(id, node, init_data) {
 	
 	var 		
 		container =

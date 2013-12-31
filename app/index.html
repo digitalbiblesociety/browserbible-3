@@ -23,12 +23,16 @@
 	if (typeof console == 'undefined') { window.console = {log:function() {}}; }
 	</script>
 	
-	<!-- external libraries -->	
+	<!-- jquery -->	
 	<script src="js/lib/jquery.min.js"></script>
 	<script src="js/lib/jquery.mobile.min.js"></script>
 	<script src="js/lib/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>	
-	<link rel="stylesheet" href="js/lib/jquery-ui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
+	<link rel="stylesheet" href="js/lib/jquery-ui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />	
 	
+	<!-- app start -->
+	<script src="js/windows/config.js"></script>	
+	
+	<!-- external libraries -->
 	<script src="js/lib/base32.js"></script>
 	<script src="js/lib/xregexp.js"></script>		
 	
@@ -44,18 +48,14 @@
 	<!- bible -->
 	<script src="js/bible/bible.data.js"></script>
 	<script src="js/bible/bible.reference.js"></script>	
-	<script src="js/bible/morphology.js"></script>			
-		
-	<!-- app start -->
-	<script src="js/windows/namespace.js"></script>	
-	<script src="js/windows/config.js"></script>			
+	<script src="js/bible/morphology.js"></script>						
 
 	<!-- text loading -->	
 	<script src="js/texts/textinfoloader.js"></script>	
 	<script src="js/texts/loader.js"></script>	
 	<script src="js/texts/search.js"></script>		
 	
-
+	<!-- ui and window -->
 	<script src="js/ui/textchooser.js"></script>		
 	<script src="js/ui/textnavigator.js"></script>	
 	<script src="js/ui/infowindow.js"></script>	
@@ -71,7 +71,6 @@
 	<script src="js/media/medialibrary.js"></script>				
 	<script src="js/media/mediaplugin.js"></script>	
 	<script src="js/media/mediawindow.js"></script>	
-
 	
 	<script src="js/windows/windowmanager.js"></script>		
 	<script src="js/windows/searchwindow.js"></script>	
@@ -79,7 +78,9 @@
 	<script src="js/windows/scroller.js"></script>		
 	<script src="js/windows/scrolleraudio.js"></script>			
 	<script src="js/windows/textwindow.js"></script>		
-	<script src="js/windows/menu.js"></script>		
+	<script src="js/windows/menu.js"></script>	
+	
+	<!-- startup -->	
 	<script src="js/windows/windowapp.js"></script>		
 					
 	

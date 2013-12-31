@@ -1,3 +1,14 @@
+// everthing goes here
+window.sofia = {};
+
+// allows items to register themselves
+sofia.plugins = [];
+sofia.windowTypes = [];
+sofia.menuComponents = [];
+
+sofia.globals = {};
+
+
 sofia.config = {
 	// Enables the use of online sources (Google Maps, FCBH, Jesus Film, etc.)
 	enableOnlineSources: true,
@@ -21,4 +32,4 @@ sofia.config = {
 	
 	// Google Analytics
 	gaKey: ''
-}
+};

@@ -47,11 +47,13 @@
 .chapter-num + p                                            {text-indent: 0 ;}
 .chapter[dir=rtl] .chapter-num                              {float:right;margin:0 0 .5em .5em;}
 .verse-num, .v-num                                          {font-weight:bold;font-size:70%;vertical-align:top;color:#333; font-family: avenir, helvetica;}
+/*
 .chapter h3, .chapter .c {
 	font-weight: bold;
 	line-height: 1.4;
 	margin: 1.5em 0 0.5em 0;
 }
+*/
 
 
 /* notes and cross references */
@@ -80,9 +82,11 @@ span[class^='verse PSA_']                                    {display:block;}
 
 
 /* most books */
-.section .c, .section .chapter-num {
+.section .c, 
+.section .chapter-num,
+.section .c-num {
 	float: left;
-	font-size: 3.0em;
+	font-size: 2.0em;
 	line-height: 1;
 	font-weight: bold;
 	margin-top: 0;
@@ -90,6 +94,15 @@ span[class^='verse PSA_']                                    {display:block;}
 	margin-right: 0.2em;
 	font-family: avenir, helvetica;
 }
+[dir=rtl] .c,
+[dir=rtl] .section .chapter-num,
+[dir=rtl] .section .c-num {
+	float: right;
+	margin-right: 0em;
+	margin-left: 0.2em;	
+}
+
+
 div.c + div.p,
 .chapter-num + div.p {
 	text-indent: 0 !important;

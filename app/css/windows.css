@@ -166,6 +166,9 @@ input:focus {
 			background-position: 0 -20px;
 
 			color: #fff;	
+		}
+		.MapsWindow .window-close-button {		
+			background-color: #e5bfb7;
 		}		
 				
 
@@ -368,7 +371,7 @@ input:focus {
 #add-SearchWindow {
 	background-image: url(images/search.svg);
 }
-#add-ScrollerWindow {
+#add-TextWindow {
 	background-image: url(images/bible1.svg);
 }
 #add-MapsWindow {

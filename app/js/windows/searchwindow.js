@@ -19,7 +19,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		textui = header.find('.text-list'),
 		textChooser = new TextChooser(parentNode, textui),
 		//encoder = new base32.Encoder(),
-		textSearch = new texts.TextSearch(),
+		textSearch = new TextSearch(),
 		selectedText = null,
 		
 		
@@ -169,7 +169,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	
 		if (init_data.textid) {
-			texts.Texts.getText(init_data.textid, function(data) {
+			TextInfoLoader.getText(init_data.textid, function(data) {
 					
 				selectedText = data;
 				
@@ -178,8 +178,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 				textChooser.setTextInfo(selectedText);
 				textui.html(selectedText.abbr);
 	
-				if (init_data.searchString && init_data.searchString != '') {
-					input.val(init_data.searchString);
+				if (init_data.searchtext && init_data.searchtext != '') {
+					input.val(init_data.searchtext);
 					doSearch();
 				}	
 				
@@ -235,7 +235,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		getData: function() { 
 		
 			return {
-				searchString: input.val(),
+				searchtext: input.val(),
 				textid: (selectedText != null) ? selectedText.id : null
 			}			
 		}

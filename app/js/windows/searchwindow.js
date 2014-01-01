@@ -187,8 +187,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		} else {	
 			console.log('SEARCH: no init textid');
 			
-			for (var index in texts.Texts.textData) {
-				var textInfo = texts.Texts.textData[index];
+			for (var index in TextInfoLoader.textData) {
+				var textInfo = TextInfoLoader.textData[index];
 				textChooser.setTextInfo(textInfo);
 				textui.html(textInfo.abbr);
 				break;

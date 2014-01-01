@@ -50,9 +50,17 @@ TextInfoLoader = (function() {
 	}
 
 	function loadTextsManifest(callback) {
+	
+		var 
+			textsFilename = 'texts.json',
+			queryData = stringUtility.parseQuerystring();
+		
+		if (queryData['textlist']) {
+			textsFilename = queryData['textlist'];
+		}
 		
 		$.ajax({
-			url: locationBase + 'texts.json',
+			url: locationBase + textsFilename,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {

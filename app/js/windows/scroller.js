@@ -268,8 +268,8 @@ var Scroller = function(node) {
 			
 			if (fragmentid && fragmentid.trim() != '' && wrapper.find('.' + fragmentid).length > 0) {
 				scrollTo(fragmentid);
-				return;
 			}
+			return;
 		}
 		
 		//console.log(loadType, sectionid, fragmentid);
@@ -282,8 +282,9 @@ var Scroller = function(node) {
 				
 				if (fragmentid && fragmentid.trim() != '' && wrapper.find('.' + fragmentid).length > 0) {
 					scrollTo(fragmentid);
-					return;
+
 				}
+				return;
 				
 			}
 			

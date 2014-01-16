@@ -140,9 +140,11 @@ var LemmaPopupPlugin = function(app) {
 			});
 		}
 		
-		$(document).on('click', handleDocClick);
+		setTimeout(function() {
+			$(document).on('click', handleDocClick);
+		}, 10);
 		
-		return false;
+		//return false;
 						
 	});
 };

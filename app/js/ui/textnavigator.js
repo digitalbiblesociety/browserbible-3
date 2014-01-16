@@ -25,8 +25,41 @@ var TextNavigator = function(container, target) {
 		header = changer.find('.text-navigator-header'),
 		title = changer.find('.text-navigator-title'),
 		back = changer.find('.text-navigator-back').hide(),
-		close = changer.find('.text-navigator-close').hide(),							
-		textInfo = null;
+		close = changer.find('.text-navigator-close').hide(),
+		fullname = $('<div class="text-navigator-fullname"></div>').appendTo( $('body') ).hide(),							
+		textInfo = null,
+		
+		fullBookMode = false;
+	
+	changer.on('mouseover', '.text-navigator-division', function() {
+		
+		if (!fullBookMode) {
+		
+			var node = $(this),
+				name = node.attr('data-name');
+				
+			fullname
+				.html(name)
+				.css({
+					backgroundColor: node.css('backgroundColor'),
+					top: (parseInt(node.offset().top, 10)-1) + 'px',
+					left: node.offset().left,
+				})
+				.show();
+			
+			fullname.lastNode = node;
+		}
+
+	});
+	
+	// pointer-eents: none for modern browsers;
+	fullname.on('click', function() {
+		if (fullname.lastNode) {
+			fullname.lastNode.trigger('click');
+			fullname.hide();
+		}
+			
+	});
 		
 	close.on('click', function() {
 		hide();
@@ -34,6 +67,7 @@ var TextNavigator = function(container, target) {
 	
 	function hide() {
 		changer.hide();
+		fullname.hide();		
 	}
 	
 	function toggle() {
@@ -48,7 +82,7 @@ var TextNavigator = function(container, target) {
 		
 	function show() {
 	
-		$('.nav-drop-list').hide();	
+		//$('.nav-drop-list').hide();	
 		
 		title.html( textInfo.name );	
 		
@@ -90,16 +124,27 @@ var TextNavigator = function(container, target) {
 		var hasPrintedOt = false,
 			hasPrintedNt = false,
 			hasPrintedAp = false;
+			
+		fullBookMode = !(textInfo.divisionAbbreviations || textInfo.divabbr || textInfo.lang == 'eng') ;
 		
+		console.log(fullBookMode, textInfo.divisionAbbreviations , textInfo.divabbr);
+		
+		if (fullBookMode) {
+			changer.find('.text-navigator-divisions').addClass('text-navigator-divisions-full');			
+		} else {
+			changer.find('.text-navigator-divisions').removeClass('text-navigator-divisions-full');						
+		}
+
 		
 		for (var i=0, il= textInfo.divisions.length ; i<il; i++) {
 	
 			var divisionid = textInfo.divisions[i],
-				divisionAbbr = (textInfo.divisionAbbreviations) ? textInfo.divisionAbbreviations[i] : null,
 				divisionName = (textInfo.divisionNames) ? textInfo.divisionNames[i] : null,
-				shortName = divisionAbbr != null ? divisionAbbr.replace(/\s/i,'').substring(0,3) :
-							divisionName != null ? divisionName.replace(/\s/i,'').substring(0,3) : 
-							divisionid,
+				divisionAbbr = (textInfo.divisionAbbreviations) ? 
+									textInfo.divisionAbbreviations[i] : textInfo.divabbr ? 
+										textInfo.divabbr[i] : null,				
+				displayName = fullBookMode ? divisionName : 
+											divisionAbbr != null ? divisionAbbr.replace(/\s/i,'').substring(0,3) : divisionName.replace(/\s/i,'').substring(0,3),
 				book = bible.BOOK_DATA[divisionid];
 				
 			if (typeof book == 'undefined')
@@ -119,8 +164,20 @@ var TextNavigator = function(container, target) {
 			}
 
 
+			var num_of_chapters = 0;
+			for (var j=0, jl=textInfo.sections.length; j<jl; j++) {
+				if (textInfo.sections[j].substring(0,2) == divisionid) {
+					num_of_chapters++;
+				}
+				
+			}
 			
-			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + book.chapters.length + '" data-name="' + divisionName + '">' + shortName + '</span>');
+			// or
+			//num_of_chapters = book.chapters.length;
+			
+
+			
+			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + num_of_chapters + '" data-name="' + divisionName + '">' + displayName + '</span>');
 		} //
 		
 		changer.find('.text-navigator-divisions').html(html).show();
@@ -139,6 +196,7 @@ var TextNavigator = function(container, target) {
 		
 		//console.log('division click', this);
 		
+		fullname.hide();
 		
 		renderSections();			
 	});
@@ -231,17 +289,35 @@ var TextNavigator = function(container, target) {
 		}
 	}
 	
+	function setTextInfo(value) {
+		textInfo = value;
+		
+		changer.find('.text-navigator-header').html( textInfo.title );
+		
+		
+		// set names
+		bible.addNames(textInfo.lang, textInfo.divisions, textInfo.divisionNames);
+		
+
+	}
+	
+	function isVisible() {
+		return changer.is(':visible');		
+	}
+	
+	function node() {
+		return changer;		
+	}	
+	
 	
 	// this is the return object!
 	var ext = {
 		show: show,
 		toggle: toggle,
 		hide: hide,
-		setTextInfo: function(value) {
-			textInfo = value;
-			
-			changer.find('.text-navigator-header').html( textInfo.title );
-		},
+		isVisible: isVisible,
+		node: node,		
+		setTextInfo: setTextInfo,
 		size: size
 	}
 	

@@ -144,8 +144,7 @@ var TextChooser = function(container, target) {
 			languages.sort();
 			if (englishIndex > -1) {
 				languages.splice(0,0,'eng');
-			}
-			
+			}			
 			
 			
 			for (var index in languages) {
@@ -155,20 +154,20 @@ var TextChooser = function(container, target) {
 					textsInLang = arrayOfTexts.filter(function(t) { if (t.lang == lang) { return t; } });
 				
 					
-				html.push('<div class="text-chooser-row-header">' +
+				html.push('<tr><td class="text-chooser-row-header" colspan="2">' +
 							textsInLang[0].langName + 
 								( textsInLang[0].langName != textsInLang[0].langNameEnglish ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
-							'</div>'
+							'</td></tr>'
 				);				
 				
 				for (var textIndex in textsInLang) {
 					var text = textsInLang[textIndex];
 					
 					
-					html.push('<div class="text-chooser-row" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
-									'<span class="text-chooser-abbr">' + text.abbr + '</span>' +
-									'<span class="text-chooser-name">' + text.name + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span>' +
-								'</div>'
+					html.push('<tr class="text-chooser-row" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
+									'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
+									'<td class="text-chooser-name"><span>' + text.name + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span></td>' +
+								'</tr>'
 					);					
 				}
 				
@@ -194,21 +193,31 @@ var TextChooser = function(container, target) {
 								
 				var text = arrayOfTexts[index];
 						
-				html.push('<div class="text-chooser-row" data-id="' + text.id + '">' +
-								'<span class="text-chooser-abbr">' + text.abbr + '</span>' +
-								'<span class="text-chooser-name">' + text.name + '</span>' +
-							'</div>'
+				html.push('<tr class="text-chooser-row" data-id="' + text.id + '">' +
+								'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
+								'<td class="text-chooser-name"><span>' + text.name + '</span></td>' +
+							'</tr>'
 				);
 			}			
 		}
 	
-		main.html(html);
+		main.html('<table cellspacing="0">' + html.join('') + '</table>');
 		
+		
+		setTimeout(function() {
+			var widthOfAbbr = main.find('td.text-chooser-abbr:first').outerWidth(true),
+				widthOfArea = textSelector.width(),
+				widthOfFullnames = widthOfArea - widthOfAbbr;
+				
+			console.log(widthOfAbbr, widthOfArea, widthOfFullnames);
+			
+			main.find('td.text-chooser-name span').width(widthOfFullnames);
+		});
 		
 		// find the selected text
 		if (selectedTextInfo != null) {
 			textSelector
-					.find('div[data-id="' + selectedTextInfo.id + '"]')
+					.find('[data-id="' + selectedTextInfo.id + '"]')
 					.addClass('selected');
 		}
 		
@@ -228,7 +237,7 @@ var TextChooser = function(container, target) {
 	}
 	
 	function show() {
-		$('.nav-drop-list').hide();		
+		//$('.nav-drop-list').hide();		
 		
 		size();
 		
@@ -297,10 +306,20 @@ var TextChooser = function(container, target) {
 		}
 	}	
 	
+	function isVisible() {
+		return textSelector.is(':visible');		
+	}
+	
+	function node() {
+		return textSelector;		
+	}
+	
 	var ext = {
 		show: show,
 		hide: hide,
 		toggle: toggle,
+		isVisible: isVisible,
+		node: node,
 		getTextInfo: getTextInfo,
 		setTextInfo: setTextInfo,
 		renderTexts: renderTexts,

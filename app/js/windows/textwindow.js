@@ -73,15 +73,104 @@ var TextWindow = function(id, node, init_data) {
 		
 	
 	// DOM to object stuff
+	function textChooserOffClick(e) {
+		
+		//console.log('doc click');		
+		
+		var target = $(e.target),
+			clickedOnChooser = false;
+
+		while (target != null && target.length > 0) {
+			
+			if (target[0] == textChooser.node()[0] || target[0] == textlistui[0] ) {
+				clickedOnChooser = true;
+				break;				
+			}
+			
+			target = target.parent();
+		}
+		
+		//return;
+		if (!clickedOnChooser) {
+			e.preventDefault();
+		
+			textChooser.hide();
+			$(document).off('click', textChooserOffClick);		
+			
+			return false;
+		}
+	}
+	
 	textlistui.on('click', function(e) {
+	
+		console.log('clicked');
+	
+		if (flipper.hasClass('showinfo')) {
+			flipper.removeClass('showinfo')				
+		}
+	
 		textChooser.toggle();
+		
+		
+		if (textChooser.node().is(':visible')) {
+			//setTimeout( function() {
+				$(document).on('click', textChooserOffClick);			
+			//}, 10);
+		}
 	});
+	
+	
+	// DOM to object stuff
+	function textNavigatorOffClick(e) {
+		
+		//console.log('doc click');		
+		
+		var target = $(e.target),
+			clickedOnChooser = false;
+
+		while (target != null && target.length > 0) {
+			
+			if (target[0] == textNavigator.node()[0] || target[0] == navui[0] ) {
+				clickedOnChooser = true;
+				break;				
+			}
+			
+			target = target.parent();
+		}
+		
+		//return;
+		if (!clickedOnChooser) {
+			e.preventDefault();
+		
+			textNavigator.hide();
+			$(document).off('click', textNavigatorOffClick);		
+			
+			return false;
+		}
+	}	
 			
 	navui
 		.on('click', function(e) {
-			textNavigator.toggle();
+		
+			if (flipper.hasClass('showinfo')) {
+				flipper.removeClass('showinfo')				
+			}		
+		
+		
+			textNavigator.toggle();				
 			navui[0].focus();
-			navui[0].select();
+			navui[0].select();			
+			
+			
+			
+			if (textNavigator.node().is(':visible')) {
+			
+				//setTimeout( function() {
+					$(document).on('click', textNavigatorOffClick);			
+				//}, 10);
+			}			
+			
+
 		})
 		.on('keypress', function(e) {
 			if (e.keyCode == 13) {

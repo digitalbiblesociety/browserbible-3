@@ -74,7 +74,7 @@ var MainSearchBox = function(node) {
 	function doMainSearch(e) {
 		
 		// do a search		
-		var searchString = searchInput.val(),
+		var searchtext = searchInput.val(),
 			appSettings = sofia.app.windowManager.getSettings(),
 			searchWindow = null,
 			firstTextWindow = null;
@@ -102,7 +102,7 @@ var MainSearchBox = function(node) {
 			
 			// search based on first open window
 			textid = firstTextWindow.data.textid;		
-			sofia.app.windowManager.add('SearchWindow', {searchString: searchString, textid: textid});
+			sofia.app.windowManager.add('SearchWindow', {searchtext: searchtext, textid: textid});
 			
 		//} else {
 			
@@ -143,10 +143,12 @@ var AddWindowButton = function(node) {
 			$(document).off('click', docClick);			
 		} else {
 			buttonMenu.show();
-			$(document).on('click', docClick);
+			setTimeout(function() {
+				$(document).on('click', docClick);
+			},50);
 		}
 		
-		return false;
+		//return false;
 	}
 	
 	function docClick(e) {
@@ -187,7 +189,7 @@ var AddWindowButton = function(node) {
 					.data('init', tool);			
 	}
 	
-	buttonMenu.on('click', '.window-add', function() {
+	buttonMenu.on('click', '.window-add', function(e) {
 		buttonMenu.hide();
 	
 		var label = $(this),

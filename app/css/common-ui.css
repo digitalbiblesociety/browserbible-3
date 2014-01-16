@@ -108,8 +108,34 @@
 	}	
 	.text-navigator .text-navigator-section:hover {
 		border-bottom-color: #ccc;
-	}			
+	}	
+	
+	.text-navigator-divisions-full .text-navigator-division{
+		float: none;
+		display: block;
+		text-align: left;
+		width: auto;
+		height: 30px;
+		padding: 5px 0 0 10px;
+		
+	}		
 
+
+	.text-navigator-fullname {
+		position: absolute;
+		z-index: 110;
+		border-bottom-color: #ccc;
+		height: 38px;
+		margin: 1px 1px 0 0 ;
+		border: solid 1px #ccc;
+		background: #eee;
+		color: #333;
+		text-align: left;
+		padding: 10px 10px 0 10px;
+		cursor: pointer;
+		pointer-events: none;	
+		font-size: 14px;	
+	}
 	
 	/* penta */
 	.text-navigator .divisionid-GN,
@@ -342,6 +368,10 @@ border: solid 1px #ccc;
 		border: solid 1px #aaa;
 	}
 	
+	.text-chooser table {
+		border-collapse: collapse;
+	}
+	
 	.text-chooser-row-header {
 		background: #ededed;
 		border-bottom: solid 1px #ccc;
@@ -359,10 +389,10 @@ border: solid 1px #ccc;
 	}
 	
 	.text-chooser-row {
-		overflow: hidden;
+		-x-overflow: hidden;
 		height: 2.0em;
 		line-height: 2.0em;
-		width: 320px;
+		-x-width: 320px;
 		cursor: pointer;
 	}
 	.text-chooser-row.filtered {
@@ -383,19 +413,24 @@ border: solid 1px #ccc;
 		width: 80px;
 		padding: 0 10px 0;
 		text-align: right;
-		display: inline-block;
+		-x-display: inline-block;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		height: 2.0em;
+		white-space: nowrap;		
 	}	
 	.text-chooser-row .text-chooser-name {
-		display: inline-block;
+		padding: 0 0 0 0 ; 
+		height: 2.0em;		
+
+	}
+	.text-chooser-row .text-chooser-name span {
+		display: block;
+		width: 240px;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 240px;
-		padding: 0 10px 0 0 ; 
-		height: 2.0em;		
-	}
+		white-space: nowrap;
+	}	
 	
 
 	

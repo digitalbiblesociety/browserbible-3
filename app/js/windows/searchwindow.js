@@ -10,9 +10,25 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<div class="text-list header-list" style="">&nbsp;</div>' + 
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' + 				
 					'</div>').appendTo(parentNode),
-		main = $('<div class="search-main"><div class="search-wrapper"></div></div>').appendTo(parentNode),
+		main = $('<div class="search-main"><div class="search-wrapper">' + 
+					'<div class="search-top">' + 
+						'<h2></h2>' + 
+						'<div class="search-progress-bar">' + 
+							'<div class="search-progress-bar-inner"></div>' + 
+							'<span class="search-progress-bar-label"></span>' + 
+						'</div>' +															
+					'</div>' +
+					'<div class="search-results"></div>' +									
+				'</div></div>').appendTo(parentNode),
 		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
-		wrapper = main.find('.search-wrapper'),
+
+		topBlock = main.find('.search-top'),	
+		topBlockTitle = topBlock.find('h2'),	
+		searchProgressBar = topBlock.find('.search-progress-bar'),			
+		searchProgressBarInner = topBlock.find('.search-progress-bar-inner'),					
+		searchProgressBarLabel = topBlock.find('.search-progress-bar-label'),							
+			
+		resultsBlock = main.find('.search-results'),				
 		input = header.find('.search-text'),
 		button = header.find('.search-button'),		
 		//list = header.find('.search-list'),
@@ -47,11 +63,42 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	textSearch.on('load', function(e) {
 		
-		footer.html('Loading... ' + e.data.sectionid);
+		// give feedback!
+		var reference = new bible.Reference(e.data.sectionid),
+			label = e.data.sectionid,
+			progress = (e.data.index+1) + ' / ' + e.data.total;
+				
+		if (bible.BOOK_DATA['GN'].names[textInfo.lang]) {				
+			reference.lang = textInfo.lang;
+		}
+		label = reference.toString();
+		
+		
+		// show results in footer and bar
+		footer.html('Loading: ' + progress + ' :: ' + label );		
+		searchProgressBarInner.css({'width': ((e.data.index+1) / e.data.total * 100) + '%'  });
+		searchProgressBarLabel.html(label);
+		
+		// move label into place
+		var progressWidth = searchProgressBarInner.outerWidth(true),
+			labelWidth = searchProgressBarLabel.outerWidth(true);
+			
+		if (labelWidth > progressWidth) {
+			
+			searchProgressBarLabel
+				.css({left: progressWidth + 'px' })
+				.addClass('search-progress-bar-label-outside');
+				
+			
+		} else {
+			searchProgressBarLabel
+				.css({left: (progressWidth-labelWidth) + 'px' })
+				.removeClass('search-progress-bar-label-outside');			
+		}
 		
 	});
 	
-	wrapper.on('click', 'tr', function(e) {
+	resultsBlock.on('click', 'tr', function(e) {
 		
 		var tr = $(this),
 			fragmentid = tr.attr('data-fragmentid');
@@ -87,10 +134,19 @@ var SearchWindow = function(id, parentNode, init_data) {
 		console.log('searcher:complete', e.data.results);
 		
 		var results = e.data.results,
-			html = '<h2>Results: ' + results.length + '</h2>' + 
+			html = //'<h2>Results: ' + results.length + '</h2>' + 
 					'<table>';
 					
 		footer.html('Results: ' + results.length );
+		
+		// move to center
+		searchProgressBarLabel.html(results.length + ' verses');
+		var progressWidth = searchProgressBarInner.outerWidth(true),
+			labelWidth = searchProgressBarLabel.outerWidth(true),
+			labelLeft = progressWidth/2 - labelWidth;	
+		
+		searchProgressBarLabel
+			.css({left: labelLeft + 'px'});
 		
 		for (var i=0, il=results.length; i<il; i++) {
 			var result = results[i],
@@ -113,7 +169,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}
 		html += '</table>';
 		
-		wrapper.html( html );
+		resultsBlock.html( html );
 		
 		
 		
@@ -133,10 +189,18 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		var text = input.val(),
 			//textid = list.val(),
-			textid = textChooser.getTextInfo().id;
+			textInfo = textChooser.getTextInfo(),
+			textid = textInfo.id;
 			
 			
 		console.log('search', textid, text);
+		
+		
+		// clear results
+		footer.html('');
+		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');
+		resultsBlock.html('');
+		
 		
 		textSearch.start(text, textid);
 		

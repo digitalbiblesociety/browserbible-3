@@ -88,6 +88,9 @@ TextSearch = function() {
 		console.log('searchIndexLoader:complete', e.data);
 		
 		if (e.data.loadedIndexes.length == 0) {
+			
+			isSearching = false;
+		
 			// BRUTE FORCE?
 			ext.trigger('indexerror', {type: 'indexerror', target:this, data: {results: searchFinalResults}});
 			
@@ -115,6 +118,8 @@ TextSearch = function() {
 		if (searchIndexesCurrentIndex > searchIndexesData.length) {
 		
 			console.log('OVER');
+			
+			isSearching = false;
 		
 		} else if (searchIndexesCurrentIndex == searchIndexesData.length) {
 			// DONE!
@@ -136,7 +141,7 @@ TextSearch = function() {
 				return;
 			}
 			
-			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid}});
+			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid, index: searchIndexesCurrentIndex, total: searchIndexesData.length}});
 				
 			TextLoader.load(textInfo, sectionid, function(content) {
 
@@ -175,7 +180,11 @@ TextSearch = function() {
 					}
 				}					
 				
-				loadNextSectionid();				
+				
+				// DEBUG!!
+				//setTimeout(function() {
+					loadNextSectionid();	
+				//}, 10);			
 		
 			
 			}, function(error) {	

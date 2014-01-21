@@ -38,7 +38,9 @@ TextSearch = function() {
 		searchText = '',
 		searchTextid = '',
 		isAsciiRegExp = new XRegExp('^[\040-\176]*$', 'gi'),
+		isLemmaRegExp = /(G|H)\d{1,6}/g,
 		
+		isLemmaSearch = false,
 		startTime = null,
 		
 		searchTermsRegExp = [],
@@ -77,8 +79,8 @@ TextSearch = function() {
 	
 		createSearchTerms();
 		
-		// first attempt to load indexes
-		searchIndexLoader.loadIndexes(textInfo, searchText);
+		// load indexes
+		searchIndexLoader.loadIndexes(textInfo, searchText, isLemmaSearch);
 	
 		return true;		
 	}
@@ -126,7 +128,7 @@ TextSearch = function() {
 			
 			console.log('textSearch:complete');
 			
-			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp}});
+			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
 			
 			isSearching = false;
 			
@@ -154,9 +156,11 @@ TextSearch = function() {
 						//html = fragmentNode.html();
 						
 						html = '';
-						
+					
+					// remove notes	
 					fragmentNode.find('.note, .cf').remove();
 					
+					// concat verses split over multiple <span class="v"> nodes (paragraphs)
 					fragmentNode.each(function(i,el) {
 						html += $(el).html() + ' ';
 					});					
@@ -167,11 +171,25 @@ TextSearch = function() {
 					
 						for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
 							
-							searchTermsRegExp.lastIndex = 0;
-							html = html.replace(searchTermsRegExp[j], function(match) {
-								foundMatch = true;
-								return '<span class="highlight">' + match + '</span>';
-							});
+							searchTermsRegExp[j].lastIndex = 0;
+							
+							if (isLemmaSearch) {
+								
+								// add the 'highlight' class to the <l> node
+								html = html.replace(searchTermsRegExp[j], function(match) {
+									foundMatch = true;
+									return match + ' class="highlight" ';
+								});							
+
+							} else {
+
+								// surround the word with a highlight
+								html = html.replace(searchTermsRegExp[j], function(match) {
+									foundMatch = true;
+									return '<span class="highlight">' + match + '</span>';
+								});								
+								
+							}
 						}
 					
 						if (foundMatch) {
@@ -200,68 +218,97 @@ TextSearch = function() {
 	function createSearchTerms() {
 		searchTermsRegExp = [];
 		
-		// ASCII characters have predictable word boundaries (space ' ' = \b)
-		isAsciiRegExp.lastIndex = 0;
-		if (isAsciiRegExp.test( searchText )) {
-					
-			// check for quoted search "jesus christ"
-			if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
-				var part = searchText;
-				part = part						
-						.split(' OR ').join('|')
-				
-						// remove the quotes
-						.replace(/"/gi,'')
-				
-						// find punctuation in between the words
-						.replace(/ /gi,'[\\s\\.,"\';:]+');
 		
-				searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );			
-			} else {
+		isLemmaRegExp.lastIndex = 0;
+		
+		if (isLemmaRegExp.test(searchText)) {
+			isLemmaSearch = true;
 			
-				// for non-quoted searches, use "AND" search				
-				var andSearchParts = searchText.split(/\s+AND\s+|\s+/gi);
-				
-				for (var i=0, il=andSearchParts.length; i<il; i++) {
-				
-					var part = andSearchParts[i];
-									
-					searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
+			//searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
 			
-				}			
-			}
+			// looking for 
+			// <l s="H7259">Rebekah</l>
+			
+			var strongNumbers = searchText.split(' ');
+			
 					
-		}
-		// non-ASCII characters
-		else {	
-
-			var words = SearchTools.splitWords(searchText);
+			for (var i=0, il=strongNumbers.length; i<il; i++) {
 			
-			for (var j=0, jl=words.length; j<jl; j++) {
+				var part = strongNumbers[i];
+								
+				searchTermsRegExp.push( new RegExp('s="' + part + '"', 'gi') );
+		
+			}	
 			
-				searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
 			
-			}
 			
-			/*
-			if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
-				searchTermsRegExp = [];
-				var chText = searchText; // .split(' AND ').join('');
+		} else {
+	
+			isLemmaSearch = false;
+			
+			// ASCII characters have predictable word boundaries (space ' ' = \b)
+			isAsciiRegExp.lastIndex = -1;
+			if (isAsciiRegExp.test( searchText )) {
+						
+				// check for quoted search "jesus christ"
+				if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
+					var part = searchText;
+					part = part						
+							.split(' OR ').join('|')
+					
+							// remove the quotes
+							.replace(/"/gi,'')
+					
+							// find punctuation in between the words
+							.replace(/ /gi,'[\\s\\.,"\';:]+');
+			
+					searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );			
+				} else {
 				
-				for (var j=0, jl=chText.length; j<jl; j++) {
-					var chTerm = chText[j];
-					if (chTerm.trim().length > 0) {
-						searchTermsRegExp.push( new XRegExp(chText[j], 'gi') );
-					}
+					// for non-quoted searches, use "AND" search				
+					var andSearchParts = searchText.split(/\s+AND\s+|\s+/gi);
+					
+					for (var i=0, il=andSearchParts.length; i<il; i++) {
+					
+						var part = andSearchParts[i];
+										
+						searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
+				
+					}			
+				}
+						
+			}
+			// non-ASCII characters
+			else {	
+	
+				var words = SearchTools.splitWords(searchText);
+				
+				for (var j=0, jl=words.length; j<jl; j++) {
+				
+					searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
+				
 				}
 				
-			} else {
-				searchTermsRegExp = [new XRegExp(searchText, 'gi')];				
-			}
-			*/
-			
-			console.log('non ASCII', searchTermsRegExp);			
-		}			
+				/*
+				if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
+					searchTermsRegExp = [];
+					var chText = searchText; // .split(' AND ').join('');
+					
+					for (var j=0, jl=chText.length; j<jl; j++) {
+						var chTerm = chText[j];
+						if (chTerm.trim().length > 0) {
+							searchTermsRegExp.push( new XRegExp(chText[j], 'gi') );
+						}
+					}
+					
+				} else {
+					searchTermsRegExp = [new XRegExp(searchText, 'gi')];				
+				}
+				*/
+				
+				console.log('non ASCII', searchTermsRegExp);			
+			}	
+		}		
 	}
 		
 
@@ -348,6 +395,7 @@ SearchIndexLoader = function() {
 		textInfo = null,
 		searchTerms = [],
 		searchTermsIndex = -1,
+		isLemmaSearch = false,
 		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
 		loadedIndexes = [], 
 		// final: [{sectionid:'GN1', fragmentids: ['GN1_2', 'GN1_3']}, {sectionid:'GN2', fragmentids: ['GN2_4']} }
@@ -355,9 +403,9 @@ SearchIndexLoader = function() {
 		searchType = 'AND'; // OR
 
 	// START
-	function loadIndexes(newTextInfo, searchText) {
+	function loadIndexes(newTextInfo, searchText, isLemma) {
 	
-	
+		isLemmaSearch = isLemma;
 		textInfo = newTextInfo;
 	
 		// split up search into words for indexing
@@ -382,11 +430,12 @@ SearchIndexLoader = function() {
 		
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
 		
-		console.log('SearchIndexLoader:loadIndexes', searchText, searchType, searchTerms);
+		console.log('SearchIndexLoader:loadIndexes', searchText, searchType, searchTerms, isLemmaSearch);
 		
 		// start it up
 		loadNextIndex();		
 	}
+	
 	
 	function loadNextIndex() {
 	
@@ -407,9 +456,19 @@ SearchIndexLoader = function() {
 	}
 	
 	function loadSearchTermIndex(searchTerm) {
-		var
-			searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm)));
+		
+		var indexUrl = '';
+		
+		if (isLemmaSearch) {
+		
+			indexUrl = baseContentPath + textInfo.id + '/indexlemma/' + searchTerm + '.json';
+			
+		} else {
+		
+			var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm)));
+		
 			indexUrl = baseContentPath + textInfo.id + '/index/' + searchTermEncoded + '.json';
+		}
 			
 		if (searchTerm == 'undefined') {
 			console.log('STOP search. undefined term');	
@@ -422,11 +481,7 @@ SearchIndexLoader = function() {
 		$.ajax({
 			dataType: 'json',
 			url: indexUrl,
-			success: function(data) {
-		
-				// old code
-				//var fragmentidarray = data[searchTerm];
-				//loadedIndexes.push({term: searchTerm, occurrences: fragmentidarray});
+			success: function(data) {		
 				loadedIndexes.push(data);
 				
 				loadNextIndex();

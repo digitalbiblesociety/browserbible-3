@@ -41,7 +41,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 		currentResults = null,
 		searchIndexesData = null, 
-		searchTermsRegExp = null
+		searchTermsRegExp = null,
+		isLemmaSearch = false
 		;		
 	
 	// EVENTS
@@ -222,6 +223,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		currentResults = e.data.results;
 		searchIndexesData = e.data.searchIndexesData;
 		searchTermsRegExp = e.data.searchTermsRegExp;
+		isLemmaSearch = e.data.isLemmaSearch;		
 			
 		createHighlights();		
 	});	
@@ -329,10 +331,25 @@ var SearchWindow = function(id, parentNode, init_data) {
 				
 				for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
 					
-					searchTermsRegExp.lastIndex = 0;
-					el.innerHTML = el.innerHTML.replace(searchTermsRegExp[j], function(match) {
-						return '<span class="highlight">' + match + '</span>';
-					});
+					searchTermsRegExp[j].lastIndex = 0;
+
+					
+					
+					if (isLemmaSearch) {
+						
+						// add the 'highlight' class to the <l> node
+						el.innerHTML = el.innerHTML.replace(searchTermsRegExp[j], function(match) {
+							return match + ' class="highlight" ';
+						});							
+
+					} else {
+
+						// surround the word with a highlight
+						el.innerHTML = el.innerHTML.replace(searchTermsRegExp[j], function(match) {
+							return '<span class="highlight">' + match + '</span>';
+						});							
+						
+					}					
 				}					
 				
 			});

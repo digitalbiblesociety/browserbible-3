@@ -149,15 +149,6 @@ div[lang="heb"] div.p {
 	text-align: right;	
 }
 
-.mt {
-	margin-top: 3em;
-}
-.mt2 {
-	margin-top: 3em;
-}
-.mt2 + .mt, .mt3 + .mt{
-	margin-top: 0em;
-}
 
 h3.is1, 
 div.s, 
@@ -189,5 +180,17 @@ div.is1 {
 	display: block;
 	text-align: center;
 	font-size: 2.0em;
-	margin-top: 2.0em;
+	margin-top: 3.0em;
+	margin-bottom: 1.0em;
+	line-height: 1.2;	
+}
+.mt2, .mt3 {
+	display: block;
+	text-align: center;
+	font-size: 1.4em;
+	margin-top: 3.0em;
+	line-height: 1.2;
+}
+.mt2 + .mt, .mt3 + .mt{
+	margin-top: 0em;
 }

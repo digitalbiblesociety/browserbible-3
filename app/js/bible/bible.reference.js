@@ -7,6 +7,8 @@
  
 // Depends on bible.data.js
 
+bible.shortCodeRegex = new RegExp('\w{2}\d{1,3}(_\d{1,3})?')
+
 bible.parseReference = function (textReference, language) {
 
 	var 
@@ -27,6 +29,26 @@ bible.parseReference = function (textReference, language) {
 		currentNumber = '',
 		name,
 		possibleMatch;
+		
+		
+	// is short code format (GN2 || GN2_1)
+	if (bible.shortCodeRegex.test(textReference)) {
+		
+		var parts = split('_'),
+			bookChapter = parts[0];
+			
+		
+		bookid = bookChapter.substring(0,2);
+		chapter1 = parseInt(bookChapter.substring(2), 10);
+		
+		if (parts.length > 1) {
+			verse1 = parseInt(parts[1], 10);			
+		}
+		
+		return bible.Reference(bookid, chapter1, verse1, chapter2, verse2, language);
+	}
+	
+	// check books for DBS, OSIS, USFM
 
 
 	// go through all books and test all names
@@ -34,10 +56,11 @@ bible.parseReference = function (textReference, language) {
 		
 		// match id?
 		possibleMatch = input.substring(0, Math.floor(bookid.length, input.length)).toLowerCase();
-		if (possibleMatch == bookid.toLowerCase()) {
+		var nextIsSeparator = input.length > possibleMatch.length ? /(\d|\.|\s)/.test(input.substr(possibleMatch.length, 1)) : false;
+		if (possibleMatch == bookid.toLowerCase() && nextIsSeparator) {
 			matchingbookid = bookid;
 			input = input.substring(bookid.length);
-			matchingLanguage = 'eng';
+			//matchingLanguage = 'eng';
 			break;
 		}		
 		
@@ -168,25 +191,21 @@ bible.Reference = function () {
 		_verse2 = -1,
 		_language = 'eng';
 
-	if (arguments.length == 0) {
-		// error		
-	} else if (arguments.length == 1 && typeof arguments[0] == 'string') { // a string that needs to be parsed
+	if (arguments.length == 1 && typeof arguments[0] == 'string') { // a string that needs to be parsed
 		return bible.parseReference(arguments[0]);
-					
-	} else if (arguments.length == 1) { // unknonw
-		return null;
-		
-	} else if (arguments.length == 2) { // a string that needs to be parsed
-		_language = arguments[2];
+
+	} else if (arguments.length == 2 && typeof arguments[0] == 'string' && typeof arguments[1] == 'string') { // verse, lang
 		return bible.parseReference(arguments[0], arguments[1]);
 		
-	} else {
+	} else if (arguments.length >= 2 && typeof arguments[0] == 'string' && typeof arguments[1] == 'number'){
 		_bookid = arguments[0];
 		_chapter1 = arguments[1];
 		if (arguments.length >= 3) _verse1 = arguments[2];
 		if (arguments.length >= 4) _chapter2 = arguments[3];
 		if (arguments.length >= 5) _verse2 = arguments[4];
 		if (arguments.length >= 6) _language = arguments[5];		
+	} else {
+		return null;		
 	}
 
 	function padLeft(input, length, s) {
@@ -195,7 +214,7 @@ bible.Reference = function () {
 		return input;
 	}
 
-	return {
+	var refObject = {
 		bookid: _bookid,
 		chapter: _chapter1,
 		verse: _verse1,
@@ -439,6 +458,8 @@ bible.Reference = function () {
 		isLastChapter: function () {
 			return (this.bookList[this.bookid] == this.bookList.length-1 && bible.BOOK_DATA[this.bookid].chapters.length == this.chapter1);
 		}
-	}
+	};
+	
+	return refObject;
 };
 bible.utility = {};

@@ -183,6 +183,9 @@ bible.BOOK_DATA = {
 "PX":{"name":"Psalm 151","sortOrder":56,"shortCode":"PX","usfm":"PS2","osis":"AddPs",
     "chapters":[null],
     "names":{"eng":["Psalm 151"]}},
+"MA":{"name":"Prayer of Manasseh","sortOrder":56,"shortCode":"MA","usfm":"MAN","osis":"PrMan",
+    "chapters":[null],
+    "names":{"eng":["Prayer of Manasseh"]}},    
 "M3":{"name":"3 Maccabees","sortOrder":57,"shortCode":"M3","usfm":"3MA","osis":"3Macc",
     "chapters":[],
     "names":{"eng":["3 Maccabees"]}},
@@ -425,13 +428,18 @@ bible.APOCRYPHAL_BIBLE = bible.OT_BOOKS.concat(bible.AP_BOOKS, bible.NT_BOOKS);
  */
 bible.addNames = function(lang, bookList, namesData) {
 	for (var i in bookList) {
-		var osisKey = bookList[i],
+		var dbsCode = bookList[i],
+			bookInfo = bible.BOOK_DATA[ dbsCode ],
 			names = namesData[i];
 			
-		if (typeof names === 'string')
-			bible.BOOK_DATA[ osisKey ].names[lang] = [names];
-		else
-			bible.BOOK_DATA[ osisKey ].names[lang] = names;
+		if (typeof bookInfo != 'undefined') {	
+			
+			if (typeof names === 'string') {
+				bookInfo.names[lang] = [names];
+			} else {
+				bookInfo.names[lang] = names;
+			}
+		}
 	}
 }
 

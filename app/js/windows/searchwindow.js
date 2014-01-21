@@ -48,9 +48,23 @@ var SearchWindow = function(id, parentNode, init_data) {
 	input.on('keypress', function(e) {
 		if (e.which == 13) {
 			doSearch();
+			
+			// record
+			if (sofia.analytics) {
+				sofia.analytics.record('search', input.val(), textChooser.getTextInfo().id );					
+			}				
 		}
 	});				
-	button.on('click', doSearch);
+	button.on('click', function() {
+	
+		// record
+		if (sofia.analytics) {
+			sofia.analytics.record('search', input.val(), textChooser.getTextInfo().id );					
+		}		
+	
+		doSearch() ;
+			
+	});
 	
 	textChooser.on('change', function(e) {
 		selectedText = e.data;
@@ -58,7 +72,36 @@ var SearchWindow = function(id, parentNode, init_data) {
 	});
 	textui.on('click', function(e) {
 		textChooser.show();
+		
+		$(document).on('click', docClick);
 	});	
+	
+	function docClick(e) {
+		//console.log('doc click');		
+		
+		var target = $(e.target),
+			clickedOnChooser = false;
+
+		while (target != null && target.length > 0) {
+			
+			if (target[0] == textChooser.node()[0] || target[0] == textui[0] ) {
+				clickedOnChooser = true;
+				break;				
+			}
+			
+			target = target.parent();
+		}
+		
+		//return;
+		if (!clickedOnChooser) {
+			e.preventDefault();
+		
+			textChooser.hide();
+			$(document).off('click', docClick);		
+			
+			return false;
+		}
+	}
 	
 	
 	textSearch.on('load', function(e) {
@@ -86,13 +129,13 @@ var SearchWindow = function(id, parentNode, init_data) {
 		if (labelWidth > progressWidth) {
 			
 			searchProgressBarLabel
-				.css({left: progressWidth + 'px' })
+				.css({left: progressWidth + 'px', margin: '' })
 				.addClass('search-progress-bar-label-outside');
 				
 			
 		} else {
 			searchProgressBarLabel
-				.css({left: (progressWidth-labelWidth) + 'px' })
+				.css({left: (progressWidth-labelWidth) + 'px', margin: '' })
 				.removeClass('search-progress-bar-label-outside');			
 		}
 		
@@ -141,12 +184,14 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 		// move to center
 		searchProgressBarLabel.html(results.length + ' verses');
+		
 		var progressWidth = searchProgressBarInner.outerWidth(true),
 			labelWidth = searchProgressBarLabel.outerWidth(true),
 			labelLeft = progressWidth/2 - labelWidth;	
 		
 		searchProgressBarLabel
-			.css({left: labelLeft + 'px'});
+			//.css({left: labelLeft + 'px'});
+			.css({left: '50%', marginLeft: '-' + (labelWidth/2) + 'px'});
 		
 		for (var i=0, il=results.length; i<il; i++) {
 			var result = results[i],
@@ -200,6 +245,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		footer.html('');
 		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');
 		resultsBlock.html('');
+		searchProgressBarLabel.html('');
+		searchProgressBarInner.width(0);
 		
 		
 		textSearch.start(text, textid);

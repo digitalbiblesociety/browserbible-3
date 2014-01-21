@@ -435,10 +435,16 @@ bible.addNames = function(lang, bookList, namesData) {
 		if (typeof bookInfo != 'undefined') {	
 			
 			if (typeof names === 'string') {
-				bookInfo.names[lang] = [names];
-			} else {
-				bookInfo.names[lang] = names;
+				names = [names];
 			}
+			
+			if (!bookInfo.names[lang]) {
+				bookInfo.names[lang] = [];				
+			}
+			
+			// bookInfo.names[lang] = names;
+			bookInfo.names[lang].splice(bookInfo.names[lang].length-1, 0, names);
+		
 		}
 	}
 }

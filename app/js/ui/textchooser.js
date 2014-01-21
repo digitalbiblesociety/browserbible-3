@@ -26,7 +26,10 @@ var TextChooser = function(container, target) {
 		main = textSelector.find('.text-chooser-main'),
 		filter = textSelector.find('.text-chooser-filter-text'),
 		title = textSelector.find('.text-chooser-title'),
-		close = textSelector.find('.text-chooser-close').hide();
+		close = textSelector.find('.text-chooser-close').hide(),
+		
+		allTextsVisible = false,
+		hasTopTexts = false;
 		
 		
 	title.html("Texts");
@@ -56,7 +59,9 @@ var TextChooser = function(container, target) {
 		if (text == '') {
 			main.find('.text-chooser-row-header, .text-chooser-row')
 					.removeClass('filtered')
-					.show();			
+					.show();		
+					
+			runTopTextsSelector();
 		} else {
 			
 			text = text.toLowerCase();
@@ -113,6 +118,58 @@ var TextChooser = function(container, target) {
 	});
 	
 	
+	textSelector.on('click', '.text-chooser-more', function(e) {
+		
+		var moreButton = $(this);
+		
+		if (moreButton.hasClass('show-all')) {
+			allTextsVisible = false;
+			moreButton.html('More');
+			moreButton.removeClass('show-all');
+		} else {
+			allTextsVisible = true;
+			moreButton.html('Less');							
+			moreButton.addClass('show-all');			
+		}
+		
+		runTopTextsSelector();
+		
+	});
+	
+	function runTopTextsSelector() {
+		
+		if (allTextsVisible) {
+			main.find('tr').show();			
+		} else {
+			main.find('tr:not(.is-top-text)').hide();
+		}
+		
+	}
+	
+	function checkIsTopText(id) {
+	
+		var isTopText = false;
+	
+		// find if this should be a priority text shown at the beginning
+		if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
+			
+			for (var t=0, tl=sofia.config.topTexts.length; t<tl; t++) {
+				if (id == sofia.config.topTexts[t]) {
+					isTopText = true;
+					break;
+				}							
+			}
+			
+		} else {
+			isTopText = false;						
+		}	
+		
+		
+		return isTopText;
+		
+	}
+	
+	
 	function renderTexts(data) {
 	
 		// render all the rows
@@ -151,25 +208,34 @@ var TextChooser = function(container, target) {
 			
 				// get all the ones with this langu
 				var lang = languages[index],
-					textsInLang = arrayOfTexts.filter(function(t) { if (t.lang == lang) { return t; } });
-				
-					
-				html.push('<tr><td class="text-chooser-row-header" colspan="2">' +
-							textsInLang[0].langName + 
-								( textsInLang[0].langName != textsInLang[0].langNameEnglish ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
-							'</td></tr>'
-				);				
+					textsInLang = arrayOfTexts.filter(function(t) { if (t.lang == lang) { return t; } }),
+					hasTopText = false,
+					langHtml = [];
+						
 				
 				for (var textIndex in textsInLang) {
-					var text = textsInLang[textIndex];
+					var text = textsInLang[textIndex],
+						isTopText = checkIsTopText(text.id);
 					
 					
-					html.push('<tr class="text-chooser-row" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
+					langHtml.push('<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
 									'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
 									'<td class="text-chooser-name"><span>' + text.name + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span></td>' +
 								'</tr>'
-					);					
+					);	
+					
+					if (!hasTopText && isTopText) {
+						hasTopText = true;
+					}		
 				}
+				
+				
+				html.push('<tr class="text-chooser-row-header' + (hasTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
+							textsInLang[0].langName + 
+								( textsInLang[0].langName != textsInLang[0].langNameEnglish ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
+							'</td></tr>'
+				);	
+				html.push(langHtml.join(''));				
 				
 			}
 			
@@ -191,9 +257,10 @@ var TextChooser = function(container, target) {
 					
 			for (var index in arrayOfTexts) {
 								
-				var text = arrayOfTexts[index];
+				var text = arrayOfTexts[index],
+						isTopText = checkIsTopText(text.id);
 						
-				html.push('<tr class="text-chooser-row" data-id="' + text.id + '">' +
+				html.push('<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + '" data-id="' + text.id + '">' +
 								'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
 								'<td class="text-chooser-name"><span>' + text.name + '</span></td>' +
 							'</tr>'
@@ -203,7 +270,7 @@ var TextChooser = function(container, target) {
 	
 		main.html('<table cellspacing="0">' + html.join('') + '</table>');
 		
-		
+		// wait just a second to adjust the size
 		setTimeout(function() {
 			var widthOfAbbr = main.find('td.text-chooser-abbr:first').outerWidth(true),
 				widthOfArea = textSelector.width(),
@@ -213,6 +280,17 @@ var TextChooser = function(container, target) {
 			
 			main.find('td.text-chooser-name span').width(widthOfFullnames);
 		});
+		
+		
+		hasTopTexts = main.find('.is-top-text').length > 0;
+		
+		if (hasTopTexts) {
+		
+			main.append( $('<div class="text-chooser-more">More</div>'));
+			
+			runTopTextsSelector();
+		}
+		
 		
 		// find the selected text
 		if (selectedTextInfo != null) {

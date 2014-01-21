@@ -197,6 +197,9 @@ var AddWindowButton = function(node) {
 	
 		sofia.app.windowManager.add(settings.type, settings.data);	
 		
+		if (sofia.analytics) {
+			sofia.analytics.record('createwindow', settings.type);
+		}		
 
 		//windowManager.trigger('settingschange',{});
 	});	
@@ -379,7 +382,11 @@ var FontFamilySettings = function(node) {
 	
 		$(body).addClass('config-font-family-' + newFontName);
 		
-		AppSettings.setValue(fontFamilyKey, {fontName: newFontName});		
+		AppSettings.setValue(fontFamilyKey, {fontName: newFontName});	
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('setting', 'fontfamily', newFontName);
+		}							
 	}
  	
 	// handle clciks
@@ -440,6 +447,11 @@ var FontSizeSettings = function(node) {
 		body.addClass('config-font-size-' + newFontSize);
 		
 		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
+		
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('setting', 'fontsize', newFontSize);
+		}				
 	}	
 
 };
@@ -510,6 +522,10 @@ var ConfigToggles = function(node) {
 				.removeClass(onClass)
 				.addClass(offClass);
 		}
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('setting', toggleId, checked);
+		}		
 		
 		AppSettings.setValue(toggleId, {checked: checked});
 		

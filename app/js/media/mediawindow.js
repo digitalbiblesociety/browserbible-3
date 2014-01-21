@@ -38,7 +38,7 @@ var MediaWindow = function(id, parentNode, data) {
 		main.html('');
 		main.scrollTop(0);
 		
-		contentToProcess.find('.verse').each(function(i,el) {
+		contentToProcess.find('.verse, .v').each(function(i,el) {
 			var verse = $(this),
 				verseid = verse.attr('data-id'),
 				reference = new bible.Reference(verseid);

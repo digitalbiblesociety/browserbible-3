@@ -779,7 +779,7 @@ input:focus {
 	background-image: url(images/toggles/verses.svg);
 }
 
-.toggle-verses-off .verse-num {
+.toggle-verses-off .verse-num, .toggle-verses-off .v-num {
 	display: none;
 }
 
@@ -811,7 +811,8 @@ input:focus {
 }
 
 .toggle-titles-off .is1,
-.toggle-titles-off .is2 {
+.toggle-titles-off .is2,
+.toggle-titles-off .s {
 	display: none;		
 } 
 

@@ -125,7 +125,7 @@ var TextNavigator = function(container, target) {
 			hasPrintedNt = false,
 			hasPrintedAp = false;
 			
-		fullBookMode = !(textInfo.divisionAbbreviations || textInfo.divabbr || textInfo.lang == 'eng') ;
+		fullBookMode = !(textInfo.divisionAbbreviations || textInfo.lang == 'eng') ;
 		
 		console.log(fullBookMode, textInfo.divisionAbbreviations , textInfo.divabbr);
 		
@@ -141,8 +141,7 @@ var TextNavigator = function(container, target) {
 			var divisionid = textInfo.divisions[i],
 				divisionName = (textInfo.divisionNames) ? textInfo.divisionNames[i] : null,
 				divisionAbbr = (textInfo.divisionAbbreviations) ? 
-									textInfo.divisionAbbreviations[i] : textInfo.divabbr ? 
-										textInfo.divabbr[i] : null,				
+									textInfo.divisionAbbreviations[i] : null,				
 				displayName = fullBookMode ? divisionName : 
 											divisionAbbr != null ? divisionAbbr.replace(/\s/i,'').substring(0,3) : divisionName.replace(/\s/i,'').substring(0,3),
 				book = bible.BOOK_DATA[divisionid];

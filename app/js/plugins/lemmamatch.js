@@ -10,7 +10,7 @@ var LemmaMatchPlugin = function(app) {
 
 	$('.windows-main').on('mouseover','l', function(e) {
 		
-		console.log('over');
+		//console.log('over');
 		
 		var l = $(this);
 		

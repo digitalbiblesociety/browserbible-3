@@ -158,8 +158,12 @@ var TextWindow = function(id, node, init_data) {
 		
 		
 			textNavigator.toggle();				
-			navui[0].focus();
-			navui[0].select();			
+			
+			
+			setTimeout(function() {
+				navui[0].focus();
+				navui[0].select();
+			}, 10);			
 			
 			
 			
@@ -174,19 +178,39 @@ var TextWindow = function(id, node, init_data) {
 		})
 		.on('keypress', function(e) {
 			if (e.keyCode == 13) {
-				var bibleref = new bible.Reference(navui.val());
+				var 
+					userinput = navui.val(),
+					bibleref = new bible.Reference(userinput),
+					sectionid = (bibleref.toSection) ? bibleref.toSection() : '';
 				
-				//console.log(navui.val(), bibleref, bibleref.toSection());
+				console.log(userinput, sectionid, bibleref);
 				
-				scroller.load('text', bibleref.toSection());	
-				textNavigator.hide();
-				navui[0].blur();
+				//ext.trigger('globalmessage', {type: 'usernav', target: ext, data: {usernavtype: 'key', sectionid: bibleref.toSection(), textid: currentTextInfo.id}});	
+				
+				if (sectionid != '') {
+					
+					if (sofia.analytics) {
+						sofia.analytics.record('usernav', 'input', sectionid + ':' + currentTextInfo.id);					
+					}
+					
+					scroller.load('text', sectionid);
+					textNavigator.hide();
+					
+					navui.val(bibleref.toString())
+					navui[0].blur();
+				}
 			}
 		})
 		;	
 	
 	textNavigator.on('change', function (e) {
 		//console.log('scrollerapp:navigator:change', e);
+		
+		//ext.trigger('globalmessage', {type: 'usernav', target: ext, data: {usernavtype: 'menu', sectionid: e.data, textid: currentTextInfo.id}});	
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('usernav', 'menu', e.data + ':' + currentTextInfo.id);					
+		}		
 	
 		// load new content
 		scroller.load('text', e.data);

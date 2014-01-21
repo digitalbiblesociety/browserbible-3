@@ -12,7 +12,12 @@ var LemmaMatchPlugin = function(app) {
 		
 		console.log('over');
 		
-		var l = $(this),	
+		var l = $(this);
+		
+		if (l.closest('.search-wrapper').length > 0)
+			return;
+		
+		var
 			strongs = l.attr('s').replace('G','').replace('H',''),
 			verse = l.closest('.verse, .v'),
 			verseid = verse.attr('data-id'),

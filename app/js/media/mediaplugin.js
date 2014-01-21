@@ -25,7 +25,7 @@ var MediaLibraryPlugin = function(app) {
 			}
 			
 			// add images to verses	
-			content.find('.verse').each(function() {
+			content.find('.verse, .v').each(function() {
 				var verse = $(this),
 					verseid = verse.attr('data-id');
 				
@@ -46,7 +46,7 @@ var MediaLibraryPlugin = function(app) {
 							if (verse.closest('.chapter').find('.' + verseid).find('.' + iconClassName).length == 0) {
 						
 								var icon = $('<span class="inline-icon ' + iconClassName + '"></span>'),
-									verseNumber = verse.find('.verse-num');
+									verseNumber = verse.find('.verse-num, v-num');
 									
 								if (verseNumber.length > 0) {
 									verseNumber.after(icon);							
@@ -77,7 +77,7 @@ var MediaLibraryPlugin = function(app) {
 				
 						var 
 							icon = $(this),
-							verse = icon.closest('.verse'),
+							verse = icon.closest('.verse, .v'),
 							verseid = verse.attr('data-id'),
 							reference = new bible.Reference(verseid).toString(),
 							mediaForVerse = mediaLibrary.data[verseid];

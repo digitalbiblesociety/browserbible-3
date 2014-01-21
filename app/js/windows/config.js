@@ -20,6 +20,9 @@ sofia.config = {
 		{type: 'search', data: {textid: 'eng-NASB1995', searchtext:'truth love'}}		
 	],
 	
+	// texts shown before the "MORE" button
+	topTexts: [],
+	
 	// new window
 	newBibleWindowVersion: 'eng-NASB1995',
 	newBibleWindowVerse: 'JN1_1',
@@ -30,6 +33,9 @@ sofia.config = {
 	// jesus film media
 	jfmKey: '',
 	
-	// Google Analytics
-	gaKey: ''
+	// Google Analytics key
+	gaKey: '',
+	
+	// Google URL
+	gaUrl: ''		
 };

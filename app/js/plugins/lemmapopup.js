@@ -76,68 +76,109 @@ var LemmaPopupPlugin = function(app) {
 		l.addClass('selected-lemma');
 			
 		var
+			// get attribute
 			morph = l.attr('m'),
-			strongs = parseInt(l.attr('s').replace('H','').replace('G',''), 10),
+			// split into array
+			morphs = (morph && morph != null) ? morph.split(' ') : [],
+			
+			// get attribute
+			strong = l.attr('s'),			
+			// split into array			
+			strongs = (strong && strong != null) ? strong.replace(/H/gi,'').replace(/G/gi,'').split(' ') : [],
+			
+			// normal elements stuff
 			main = l.closest('.scroller-main'),
 			verse = l.closest('.verse, .v')
 			verse_code = verse.attr('data-id'),
 			book_id = verse_code.substring(0,2),
-			//lOffset = l.offset(),
 			langPrefix = 'G',
 			langCode = 'gre',
 			dir = 'ltr';		
 			
-		/*
-		while (strongs.substring(0,1) == '0') {
-			strongs = strongs.substring(1);
-			
+		// make strong's into ints
+		for (var i=0; i<strongs.length; i++) {
+			strongs[i] = parseInt(strongs[i], 10);
 		}
-		*/
-			
+
+		
+		// check for Hebrew	
 		if (bible.OT_BOOKS.indexOf(book_id) > -1) {			
 			langPrefix = 'H';
-			langCode = 'gre';
+			langCode = 'heb';
 			dir = 'rtl';			
 		}
+		
+		
+		// remove G3588 and H853 (the) when there is more than two
+		if (strongs.length > 0) {
+			var articleIndex = -1;
+			
+			for (var i=0; i<strongs.length; i++) {
+				if ((strongs[i] == 3588 && langPrefix == 'G') || (strongs[i] == 853 && langPrefix == 'H')) {
+					articleIndex = i;
+					break;
+				}
+			}			
+			
+			/*
+			if (articleIndex > -1) {
+				strongs.splice(articleIndex, 1);
+				morphs.splice(articleIndex, 1);
+			}
+			*/
+		}	
+		
+		console.warn(strongs);	
+		
+		// record
+		if (sofia.analytics) {
+			sofia.analytics.record('lemma', langPrefix + strongs, l.html());					
+		}			
+		
 			
 		// show popup
 		lemmaPopup.show();
 		lemmaPopup.position(l);
 		
-		/*
-		lemmaPopup.container.css({
-			top: lOffset.top + 20,
-			left: lOffset.left - 20			
-		});
-		*/
-		
 		lemmaPopup.body.html('Loading...');
 			
-		if (strongs != null) {
-			$.ajax({
-				dataType: 'json',
-				url: 'content/lexicons/strongs/entries/' + langPrefix + strongs + '.json',
-				success: function(data) {
-					
-				
-					lemmaPopup.body.html('');
-					
-					lemmaPopup.body.append('<span class="lemma-word">' + 
+		if (strongs.length > 0) {
+		
+			lemmaPopup.body.html('');
+			
+			for (var i=0, il=strongs.length; i<il; i++) {
+
+				(function(strongsNumber, morphKey) {
+					$.ajax({
+						dataType: 'json',
+						url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
+						success: function(data) {
+							
+							var html = '<div class="lemma-word">' + 
 											'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' + 
-											'  <span class="lemma-strongs">(' + strongs + ')</span>' + 
-										'</span>');
-					if (typeof morph != 'undefined') {
-						lemmaPopup.body.append('<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology(morph) + '</span>');
-					}
-					lemmaPopup.body.append('<div class="lemma-outline">' + data.outline + '</div>');
-					
-				}, 
-				error: function() {
-					lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs );
-				}
+											'  <span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' + 
+										'</div>';
+							
+							if (morphKey != '') {
+								html += '<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology( morphKey ) + '</span>';
+							}
+							
+							html += '<div class="lemma-outline">' + data.outline + '</div>';
+							
+							lemmaPopup.body.append( html );
+							
+						}, 
+						error: function() {
+							lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs[0] );
+						}
+						
+						
+					});
+				})(strongs[i], i < morphs.length ? morphs[i] : '');
 				
 				
-			});
+			}
+		
 		}
 		
 		setTimeout(function() {

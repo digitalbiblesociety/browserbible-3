@@ -65,6 +65,8 @@ TextLoader = (function() {
 				</body></html>			
 				*/
 				
+				content.find('meta').remove();
+				
 
 				// when we dont' start with a div, it's probably a <!-- --> or <html> or something
 				if (!content[0].tagName || content[0].tagName.toLowerCase() != 'div') {

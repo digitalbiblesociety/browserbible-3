@@ -65,8 +65,11 @@
 
 .text .notetype { font-weight: bold; font-style: italic;}
 
+
 /* Gospels red letters */
-.woc                                                        {color:#aa0000;}
+.woc, .wj {
+	color:#aa0000;
+}
 
 
 .chapter .note .text,.chapter .cf .text,
@@ -191,6 +194,6 @@ div.is1 {
 	margin-top: 3.0em;
 	line-height: 1.2;
 }
-.mt2 + .mt, .mt3 + .mt{
+.mt2 + .mt, .mt3 + .mt, .mt2 + .mt3{
 	margin-top: 0em;
 }

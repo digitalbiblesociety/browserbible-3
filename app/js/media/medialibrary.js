@@ -30,6 +30,10 @@ sofia.globals.mediaImageClick = function(e) {
 		height: newHeight			
 	});
 	
+	if (sofia.analytics) {
+		sofia.analytics.record('imageclick', url);
+	}		
+	
 	clonedImage.on('click', shrinkImage);
 	
 	function shrinkImage() {

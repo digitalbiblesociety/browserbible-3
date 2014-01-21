@@ -36,6 +36,7 @@ TextLoader = (function() {
 		
 		if (typeof cachedTexts[textid][sectionid] != 'undefined') {
 			successCallback (cachedTexts[textid][sectionid]);
+			return;
 		}
 		
 		var url = baseFolder + textid + '/' + sectionid + '.' + dataType + '?' + new Date();

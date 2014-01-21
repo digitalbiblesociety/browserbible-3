@@ -6,7 +6,7 @@ var LemmaInfoPlugin = function(app) {
 .lemma-info {\
 position: absolute;\
 padding: 5px;\
-background: #f8f8f8;\
+background: #eee;\
 z-index: 100;\
 top: 100px;\
 left: 100px;\

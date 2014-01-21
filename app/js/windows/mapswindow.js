@@ -112,7 +112,7 @@ var MapsWindow = function(id, parentNode, data) {
 		}	
 	}
 	
-	mapContainer.on('click', '.verse', function() {
+	mapContainer.on('click', '.verse, .v', function() {
 		var link = $(this),
 			sectionid = link.attr('data-sectionid'),
 			fragmentid = link.attr('data-fragmentid');
@@ -307,7 +307,7 @@ var MapsWindow = function(id, parentNode, data) {
 	
 	function highlightLocations(content) {
 	
-		content.find('.verse').each(function() {
+		content.find('.verse, .v').each(function() {
 			var verse = $(this),
 				verseid = verse.attr('data-id');
 				verseLocations = locationDataByVerse[verseid],

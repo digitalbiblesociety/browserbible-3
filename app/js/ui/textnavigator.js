@@ -127,7 +127,7 @@ var TextNavigator = function(container, target) {
 			
 		fullBookMode = !(textInfo.divisionAbbreviations || textInfo.lang == 'eng') ;
 		
-		console.log(fullBookMode, textInfo.divisionAbbreviations , textInfo.divabbr);
+		//console.log(fullBookMode, textInfo.divisionAbbreviations , textInfo.divabbr);
 		
 		if (fullBookMode) {
 			changer.find('.text-navigator-divisions').addClass('text-navigator-divisions-full');			

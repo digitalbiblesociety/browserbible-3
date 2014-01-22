@@ -128,7 +128,7 @@ var LemmaPopupPlugin = function(app) {
 			*/
 		}	
 		
-		console.warn(strongs);	
+		//console.warn(strongs);	
 		
 		// record
 		if (sofia.analytics) {

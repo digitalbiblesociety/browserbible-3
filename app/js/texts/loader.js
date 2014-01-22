@@ -81,6 +81,8 @@ TextLoader = (function() {
 				if (!content.hasClass('section')) {
 					content.addClass('section');
 				}
+				
+				content.attr('data-textid', textid);
 					
 				successCallback(content);
 			

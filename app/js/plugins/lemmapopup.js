@@ -142,12 +142,13 @@ var LemmaPopupPlugin = function(app) {
 				}
 			}			
 			
-			/*
 			if (articleIndex > -1) {
 				strongs.splice(articleIndex, 1);
-				morphs.splice(articleIndex, 1);
+				
+				if (morphs.length > articleIndex) {
+					morphs.splice(articleIndex, 1);
+				}
 			}
-			*/
 		}	
 		
 		//console.warn(strongs);	

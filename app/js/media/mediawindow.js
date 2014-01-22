@@ -32,12 +32,26 @@ var MediaWindow = function(id, parentNode, data) {
 		currentSectionId = sectionid;
 		
 		
+		var bibleReference = new bible.Reference(sectionid);
+		bibleReference.language = contentToProcess.attr('lang');
+		
+				
 		// remove all previous checks
 		$('.checked-media').removeClass('checked-media');
 			
 		main.html('');
 		main.scrollTop(0);
 		
+		
+		// create verses
+		
+		var node = $('<div class="verse-images">' + 
+						'<h2>' + bibleReference.toString() + '</h2>' + 
+						'<ul class="image-library-thumbs"></ul>' + 
+					'</div>'),
+			list = node.find('.image-library-thumbs');
+			
+			
 		contentToProcess.find('.verse, .v').each(function(i,el) {
 			var verse = $(this),
 				verseid = verse.attr('data-id'),
@@ -49,6 +63,69 @@ var MediaWindow = function(id, parentNode, data) {
 				return;
 			}
 			
+			
+			for (var i=0, il=mediaLibraries.length; i<il; i++) {
+			
+				var mediaLibrary = mediaLibraries[i],
+					mediaForVerse = mediaLibrary.data ? mediaLibrary.data[verseid] : undefined;
+				
+				// add media
+				if (typeof mediaForVerse != 'undefined') {	
+					
+					switch (mediaLibrary.type) {
+						case 'image':
+						
+							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
+								var url = 'content/media/' + mediaLibrary.folder  + '/' + mediaForVerse[j];
+								$('<li class="media-image"><a href="' + url + '" target="_blank"><img src="' + url + '" /><span>' + reference.toString() + '</span></a></li>').appendTo(list)				
+							}
+							break;
+						case 'video':
+	
+							var url = 'content/media/' + mediaLibrary.folder + '/' + mediaForVerse;
+	
+								$('<li class="media-video"><a href="' + url + '" target="_blank"><img src="css/images/video.svg" style="background-image:url(' +  url.replace('mp4','png') + '); background-size: cover; background-repeat: no-repeat; background-position: center center;" /><span>Video</span></a></li>').appendTo(list);				
+							
+							
+							//$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	
+										
+						
+							break;
+						
+					} 
+				}				
+			}
+			
+			verse.addClass('checked-media');
+			
+		});	
+		
+		if (list.find('li').length > 0) {
+		
+			node.appendTo(main);
+			
+		} else {
+			
+			main.html('No media for this chapter');
+			
+		}
+			
+		
+		
+		// TITLE for each VERSE	
+		
+		/*		
+		contentToProcess.find('.verse, .v').each(function(i,el) {
+			var verse = $(this),
+				verseid = verse.attr('data-id'),
+				reference = new bible.Reference(verseid);
+				
+			verse = verse.closest('.chapter').find('.' + verseid + '').first();
+					
+			if (verse.hasClass('checked-media')) {
+				return;
+			}
+						
 			var node = $('<div class="verse-images">' + 
 							'<h2 style="clear:both;">' + reference.toString() + '</h2>' + 
 							'<ul class="image-library-thumbs"></ul>' + 
@@ -80,9 +157,9 @@ var MediaWindow = function(id, parentNode, data) {
 
 								$('<li class="media-video"><a href="' + url + '" target="_blank"><img src="css/images/video.svg" style="background-image:url(' +  url.replace('mp4','png') + '); background-size: cover; background-repeat: no-repeat; background-position: center center;" /></a></li>').appendTo(list);				
 							
-							/*
-							$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	
-							*/			
+							
+							//$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	
+										
 						
 							break;
 						
@@ -93,12 +170,16 @@ var MediaWindow = function(id, parentNode, data) {
 			// only add if we have some content
 			if (node.find('li,video').length > 0) {
 				node.appendTo(main);
-			}	
+			}
+			
+			
+				
 			
 			verse.addClass('checked-media');
 				
 							
 		});	
+		*/
 		
 		
 		

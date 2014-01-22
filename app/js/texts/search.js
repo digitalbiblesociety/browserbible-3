@@ -150,7 +150,7 @@ TextSearch = function() {
 				for (var i=0, il=fragmentids.length; i<il; i++) {
 					var 
 						fragmentid = fragmentids[i],
-						fragmentNode = content.find('.' + fragmentid),
+						fragmentNode = content.find('.' + fragmentid).clone(),
 						
 						// assuming a single node
 						//html = fragmentNode.html();
@@ -236,10 +236,11 @@ TextSearch = function() {
 			
 				var part = strongNumbers[i];
 								
-				searchTermsRegExp.push( new RegExp('s="' + part + '"', 'gi') );
+				searchTermsRegExp.push( new RegExp('s="' + '(G|H)?' + part.substr(1) + '"', 'gi') );
 		
 			}	
 			
+			console.log('SEARCH TERMS LEMMA', searchTermsRegExp);
 			
 			
 		} else {

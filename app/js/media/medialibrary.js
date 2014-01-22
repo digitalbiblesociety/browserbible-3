@@ -96,6 +96,36 @@ var MediaLibraryPlugin = function(app) {
 		addMedia();		
 	});
 	
+	
+	$(document).on('click', function(e) {
+		
+		console.log('clcik',mediaPopup.container.is(':visible'));
+		
+		if (mediaPopup.container.is(':visible')) {
+			var target = $(e.target),
+				clickedOnWindow = false;
+	
+			while (target != null && target.length > 0) {
+				
+				if (target[0] == mediaPopup.container[0] ) {
+					clickedOnWindow = true;
+					break;				
+				}
+				
+				target = target.parent();
+			}
+			
+			//return;
+			if (!clickedOnChooser) {
+				e.preventDefault();
+			
+				mediaPopup.hide();
+				
+				return false;
+			}			
+		}		
+	});
+	
 	// process chapters, add image icon to verses
 	function addMedia() {
 			

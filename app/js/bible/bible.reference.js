@@ -7,8 +7,6 @@
  
 // Depends on bible.data.js
 
-bible.shortCodeRegex = new RegExp('\w{2}\d{1,3}(_\d{1,3})?')
-
 bible.parseReference = function (textReference, language) {
 
 	var 
@@ -28,13 +26,14 @@ bible.parseReference = function (textReference, language) {
 		startedNumber = false,
 		currentNumber = '',
 		name,
-		possibleMatch;
-		
+		possibleMatch,
+		shortCodeRegex = /\w{2}\d{1,3}(_\d{1,3})?/;
 		
 	// is short code format (GN2 || GN2_1)
-	if (bible.shortCodeRegex.test(textReference)) {
+	//bible.shortCodeRegex.lastIndex = 0;
+	if (shortCodeRegex.test(input)) {
 		
-		var parts = split('_'),
+		var parts = input.split('_'),
 			bookChapter = parts[0];
 			
 		

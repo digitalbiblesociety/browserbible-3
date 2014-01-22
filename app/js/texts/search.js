@@ -158,7 +158,7 @@ TextSearch = function() {
 						html = '';
 					
 					// remove notes	
-					fragmentNode.find('.note, .cf').remove();
+					fragmentNode.find('.note, .cf, .v-num, .verse-num').remove();
 					
 					// concat verses split over multiple <span class="v"> nodes (paragraphs)
 					fragmentNode.each(function(i,el) {

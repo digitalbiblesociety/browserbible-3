@@ -25,6 +25,16 @@ var LemmaPopupPlugin = function(app) {
 .lemma-outline ol li ol li                   {list-style-type:lower-alpha;}\
 .lemma-outline ol li ol li ol li             {list-style-type:lower-roman;}\
 .lemma-outline ol li ol li ol li ol li       {list-style-type:decimal;}\
+\
+.lemma-findall {\
+	display: block;\
+	cursor: pointer;\
+	color: #2a85e8;\
+	-x-text-align: right;\
+}\
+.lemma-findall:hover {\
+	text-decoration: underline;\
+}\
 </style>').appendTo( $('head') );
 
 	var lemmaPopup = new InfoWindow(),							
@@ -54,7 +64,16 @@ var LemmaPopupPlugin = function(app) {
 		})
 		.on('mouseover', function() {
 			timer.clear();
-		});	
+		})
+		.on('click', '.lemma-findall', function(e) {
+			var link = $(this),
+				lemma = link.attr('data-lemma'),
+				textid = link.attr('data-textid');
+				
+			console.log(lemma, textid);
+		
+			sofia.app.windowManager.add('SearchWindow', {searchtext: lemma, textid: textid});			
+		});
 	
 
 	$('.windows-main').on('click','.section l', function(e) {
@@ -91,6 +110,9 @@ var LemmaPopupPlugin = function(app) {
 			verse = l.closest('.verse, .v')
 			verse_code = verse.attr('data-id'),
 			book_id = verse_code.substring(0,2),
+			chapter = l.closest('.chapter'),
+			sectionid = chapter.attr('data-id'),
+			textid = chapter.attr('data-textid'),
 			langPrefix = 'G',
 			langCode = 'gre',
 			dir = 'ltr';		
@@ -158,6 +180,8 @@ var LemmaPopupPlugin = function(app) {
 											'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' + 
 											'  <span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' + 
 										'</div>';
+										
+							html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">Find all occurences (approximately ' + data.frequency + ')</span>';
 							
 							if (morphKey != '') {
 								html += '<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology( morphKey ) + '</span>';

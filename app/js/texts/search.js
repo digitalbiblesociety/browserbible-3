@@ -465,7 +465,7 @@ SearchIndexLoader = function() {
 			
 		} else {
 		
-			var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm)));
+			var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
 		
 			indexUrl = baseContentPath + textInfo.id + '/index/' + searchTermEncoded + '.json';
 		}

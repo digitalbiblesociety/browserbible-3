@@ -13,6 +13,9 @@
 .image-icon {
 	background-image: url(images/pictures.svg);
 }
+.map-icon {
+	background-image: url(images/map.svg);
+}
 .inline-image-library-thumbs,
 .inline-video-library-thumbs {
 	margin:0;
@@ -42,19 +45,40 @@
 	padding:0;
 	list-style-type:none;
 }
+.image-library-thumbs li a {
+	display: block;
+	text-decoration: none;
+	color: #333;
+	line-height: 1;
+}
+.image-library-thumbs li a:hover {
+	color: #2a85e8;
+}
+.image-library-thumbs li a:hover img {
+	border: solid 2px #2a85e8;
+}
 .image-library-thumbs li {
 	display:block;
 	width:100px;
-	height:100px;
+	height:115px;
 	float:left;
 	text-align:center;
-	margin:0 10px 10px 0;
+	margin:0 15px 20px 0;
 }
 .image-library-thumbs li img {
 	display:inline;
 	cursor:pointer;
 	max-width:100px;
 	max-height:100px;
+	border: solid 2px transparent;
+}
+.image-library-thumbs li span {
+	display:block;
+	cursor:pointer;
+	height: 15px;
+	padding: 2px;
+	font-size: 10px;
+	text-align: center;
 }
 
 .verse-images {

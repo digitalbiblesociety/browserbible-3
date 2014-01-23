@@ -115,7 +115,7 @@ TextSearch = function() {
 	function loadNextSectionid() {
 		searchIndexesCurrentIndex++;
 		
-		console.log('loadNextSectionid', searchIndexesData.length, searchIndexesCurrentIndex);		
+		//console.log('loadNextSectionid', searchIndexesData.length, searchIndexesCurrentIndex);		
 		
 		if (searchIndexesCurrentIndex > searchIndexesData.length) {
 		
@@ -507,8 +507,8 @@ SearchIndexLoader = function() {
 			// combine all the fragments
 			for (var i=0, il=loadedIndexes.length; i<il; i++) {
 				fragmentids = fragmentids.concat( loadedIndexes[i].occurrences );
-				console.log(loadedIndexes[i].term);
-				console.log(loadedIndexes[i].occurrences);
+				//console.log(loadedIndexes[i].term);
+				//console.log(loadedIndexes[i].occurrences);
 			}
 			
 			// sort!
@@ -565,6 +565,7 @@ SearchIndexLoader = function() {
 		}
 	
 		// reformat fragments into sectionids
+		// ['JN1_1','JN1_2'] => [{sectionid: 'JN1', fragmentids: ['JN1_1','JN1_2']}]
 		for (var i=0, il=fragmentids.length; i<il; i++) {
 			var fragmentid = fragmentids[i],
 				sectionid = fragmentid.split('_')[0];

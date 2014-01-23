@@ -32,7 +32,7 @@ function convertFolder(inputPath) {
 		console.log('-----');
 		console.log(info['name'],  outputPath);
 		
-		// remove existing data
+		// DELETE: existing data
 		if (fs.existsSync(outputPath)) {
 			var files = fs.readdirSync(outputPath);
 			
@@ -47,7 +47,7 @@ function convertFolder(inputPath) {
 			fs.mkdirSync(outputPath);
 		}
 		
-		// index data
+		// DELETE: index data
 		if (createIndex) {		
 			if (fs.existsSync(indexOutputPath)) {
 				var files = fs.readdirSync(indexOutputPath);
@@ -63,9 +63,14 @@ function convertFolder(inputPath) {
 				fs.mkdirSync(indexOutputPath);
 			}			
 		}
-					
+			
+		// RUN GENERATOR		
 		generator.generate(inputPath, outputPath, indexOutputPath, info, createIndex);
 		
+		// OUTPUT HERE?
+		// Right now the individual files do it, but there is a lot of overlap especially with indexs
+		// Maybe return: {chapters: [], indexData: {}, lemmaIndexData: {}} and output here?
+				
 		var endDate = new Date();		
 		console.log('time: ' + MillisecondsToDuration(endDate - startDate));			
 	}	

@@ -35,7 +35,7 @@ TextLoader = (function() {
 		}
 		
 		if (typeof cachedTexts[textid][sectionid] != 'undefined') {
-			successCallback (cachedTexts[textid][sectionid]);
+			successCallback (cachedTexts[textid][sectionid].clone());
 			return;
 		}
 		

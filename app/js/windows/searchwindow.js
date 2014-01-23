@@ -175,7 +175,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	textSearch.on('complete', function(e) {
 		
-		console.log('searcher:complete', e.data.results);
+		console.log('searcher:complete'); // , e.data.results);
 		
 		var results = e.data.results,
 			html = //'<h2>Results: ' + results.length + '</h2>' + 
@@ -326,6 +326,13 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 			
 			$('.' + result.fragmentid).each(function(i,el) {
+			
+				// TODO: clear search highlights
+				$(el).find('.highlight').each(function(hi, hel) {
+					// remove 
+					console.log('remove', hel);
+					
+				});
 				
 				//console.log(el);
 				

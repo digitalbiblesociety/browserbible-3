@@ -40,6 +40,8 @@ var AudioController = function(container, ui, scroller) {
 		audioInfo = null,
 		locationInfo = null,
 		sectionid = '',
+		fragmentid = '',
+		fragmentAudioData = null,
 		sectionHeight = 0,
 		sectionNode = null,
 		hasAudio = false,
@@ -47,8 +49,10 @@ var AudioController = function(container, ui, scroller) {
 	
 	autoplayCheckbox.prop('checked',false);	
 	autoplayCheckbox.parent().hide();
-		
-	//block.hide();
+	
+	block.hide();
+	ui.hide();	
+	
 		
 		
 	ui.on('click', function() {
@@ -75,6 +79,10 @@ var AudioController = function(container, ui, scroller) {
 			
 	
 	prevButton.on('click', function() {
+	
+		alert('no implementation');
+		return;
+	
 		var sectionidIndex = textInfo.sections.indexOf(sectionid),
 			prevSectionid = (sectionidIndex > 0 ) ? audioInfo.sections[sectionidIndex - 1] : null;
 			
@@ -92,6 +100,10 @@ var AudioController = function(container, ui, scroller) {
 		}
 	});
 	nextButton.on('click', function() {
+	
+		alert('no implementation');
+		return;	
+	
 		var sectionidIndex = textInfo.sections.indexOf(sectionid),
 			nextSectionid = (sectionidIndex < textInfo.sections.length-1) ? textInfo.sections[sectionidIndex+1] : null;
 			
@@ -118,52 +130,83 @@ var AudioController = function(container, ui, scroller) {
 
 		var newLocationInfo = e.data;
 		
-		//console.log('audio locationchange', e, newLocationInfo);
+		//console.log('AUDIO:locationchange', e, newLocationInfo);
 						
 		// found a fragment
 		if (newLocationInfo != null) {
 		
 			locationInfo = newLocationInfo;
 			
-			loadAudio(locationInfo.sectionid);					
+			loadAudio(locationInfo.fragmentid);					
 		}
 	}
 
-	function loadAudio(newSectionid) {
-		
-		
+	function loadAudio(newFragmentid) {
 		
 		if (!hasAudio) {
 			return;
 		}	
 			
-		if (sectionid != newSectionid) {
+		if (fragmentid != newFragmentid) {
 		
 			//console.log('loading',newSectionid,textInfo, hasAudio);			
 		
+			fragmentid = newFragmentid;
+					
+			var newSectionid = fragmentid.split('_')[0],
+				dbsBookCode =  sectionid.substring(0,2),
+				chaperNumber = sectionid.substring(2),
+				loadNewData = audioInfo.pericopeBased || newSectionid != sectionid;
+				
 			sectionid = newSectionid;
 			
-			var dbsBookCode =  sectionid.substring(0,2),
-				chaperNumber = sectionid.substring(2);
-		
-			audioDataManager.getChapterUrl(textInfo, dbsBookCode, chaperNumber, function(url) {
 			
-				//console.log('Got URL', url);
-			
-				if (url == null) {
-					block.hide();					
-					return;
-				}
-			
-				audio.src = url
-				audio.load();
+			// only do a checks when we need to!	
+			if (loadNewData) {
+				audioDataManager.getFragmentAudio(textInfo, audioInfo, fragmentid, function(newFragmentAudioData) {
 				
-				sectionNode = container.find('.section[data-id="' + sectionid + '"]');
-				
-				sectionHeight = sectionNode.height();
-				
-				title.html( new bible.Reference(sectionid).toString() + ' [' + (audioInfo.dam_id ? 'FCBH' : '') + ']');						
-			});
+					// only update if this is new data
+					if (fragmentAudioData == null || newFragmentAudioData == null || fragmentAudioData.id != newFragmentAudioData.id) {
+					
+						
+						// if no data was received, then we need to hide everything
+						if (!newFragmentAudioData || newFragmentAudioData.url == null) {
+							audio.src = null;
+							
+							title.html('[No audio]');				
+							
+							ui.hide();
+							block.hide();
+							
+							fragmentAudioData = newFragmentAudioData;					
+							return;
+						} else {
+						
+							// if we got a URL, then show the ear icon again
+							ui.show();
+							
+							// only when the previous data was null, do we re-show the control bar
+							if (fragmentAudioData == null) {
+								block.show();							
+							}
+							
+							fragmentAudioData = newFragmentAudioData;
+						}
+						
+						audio.src = fragmentAudioData.url;
+						audio.load();
+						
+						
+						// store height info
+						
+						// TODO: start and finish verse instead!
+						sectionNode = container.find('.section[data-id="' + sectionid + '"]');					
+						sectionHeight = sectionNode.height();
+									
+						// give feedback		
+						title.html( new bible.Reference(sectionid).toString() + (audioInfo.title ? ' [' + audioInfo.title + ']' : ''));									}
+				});
+			}
 		}			
 	}
 	
@@ -310,7 +353,7 @@ var AudioController = function(container, ui, scroller) {
 				if (newAudioInfo != null) {		
 					audioInfo = newAudioInfo;
 				
-					console.log('loaded audio', textInfo, newAudioInfo);
+					console.log('AUDIO: YES', textInfo.id, textInfo.lang, newAudioInfo);
 					
 					hasAudio = true;
 					
@@ -326,7 +369,7 @@ var AudioController = function(container, ui, scroller) {
 				} else {
 					hasAudio = false;
 										
-					console.log('NO audio found for', textInfo.id, textInfo.lang, newAudioInfo);
+					console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
 					
 					block.hide();
 					ui.hide();

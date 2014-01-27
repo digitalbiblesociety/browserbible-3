@@ -27,7 +27,10 @@ border-bottom: solid 1px #ccc;\
 			strongs = l.attr('s'),
 			main = l.closest('.scroller-main'),
 			mainOffset = main.offset(),
-			morphInfo = (typeof morph == 'undefined') ? '' : bible.morphology.Greek.getMorphology(morph);
+			section = l.closest('.section'),
+			lang = section.attr('lang'),
+			morphologyType = lang == 'heb' ? 'Hebrew' : lang == 'grc' ? 'Greek' : ''
+			morphInfo = (typeof morph == 'undefined' || morphologyType == '') ? '' : bible.morphology[morphologyType].format(morph);
 			
 		
 		if (morphInfo != null && morphInfo != '') {
@@ -37,7 +40,7 @@ border-bottom: solid 1px #ccc;\
 			
 			lemmaInfo.css({
 						left: mainOffset.left + 15 + 'px',
-						top: mainOffset.top + main.outerHeight() - 30 + 'px'
+						top: (mainOffset.top + main.outerHeight() - lemmaInfo.outerHeight() - 10) + 'px'
 						});
 		}
 		

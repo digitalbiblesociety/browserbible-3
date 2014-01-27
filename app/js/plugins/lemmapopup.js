@@ -115,6 +115,7 @@ var LemmaPopupPlugin = function(app) {
 			textid = chapter.attr('data-textid'),
 			langPrefix = 'G',
 			langCode = 'gre',
+			morphType = 'Greek',
 			dir = 'ltr';		
 			
 		// make strong's into ints
@@ -127,7 +128,8 @@ var LemmaPopupPlugin = function(app) {
 		if (bible.OT_BOOKS.indexOf(book_id) > -1) {			
 			langPrefix = 'H';
 			langCode = 'heb';
-			dir = 'rtl';			
+			dir = 'rtl';	
+			morphType = 'Hebrew';
 		}
 		
 		
@@ -182,11 +184,13 @@ var LemmaPopupPlugin = function(app) {
 											'  <span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' + 
 										'</div>';
 										
-							html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">Find all occurences (approximately ' + data.frequency + ')</span>';
+							
 							
 							if (morphKey != '') {
-								html += '<span class="lemma-morphology">' + bible.morphology.Greek.getMorphology( morphKey ) + '</span>';
+								html += '<span class="lemma-morphology">' + bible.morphology[morphType].format( morphKey ) + '</span>';
 							}
+							
+							html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">Find all occurences (approximately ' + data.frequency + ')</span>';
 							
 							html += '<div class="lemma-outline">' + data.outline + '</div>';
 							

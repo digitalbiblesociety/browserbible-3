@@ -73,8 +73,22 @@ TextInfoLoader = (function() {
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('error loading texts.json'); //, jqXHR, textStatus, errorThrown);
-				console.log(textStatus);				
+				//console.log('error loading texts.json'); //, jqXHR, textStatus, errorThrown);
+				//console.log(textStatus);				
+				
+				var modal = new MovableWindow(600,250, 'Chrome Local Error');
+				//modal.size(500, 200).center();
+				
+				modal.body.css({background: '#000', color: '#fff' }).html(
+					'<div style="padding: 20px;">' + 
+						'<p>Windows, Start, Run</p>' +
+						'<code>"%UserProfile%\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe" --allow-file-access-from-files</code>' +				
+						'<p>Mac, Terminal</p>' +
+						'<code>/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --allow-file-access-from-files</code>'+ 
+					'</div>'
+				);
+				modal.show();
+
 				
 			}
 		});

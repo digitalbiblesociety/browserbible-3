@@ -1,27 +1,4 @@
 
-// GET LANGUAGES
-// http://api.arclight.org/getLanguages?responseType=json&apiKey=52b06248a3c6e8.12980089
-
-
-// GET VIDEOS
-// http://api.arclight.org/getTitles?responseType=json&apiKey=52b06248a3c6e8.12980089&languageId=22812
-// A-HMAO = 22812
-// English = 529
-// Spanish, Latin = 21028
-
-
-// MAIN video
-// http://api.arclight.org/getAssetDetails?refId=1_529-jf-0-0&responseType=json&apiKey=52b06248a3c6e8.12980089
-// 529 = English
-
-// related SEGMENTS 
-// http://api.arclight.org/getAssociatedContent?refId=1_529-jf-0-0&apiKey=52b06248a3c6e8.12980089&requestPlayer=web
-
-
-// SEGMENT detail
-// http://api.arclight.org/getAssetDetails?refId=1_529-jf6101-0-0&apiKey=52b06248a3c6e8.12980089&requestPlayer=web
-
-
 var JesusFilmMediaApi = (function() {
 
 	var jfmLanguages = null,

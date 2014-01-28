@@ -40,31 +40,16 @@ var LemmaPopupPlugin = function(app) {
 	var lemmaPopup = new InfoWindow(),							
 		timer = new Timer(hidePopup, 500);
 	
-	lemmaPopup.container.attr('id','lemma-popup');
 	
 	function hidePopup() {
 		lemmaPopup.hide();	
-		$('.selected-lemma').removeClass('selected-lemma');
-		
-		$(document).off('click', handleDocClick);
 	}
 	
-	function handleDocClick(e) {
-			
-		if ($(e.target).closest('#lemma-popup').length == 0) {
-		
-			hidePopup();		
-		}
-
-	}	
+	lemmaPopup.on('hide', function() {
+		$('.selected-lemma').removeClass('selected-lemma');
+	});
 		
 	lemmaPopup.container
-		.on('mouseout', function() {
-			timer.start();
-		})
-		.on('mouseover', function() {
-			timer.clear();
-		})
 		.on('click', '.lemma-findall', function(e) {
 			var link = $(this),
 				lemma = link.attr('data-lemma'),
@@ -78,7 +63,7 @@ var LemmaPopupPlugin = function(app) {
 
 	$('.windows-main').on('click','.section l', function(e) {
 
-		$(document).off('click', handleDocClick);
+		//$(document).off('click', handleDocClick);
 			
 		var l = $(this);
 		
@@ -204,18 +189,9 @@ var LemmaPopupPlugin = function(app) {
 						
 					});
 				})(strongs[i], i < morphs.length ? morphs[i] : '');
-				
-				
-			}
-		
-		}
-		
-		setTimeout(function() {
-			$(document).on('click', handleDocClick);
-		}, 10);
-		
-		//return false;
-						
+								
+			}		
+		}			
 	});
 };
 

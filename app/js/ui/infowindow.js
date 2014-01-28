@@ -8,19 +8,80 @@ var InfoWindow = function() {
 							
 		body = container.find('.info-body'),
 		close = container.find('.close-button'),
-		win = $(window);
+		win = $(window),
+		timerEnabled = true,
+		clickOffEnabled = true,
+		clickOffNode = null,
+		timer = new Timer(hide, 500);			
 		
-	close.on('click', hide);
+	container
+		.on('mouseout', function() {
+			if (timerEnabled) {
+				timer.start();
+			}
+		})
+		.on('mouseover', function() {
+			if (timerEnabled) {
+				timer.clear();
+			}
+		});		
+		
+		
+	close
+		.on('click', hide);
 	
 
-	function show() {
+	function show() {	
 		container.show();
+		
+		if (clickOffEnabled) {
+			setTimeout(function() {
+				$(document).on('click', doc_click);			
+			});
+		}	
+		ext.trigger('show');			
+		
 		return ext;
 	}
 	function hide() {
 		container.hide();		
+		
+		if (clickOffEnabled) {
+			$(document).off('click', doc_click);			
+		}
+		
+		ext.trigger('hide');		
+		
 		return ext;		
 	}
+	
+	
+	function doc_click(e) {
+	
+		var target = $(e.target),
+			clickedOnWindow = false;
+
+		// go through all nested clicked elements
+		while (target != null && target.length > 0) {
+			
+			if (target[0] == container[0] || (clickOffNode != null && target[0] == clickOffNode[0]) ) {
+				clickedOnWindow = true;
+				break;				
+			}
+			
+			target = target.parent();
+		}
+		
+		//return;
+		if (!clickedOnWindow) {
+			e.preventDefault();
+		
+			hide();
+			
+			return false;
+		}		
+	}	
+	
 	function center() {
 		var
 			infoWidth = container.outerWidth(),
@@ -61,14 +122,20 @@ var InfoWindow = function() {
 		return ext;			
 	}
 	
-	var ext = {
+	var ext =  {
 		show: show,
 		hide: hide,
 		container: container,
 		body: body,
 		position: position,		
-		center: center	
+		center: center,
+		clickOffNode: clickOffNode
 	};
+	
+	ext = $.extend(true, ext, EventEmitter);
+	
+	
+	
 	
 	return ext;
 	

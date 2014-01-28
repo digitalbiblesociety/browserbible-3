@@ -24,7 +24,7 @@ var MediaLibraryPlugin = function(app) {
 			console.log('media click', mediaLibrary);
 	
 			// clear it out!
-			//mediaPopup.body.html('');				
+			mediaPopup.body.html('');				
 	
 			var 
 				icon = $(this),
@@ -85,6 +85,7 @@ var MediaLibraryPlugin = function(app) {
 			}
 
 			//mediaPopup.center().show();
+			mediaPopup.clickOffNode = icon;
 			mediaPopup.position( icon ).show();
 		});
 		
@@ -110,7 +111,7 @@ var MediaLibraryPlugin = function(app) {
 					verseid = verse.attr('data-id');
 				
 				// make sure we're just doing the first verse	
-				verse = verse.parent().find('.' + verseid).first();
+				verse = verse.closest('.section').find('.' + verseid).first();
 				
 				if (verseid == 'LK1_1') {
 					console.log('check');
@@ -138,10 +139,12 @@ var MediaLibraryPlugin = function(app) {
 									icon.prependTo(verse);
 								}
 							//}
-						}	
+						}
 					} // libries loop			
 				
-					verse.addClass('has-media');
+				
+					verse.closest('.section').find('.' + verseid).addClass('has-media');
+
 				}
 				
 			}); // verse loop

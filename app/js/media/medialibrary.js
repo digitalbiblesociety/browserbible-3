@@ -10,9 +10,11 @@ sofia.globals.mediaImageClick = function(e) {
 		win = $(window),
 		winHeight = win.height(),
 		winWidth = win.width(),
+		
+		clonedImage = $('<img src="' + img.parent('a').attr('href') + '" />')
 					
-		clonedImage = img
-						.clone()
+		//clonedImage = img
+		//				.clone()
 						.appendTo($('body'))
 						.addClass('big-image')
 						.css({top: imgOffset.top, left: imgOffset.left, width: imgWidth, height: imgHeight }),

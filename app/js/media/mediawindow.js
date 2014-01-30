@@ -76,8 +76,23 @@ var MediaWindow = function(id, parentNode, data) {
 						case 'image':
 						
 							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
-								var url = 'content/media/' + mediaLibrary.folder  + '/' + mediaForVerse[j];
-								$('<li class="media-image"><a href="' + url + '" target="_blank"><img src="' + url + '" /><span>' + reference.toString() + '</span></a></li>').appendTo(list)				
+								var fullUrl = 'content/media/' + mediaLibrary.folder  + '/' + mediaForVerse[j],
+									thumbUrl = fullUrl.replace('.jpg', '-thumb.jpg'),
+									li = $('<li class="media-image"><a href="' + fullUrl + '" target="_blank"><span>' + reference.toString() + '</span></a></li>').appendTo(list),
+									img = $('<img src="' + thumbUrl + '" />')
+											.prependTo( li.find('a') )
+											.on('load', function() {
+												
+												var image = $(this),
+													height = image.height();
+												
+												if (height < 100) {
+													image.css({marginTop: ((100-height) / 2) + 'px'});		
+												}
+												
+												//console.log('loaded');
+												
+											});			
 							}
 							break;
 						case 'video':

@@ -22,7 +22,7 @@ var GoogleAnalyticsPlugin = function(app) {
 	ga('send', 'pageview');
 	*/
 
-	if (sofia.config.gaKey && sofia.config.gaKey != '')	{			
+	if (sofia.config.enableOnlineSources && sofia.config.gaKey && sofia.config.gaKey != '')	{			
 		loadGoogleAnalytics();
 	}
 	

@@ -1,5 +1,14 @@
+sofia.globals.mediaLargeImage = null;
+
 sofia.globals.mediaImageClick = function(e) {
 	e.preventDefault();
+
+
+	if (sofia.globals.mediaLargeImage != null) {
+		sofia.globals.mediaLargeImage.fadeOut(function() {
+			$(this).remove();
+		});
+	}
 	
 	var link = $(this),
 		url = link.attr('href'),
@@ -23,14 +32,25 @@ sofia.globals.mediaImageClick = function(e) {
 		newWidth = winHeight * imgWidth / imgHeight,
 		newTop = 0,
 		newLeft = winWidth/2 - newWidth/2;
-						
-						
-	clonedImage.animate({
-		top: newTop,
-		left: newLeft,
-		width: newWidth,
-		height: newHeight			
+		
+	// if the image is wider in ratio than the window
+	if (newLeft < 0) {
+		newWidth = winWidth;
+		newHeight = winWidth * imgHeight / imgWidth;
+		newLeft = 0;
+		newTop = winHeight/2 - newHeight/2;
+	}				
+		
+	clonedImage.on('load', function() {
+		clonedImage.animate({
+			top: newTop,
+			left: newLeft,
+			width: newWidth,
+			height: newHeight			
+		});
 	});
+
+	sofia.globals.mediaLargeImage = clonedImage;
 	
 	if (sofia.analytics) {
 		sofia.analytics.record('imageclick', url);
@@ -52,44 +72,100 @@ sofia.globals.mediaImageClick = function(e) {
 	$('body').on('click', shrinkImage);
 	
 	return false;
-}
+};
 
+
+// GLOBAL Video window
+sofia.globals.videoWindow = null; 
+
+$(function() {
+
+	// create window
+	sofia.globals.videoWindow = new MovableWindow(640,360,'Video','video-player');
+	sofia.globals.videoWindow.center();
+	sofia.globals.videoWindow.hide();
+
+	sofia.globals.videoWindow.container.find('.close-button').on('click', function() {
+
+		// attempt to hide video
+		var video = sofia.globals.videoWindow.container.find('video');		
+		if (video.length > 0) {
+			video[0].pause();
+		}
+		
+		sofia.globals.videoWindow.body.html('');
+	});
+
+});
 
 sofia.globals.mediaVideoClick = function(e) {
 	e.preventDefault();
 	
 	var link = $(this),
 		url = link.attr('href'),
-		win = $(window),
-		winHeight = win.height(),
-		winWidth = win.width();
+		title = link.attr('title');
 					
+	sofia.globals.showVideo(url, title);
 	
-	var movableWindow = new MovableWindow(640,360),
-		video = $('<video autoplay controls src="' + url + '" style="width:100%; height: auto;"></video>').appendTo(movableWindow.body);
+	return false;
+};
+
+sofia.globals.mediaVideoJfmClick = function(e) {
+	e.preventDefault();
 	
-	
-	movableWindow.show();
-	movableWindow.title.html('Video');
-	
-	movableWindow.container.find('.close-button').on('click', function() {
-		
-		console.log('close clicked');
-		
-		movableWindow.container.find('video')[0].pause();
-		movableWindow.container.remove();
-		
-		movableWindow = null;	
-	})
+	var link = $(this),
+		segmentNumber = link.attr('href'),
+		title = link.attr('title');
+					
+	JesusFilmMediaApi.getPlayer('eng', segmentNumber, function(iframeUrl) {
+		sofia.globals.showIframe(iframeUrl, title);
+	});
 	
 	
 	return false;
+};
+
+sofia.globals.showVideo = function(videoUrl, title) {
+
+	sofia.globals.videoWindow.body.html('');
+
+	// add video
+	var video = $('<video autoplay controls src="' + videoUrl + '" style="width:100%; height: auto;"></video>')
+					.appendTo(sofia.globals.videoWindow.body);
+		
+	// title?
+	if (title) {
+		sofia.globals.videoWindow.title.html(title);	
+	}
+
+	// show me!
+	sofia.globals.videoWindow.show();	
+}
+
+
+sofia.globals.showIframe = function(iframeUrl, title) {
+
+	sofia.globals.videoWindow.body.html('');
+
+	// add video
+	var iframe = $('<iframe src="' + iframeUrl + '" allowfullscreen frameborder="0" width="' + sofia.globals.videoWindow.body.width() + '" height="' + sofia.globals.videoWindow.body.height() + '"></iframe>')
+					.appendTo(sofia.globals.videoWindow.body);
+		
+	// title?
+	if (title) {
+		sofia.globals.videoWindow.title.html(title);	
+	}
+
+	// show me!
+	sofia.globals.videoWindow.show();	
 }
 
 
 
 
+
 var MediaLibrary = (function(){
+
 
 	var 
 		currentMediaIndex = 0,

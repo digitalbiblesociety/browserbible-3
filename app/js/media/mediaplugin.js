@@ -20,12 +20,8 @@ var MediaLibraryPlugin = function(app) {
 	
 		// handle clicks
 		$('.windows-main').on('click', '.mediathumb', function(e) {
-		
-			console.log('media click', mediaLibrary);
-	
-			// clear it out!
-			mediaPopup.body.html('');				
-	
+			
+			// determin what kind of media this is	
 			var 
 				icon = $(this),
 				mediaFolder = icon.attr('data-mediafolder'),
@@ -44,49 +40,66 @@ var MediaLibraryPlugin = function(app) {
 					break;
 				}
 				
-			}	
+			}
+			
+			console.log('media click', mediaLibrary);
+				
 				
 			mediaForVerse = mediaLibrary.data[verseid];
 				
 			switch (mediaLibrary.type) {
 				
 				case 'image':
-												
-					var imagesHtmlArray = $.map(mediaForVerse, function(item, index) {
-						var url = 'content/media/' + mediaLibrary.folder + '/' + item;
-							return '<li><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>';
-						}),					
-						html = imagesHtmlArray.join('');
+					// clear it out!
+					mediaPopup.body.html('');	
+
+					var html = '';
+					for (var i=0, il=mediaForVerse.length; i<il; i++ ) {
+						var mediaInfo = mediaForVerse[i],
+							fullUrl = 'content/media/' + mediaLibrary.folder  + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
+							thumbUrl = fullUrl.replace('.jpg', '-thumb.jpg');
+						
+						html += '<li>' + 
+									'<a href="' + fullUrl + '" target="_blank">' + 
+										'<img src="' + thumbUrl + '" />' + 
+									'</a>' + 
+								'</li>';
+					}
 
 					mediaPopup.body.append('<strong>' + reference.toString() + '</strong>');	
 					mediaPopup.body.append($('<ul class="inline-image-library-thumbs">' + html + '</ul>'));
 					
+
+					//mediaPopup.center().show();
+					mediaPopup.clickOffNode = icon;
+					mediaPopup.position( icon ).show();
+
 					break;
 				
 				case 'video':
-					var url = 'content/media/' + mediaLibrary.folder + '/' + mediaForVerse;																
-					//mediaPopup.body.append('<video src="' + url + '" type="video/mp4" controls autoplay style="width:100%; height: auto;"></video>');
+					var mediaInfo = mediaForVerse[0],
+						videoUrl = 'content/media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0];
 					
-					mediaPopup.body.append('<strong>' + reference.toString() + '</strong>');	
-					mediaPopup.body.append($('<ul class="inline-video-library-thumbs">' + 
-						'<li><a href="' + url + '"><img src="css/images/video.svg" "></a></li>' +
-					  '</ul>'));
-
+					sofia.globals.showVideo(videoUrl, mediaInfo.name);
 					
 					break;	
 					
 				case 'jfm':
 
-					// console.log
-					mediaPopup.body.append('<div>Jesus Film!</div>');
+					var mediaInfo = mediaForVerse[0],
+						videoUrl = JesusFilmMediaApi.getPlayer('eng', mediaInfo.filename, function(iframeUrl) {
+
+							sofia.globals.showIframe(iframeUrl, mediaInfo.name);
+
+						});
+					
+					
+					
+
 					
 					break;																					
 					
 			}
-
-			//mediaPopup.center().show();
-			mediaPopup.clickOffNode = icon;
-			mediaPopup.position( icon ).show();
 		});
 		
 	}
@@ -170,7 +183,7 @@ var MediaLibraryPlugin = function(app) {
 	
 	mediaPopup.body.on('click', '.inline-image-library-thumbs a', sofia.globals.mediaImageClick);	
 	mediaPopup.body.on('click', '.inline-video-library-thumbs a', sofia.globals.mediaVideoClick);		
-	
+
 	
 	var ext = {};
 	ext = $.extend(true, ext, EventEmitter);	

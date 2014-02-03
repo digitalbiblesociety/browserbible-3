@@ -50,6 +50,7 @@
 	text-decoration: none;
 	color: #333;
 	line-height: 1;
+	position: relative;
 }
 .image-library-thumbs li a:hover {
 	color: #2a85e8;
@@ -99,7 +100,28 @@
 .video-icon {
 	background-image: url(images/video.svg);
 }
+.image-library-thumbs li span.media-video-play {
+	/*
+	position: absolute;
+	top: 20px;
+	left: 40px;
+	background: transparent;
 
+	display: block;
+	border-style: solid;
+	border-width: 10px 0 10px 20px;
+	border-color: transparent transparent transparent #fff;
+	*/
+
+	position: absolute;
+	display: block;
+	top: 20px;
+	left: 40px;
+	background: transparent;
+	width: 20px;
+	height: 20px;
+	background: transparent url(images/video-icon-overlay.svg) center center no-repeat;	
+}
 
 
 

@@ -459,7 +459,7 @@ border: solid 1px #ccc;
 }
 .info-window .info-body {
 	width: 300px;
-	height: 200px;
+	max-height: 200px;
 	overflow: auto;
 	padding: 0 15px 0 0;
 }

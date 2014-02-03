@@ -79,7 +79,7 @@ var AudioController = function(container, ui, scroller) {
 			
 	
 	prevButton.on('click', function() {
-	
+
 		alert('no implementation');
 		return;
 	
@@ -100,10 +100,21 @@ var AudioController = function(container, ui, scroller) {
 		}
 	});
 	nextButton.on('click', function() {
+
+		console.log('next', fragmentid);
+
+		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(nextFragment) {
+
+			if (scrollCheckbox.is(':checked')) {
+				//scroller.scrollTo(nextSectionid + '_1', -10);
+				scroller.load('text',nextFragment);
+			}			
+		});
 	
-		alert('no implementation');
+		//alert('no implementation');
 		return;	
-	
+		
+		/*
 		var sectionidIndex = textInfo.sections.indexOf(sectionid),
 			nextSectionid = (sectionidIndex < textInfo.sections.length-1) ? textInfo.sections[sectionidIndex+1] : null;
 			
@@ -121,6 +132,7 @@ var AudioController = function(container, ui, scroller) {
 				scroller.load('text',nextSectionid);
 			}
 		}
+		*/
 	});		
 	
 	scroller.on('locationchange', updateLocation);

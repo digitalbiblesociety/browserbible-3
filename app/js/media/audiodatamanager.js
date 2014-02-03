@@ -56,11 +56,21 @@ var AudioDataManager = function() {
 		sofia.audioSources[audioInfo.audioSourceIndex].getFragmentAudio(textInfo, audioInfo, fragmentid, callback);
 		
 	}
+
+	function getNextFragment(textInfo, audioInfo, fragmentid, callback) {
+		sofia.audioSources[audioInfo.audioSourceIndex].getNextFragment(textInfo, audioInfo, fragmentid, callback);
+	}
+
+	function getPrevFragment(textInfo, audioInfo, fragmentid, callback) {
+		sofia.audioSources[audioInfo.audioSourceIndex].getPrevFragment(textInfo, audioInfo, fragmentid, callback);
+	}	
 	
 	
 	var audio = {
 		getAudioInfo: getAudioInfo,
-		getFragmentAudio: getFragmentAudio
+		getFragmentAudio: getFragmentAudio,
+		getNextFragment: getNextFragment,
+		getPrevFragment: getPrevFragment
 	};
 	return audio;	
 };
@@ -154,10 +164,29 @@ var LocalAudio = (function() {
 		
 		callback(audioData);
 	}
+
+	function getNextFragment(textInfo, audioInfo, fragmentid, callback) {
+		var verseParts = fragmentid.split('_'),
+			sectionid = verseParts[0],
+			verseNumber = parseInt(verseParts[1], 10),
+			fragmentIndex = 0,
+			fragmentData = null,
+			filename = '';
+
+		// find this one, then go to the next;
+
+		callback(null);
+	}
+
+	function getPrevFragment(textInfo, audioInfo, fragmentid, callback) {
+		callback(null);
+	}	
 	
 	var audio = {
 		getAudioInfo: getAudioInfo,
-		getFragmentAudio: getFragmentAudio		
+		getFragmentAudio: getFragmentAudio	,
+		getNextFragment: getNextFragment,
+		getPrevFragment: getPrevFragment	
 	};
 	return audio;	
 })();
@@ -416,13 +445,23 @@ var FaithComesByHearingAudio = (function() {
 		});		
 				
 	}
+
+	function getNextFragment(textInfo, audioInfo, fragmentid, callback) {
+		callback(null);
+	}
+
+	function getPrevFragment(textInfo, audioInfo, fragmentid, callback) {
+		callback(null);
+	}		
 	
 	var audio = {
 		getAudioInfo: getAudioInfo,
 		getFragmentAudio: getFragmentAudio,
 		getFbchCollection: getFbchCollection,
 		getFragmentAudio: getFragmentAudio,
-		fcbhIsLoaded: fcbhIsLoaded	
+		fcbhIsLoaded: fcbhIsLoaded,
+		getNextFragment: getNextFragment,
+		getPrevFragment: getPrevFragment	
 	};
 
 	init();

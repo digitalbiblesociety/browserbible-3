@@ -381,6 +381,10 @@ border: solid 1px #ccc;
 		line-height: 2.0em;		
 		padding: 0 5px;
 	}
+	
+	.text-chooser-row-header td {
+		padding-left: 10px;
+	} 
 
 	.text-chooser-filter-text {
 		font-size: 11px;
@@ -410,14 +414,17 @@ border: solid 1px #ccc;
 	.text-chooser-row .text-chooser-abbr {
 
 		font-weight: bold;
-		width: 80px;
-		padding: 0 10px 0;
+		-x-width: 80px;
+		
 		text-align: right;
 		-x-display: inline-block;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		height: 2.0em;
-		white-space: nowrap;		
+		white-space: nowrap;
+		vertical-align: top;
+		line-height: 1.2;
+		padding: 8px 10px 0 8px;		
 	}	
 	.text-chooser-row .text-chooser-name {
 		padding: 0 0 0 0 ; 
@@ -426,10 +433,14 @@ border: solid 1px #ccc;
 	}
 	.text-chooser-row .text-chooser-name span {
 		display: block;
-		width: 240px;
+		-x-width: 240px;
+		line-height: 1.2;
+		padding: 8px 10px 8px;	
+		/*
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		*/
 	}	
 	
 

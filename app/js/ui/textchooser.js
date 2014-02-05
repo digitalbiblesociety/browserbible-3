@@ -61,7 +61,7 @@ var TextChooser = function(container, target) {
 					.removeClass('filtered')
 					.show();		
 					
-			runTopTextsSelector();
+			//runTopTextsSelector();
 		} else {
 			
 			text = text.toLowerCase();
@@ -220,7 +220,7 @@ var TextChooser = function(container, target) {
 					
 					langHtml.push('<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
 									'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
-									'<td class="text-chooser-name"><span>' + text.name + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span></td>' +
+									'<td class="text-chooser-name"><span>' + text.name + '</span></td>' + // + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span></td>' +
 								'</tr>'
 					);	
 					
@@ -271,6 +271,7 @@ var TextChooser = function(container, target) {
 		main.html('<table cellspacing="0">' + html.join('') + '</table>');
 		
 		// wait just a second to adjust the size
+		/*
 		setTimeout(function() {
 			var widthOfAbbr = main.find('td.text-chooser-abbr:first').outerWidth(true),
 				widthOfArea = textSelector.width(),
@@ -280,6 +281,7 @@ var TextChooser = function(container, target) {
 			
 			main.find('td.text-chooser-name span').width(widthOfFullnames);
 		});
+		*/
 		
 		
 		hasTopTexts = main.find('.is-top-text').length > 0;

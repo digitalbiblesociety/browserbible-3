@@ -80,59 +80,53 @@ var AudioController = function(container, ui, scroller) {
 	
 	prevButton.on('click', function() {
 
-		alert('no implementation');
-		return;
-	
-		var sectionidIndex = textInfo.sections.indexOf(sectionid),
-			prevSectionid = (sectionidIndex > 0 ) ? audioInfo.sections[sectionidIndex - 1] : null;
-			
-		if (prevSectionid != null) {
-			if (!audio.paused) {
-				$(audio).on('loadeddata', playWhenLoaded);	
-			}
-			
-			loadAudio(prevSectionid);
-			
-			if (scrollCheckbox.is(':checked')) {
-				//scroller.scrollTo(prevSectionid + '_1', -10);
-				scroller.load('text',prevSectionid);
-			}
-		}
-	});
-	nextButton.on('click', function() {
+		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(prevFragmentid) {
 
-		console.log('next', fragmentid);
 
-		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(nextFragment) {
+			console.log('prev', fragmentid, prevFragmentid);				
+		
+			if (prevFragmentid == null) {
+				return;
+			}
 
 			if (scrollCheckbox.is(':checked')) {
 				//scroller.scrollTo(nextSectionid + '_1', -10);
-				scroller.load('text',nextFragment);
-			}			
+				scroller.load('text', prevFragmentid.split('_')[0], prevFragmentid);
+			}	
+			
+			if (fragmentAudioData == null || prevFragmentid != fragmentAudioData.fragmentid) {
+				loadAudio(prevFragmentid);	
+				$(audio).on('loadeddata', playWhenLoaded);
+			}
+		});
+		
+	});
+	nextButton.on('click', function() {
+
+
+
+		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(nextFragmentid) {
+
+			console.log('next', fragmentid, nextFragmentid);				
+
+			if (nextFragmentid == null) {
+				return;
+			}
+
+			if (scrollCheckbox.is(':checked')) {
+				//scroller.scrollTo(nextSectionid + '_1', -10);
+				scroller.load('text', nextFragmentid.split('_')[0], nextFragmentid);
+			}	
+			
+			if (fragmentAudioData == null || nextFragmentid != fragmentAudioData.fragmentid) {
+				loadAudio(nextFragmentid);	
+				$(audio).on('loadeddata', playWhenLoaded);	
+			}
 		});
 	
 		//alert('no implementation');
 		return;	
-		
-		/*
-		var sectionidIndex = textInfo.sections.indexOf(sectionid),
-			nextSectionid = (sectionidIndex < textInfo.sections.length-1) ? textInfo.sections[sectionidIndex+1] : null;
-			
-		if (nextSectionid != null) {
-			
-			if (!audio.paused) {
-				$(audio).on('loadeddata', playWhenLoaded);	
-			}
-				
-			loadAudio(nextSectionid);
-			
-			
-			if (scrollCheckbox.is(':checked')) {
-				//scroller.scrollTo(nextSectionid + '_1', -10);
-				scroller.load('text',nextSectionid);
-			}
-		}
-		*/
+	
 	});		
 	
 	scroller.on('locationchange', updateLocation);
@@ -199,12 +193,14 @@ var AudioController = function(container, ui, scroller) {
 							
 							// only when the previous data was null, do we re-show the control bar
 							if (fragmentAudioData == null) {
-								block.show();							
+								// let's not do it ever
+								//block.show();							
 							}
 							
 							fragmentAudioData = newFragmentAudioData;
 						}
 						
+						//audio.currentTime = 0;
 						audio.src = fragmentAudioData.url;
 						audio.load();
 						
@@ -232,9 +228,23 @@ var AudioController = function(container, ui, scroller) {
 	
 	$(audio)
 		.on('play playing', function() {
+			
+			var thisAudio = this;
+
 			playButton
 				.attr('value','Pause')
 				.addClass('playing');
+				
+				
+			// pause all other media on the page
+			$('audio,video').each(function() {
+				var audioOrVideoNode = this;
+				
+				if (audioOrVideoNode != thisAudio && !audioOrVideoNode.paused && !audioOrVideoNode.ended) {
+					audioOrVideoNode.pause();
+				}				
+			});
+							
 		})
 		.on('pause ended', function() {
 			playButton
@@ -246,6 +256,7 @@ var AudioController = function(container, ui, scroller) {
 				.attr('value','Play')
 				.removeClass('playing');
 			
+			audioSliderHandle.css({left: '0%' });
 			currenttime.html( secondsToTimeCode(0) );		
 			duration.html( secondsToTimeCode(0) );			
 		})		
@@ -358,7 +369,24 @@ var AudioController = function(container, ui, scroller) {
 	function setTextInfo(newTextInfo) {
 		if (textInfo == null || textInfo.id != newTextInfo.id) {
 			
+			// reset
+			title.html('');
+			audioSliderCurrent.css({left: '0%' });
+			audioSliderHandle.css({left: '0%' });
+			currenttime.html( secondsToTimeCode(0) );		
+			duration.html( secondsToTimeCode(0) );	
+
+
 			textInfo = newTextInfo;
+			
+			if (!audio.paused && !audio.ended) {
+				try {
+					audio.pause();
+					audio.src = null;
+				} catch (e) {
+					// boom!
+				}
+			}
 			
 			audioDataManager.getAudioInfo(textInfo, function(newAudioInfo) {
 			
@@ -369,13 +397,13 @@ var AudioController = function(container, ui, scroller) {
 					
 					hasAudio = true;
 					
-					if (sectionid != '') {
-						console.log('info, loading', hasAudio, sectionid);
-						loadAudio(sectionid);
+					if (fragmentid != '') {
+						console.log('info, loading', hasAudio, fragmentid);
+						loadAudio(fragmentid);
 					}
 					
 					// start load
-					block.show();
+					//block.show();
 					ui.show();	
 								
 				} else {

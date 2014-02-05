@@ -105,13 +105,31 @@ var LocalAudio = (function() {
 	
 	function getFragmentAudio(textInfo, audioInfo, fragmentid, callback) {
 	
+		var fragmentData = findFragmentData(audioInfo, fragmentid);
+		
+		if (fragmentData == null) {
+			callback(null);
+			return;
+		}
+			
+		// yeah, we found one!
+		var audioData = {
+			url: 'content/audio/' + textInfo.id + '/' + fragmentData.filename + '.' + fragmentData.exts[0],
+			id: fragmentData.index,
+			start: fragmentData.start,
+			end: fragmentData.end
+		}
+		
+		callback(audioData);
+	}
+
+	function findFragmentData(audioInfo, fragmentid) {
 		// split through all the file
 		var verseParts = fragmentid.split('_'),
 			sectionid = verseParts[0],
 			verseNumber = parseInt(verseParts[1], 10),
 			fragmentIndex = 0,
-			fragmentData = null,
-			filename = '';
+			fragmentData = null;
 		
 		// look through all the ranges
 		/*
@@ -147,39 +165,43 @@ var LocalAudio = (function() {
 			}
 			
 		}
-		
+		fragmentData.index = fragmentIndex;
+
+		return fragmentData;
+	}
+
+	function getNextFragment(textInfo, audioInfo, fragmentid, callback) {
+		var fragmentData = findFragmentData(audioInfo, fragmentid);
+
 		if (fragmentData == null) {
 			callback(null);
 			return;
 		}
-		
-			
-		// yeah, we found one!
-		var audioData = {
-			url: 'content/audio/' + textInfo.id + '/' + fragmentData.filename + '.' + fragmentData.exts[0],
-			id: fragmentIndex,
-			start: fragmentData.start,
-			end: fragmentData.end
+
+		if (fragmentData.index < audioInfo.fragments.length-1) {
+			var nextFragmentData = audioInfo.fragments[fragmentData.index+1];
+
+			callback(nextFragmentData.start);			
+		} else {
+			callback(null);
 		}
-		
-		callback(audioData);
-	}
-
-	function getNextFragment(textInfo, audioInfo, fragmentid, callback) {
-		var verseParts = fragmentid.split('_'),
-			sectionid = verseParts[0],
-			verseNumber = parseInt(verseParts[1], 10),
-			fragmentIndex = 0,
-			fragmentData = null,
-			filename = '';
-
-		// find this one, then go to the next;
-
-		callback(null);
 	}
 
 	function getPrevFragment(textInfo, audioInfo, fragmentid, callback) {
-		callback(null);
+		var fragmentData = findFragmentData(audioInfo, fragmentid);
+
+		if (fragmentData == null) {
+			callback(null);
+			return;
+		}
+
+		if (fragmentData.index > 0) {
+			var nextFragmentData = audioInfo.fragments[fragmentData.index-1];
+
+			callback(nextFragmentData.start);			
+		} else {
+			callback(null);
+		}
 	}	
 	
 	var audio = {
@@ -288,8 +310,20 @@ var FaithComesByHearingAudio = (function() {
 				fcbh_drama_nt: getFbchCollection(currentTextInfo, 'drama', 'nt'),
 				fcbh_drama_ot: getFbchCollection(currentTextInfo, 'drama', 'ot')
 			};
+
+			// if we find one, send it!
+			if (audioData.fcbh_audio_nt != null || 
+				audioData.fcbh_audio_ot != null || 
+				audioData.fcbh_drama_nt != null || 
+				audioData.fcbh_drama_ot != null) {
+
+				currentCallback(audioData);	
+			} else {
+
+				currentCallback(null);
+			}
 				
-			currentCallback(audioData);
+			
 			
 			currentTextInfo = null;
 			currentCallback = null;
@@ -447,11 +481,24 @@ var FaithComesByHearingAudio = (function() {
 	}
 
 	function getNextFragment(textInfo, audioInfo, fragmentid, callback) {
-		callback(null);
+		
+		// next chapter!
+		var sectionid = fragmentid.split('_')[0],
+			reference = new bible.Reference(sectionid),
+			nextChapter = reference.nextChapter();
+
+		callback( nextChapter.toSection() );
+
 	}
 
 	function getPrevFragment(textInfo, audioInfo, fragmentid, callback) {
-		callback(null);
+		
+		// prev chapter!
+		var sectionid = fragmentid.split('_')[0],
+			reference = new bible.Reference(sectionid),
+			prevChapter = reference.prevChapter();
+
+		callback( prevChapter.toSection() );
 	}		
 	
 	var audio = {

@@ -181,20 +181,45 @@ div.is1 {
 	font-weight: bold;
 }
 
+.PS .s, .PS .ms {
+	text-align: center;	
+}
+
 .q {
-	margin-left: 4em  !important;
-	text-indent: -3em !important;
+	padding-left: 3em  !important;
+	text-indent: -1.5em !important;
+	position: relative;
+}
+
+.q2 {
+	padding-left: 4em  !important;
+	text-indent: -1.5em !important;
+	position: relative;	
 }
 .q .verse-num,
 .q .v-num {
-	float: left;
-	margin-left: -1.25em;
-
+	position: absolute;
+	display: block;
+	width: 2em;
+	text-align: right;
+	top: 0;
+	left: 0;
 }
+.qs {
+	text-align: right;
+	font-style: italic;
+	
+}
+
 .c + .p,
 .c + p {
 	margin-top: 0;
 	text-indent: 0;
+}
+
+.d {
+	font-size: 0.8em;
+	text-align: center;
 }
 
 

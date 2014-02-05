@@ -414,10 +414,10 @@ bible.Reference = function () {
 					this.bookid = this.bookList[this.bookList.indexOf(this.bookid)-1];
 					
 					// get the last chapter in this book
-					this.chapter1 = bible.BOOK_DATA[this.bookid].chapters.length;
+					this.chapter = this.chapter1 = bible.BOOK_DATA[this.bookid].chapters.length;
 				} else {
 					// just go back a chapter
-					this.chapter1--;
+					this.chapter = this.chapter1 = this.chapter1 - 1;
 				}
 				
 			}
@@ -438,11 +438,12 @@ bible.Reference = function () {
 				
 				if (this.chapter1 < bible.BOOK_DATA[this.bookid].chapters.length) {
 					// just go up one chapter
-					this.chapter1++;
+					this.chapter = this.chapter1 = this.chapter1+1;
+
 				} else if (this.bookList.indexOf(this.bookid) < this.bookList.length-1) {
 					// go to the next book, first chapter
 					this.bookid = this.bookList[this.bookList.indexOf(this.bookid)+1];
-					this.chapter1 = 1;
+					this.chapter = this.chapter1 = 1;
 				}
 				
 			}

@@ -420,7 +420,7 @@ var TextWindow = function(id, node, init_data) {
 	ext.on('message', function(e) {
 		var data = e.data;
 		
-		if (data.messagetype == 'nav' && data.type == 'bible') {
+		if (data.messagetype == 'nav' && data.type == 'bible' && data.locationInfo != null) {
 			//console.log(id, data.locationInfo.fragmentid, data.locationInfo.offset)
 			scroller.scrollTo( data.locationInfo.fragmentid, data.locationInfo.offset);
 		}			

@@ -209,6 +209,12 @@ var AddWindowButton = function(node) {
 };
 sofia.menuComponents.push('AddWindowButton');
 
+var MobileButton = function(node) {
+	var MobileButton = $('<a id="main-mobile-button" class="main-menu-button" style="" href="../mobile/index.html"></a>')
+					.appendTo(node);
+};
+sofia.menuComponents.push('MobileButton');
+
 var ConfigButton = function(node) {
 	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
 					.appendTo(node)

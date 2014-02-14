@@ -1,11 +1,12 @@
 bible.ReferenceFinder = (function() {
 	
-	function find(text) {
-		var refs = [],
+	function createLinks(text) {
+		var formattedText = '',
+			refs = [],
 			lastRef = null,
 			parts = text.split(';');
 			
-		console.log('PARSE', text);
+		//console.log('PARSE', text);
 			
 		for (var i=0, il=parts.length; i<il; i++) {
 			var part = parts[i],
@@ -21,9 +22,6 @@ bible.ReferenceFinder = (function() {
 								.replace(/\s$/, '')
 								.replace(/^\s/, '');				
 				
-				//while (subPart.substring(0,1) == ' ') {
-				//	subPart = subPart.substr(1);
-				//}
 				
 				// 1 verse string
 				if (/^\d+$/.test(subPart)) {
@@ -58,23 +56,32 @@ bible.ReferenceFinder = (function() {
 					
 					ref = new bible.Reference(subPart);
 				}
-					
+				
+				if (j > 0) {
+					formattedText += ', ';	
+				}
+				formattedText += '<span class="v-link" data-fragmentid="' + ref.toSection() + '">' + subPart + '</a>';
+
+				
 				console.log(subPart, ref.toString());
 				
 				refs.push( ref );
 				lastRef = ref;				
 			}
 			
+			if (i > 0) {
+				formattedText += '; ';	
+			}			
+			
 		}
 		
-		return refs;
-		
+		return formattedText;
+				
 	}
 	
 	
-	
 	return {
-		find: find
+		createLinks: createLinks
 	}
 	
 })();

@@ -1,5 +1,5 @@
-var InfoWindow = function() {
-	var container = $(	'<div class="info-window">'+ 
+var InfoWindow = function(id) {
+	var container = $(	'<div class="info-window"' + (id ? ' id="' + id + '"' : '') + '>'+ 
 							'<span class="close-button"></span>' + 
 							'<div class="info-body"></div>' +
 						'</div>')

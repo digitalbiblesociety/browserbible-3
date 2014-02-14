@@ -314,8 +314,21 @@ var FaithComesByHearingAudio = (function() {
 				
 				currentTextInfo = null;
 				currentCallback = null;	
+				
+				return;
 			}			
 		}
+		
+		
+		// TEMP: no longer attempt FCBH detection
+		currentCallback(audioData);
+		
+		currentTextInfo = null;
+		currentCallback = null;	
+
+		return;		
+		
+		
 	
 		// if not in textInfo, then we need to look it up from the FCBH data
 		if (fcbhIsLoaded && currentTextInfo != null && currentCallback != null) {

@@ -63,7 +63,7 @@ var App = function() {
 	resize();
 	
 	
-	var settingsKey = 'windowapp-13-12-29'
+	var settingsKey = 'windowapp-14-02-09'
 	
 	function getWindowSettings() {
 	
@@ -132,7 +132,10 @@ var App = function() {
 					break;
 				case 'search':
 					windowType = 'SearchWindow'; 
-					break;			
+					break;	
+				case 'media':
+					windowType = 'MediaWindow'; 
+					break;								
 				default:
 					windowType = setting.type; 
 				

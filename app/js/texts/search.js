@@ -46,7 +46,9 @@ TextSearch = function() {
 		searchTermsRegExp = [],
 		searchIndexLoader = new SearchIndexLoader(),
 		searchIndexesData = [],
-		searchIndexesCurrentIndex = 0
+		searchIndexesCurrentIndex = 0,
+		
+		searchType = 'AND',
 		
 		searchFinalResults = [];
 		;
@@ -76,6 +78,7 @@ TextSearch = function() {
 		searchTermsRegExp = [];
 		searchIndexesData = []
 		searchIndexesCurrentIndex = 0;
+		searchType = /\bOR\b/gi.test(text) ? 'OR' : 'AND';
 	
 		createSearchTerms();
 		
@@ -91,11 +94,36 @@ TextSearch = function() {
 		
 		if (e.data.loadedIndexes.length == 0) {
 			
-			isSearching = false;
-		
 			// BRUTE FORCE?
-			ext.trigger('indexerror', {type: 'indexerror', target:this, data: {results: searchFinalResults}});
+			console.log('BRUTE FORCE');
 			
+			// create "index" of all verses?
+			searchIndexesData = [];
+			for (var i=0, il = textInfo.sections.length; i<il; i++) {
+				var sectionid = textInfo.sections[i],
+					dbsBookCode = sectionid.substr(0,2),
+					chapterNumber = parseInt(sectionid.substr(2), 10),
+					sectionData = {
+						sectionid: sectionid,
+						fragmentids: []							
+					};
+					
+				for (v=1; v<=bible.BOOK_DATA[dbsBookCode].chapters[chapterNumber-1]; v++ ) {
+					sectionData.fragmentids.push(sectionid + '_' + v);
+				}
+					
+				
+				searchIndexesData.push(sectionData);
+			}
+					
+			loadNextSectionid();
+			
+			
+			
+			/*
+			isSearching = false;			
+			ext.trigger('indexerror', {type: 'indexerror', target:this, data: {results: searchFinalResults}});
+			*/
 			
 		} else {
 			ext.trigger('indexcomplete', {type: 'indexcomplete', target:this, data: {searchIndexesData: e.data.loadedResults }});
@@ -167,7 +195,8 @@ TextSearch = function() {
 						
 					if (fragmentNode.length > 0) {
 						
-						var foundMatch = false;
+						var foundMatch = false,
+							regMatches = new Array(searchTermsRegExp.length);
 					
 						for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
 							
@@ -179,17 +208,30 @@ TextSearch = function() {
 								html = html.replace(searchTermsRegExp[j], function(match) {
 									foundMatch = true;
 									return match + ' class="highlight" ';
-								});							
+								});				
 
 							} else {
 
 								// surround the word with a highlight
 								html = html.replace(searchTermsRegExp[j], function(match) {
+									regMatches[j] = true;
 									foundMatch = true;
 									return '<span class="highlight">' + match + '</span>';
 								});								
 								
 							}
+						}
+						
+						if (searchType == 'AND') {
+							var foundAll = true;
+							for (var j=0, jl=regMatches.length; j<jl; j++) {
+								if (regMatches[j] !== true) {
+									foundAll = false;
+									break;									
+								}
+							}
+							foundMatch = foundAll;
+							
 						}
 					
 						if (foundMatch) {

@@ -23,30 +23,7 @@ var WindowManager = function(node) {
 			ext.trigger('settingschange', e);			
 		});
 		
-		win.on('globalmessage', function(e) {
-			// give to other windows
-			
-				
-			for (var i=0, il=windows.length; i<il; i++) {
-				w = windows[i];
-			 	
-				if (w.id != id) {
-			 		// pass message down
-			 		w.trigger('message', e);
-				}
-			}				
-			 
-			// plugins
-			for (var i=0, il=sofia.app.plugins.length; i<il; i++) {
-				p = sofia.app.plugins[i];
-			 	
-				if (p.trigger) {
-					// pass message down
-					p.trigger('message', e);
-				}
-			}				
-			 
-		});
+		win.on('globalmessage', sofia.app.handleGlobalMessage);
 		
 		size();
 	}
@@ -118,7 +95,8 @@ var WindowManager = function(node) {
 		add: addWindow,
 		remove: removeWindow,
 		size: size,
-		getSettings: getSettings
+		getSettings: getSettings,
+		windows: windows
 	};
 	
 	ext = $.extend(true, ext, EventEmitter);
@@ -146,6 +124,7 @@ var Window = function(id, parentNode, className, data, manager) {
 		ext.trigger('settingschange', e); // {type: e.type, target: this, data: e.data});
 	});
 	controller.on('globalmessage', function(e) {
+		e.id = id;
 		ext.trigger('globalmessage', e); // {type: e.type, target: this, data: e.data});
 	});	
 	

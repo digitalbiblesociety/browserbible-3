@@ -6,29 +6,83 @@ var App = function() {
 		body = $(document.body),
 		header = $('<div class="windows-header"></div>').appendTo(body),
 		main = $('<div class="windows-main"></div>').appendTo(body),
-		footer = $('<div class="windows-footer"></div>').appendTo(body),
+		footer = $('<div class="windows-footer"></div>').appendTo(body),		
+		ext = {};
 		
-		floatingHeader = false;
 	
-	if (floatingHeader) {
-		var width = win.width(),
-			css = {
-				position: 'absolute',
-				zIndex: 100,
-				top: 0,
-				left: 0,
-				width: width + 'px'
+	function init() {
+		
+		var mainMenu = new MainMenu(header);	
+		
+		// create objects
+		var windowManager = new WindowManager(main);	
+		
+		ext.windowManager = windowManager;
+			
+		// combine nodes and objects
+		win.on('resize', resize);
+		resize();	
+		
+		
+		var settings = getWindowSettings();
+		console.log('settings',settings, settings.length);	
+		
+		// create windows
+		for (var i=0, il=settings.windows.length; i<il; i++) {
+			var setting = settings.windows[i],
+				windowType = setting.windowType;
+				
+			if (!setting.windowType) {
+				
+				switch (setting.type) {
+					case 'bible':
+						windowType = 'TextWindow';
+						break;
+					case 'map':
+						windowType = 'MapsWindow';
+						break;
+					case 'search':
+						windowType = 'SearchWindow'; 
+						break;	
+					case 'media':
+						windowType = 'MediaWindow'; 
+						break;								
+					default:
+						windowType = setting.type; 
+					
+				}
 			}
-		header.css(css).hide();		
+	
+			// create window
+			console.log('create',i, windowType, setting.data);
+			windowManager.add(windowType, setting.data);	
+		}
+			
+		var settingsTimer = new Timer(storeSettings, 1000);
 		
-		css.top = undefined;
-		css.bottom = 0;			
+		windowManager.on('settingschange', function(e) {
+			
+			// title to show active window's position
+			if (e.data && e.data.label && e.data.hasFocus) {
+				document.title = e.data.labelLong;
+			}
+			
+			settingsTimer.start();		
+			
+		});
 		
-		footer.css(css).hide();
-		
-		setTimeout(function()  {
-			header.slideDown();
-		}, 1000);
+		var plugins = []
+		ext.plugins = plugins;
+		// run plugins
+		for (var x in sofia.plugins) {
+			plugin = new window[ sofia.plugins[x] ](this);		
+			plugins.push(plugin);
+			
+			if (plugin.on) {
+				
+				plugin.on('globalmessage', handleGlobalMessage);
+			}
+		}						
 	}
 	
 	
@@ -41,7 +95,7 @@ var App = function() {
 			height = win.height(),
 			
 			// calculate size
-			areaHeight = height - (floatingHeader ? 0 : header.outerHeight() + footer.outerHeight()),
+			areaHeight = height - header.outerHeight() + footer.outerHeight(),
 			areaWidth = width - parseInt(main.css('margin-left'), 10) - parseInt(main.css('margin-right'), 10);
 
 		// set height
@@ -49,22 +103,11 @@ var App = function() {
 		main.width(areaWidth);
 		
 		// pass new size down to area
-		windowManager.size(areaWidth, areaHeight);
+		ext.windowManager.size(areaWidth, areaHeight);
 	}	
+
 	
-	var mainMenu = new MainMenu(header);	
-	
-	// create objects
-	var windowManager = new WindowManager(main);	
-	this.windowManager = windowManager;
-		
-	// combine nodes and objects
-	win.on('resize', resize);
-	resize();
-	
-	
-	var settingsKey = 'windowapp-14-02-09'
-	
+	var settingsKey = 'windowapp-14-02-09'	
 	function getWindowSettings() {
 	
 		// (1) get default settings
@@ -113,44 +156,11 @@ var App = function() {
 		return settings;
 	}
 	
-	var settings = getWindowSettings();
-	console.log('settings',settings, settings.length);	
-	
-	// create windows
-	for (var i=0, il=settings.windows.length; i<il; i++) {
-		var setting = settings.windows[i],
-			windowType = setting.windowType;
-			
-		if (!setting.windowType) {
-			
-			switch (setting.type) {
-				case 'bible':
-					windowType = 'TextWindow';
-					break;
-				case 'map':
-					windowType = 'MapsWindow';
-					break;
-				case 'search':
-					windowType = 'SearchWindow'; 
-					break;	
-				case 'media':
-					windowType = 'MediaWindow'; 
-					break;								
-				default:
-					windowType = setting.type; 
-				
-			}
-		}
-
-		// create window
-		console.log('create',i, windowType, setting.data);
-		windowManager.add(windowType, setting.data);	
-	}	
 	
 	function storeSettings() {
 	
 			// get settings from al windows
-		var windowSettings = windowManager.getSettings(),		
+		var windowSettings = ext.windowManager.getSettings(),		
 			// later we'll need these
 			headerSettings = {},
 			settings = {
@@ -163,30 +173,37 @@ var App = function() {
 		AppSettings.setValue(settingsKey, settings );
 	}
 	
-	var settingsTimer = new Timer(storeSettings, 1000);
-	
-	windowManager.on('settingschange', function(e) {
+	function handleGlobalMessage(e) {
+		// give to other windows
+						
+		for (var i=0, il=ext.windowManager.windows.length; i<il; i++) {
+			var w = ext.windowManager.windows[i];
+		 	
+			if (w.id != e.id) {
+		 		// pass message down
+		 		w.trigger('message', e);
+			}
+		}				
+		 
+		// plugins
+		for (var i=0, il=ext.plugins.length; i<il; i++) {
+			var p = sofia.app.plugins[i];
+		 	
+			if (p.trigger) {
+				// pass message down
+				p.trigger('message', e);
+			}
+		}		
 		
-		// title to show active window's position
-		if (e.data && e.data.label && e.data.hasFocus) {
-			document.title = e.data.labelLong;
-		}
-		
-		settingsTimer.start();		
-		
-	});
+	}	
 	
-	var plugins = []
-	this.plugins = plugins;
-	// run plugins
-	for (var x in sofia.plugins) {
-		plugin = new window[ sofia.plugins[x] ](this);		
-		plugins.push(plugin);
-	}
+	ext.init = init;
+	ext.handleGlobalMessage = handleGlobalMessage;
 	
-	return this;	
+	return ext;	
 };
 
 $(function() {
 	sofia.app = new App();
+	sofia.app.init();
 });

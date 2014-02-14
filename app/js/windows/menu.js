@@ -20,30 +20,20 @@ var MainLogo = function(node) {
 	var logo = $('<div id="app-logo"></div>')
 					.appendTo(node)
 					.on('click', logoClick),
-		aboutWindow = new MovableWindow(500,250,'About'),
-		isLoaded = false;
+		aboutNode = $('#about'),
+		aboutWindow = new MovableWindow(500,250,'About');
 										
-	aboutWindow.body.css({padding: '20px'});
+	aboutWindow.body
+					.css({padding: '20px'})
+					.append(aboutNode);
 					
 	function logoClick() {
 		console.log('logo clicked', aboutWindow.container.is(':visible'));
 	
 		if (aboutWindow.container.is(':visible')) {
-			aboutWindow.hide();
-			
+			aboutWindow.hide();			
 		} else {
 			aboutWindow.show();
-			
-			if (!isLoaded) {
-				
-				$.ajax({
-					url: 'about.html',
-					success: function(html) {
-						aboutWindow.body.html(html);
-						isLoaded = true;						
-					}
-				});				
-			}
 		}	
 	}
 		
@@ -554,3 +544,82 @@ var ConfigAddIns = function(node) {
 };
 
 sofia.menuComponents.push('ConfigAddIns');
+
+
+
+
+
+var ConfigUrl = function(node) {
+	var base = $('#main-config-box'),
+		urlBox = 
+		$('<div class="config-section">' + 
+				'<span class="config-header">URL</span>' + 
+				'<input type="text" id="sofia-global-url" style="width:100%;" />' +
+			'</div>').appendTo(base),
+		urlInput = urlBox.find('input');
+					//.on('focus', function() {
+					//	$(this).select();						
+					//});
+		
+	var urlTimer = new Timer(updateUrl, 500);
+	
+	setTimeout(function() {
+		sofia.app.windowManager.on('settingschange', function(e) {
+			
+			//console.log('update');
+			
+			// title to show active window's position		
+			urlTimer.start();		
+			
+		});
+		
+		updateUrl();
+	}, 1000);
+	
+	
+	function updateUrl() {
+			// get settings from al windows
+		var windowSettings = sofia.app.windowManager.getSettings(),
+			url = '?',
+			parts = [];
+			
+		for (var i=0, il=windowSettings.length; i<il; i++) {
+			var winSettings = windowSettings[i];
+			
+			console.log(winSettings);
+			
+			switch (winSettings.windowType) {
+				case 'TextWindow':
+					parts.push('win' + (i+1) + '=' + 'bible');
+					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
+					parts.push('fragmentid' + (i+1) + '=' + winSettings.data.fragmentid);
+					break;
+				case 'SearcWindow':
+					parts.push('win' + (i+1) + '=' + 'search');
+					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
+					parts.push('searchtext' + (i+1) + '=' + winSettings.data.searchtext);
+					break;
+				case 'MapsWindow':
+					parts.push('win' + (i+1) + '=' + 'map');
+					break;									
+				case 'MediaWindow':
+					parts.push('win' + (i+1) + '=' + 'media');
+					break;									
+				
+			}			
+		}
+
+		
+		url = location.href + '?' + parts.join('&');
+			
+		urlInput.val(url);
+			
+		console.log('URL', windowSettings, parts);
+	}
+
+	
+	
+	base.height('300px');
+};
+
+sofia.menuComponents.push('ConfigUrl');

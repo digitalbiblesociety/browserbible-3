@@ -181,6 +181,8 @@ var LemmaPopupPlugin = function(app) {
 							
 							lemmaPopup.body.append( html );
 							
+							lemmaPopup.position(l);
+							
 						}, 
 						error: function() {
 							lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs[0] );

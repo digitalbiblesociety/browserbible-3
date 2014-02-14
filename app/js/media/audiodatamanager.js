@@ -79,12 +79,29 @@ var AudioDataManager = function() {
 var LocalAudio = (function() {
 
 	function getAudioInfo(textInfo, callback) {
-		//console.log('LocalAudio', textInfo.id);	
+		//console.log('LocalAudio', textInfo.id);
+		
+		var checkDirectory = textInfo.id;
+		
+		
+		if (typeof textInfo.audioDirectory != 'undefined') {
+			
+			// if empty it means, "Don't check anything"
+			if (textInfo.audioDirectory == '') {
+				callback(null);
+				return;
+			} else {
+				
+				checkDirectory = textInfo.audioDirectory;
+			}
+		}	
 		
 		$.ajax({
 			dataType: 'json',
-			url: 'content/audio/' + textInfo.id + '/info.json',
-			success: function(audioInfo) {						
+			url: 'content/audio/' + checkDirectory + '/info.json',
+			success: function(audioInfo) {
+			
+				audioInfo.directory = checkDirectory;						
 				
 				if (!audioInfo.title) {
 					audioInfo.title = 'Local';
@@ -114,7 +131,7 @@ var LocalAudio = (function() {
 			
 		// yeah, we found one!
 		var audioData = {
-			url: 'content/audio/' + textInfo.id + '/' + fragmentData.filename + '.' + fragmentData.exts[0],
+			url: 'content/audio/' + audioInfo.directory + '/' + fragmentData.filename + '.' + fragmentData.exts[0],
 			id: fragmentData.index,
 			start: fragmentData.start,
 			end: fragmentData.end

@@ -239,7 +239,7 @@ font-size: 85%;\
 	}
 
 	function runPluralTransforms(node) {
-		node.find('.verse').each(function(index, el) {
+		node.find('.verse, .v').each(function(index, el) {
 			var verse = $(this),
 				verseid = verse.attr('data-id');
 

@@ -67,7 +67,9 @@ var WindowManager = function(node) {
 		// remove this window from the array
 		windows.splice(windowIndex, 1);
 		
-		// remove from DOM
+		//window_to_close.close();
+		
+		// remove from DOM		
 		window_to_close.node.remove();
 		
 		// resize
@@ -132,7 +134,8 @@ var Window = function(id, parentNode, className, data, manager) {
 					.appendTo(node)			
 					.on('click', function() {
 						console.log(id, 'remove', manager);
-					
+						
+						
 						manager.remove(ext);
 					});
 					

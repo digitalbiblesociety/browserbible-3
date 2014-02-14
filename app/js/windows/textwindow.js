@@ -13,10 +13,12 @@ var TextWindow = function(id, node, init_data) {
 					'</div>'+
 				'</div>'+
 				'<div class="scroller-flipper">' + 
+					'<div class="scroller-info">Text info</div>' + 
+					
 					'<div class="scroller-main">' + 
 						'<div class="scroller-text-wrapper"></div>' +
 					'</div>'+
-					'<div class="scroller-info">Text info</div>' + 
+					
 				'</div>' +
 			'</div>').appendTo(node),
 		

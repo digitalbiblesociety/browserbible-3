@@ -592,7 +592,7 @@ var ConfigUrl = function(node) {
 		for (var i=0, il=windowSettings.length; i<il; i++) {
 			var winSettings = windowSettings[i];
 			
-			console.log(winSettings);
+			console.log('setting', i, winSettings);
 			
 			switch (winSettings.windowType) {
 				case 'TextWindow':
@@ -600,7 +600,7 @@ var ConfigUrl = function(node) {
 					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
 					parts.push('fragmentid' + (i+1) + '=' + winSettings.data.fragmentid);
 					break;
-				case 'SearcWindow':
+				case 'SearchWindow':
 					parts.push('win' + (i+1) + '=' + 'search');
 					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
 					parts.push('searchtext' + (i+1) + '=' + winSettings.data.searchtext);

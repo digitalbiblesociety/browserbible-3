@@ -450,6 +450,11 @@ var FaithComesByHearingAudio = (function() {
 			url: url,
 			success: function(pathData) {
 				
+				if (fcbhLocation == null || fcbhLocation.length == 0) {
+					callback(null);
+					return;
+				}
+								
 				if (pathData.length == 0) {
 					callback(null);
 					return;

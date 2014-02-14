@@ -320,6 +320,10 @@ input:focus {
 	background-position: center center; 
 	background-size: 30px 30px;		
 }
+	#main-mobile-button {
+		background-image: url(images/mobile.svg); 
+		right: 140px;display: none;
+	}
 	#main-add-button {
 		background-image: url(images/add-document.svg); 
 		right: 100px;
@@ -331,8 +335,12 @@ input:focus {
 	#main-config-button {
 		background-image: url(images/gear.svg); 
 		right: 60px;
-	}		
-	
+	}
+
+@media only screen and (max-width: 460px) {
+#main-search-box {display: none}
+#main-mobile-button {display: block}
+}
 	
 .window-overlay {
 	position: absolute; 

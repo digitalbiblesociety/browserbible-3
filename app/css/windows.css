@@ -346,6 +346,7 @@ input:focus {
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	display: none; 
 	z-index: 50;
+	overflow: auto;
 }
 
 
@@ -850,3 +851,13 @@ input:focus {
 
 
 
+#about {
+	
+}
+#about h1 {
+	font-size: 18pt;
+	margin-top: 0;
+}
+#about a {
+	color: #2a85e8;	
+}

@@ -311,7 +311,13 @@ var SearchWindow = function(id, parentNode, init_data) {
 	init();
 
 	function removeHighlights() {	
-		
+		$('.TextWindow .highlight').each(function(i, el) {
+			// remove 
+			var textFragment = document.createTextNode(el.textContent);
+			el.parentNode.insertBefore(textFragment, el);
+			el.parentNode.removeChild(el);
+			
+		});		
 	}
 	
 	function createHighlights() {
@@ -319,6 +325,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		if (currentResults == null) {
 			return;
 		}
+		
+		removeHighlights();
 		
 		// try to highlight!
 		for (var i=0, il=currentResults.length; i<il; i++) {

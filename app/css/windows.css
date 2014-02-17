@@ -456,6 +456,40 @@ input:focus {
 	font-size: 12px;
 }
 
+.audio-options {
+	background: #f8f8f8;
+	position: absolute;
+	bottom: 50px;
+	left: 10px;
+	width: 200px;
+	
+	padding: 10px;
+	height: 90px;
+	
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-family: Avenir;
+	font-size: 12px;
+}
+
+.audio-options label {
+	display: block;	
+}
+
+.audio-options .audio-options-close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	
+	display: block;
+	width: 20px;	
+	height: 20px;
+	
+	cursor: pointer;
+	background-image: url(images/close-button.svg);
+	background-size: 20px 40px;
+}
+
+
 .audio-controller .audio-play,
 .audio-controller .audio-prev, 
 .audio-controller .audio-next  {
@@ -558,7 +592,9 @@ input:focus {
 
 .audio-controller .audio-currenttime,
 .audio-controller .audio-duration,
-.audio-controller .audio-title {
+.audio-controller .audio-options-button,
+.audio-controller .audio-title,
+.audio-controller .audio-subtitle {
 	display: block;
 	position: absolute;
 	top: 25px;
@@ -570,8 +606,32 @@ input:focus {
 .audio-controller .audio-duration {
 	right: 10px;
 }
+/*
 .audio-controller .audio-title {
-	left: 10px;	
+	left: 35px;
+}
+*/
+.audio-controller .audio-title {
+	top: 20px;
+	left: 30px;
+}
+.audio-controller .audio-subtitle {
+	top: 35px;
+	left: 30px;
+	font-size: 90%;
+	color: #888;
+}
+
+.audio-controller .audio-options-button {
+	left: 10px;
+	width: 15px;
+	height: 15px;
+	background-image: url(images/gear.svg);
+	background-size: 15px 15px;
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .audio-controller label {

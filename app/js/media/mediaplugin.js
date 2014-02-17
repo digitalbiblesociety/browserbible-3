@@ -6,7 +6,7 @@ var MediaLibraryPlugin = function(app) {
 		contentToProcess = [];
 	
 	
-		console.log('MediaLibraryPlugin startup');
+		//console.log('MediaLibraryPlugin startup');
 	
 	MediaLibrary.getMediaLibraries(function(data) {
 		mediaLibraries = data;
@@ -42,7 +42,7 @@ var MediaLibraryPlugin = function(app) {
 				
 			}
 			
-			console.log('media click', mediaLibrary);
+			//console.log('media click', mediaLibrary);
 				
 				
 			mediaForVerse = mediaLibrary.data[verseid];
@@ -127,7 +127,7 @@ var MediaLibraryPlugin = function(app) {
 				verse = verse.closest('.section').find('.' + verseid).first();
 				
 				if (verseid == 'LK1_1') {
-					console.log('check');
+					//console.log('check');
 				}
 					
 				if (!verse.hasClass('has-media')) {

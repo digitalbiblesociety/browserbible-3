@@ -28,7 +28,7 @@ var MainLogo = function(node) {
 					.append(aboutNode);
 					
 	function logoClick() {
-		console.log('logo clicked', aboutWindow.container.is(':visible'));
+		//console.log('logo clicked', aboutWindow.container.is(':visible'));
 	
 		if (aboutWindow.container.is(':visible')) {
 			aboutWindow.hide();			
@@ -72,7 +72,7 @@ var MainSearchBox = function(node) {
 		for (var i=0,il=appSettings.length; i<il; i++) {
 			var settings = appSettings[i];
 			
-			console.log(settings);
+			//console.log(settings);
 			
 			// first text 
 			if (settings.windowType == 'TextWindow' && firstTextWindow == null) {
@@ -85,7 +85,7 @@ var MainSearchBox = function(node) {
 			}			
 		}
 		
-		console.log(firstTextWindow);
+		//console.log(firstTextWindow);
 		
 		
 		//if (searchWindow == null) {
@@ -98,7 +98,7 @@ var MainSearchBox = function(node) {
 			
 			// restart search
 			
-		//	console.log( searchWindow );
+		//	//console.log( searchWindow );
 			
 		//}
 
@@ -266,6 +266,12 @@ var FullScreenButton = function(node) {
 	function exitFullscreen() {
 		fullScreenApi.cancelFullScreen();	
 	
+	}
+	
+	console.log(fullScreenApi);
+	
+	if (!fullScreenApi.supportsFullScreen) {
+		fullscreenButton.hide();
 	}
 	
 	return fullscreenButton;
@@ -572,7 +578,7 @@ var ConfigUrl = function(node) {
 	setTimeout(function() {
 		sofia.app.windowManager.on('settingschange', function(e) {
 			
-			//console.log('update');
+			////console.log('update');
 			
 			// title to show active window's position		
 			urlTimer.start();		
@@ -592,7 +598,7 @@ var ConfigUrl = function(node) {
 		for (var i=0, il=windowSettings.length; i<il; i++) {
 			var winSettings = windowSettings[i];
 			
-			console.log('setting', i, winSettings);
+			//console.log('setting', i, winSettings);
 			
 			switch (winSettings.windowType) {
 				case 'TextWindow':
@@ -620,7 +626,7 @@ var ConfigUrl = function(node) {
 			
 		urlInput.val(url);
 			
-		console.log('URL', windowSettings, parts);
+		//console.log('URL', windowSettings, parts);
 	}
 
 	

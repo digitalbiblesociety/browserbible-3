@@ -3,9 +3,14 @@ var Timer = function(callback, seconds) {
 	
 	var timeoutValue = null;
 	function start() {
-		clear();
+		if (timeoutValue == null) {
+			clear();
 		
-		timeoutValue = setTimeout(callback, seconds);
+			timeoutValue = setTimeout(function() {
+				callback();
+				clear();
+			}, seconds);
+		}
 	}
 	function clear() {
 		if (timeoutValue != null) {

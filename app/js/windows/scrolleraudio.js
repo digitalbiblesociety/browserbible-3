@@ -14,21 +14,33 @@ var AudioController = function(container, ui, scroller) {
 					'<input type="button" class="audio-next" value="Next" />' +
 					'<span class="audio-currenttime">00:00</span>' +
 					'<span class="audio-duration">00:00</span>' +					
-					'<label><input type="checkbox" class="audio-scroll" checked />Scroll</label>' +
-					'<label><input type="checkbox" class="audio-autoplay" checked />Autoplay</label>' +					
 					'<span class="audio-title"></span>' +
-				'</div>'	
+					'<span class="audio-subtitle"></span>' +
+					'<input type="button" class="audio-options-button" />' +
+				'</div>'
 				).appendTo(container),
+		optionsButton = block.find('.audio-options-button'),
+		options = $(
+				'<div class="audio-options">' + 
+					'<span class="audio-options-close"></span>' + 
+					'<strong>Audio Options</strong>' + 
+					'<label><input type="checkbox" class="audio-scroll" checked />Sync Text (beta)</label>' +
+					'<label><input type="checkbox" class="audio-autoplay" checked />Autoplay Next</label>' +				
+				'</div>'
+				).appendTo(container),
+		scrollCheckbox = options.find('.audio-scroll'),
+		autoplayCheckbox = options.find('.audio-autoplay'),
+		optionsCloseButton = options.find('.audio-options-close'),
+
 		audio = block.find('audio')[0],
+
 		playButton = block.find('.audio-play'),
 		nextButton = block.find('.audio-next'),
 		prevButton = block.find('.audio-prev'),
-		scrollCheckbox = block.find('.audio-scroll'),
-		autoplayCheckbox = block.find('.audio-autoplay'),
-		
 		currenttime = block.find('.audio-currenttime'),
 		duration = block.find('.audio-duration'),
 		title = block.find('.audio-title'),
+		subtitle = block.find('.audio-subtitle'),
 		
 		audioSlider = block.find('.audio-slider'),
 		audioSliderCurrent = block.find('.audio-slider-current'),		
@@ -47,14 +59,29 @@ var AudioController = function(container, ui, scroller) {
 		hasAudio = false,
 		audioDataManager = new AudioDataManager();
 	
-	autoplayCheckbox.prop('checked',false);	
-	autoplayCheckbox.parent().hide();
+	//autoplayCheckbox.prop('checked',false);	
+	//autoplayCheckbox.parent().hide();
 	
 	block.hide();
 	ui.hide();	
+	options.hide();
 	
+	
+	// OPTIONS
+	optionsButton.on('click', function() {
+		if (options.is(':visible')) {
+			options.hide();
+		} else {
+			options.show();			
+		}		
+	});
+	optionsCloseButton.on('click', function() {
+		options.hide();
+	});
+
 		
 		
+	// MAIN
 	ui.on('click', function() {
 		if (block.is(':visible')) {
 			block.hide();			
@@ -179,7 +206,7 @@ var AudioController = function(container, ui, scroller) {
 						if (!newFragmentAudioData || newFragmentAudioData.url == null) {
 							audio.src = null;
 							
-							title.html('[No audio]');				
+							title.html('[No audio]');
 							
 							ui.hide();
 							block.hide();
@@ -212,7 +239,11 @@ var AudioController = function(container, ui, scroller) {
 						sectionHeight = sectionNode.height();
 									
 						// give feedback		
-						title.html( new bible.Reference(sectionid).toString() + (audioInfo.title ? ' [' + audioInfo.title + ']' : ''));									}
+						//title.html( new bible.Reference(sectionid).toString() + (audioInfo.title ? ' [' + audioInfo.title + ']' : ''));									
+						title.html( new bible.Reference(sectionid).toString() );					
+						subtitle.html( audioInfo.title );	
+															
+					}
 				});
 			}
 		}			
@@ -269,9 +300,7 @@ var AudioController = function(container, ui, scroller) {
 				$(audio).on('loadeddata', playWhenLoaded);			
 				
 				nextButton.trigger('click');
-				//audio.play();
-				
-				
+				//audio.play();				
 			}							
 		})		
 		.on('timeupdate', function() {	

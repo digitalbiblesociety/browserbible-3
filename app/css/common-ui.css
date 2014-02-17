@@ -370,6 +370,7 @@ border: solid 1px #ccc;
 	
 	.text-chooser table {
 		border-collapse: collapse;
+		width: 100%;
 	}
 	
 	.text-chooser-row-header {

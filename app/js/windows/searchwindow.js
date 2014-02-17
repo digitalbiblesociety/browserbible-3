@@ -78,7 +78,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 	});	
 	
 	function docClick(e) {
-		//console.log('doc click');		
+		////console.log('doc click');		
 		
 		var target = $(e.target),
 			clickedOnChooser = false;
@@ -147,7 +147,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		var tr = $(this),
 			fragmentid = tr.attr('data-fragmentid');
 			
-		console.log('search click', fragmentid);	
+		//console.log('search click', fragmentid);	
 		
 		ext.trigger('globalmessage', {
 								type: 'globalmessage',
@@ -167,7 +167,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	textSearch.on('indexcomplete', function(e) {
 		var results = e.data.results;
-		console.log('searcher:indexcomplete', e.data);
+		//console.log('searcher:indexcomplete', e.data);
 	
 	
 		footer.html('Results: ' + e.data.searchIndexesData.length );
@@ -175,7 +175,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	textSearch.on('complete', function(e) {
 		
-		console.log('searcher:complete'); // , e.data.results);
+		//console.log('searcher:complete'); // , e.data.results);
 		
 		var results = e.data.results,
 			html = //'<h2>Results: ' + results.length + '</h2>' + 
@@ -201,7 +201,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 			if (textInfo.type.toLowerCase() == 'bible') {
 				var br = new bible.Reference(result.fragmentid);
 				
-				//console.log(br, br.toString(), bible.BOOK_DATA['GN'].names[textInfo.lang]);
+				////console.log(br, br.toString(), bible.BOOK_DATA['GN'].names[textInfo.lang]);
 				
 				if (bible.BOOK_DATA['GN'].names[textInfo.lang]) {				
 					br.lang = textInfo.lang;
@@ -240,7 +240,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 			textid = textInfo.id;
 			
 			
-		console.log('search', textid, text);
+		//console.log('search', textid, text);
 		
 		
 		// clear results
@@ -286,7 +286,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 					
 				selectedText = data;
 				
-				console.log('search', init_data.textid, data);	
+				//console.log('search', init_data.textid, data);	
 					
 				textChooser.setTextInfo(selectedText);
 				textui.html(selectedText.abbr);
@@ -298,7 +298,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 				
 			});						
 		} else {	
-			console.log('SEARCH: no init textid');
+			//console.log('SEARCH: no init textid');
 			
 			for (var index in TextInfoLoader.textData) {
 				var textInfo = TextInfoLoader.textData[index];
@@ -338,11 +338,11 @@ var SearchWindow = function(id, parentNode, init_data) {
 				// TODO: clear search highlights
 				$(el).find('.highlight').each(function(hi, hel) {
 					// remove 
-					console.log('remove', hel);
+					//console.log('remove', hel);
 					
 				});
 				
-				//console.log(el);
+				////console.log(el);
 				
 				for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
 					
@@ -388,7 +388,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 	ext.on('message', function(e) {
 		
 		if (e.data.messagetype == 'textload') {
-			//console.log('search:textload', e.data.sectionid);
+			////console.log('search:textload', e.data.sectionid);
 			
 			createHighlights(e.data.content);
 			

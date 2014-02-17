@@ -90,6 +90,16 @@
 .text .notetype { font-weight: bold; font-style: italic;}
 
 
+.bibleref {
+	color:#7491CE;
+	cursor: pointer;	
+}
+
+.bibleref:hover {
+	text-decoration: underline;
+}
+
+
 /* Gospels red letters */
 .woc, .wj {
 	color:#aa0000;

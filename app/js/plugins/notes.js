@@ -8,6 +8,13 @@ var NotesPopupPlugin = function(app) {
 		var link = $(this),
 			fragmentid = link.attr('data-id');
 			
+		if (fragmentid == null) {
+			var title = link.attr('title');
+			if (title != null) {
+				var bref = new bible.Reference(title);
+				fragmentid = bref.toSection();				
+			}
+		}
 			
 
 		ext.trigger('globalmessage', {

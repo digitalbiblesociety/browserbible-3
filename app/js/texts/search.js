@@ -57,10 +57,10 @@ TextSearch = function() {
 
 	function start(text, textid) {
 		
-		console.log('TextSearch.start', text, textid);
+		//console.log('TextSearch.start', text, textid);
 		
 		if (isSearching) {
-			console.log('already started ... return');
+			//console.log('already started ... return');
 			return false;
 		}
 		isSearching = true;
@@ -90,12 +90,12 @@ TextSearch = function() {
 	
 	// fires after indexer loader is done
 	function indexesLoaded(e) {
-		console.log('searchIndexLoader:complete', e.data);
+		//console.log('searchIndexLoader:complete', e.data);
 		
 		if (e.data.loadedIndexes.length == 0) {
 			
 			// BRUTE FORCE?
-			console.log('BRUTE FORCE');
+			//console.log('BRUTE FORCE');
 			
 			// create "index" of all verses?
 			searchIndexesData = [];
@@ -134,7 +134,7 @@ TextSearch = function() {
 			searchIndexesData = e.data.loadedResults;
 			searchIndexesCurrentIndex = -1;
 			
-			console.log('start loading indexes', searchIndexesData.length, searchIndexesCurrentIndex);			
+			//console.log('start loading indexes', searchIndexesData.length, searchIndexesCurrentIndex);			
 			loadNextSectionid();
 		}
 		
@@ -143,18 +143,18 @@ TextSearch = function() {
 	function loadNextSectionid() {
 		searchIndexesCurrentIndex++;
 		
-		//console.log('loadNextSectionid', searchIndexesData.length, searchIndexesCurrentIndex);		
+		////console.log('loadNextSectionid', searchIndexesData.length, searchIndexesCurrentIndex);		
 		
 		if (searchIndexesCurrentIndex > searchIndexesData.length) {
 		
-			console.log('OVER');
+			//console.log('OVER');
 			
 			isSearching = false;
 		
 		} else if (searchIndexesCurrentIndex == searchIndexesData.length) {
 			// DONE!
 			
-			console.log('textSearch:complete');
+			//console.log('textSearch:complete');
 			
 			ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
 			
@@ -206,6 +206,7 @@ TextSearch = function() {
 								
 								// add the 'highlight' class to the <l> node
 								html = html.replace(searchTermsRegExp[j], function(match) {
+									regMatches[j] = true;
 									foundMatch = true;
 									return match + ' class="highlight" ';
 								});				
@@ -249,7 +250,7 @@ TextSearch = function() {
 			
 			}, function(error) {	
 			
-				console.log('searchindex:error');
+				//console.log('searchindex:error');
 						
 				loadNextSectionid();
 			});
@@ -282,7 +283,7 @@ TextSearch = function() {
 		
 			}	
 			
-			console.log('SEARCH TERMS LEMMA', searchTermsRegExp);
+			//console.log('SEARCH TERMS LEMMA', searchTermsRegExp);
 			
 			
 		} else {
@@ -349,7 +350,7 @@ TextSearch = function() {
 				}
 				*/
 				
-				console.log('non ASCII', searchTermsRegExp);			
+				//console.log('non ASCII', searchTermsRegExp);			
 			}	
 		}		
 	}
@@ -422,7 +423,7 @@ SearchTools = {
 				addWord();
 			}
 				
-			//console.log(letter, charCode);
+			////console.log(letter, charCode);
 	    }
 	    
 		addWord();
@@ -473,7 +474,7 @@ SearchIndexLoader = function() {
 		
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
 		
-		console.log('SearchIndexLoader:loadIndexes', searchText, searchType, searchTerms, isLemmaSearch);
+		//console.log('SearchIndexLoader:loadIndexes', searchText, searchType, searchTerms, isLemmaSearch);
 		
 		// start it up
 		loadNextIndex();		
@@ -514,11 +515,11 @@ SearchIndexLoader = function() {
 		}
 			
 		if (searchTerm == 'undefined') {
-			console.log('STOP search. undefined term');	
+			//console.log('STOP search. undefined term');	
 			return;
 		}
 			
-		console.log('Loading Index:' + searchTerm + ',' + searchTermEncoded);	
+		//console.log('Loading Index:' + searchTerm + ',' + searchTermEncoded);	
 			
 		// attempt to load in index
 		$.ajax({
@@ -530,7 +531,7 @@ SearchIndexLoader = function() {
 				loadNextIndex();
 			}, 
 			error: function() {
-				console.log('no index for: ' + searchTerm);
+				//console.log('no index for: ' + searchTerm);
 				loadNextIndex();
 			}
 		
@@ -549,8 +550,8 @@ SearchIndexLoader = function() {
 			// combine all the fragments
 			for (var i=0, il=loadedIndexes.length; i<il; i++) {
 				fragmentids = fragmentids.concat( loadedIndexes[i].occurrences );
-				//console.log(loadedIndexes[i].term);
-				//console.log(loadedIndexes[i].occurrences);
+				////console.log(loadedIndexes[i].term);
+				////console.log(loadedIndexes[i].occurrences);
 			}
 			
 			// sort!
@@ -628,7 +629,7 @@ SearchIndexLoader = function() {
 		}
 		
 		
-		console.log('SearchIndexLoader:processIndexes', 'DONe');
+		//console.log('SearchIndexLoader:processIndexes', 'DONe');
 		// send up the chain
 		ext.trigger('complete', {type:'complete', target: this, data: {
 																	loadedIndexes: loadedIndexes,

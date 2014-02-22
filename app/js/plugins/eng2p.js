@@ -303,14 +303,14 @@ bible.eng2p = {
 		node.find('.eng2p-highlight').each(function() {
 			var span = this;
 			
-			this.parentNode.replaceChild(document.createTextNode(span.innerText), this);
+			this.parentNode.replaceChild(document.createTextNode(span.textContent), this);
 		});
 		
 		// remove the surrounding spans		
 		node.find('.eng2p-original').each(function() {
 			var span = this;
 			
-			this.parentNode.replaceChild(document.createTextNode(span.innerText), this);
+			this.parentNode.replaceChild(document.createTextNode(span.textContent), this);
 		});		
 	},
 	

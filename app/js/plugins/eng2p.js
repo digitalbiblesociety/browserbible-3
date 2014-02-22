@@ -172,7 +172,7 @@ font-size: 85%;\
 '</table>' +
 			'</div>')
 			.appendTo( window.body ),
-			button = $('<span>English 2nd Person Plural</span>')
+			button = $('<span id="eng2nd-plural">Show Plural</span>')
 						.appendTo( $('#config-addons') );	
 						
 						
@@ -303,14 +303,14 @@ bible.eng2p = {
 		node.find('.eng2p-highlight').each(function() {
 			var span = this;
 			
-			this.parentNode.replaceChild(document.createTextNode(span.textContent), this);
+			this.parentNode.replaceChild(document.createTextNode(span.innerText), this);
 		});
 		
 		// remove the surrounding spans		
 		node.find('.eng2p-original').each(function() {
 			var span = this;
 			
-			this.parentNode.replaceChild(document.createTextNode(span.textContent), this);
+			this.parentNode.replaceChild(document.createTextNode(span.innerText), this);
 		});		
 	},
 	

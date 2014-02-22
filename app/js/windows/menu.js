@@ -345,11 +345,62 @@ sofia.menuComponents.push('FullScreenButton');
 })();
 
 
+var FontSizeSettings = function(node) {
+	var base = $('#main-config-box'),
+		main = $('<div class="config-section">' + 
+					'<span class="config-header"></span>' + 
+					'<div class="config-body"></div>' +
+				'</div>').appendTo(base),
+		body = main.find('.config-body'),
+		fontSizes = [10,12,14,16,18,22,24,26,28],
+		defaultFontSize = {"fontSize": 18},
+		fontSizeKey = 'config-font-size',
+		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSize);
+	
+	
+	$('<div class="font-slider"></div>')
+		.appendTo(body)
+		.slider({
+			value: fontSizeSetting.fontSize,
+			min: fontSizes[0],
+			max: fontSizes[fontSizes.length-1],
+			step: 2,			
+			slide: function( event, ui ) {
+				setFontSize(ui.value);
+			}						
+		});
+	
+	function setFontSize(newFontSize) {
+	
+		var body = $('body');
+	
+		// remove all others
+		for(var i=0, il=fontSizes.length; i<il; i++) {		
+			var fontSize = fontSizes[i],
+				className = 'config-font-size-' + fontSize;
+				
+			body.removeClass(className);			
+		}
+	
+		body.addClass('config-font-size-' + newFontSize);
+		
+		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
+		
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('setting', 'fontsize', newFontSize);
+		}				
+	}	
+
+};
+
+
+sofia.menuComponents.push('FontSizeSettings');
 
 var FontFamilySettings = function(node) {
 	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Font</span>' + 
+		main = $('<div class="config-section end-group">' + 
+					'<span class="config-header"></span>' + 
 					'<div class="config-body"></div>' +
 				'</div>').appendTo(base),
 		body = main.find('.config-body'),
@@ -406,68 +457,10 @@ var FontFamilySettings = function(node) {
 
 sofia.menuComponents.push('FontFamilySettings');
 
-
-
-
-var FontSizeSettings = function(node) {
-	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Size</span>' + 
-					'<div class="config-body"></div>' +
-				'</div>').appendTo(base),
-		body = main.find('.config-body'),
-		fontSizes = [10,12,14,16,18,22,24,26,28],
-		defaultFontSize = {"fontSize": 18},
-		fontSizeKey = 'config-font-size',
-		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSize);
-	
-	
-	$('<div class="font-slider"></div>')
-		.appendTo(body)
-		.slider({
-			value: fontSizeSetting.fontSize,
-			min: fontSizes[0],
-			max: fontSizes[fontSizes.length-1],
-			step: 2,			
-			slide: function( event, ui ) {
-				setFontSize(ui.value);
-			}						
-		});
-	
-	function setFontSize(newFontSize) {
-	
-		var body = $('body');
-	
-		// remove all others
-		for(var i=0, il=fontSizes.length; i<il; i++) {		
-			var fontSize = fontSizes[i],
-				className = 'config-font-size-' + fontSize;
-				
-			body.removeClass(className);			
-		}
-	
-		body.addClass('config-font-size-' + newFontSize);
-		
-		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
-		
-		
-		if (sofia.analytics) {
-			sofia.analytics.record('setting', 'fontsize', newFontSize);
-		}				
-	}	
-
-};
-
-
-sofia.menuComponents.push('FontSizeSettings');
-
-
-
-
 var ConfigToggles = function(node) {
 	var base = $('#main-config-box'),
 		main = $('<div class="config-section">' + 
-					'<span class="config-header">Settings</span>' + 
+					'<span class="config-header"></span>' + 
 					'<div class="config-body" id="config-toggles"></div>' +
 					'<div class="clear"></div>' + 
 				'</div>').appendTo(base),
@@ -549,8 +542,8 @@ sofia.menuComponents.push('ConfigToggles');
 
 var ConfigAddIns = function(node) {
 	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Add Ons</span>' + 
+		main = $('<div class="config-section end-group">' + 
+					'<span class="config-header"></span>' + 
 					'<div class="config-body" id="config-addons"></div>' +
 				'</div>').appendTo(base);
 };
@@ -564,8 +557,8 @@ sofia.menuComponents.push('ConfigAddIns');
 var ConfigUrl = function(node) {
 	var base = $('#main-config-box'),
 		urlBox = 
-		$('<div class="config-section">' + 
-				'<span class="config-header">URL</span>' + 
+		$('<div class="config-section global-url">' + 
+				'<span class="config-header"></span>' + 
 				'<input type="text" id="sofia-global-url" style="width:100%;" />' +
 			'</div>').appendTo(base),
 		urlInput = urlBox.find('input');

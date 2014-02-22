@@ -744,9 +744,9 @@ input:focus {
 
 /* config options */
 .config-section {
-	margin: 0 0 15px 0;
+	margin: 0 0 25px 0;
 	clear:both;
-	
+
 }
 .config-header {
 	display:block;
@@ -780,7 +780,6 @@ input:focus {
 	display: inline-block;
 	margin-right: 10px;
 }
-
 
 /* font size */
 .config-font-size-10 .chapter {
@@ -843,6 +842,94 @@ input:focus {
 	opacity: 1;
 }
 
+#morph-icon:before {
+	margin-left: -35px;
+	opacity: 1;
+	content: "";
+	background-image: url(images/MorphIcon.svg);
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	display: inline-block;
+	z-index: 9999;
+	background-size: 25px 25px;
+	cursor: pointer;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+	background-size: 100% 100% }
+ 
+#morph-icon {
+	line-height: 25px;
+	margin-left: 35px; }
+ 
+#eng2nd-plural:before {
+	margin-left: -35px;
+	opacity: 1;
+	content: "";
+	background-image: url(images/PluralVersions.svg);
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	display: inline-block;
+	z-index: 9999;
+	background-size: 25px 25px;
+	cursor: pointer;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+	background-size: 100% 100% }
+ 
+#eng2nd-plural {
+	line-height: 25px;
+	margin-left: 35px; }
+ 
+.global-url:before {
+	opacity: 1;
+	content: "";
+	background-image: url(images/GlobalUrl.svg);
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	display: inline-block;
+	z-index: 9999;
+	background-size: 25px 25px; }
+ 
+.global-url { opacity: 1;margin-top: 55px }
+ 
+#sofia-global-url {
+	opacity: 1;
+	width: 85%!important;
+	display: inline-block;
+	float: right;
+	margin-bottom: 25px }
+ 
+.font-slider:before {
+	opacity: 1;
+	content: "";
+	background-image: url(images/FontSize.svg);
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: -40px;
+	top: -7px;
+	background-size: 25px 25px; }
+ 
+.font-slider {
+	opacity: 1;
+	width: 90%;
+	float: right;
+	margin-bottom: 25px }
+ 
+.end-group:after {
+	opacity: 1;
+	content: "";
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	height: 1px;
+	background-color: #999;
+	margin: 10px 0 10px 0 }
+ 
+ 
 /* VERSES */
 #config-toggle-verses label {
 	background-image: url(images/toggles/verses.svg);

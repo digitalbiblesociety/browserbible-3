@@ -21,11 +21,20 @@ var App = function() {
 			
 		// combine nodes and objects
 		win.on('resize', resize);
+		win.on('orientationchange', resize);
 		resize();	
 		
 		
-		var settings = getWindowSettings();
-		console.log('settings',settings, settings.length);	
+		var settings = getWindowSettings(),
+			windowWidth = win.width();
+		//console.log('settings',settings, settings.length);
+		
+		if (windowWidth < 768 && settings.windows.length >= 3) {
+			settings.windows = settings.windows.slice(0,2);
+		}			
+		if (windowWidth < 480 && settings.windows.length >= 2) {
+			settings.windows = settings.windows.slice(0,1);			
+		}			
 		
 		// create windows
 		for (var i=0, il=settings.windows.length; i<il; i++) {
@@ -54,7 +63,7 @@ var App = function() {
 			}
 	
 			// create window
-			console.log('create',i, windowType, setting.data);
+			//console.log('create',i, windowType, setting.data);
 			windowManager.add(windowType, setting.data);	
 		}
 			
@@ -88,7 +97,7 @@ var App = function() {
 	
 		
 	function resize() {
-		//console.log('app resize');
+		////console.log('app resize');
 	
 		// get window size
 		var width = win.width(),

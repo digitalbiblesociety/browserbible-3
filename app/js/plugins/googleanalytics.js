@@ -42,9 +42,7 @@ var GoogleAnalyticsPlugin = function(app) {
 		lastScript.parentNode.insertBefore(script, lastScript);	
 		
 		ga('create', sofia.config.gaKey, (sofia.config.gaUrl) ? sofia.config.gaUrl : '');
-		ga('send', 'pageview');		
-		
-		console.log(lastScript);
+		ga('send', 'pageview');
 	}
 	
 	

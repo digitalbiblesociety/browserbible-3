@@ -293,7 +293,7 @@ var FaithComesByHearingAudio = (function() {
 	function attemptGetAudioInfo() {
 		
 		// check for FCBH info hardcoded in the textInfo object
-		if (currentTextInfo != null) {
+		if (fcbhIsLoaded && currentTextInfo != null) {
 			var fcbhKeys = ['fcbh_audio_nt','fcbh_audio_ot','fcbh_drama_nt','fcbh_drama_ot'],
 				fcbhExists = false,
 				audioData = {title: 'FCBH'};
@@ -307,6 +307,11 @@ var FaithComesByHearingAudio = (function() {
 				if (keyData && keyData != '') {
 					fcbhExists = true;					
 				}				
+			}
+			
+			// favor drama
+			if (audioData.fcbh_drama_nt != '' || audioData.fcbh_drama_ot != '') {
+				audioData.title += ' (drama)';
 			}
 			
 			if (fcbhExists) {
@@ -436,6 +441,25 @@ var FaithComesByHearingAudio = (function() {
 		}
 	}	
 	
+	function getFbchCollectionById(dam_id) {
+		var collection = null;
+		
+		if (fcbhList == null) {
+			return null;
+		}	
+		
+		for (var i=0, il = fcbhList.length; i<il; i++) {
+			var fbchCollection = fcbhList[i];
+	
+			if (fbchCollection.dam_id && fbchCollection.dam_id == dam_id) {
+				collection = fbchCollection;
+				break;
+			}
+		}	
+		
+		return collection;
+	}
+	
 	function getFragmentAudio(textInfo, audioInfo, fragmentid, callback) {
 		if (audioInfo == null) {
 			callback(null);
@@ -467,6 +491,11 @@ var FaithComesByHearingAudio = (function() {
 			dam_id = audioInfo[dramaKey];
 		} if (audioInfo[audioKey] && audioInfo[audioKey] != '') {
 			dam_id = audioInfo[audioKey];
+		}
+		
+		var collectionInfo = getFbchCollectionById(dam_id);
+		if (collectionInfo != null) {
+			audioInfo.title = 'FCBH: ' + collectionInfo.volume_name;
 		}
 		
 		var

@@ -183,7 +183,7 @@ bible.BOOK_DATA = {
 "PX":{"name":"Psalm 151","sortOrder":56,"shortCode":"PX","usfm":"PS2","osis":"AddPs",
     "chapters":[null],
     "names":{"eng":["Psalm 151"]}},
-"MA":{"name":"Prayer of Manasseh","sortOrder":56,"shortCode":"MA","usfm":"MAN","osis":"PrMan",
+"PN":{"name":"Prayer of Manasseh","sortOrder":56,"shortCode":"PN","usfm":"MAN","osis":"PrMan",
     "chapters":[null],
     "names":{"eng":["Prayer of Manasseh"]}},    
 "M3":{"name":"3 Maccabees","sortOrder":57,"shortCode":"M3","usfm":"3MA","osis":"3Macc",

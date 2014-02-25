@@ -479,6 +479,8 @@ var ConfigToggles = function(node) {
 	
 	sofia.globals.createToggle = function(toggleName) {
 		
+
+		
 		var
 			toggleId = toggleName.replace(/\s/gi, '').toLowerCase(),
 			toggleDefaultSetting = {checked: true},
@@ -488,7 +490,9 @@ var ConfigToggles = function(node) {
 						'<label for="config-toggle-' + toggleId + '-input" title="' + toggleName + '">' + toggleName + '</label>' + 
 					'</div>')
 						.appendTo(body);
-			
+		
+		//console.log('createToggle', toggleSetting);
+					
 		toggle
 			.find('input')
 				.on('click', function() {
@@ -496,21 +500,24 @@ var ConfigToggles = function(node) {
 						checked = cb.is(':checked'),
 						value = cb.val();
 						
-					setToggle(value, checked);
+					setToggle(value, checked); // .toString().toLowerCase() );
 						
 				});
 
-		setToggle(toggleId, toggleSetting);
+		setToggle(toggleId, toggleSetting.checked);
 		
 	}
 	
 	function setToggle(toggleId, checked) {
+	
+		//console.log('setToggle', toggleId, checked);
+		
 		var toggle = $('#config-toggle-' + toggleId),
 			body = $('body'),
 			onClass = 'toggle-' + toggleId + '-on',
 			offClass = 'toggle-' + toggleId + '-off';			
 		
-		if (checked) {
+		if (checked == true || checked == 'true') {
 			toggle.addClass('toggle-on');
 			toggle.find('input').prop('checked', true);
 			body
@@ -529,6 +536,8 @@ var ConfigToggles = function(node) {
 			sofia.analytics.record('setting', toggleId, checked);
 		}		
 		
+		
+		//console.log('setValue', toggleId, checked);		
 		AppSettings.setValue(toggleId, {checked: checked});
 		
 	}

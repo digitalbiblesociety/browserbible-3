@@ -23,8 +23,24 @@ var LemmaMatchPlugin = function(app) {
 			verseid = verse.attr('data-id'),
 			bookid = verseid.substring(0,2);
 			langPrefix = (bible.OT_BOOKS.indexOf(bookid) > -1) ? 'H' : 'G';
-									
-		$('.' + verseid ).find('l[s="' + strongs + '"],l[s="' + langPrefix + strongs + '"]').addClass('lemma-highlight');		
+
+		
+		var strongParts = strongs.split(' ');
+		
+		for (var i=0, il=strongParts.length; i<il; i++) {
+			var strong = strongParts[i];
+			
+			
+			// ignore Greek article with second word
+			if (strong == '3588' && il > 1) {
+				continue;
+			}
+			
+			$('.' + verseid ).find('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');					
+			
+		}			
+		
+					
 		
 	}).on('mouseout','l', function(e) {
 		$('.lemma-highlight').removeClass('lemma-highlight');

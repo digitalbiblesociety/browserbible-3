@@ -70,7 +70,7 @@ font-size: 85%;\
 		//docManager.createOptionToggle('Texanize plurals', 'texan', true);
 
 	var 
-		window = new MovableWindow(550,290),
+		engWindow = new MovableWindow(550,290),
 		
 		configBlock =
 		$('<div class="config-options" id="config-eng2p">' + 
@@ -171,45 +171,52 @@ font-size: 85%;\
 	'</tbody>' +	
 '</table>' +
 			'</div>')
-			.appendTo( window.body ),
+			.appendTo( engWindow.body ),
 			button = $('<span>English 2nd Person Plural</span>')
 						.appendTo( $('#config-addons') );	
 						
 						
-	window.title.html('English Second Person Plural');
+	engWindow.title.html('English Second Person Plural');
 						
 	button.on('click', function() {
 		
-		window.show();
+		engWindow.show();
 		
 		button.closest('.window-overlay').hide();
 		
 	});
 
+	// SET DEFAULT
+	
+	// setting from localStorage			
+	var eng2pSetting = AppSettings.getValue('docs-config-eng2p-setting', {'eng2p': 'none'});
+
+	// overrid with querysring
+	var queryString = window.location.search && window.location.search.length > 0 ? window.location.search.substring(1) : '',
+		params = stringUtility.parseQuerystring( queryString );
 				
-	// push settings				
-	var texanSetting = AppSettings.getValue('docs-config-eng2p-setting', {'eng2p': 'none'});
-	/*
-	if (typeof params['eng2p'] != 'undefined') {
-		var tempTexanSetting = params['eng2p'];
 		
-		if ($('#eng2p-option-' + tempTexanSetting).length > 0) {
-			texanSetting = tempTexanSetting;
+	// if it's in the querystring, try to use it
+	if (typeof params['eng2p'] != 'undefined') {
+		var tempEng2pSetting = params['eng2p'];
+		
+		// see if there is a matching value
+		if ($('#eng2p-option-' + tempEng2pSetting).length > 0) {
+			eng2pSetting.eng2p = tempEng2pSetting;
 		}
 	}
-	*/
 	
-	
-	$('#eng2p-option-' + texanSetting.eng2p).prop('checked',true);
+	// now set the value from either localStorage or querysring	
+	$('#eng2p-option-' + eng2pSetting.eng2p).prop('checked',true);
 	getPluralValues();			
 	
 	// create updates
 	$('input[name="eng2p-option"]').on('click',function() {
 		// update the setting value
-		texanSetting = {eng2p: $(this).val() };
+		eng2pSetting = {eng2p: $(this).val() };
 		
 		// store value
-		AppSettings.setValue('docs-config-eng2p-setting', texanSetting);
+		AppSettings.setValue('docs-config-eng2p-setting', eng2pSetting);
 		
 		// values
 		getPluralValues();
@@ -226,7 +233,7 @@ font-size: 85%;\
 
 	function getPluralValues() {
 	
-		var selectedRow = $('#eng2p-option-' + texanSetting.eng2p).closest('tr');
+		var selectedRow = $('#eng2p-option-' + eng2pSetting.eng2p).closest('tr');
 	
 		bible.eng2p.youPluralSubject = selectedRow.find('td:eq(0)').html();
 		bible.eng2p.youPluralPossessiveDeterminer = selectedRow.find('td:eq(1)').html();
@@ -246,9 +253,9 @@ font-size: 85%;\
 			if (bible.eng2p.secondPersonPlurals.indexOf(verseid) > -1) {
 				var html = verse.html();
 				
-				if (texanSetting.eng2p == 'highlight') {
+				if (eng2pSetting.eng2p == 'highlight') {
 					html = bible.eng2p.highlightPlurals( html );
-				} else if (texanSetting.eng2p != 'none') {
+				} else if (eng2pSetting.eng2p != 'none') {
 					html = bible.eng2p.replacePlurals( html );				
 				}
 				
@@ -268,7 +275,9 @@ font-size: 85%;\
 	ext.on('message', function(e) {
 		if (e.data.messagetype == 'textload') {
 			
-			if (e.data.content.attr('lang') == 'eng' && texanSetting.eng2p != 'none') {	
+			console.log(e.data.content.attr('lang'));
+			
+			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {	
 				//console.log('Eng2P', e.data.content.attr('data-id'));
 			
 				runPluralTransforms(e.data.content);

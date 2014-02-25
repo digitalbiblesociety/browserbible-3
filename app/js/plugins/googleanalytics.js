@@ -82,7 +82,7 @@ var GoogleAnalyticsPlugin = function(app) {
 			
 			//console.log('GOOGLE', arguments);
 			
-			if (ga) {
+			if (sofia.config.enableOnlineSources && typeof ga != 'undefined') {
 				ga('send', 'event', category, action, label, value);
 			}
 			

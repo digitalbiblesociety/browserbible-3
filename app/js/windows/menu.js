@@ -433,6 +433,8 @@ var FontSizeSettings = function(node) {
 				setFontSize(ui.value);
 			}						
 		});
+		
+	setFontSize(fontSizeSetting.fontSize);
 	
 	function setFontSize(newFontSize) {
 	

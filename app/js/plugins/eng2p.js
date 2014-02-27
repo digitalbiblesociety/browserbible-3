@@ -172,8 +172,8 @@ font-size: 85%;\
 '</table>' +
 			'</div>')
 			.appendTo( engWindow.body ),
-			button = $('<span>English 2nd Person Plural</span>')
-						.appendTo( $('#config-addons') );	
+			button = $('<span class="config-button" id="config-eng2p-button">English 2nd Person Plural</span>')
+						.appendTo( $('#config-tools .config-body') );	
 						
 						
 	engWindow.title.html('English Second Person Plural');

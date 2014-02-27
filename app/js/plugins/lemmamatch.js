@@ -17,6 +17,12 @@ var LemmaMatchPlugin = function(app) {
 		if (l.closest('.search-wrapper').length > 0)
 			return;
 		
+		var s = l.attr('s');
+		
+		if (!s) {
+			return;
+		}
+		
 		var
 			strongs = l.attr('s').replace('G','').replace('H',''),
 			verse = l.closest('.verse, .v'),

@@ -213,9 +213,9 @@ var LocalAudio = (function() {
 		}
 
 		if (fragmentData.index > 0) {
-			var nextFragmentData = audioInfo.fragments[fragmentData.index-1];
+			var prevFragmentData = audioInfo.fragments[fragmentData.index-1];
 
-			callback(nextFragmentData.start);			
+			callback(prevFragmentData.start);			
 		} else {
 			callback(null);
 		}

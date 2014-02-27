@@ -16,6 +16,7 @@ var TextChooser = function(container, target) {
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
 								'<input type="text" class="text-chooser-filter-text" placeholder="Filter..." />' +
+								'<span class="text-chooser-more-toggle">More</span>' +
 								'<span class="text-chooser-close">Close</span>' +  						
 							'</div>' +
 							'<div class="text-chooser-main"></div>' +		
@@ -27,7 +28,7 @@ var TextChooser = function(container, target) {
 		filter = textSelector.find('.text-chooser-filter-text'),
 		title = textSelector.find('.text-chooser-title'),
 		close = textSelector.find('.text-chooser-close').hide(),
-		
+		moreToggle = textSelector.find('.text-chooser-more-toggle'),		
 		allTextsVisible = false,
 		hasTopTexts = false;
 		
@@ -41,7 +42,9 @@ var TextChooser = function(container, target) {
 	
 	function filterVersions(e) {
 	
-		if (e.which == 13) {
+	
+		// when the user presses return and there is only one version, attempt to go to that one
+		if (e && e.which == 13) {
 			var visibleRows = main.find('.text-chooser-row:visible');
 			
 			if (visibleRows.length == 1) {
@@ -57,6 +60,8 @@ var TextChooser = function(container, target) {
 		var text = filter.val();
 		
 		if (text == '') {
+		
+			// remove all filtering
 			main.find('.text-chooser-row-header, .text-chooser-row')
 					.removeClass('filtered')
 					.show();		
@@ -117,7 +122,7 @@ var TextChooser = function(container, target) {
 		
 	});
 	
-	
+	/*
 	textSelector.on('click', '.text-chooser-more', function(e) {
 		
 		var moreButton = $(this);
@@ -135,6 +140,23 @@ var TextChooser = function(container, target) {
 		runTopTextsSelector();
 		
 	});
+	*/
+	
+	moreToggle.on('click', function() {
+		if (moreToggle.hasClass('show-all')) {
+			allTextsVisible = false;
+			moreToggle.html('More');
+			moreToggle.removeClass('show-all');
+		} else {
+			allTextsVisible = true;
+			moreToggle.html('Less');							
+			moreToggle.addClass('show-all');			
+		}
+		
+		runTopTextsSelector();		
+		
+	});
+	
 	
 	function runTopTextsSelector() {
 		
@@ -142,6 +164,7 @@ var TextChooser = function(container, target) {
 			main.find('tr').show();			
 		} else {
 			main.find('tr:not(.is-top-text)').hide();
+			main.find('.selected').show();
 		}
 		
 	}
@@ -288,7 +311,8 @@ var TextChooser = function(container, target) {
 		
 		if (hasTopTexts) {
 		
-			main.append( $('<div class="text-chooser-more">More</div>'));
+			//main.append( $('<div class="text-chooser-more">More</div>'));
+			textSelector.addClass('show-more');
 			
 			runTopTextsSelector();
 		}
@@ -332,8 +356,9 @@ var TextChooser = function(container, target) {
 		textSelector.show();
 		size();
 		filter.val('').focus();
-
-
+		filterVersions();
+		
+		runTopTextsSelector();
 	}
 	
 	function hide() {

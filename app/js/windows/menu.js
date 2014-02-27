@@ -209,7 +209,25 @@ var ConfigButton = function(node) {
 	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
 					.appendTo(node)
 					.on('click', buttonClick),
-		configMenu = $('<div id="main-config-box" class="window-overlay"></div>')
+		configMenu = $('<div id="main-config-box" class="window-overlay">' + 
+
+						'<div class="config-section" id="config-type">' + 
+							'<span class="config-header">Font</span>' + 
+							'<div class="config-body"></div>' +
+							'<div class="clear"></div>' +	
+						'</div>' + 
+						'<div class="config-section" id="config-toggles">' + 
+							'<span class="config-header">Settings</span>' + 
+							'<div class="config-body"></div>' +
+							'<div class="clear"></div>' +	
+						'</div>' + 						
+						'<div class="config-section" id="config-tools">' + 
+							'<span class="config-header">Tools</span>' + 
+							'<div class="config-body"></div>' +
+							'<div class="clear"></div>' +	
+						'</div>' + 
+		
+					'</div>')
 					.appendTo($('body'));
 					
 	
@@ -346,13 +364,67 @@ sofia.menuComponents.push('FullScreenButton');
 
 
 
+
+
+
+var FontSizeSettings = function(node) {
+	var 
+		body = $('#config-type .config-body'),
+		fontSizes = [14,16,18,20,22,24,26,28],
+		defaultFontSize = {"fontSize": 18},
+		fontSizeKey = 'config-font-size',
+		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSize);
+	
+	$('<table id="font-size-table"><tr><td><span style="font-size:' + fontSizes[0] + 'px">A</span><td style="width:100%"></td><td><span style="font-size:' + fontSizes[fontSizes.length-1] + 'px">A</span></td></tr></table>')
+		.appendTo(body);
+	
+	$('<div class="font-slider"></div>')
+		.appendTo(body.find('td:eq(1)') )
+		.slider({
+			value: fontSizeSetting.fontSize,
+			min: fontSizes[0],
+			max: fontSizes[fontSizes.length-1],
+			step: 2,			
+			slide: function( event, ui ) {
+				setFontSize(ui.value);
+			}						
+		});
+		
+	setFontSize(fontSizeSetting.fontSize);
+	
+	function setFontSize(newFontSize) {
+	
+		var body = $('body');
+	
+		// remove all others
+		for(var i=0, il=fontSizes.length; i<il; i++) {		
+			var fontSize = fontSizes[i],
+				className = 'config-font-size-' + fontSize;
+				
+			body.removeClass(className);			
+		}
+	
+		body.addClass('config-font-size-' + newFontSize);
+		
+		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
+		
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('setting', 'fontsize', newFontSize);
+		}				
+	}	
+
+};
+
+
+sofia.menuComponents.push('FontSizeSettings');
+
+
+
+
 var FontFamilySettings = function(node) {
-	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Font</span>' + 
-					'<div class="config-body"></div>' +
-				'</div>').appendTo(base),
-		body = main.find('.config-body'),
+	var 
+		body = $('#config-type .config-body'),
 		fontFamilyNames = ['Cambria','Helvetica', 'Baskerville', 'Georgia', 'Times'],
 		defaultFont = {"fontName": fontFamilyNames[0]},
 		fontFamilyKey = 'config-font-family',
@@ -408,72 +480,8 @@ sofia.menuComponents.push('FontFamilySettings');
 
 
 
-
-var FontSizeSettings = function(node) {
-	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Size</span>' + 
-					'<div class="config-body"></div>' +
-				'</div>').appendTo(base),
-		body = main.find('.config-body'),
-		fontSizes = [10,12,14,16,18,22,24,26,28],
-		defaultFontSize = {"fontSize": 18},
-		fontSizeKey = 'config-font-size',
-		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSize);
-	
-	
-	$('<div class="font-slider"></div>')
-		.appendTo(body)
-		.slider({
-			value: fontSizeSetting.fontSize,
-			min: fontSizes[0],
-			max: fontSizes[fontSizes.length-1],
-			step: 2,			
-			slide: function( event, ui ) {
-				setFontSize(ui.value);
-			}						
-		});
-		
-	setFontSize(fontSizeSetting.fontSize);
-	
-	function setFontSize(newFontSize) {
-	
-		var body = $('body');
-	
-		// remove all others
-		for(var i=0, il=fontSizes.length; i<il; i++) {		
-			var fontSize = fontSizes[i],
-				className = 'config-font-size-' + fontSize;
-				
-			body.removeClass(className);			
-		}
-	
-		body.addClass('config-font-size-' + newFontSize);
-		
-		AppSettings.setValue(fontSizeKey, {fontSize: newFontSize});		
-		
-		
-		if (sofia.analytics) {
-			sofia.analytics.record('setting', 'fontsize', newFontSize);
-		}				
-	}	
-
-};
-
-
-sofia.menuComponents.push('FontSizeSettings');
-
-
-
-
 var ConfigToggles = function(node) {
-	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Settings</span>' + 
-					'<div class="config-body" id="config-toggles"></div>' +
-					'<div class="clear"></div>' + 
-				'</div>').appendTo(base),
-		body = main.find('.config-body'),
+	var body = $('#config-toggles .config-body'),
 		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ', 'Media'],
 		prefix = 'config-toggle-';
 		
@@ -558,31 +566,23 @@ sofia.menuComponents.push('ConfigToggles');
 
 
 
-var ConfigAddIns = function(node) {
-	var base = $('#main-config-box'),
-		main = $('<div class="config-section">' + 
-					'<span class="config-header">Add Ons</span>' + 
-					'<div class="config-body" id="config-addons"></div>' +
-				'</div>').appendTo(base);
-};
-
-sofia.menuComponents.push('ConfigAddIns');
-
-
-
 
 
 var ConfigUrl = function(node) {
-	var base = $('#main-config-box'),
+	var body = $('#config-tools .config-body'),
 		urlBox = 
-		$('<div class="config-section">' + 
-				'<span class="config-header">URL</span>' + 
-				'<input type="text" id="sofia-global-url" style="width:100%;" />' +
-			'</div>').appendTo(base),
+		$('<div id="config-global-url">' + 
+				//'<span class="config-header">URL</span>' + 
+				'<span></span>' +
+				'<input type="text"  />' +
+			'</div>'),
+		linkButton = urlBox.find('span');
 		urlInput = urlBox.find('input');
 					//.on('focus', function() {
-					//	$(this).select();						
+					//	$(this).select();								
 					//});
+					
+	body.after(urlBox);
 		
 	var urlTimer = new Timer(updateUrl, 500);
 	
@@ -598,6 +598,11 @@ var ConfigUrl = function(node) {
 		
 		updateUrl();
 	}, 1000);
+	
+	
+	linkButton.on('click', function() {
+		urlInput.select();		
+	});
 	
 	
 	function updateUrl() {
@@ -642,7 +647,7 @@ var ConfigUrl = function(node) {
 
 	
 	
-	base.height('300px');
+	//base.height('300px');
 };
 
 sofia.menuComponents.push('ConfigUrl');

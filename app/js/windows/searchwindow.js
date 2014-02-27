@@ -312,10 +312,16 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	function removeHighlights() {	
 		$('.TextWindow .highlight').each(function(i, el) {
-			// remove 
-			var textFragment = document.createTextNode(el.textContent);
-			el.parentNode.insertBefore(textFragment, el);
-			el.parentNode.removeChild(el);
+			
+			if (el.tagName.toLowerCase() == 'l') {
+				// for Lemma tags, jsut remove hte hlight
+				el.className = el.className.replace(/highlight/gi, '');
+			} else {		
+				// if it's just <span class="highlight">, replace it with text
+				var textFragment = document.createTextNode(el.textContent);
+				el.parentNode.insertBefore(textFragment, el);
+				el.parentNode.removeChild(el);
+			}
 			
 		});		
 	}
@@ -334,15 +340,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 			
 			$('.' + result.fragmentid).each(function(i,el) {
-			
-				// TODO: clear search highlights
-				$(el).find('.highlight').each(function(hi, hel) {
-					// remove 
-					//console.log('remove', hel);
-					
-				});
-				
-				////console.log(el);
+
 				
 				for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
 					

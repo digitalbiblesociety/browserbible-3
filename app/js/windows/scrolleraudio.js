@@ -28,8 +28,8 @@ var AudioController = function(container, ui, scroller) {
 					'<label><input type="checkbox" class="audio-autoplay" checked />Autoplay Next</label>' +				
 				'</div>'
 				).appendTo(container),
-		scrollCheckbox = options.find('.audio-scroll'),
-		autoplayCheckbox = options.find('.audio-autoplay'),
+		scrollCheckbox = options.find('.audio-scroll').prop('checked', false),
+		autoplayCheckbox = options.find('.audio-autoplay').prop('checked', false),
 		optionsCloseButton = options.find('.audio-options-close'),
 
 		audio = block.find('audio')[0],
@@ -107,7 +107,7 @@ var AudioController = function(container, ui, scroller) {
 	
 	prevButton.on('click', function() {
 
-		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(prevFragmentid) {
+		audioDataManager.getPrevFragment(textInfo, audioInfo, fragmentid, function(prevFragmentid) {
 
 
 			console.log('prev', fragmentid, prevFragmentid);				

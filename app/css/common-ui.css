@@ -341,7 +341,66 @@
 		background: #888;	
 		border: solid 1px #666;
 		color: #fff;
-	}			
+		padding: 4px;
+		font-size: 11px;
+		width: 304px;		
+	}
+	
+	
+	
+	/*
+	OLD BUTTON
+	.text-chooser-more {
+		background: #2a85e8;
+		color: #fff;
+		margin: 20px;
+		text-align: center;
+		cursor: pointer;
+		padding: 10px;
+	}
+	*/
+	
+	.text-chooser .text-chooser-more-toggle {
+		
+		margin: 0 0 0 10px;
+		
+		font-size: 11px;
+
+		color: #fff;
+		
+		text-align: center;
+		cursor: pointer;
+		padding: 4px 4px 4px 18px;	
+		width: 70px;
+		
+		display: none; /* default */
+
+		background-color: #88c0d7;		
+		background-image: url(images/more.svg);
+		background-repeat: no-repeat;
+		background-size: 20px 20px;	
+	}
+	
+	
+	.text-chooser .text-chooser-more-toggle:hover {	
+		background-color: #2a85e8;
+	}
+	
+	.text-chooser .show-all {
+		background-image: url(images/less.svg);
+		background-position-y: 4px;
+		
+	}
+	
+	.show-more .text-chooser-filter-text {
+		width: 224px;		
+	} 
+
+	.show-more .text-chooser-more-toggle {
+		display: inline-block;		
+	} 
+
+			
 
 	.text-chooser .text-chooser-main {
 		overflow: auto;
@@ -387,11 +446,7 @@ border: solid 1px #ccc;
 		padding-left: 10px;
 	} 
 
-	.text-chooser-filter-text {
-		font-size: 11px;
-		padding: 5px;
-		width: 100%;
-	}
+
 	
 	.text-chooser-row {
 		-x-overflow: hidden;
@@ -445,14 +500,7 @@ border: solid 1px #ccc;
 	}	
 	
 
-	.text-chooser-more {
-		background: #2a85e8;
-		color: #fff;
-		margin: 20px;
-		text-align: center;
-		cursor: pointer;
-		padding: 10px;
-	}
+
 
 
 

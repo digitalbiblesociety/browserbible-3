@@ -315,6 +315,8 @@ var TextChooser = function(container, target) {
 			textSelector.addClass('show-more');
 			
 			runTopTextsSelector();
+		} else {
+			allTextsVisible = true;
 		}
 		
 		

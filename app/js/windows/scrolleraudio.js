@@ -321,8 +321,10 @@ var AudioController = function(container, ui, scroller) {
 			if (sectionNode.length == 0) {
 				
 				sectionNode = container.find('.section[data-id="' + sectionid + '"]');				
-				sectionHeight = sectionNode.height();				
-			}			
+								
+			}	
+			
+			sectionHeight = sectionNode.height();		
 			
 			var 
 				// calculate percent to scroll
@@ -339,7 +341,11 @@ var AudioController = function(container, ui, scroller) {
 				
 				offset = sectionHeight * fraction							
 							// adjust the offset by two lines or so
-							- 20;
+							// - 20 
+							- sectionNode.find('.v:first').height()
+							- (sectionNode.find('.v:last').height()*fraction);
+				
+			console.log(fraction, sectionHeight, offset);
 				
 			if (offset <= 0) {
 				offset = 0;	

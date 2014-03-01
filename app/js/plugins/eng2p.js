@@ -64,7 +64,13 @@ border: solid 1px #ddd;\
 padding: 2px;\
 text-align:left;\
 font-size: 85%;\
-}</style>').appendTo( $('head') );	
+}\
+#config-eng2p-button {\
+background: url(css/images/two-people.svg) left center no-repeat;\
+background-size: 20px 20px;\
+padding:5px 0 5px 25px;\
+}\
+</style>').appendTo( $('head') );	
 	
 		
 		//docManager.createOptionToggle('Texanize plurals', 'texan', true);
@@ -275,8 +281,7 @@ font-size: 85%;\
 	ext.on('message', function(e) {
 		if (e.data.messagetype == 'textload') {
 			
-			console.log(e.data.content.attr('lang'));
-			
+	
 			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {	
 				//console.log('Eng2P', e.data.content.attr('data-id'));
 			

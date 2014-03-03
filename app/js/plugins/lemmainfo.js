@@ -29,9 +29,8 @@ border-bottom: solid 1px #ccc;\
 			mainOffset = main.offset(),
 			section = l.closest('.section'),
 			lang = section.attr('lang'),
-			morphologyType = lang == 'heb' ? 'Hebrew' : lang == 'grc' ? 'Greek' : ''
-			morphInfo = (typeof morph == 'undefined' || morphologyType == '') ? '' : bible.morphology[morphologyType].format(morph);
-			
+			morphologyType = lang == 'heb' ? 'Hebrew' : lang == 'grc' || lang == 'gre' ? 'Greek' : ''
+			morphInfo = (typeof morph == 'undefined' || morphologyType == '') ? '' : bible.morphology[morphologyType].format(morph);	
 		
 		if (morphInfo != null && morphInfo != '') {
 			lemmaInfo.html( morphInfo );

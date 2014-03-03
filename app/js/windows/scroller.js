@@ -407,6 +407,19 @@ var Scroller = function(node) {
 	}
 	
 	function setTextInfo(textinfo) {
+	
+		if (typeof textinfo.stylesheet != 'undefined' ) {
+		
+			var styleId = 'style-' + textinfo.id,
+				styleLink = $('#' + styleId);
+				
+			if (styleLink.length == 0) {
+				styleLink = $('<link id="' + styleId + '" rel="stylesheet" href="content/texts/' + textinfo.id + '/' + textinfo.stylesheet + '" />')
+								.appendTo($('head'));
+			}
+		}
+	
+	
 		currentTextInfo = textinfo;
 	}
 	

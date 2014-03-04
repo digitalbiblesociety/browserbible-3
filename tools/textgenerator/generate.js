@@ -67,15 +67,68 @@ function convertFolder(inputPath) {
 		for (var i=0, il=data.chapterData.length; i<il; i++) {
 		
 			var thisChapter = data.chapterData[i],
-				chapterHtml = bibleFormatter.openDocument(info, thisChapter) +
+				chapterHtml = bibleFormatter.openChapterDocument(info, thisChapter) +
 								thisChapter.html +
-								bibleFormatter.closeDocument(info, thisChapter),
+								bibleFormatter.closeChapterDocument(info, thisChapter),
 																
 				filePath = path.join(outputPath, thisChapter.id + '.html');
 			
 			fs.writeFileSync(filePath, chapterHtml);		
 		}
 		console.timeEnd('outputFiles');
+		
+		// create books index
+		var booksIndexHtml = bibleFormatter.openVersionIndex(info),
+			hasPrintedOt = false,
+			hasPrintedNt = false,
+			hasPrintedAp = false;			
+		
+		// all books
+		for (var i=0, il=info.divisions.length; i<il; i++) {
+			var dbsCode = info.divisions[i],
+				bookName = info.divisionNames[i];
+			
+			if (bibleData.OT_BOOKS.indexOf(dbsCode) > -1 && !hasPrintedOt) {
+				booksIndexHtml += '<li class="division-list-header">Old Testament</li>';
+				hasPrintedOt = true;
+			}
+			if (bibleData.NT_BOOKS.indexOf(dbsCode) > -1 && !hasPrintedNt) {
+				booksIndexHtml += '<li class="division-list-header">New Testament</li>';
+				hasPrintedNt = true;
+			}
+			if (bibleData.AP_BOOKS.indexOf(dbsCode) > -1 && !hasPrintedAp) {
+				booksIndexHtml += '<li class="division-list-header">Deuterocanonical Books</li>';
+				hasPrintedAp = true;
+			}			
+						
+			booksIndexHtml += '<li><a href="' + dbsCode + '.html">' + bookName + '</a></li>' + bibleFormatter.breakChar;
+			
+			
+			// do all chapters?
+			var singleBookIndexHtml = bibleFormatter.openBookIndex(info, bookName);
+			
+			for (var j=0, jl=info.sections.length; j<jl; j++) {
+				var sectionid = info.sections[j],
+					sectionDbsCode = sectionid.substr(0,2),
+					sectionChapterNumber = sectionid.substr(2);					
+					
+				if (sectionDbsCode == dbsCode) {
+					singleBookIndexHtml +=  '<li><a href="' + sectionid + '.html">' + bookName + ' ' + sectionChapterNumber + '</a></li>' + bibleFormatter.breakChar;					
+				}			
+			}
+			singleBookIndexHtml += bibleFormatter.closeBookIndex();
+			fs.writeFileSync( path.join(outputPath, dbsCode + '.html') , singleBookIndexHtml);	
+			
+						
+		}				
+		booksIndexHtml += bibleFormatter.closeVersionIndex(info);
+						
+		
+		fs.writeFileSync( path.join(outputPath, 'index.html') , booksIndexHtml);	
+		
+		
+		// DO chapters index	
+
 			
 		// do index
 		if (createIndex && data.indexData) {

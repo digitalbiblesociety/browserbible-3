@@ -86,8 +86,9 @@ var MediaLibraryPlugin = function(app) {
 					
 				case 'jfm':
 
-					var mediaInfo = mediaForVerse[0],
-						videoUrl = JesusFilmMediaApi.getPlayer('eng', mediaInfo.filename, function(iframeUrl) {
+					var lang = icon.closest('.section').attr('lang'),
+						mediaInfo = mediaForVerse[0],
+						videoUrl = JesusFilmMediaApi.getPlayer(lang, mediaInfo.filename, function(iframeUrl) {
 
 							sofia.globals.showIframe(iframeUrl, mediaInfo.name);
 

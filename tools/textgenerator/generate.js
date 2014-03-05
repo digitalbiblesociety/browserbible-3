@@ -14,7 +14,7 @@ var fs = require('fs'),
 var
 	baseOutput = '../../app/content/texts/',
 	baseInput = 'input',
-	createIndex = false;
+	createIndex = true;
 
 console.log('\r\r\r');
 
@@ -156,9 +156,13 @@ function convertFolder(inputPath) {
 			
 		}		
 		
-		// OUTPUT HERE?
-		// Right now the individual files do it, but there is a lot of overlap especially with indexs
-		// Maybe return: {chapters: [], indexData: {}, lemmaIndexData: {}} and output here?
+		if (typeof info.stylesheet != 'undefined') {
+			var inStylePath = path.join(inputPath, info.stylesheet),
+				outStylePath = path.join(outputPath, info.stylesheet);
+				
+			fs.createReadStream(inStylePath).pipe(fs.createWriteStream(outStylePath));			
+		}
+		
 				
 		var endDate = new Date();		
 		console.log('-time: ' + MillisecondsToDuration(endDate - startDate));			

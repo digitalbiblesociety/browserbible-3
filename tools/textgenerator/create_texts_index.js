@@ -68,7 +68,8 @@ for (var dirItemIndex in dirItem) {
 			lang: data.lang,
 			langName: data.langName,
 			langNameEnglish: data.langNameEnglish,
-			dir: data.dir
+			dir: data.dir,
+			type: data.type
 		});		
 	}
 }

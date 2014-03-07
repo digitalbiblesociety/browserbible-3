@@ -2,7 +2,8 @@
 var 
 	fs = require('fs'),
 	path = require('path'),	
-	$ = require('jquery'),
+    jsdom = require("jsdom"), 
+    $ = require("jquery")(jsdom.jsdom().createWindow()),
 	uglify = require("uglify-js"),
 	jsp = require("uglify-js").parser,
 	pro = require("uglify-js").uglify;

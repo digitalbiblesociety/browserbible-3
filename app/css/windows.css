@@ -82,13 +82,18 @@ input:focus {
 		.window .window-header .header-list {
 			float: left;
 			border: solid 1px #ddd;
-			padding: 6px 6px 6px 10px;
+			padding: 7px 6px 6px 10px;
 			background : #fff;	
 			margin: 0 5px 0 0 ;	
 			color: #919191;	
 			-webkit-appearance: none;	
 			height: 30px;				
+		}
+		.window .window-header .header-input {
+			padding-top: 5px;	
+			
 		}	
+		
 		.window .window-header .header-input:hover,
 		.window .window-header .header-list:hover {
 			border-color: #ccc;
@@ -158,9 +163,15 @@ input:focus {
 			background: url(images/close-button.svg) top center no-repeat;	
 			background-position: 0 0;
 		}
+		.one-window .window .window-close-button {
+			display: none;
+		}
+		
+		/*
 		.window:hover .window-close-button {
 			display:block;
 		}
+		*/
 		.window .window-close-button:hover {
 			background-color: #d5998b; 
 			background-position: 0 -20px;
@@ -169,8 +180,28 @@ input:focus {
 		}
 		.MapsWindow .window-close-button {		
 			background-color: #e5bfb7;
-		}		
-				
+		}	
+
+		@media only screen and (max-width: 460px) {
+			.one-window .window .window-header .header-input {
+				width: 120px;
+				min-width: 120px;
+				border: 0;
+				background: none;						
+			}			
+			.one-window .window .window-header .header-list {
+				float: right;
+				border: 0;
+				background-color: transparent;							
+			}	
+			.one-window .window .window-header .info-button {
+				float: right;			
+				display: none;
+			}	
+			.one-window .window .window-header .audio-button {
+				display: none;
+			}
+		}				
 
 	
 	.window .window-main {
@@ -336,6 +367,30 @@ input:focus {
 		background-image: url(images/gear.svg); 
 		right: 60px;
 	}
+	#mobile-config-button {
+		display:none;
+		
+		cursor: pointer;
+	
+		background-image: url(images/dbs-logo-blue.png);
+		width: 30px; 
+		height: 30px; 
+		background-repeat: no-repeat; 
+		background-position: center center; 
+		background-size: 30px 15px;	
+		
+		position: absolute;
+		top: 8px;
+		left: 50%;
+		margin-left: -15px;		
+	}
+	@media only screen and (max-width: 460px) {
+		#mobile-config-button {
+			display:block;
+		}
+	}
+	
+	
 
 @media only screen and (max-width: 460px) {
 #main-search-box {display: none}
@@ -380,8 +435,11 @@ input:focus {
 #add-SearchWindow {
 	background-image: url(images/search.svg);
 }
-#add-TextWindow {
+#add-BibleWindow {
 	background-image: url(images/bible1.svg);
+}
+#add-CommentaryWindow {
+	background-image: url(images/commentary.svg);
 }
 #add-MapsWindow {
 	background-image: url(images/map.svg);
@@ -711,6 +769,11 @@ input:focus {
 .highlight {
 	background: #ffff00;
 	border-bottom: solid 1px #ffcc00;
+}
+.linked-location {
+	cursor: pointer; 
+	background: #B7DBB4; 
+	border-bottom: solid 1px #6BA865;
 }
 
 .search-progress-bar {

@@ -22,11 +22,26 @@ TextInfoLoader = (function() {
 		}
 	
 		// load it!
+		var infoUrl = locationBase + textid + '/info.json';
+		
 		$.ajax({
-			url: locationBase + textid + '/info.json',
+			url: infoUrl,
 			dataType: 'json',
+			//dataType: 'text',
 			success: function(data) {
-				//console.log(textid, data);
+				/*	
+				// TEMP fix for Michael's data
+				if (data.indexOf("audioDirectory") > -1) {
+					var indexOfReturn = data.indexOf('\n', data.indexOf('audioDirectory') +1);
+					
+					if (indexOfReturn > -1) {
+						data = data.substr(0,indexOfReturn) + ',' + data.substr(indexOfReturn);						
+					}					
+				}
+				
+				data = JSON.parse(data);
+				*/
+				
 				
 				// store this one			
 				textData[data.id] = data;
@@ -34,6 +49,9 @@ TextInfoLoader = (function() {
 				callback(data);
 			},
 			error: function(error) {
+				
+				console.log("ERROR TextInfoLoader.getText", infoUrl); 
+			
 				if (errorCallback) {
 					errorCallback(error);	
 				}			

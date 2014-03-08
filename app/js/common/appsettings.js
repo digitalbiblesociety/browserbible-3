@@ -8,6 +8,9 @@ var AppSettings = (function() {
 	// create me	
 	function getValue(key, defaultValue) {
 	
+		
+		key = sofia.config.settingsPrefix + key;
+	
 	
 		//console.log('getValue', key, defaultValue);
 	
@@ -53,6 +56,8 @@ var AppSettings = (function() {
 	}
 	
 	function setValue(key, value) {
+	
+		key = sofia.config.settingsPrefix + key;	
 	
 		if (typeof window.localStorage != 'undefined') {
 			

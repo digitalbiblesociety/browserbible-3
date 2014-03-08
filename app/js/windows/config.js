@@ -10,6 +10,10 @@ sofia.globals = {};
 
 
 sofia.config = {
+	
+	// Change this to clear all user settings
+	settingsPrefix: '20140307',
+
 	// Enables the use of online sources (Google Maps, FCBH, Jesus Film, etc.)
 	enableOnlineSources: true,
 	
@@ -21,20 +25,29 @@ sofia.config = {
 	],
 	
 	// texts shown before the "MORE" button
-	topTexts: [],
+	//topTexts: ["eng-NASB1995", "eng-kjv", "eng_net"],
 	
 	// new window
 	newBibleWindowVersion: 'eng-NASB1995',
-	newBibleWindowVerse: 'JN1_1',
+
+	newCommentaryWindowTextId: 'comm_eng_lightfoot',
+
 	
 	// Faith Comes by Hearing
-	fcbhKey: '',
+	fcbhKey: '111a125057abd2f8931f6d6ad9f2921f',
 	
 	// jesus film media
-	jfmKey: '',
+	jfmKey: '52b06248a3c6e8.12980089',
 	
 	// Google Analytics key
-	gaKey: '',
+	//gaKey: 'UA-3734687-7',
+	
+	// Google URL
+	//gaUrl: 'biblewebapp.com'	
+	
+	
+	// Google Analytics key
+	gaKey: 'UA-3734687-19',
 	
 	// Google URL
 	gaUrl: ''		

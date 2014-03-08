@@ -27,7 +27,7 @@ bible.parseReference = function (textReference, language) {
 		currentNumber = '',
 		name,
 		possibleMatch,
-		shortCodeRegex = /\w{2}\d{1,3}(_\d{1,3})?/;
+		shortCodeRegex = /^\w{2}\d{1,3}(_\d{1,3})?$/;
 		
 	// is short code format (GN2 || GN2_1)
 	//bible.shortCodeRegex.lastIndex = 0;
@@ -37,7 +37,7 @@ bible.parseReference = function (textReference, language) {
 			bookChapter = parts[0];
 			
 		
-		bookid = bookChapter.substring(0,2);
+		bookid = bookChapter.substring(0,2).toUpperCase();
 		chapter1 = parseInt(bookChapter.substring(2), 10);
 		
 		if (parts.length > 1) {

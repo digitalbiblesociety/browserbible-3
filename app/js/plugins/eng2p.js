@@ -50,7 +50,7 @@ display: inherit;\
 display: none;\
 }\
 label[for="config-texan"] {\
-background-image:url(css/images/texan.svg);\
+background-image:url(build/images/texan.svg);\
 }\
 #config-eng2p table {\
 border-collapse: collapse;\
@@ -66,7 +66,7 @@ text-align:left;\
 font-size: 85%;\
 }\
 #config-eng2p-button {\
-background: url(css/images/two-people.svg) left center no-repeat;\
+background: url(build/images/two-people.svg) left center no-repeat;\
 background-size: 20px 20px;\
 padding:5px 0 5px 25px;\
 }\
@@ -186,7 +186,7 @@ padding:5px 0 5px 25px;\
 						
 	button.on('click', function() {
 		
-		engWindow.show();
+		engWindow.show().center();
 		
 		button.closest('.window-overlay').hide();
 		
@@ -279,7 +279,7 @@ padding:5px 0 5px 25px;\
 	
 	
 	ext.on('message', function(e) {
-		if (e.data.messagetype == 'textload') {
+		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
 			
 	
 			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {	

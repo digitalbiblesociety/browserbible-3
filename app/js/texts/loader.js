@@ -35,7 +35,7 @@ TextLoader = (function() {
 		}
 		
 		if (typeof cachedTexts[textid][sectionid] != 'undefined') {
-			successCallback (cachedTexts[textid][sectionid].clone());
+			successCallback ( $(cachedTexts[textid][sectionid])  );
 			return;
 		}
 		
@@ -48,7 +48,7 @@ TextLoader = (function() {
 				
 				var content = $( dataType == 'html' ? data : data.text );
 					
-				cachedTexts[textid][sectionid] = content;
+
 				
 				// Should be just 
 				/*
@@ -66,7 +66,7 @@ TextLoader = (function() {
 				</body></html>			
 				*/
 				
-				content.find('meta').remove();
+				content.find('meta,header,footer,style,script').remove();
 				
 
 				// when we dont' start with a div, it's probably a <!-- --> or <html> or something
@@ -83,6 +83,10 @@ TextLoader = (function() {
 				}
 				
 				content.attr('data-textid', textid);
+				
+				// store as text
+				cachedTexts[textid][sectionid] = content.wrapAll('<div></div>').parent().html();				
+				
 					
 				successCallback(content);
 			

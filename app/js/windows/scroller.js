@@ -58,6 +58,7 @@ var Scroller = function(node) {
 		if (typeof fragmentSelector == 'undefined' || fragmentSelector == '') {
 			switch (currentTextInfo.type.toLowerCase()) {
 				case 'bible':				
+				case 'commentary':								
 					// find top				
 					fragmentSelector = '.verse, .v';
 					
@@ -111,6 +112,7 @@ var Scroller = function(node) {
 				
 				switch (currentTextInfo.type.toLowerCase()) {
 					case 'bible':				
+					case 'commentary':									
 						// find top	
 						var bibleref = new bible.Reference( fragmentid );
 						bibleref.language = currentTextInfo.lang;
@@ -345,6 +347,7 @@ var Scroller = function(node) {
 											data: {
 												messagetype: 'textload',
 												texttype: currentTextInfo.type.toLowerCase(), 
+												type: currentTextInfo.type.toLowerCase(), 
 												textid: currentTextInfo.id, 
 												abbr: currentTextInfo.abbr, 
 												sectionid: sectionid,

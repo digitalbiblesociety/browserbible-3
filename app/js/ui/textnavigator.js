@@ -101,6 +101,7 @@ var TextNavigator = function(container, target) {
 		
 		switch (textInfo.type.toLowerCase()) {
 			case 'bible': 
+			case 'commentary': 			
 				renderDivisions();
 				changer.find('.text-navigator-divisions').show();
 				changer.find('.text-navigator-sections').hide();				
@@ -210,7 +211,7 @@ var TextNavigator = function(container, target) {
 	
 		switch (textInfo.type.toLowerCase()) {
 			case 'bible': 	
-	
+			case 'commentary': 				
 				// print out chapters
 				var selected_division = changer.find('.text-navigator-division.selected'),
 					divisionid = selected_division.attr('data-id'),					

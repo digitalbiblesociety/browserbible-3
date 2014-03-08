@@ -411,7 +411,6 @@ var AudioController = function(container, ui, scroller) {
 			currenttime.html( secondsToTimeCode(0) );		
 			duration.html( secondsToTimeCode(0) );	
 
-
 			textInfo = newTextInfo;
 			
 			if (!audio.paused && !audio.ended) {
@@ -423,33 +422,38 @@ var AudioController = function(container, ui, scroller) {
 				}
 			}
 			
-			audioDataManager.getAudioInfo(textInfo, function(newAudioInfo) {
 			
-				if (newAudioInfo != null) {		
-					audioInfo = newAudioInfo;
+			if (textInfo.type == 'bible') {
+			
 				
-					console.log('AUDIO: YES', textInfo.id, textInfo.lang, newAudioInfo);
+				audioDataManager.getAudioInfo(textInfo, function(newAudioInfo) {
+				
+					if (newAudioInfo != null) {		
+						audioInfo = newAudioInfo;
 					
-					hasAudio = true;
-					
-					if (fragmentid != '') {
-						console.log('info, loading', hasAudio, fragmentid);
-						loadAudio(fragmentid);
-					}
-					
-					// start load
-					//block.show();
-					ui.show();	
-								
-				} else {
-					hasAudio = false;
-										
-					console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
-					
-					block.hide();
-					ui.hide();
-				}				
-			});
+						console.log('AUDIO: YES', textInfo.id, textInfo.lang, newAudioInfo);
+						
+						hasAudio = true;
+						
+						if (fragmentid != '') {
+							console.log('info, loading', hasAudio, fragmentid);
+							loadAudio(fragmentid);
+						}
+						
+						// start load
+						//block.show();
+						ui.show();	
+									
+					} else {
+						hasAudio = false;
+											
+						console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
+						
+						block.hide();
+						ui.hide();
+					}				
+				});
+			}
 			
 		}
 		

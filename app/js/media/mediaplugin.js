@@ -189,7 +189,7 @@ var MediaLibraryPlugin = function(app) {
 	var ext = {};
 	ext = $.extend(true, ext, EventEmitter);	
 	ext.on('message', function(e) {
-		if (e.data.messagetype == 'textload') {
+		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
 			//store
 			contentToProcess.push(e.data.content);			
 			// run 

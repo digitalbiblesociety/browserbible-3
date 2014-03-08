@@ -67,7 +67,7 @@ var MainSearchBox = function(node) {
 		var searchtext = searchInput.val(),
 			appSettings = sofia.app.windowManager.getSettings(),
 			searchWindow = null,
-			firstTextWindow = null;
+			firstBibleWindow = null;
 			
 		for (var i=0,il=appSettings.length; i<il; i++) {
 			var settings = appSettings[i];
@@ -75,8 +75,8 @@ var MainSearchBox = function(node) {
 			//console.log(settings);
 			
 			// first text 
-			if (settings.windowType == 'TextWindow' && firstTextWindow == null) {
-				firstTextWindow = settings;
+			if (settings.windowType == 'BibleWindow' && firstBibleWindow == null) {
+				firstBibleWindow = settings;
 			}
 			
 			// first search
@@ -85,13 +85,13 @@ var MainSearchBox = function(node) {
 			}			
 		}
 		
-		//console.log(firstTextWindow);
+		//console.log(firstBibleWindow);
 		
 		
 		//if (searchWindow == null) {
 			
 			// search based on first open window
-			textid = firstTextWindow.data.textid;		
+			textid = firstBibleWindow.data.textid;		
 			sofia.app.windowManager.add('SearchWindow', {searchtext: searchtext, textid: textid});
 			
 		//} else {
@@ -154,8 +154,14 @@ var AddWindowButton = function(node) {
 	
 
 	var windowTools = [
-		{type: 'TextWindow', label: 'Bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
+		{type: 'BibleWindow', label: 'Bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
 	];
+
+	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
+		windowTools.push(	
+			{type: 'CommentaryWindow', label: 'Commentary', data: {'textid':sofia.config.newCommentaryWindowTextId,'fragmentid':''}}
+		);
+	}
 	
 	if (sofia.config.enableOnlineSources) {
 		windowTools.push(	
@@ -184,6 +190,33 @@ var AddWindowButton = function(node) {
 	
 		var label = $(this),
 			settings = label.data('init');
+			
+		
+		if (settings.type == 'BibleWindow' || settings.type == 'CommentaryWindow') {
+			var allWinSettings = sofia.app.windowManager.getSettings(),
+				firstBibleWindow = null;
+			
+			for (var i=0,il=allWinSettings.length; i<il; i++) {
+				var winSettings = allWinSettings[i];
+				
+	
+				// first text 
+				if (winSettings.windowType == 'BibleWindow') {
+					firstBibleWindow = winSettings;
+					break;
+				}
+			}
+			
+			if (firstBibleWindow != null) {
+				console.log('first window', firstBibleWindow);
+				settings.data.fragmentid = firstBibleWindow.data.fragmentid;
+				settings.data.sectionid = firstBibleWindow.data.sectionid;				
+			}
+			
+			console.log('new window', settings);
+			
+		}
+			
 	
 		sofia.app.windowManager.add(settings.type, settings.data);	
 		
@@ -209,6 +242,11 @@ var ConfigButton = function(node) {
 	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
 					.appendTo(node)
 					.on('click', buttonClick),
+					
+		mobileConfigButton = $('<div id="mobile-config-button" class="mobile-menu-button" style=""></div>')
+					.appendTo( $('body'))
+					.on('click', buttonClick),
+					
 		configMenu = $('<div id="main-config-box" class="window-overlay">' + 
 
 						'<div class="config-section" id="config-type">' + 
@@ -394,7 +432,12 @@ var FontSizeSettings = function(node) {
 	
 	function setFontSize(newFontSize) {
 	
-		var body = $('body');
+	
+		// get location before
+		var firstWindow = (sofia.app.windowManager) ? 
+								sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow'})[0] : 
+								null,	
+			body = $('body');
 	
 		// remove all others
 		for(var i=0, il=fontSizes.length; i<il; i++) {		
@@ -411,7 +454,23 @@ var FontSizeSettings = function(node) {
 		
 		if (sofia.analytics) {
 			sofia.analytics.record('setting', 'fontsize', newFontSize);
-		}				
+		}	
+		
+		
+		if (firstWindow != null) { 
+			// 
+			//firstWindow.trigger('message', {type:'globalmessage', messagetype: 'nav', })
+			
+			firstWindow.trigger('globalmessage', {
+				type: 'globalmessage', 
+				target: firstWindow, 
+				data: {
+					messagetype: 'nav', 
+					type: 'bible',
+					locationInfo: firstWindow.getData()
+				}
+			});			
+		}						
 	}	
 
 };
@@ -460,7 +519,8 @@ var FontFamilySettings = function(node) {
 		
 		if (sofia.analytics) {
 			sofia.analytics.record('setting', 'fontfamily', newFontName);
-		}							
+		}	
+					
 	}
  	
 	// handle clciks
@@ -519,7 +579,7 @@ var ConfigToggles = function(node) {
 	}
 	
 	function setToggle(toggleId, checked) {
-	
+		
 		//console.log('setToggle', toggleId, checked);
 		
 		var toggle = $('#config-toggle-' + toggleId),
@@ -562,10 +622,6 @@ var ConfigToggles = function(node) {
 
 
 sofia.menuComponents.push('ConfigToggles');
-
-
-
-
 
 
 var ConfigUrl = function(node) {
@@ -617,8 +673,13 @@ var ConfigUrl = function(node) {
 			//console.log('setting', i, winSettings);
 			
 			switch (winSettings.windowType) {
-				case 'TextWindow':
+				case 'BibleWindow':
 					parts.push('win' + (i+1) + '=' + 'bible');
+					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
+					parts.push('fragmentid' + (i+1) + '=' + winSettings.data.fragmentid);
+					break;
+				case 'CommentaryWindow':
+					parts.push('win' + (i+1) + '=' + 'commentary');
 					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
 					parts.push('fragmentid' + (i+1) + '=' + winSettings.data.fragmentid);
 					break;

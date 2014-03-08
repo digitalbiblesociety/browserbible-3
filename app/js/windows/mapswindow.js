@@ -320,7 +320,7 @@ var MapsWindow = function(id, parentNode, data) {
 				for (var i=0, il=verseLocations.length; i<il; i++) {
 					var location = verseLocations[i],
 						regexp = new RegExp('\\b' + location.name + '\\b', 'gi'),						
-					html = html.replace(regexp , '<span class="location" style="cursor: pointer; background: #B7DBB4; border-bottom: solid 1px #6BA865;">' + location.name + '</span>');	
+					html = html.replace(regexp , '<span class="linked-location">' + location.name + '</span>');	
 					
 					//location.marker.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/purple-dot.png');
 					location.marker.setIcon('http://mt.google.com/vt/icon?color=ff135C13&name=icons/spotlight/spotlight-waypoint-a.png');
@@ -366,8 +366,7 @@ var MapsWindow = function(id, parentNode, data) {
 				// are there ones left to do
 				highlightStoredLocations();
 				
-				// do this one
-				
+				// do this one				
 				highlightLocations(e.data.content);
 			}			
 			

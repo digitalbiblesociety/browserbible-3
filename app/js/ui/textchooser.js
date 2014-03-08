@@ -4,7 +4,7 @@
 TextChooser
 *******************/
 
-var TextChooser = function(container, target) {
+var TextChooser = function(container, target, text_type) {
 	// create me
 	var 
 		isFull = false,
@@ -39,6 +39,12 @@ var TextChooser = function(container, target) {
 	
 	
 	filter.on('keyup keypress', filterVersions);
+	
+	filter.on('focus', function() {
+		if (Detection.hasTouch) {		
+			filter.blur();
+		}	
+	});
 	
 	function filterVersions(e) {
 	
@@ -203,7 +209,17 @@ var TextChooser = function(container, target) {
 		//for (var key in texts.Texts.textData) {
 		//	arrayOfTexts.push(texts.Texts.textData[key]);			
 		//}
+		
+		// filter by type
+		console.log('before',arrayOfTexts);
+		arrayOfTexts = arrayOfTexts.filter(function(t) {
+			var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
 			
+			console.log(thisTextType, text_type, t.type);
+						
+			return thisTextType == text_type;			
+		});
+		console.log('after',arrayOfTexts);			
 		
 		if (showHeaders) {
 			// find languages
@@ -357,7 +373,10 @@ var TextChooser = function(container, target) {
 	
 		textSelector.show();
 		size();
-		filter.val('').focus();
+		filter.val('');
+		if (!Detection.hasTouch) {
+			filter.focus();
+		}
 		filterVersions();
 		
 		runTopTextsSelector();
@@ -397,10 +416,23 @@ var TextChooser = function(container, target) {
 				
 		} else {
 			// reasonable size!
-			var top = target.offset().top + target.outerHeight() + 10,
-				left = target.offset().left,
-				winHeight = $(window).height() - 40,
+			var targetOffset = target.offset(),
+				targetOuterHeight = target.outerHeight(),
+				win = $(window),
+				selectorWidth = textSelector.outerWidth(),
+			
+				top = targetOffset.top + targetOuterHeight + 10,
+				left = targetOffset.left,
+				winHeight = win.height() - 40,
+				winWidth = win.width(),
 				maxHeight = winHeight - top;
+			
+			if (winWidth < left + selectorWidth) {
+				left = winWidth - selectorWidth;
+				if (left < 0) {
+					left = 0;
+				}
+			}
 			
 			
 			textSelector
@@ -409,6 +441,13 @@ var TextChooser = function(container, target) {
 					
 			main
 				.outerHeight(maxHeight - header.outerHeight())				
+		
+		
+			// UP ARROW
+			var upArrowLeft = targetOffset.left - left + 20;
+			
+			textSelector.find('.up-arrow, .up-arrow-border')
+				.css({left: upArrowLeft});
 			
 		}
 	}	

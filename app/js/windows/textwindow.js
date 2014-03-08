@@ -1,12 +1,13 @@
 
-var TextWindow = function(id, node, init_data) {
+var TextWindow = function(id, node, init_data, text_type) {
 	
 	var 		
 		container =
 			$('<div class="scroller-container">'+
 				'<div class="window-header scroller-header">'+
 					'<div class="scroller-header-inner">'+
-						'<input type="text" class="header-input text-nav" />'+
+						//(Detection.hasTouch ? '<span class="header-input text-nav" ></span>' : '<input type="text" class="header-input text-nav" />') +
+						'<input type="text" class="header-input text-nav" />' +
 						'<div class="header-list text-list"></div>'+
 						'<span class="header-icon info-button"></span>'+
 						'<span class="header-icon audio-button"></span>'+
@@ -33,7 +34,7 @@ var TextWindow = function(id, node, init_data) {
 		textlistui = header.find('.text-list'),	
 		
 		// objects
-		textChooser = new TextChooser(container, textlistui),		
+		textChooser = new TextChooser(container, textlistui, text_type),		
 		textNavigator = new TextNavigator(container, navui),
 		scroller = new Scroller(main),		
 
@@ -46,6 +47,11 @@ var TextWindow = function(id, node, init_data) {
 		hasFocus = false;
 		
 
+	/*
+	if (Detection.hasTouch) {
+		navui.prop('disabled',true);
+	}
+	*/
 			
 	infoBtn.on('click', function() {
 	
@@ -154,6 +160,10 @@ var TextWindow = function(id, node, init_data) {
 	navui
 		.on('click', function(e) {
 		
+			if (Detection.hasTouch) {
+				this.blur();
+			}
+		
 			if (flipper.hasClass('showinfo')) {
 				flipper.removeClass('showinfo')				
 			}		
@@ -162,11 +172,12 @@ var TextWindow = function(id, node, init_data) {
 			textNavigator.toggle();				
 			
 			
-			setTimeout(function() {
-				navui[0].focus();
-				navui[0].select();
-			}, 10);			
-			
+			if (!Detection.hasTouch) {
+				setTimeout(function() {
+					navui[0].focus();
+					navui[0].select();
+				}, 10);			
+			}
 			
 			
 			if (textNavigator.node().is(':visible')) {
@@ -183,12 +194,9 @@ var TextWindow = function(id, node, init_data) {
 				var 
 					userinput = navui.val(),
 					bibleref = new bible.Reference(userinput),
-					sectionid = (bibleref.toSection) ? bibleref.toSection() : '';
-				
-				console.log(userinput, sectionid, bibleref);
-				
-				//ext.trigger('globalmessage', {type: 'usernav', target: ext, data: {usernavtype: 'key', sectionid: bibleref.toSection(), textid: currentTextInfo.id}});	
-				
+					fragmentid = (bibleref.toSection) ? bibleref.toSection() : '',
+					sectionid = fragmentid.split('_')[0];
+					
 				if (sectionid != '') {
 					
 					if (sofia.analytics) {
@@ -422,7 +430,7 @@ var TextWindow = function(id, node, init_data) {
 	ext.on('message', function(e) {
 		var data = e.data;
 		
-		if (data.messagetype == 'nav' && data.type == 'bible' && data.locationInfo != null) {
+		if (data.messagetype == 'nav' && (data.type == 'bible' || data.type == 'commentary') && data.locationInfo != null) {
 			//console.log(id, data.locationInfo.fragmentid, data.locationInfo.offset)
 			scroller.scrollTo( data.locationInfo.fragmentid, data.locationInfo.offset);
 		}			
@@ -431,4 +439,16 @@ var TextWindow = function(id, node, init_data) {
 	return ext;	
 };
 
-sofia.windowTypes.push('TextWindow');
+var BibleWindow = function(id, node, init_data) {	
+	return new TextWindow(id, node, init_data, 'bible');	
+};
+sofia.windowTypes.push('BibleWindow');
+
+if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
+	
+	var CommentaryWindow = function(id, node, init_data) {	
+		return new TextWindow(id, node, init_data, 'commentary');
+	};
+	sofia.windowTypes.push('CommentaryWindow');
+	
+}

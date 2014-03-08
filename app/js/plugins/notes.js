@@ -2,40 +2,29 @@
 var NotesPopupPlugin = function(app) {
 
 	var notesPopup = new InfoWindow('NotesPopup');
+		
+	notesPopup.body.on('click', '.bibleref', function(e) {
 	
-	
-	notesPopup.body.on('click', '.bibleref', function() {
-		var link = $(this),
-			fragmentid = link.attr('data-id');
-			
-		if (fragmentid == null) {
-			var title = link.attr('title');
-			if (title != null) {
-				var bref = new bible.Reference(title);
-				fragmentid = bref.toSection();				
-			}
-		}
-			
-
-		ext.trigger('globalmessage', {
-								type: 'globalmessage',
-								target: this, 
-								data: {
-									messagetype:'nav',
-									type: 'bible', 
-									locationInfo: {
-										fragmentid: fragmentid,
-										sectionid: fragmentid.split('_')[0],
-										offset: 0
-									}
-								}
-							});		
-							
+		sofia.globals.handleBibleRefClick.call(this, e);
+		
 		notesPopup.hide();
 		
-	});	
+	});
+	
+	
+	if (!Detection.hasTouch) {
+		notesPopup.body.on('mouseover', '.bibleref', function(e) {		
+			sofia.globals.handleBibleRefMouseover.call(this, e, $(notesPopup.currentWord).closest('.section').attr('data-textid') );				
+		});	
+		
+		notesPopup.body.on('mouseout', '.bibleref', function(e) {		
+			sofia.globals.handleBibleRefMouseout.call(this, e);				
+		});		
+	}
 
 	$('.windows-main').on('click','.note .key, .cf .key', function(e) {
+			
+		console.log('notes');	
 			
 		var key = $(this);
 		

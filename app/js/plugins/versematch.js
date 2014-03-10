@@ -9,19 +9,23 @@ var VerseMatchPlugin = function(app) {
 '}' +
 '</style>').appendTo( $('head') );
 
-	$('.windows-main').on('mouseover','.verse, .v', function(e) {
-		
-		var verse = $(this),	
-			verseid = verse.attr('data-id');
-						
-		$('.' + verseid).addClass('selected-verse');		
-		
-	}).on('mouseout','.verse, .v', function(e) {
-		var verse = $(this),	
-			verseid = verse.attr('data-id');
+
+	if (!Detection.hasTouch) {
+	
+		$('.windows-main').on('mouseover','.BibleWindow .verse, .BibleWindow .v', function(e) {
 			
-		$('.' + verseid).removeClass('selected-verse');
-	});
+			var verse = $(this),	
+				verseid = verse.attr('data-id');
+							
+			$('.BibleWindow .' + verseid).addClass('selected-verse');		
+			
+		}).on('mouseout','.BibleWindow .verse, .BibleWindow .v', function(e) {
+			var verse = $(this),	
+				verseid = verse.attr('data-id');
+				
+			$('.BibleWindow  .' + verseid).removeClass('selected-verse');
+		});
+	}
 };
 
 sofia.plugins.push('VerseMatchPlugin');

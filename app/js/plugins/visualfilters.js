@@ -1,3 +1,12 @@
+/*
+- click off dropdowns
+- hebrew morphology
+- multi-select morphology
+- Strong's selector
+- TYPE: [Any Text, Greek, Hebrew]
+*/
+
+
 
 /**
  * Highlights words based on morphological data
@@ -26,13 +35,15 @@ var VisualFilters = function(node) {
 	text-align: left;\
 }\
 #visualfilters-config td input[type=text] {\
-	width: 120px;\
+	width: 100px;\
 }\
 .visualfilters-morph select {\
 	width: 80px;\
 }\
+.visualfilters-style  {\
+	width: 120px;\
+}\
 .visualfilters-style span {\
-	width: 100px;\
 	font-size: 13px;\
 	display: inline-block;\
 	cursor: pointer;\
@@ -197,10 +208,10 @@ var VisualFilters = function(node) {
 	// STYLES GUIDE
 	// create styles
 	var 
-		textColors = 			['#ff3333',	'#33cc33',	'#3333cc"',	'#ffcc33',	'#ff33ff',	'#33ffff'],
-		textColorNames = 		['Red',		'Green',	'Blue',		'Orange', 	'Magenta',	'Cyan'],		
-		backgroundColors = 		['#ff9999',	'#99ff99',	'#9999ff"',	'#ffcc33',	'#ffff33',	'#ff99ff',	'#99ffff'],
-		backgroundColorNames = 	['Red',		'Green',	'Blue',		'Orange', 	'Yellow',	'Magenta',	'Cyan'],
+		textColors = 			['#999999', '#ff3333',	'#33cc33',	'#3333cc"',	'#ffcc33',	'#ff33ff',	'#33ffff'],
+		textColorNames = 		['Gray', 	'Red',		'Green',	'Blue',		'Orange', 	'Magenta',	'Cyan'],		
+		backgroundColors = 		['#ccccccc','#ff9999',	'#99ff99',	'#9999ff"',	'#ffcc33',	'#ffff33',	'#ff99ff',	'#99ffff'],
+		backgroundColorNames = 	['Gray', 	'Red',		'Green',	'Blue',		'Orange', 	'Yellow',	'Magenta',	'Cyan'],
 		
 		styleCss = [],
 		styleNames = []			
@@ -315,21 +326,17 @@ var VisualFilters = function(node) {
 	
 	});
 	
-	filtersWindow.body.on('click', ':not(.visualfilters-style)', function() {
-		// stylesSelector.hide();		
-	});
-	
 	filtersWindow.container.find('.close-button').on('click', function() {
 		stylesSelector.hide();		
 	});	
 	
-	filtersWindow.body.on('focus', '.visualfilters-morph input', function() {
+	
+	// morph	
+	filtersWindow.body.on('focus', '.visualfilters-morph input', function(e) {
 		morphSelector.attach( $(this) );
-	
 	});
-	
-	morphSelector.on('update', function(value) {
-		
+
+	morphSelector.on('update', function(value) {		
 		saveTransforms();
 		
 		VisualTransformer.resetTransforms(visualSettings);			
@@ -407,7 +414,14 @@ var VisualFilters = function(node) {
 			
 
 			if (transform.morph != '') {
-				transform.morphRegExp = new RegExp('^' + transform.morph.replace(/\?/gi,'.{1}'), 'gi');
+			
+				if (transform.morphLang == 'grc') {			
+					transform.morphRegExp = new RegExp('^' + transform.morph.replace(/\?/gi,'.{1}'), 'gi');
+				} else if (transform.morphLang == 'heb') {			
+					transform.morphRegExp = new RegExp(
+								'(^H' + transform.morph.replace(/\?/gi,'.{1}') + ')|'+ 
+								'(/' + transform.morph.replace(/\?/gi,'.{1}') + ')', 'gi');								
+				}
 			} else {
 				transform.morphRegExp = null;
 			}
@@ -471,6 +485,8 @@ var VisualTransformer = (function() {
 	function runTransforms(sectionNode, visualSettings) {
 		if (visualSettings.transforms.length === 0)
 			return;
+			
+		var sectionLang = sectionNode.attr('lang');
 		
 		sectionNode.find('l').each(function(index, node) {
 
@@ -503,6 +519,7 @@ var VisualTransformer = (function() {
 				// morphology
 				if (transform.morph != '') {
 
+					// sectionLang == transform.morphLang && 
 					if (transform.morphRegExp && transform.morphRegExp != null) {
 						var wordMorphData = word.attr('m');
 						

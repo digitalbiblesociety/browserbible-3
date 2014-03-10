@@ -1,0 +1,4 @@
+app/build/
+app/content/texts/
+tools/textgenerator/input/
+tools/textgenerator/node_modules/

@@ -45,7 +45,10 @@ var App = function() {
 				
 				switch (setting.type) {
 					case 'bible':
-						windowType = 'TextWindow';
+						windowType = 'BibleWindow';
+						break;
+					case 'commentary':
+						windowType = 'CommentaryWindow';
 						break;
 					case 'map':
 						windowType = 'MapsWindow';
@@ -107,6 +110,13 @@ var App = function() {
 			areaHeight = height - header.outerHeight() + footer.outerHeight(),
 			areaWidth = width - parseInt(main.css('margin-left'), 10) - parseInt(main.css('margin-right'), 10);
 
+		if (width < 410) {
+			header.hide();
+			areaHeight = height;
+		} else {
+			header.show();
+		}
+
 		// set height
 		main.height(areaHeight);	
 		main.width(areaWidth);
@@ -116,7 +126,8 @@ var App = function() {
 	}	
 
 	
-	var settingsKey = 'windowapp-14-02-09'	
+	var settingsKey = 'app-windows';
+		
 	function getWindowSettings() {
 	
 		// (1) get default settings

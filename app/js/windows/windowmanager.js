@@ -8,6 +8,10 @@ var WindowManager = function(node) {
 	
 		var id = 'win' + (windows.length+1);
 		
+		if (className == 'TextWindow') {
+			className = 'BibleWindow';
+		}
+		
 		// test for classname
 		if (typeof window[className] == 'undefined')
 			return;
@@ -75,6 +79,12 @@ var WindowManager = function(node) {
 			for (var i=0, il=windows.length; i<il; i++) {
 				windows[i].size(windowWidth, height);
 			}
+		}
+		
+		if (windows.length == 1) {
+			$('body').addClass('one-window')
+		} else {
+			$('body').removeClass('one-window')
 		}
 	}
 	

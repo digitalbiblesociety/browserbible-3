@@ -25,16 +25,34 @@ var VisualFilters = function(node) {
 	padding: 4px 4px 4px 0;\
 	text-align: left;\
 }\
-#visualfilters-config td input[type=text], #visualfilters-config td select  {\
+#visualfilters-config td input[type=text] {\
 	width: 120px;\
 }\
-#visualfilters-config td span {\
+.visualfilters-morph select {\
+	width: 80px;\
+}\
+.visualfilters-style span {\
 	width: 100px;\
+	font-size: 13px;\
 	display: inline-block;\
 	cursor: pointer;\
 }\
 .visualfilters-isactive, visualfilters-remove {\
 	width: 30px;\
+}\
+.visualfilters-close-button {\
+	margin: 0 0 0 20px;\
+	display: block;\
+	cursor: pointer;\
+	width: 20px;\
+	height: 20px;\
+	border-radius: 10px;\
+	text-align: center;\
+	background: url(build/images/close-button.svg) top center no-repeat;\
+}\
+.visualfilters-close-button:hover {\
+	background-color: #d5998b;\
+	background-position: 0 -20px;\
 }\
 #visualfilters-styles {\
 	position: absolute;\
@@ -58,11 +76,44 @@ var VisualFilters = function(node) {
 #visualfilters-styles div:hover {\
 	background-color: #d9e8ef;\
 }\
+.morph-selector {\
+	position: absolute;\
+	top: 0;\
+	left: 0;\
+	min-width: 150px;\
+	height: 200px;\
+	overflow: auto;\
+	z-index:1100;\
+	background-color:#fff;\
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);\
+	font-size: 12px;\
+	padding: 10px;\
+}\
+.morph-selector th, .morph-selector td {\
+	vertical-align: top;\
+}\
+.morph-selector table thead th {\
+	padding: 0 6px 5px 4px;\
+	font-weight: bold;\
+	text-align: left;\
+}\
+.morph-selector table tbody span {\
+	display: block;\
+	padding: 4px;\
+	margin: 0 10px 4px 0 ;\
+	cursor: pointer;\
+}\
+.morph-selector table tbody span:hover {\
+	background: #bbcbe6;\
+}\
+.morph-selector table tbody span.selected {\
+	background: #7fa4e1;\
+}\
 </style>').appendTo( $('head') );	
 	
 	
 	var 
-		settingsKey = 'docs-config-morphtransform',
+		settingsKey = 'docs-config-visualfilters',
 		
 		filtersWindow = new MovableWindow(550,290).show(),
 		
@@ -73,14 +124,16 @@ var VisualFilters = function(node) {
 					strongs: 'G2424',
 					morphLang: '',
 					morph: '',
-					style: 'border-bottom: dotted 2px #9999ff'
+					styleLabel: 'Blue Underline',
+					style: 'border-bottom: solid 1px #3333cc'
 				},
 				{
 					active: false,
 					strongs: '',
 					morphLang: 'grc',
 					morph: 'V-A',
-					style: 'border-bottom: dotted 2px #9999ff'
+					styleLabel: 'Orange Text',					
+					style: 'color: #ffcc33'
 				}
 				
 			]
@@ -112,6 +165,8 @@ var VisualFilters = function(node) {
 		stylesSelector = $('<div id="visualfilters-styles"></div>')
 							.appendTo( $(document.body) )
 							.hide(),
+							
+		morphSelector = new MorphologySelector(),
 
 		tbody = configBlock.find('tbody'),
 		
@@ -121,13 +176,14 @@ var VisualFilters = function(node) {
 										tbody.append(row);										
 									}),
 				
-		openVisualizationsButton = $('<span class="config-button" id="config-visualfilters-button">Morphology Filters</span>')
+		openVisualizationsButton = $('<span class="config-button" id="config-visualfilters-button">Visual Filters</span>')
 						.appendTo( $('#config-tools .config-body') );	
 						
+	console.log('LOADED VIZ',visualSettings);
 	
 	// SETUP WINDOW
 	
-	filtersWindow.title.html('Morphology Filters');
+	filtersWindow.title.html('Visual Filters');
 						
 	openVisualizationsButton.on('click', function() {
 		
@@ -176,7 +232,20 @@ var VisualFilters = function(node) {
 	styleCss.push('text-shadow:0 0 1px gray;');
 	styleNames.push('Shadow');				
 
+	styleCss.push('font-weight: bold;');
+	styleNames.push('Bold');
+	
+	styleCss.push('border: 2px dashed #333;');
+	styleNames.push('Dashed Box');	
 
+	styleCss.push('text-transform: uppercase;');
+	styleNames.push('Capitalize');
+	
+	styleCss.push('font-variant: small-caps;');
+	styleNames.push('Small Caps');	
+
+
+	// draw styles
 	for (var i=0, il=styleCss.length; i<il; i++) {		
 		stylesSelector.append(
 			$('<div><span data-style="' + styleCss[i] + '" style="' + styleCss[i] + '">' + styleNames[i] + '</span></div>')
@@ -198,7 +267,7 @@ var VisualFilters = function(node) {
 		VisualTransformer.resetTransforms(visualSettings);		
 	});	
 	
-	tbody.on('change keyup', '.visualfilters-active input, .visualfilters-style select, .visualfilters-strongs input, .visualfilters-morph input', function() {
+	tbody.on('change keyup', '.visualfilters-active input, .visualfilters-morph select, .visualfilters-strongs input, .visualfilters-morph input', function() {
 		//updateExamples();
 		
 		saveTransforms();
@@ -223,12 +292,16 @@ var VisualFilters = function(node) {
 		
 		if (activeSpan != null) {
 			
-			var newStyleParams = div.find('span').attr('data-style') ;
+			var newStyle = div.find('span'),
+				newStyleParams = newStyle.attr('data-style'),
+				newStyleLabel = newStyle.html();
 			
 			console.log('new style', newStyleParams);
 			
 			// add to data
-			activeSpan.attr('data-style', newStyleParams);
+			activeSpan
+				.attr('data-style', newStyleParams)
+				.html(newStyleLabel);
 			
 			// actually style it
 			activeSpan.attr('style','');
@@ -242,6 +315,28 @@ var VisualFilters = function(node) {
 	
 	});
 	
+	filtersWindow.body.on('click', ':not(.visualfilters-style)', function() {
+		// stylesSelector.hide();		
+	});
+	
+	filtersWindow.container.find('.close-button').on('click', function() {
+		stylesSelector.hide();		
+	});	
+	
+	filtersWindow.body.on('focus', '.visualfilters-morph input', function() {
+		morphSelector.attach( $(this) );
+	
+	});
+	
+	morphSelector.on('update', function(value) {
+		
+		saveTransforms();
+		
+		VisualTransformer.resetTransforms(visualSettings);			
+	});
+	
+	
+	
 	
 	
 	function drawTransforms() {
@@ -254,7 +349,10 @@ var VisualFilters = function(node) {
 			row.find('.visualfilters-active input').prop('checked', transform.active);
 			row.find('.visualfilters-strongs input').val(transform.strongs);
 			row.find('.visualfilters-morph input').val(transform.morph);
-			row.find('.visualfilters-style span').attr('data-style', transform.style);
+			row.find('.visualfilters-morph select').val(transform.morphLang);
+			row.find('.visualfilters-style span')
+						.html(transform.styleLabel)
+						.attr('data-style', transform.style);
 
 			VisualTransformer.applyStyle( row.find('.visualfilters-style span'), transform.style);		
 			
@@ -268,20 +366,23 @@ var VisualFilters = function(node) {
 		return $(
 			'<tr>' +
 				'<td class="visualfilters-active">' +
-					'<input type="checkbox" />' +
+					'<input type="checkbox" checked />' +
 				'</td>' +
-				'<td class="visualfilters-strongs">' +
+				'<td class="visualfilters-strongs">' +					
 					'<input type="text" placeholder="G2424, H234" />' +
 				'</td>' +
 				'<td class="visualfilters-morph">' +
+					'<select>' +	
+						'<option value="heb">Hebrew</option>' +
+						'<option value="grc">Greek</option>' +						
+					'</select>' +
 					'<input type="text" placeholder="V-A?" />' +
 				'</td>' +
 				'<td class="visualfilters-style">' +
-					'<span>Style</span>' +
+					'<span>Choose...</span>' +
 				'</td>' +				
 				'<td class="visualfilters-remove">' +
-					'x' +
-					//'<span class="close-button">X</span>' +
+					'<span class="visualfilters-close-button"></span>' +
 				'</td>' +
 			 '</tr>');
 	}	
@@ -298,7 +399,9 @@ var VisualFilters = function(node) {
 			transform.active = row.find('.visualfilters-active input').is(':checked');
 			transform.strongs = row.find('.visualfilters-strongs input').val();
 			transform.morph = row.find('.visualfilters-morph input').val();
+			transform.morphLang = row.find('.visualfilters-morph select').val();
 			transform.style = row.find('.visualfilters-style span').attr('data-style');
+			transform.styleLabel = row.find('.visualfilters-style span').html();
 			
 			//console.log('saving', transform.style, row.find('.visualfilters-style span').prop('data-style'));
 			
@@ -450,6 +553,11 @@ var VisualTransformer = (function() {
 	}
 
 	function applyStyle(node, css) {
+		
+		if (typeof css == 'undefined' || css == null || css == '') {
+			return;
+		}
+	
 	
 		var props = css.split(';');		
 		
@@ -471,3 +579,441 @@ var VisualTransformer = (function() {
 	};	
 	
 })();
+
+
+
+
+var MorphologySelector = function(parent) {
+	// morph selector
+	var greekElements = {
+	
+		"nounCase": {
+					breakBefore: true,
+					declension : 'Case',
+					parts :  [
+						{
+							letter : 'N',
+							type : 'Nominative'
+						},
+						{
+							letter : 'A',
+							type : 'Accusative'
+						},					
+						{
+							letter : 'D',
+							type : 'Dative'
+						},					
+						{
+							letter : 'G',
+							type : 'Genative'
+						},					
+						{
+							letter : 'V',
+							type : 'Vocative'
+						}											
+					]
+				},
+	
+		"number": {
+					declension : 'Number',
+					parts :  [
+						{
+							letter : 'P',
+							type : 'Plural'
+						},
+						{
+							letter : 'S',
+							type : 'Singular'
+						}
+					]
+				},
+		"gender":{
+					declension : 'Gender',
+					parts :  [
+						{
+							letter : 'F',
+							type : 'Feminine'
+						},
+						{
+							letter : 'M',
+							type : 'Masculine'
+						},
+						{
+							letter : 'N',
+							type : 'Nueter'
+						}
+					]
+				},
+				
+				
+		"verbTense": {
+					breakBefore: true,
+					declension : 'Tense',
+					parts :  [
+						{
+							letter : 'A',
+							type : 'Aorist'
+						},
+						{
+							letter : 'F',
+							type : 'Future'
+						},					
+						{
+							letter : 'I',
+							type : 'Imperfect'
+						},					
+						{
+							letter : 'R',
+							type : 'Perfect'
+						},					
+						{
+							letter : 'L',
+							type : 'Pluperfect'
+						},					
+						{
+							letter : 'P',
+							type : 'Present'
+						}
+					]
+				},
+		"verbVoice":		{
+					declension : 'Voice',
+					parts :  [
+						{
+							letter : 'A',
+							type : 'Active'
+						},
+						{
+							letter : 'M',
+							type : 'Middle'
+						},
+						{
+							letter : 'P',
+							type : 'Passive'
+						}
+					]
+				},
+		"verbMood":		{
+					declension : 'Mood',
+					parts :  [
+						{
+							letter : 'I',
+							type : 'Indicative'
+						},
+						{
+							letter : 'S',
+							type : 'Subjunctive'
+						},
+						{
+							letter : 'O',
+							type : 'Optative'
+						},
+						{
+							letter : 'M',
+							type : 'Imperative'
+						},
+						{
+							letter : 'N',
+							type : 'Infinitive'
+						},
+						{
+							letter : 'P',
+							type : 'Participle'
+						}
+					]
+				}
+				,
+		"person": {
+					declension : 'Person',
+					breakBefore: true,
+					parts :  [
+						{
+							letter : '1',
+							type : '1st Person'
+						},
+						{
+							letter : '2',
+							type : '2nd Person'
+						},
+						{
+							letter : '3',
+							type : '3rd Person'
+						}
+					]
+				},						
+	
+		},
+	
+
+		partsOfSpeech = [
+		{
+			letter : 'N',
+			type : 'Noun',
+			declensions : [
+				greekElements.nounCase,
+				greekElements.number,
+				greekElements.gender			
+			]
+		},
+		{
+			letter : 'V',
+			type : 'Verb',
+			declensions : [
+				greekElements.verbTense,
+				greekElements.verbVoice,
+				greekElements.verbMood,
+				greekElements.person,
+				greekElements.number						
+			]
+		}			
+	
+	];	
+	
+	
+	var currentInput = null,
+	
+		morphSelector = $('<div class="morph-selector"><table>' + 
+			'<thead>' + 
+				'<tr><th>Part of Speech</th></tr>' + 
+			'</thead>' + 
+			'<tbody>' + 
+				'<tr></tr>' +
+			'</tbody>' + 
+			'</table></div>')
+				.appendTo( $(document.body) )
+				.hide(),
+		
+		morphSelectorTimer = null,
+		
+		startMorphSelectorTimer = function() {				
+			stopMorphSelectorTimer();
+			
+			morphSelectorTimer = setTimeout(function() {
+				morphSelector.hide();
+			}, 1000);
+		},
+		stopMorphSelectorTimer = function() {
+			if (morphSelectorTimer != null) {
+				clearTimeout(morphSelectorTimer);
+				morphSelectorTimer = null;
+			}
+		};
+	
+	morphSelector	
+		.on('mouseleave', function() {
+			startMorphSelectorTimer();
+		})
+		.on('mouseover', function() {
+			stopMorphSelectorTimer();	
+		});
+			
+	morphSelector.currentInput = null;
+	
+	// find table parts
+	var morphSelectorHeaderRow = morphSelector.find('thead tr'),
+		morphSelectorMainRow = morphSelector.find('tbody tr'),
+		morphSelectorPOS = $('<td class="morph-pos"></td>').appendTo(morphSelectorMainRow);
+
+	// add parts of speech
+	for (var i=0, il=partsOfSpeech.length; i<il; i++) {
+		morphSelectorPOS.append(
+			$('<span data-value="' + partsOfSpeech[i].letter + '">' + partsOfSpeech[i].type + '</span>')
+		);
+	}
+	
+	function updateMorphSelector(value) {
+	
+		if (value.length == 0) {
+			morphSelector.find('span').removeClass('selected');
+			drawSelectedPartOfSpeech();
+			return;
+		}
+	
+		var firstChar = value.substring(0,1);
+		
+		// select it
+		var partOfSpeechSpan = morphSelectorPOS.find('span[data-value="' + firstChar + '"]');
+		
+		if (partOfSpeechSpan.length > 0) {
+			partOfSpeechSpan.addClass('selected')
+				.siblings()
+					.removeClass('selected');
+			
+			drawSelectedPartOfSpeech();
+							
+			// do the rest of the characters one by one
+			if (value.length > 2) {
+				var remainder = value.substring(2);
+				
+				for (var i=0, il=remainder.length; i<il; i++) {
+					var letter = remainder[i];
+											
+					morphSelectorMainRow
+						.find('td:nth-child(' + (i+2) + ')')
+						.find('span[data-value="' + letter + '"]')
+							.addClass('selected');
+				}
+			}
+		}
+		
+		
+		
+	}	
+	
+	function drawSelectedPartOfSpeech() {
+		
+		// clear out headers
+		morphSelectorHeaderRow.find('th').first()
+			.siblings()
+			.remove();	
+	
+		// clear out the main declensions
+		morphSelectorMainRow.find('td').first()
+			.siblings()
+			.remove();					
+	
+		// find whatever is selcted
+		var selectedSpan = morphSelectorPOS.find('.selected'),
+			selectedValue = selectedSpan.attr('data-value');
+			
+		if (selectedSpan.length == 0) {
+			return;
+		}
+	
+		// find part of speech
+		var partOfSpeech = null;
+		for (var i=0, il=partsOfSpeech.length; i<il; i++) {
+			if (partsOfSpeech[i].letter === selectedValue) {
+				partOfSpeech = partsOfSpeech[i];
+				break;
+			}					
+		}	
+								
+		// now make the new siblings
+		for (var i=0, il=partOfSpeech.declensions.length; i<il; i++) {
+			// create td
+			//var td = $('<td />').appendTo( selectedSpan.closest('tr') );					
+			var declension = partOfSpeech.declensions[i],
+				td = $('<th>' + declension.declension + '</th>').appendTo( morphSelectorHeaderRow );
+				td = $('<td />').appendTo( selectedSpan.closest('tr') );				
+			
+			for (var j=0, jl=declension.parts.length; j<jl; j++) {
+				$('<span data-value="' + declension.parts[j].letter + '"' + (declension.breakBefore ? ' data-breakbefore="true"' : '') + '>' + declension.parts[j].type + '</span>')
+					.appendTo(td);
+			}
+		}	
+		
+		morphSelector.height( morphSelector.find('table').height() );		
+	}	
+	
+	// selecting a span	
+	morphSelector.on('click', 'span', function() {
+		var selectedSpan = $(this),
+			selectedValue = selectedSpan.attr('data-value');
+		
+		
+		// select or delect a class
+		if (selectedSpan.hasClass('selected')) {
+
+			selectedSpan
+				.removeClass('selected')
+
+		} else {
+
+			selectedSpan
+				.addClass('selected')
+				.siblings()
+					.removeClass('selected');
+							
+		}
+
+		// redraw the parts if needed			
+		if (selectedSpan.closest('td').hasClass('morph-pos')) {
+			drawSelectedPartOfSpeech();
+		}
+		
+		
+		// push new value to input
+		var selector = '',
+			lastPartOfSpeechWithSelection = -1;
+
+		// first see what the last position with a selected value is
+		// [Verb] [ ] [ ] [Subjunctive] == 3
+		selectedSpan.closest('tr').find('td').each(function(index, node) {
+			var td = $(this),
+				selectedDeclension = td.find('span.selected');	
+				
+			// if something is selected then mark it
+			if (selectedDeclension.length > 0) {			
+				lastPartOfSpeechWithSelection = index;
+			}
+		});
+		
+		// construct the text input from the selected positions
+		selectedSpan.closest('tr').find('td').each(function(index, node) {
+		
+			var td = $(this),
+				selectedDeclension = td.find('span.selected'),
+				includeBreak = td.find('span').first().attr('data-breakbefore') == "true";
+			
+			// if nothing selected add ? but only if there is something after it
+			if (selectedDeclension.length == 0) {
+				if (index <= lastPartOfSpeechWithSelection) {
+					selector += (includeBreak ? '-' : '') + '?';
+				}
+			} else {
+				selector += (includeBreak ? '-' : '') + selectedDeclension.attr('data-value');
+			}
+		});
+		
+		
+		if (currentInput != null) {
+			currentInput.val(selector);
+		}
+		
+		//saveTransforms();
+		//resetTransforms();
+		
+		ext.trigger('update', selector);
+	});
+	
+	
+	var ext = {
+		update: function(code) {
+			
+			
+		},
+		
+		attach: function(input) {
+			
+			morphSelector.css({
+				top: input.offset().top + input.outerHeight(),
+				left: input.offset().left	
+			});
+	
+			morphSelector.show();			
+			
+			updateMorphSelector( input.val() );
+			
+			currentInput = input;			
+		},
+		show: function() {
+			morphSelector.show();			
+		},
+		hide: function() {
+			morphSelector.hide();			
+		}		
+	
+	};	
+	ext = $.extend(true, ext, EventEmitter);
+	
+	
+	ext.on('message', function(e) {
+
+
+	});	
+	
+	
+	return ext;	
+	
+};

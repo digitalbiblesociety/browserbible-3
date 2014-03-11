@@ -15,8 +15,6 @@
  */
  
 var VisualFilters = function(node) {
-
-		
 	
 	$('<style>\
 #config-visualfilters-button {\
@@ -173,9 +171,13 @@ var VisualFilters = function(node) {
 						'</div>')
 						.appendTo( filtersWindow.body ),
 		
+		stylesSelector = new StylesSelector(),
+		
+		/*
 		stylesSelector = $('<div id="visualfilters-styles"></div>')
 							.appendTo( $(document.body) )
 							.hide(),
+		*/
 							
 		morphSelector = new MorphologySelector(),
 
@@ -205,65 +207,7 @@ var VisualFilters = function(node) {
 	});
 	
 	
-	// STYLES GUIDE
-	// create styles
-	var 
-		textColors = 			['#999999', '#ff3333',	'#33cc33',	'#3333cc"',	'#ffcc33',	'#ff33ff',	'#33ffff'],
-		textColorNames = 		['Gray', 	'Red',		'Green',	'Blue',		'Orange', 	'Magenta',	'Cyan'],		
-		backgroundColors = 		['#ccccccc','#ff9999',	'#99ff99',	'#9999ff"',	'#ffcc33',	'#ffff33',	'#ff99ff',	'#99ffff'],
-		backgroundColorNames = 	['Gray', 	'Red',		'Green',	'Blue',		'Orange', 	'Yellow',	'Magenta',	'Cyan'],
-		
-		styleCss = [],
-		styleNames = []			
-		;		
 
-	
-	// text
-	for (var i=0, il=textColors.length; i<il; i++) {		
-		styleCss.push('color: ' + textColors[i] + ';');
-		styleNames.push(textColorNames[i] + ' Text');				
-	}	
-	
-	// highlight
-	for (var i=0, il=backgroundColors.length; i<il; i++) {		
-		styleCss.push('background-color: ' + backgroundColors[i] + ';');
-		styleNames.push(backgroundColorNames[i] + ' Highlight');				
-	}	
-
-	// underline
-	for (var i=0, il=textColors.length; i<il; i++) {		
-		styleCss.push('border-bottom: solid 1px ' + textColors[i] + ';');
-		styleNames.push(textColorNames[i] + ' Underline');				
-	}	
-	
-	// custom
-	styleCss.push('color:red;text-shadow:yellow 0 0 2px;');
-	styleNames.push('Fire');				
-
-	styleCss.push('text-shadow:0 0 1px gray;');
-	styleNames.push('Shadow');				
-
-	styleCss.push('font-weight: bold;');
-	styleNames.push('Bold');
-	
-	styleCss.push('border: 2px dashed #333;');
-	styleNames.push('Dashed Box');	
-
-	styleCss.push('text-transform: uppercase;');
-	styleNames.push('Capitalize');
-	
-	styleCss.push('font-variant: small-caps;');
-	styleNames.push('Small Caps');	
-
-
-	// draw styles
-	for (var i=0, il=styleCss.length; i<il; i++) {		
-		stylesSelector.append(
-			$('<div><span data-style="' + styleCss[i] + '" style="' + styleCss[i] + '">' + styleNames[i] + '</span></div>')
-		);
-	}	
-	
-	
 	
 	
 	// ROWS
@@ -286,6 +230,7 @@ var VisualFilters = function(node) {
 		VisualTransformer.resetTransforms(visualSettings);	
 	});	
 	
+	// STYLE
 	var activeSpan = null;
 	tbody.on('click', '.visualfilters-style span', function() {
 		
@@ -333,7 +278,18 @@ var VisualFilters = function(node) {
 	
 	// morph	
 	filtersWindow.body.on('focus', '.visualfilters-morph input', function(e) {
-		morphSelector.attach( $(this) );
+		//morphSelector.attach( $(this) );
+		var input = $(this);
+		
+		morphSelector.css({
+			top: input.offset().top + input.outerHeight(),
+			left: input.offset().left	
+		});
+
+		morphSelector.show();			
+		
+		morphSelector.currentInput = input;
+		morphSelector.updateMorphSelector( input.val() );		
 	});
 
 	morphSelector.on('update', function(value) {		
@@ -344,7 +300,7 @@ var VisualFilters = function(node) {
 	
 	
 	
-	
+	// DRAW!
 	
 	function drawTransforms() {
 		tbody.empty();
@@ -787,8 +743,7 @@ var MorphologySelector = function(parent) {
 	];	
 	
 	
-	var currentInput = null,
-	
+	var 
 		morphSelector = $('<div class="morph-selector"><table>' + 
 			'<thead>' + 
 				'<tr><th>Part of Speech</th></tr>' + 
@@ -871,10 +826,7 @@ var MorphologySelector = function(parent) {
 							.addClass('selected');
 				}
 			}
-		}
-		
-		
-		
+		}			
 	}	
 	
 	function drawSelectedPartOfSpeech() {
@@ -984,53 +936,86 @@ var MorphologySelector = function(parent) {
 		});
 		
 		
-		if (currentInput != null) {
-			currentInput.val(selector);
+		if (morphSelector.currentInput != null) {
+			morphSelector.currentInput.val(selector);
 		}
 		
 		//saveTransforms();
 		//resetTransforms();
 		
-		ext.trigger('update', selector);
+		morphSelector.trigger('update', selector);
 	});
 	
+	morphSelector.updateMorphSelector = updateMorphSelector;
+	morphSelector.currentInput = null;
 	
-	var ext = {
-		update: function(code) {
-			
-			
-		},
-		
-		attach: function(input) {
-			
-			morphSelector.css({
-				top: input.offset().top + input.outerHeight(),
-				left: input.offset().left	
-			});
-	
-			morphSelector.show();			
-			
-			updateMorphSelector( input.val() );
-			
-			currentInput = input;			
-		},
-		show: function() {
-			morphSelector.show();			
-		},
-		hide: function() {
-			morphSelector.hide();			
-		}		
-	
-	};	
-	ext = $.extend(true, ext, EventEmitter);
-	
-	
-	ext.on('message', function(e) {
-
-
-	});	
-	
-	
-	return ext;	
-	
+	return morphSelector;
 };
+
+
+var StylesSelector = function() {
+	var selector = $('<div id="visualfilters-styles"></div>')
+					.appendTo( $(document.body) )
+					.hide();	
+
+	
+	// STYLES GUIDE
+	// create styles
+	var 
+		textColors = 			['#999999', '#ff3333',	'#33cc33',	'#3333cc"',	'#ffcc33',	'#ff33ff',	'#33ffff'],
+		textColorNames = 		['Gray', 	'Red',		'Green',	'Blue',		'Orange', 	'Magenta',	'Cyan'],		
+		backgroundColors = 		['#ccccccc','#ff9999',	'#99ff99',	'#9999ff"',	'#ffcc33',	'#ffff33',	'#ff99ff',	'#99ffff'],
+		backgroundColorNames = 	['Gray', 	'Red',		'Green',	'Blue',		'Orange', 	'Yellow',	'Magenta',	'Cyan'],
+		
+		styleCss = [],
+		styleNames = []			
+		;		
+
+	
+	// text
+	for (var i=0, il=textColors.length; i<il; i++) {		
+		styleCss.push('color: ' + textColors[i] + ';');
+		styleNames.push(textColorNames[i] + ' Text');				
+	}	
+	
+	// highlight
+	for (var i=0, il=backgroundColors.length; i<il; i++) {		
+		styleCss.push('background-color: ' + backgroundColors[i] + ';');
+		styleNames.push(backgroundColorNames[i] + ' Highlight');				
+	}	
+
+	// underline
+	for (var i=0, il=textColors.length; i<il; i++) {		
+		styleCss.push('border-bottom: solid 1px ' + textColors[i] + ';');
+		styleNames.push(textColorNames[i] + ' Underline');				
+	}	
+	
+	// custom
+	styleCss.push('color:red;text-shadow:yellow 0 0 2px;');
+	styleNames.push('Fire');				
+
+	styleCss.push('text-shadow:0 0 1px gray;');
+	styleNames.push('Shadow');				
+
+	styleCss.push('font-weight: bold;');
+	styleNames.push('Bold');
+	
+	styleCss.push('border: 2px dashed #333;');
+	styleNames.push('Dashed Box');	
+
+	styleCss.push('text-transform: uppercase;');
+	styleNames.push('Capitalize');
+	
+	styleCss.push('font-variant: small-caps;');
+	styleNames.push('Small Caps');	
+
+
+	// draw styles
+	for (var i=0, il=styleCss.length; i<il; i++) {		
+		selector.append(
+			$('<div><span data-style="' + styleCss[i] + '" style="' + styleCss[i] + '">' + styleNames[i] + '</span></div>')
+		);
+	}	
+	
+	return selector;	
+}

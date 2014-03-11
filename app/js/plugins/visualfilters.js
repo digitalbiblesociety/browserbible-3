@@ -1,6 +1,6 @@
 /*
-- click off dropdowns
-- hebrew morphology
+x click off dropdowns
+x hebrew morphology
 - multi-select morphology
 - Strong's selector
 - TYPE: [Any Text, Greek, Hebrew]
@@ -124,14 +124,14 @@ var VisualFilters = function(node) {
 	var 
 		settingsKey = 'docs-config-visualfilters',
 		
-		filtersWindow = new MovableWindow(550,290).show(),
+		filtersWindow = new MovableWindow(550,290).hide(),
 		
 		defaultSettings = {
 			transforms: [
 				{
 					active: false,
 					strongs: 'G2424',
-					morphLang: '',
+					morphType: '',
 					morph: '',
 					styleLabel: 'Blue Underline',
 					style: 'border-bottom: solid 1px #3333cc'
@@ -139,7 +139,7 @@ var VisualFilters = function(node) {
 				{
 					active: false,
 					strongs: '',
-					morphLang: 'grc',
+					morphType: 'robinson',
 					morph: 'V-A',
 					styleLabel: 'Orange Text',					
 					style: 'color: #ffcc33'
@@ -149,7 +149,7 @@ var VisualFilters = function(node) {
 		},
 		visualSettings = AppSettings.getValue(settingsKey, defaultSettings),
 		
-		configBlock = $('<div id="visualfilters-config">' + 
+		visualNode = $('<div id="visualfilters-config">' + 
 						
 							'<input type="button" value="New Filter" />' +
 							
@@ -175,9 +175,9 @@ var VisualFilters = function(node) {
 				
 		morphSelector = new MorphologySelector(),
 
-		tbody = configBlock.find('tbody'),
+		tbody = visualNode.find('tbody'),
 		
-		addRowButton = configBlock.find('input')
+		addRowButton = visualNode.find('input')
 									.on('click', function() {
 										var row = createRow();
 										tbody.append(row);										
@@ -268,7 +268,8 @@ var VisualFilters = function(node) {
 	});
 	
 	filtersWindow.container.find('.close-button').on('click', function() {
-		stylesSelector.hide();		
+		stylesSelector.hide();	
+		morphSelector.hide();	
 	});	
 	
 	
@@ -315,7 +316,7 @@ var VisualFilters = function(node) {
 			row.find('.visualfilters-active input').prop('checked', transform.active);
 			row.find('.visualfilters-strongs input').val(transform.strongs);
 			row.find('.visualfilters-morph input').val(transform.morph);
-			row.find('.visualfilters-morph select').val(transform.morphLang);
+			row.find('.visualfilters-morph select').val(transform.morphType);
 			row.find('.visualfilters-style span')
 						.html(transform.styleLabel)
 						.attr('data-style', transform.style);
@@ -365,7 +366,7 @@ var VisualFilters = function(node) {
 			transform.active = row.find('.visualfilters-active input').is(':checked');
 			transform.strongs = row.find('.visualfilters-strongs input').val();
 			transform.morph = row.find('.visualfilters-morph input').val();
-			transform.morphLang = row.find('.visualfilters-morph select').val();
+			transform.morphType = row.find('.visualfilters-morph select').val();
 			transform.style = row.find('.visualfilters-style span').attr('data-style');
 			transform.styleLabel = row.find('.visualfilters-style span').html();
 			
@@ -374,9 +375,9 @@ var VisualFilters = function(node) {
 
 			if (transform.morph != '') {
 			
-				if (transform.morphLang == 'grc') {			
+				if (transform.morphType == 'robinson') {			
 					transform.morphRegExp = new RegExp('^' + transform.morph.replace(/\?/gi,'.{1}'), 'gi');
-				} else if (transform.morphLang == 'heb') {			
+				} else if (transform.morphType == 'morphhb') {			
 					transform.morphRegExp = new RegExp(
 								'(^H' + transform.morph.replace(/\?/gi,'.{1}') + ')|'+ 
 								'(/' + transform.morph.replace(/\?/gi,'.{1}') + ')', 'gi');								
@@ -478,7 +479,7 @@ var VisualTransformer = (function() {
 				// morphology
 				if (transform.morph != '') {
 
-					// sectionLang == transform.morphLang && 
+					// sectionLang == transform.morphType && 
 					if (transform.morphRegExp && transform.morphRegExp != null) {
 						var wordMorphData = word.attr('m');
 						

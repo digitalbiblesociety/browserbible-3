@@ -172,13 +172,7 @@ var VisualFilters = function(node) {
 						.appendTo( filtersWindow.body ),
 		
 		stylesSelector = new StylesSelector(),
-		
-		/*
-		stylesSelector = $('<div id="visualfilters-styles"></div>')
-							.appendTo( $(document.body) )
-							.hide(),
-		*/
-							
+				
 		morphSelector = new MorphologySelector(),
 
 		tbody = configBlock.find('tbody'),
@@ -194,7 +188,7 @@ var VisualFilters = function(node) {
 						
 	console.log('LOADED VIZ',visualSettings);
 	
-	// SETUP WINDOW
+	// Attach to Config pane
 	
 	filtersWindow.title.html('Visual Filters');
 						
@@ -204,11 +198,7 @@ var VisualFilters = function(node) {
 		
 		openVisualizationsButton.closest('.window-overlay').hide();
 		
-	});
-	
-	
-
-	
+	});	
 	
 	// ROWS
 	tbody.on('click', '.visualfilters-remove', function() {
@@ -233,6 +223,12 @@ var VisualFilters = function(node) {
 	// STYLE
 	var activeSpan = null;
 	tbody.on('click', '.visualfilters-style span', function() {
+		
+		
+		if (stylesSelector.is(':visible') && activeSpan != null && activeSpan[0] == $(this)[0]) {
+			stylesSelector.hide();
+			return;			
+		}		
 		
 		activeSpan = $(this);
 		
@@ -277,9 +273,15 @@ var VisualFilters = function(node) {
 	
 	
 	// morph	
-	filtersWindow.body.on('focus', '.visualfilters-morph input', function(e) {
+	filtersWindow.body.on('click', '.visualfilters-morph input', function(e) {
 		//morphSelector.attach( $(this) );
 		var input = $(this);
+		
+		
+		if (morphSelector.is(':visible') && morphSelector.currentInput != null && morphSelector.currentInput[0] == input[0]) {
+			morphSelector.hide();
+			return;			
+		}	
 		
 		morphSelector.css({
 			top: input.offset().top + input.outerHeight(),
@@ -289,6 +291,7 @@ var VisualFilters = function(node) {
 		morphSelector.show();			
 		
 		morphSelector.currentInput = input;
+		morphSelector.setMorphology( input.siblings('select').val() );
 		morphSelector.updateMorphSelector( input.val() );		
 	});
 
@@ -336,8 +339,8 @@ var VisualFilters = function(node) {
 				'</td>' +
 				'<td class="visualfilters-morph">' +
 					'<select>' +	
-						'<option value="heb">Hebrew</option>' +
-						'<option value="grc">Greek</option>' +						
+						'<option value="morphhb">Hebrew</option>' +
+						'<option value="robinson">Greek</option>' +						
 					'</select>' +
 					'<input type="text" placeholder="V-A?" />' +
 				'</td>' +
@@ -558,7 +561,9 @@ var VisualTransformer = (function() {
 
 var MorphologySelector = function(parent) {
 	// morph selector
-	var greekElements = {
+	var currentMorphologyKey = 'robinson',
+	
+		robinsonElements = {
 	
 		"nounCase": {
 					breakBefore: true,
@@ -713,35 +718,411 @@ var MorphologySelector = function(parent) {
 							type : '3rd Person'
 						}
 					]
-				},						
+				}						
 	
+		},
+		
+		morphhbElements = {			
+			"nounTypes":{
+					declension : 'Type',
+					parts :  [
+						{
+							letter : 'c',
+							type : 'Common'
+						},
+						{
+							letter : 'g',
+							type : 'Gentilic'
+						},
+						{
+							letter : 'p',
+							type : 'Proper name'
+						}
+					]
+				},
+
+			"person": {
+					declension : 'Person',
+					breakBefore: true,
+					parts :  [
+						{
+							letter : '1',
+							type : '1st Person'
+						},
+						{
+							letter : '2',
+							type : '2nd Person'
+						},
+						{
+							letter : '3',
+							type : '3rd Person'
+						}
+					]
+				},
+			"number": {
+					declension : 'Number',
+					parts :  [
+						{
+							letter : 'p',
+							type : 'Plural'
+						},
+						{
+							letter : 's',
+							type : 'Singular'
+						}
+						,
+						{
+							letter : 'd',
+							type : 'Dual'
+						}
+					]
+				},
+			"state":{
+					declension : 'State',
+					parts :  [
+						{
+							letter : 'a',
+							type : 'Absolute'
+						},
+						{
+							letter : 'c',
+							type : 'Construct'
+						},
+						{
+							letter : 'd',
+							type : 'Determined'
+						}
+					]
+				},				
+			"nounGender":{
+					declension : 'Gender',
+					parts :  [
+						{
+							letter : 'f',
+							type : 'Feminine'
+						},
+						{
+							letter : 'm',
+							type : 'Masculine'
+						},
+						{
+							letter : 'b',
+							type : 'Both'
+						}
+					]
+				},
+			"verbGender":{
+					declension : 'Gender',
+					parts :  [
+						{
+							letter : 'f',
+							type : 'Feminine'
+						},
+						{
+							letter : 'm',
+							type : 'Masculine'
+						},
+						{
+							letter : 'c',
+							type : 'Common'
+						}
+					]
+				},	
+			
+			verbStem: {
+				declension : 'Stem',
+				parts :  [			
+					{
+						letter: 'q',
+						type: 'qal',
+					},
+					{
+						letter: 'N',
+						type: 'niphal',
+					},
+					{
+						letter: 'p',
+						type: 'piel',
+					},
+					{
+						letter: 'P',
+						type: 'pual',
+					},
+					{
+						letter: 'h',
+						type: 'hiphil',
+					},
+					{
+						letter: 'H',
+						type: 'hophal',
+					},
+					{
+						letter: 't',
+						type: 'hithpael',
+					},
+					{
+						letter: 'o',
+						type: 'polel',
+					},
+					{
+						letter: 'O',
+						type: 'polal',
+					},
+					{
+						letter: 'r',
+						type: 'hithpolel',
+					},
+					{
+						letter: 'm',
+						type: 'poel',
+					},
+					{
+						letter: 'M',
+						type: 'poal',
+					},
+					{
+						letter: 'k',
+						type: 'palel',
+					},
+					{
+						letter: 'K',
+						type: 'pulal',
+				
+					},
+					{
+						letter: 'Q',
+						type: 'qal passive',
+					},
+					{
+						letter: 'l',
+						type: 'pilpel',
+					},
+					{
+						letter: 'L',
+						type: 'polpal',
+					},
+					{
+						letter: 'f',
+						type: 'hithpalpel',
+					},
+					{
+						letter: 'D',
+						type: 'nithpael',
+					},
+					{
+						letter: 'j',
+						type: 'pealal',
+					},
+					{
+						letter: 'i',
+						type: 'pilel',
+					},
+					{
+						letter: 'u',
+						type: 'hothpaal',
+					},
+					{
+						letter: 'c',
+						type: 'tiphil',
+					},
+					{
+						letter: 'v',
+						type: 'hishtaphel',
+					},
+					{
+						letter: 'w',
+						type: 'nithpalel',
+					},
+					{
+						letter: 'y',
+						type: 'nithpoel',
+					},
+					{
+						letter: 'z',
+						type: 'hithpoel'
+					}
+				]
+			},	
+							
+			verbType: {
+				declension : 'Type',
+				parts :  [
+					{
+						letter: 'p',
+						type: 'perfect (qatal)',
+					},
+					{
+						letter: 'q',
+						type: 'sequential perfect (weqatal)',
+					},
+					{
+						letter: 'i',
+						type: 'imperfect (yiqtol)',
+					},
+					{
+						letter: 'w',
+						type: 'sequential imperfect (wayyiqtol)',
+					},
+					{
+						letter: 'h',
+						type: 'cohortative',
+					},
+					{
+						letter: 'j',
+						type: 'jussive',
+					},
+					{
+						letter: 'v',
+						type: 'imperative',
+					},
+					{
+						letter: 'r',
+						type: 'participle active',
+					},
+					{
+						letter: 's',
+						type: 'participle passive',
+					},
+					{
+						letter: 'a',
+						type: 'infinitive absolute',
+					},
+					{
+						letter: 'c',
+						type: 'infinitive construct'
+					}
+					]
+			},
+		
+			verbVoices: {
+					declension : 'Voice',
+					parts :  [			
+						{
+							letter: 'A',
+							type: 'active'					
+						},
+						{
+							letter: 'M',
+							type: 'middle'					
+						},
+						{
+							letter: 'P',
+							type: 'passive'					
+						},
+						{
+							letter: 'E',
+							type: 'middle or passive'
+						},
+						{
+							letter: 'D',
+							type: 'middle deponent'
+						},			
+						{
+							letter: 'O',
+							type: 'passive deponent'
+						},
+						{
+							letter: 'N',
+							type: 'middle or passive deponent'
+						},
+						{
+							letter: 'Q',
+							type: 'impersonal active'
+						},
+						{
+							letter: 'X',
+							type: 'no voice'
+						}
+					]
+			},
+		
+			verbMoods: {
+				declension : 'Mood',
+				parts :  [			
+					{
+						letter: 'I',
+						type: 'indicative'
+					},
+					{
+						letter: 'S',
+						type: 'subjunctive'
+					},
+					{
+						letter: 'O',
+						type: 'optative'
+					},
+					{
+						letter: 'M',
+						type: 'imperative'
+					},
+					{
+						letter: 'N',
+						type: 'infinitive'
+					},
+					{
+						letter: 'P',
+						type: 'participle'
+					},
+					{
+						letter: 'R',
+						type: 'imperative participle'
+					}
+				]
+			}										
 		},
 	
 
-		partsOfSpeech = [
-		{
-			letter : 'N',
-			type : 'Noun',
-			declensions : [
-				greekElements.nounCase,
-				greekElements.number,
-				greekElements.gender			
+		morphologies = {
+			"robinson":
+			[
+				{
+					letter : 'N',
+					type : 'Noun',
+					declensions : [
+						robinsonElements.nounCase,
+						robinsonElements.number,
+						robinsonElements.gender			
+					]
+				},
+				{
+					letter : 'V',
+					type : 'Verb',
+					declensions : [
+						robinsonElements.verbTense,
+						robinsonElements.verbVoice,
+						robinsonElements.verbMood,
+						robinsonElements.person,
+						robinsonElements.number						
+					]
+				}
+			],
+			"morphhb": [
+				{
+					letter : 'N',
+					type : 'Noun',
+					declensions : [
+						morphhbElements.nounTypes,
+						morphhbElements.nounGender,
+						morphhbElements.number,
+						morphhbElements.state			
+					]
+				},
+				{
+					letter : 'V',
+					type : 'Verb',
+					declensions : [
+						morphhbElements.verbStem,
+						morphhbElements.verbType,
+						morphhbElements.person,
+						morphhbElements.number,
+						morphhbElements.verbGender,												
+						morphhbElements.state							
+					]
+				}			
 			]
 		},
-		{
-			letter : 'V',
-			type : 'Verb',
-			declensions : [
-				greekElements.verbTense,
-				greekElements.verbVoice,
-				greekElements.verbMood,
-				greekElements.person,
-				greekElements.number						
-			]
-		}			
-	
-	];	
-	
+		currentMorphology = morphologies[currentMorphologyKey];
+		
 	
 	var 
 		morphSelector = $('<div class="morph-selector"><table>' + 
@@ -770,7 +1151,7 @@ var MorphologySelector = function(parent) {
 				morphSelectorTimer = null;
 			}
 		};
-	
+	/*
 	morphSelector	
 		.on('mouseleave', function() {
 			startMorphSelectorTimer();
@@ -778,20 +1159,41 @@ var MorphologySelector = function(parent) {
 		.on('mouseover', function() {
 			stopMorphSelectorTimer();	
 		});
+	*/
 			
-	morphSelector.currentInput = null;
 	
 	// find table parts
 	var morphSelectorHeaderRow = morphSelector.find('thead tr'),
 		morphSelectorMainRow = morphSelector.find('tbody tr'),
 		morphSelectorPOS = $('<td class="morph-pos"></td>').appendTo(morphSelectorMainRow);
 
-	// add parts of speech
-	for (var i=0, il=partsOfSpeech.length; i<il; i++) {
-		morphSelectorPOS.append(
-			$('<span data-value="' + partsOfSpeech[i].letter + '">' + partsOfSpeech[i].type + '</span>')
-		);
+
+	
+	function setMorphology(value) {
+		currentMorphologyKey = value;
+		currentMorphology = morphologies[currentMorphologyKey];
+		
+		drawPartsOfSpeech();		
 	}
+	
+	function drawPartsOfSpeech() {
+	
+		console.log('drawing', currentMorphology);
+		
+		morphSelectorPOS.empty();
+		
+		// add parts of speech
+		for (var i=0, il=currentMorphology.length; i<il; i++) {
+			morphSelectorPOS.append(
+				$('<span data-value="' + currentMorphology[i].letter + '">' + currentMorphology[i].type + '</span>')
+			);
+		}	
+		
+		drawSelectedPartOfSpeech();	
+		
+	}
+	// do first one
+	drawPartsOfSpeech();
 	
 	function updateMorphSelector(value) {
 	
@@ -851,9 +1253,9 @@ var MorphologySelector = function(parent) {
 	
 		// find part of speech
 		var partOfSpeech = null;
-		for (var i=0, il=partsOfSpeech.length; i<il; i++) {
-			if (partsOfSpeech[i].letter === selectedValue) {
-				partOfSpeech = partsOfSpeech[i];
+		for (var i=0, il=currentMorphology.length; i<il; i++) {
+			if (currentMorphology[i].letter === selectedValue) {
+				partOfSpeech = currentMorphology[i];
 				break;
 			}					
 		}	
@@ -947,6 +1349,7 @@ var MorphologySelector = function(parent) {
 	});
 	
 	morphSelector.updateMorphSelector = updateMorphSelector;
+	morphSelector.setMorphology = setMorphology;
 	morphSelector.currentInput = null;
 	
 	return morphSelector;

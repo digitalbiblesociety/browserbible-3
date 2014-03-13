@@ -2,8 +2,8 @@
 var 
 	fs = require('fs'),
 	path = require('path'),	
-    jsdom = require("jsdom"), 
-    $ = require("jquery")(jsdom.jsdom().createWindow()),
+ 	cheerio = require('cheerio'),
+    $ = cheerio.load(''),
 	uglify = require("uglify-js"),
 	jsp = require("uglify-js").parser,
 	pro = require("uglify-js").uglify;

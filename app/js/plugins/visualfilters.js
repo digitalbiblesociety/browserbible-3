@@ -128,21 +128,35 @@ var VisualFilters = function(node) {
 		
 		defaultSettings = {
 			transforms: [
+			
+				// underline Jesus in red
 				{
 					active: false,
 					strongs: 'G2424',
 					morphType: '',
 					morph: '',
-					styleLabel: 'Blue Underline',
-					style: 'border-bottom: solid 1px #3333cc'
+					styleLabel: 'Red Underline',
+					style: 'border-bottom: solid 1px #ff3333'
 				},
+				
+				// aorist verbs in blue
 				{
 					active: false,
 					strongs: '',
 					morphType: 'robinson',
 					morph: 'V-A',
-					styleLabel: 'Orange Text',					
-					style: 'color: #ffcc33'
+					styleLabel: 'Blue Text',					
+					style: 'color: #3333cc'
+				},
+				
+				// proper names in gray
+				{
+					active: false,
+					strongs: '',
+					morphType: 'morphbh',
+					morph: 'Np',
+					styleLabel: 'Gray Text',					
+					style: 'color: #999999'
 				}
 				
 			]
@@ -194,7 +208,7 @@ var VisualFilters = function(node) {
 						
 	openVisualizationsButton.on('click', function() {
 		
-		filtersWindow.show();
+		filtersWindow.show().center();
 		
 		openVisualizationsButton.closest('.window-overlay').hide();
 		

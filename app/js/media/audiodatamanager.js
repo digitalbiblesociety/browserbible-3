@@ -230,9 +230,6 @@ var LocalAudio = (function() {
 	return audio;	
 })();
 
-if (typeof sofia != 'undefined') {
-	sofia.audioSources.push(LocalAudio);
-}
 
 
 
@@ -246,8 +243,10 @@ var FaithComesByHearingAudio = (function() {
 		currentCallback = null
 		
 		
-	function init() {
-		loadFcbHearingLocations();	 
+	function init() {		
+		$(function(){ 
+			loadFcbHearingLocations();	 
+		});
 	}
 	
 	function loadFcbHearingLocations() {
@@ -576,12 +575,17 @@ var FaithComesByHearingAudio = (function() {
 	return audio;	
 })();
 
-if (typeof sofia != 'undefined') {
-	if (sofia.config.enableOnlineSources) {
 
-		sofia.audioSources.push(FaithComesByHearingAudio);
+// FCBH First (March 2014)
+$(function() {
+	if (typeof sofia != 'undefined') {
+		if (sofia.config.enableOnlineSources) {
+	
+			sofia.audioSources.push(FaithComesByHearingAudio);
+		}
 	}
-}
-
-
-
+	
+	if (typeof sofia != 'undefined') {
+		sofia.audioSources.push(LocalAudio);
+	}
+});

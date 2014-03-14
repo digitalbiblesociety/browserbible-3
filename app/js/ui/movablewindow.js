@@ -98,7 +98,8 @@ var MovableWindow = function(width,height,titleText,id) {
 		container: container,
 		body: body,
 		title: title,	
-		center: center
+		center: center,
+		closeButton: close
 	};
 	
 	return ext;

@@ -19,7 +19,10 @@ var LemmaPopupPlugin = function(app) {
 .lemma-morphology {\
 	font-style: italic;\
 }\
-.lemma-outline                               {display:block;margin:5px 0;}\
+.lemma-outline {\
+	display:block;\
+	margin:5px 0;\
+}\
 .lemma-outline ul,.lemma-outline ol          {margin:0 0 0 10px; padding: 0;}\
 .lemma-outline ol li                         {list-style-type:decimal;margin:0 0 0 10px;}\
 .lemma-outline ol li ol li                   {list-style-type:lower-alpha;}\
@@ -155,6 +158,7 @@ var LemmaPopupPlugin = function(app) {
 		if (strongs.length > 0) {
 		
 			lemmaPopup.body.html('');
+			lemmaPopup.body.addClass('loading-indicator');
 			
 			for (var i=0, il=strongs.length; i<il; i++) {
 
@@ -179,6 +183,8 @@ var LemmaPopupPlugin = function(app) {
 							
 							html += '<div class="lemma-outline">' + data.outline + '</div>';
 							
+							lemmaPopup.body.removeClass('loading-indicator');
+										
 							lemmaPopup.body.append( html );
 							
 							lemmaPopup.position(l);

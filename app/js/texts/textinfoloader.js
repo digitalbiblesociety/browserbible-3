@@ -70,13 +70,12 @@ TextInfoLoader = (function() {
 	function loadTextsManifest(callback) {
 	
 		var 
-			textsFilename = 'texts.json',
-			queryData = stringUtility.parseQuerystring();
-		
-		if (queryData['textlist']) {
-			textsFilename = queryData['textlist'];
-		}
-		
+			textsFilename = 'texts.json';
+			
+		if (typeof sofia.config.textsIndex != 'undefined' && sofia.config.textsIndex != '') {
+			textsFilename = sofia.config.textsIndex;			
+		}	
+					
 		$.ajax({
 			url: locationBase + textsFilename,
 			dataType: 'json',
@@ -111,7 +110,9 @@ TextInfoLoader = (function() {
 			}
 		});
 	}
-	loadTextsManifest();	
+	$(function() {
+		loadTextsManifest();	
+	});
 	
 	var ext = {
 		getText: getText,

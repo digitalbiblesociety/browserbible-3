@@ -82,11 +82,54 @@ TextSearch = function() {
 	
 		createSearchTerms();
 		
-		// load indexes
-		searchIndexLoader.loadIndexes(textInfo, searchText, isLemmaSearch);
+		
+		if (typeof sofia.config.serverSearchUrl != 'undefined' && sofia.config.serverSearchUrl != '') {
+		
+			startServerSearch(textInfo, searchText, isLemmaSearch);
+		} else {		
+			// load indexes
+			searchIndexLoader.loadIndexes(textInfo, searchText, isLemmaSearch);
+		}
 	
 		return true;		
 	}
+	
+	function startServerSearch(textInfo, searchText, isLemmaSearch) {
+		
+		$.ajax({
+			url: sofia.config.serverSearchUrl,
+			data: {
+				textid: textInfo.id,
+				search: searchText,
+				date: (new Date()).toString()			
+			}, 
+			success: function(data) {
+				
+				// create results	
+				
+				for (var i=0, il=data.results.length; i<il; i++) {
+					var result = data.results[i],
+						fragmentid = Object.keys(result)[0],
+						html = result[fragmentid];
+						
+						
+					var result = findMatchesInVerse(html);
+					
+					if (result.foundMatch) {
+						searchFinalResults.push({fragmentid: fragmentid, html: result.html});
+					}									
+						
+					// add to reults
+					//searchFinalResults.push({fragmentid: fragmentid, html: html});					
+				}	
+				
+									
+				ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
+				
+				isSearching = false;							
+			}			
+		})
+	}	
 	
 	// fires after indexer loader is done
 	function indexesLoaded(e) {
@@ -195,6 +238,8 @@ TextSearch = function() {
 						
 					if (fragmentNode.length > 0) {
 						
+						/*
+						
 						var foundMatch = false,
 							regMatches = new Array(searchTermsRegExp.length);
 					
@@ -234,9 +279,17 @@ TextSearch = function() {
 							foundMatch = foundAll;
 							
 						}
-					
+						
 						if (foundMatch) {
 							searchFinalResults.push({fragmentid: fragmentid, html: html});
+						}
+												
+						*/
+						
+						var result = findMatchesInVerse(html);
+						
+						if (result.foundMatch) {
+							searchFinalResults.push({fragmentid: fragmentid, html: result.html});
 						}
 					}
 				}					
@@ -256,6 +309,52 @@ TextSearch = function() {
 			});
 					
 		}
+	}
+	
+	
+	function findMatchesInVerse(html) {
+		var processedHtml = html,
+			foundMatch = false,
+			regMatches = new Array(searchTermsRegExp.length);
+	
+		for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+			
+			searchTermsRegExp[j].lastIndex = 0;
+			
+			if (isLemmaSearch) {
+				
+				// add the 'highlight' class to the <l> node
+				processedHtml = processedHtml.replace(searchTermsRegExp[j], function(match) {
+					regMatches[j] = true;
+					foundMatch = true;
+					return match + ' class="highlight" ';
+				});				
+
+			} else {
+
+				// surround the word with a highlight
+				processedHtml = processedHtml.replace(searchTermsRegExp[j], function(match) {
+					regMatches[j] = true;
+					foundMatch = true;
+					return '<span class="highlight">' + match + '</span>';
+				});								
+				
+			}
+		}
+		
+		if (searchType == 'AND') {
+			var foundAll = true;
+			for (var j=0, jl=regMatches.length; j<jl; j++) {
+				if (regMatches[j] !== true) {
+					foundAll = false;
+					break;									
+				}
+			}
+			foundMatch = foundAll;
+			
+		}	
+		
+		return {html: processedHtml, foundMatch: foundMatch};	
 	}
 	
 	function createSearchTerms() {

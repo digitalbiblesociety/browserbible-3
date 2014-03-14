@@ -24,7 +24,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		topBlock = main.find('.search-top'),	
 		topBlockTitle = topBlock.find('h2'),	
-		searchProgressBar = topBlock.find('.search-progress-bar'),			
+		searchProgressBar = topBlock.find('.search-progress-bar').hide(),			
 		searchProgressBarInner = topBlock.find('.search-progress-bar-inner'),					
 		searchProgressBarLabel = topBlock.find('.search-progress-bar-label'),							
 			
@@ -33,7 +33,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		button = header.find('.search-button'),		
 		//list = header.find('.search-list'),
 		textui = header.find('.text-list'),
-		textChooser = new TextChooser(parentNode, textui),
+		textChooser = new TextChooser(parentNode, textui, 'bible'),
 		//encoder = new base32.Encoder(),
 		textSearch = new TextSearch(),
 		selectedText = null,
@@ -106,6 +106,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	
 	textSearch.on('load', function(e) {
+	
+		searchProgressBar.show();
 		
 		// give feedback!
 		var reference = new bible.Reference(e.data.sectionid),
@@ -180,19 +182,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 		var results = e.data.results,
 			html = //'<h2>Results: ' + results.length + '</h2>' + 
 					'<table>';
-					
-		footer.html('Results: ' + results.length );
 		
-		// move to center
-		searchProgressBarLabel.html(results.length + ' verses');
-		
-		var progressWidth = searchProgressBarInner.outerWidth(true),
-			labelWidth = searchProgressBarLabel.outerWidth(true),
-			labelLeft = progressWidth/2 - labelWidth;	
-		
-		searchProgressBarLabel
-			//.css({left: labelLeft + 'px'});
-			.css({left: '50%', marginLeft: '-' + (labelWidth/2) + 'px'});
+		searchProgressBarInner.css({'width': '100%'  });
+		setFinalResultsCount(e.data.results.length);
 		
 		for (var i=0, il=results.length; i<il; i++) {
 			var result = results[i],
@@ -215,6 +207,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}
 		html += '</table>';
 		
+		
+		resultsBlock.removeClass('search-main-loading');		
 		resultsBlock.html( html );
 		
 		
@@ -227,6 +221,23 @@ var SearchWindow = function(id, parentNode, init_data) {
 			
 		createHighlights();		
 	});	
+	
+	function setFinalResultsCount(count) {
+					
+		footer.html('Results: ' + count );
+		
+		// move to center
+		searchProgressBarLabel.html(count + ' verses');
+		
+		var progressWidth = searchProgressBarInner.outerWidth(true),
+			labelWidth = searchProgressBarLabel.outerWidth(true),
+			labelLeft = progressWidth/2 - labelWidth;	
+		
+		searchProgressBarLabel
+			//.css({left: labelLeft + 'px'});
+			.css({left: '50%', marginLeft: '-' + (labelWidth/2) + 'px'});		
+		
+	}
 	
 	
 	// ACTIONS
@@ -250,14 +261,15 @@ var SearchWindow = function(id, parentNode, init_data) {
 		searchProgressBarLabel.html('');
 		searchProgressBarInner.width(0);
 		
+		resultsBlock.addClass('search-main-loading');
 		
 		textSearch.start(text, textid);
 		
 		removeHighlights();
 		
-		enable();
-	
+		enable();	
 	}
+	
 	function disable() {
 		input.prop('disabled', true);
 		button.prop('disabled', true);

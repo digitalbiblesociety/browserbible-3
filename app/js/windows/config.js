@@ -1,14 +1,3 @@
-// everthing goes here
-window.sofia = {};
-
-// allows items to register themselves
-sofia.plugins = [];
-sofia.windowTypes = [];
-sofia.menuComponents = [];
-
-sofia.globals = {};
-
-
 sofia.config = {
 	
 	// Change this to clear all user settings
@@ -31,23 +20,20 @@ sofia.config = {
 	newBibleWindowVersion: 'eng-NASB1995',
 
 	newCommentaryWindowTextId: 'comm_eng_lightfoot',
+	
+	
+	// leave blank for JSON search
+	serverSearchUrl: 'search.php',
 
 	
 	// Faith Comes by Hearing
-	fcbhKey: '111a125057abd2f8931f6d6ad9f2921f',
+	fcbhKey: '',
 	
 	// jesus film media
-	jfmKey: '52b06248a3c6e8.12980089',
+	jfmKey: '',
 	
 	// Google Analytics key
-	//gaKey: 'UA-3734687-7',
-	
-	// Google URL
-	//gaUrl: 'biblewebapp.com'	
-	
-	
-	// Google Analytics key
-	gaKey: 'UA-3734687-19',
+	gaKey: '',
 	
 	// Google URL
 	gaUrl: ''		

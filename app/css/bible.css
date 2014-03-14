@@ -161,7 +161,9 @@ div.c + div.q {
 div.c + div.q .v-1{
 	display: inline;
 }
-
+.v {
+	padding: 0.30em 0;
+}
 
 
 

@@ -10,7 +10,7 @@
  * Changed to match javascript version
  **/
 class Crock32 {
-	static private $encodeMap = array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','h','k','m','n','p','q','r','t','u','v','w','x','y','z');
+	static private $encodeMap = array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','j','k','m','n','p','q','r','t','u','v','w','x','y','z');
 	static private $decodeMap = array('L'=>1,'I'=>1,'O'=>0,'S'=>5);
 	static private function decodeMap($ch) {
 		if (empty(self::$decodeMap['a'])) 
@@ -68,7 +68,9 @@ $search = $_GET['search'];
 $output = array(
 	"results" => array(),
 	"textid" => $textid,
-	"search" => $search
+	"search" => $search,
+	"base32" => "",
+	"success" => TRUE
 );
 
 
@@ -80,7 +82,7 @@ $is_lemma_search = preg_match($isLemmaRegExp, $search);
 // TODO: detect strongs search
 // SPLIT INDEXES, LOAD INDEX FILES
 $indexes = array();
-$words = split(' ', $search);
+$words = explode(' ', $search);
 foreach ($words as &$word) {
 
 	$path_to_index = './content/texts/' . $textid;
@@ -91,7 +93,9 @@ foreach ($words as &$word) {
 	} else {
 		// load index	
 		$base_word = $base32->encode( utf8_encode(trim($word)) );
-		$path_to_index .= '/index/' . $base_word . '.json';		
+		$path_to_index .= '/index/' . $base_word . '.json';	
+		
+		$output["base32"] .= $base_word . ' ';	
 	}
 	
 		
@@ -107,6 +111,15 @@ foreach ($words as &$word) {
 // Combined index
 $combined_index = array();
 $index_count = count($indexes);
+
+if ($index_count == 0) {
+	header('Content-type: application/json');
+	$output["success"] = FALSE;
+	$output["errorMessage"] = "Can't find index";
+	echo json_encode( $output );
+	return;
+	
+}
 
 // TODO: add "OR" and strongs
 if ($search_type == "AND") {
@@ -142,7 +155,7 @@ if ($search_type == "AND") {
 // load the data
 foreach ($combined_index as &$verseid) {
 	//$chapter_code = substr($verseid, 0, 2);
-	$chapter_code = split('_', $verseid)[0];
+	$chapter_code = explode('_', $verseid)[0];
 	$verse_html = '';
 	
 	// load chapter
@@ -188,9 +201,19 @@ foreach ($combined_index as &$verseid) {
 		
 		// need to double check that it's exact (DN1_1, but not DN1_12)
 		if ( preg_match( '/\\b' . $verseid . '\\b/', $verse_node->attributes->getNamedItem('class')->nodeValue ) == 1) {
-			$verse_html .= $doc->saveHTML($verse_node);
+			
+			foreach($verse_node->childNodes as $child_node) {
+				if (is_object($child_node)) {
+					//$verse_html .= $dom->saveHTML($child_node);
+					$verse_html .= $verse_node->ownerDocument->saveHTML($child_node) . ' ';					
+				}
+			}			
+			
+			//$verse_html .= $doc->saveHTML($verse_node);
 			// $verse_html .= $verse_node->nodeValue;			
 		}
+		
+		$verse_html .= ' ';
 		
 	}
 	

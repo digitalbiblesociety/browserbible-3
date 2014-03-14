@@ -4,9 +4,10 @@ var App = function() {
 	// create nodes
 	var	win = $(window),
 		body = $(document.body),
-		header = $('<div class="windows-header"></div>').appendTo(body),
-		main = $('<div class="windows-main"></div>').appendTo(body),
-		footer = $('<div class="windows-footer"></div>').appendTo(body),		
+		container = $('<div class="windows-container"></div>').appendTo(body),
+		header = $('<div class="windows-header"></div>').appendTo(container),
+		main = $('<div class="windows-main"></div>').appendTo(container),
+		footer = $('<div class="windows-footer"></div>').appendTo(container),		
 		ext = {};
 		
 	
@@ -222,8 +223,3 @@ var App = function() {
 	
 	return ext;	
 };
-
-$(function() {
-	sofia.app = new App();
-	sofia.app.init();
-});

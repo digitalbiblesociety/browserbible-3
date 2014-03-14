@@ -61,6 +61,8 @@ var LemmaPopupPlugin = function(app) {
 			console.log(lemma, textid);
 		
 			sofia.app.windowManager.add('SearchWindow', {searchtext: lemma, textid: textid});			
+			
+			lemmaPopup.hide();
 		});
 	
 

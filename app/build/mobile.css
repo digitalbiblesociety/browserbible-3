@@ -1,3 +1,207 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html, body {
+	font-size: 16pt ;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+header, footer {
+	height: 50px;
+	padding: 10px;
+	background: #333;
+	color: #fff;
+	text-align: center;
+	position: relative;	
+	font-family: Avenir, Helvetica;
+}
+
+header {
+	position: relative;
+}
+
+header a, footer a {
+	color: #fff;
+}
+
+header .prev, 
+header .next,
+header .home,
+footer .home,
+footer .prev, 
+footer .next {
+	font-family: Arial;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	display: block;
+	font-size: 25px;
+}
+header .prev,
+footer .prev {
+	top: 12px;
+	right: 40px;
+}
+header .next,
+footer .next {
+	top: 12px;
+	right: 10px;
+}
+
+
+[dir=rtl] header .prev,
+[dir=rtl] footer .prev {
+	top: 12px;
+	right: auto;
+	left: 40px;
+}
+[dir=rtl] header .next,
+[dir=rtl] footer .next {
+	top: 12px;
+	right: auto;
+	left: 10px;
+}
+
+
+header .name {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+	color: #eee;
+}
+header .location {
+	position: absolute;
+	bottom: 8px;
+	left: 0;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+	color: #fff;
+}
+/*
+header .home {
+	display: none;
+}
+*/
+
+
+
+/* main index */
+
+.texts-index .name {
+	font-size: 20pt;	
+}
+.texts-index .home {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+
+.texts-index-list {
+	width: 100%;
+	border-collapse: collapse;
+}
+.texts-index-list td, .texts-index-list th {
+	padding: 5px;	
+	vertical-align: top;
+}
+
+.texts-index-list tr th {
+	font-weight: bold;
+	text-align: right;
+	padding-right: 10px;
+}
+.texts-index-list tr td {
+}
+
+.texts-index-list tr:hover {
+	background-color: #ccc;
+}
+
+
+.texts-index-list .texts-index-header th {
+	background-color: #2a85e8;
+	color: #fff;
+	text-align: center;
+}
+
+
+
+/* book index */
+
+.text-index .name {
+	font-size: 18pt;	
+}
+
+.division-list li {	
+	border-bottom: 1px solid #ddd;
+}
+.division-list li a {
+	display: block;
+	padding: 5px;	
+}
+.division-list li:hover {
+	background-color: #ccc;	
+}
+.division-list li.division-list-header {
+	background-color: #2a85e8;
+	color: #fff;
+	text-align: center;
+	padding: 5px;	
+}
+
+/* chapter index */
+.division-index .name {
+	font-size: 18pt;
+}
+
+.section-list li {	
+	border-bottom: 1px solid #ddd;
+}
+.section-list li a {
+	display: block;
+	padding: 5px;	
+}
+.section-list li:hover {
+	background-color: #ccc;	
+}
+.section-list li.book-list-header {
+	background-color: #2a85e8;
+	color: #fff;
+	text-align: center;
+	padding: 5px;	
+}
+
+
+
+/* docuemnt */
+.section {
+	padding: 20px;
+	font-size: 14pt;
+	font-family: Cambria, Times;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* BIBLE.css *
 /* fonts */
 @font-face {
 	font-family: 'GentiumPlus';
@@ -161,9 +365,7 @@ div.c + div.q {
 div.c + div.q .v-1{
 	display: inline;
 }
-.v {
-	padding: 0.30em 0;
-}
+
 
 
 
@@ -254,13 +456,4 @@ div.is1 {
 }
 .mt2 + .mt, .mt3 + .mt, .mt2 + .mt3{
 	margin-top: 0em;
-}
-
-
-
-/* commentaries */
-.comm-v-num {
-	font-weight: bold;
-	display: block;
-	margin: 3em 0 0 0 ;
 }

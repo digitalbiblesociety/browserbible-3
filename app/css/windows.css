@@ -742,6 +742,14 @@ input:focus {
 	background: #fff; 
 	overflow: auto;
 }
+.search-main-loading {
+
+	min-height: 50px;
+	
+	background: transparent url(images/loading.gif) top center no-repeat;
+	
+}
+
 .search-wrapper {
 	padding: 10px;	
 }
@@ -758,6 +766,7 @@ input:focus {
 	text-align: left;
 	vertical-align:top; 
 	white-space:nowrap;
+	font-size: 0.8em;
 }
 
 .search-wrapper table tr:hover {
@@ -1046,4 +1055,10 @@ input:focus {
 }
 #about a {
 	color: #2a85e8;	
+}
+
+
+.loading-indicator {	
+	min-height: 70px;
+	background: transparent url(images/loading.gif) center center no-repeat;	
 }

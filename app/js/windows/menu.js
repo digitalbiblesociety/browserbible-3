@@ -17,23 +17,73 @@ var MainMenu = function(node) {
 
 
 var MainLogo = function(node) {
-	var logo = $('<div id="app-logo"></div>')
+	var 
+		container = $('.windows-container'),
+		body = $(document.body),
+		win = $(window),
+		logo = $('<div id="app-logo"></div>')
 					.appendTo(node)
 					.on('click', logoClick),
-		aboutNode = $('#about'),
+					
+		modalOverlay = $('<div class="modal-overlay"></div>')
+							.appendTo( body )
+							.hide(),
+		isAboutLoaded = false,
 		aboutWindow = new MovableWindow(500,250,'About');
 										
 	aboutWindow.body
-					.css({padding: '20px'})
-					.append(aboutNode);
+					.css({padding: '20px'});
 					
-	function logoClick() {
-		//console.log('logo clicked', aboutWindow.container.is(':visible'));
-	
+	aboutWindow.closeButton.on('click', function() {
+		aboutWindow.hide();		
+		modalOverlay.hide();
+		container.removeClass('blur');		
+	});
+					
+	function logoClick() {		
 		if (aboutWindow.container.is(':visible')) {
-			aboutWindow.hide();			
+			aboutWindow.hide();		
+			modalOverlay.hide();
+			container.removeClass('blur');
 		} else {
-			aboutWindow.show();
+			
+			var winWidth = win.width(),
+				winHeight = win.height();
+			
+		
+			container.addClass('blur');
+
+			aboutWindow
+				.size(.8*winWidth, 0.7*winHeight)
+				.show()
+				.center();
+				
+			modalOverlay
+				.width( winWidth )
+				.height( winHeight )				
+				.show();
+			
+			
+			if (!isAboutLoaded) {
+				
+				aboutWindow.body.addClass('loading-indicator');
+				
+				$.ajax({
+					url: sofia.config.aboutPageUrl,
+					dataType: 'html',
+					success: function(data) {
+						aboutWindow.body.removeClass('loading-indicator');
+						
+						isAboutLoaded = true;
+												
+						aboutWindow.body.html(data);
+					
+					}
+					
+				});
+				
+			}
+			
 		}	
 	}
 		

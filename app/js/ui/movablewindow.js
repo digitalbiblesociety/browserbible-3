@@ -72,11 +72,20 @@ var MovableWindow = function(width,height,titleText,id) {
 	function center() {
 		var
 			infoWidth = container.outerWidth(),
-			infoHeight = container.outerHeight();
+			infoHeight = container.outerHeight(),
+			top = win.height()/2 - infoHeight/2,
+			left = win.width()/2 - infoWidth/2;
+			
+		if (top < 0) {
+			top = 0;
+		}
+		if (left < 0) {
+			left = 0;	
+		} 
 		
 		container.css({
-			top: win.height()/2 - infoHeight/2,
-			left: win.width()/2 - infoWidth/2			
+			top: top,
+			left: left
 		});
 					
 		return ext;		
@@ -89,7 +98,8 @@ var MovableWindow = function(width,height,titleText,id) {
 		container: container,
 		body: body,
 		title: title,	
-		center: center
+		center: center,
+		closeButton: close
 	};
 	
 	return ext;

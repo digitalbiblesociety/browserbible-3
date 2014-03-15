@@ -1,14 +1,3 @@
-// everthing goes here
-window.sofia = {};
-
-// allows items to register themselves
-sofia.plugins = [];
-sofia.windowTypes = [];
-sofia.menuComponents = [];
-
-sofia.globals = {};
-
-
 sofia.config = {
 	
 	// Change this to clear all user settings
@@ -31,6 +20,13 @@ sofia.config = {
 	newBibleWindowVersion: 'eng-NASB1995',
 
 	newCommentaryWindowTextId: 'comm_eng_lightfoot',
+<<<<<<< HEAD
+=======
+	
+	
+	// leave blank for JSON search
+	serverSearchUrl: 'search.php',
+>>>>>>> upstream/master
 
 	
 	// Faith Comes by Hearing

@@ -444,11 +444,19 @@ var BibleWindow = function(id, node, init_data) {
 };
 sofia.windowTypes.push('BibleWindow');
 
+<<<<<<< HEAD
 if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
+=======
+//if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
+>>>>>>> upstream/master
 	
 	var CommentaryWindow = function(id, node, init_data) {	
 		return new TextWindow(id, node, init_data, 'commentary');
 	};
 	sofia.windowTypes.push('CommentaryWindow');
 	
+<<<<<<< HEAD
 }
+=======
+//}
+>>>>>>> upstream/master

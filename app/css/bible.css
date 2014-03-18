@@ -105,12 +105,17 @@
 	color:#aa0000;
 }
 
+.yhwh, .nog {
+	font-variant: small-caps;
+}
+
 
 .chapter .note .text,.chapter .cf .text,
 #search-results .note,#search-results .cf                   {display:none;}
 
 /* special display for Psalms */
-span[class^='verse PSA_']                                    {display:block;}
+/* span[class^='v PS_']                                    {display:block;}
+*/
 
 	
 
@@ -252,7 +257,7 @@ div.is1 {
 	margin-top: 3.0em;
 	line-height: 1.2;
 }
-.mt2 + .mt, .mt3 + .mt, .mt2 + .mt3{
+.mt2 + .mt, .mt3 + .mt, .mt2 + .mt3, .mt2 + .mt2{
 	margin-top: 0em;
 }
 

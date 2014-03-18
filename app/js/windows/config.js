@@ -20,20 +20,30 @@ sofia.config = {
 	newBibleWindowVersion: 'eng-NASB1995',
 
 	newCommentaryWindowTextId: 'comm_eng_lightfoot',
+<<<<<<< HEAD
+=======
 	
 	
 	// leave blank for JSON search
 	serverSearchUrl: 'search.php',
+>>>>>>> upstream/master
 
 	
 	// Faith Comes by Hearing
-	fcbhKey: '',
+	fcbhKey: '111a125057abd2f8931f6d6ad9f2921f',
 	
 	// jesus film media
-	jfmKey: '',
+	jfmKey: '52b06248a3c6e8.12980089',
 	
 	// Google Analytics key
-	gaKey: '',
+	//gaKey: 'UA-3734687-7',
+	
+	// Google URL
+	//gaUrl: 'biblewebapp.com'	
+	
+	
+	// Google Analytics key
+	gaKey: 'UA-3734687-19',
 	
 	// Google URL
 	gaUrl: ''		

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 /*
 x click off dropdowns
 x hebrew morphology
@@ -7,6 +9,7 @@ x hebrew morphology
 */
 
 
+>>>>>>> upstream/master
 
 /**
  * Highlights words based on morphological data
@@ -15,6 +18,11 @@ x hebrew morphology
  */
  
 var VisualFilters = function(node) {
+<<<<<<< HEAD
+
+		
+=======
+>>>>>>> upstream/master
 	
 	$('<style>\
 #config-visualfilters-button {\
@@ -32,6 +40,13 @@ var VisualFilters = function(node) {
 	padding: 4px 4px 4px 0;\
 	text-align: left;\
 }\
+<<<<<<< HEAD
+#visualfilters-config td input[type=text], #visualfilters-config td select  {\
+	width: 120px;\
+}\
+#visualfilters-config td span {\
+	width: 100px;\
+=======
 #visualfilters-config td input[type=text] {\
 	width: 100px;\
 }\
@@ -43,12 +58,15 @@ var VisualFilters = function(node) {
 }\
 .visualfilters-style span {\
 	font-size: 13px;\
+>>>>>>> upstream/master
 	display: inline-block;\
 	cursor: pointer;\
 }\
 .visualfilters-isactive, visualfilters-remove {\
 	width: 30px;\
 }\
+<<<<<<< HEAD
+=======
 .visualfilters-close-button {\
 	margin: 0 0 0 20px;\
 	display: block;\
@@ -63,6 +81,7 @@ var VisualFilters = function(node) {
 	background-color: #d5998b;\
 	background-position: 0 -20px;\
 }\
+>>>>>>> upstream/master
 #visualfilters-styles {\
 	position: absolute;\
 	top: 0;\
@@ -85,6 +104,8 @@ var VisualFilters = function(node) {
 #visualfilters-styles div:hover {\
 	background-color: #d9e8ef;\
 }\
+<<<<<<< HEAD
+=======
 .morph-selector {\
 	position: absolute;\
 	top: 0;\
@@ -118,10 +139,32 @@ var VisualFilters = function(node) {
 .morph-selector table tbody span.selected {\
 	background: #7fa4e1;\
 }\
+>>>>>>> upstream/master
 </style>').appendTo( $('head') );	
 	
 	
 	var 
+<<<<<<< HEAD
+		settingsKey = 'docs-config-morphtransform',
+		
+		filtersWindow = new MovableWindow(550,290).show(),
+		
+		defaultSettings = {
+			transforms: [
+				{
+					active: false,
+					strongs: 'G2424',
+					morphLang: '',
+					morph: '',
+					style: 'border-bottom: dotted 2px #9999ff'
+				},
+				{
+					active: false,
+					strongs: '',
+					morphLang: 'grc',
+					morph: 'V-A',
+					style: 'border-bottom: dotted 2px #9999ff'
+=======
 		settingsKey = 'docs-config-visualfilters',
 		
 		filtersWindow = new MovableWindow(550,290).hide(),
@@ -157,13 +200,18 @@ var VisualFilters = function(node) {
 					morph: 'Np',
 					styleLabel: 'Gray Text',					
 					style: 'color: #999999'
+>>>>>>> upstream/master
 				}
 				
 			]
 		},
 		visualSettings = AppSettings.getValue(settingsKey, defaultSettings),
 		
+<<<<<<< HEAD
+		configBlock = $('<div id="visualfilters-config">' + 
+=======
 		visualNode = $('<div id="visualfilters-config">' + 
+>>>>>>> upstream/master
 						
 							'<input type="button" value="New Filter" />' +
 							
@@ -185,6 +233,15 @@ var VisualFilters = function(node) {
 						'</div>')
 						.appendTo( filtersWindow.body ),
 		
+<<<<<<< HEAD
+		stylesSelector = $('<div id="visualfilters-styles"></div>')
+							.appendTo( $(document.body) )
+							.hide(),
+
+		tbody = configBlock.find('tbody'),
+		
+		addRowButton = configBlock.find('input')
+=======
 		stylesSelector = new StylesSelector(),
 				
 		morphSelector = new MorphologySelector(),
@@ -192,11 +249,78 @@ var VisualFilters = function(node) {
 		tbody = visualNode.find('tbody'),
 		
 		addRowButton = visualNode.find('input')
+>>>>>>> upstream/master
 									.on('click', function() {
 										var row = createRow();
 										tbody.append(row);										
 									}),
 				
+<<<<<<< HEAD
+		openVisualizationsButton = $('<span class="config-button" id="config-visualfilters-button">Morphology Filters</span>')
+						.appendTo( $('#config-tools .config-body') );	
+						
+	
+	// SETUP WINDOW
+	
+	filtersWindow.title.html('Morphology Filters');
+						
+	openVisualizationsButton.on('click', function() {
+		
+		filtersWindow.show();
+		
+		openVisualizationsButton.closest('.window-overlay').hide();
+		
+	});
+	
+	
+	// STYLES GUIDE
+	// create styles
+	var 
+		textColors = 			['#ff3333',	'#33cc33',	'#3333cc"',	'#ffcc33',	'#ff33ff',	'#33ffff'],
+		textColorNames = 		['Red',		'Green',	'Blue',		'Orange', 	'Magenta',	'Cyan'],		
+		backgroundColors = 		['#ff9999',	'#99ff99',	'#9999ff"',	'#ffcc33',	'#ffff33',	'#ff99ff',	'#99ffff'],
+		backgroundColorNames = 	['Red',		'Green',	'Blue',		'Orange', 	'Yellow',	'Magenta',	'Cyan'],
+		
+		styleCss = [],
+		styleNames = []			
+		;		
+
+	
+	// text
+	for (var i=0, il=textColors.length; i<il; i++) {		
+		styleCss.push('color: ' + textColors[i] + ';');
+		styleNames.push(textColorNames[i] + ' Text');				
+	}	
+	
+	// highlight
+	for (var i=0, il=backgroundColors.length; i<il; i++) {		
+		styleCss.push('background-color: ' + backgroundColors[i] + ';');
+		styleNames.push(backgroundColorNames[i] + ' Highlight');				
+	}	
+
+	// underline
+	for (var i=0, il=textColors.length; i<il; i++) {		
+		styleCss.push('border-bottom: solid 1px ' + textColors[i] + ';');
+		styleNames.push(textColorNames[i] + ' Underline');				
+	}	
+	
+	// custom
+	styleCss.push('color:red;text-shadow:yellow 0 0 2px;');
+	styleNames.push('Fire');				
+
+	styleCss.push('text-shadow:0 0 1px gray;');
+	styleNames.push('Shadow');				
+
+
+	for (var i=0, il=styleCss.length; i<il; i++) {		
+		stylesSelector.append(
+			$('<div><span data-style="' + styleCss[i] + '" style="' + styleCss[i] + '">' + styleNames[i] + '</span></div>')
+		);
+	}	
+	
+	
+	
+=======
 		openVisualizationsButton = $('<span class="config-button" id="config-visualfilters-button">Visual Filters</span>')
 						.appendTo( $('#config-tools .config-body') );	
 						
@@ -213,6 +337,7 @@ var VisualFilters = function(node) {
 		openVisualizationsButton.closest('.window-overlay').hide();
 		
 	});	
+>>>>>>> upstream/master
 	
 	// ROWS
 	tbody.on('click', '.visualfilters-remove', function() {
@@ -226,7 +351,11 @@ var VisualFilters = function(node) {
 		VisualTransformer.resetTransforms(visualSettings);		
 	});	
 	
+<<<<<<< HEAD
+	tbody.on('change keyup', '.visualfilters-active input, .visualfilters-style select, .visualfilters-strongs input, .visualfilters-morph input', function() {
+=======
 	tbody.on('change keyup', '.visualfilters-active input, .visualfilters-morph select, .visualfilters-strongs input, .visualfilters-morph input', function() {
+>>>>>>> upstream/master
 		//updateExamples();
 		
 		saveTransforms();
@@ -234,6 +363,11 @@ var VisualFilters = function(node) {
 		VisualTransformer.resetTransforms(visualSettings);	
 	});	
 	
+<<<<<<< HEAD
+	var activeSpan = null;
+	tbody.on('click', '.visualfilters-style span', function() {
+		
+=======
 	// STYLE
 	var activeSpan = null;
 	filtersWindow.body.on('click', '.visualfilters-style span', function(e) {
@@ -245,6 +379,7 @@ var VisualFilters = function(node) {
 			return;			
 		}		
 		
+>>>>>>> upstream/master
 		activeSpan = $(this);
 		
 		stylesSelector
@@ -263,16 +398,24 @@ var VisualFilters = function(node) {
 		
 		if (activeSpan != null) {
 			
+<<<<<<< HEAD
+			var newStyleParams = div.find('span').attr('data-style') ;
+=======
 			var newStyle = div.find('span'),
 				newStyleParams = newStyle.attr('data-style'),
 				newStyleLabel = newStyle.html();
+>>>>>>> upstream/master
 			
 			console.log('new style', newStyleParams);
 			
 			// add to data
+<<<<<<< HEAD
+			activeSpan.attr('data-style', newStyleParams);
+=======
 			activeSpan
 				.attr('data-style', newStyleParams)
 				.html(newStyleLabel);
+>>>>>>> upstream/master
 			
 			// actually style it
 			activeSpan.attr('style','');
@@ -288,6 +431,9 @@ var VisualFilters = function(node) {
 	
 	});
 	
+<<<<<<< HEAD
+	
+=======
 	filtersWindow.container.find('.close-button').on('click', function() {
 		stylesSelector.hide();	
 		morphSelector.hide();	
@@ -345,6 +491,7 @@ var VisualFilters = function(node) {
 	
 	
 	// DRAW!
+>>>>>>> upstream/master
 	
 	function drawTransforms() {
 		tbody.empty();
@@ -356,10 +503,14 @@ var VisualFilters = function(node) {
 			row.find('.visualfilters-active input').prop('checked', transform.active);
 			row.find('.visualfilters-strongs input').val(transform.strongs);
 			row.find('.visualfilters-morph input').val(transform.morph);
+<<<<<<< HEAD
+			row.find('.visualfilters-style span').attr('data-style', transform.style);
+=======
 			row.find('.visualfilters-morph select').val(transform.morphType);
 			row.find('.visualfilters-style span')
 						.html(transform.styleLabel)
 						.attr('data-style', transform.style);
+>>>>>>> upstream/master
 
 			VisualTransformer.applyStyle( row.find('.visualfilters-style span'), transform.style);		
 			
@@ -373,6 +524,22 @@ var VisualFilters = function(node) {
 		return $(
 			'<tr>' +
 				'<td class="visualfilters-active">' +
+<<<<<<< HEAD
+					'<input type="checkbox" />' +
+				'</td>' +
+				'<td class="visualfilters-strongs">' +
+					'<input type="text" placeholder="G2424, H234" />' +
+				'</td>' +
+				'<td class="visualfilters-morph">' +
+					'<input type="text" placeholder="V-A?" />' +
+				'</td>' +
+				'<td class="visualfilters-style">' +
+					'<span>Style</span>' +
+				'</td>' +				
+				'<td class="visualfilters-remove">' +
+					'x' +
+					//'<span class="close-button">X</span>' +
+=======
 					'<input type="checkbox" checked />' +
 				'</td>' +
 				'<td class="visualfilters-strongs">' +					
@@ -390,6 +557,7 @@ var VisualFilters = function(node) {
 				'</td>' +				
 				'<td class="visualfilters-remove">' +
 					'<span class="visualfilters-close-button"></span>' +
+>>>>>>> upstream/master
 				'</td>' +
 			 '</tr>');
 	}	
@@ -406,14 +574,21 @@ var VisualFilters = function(node) {
 			transform.active = row.find('.visualfilters-active input').is(':checked');
 			transform.strongs = row.find('.visualfilters-strongs input').val();
 			transform.morph = row.find('.visualfilters-morph input').val();
+<<<<<<< HEAD
+			transform.style = row.find('.visualfilters-style span').attr('data-style');
+=======
 			transform.morphType = row.find('.visualfilters-morph select').val();
 			transform.style = row.find('.visualfilters-style span').attr('data-style');
 			transform.styleLabel = row.find('.visualfilters-style span').html();
+>>>>>>> upstream/master
 			
 			//console.log('saving', transform.style, row.find('.visualfilters-style span').prop('data-style'));
 			
 
 			if (transform.morph != '') {
+<<<<<<< HEAD
+				transform.morphRegExp = new RegExp('^' + transform.morph.replace(/\?/gi,'.{1}'), 'gi');
+=======
 			
 				if (transform.morphType == 'robinson') {			
 					transform.morphRegExp = new RegExp('^' + transform.morph.replace(/\?/gi,'.{1}'), 'gi');
@@ -422,6 +597,7 @@ var VisualFilters = function(node) {
 								'(^H' + transform.morph.replace(/\?/gi,'.{1}') + ')|'+ 
 								'(/' + transform.morph.replace(/\?/gi,'.{1}') + ')', 'gi');								
 				}
+>>>>>>> upstream/master
 			} else {
 				transform.morphRegExp = null;
 			}
@@ -485,8 +661,11 @@ var VisualTransformer = (function() {
 	function runTransforms(sectionNode, visualSettings) {
 		if (visualSettings.transforms.length === 0)
 			return;
+<<<<<<< HEAD
+=======
 			
 		var sectionLang = sectionNode.attr('lang');
+>>>>>>> upstream/master
 		
 		sectionNode.find('l').each(function(index, node) {
 
@@ -519,7 +698,10 @@ var VisualTransformer = (function() {
 				// morphology
 				if (transform.morph != '') {
 
+<<<<<<< HEAD
+=======
 					// sectionLang == transform.morphType && 
+>>>>>>> upstream/master
 					if (transform.morphRegExp && transform.morphRegExp != null) {
 						var wordMorphData = word.attr('m');
 						
@@ -570,11 +752,14 @@ var VisualTransformer = (function() {
 	}
 
 	function applyStyle(node, css) {
+<<<<<<< HEAD
+=======
 		
 		if (typeof css == 'undefined' || css == null || css == '') {
 			return;
 		}
 	
+>>>>>>> upstream/master
 	
 		var props = css.split(';');		
 		
@@ -595,6 +780,9 @@ var VisualTransformer = (function() {
 		applyStyle: applyStyle
 	};	
 	
+<<<<<<< HEAD
+})();
+=======
 })();
 
 
@@ -1466,3 +1654,4 @@ var StylesSelector = function() {
 	
 	return selector;	
 }
+>>>>>>> upstream/master

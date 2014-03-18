@@ -31,28 +31,33 @@ var TextNavigator = function(container, target) {
 		
 		fullBookMode = false;
 	
-	changer.on('mouseover', '.text-navigator-division', function() {
-		
-		if (!fullBookMode) {
-		
-			var node = $(this),
-				name = node.attr('data-name');
-				
-			fullname
-				.html(name)
-				.css({
-					backgroundColor: node.css('backgroundColor'),
-					top: (parseInt(node.offset().top, 10)-1) + 'px',
-					left: node.offset().left,
-				})
-				.show();
+	if (!Detection.hasTouch) {
+		changer.on('mouseover', '.text-navigator-division', function() {
 			
-			fullname.lastNode = node;
-		}
-
-	});
+			if (!fullBookMode) {
+			
+				var node = $(this),
+					name = node.attr('data-name');
+					
+				fullname
+					.html(name)
+					.css({
+						backgroundColor: node.css('backgroundColor'),
+						top: (parseInt(node.offset().top, 10)-1) + 'px',
+						left: node.offset().left,
+					})
+					.show();
+				
+				fullname.lastNode = node;
+			}
 	
-	// pointer-eents: none for modern browsers;
+		})
+		.on('mouseout', '.text-navigator-division', function() {
+			fullname.hide();
+		});
+	}
+	
+	// pointer-events: none for modern browsers;
 	fullname.on('click', function() {
 		if (fullname.lastNode) {
 			fullname.lastNode.trigger('click');

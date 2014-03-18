@@ -677,7 +677,7 @@ var ConfigUrl = function(node) {
 		urlBox = 
 		$('<div id="config-global-url">' + 
 				//'<span class="config-header">URL</span>' + 
-				'<span></span>' +
+				'<span ></span>' +
 				'<input type="text"  />' +
 			'</div>'),
 		linkButton = urlBox.find('span');
@@ -702,6 +702,15 @@ var ConfigUrl = function(node) {
 		
 		updateUrl();
 	}, 1000);
+	
+	
+	ZeroClipboard.config( { moviePath: 'build/ZeroClipboard.swf' } );
+	var client = new ZeroClipboard(linkButton);	
+	client.on( 'dataRequested', function (client, args) {
+		client.setText( urlInput.val() );
+		
+		urlInput.select();		
+	});	
 	
 	
 	linkButton.on('click', function() {
@@ -751,9 +760,11 @@ var ConfigUrl = function(node) {
 		mergedParams = $.extend(mergedParams, existingParams, newParams); 
 		
 		for (var index in mergedParams) {
-			mergedArray.push( index + '=' + mergedParams[index] );			
+			if (index != '') {
+				mergedArray.push( index + '=' + mergedParams[index] );			
+			}
 		}
-		mergedArray.reverse();
+		//mergedArray.reverse();
 		
 		url = location.origin + location.pathname + '?' + mergedArray.join('&');
 			

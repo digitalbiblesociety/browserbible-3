@@ -103,24 +103,27 @@ input:focus {
 			min-width: 140px;
 		}	
 
-		.window .window-header .header-icon {
-			float: left;
+		.header-icon {
 			margin: 3px;
 			width: 24px;
 			height: 24px;
 			background-size: 20px 20px;
 			background-position: center center;
 			background-repeat: no-repeat;
-			cursor: pointer
+			cursor: pointer;
+			display: block;
 		}	
-		.window .window-header .header-icon:hover {
+		.window .header-icon {
+			float: left;
+		}
+		.header-icon:hover {
 			border: 1px solid #ccc;
 			border-radius: 20px;
 		}
-		.window .info-button {
+		.info-button {
 			background-image: url(images/info.svg);
 		}
-		.window .audio-button {
+		.audio-button {
 			background-image: url(images/audio-ear.svg);
 		}
 		
@@ -194,6 +197,15 @@ input:focus {
 				border: 0;
 				background-color: transparent;							
 			}	
+			
+			.one-window .window .window-header {
+				height: 40px;
+				padding: 6px;
+			}
+			
+			
+			
+			/*
 			.one-window .window .window-header .info-button {
 				float: right;			
 				display: none;
@@ -201,6 +213,7 @@ input:focus {
 			.one-window .window .window-header .audio-button {
 				display: none;
 			}
+			*/
 		}				
 
 	
@@ -380,7 +393,7 @@ input:focus {
 		background-size: 30px 15px;	
 		
 		position: absolute;
-		top: 8px;
+		top: 4px;
 		left: 50%;
 		margin-left: -15px;		
 	}
@@ -1060,5 +1073,26 @@ input:focus {
 
 .loading-indicator {	
 	min-height: 70px;
-	background: transparent url(images/loading.gif) center center no-repeat;	
+	background-image: url(images/loading.gif);
+	background-position: center center;
+	background-repeat: no-repeat;	
+}
+
+.modal-overlay {
+	background: rgba(0,0,0,0.3);
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	display: none;	
+}
+
+.blur {
+	transition: all 0.25s ease-in;
+	
+	-webkit-filter: blur(3px); 
+	-moz-filter: blur(3px); 
+	-o-filter: blur(3px); 
+	-ms-filter: blur(3px); 
+	filter: blur(3px);	
 }

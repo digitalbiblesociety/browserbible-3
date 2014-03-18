@@ -370,8 +370,9 @@ var VisualFilters = function(node) {
 =======
 	// STYLE
 	var activeSpan = null;
-	tbody.on('click', '.visualfilters-style span', function() {
-		
+	filtersWindow.body.on('click', '.visualfilters-style span', function(e) {
+		e.preventDefault();
+		morphSelector.hide();
 		
 		if (stylesSelector.is(':visible') && activeSpan != null && activeSpan[0] == $(this)[0]) {
 			stylesSelector.hide();
@@ -384,12 +385,16 @@ var VisualFilters = function(node) {
 		stylesSelector
 			.css({scrollTop: 0, top: activeSpan.offset().top + activeSpan.outerHeight(true), left: activeSpan.offset().left  })		
 			.show();
+			
+		return false;
 	});
 	
 	stylesSelector.on('click', 'div', function() {
+		
+		
 		var div = $(this);
 		
-		stylesSelector.hide();				
+		stylesSelector.hide();
 		
 		if (activeSpan != null) {
 			
@@ -421,6 +426,8 @@ var VisualFilters = function(node) {
 			
 			VisualTransformer.resetTransforms(visualSettings);		
 		}
+		
+		return false;
 	
 	});
 	
@@ -435,13 +442,16 @@ var VisualFilters = function(node) {
 	
 	// morph	
 	filtersWindow.body.on('click', '.visualfilters-morph input', function(e) {
+		e.preventDefault();
+		stylesSelector.hide();		
+	
 		//morphSelector.attach( $(this) );
 		var input = $(this);
 		
 		
 		if (morphSelector.is(':visible') && morphSelector.currentInput != null && morphSelector.currentInput[0] == input[0]) {
 			morphSelector.hide();
-			return;			
+			return false;			
 		}	
 		
 		morphSelector.css({
@@ -453,13 +463,29 @@ var VisualFilters = function(node) {
 		
 		morphSelector.currentInput = input;
 		morphSelector.setMorphology( input.siblings('select').val() );
-		morphSelector.updateMorphSelector( input.val() );		
+		morphSelector.updateMorphSelector( input.val() );	
+		
+		
+		
+		return false;	
 	});
 
 	morphSelector.on('update', function(value) {		
 		saveTransforms();
 		
 		VisualTransformer.resetTransforms(visualSettings);			
+	});
+	
+	// this will be cancelled if the user clicks in an input
+	filtersWindow.body.on('click', function(e) {
+		
+		if (morphSelector.is(':visible')) {
+			morphSelector.hide();
+		}
+		
+		if (stylesSelector.is(':visible')) {
+			stylesSelector.hide();
+		}
 	});
 	
 	
@@ -1419,8 +1445,11 @@ var MorphologySelector = function(parent) {
 			drawSelectedPartOfSpeech();
 							
 			// do the rest of the characters one by one
-			if (value.length > 2) {
-				var remainder = value.substring(2);
+			if (value.length > 1) {
+				var remainder = value.substr(1);
+				if (remainder.substr(0,1) == '-') {
+					remainder = remainder.substr(1);
+				}
 				
 				for (var i=0, il=remainder.length; i<il; i++) {
 					var letter = remainder[i];

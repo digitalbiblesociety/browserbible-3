@@ -103,6 +103,8 @@ var App = function() {
 	function resize() {
 		////console.log('app resize');
 	
+		PlaceKeeper.storePlace();
+	
 		// get window size
 		var width = win.width(),
 			height = win.height(),
@@ -124,6 +126,9 @@ var App = function() {
 		
 		// pass new size down to area
 		ext.windowManager.size(areaWidth, areaHeight);
+		
+		
+		PlaceKeeper.restorePlace();
 	}	
 
 	

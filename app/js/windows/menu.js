@@ -141,9 +141,14 @@ var MainSearchBox = function(node) {
 		//if (searchWindow == null) {
 			
 			// search based on first open window
-			textid = firstBibleWindow.data.textid;		
-			sofia.app.windowManager.add('SearchWindow', {searchtext: searchtext, textid: textid});
 			
+		PlaceKeeper.storePlace();	
+			
+		textid = firstBibleWindow.data.textid;		
+		sofia.app.windowManager.add('SearchWindow', {searchtext: searchtext, textid: textid});
+			
+		PlaceKeeper.restorePlace();
+
 		//} else {
 			
 			// restart search
@@ -267,8 +272,9 @@ var AddWindowButton = function(node) {
 			
 		}
 			
-	
+		PlaceKeeper.storePlace();
 		sofia.app.windowManager.add(settings.type, settings.data);	
+		PlaceKeeper.restorePlace();
 		
 		if (sofia.analytics) {
 			sofia.analytics.record('createwindow', settings.type);
@@ -483,11 +489,9 @@ var FontSizeSettings = function(node) {
 	function setFontSize(newFontSize) {
 	
 	
-		// get location before
-		var firstWindow = (sofia.app.windowManager) ? 
-								sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow'})[0] : 
-								null,	
-			body = $('body');
+		var	body = $('body');
+				
+		PlaceKeeper.storePlace();
 	
 		// remove all others
 		for(var i=0, il=fontSizes.length; i<il; i++) {		
@@ -506,21 +510,7 @@ var FontSizeSettings = function(node) {
 			sofia.analytics.record('setting', 'fontsize', newFontSize);
 		}	
 		
-		
-		if (firstWindow != null) { 
-			// 
-			//firstWindow.trigger('message', {type:'globalmessage', messagetype: 'nav', })
-			
-			firstWindow.trigger('globalmessage', {
-				type: 'globalmessage', 
-				target: firstWindow, 
-				data: {
-					messagetype: 'nav', 
-					type: 'bible',
-					locationInfo: firstWindow.getData()
-				}
-			});			
-		}						
+		PlaceKeeper.restorePlace();	
 	}	
 
 };
@@ -554,6 +544,8 @@ var FontFamilySettings = function(node) {
 	function setFontFamily(newFontName) {
 	
 		var body = $('body');
+		
+		PlaceKeeper.storePlace();
 	
 		// remove all others
 		for(var i=0, il=fontFamilyNames.length; i<il; i++) {		
@@ -570,6 +562,8 @@ var FontFamilySettings = function(node) {
 		if (sofia.analytics) {
 			sofia.analytics.record('setting', 'fontfamily', newFontName);
 		}	
+		
+		PlaceKeeper.restorePlace();
 					
 	}
  	
@@ -632,6 +626,8 @@ var ConfigToggles = function(node) {
 		
 		//console.log('setToggle', toggleId, checked);
 		
+		PlaceKeeper.storePlace();
+		
 		var toggle = $('#config-toggle-' + toggleId),
 			body = $('body'),
 			onClass = 'toggle-' + toggleId + '-on',
@@ -651,12 +647,14 @@ var ConfigToggles = function(node) {
 				.removeClass(onClass)
 				.addClass(offClass);
 		}
+	
+		PlaceKeeper.restorePlace();
+	
 		
 		if (sofia.analytics) {
 			sofia.analytics.record('setting', toggleId, checked);
 		}		
-		
-		
+	
 		//console.log('setValue', toggleId, checked);		
 		AppSettings.setValue(toggleId, {checked: checked});
 		
@@ -679,7 +677,7 @@ var ConfigUrl = function(node) {
 		urlBox = 
 		$('<div id="config-global-url">' + 
 				//'<span class="config-header">URL</span>' + 
-				'<span></span>' +
+				'<span ></span>' +
 				'<input type="text"  />' +
 			'</div>'),
 		linkButton = urlBox.find('span');
@@ -706,6 +704,15 @@ var ConfigUrl = function(node) {
 	}, 1000);
 	
 	
+	ZeroClipboard.config( { moviePath: 'build/ZeroClipboard.swf' } );
+	var client = new ZeroClipboard(linkButton);	
+	client.on( 'dataRequested', function (client, args) {
+		client.setText( urlInput.val() );
+		
+		urlInput.select();		
+	});	
+	
+	
 	linkButton.on('click', function() {
 		urlInput.select();		
 	});
@@ -714,8 +721,10 @@ var ConfigUrl = function(node) {
 	function updateUrl() {
 			// get settings from al windows
 		var windowSettings = sofia.app.windowManager.getSettings(),
-			url = '?',
-			parts = [];
+			existingParams = stringUtility.parseQuerystring();
+			newParams = {},
+			mergedParams = {},
+			mergedArray = [];
 			
 		for (var i=0, il=windowSettings.length; i<il; i++) {
 			var winSettings = windowSettings[i];
@@ -724,32 +733,40 @@ var ConfigUrl = function(node) {
 			
 			switch (winSettings.windowType) {
 				case 'BibleWindow':
-					parts.push('win' + (i+1) + '=' + 'bible');
-					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
-					parts.push('fragmentid' + (i+1) + '=' + winSettings.data.fragmentid);
+					newParams['win' + (i+1)] = 'bible';
+					newParams['textid' + (i+1)] =  winSettings.data.textid;
+					newParams['fragmentid' + (i+1)] = winSettings.data.fragmentid;
 					break;
 				case 'CommentaryWindow':
-					parts.push('win' + (i+1) + '=' + 'commentary');
-					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
-					parts.push('fragmentid' + (i+1) + '=' + winSettings.data.fragmentid);
+					newParams['win' + (i+1)] = 'commentary';
+					newParams['textid' + (i+1)] =  winSettings.data.textid;
+					newParams['fragmentid' + (i+1)] = winSettings.data.fragmentid;
 					break;
 				case 'SearchWindow':
-					parts.push('win' + (i+1) + '=' + 'search');
-					parts.push('textid' + (i+1) + '=' + winSettings.data.textid);
-					parts.push('searchtext' + (i+1) + '=' + winSettings.data.searchtext);
+					newParams['win' + (i+1)] = 'search';
+					newParams['textid' + (i+1)] =  winSettings.data.textid;
+					newParams['fragmentid' + (i+1)] = winSettings.data.fragmentid;				
 					break;
 				case 'MapsWindow':
-					parts.push('win' + (i+1) + '=' + 'map');
+					newParams['win' + (i+1)] = 'map';
 					break;									
 				case 'MediaWindow':
-					parts.push('win' + (i+1) + '=' + 'media');
+					newParams['win' + (i+1)] =  'media';
 					break;									
 				
 			}			
 		}
-
 		
-		url = location.href + '?' + parts.join('&');
+		mergedParams = $.extend(mergedParams, existingParams, newParams); 
+		
+		for (var index in mergedParams) {
+			if (index != '') {
+				mergedArray.push( index + '=' + mergedParams[index] );			
+			}
+		}
+		//mergedArray.reverse();
+		
+		url = location.origin + location.pathname + '?' + mergedArray.join('&');
 			
 		urlInput.val(url);
 			
@@ -762,3 +779,45 @@ var ConfigUrl = function(node) {
 };
 
 sofia.menuComponents.push('ConfigUrl');
+
+
+var PlaceKeeper = (function() {
+	
+	var currentWindow = null,
+		currentData = null;
+		
+	function storePlace() {
+		currentWindow = (sofia.app.windowManager) ? 
+							sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow'})[0] : 
+							null;
+		
+		currentData = (currentWindow != null) ? currentWindow.getData() : null;
+	
+	}
+	
+	function restorePlace() {
+		if (currentWindow != null) { 
+			// 
+			//firstWindow.trigger('message', {type:'globalmessage', messagetype: 'nav', })
+			
+			currentWindow.trigger('globalmessage', {
+				type: 'globalmessage', 
+				target: currentWindow, 
+				data: {
+					messagetype: 'nav', 
+					type: 'bible',
+					locationInfo: currentData // firstWindow.getData()
+				}
+			});			
+		}			
+		
+	}
+	
+	
+	return {
+		storePlace: storePlace,
+		restorePlace: restorePlace		
+	}
+	
+	
+})();

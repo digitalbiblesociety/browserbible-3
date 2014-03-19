@@ -38,34 +38,54 @@ footer .prev,
 footer .next {
 	font-family: Arial;
 	position: absolute;
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 50px;
 	display: block;
-	font-size: 25px;
+	font-size: 30px;
+	padding-top: 4px;
+	z-index: 1;
+	text-indent: -9999px;
+	background: transparent url(images/mobile.png) 0 0 no-repeat;
 }
+header .home,
+footer .home {
+	top: 0;
+	left: 0px;
+	width: 50px;
+	background-position-y: -100px;
+}
+
 header .prev,
 footer .prev {
-	top: 12px;
+	width: 40px;
+	top: 0;
 	right: 40px;
+	padding: 8px;
+	background-position-y: -50px;
 }
 header .next,
 footer .next {
-	top: 12px;
-	right: 10px;
+	width: 40px;
+	top: 0;
+	right: 0;
+	padding: 8px;	
 }
 
 
 [dir=rtl] header .prev,
 [dir=rtl] footer .prev {
-	top: 12px;
 	right: auto;
 	left: 40px;
 }
 [dir=rtl] header .next,
 [dir=rtl] footer .next {
-	top: 12px;
 	right: auto;
-	left: 10px;
+	left: 0;
+}
+[dir=rtl] header .home,
+[dir=rtl] footer .home {
+	left: auto;
+	right: 0;
 }
 
 
@@ -74,7 +94,7 @@ header .name {
 	top: 8px;
 	left: 0;
 	width: 100%;
-	font-size: 14px;
+	font-size: 12pt;
 	text-align: center;
 	color: #eee;
 }
@@ -95,15 +115,12 @@ header .home {
 
 
 
-/* main index */
+/* main index of all texts/versions */
 
 .texts-index .name {
-	font-size: 20pt;	
-}
-.texts-index .home {
-	position: absolute;
-	left: 10px;
-	top: 10px;
+	font-size: 14pt;
+	padding-top: 5px;
+	display: block;	
 }
 
 
@@ -135,12 +152,20 @@ header .home {
 	text-align: center;
 }
 
+/* index of books in a version */
+.text-index .name {
+	font-size: 14pt;
+	padding-top: 5px;
+	display: block;	
+}
 
 
 /* book index */
-
-.text-index .name {
-	font-size: 18pt;	
+.division-index .name {
+	font-size: 14pt;
+	padding-top: 5px;
+	display: block;	
+	
 }
 
 .division-list li {	
@@ -148,7 +173,7 @@ header .home {
 }
 .division-list li a {
 	display: block;
-	padding: 5px;	
+	padding: 8px;	
 }
 .division-list li:hover {
 	background-color: #ccc;	
@@ -161,9 +186,7 @@ header .home {
 }
 
 /* chapter index */
-.division-index .name {
-	font-size: 18pt;
-}
+
 
 .section-list li {	
 	border-bottom: 1px solid #ddd;
@@ -185,6 +208,11 @@ header .home {
 
 
 /* docuemnt */
+.section-document .name,
+.section-document .location {
+	font-size: 10pt;
+}
+
 .section {
 	padding: 20px;
 	font-size: 14pt;

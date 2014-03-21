@@ -135,13 +135,6 @@ var MainSearchBox = function(node) {
 			}			
 		}
 		
-		//console.log(firstBibleWindow);
-		
-		
-		//if (searchWindow == null) {
-			
-			// search based on first open window
-			
 		PlaceKeeper.storePlace();	
 			
 		textid = firstBibleWindow.data.textid;		
@@ -149,20 +142,8 @@ var MainSearchBox = function(node) {
 			
 		PlaceKeeper.restorePlace();
 
-		//} else {
-			
-			// restart search
-			
-		//	//console.log( searchWindow );
-			
-		//}
-
-
-
 		
 		searchBox.val('');
-		
-
 	}
 	
 	
@@ -246,30 +227,29 @@ var AddWindowButton = function(node) {
 		var label = $(this),
 			settings = label.data('init');
 			
-		
+		// when starting a bible or commentary window, try to match it up with the others
 		if (settings.type == 'BibleWindow' || settings.type == 'CommentaryWindow') {
-			var allWinSettings = sofia.app.windowManager.getSettings(),
-				firstBibleWindow = null;
 			
-			for (var i=0,il=allWinSettings.length; i<il; i++) {
-				var winSettings = allWinSettings[i];
-				
-	
-				// first text 
-				if (winSettings.windowType == 'BibleWindow') {
-					firstBibleWindow = winSettings;
-					break;
-				}
+			var 
+				firstBCWindow = (sofia.app.windowManager) ? 
+									sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] : 
+									null,
+				currentData = (firstBCWindow != null) ? firstBCWindow.getData() : null;		
+		
+					
+			if (currentData != null) {
+				console.log('first window', currentData);
+				settings.data.fragmentid = currentData.fragmentid;
+				settings.data.sectionid = currentData.sectionid;				
+			} else {
+				var fragmentid = (typeof sofia.config.newWindowFragmentid != 'undefined') ? sofia.config.newWindowFragmentid : 'JN1_1',
+					sectionid = fragmentid.split('_')[0];
+			
+				settings.data.fragmentid = fragmentid;
+				settings.data.sectionid = sectionid;				
 			}
 			
-			if (firstBibleWindow != null) {
-				console.log('first window', firstBibleWindow);
-				settings.data.fragmentid = firstBibleWindow.data.fragmentid;
-				settings.data.sectionid = firstBibleWindow.data.sectionid;				
-			}
-			
-			console.log('new window', settings);
-			
+			console.log('new window', settings);			
 		}
 			
 		PlaceKeeper.storePlace();
@@ -729,6 +709,10 @@ var ConfigUrl = function(node) {
 		for (var i=0, il=windowSettings.length; i<il; i++) {
 			var winSettings = windowSettings[i];
 			
+			if (winSettings.data == null) {
+				continue;
+			}
+			
 			//console.log('setting', i, winSettings);
 			
 			switch (winSettings.windowType) {
@@ -745,7 +729,7 @@ var ConfigUrl = function(node) {
 				case 'SearchWindow':
 					newParams['win' + (i+1)] = 'search';
 					newParams['textid' + (i+1)] =  winSettings.data.textid;
-					newParams['fragmentid' + (i+1)] = winSettings.data.fragmentid;				
+					newParams['searchtext' + (i+1)] = winSettings.data.searchtext;
 					break;
 				case 'MapsWindow':
 					newParams['win' + (i+1)] = 'map';

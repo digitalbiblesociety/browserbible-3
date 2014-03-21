@@ -44,7 +44,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 		// settings
 		currentTextInfo = null,
 		currentLocationInfo = null,		
-		hasFocus = false;
+		hasFocus = false,
+		isInitialized = false;
 		
 
 	/*
@@ -54,6 +55,9 @@ var TextWindow = function(id, node, init_data, text_type) {
 	*/
 			
 	infoBtn.on('click', function() {
+	
+		textChooser.hide();
+		textNavigator.hide();
 	
 		flipper.toggleClass('showinfo');
 		
@@ -174,8 +178,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 			
 			if (!Detection.hasTouch) {
 				setTimeout(function() {
-					navui[0].focus();
-					navui[0].select();
+					//navui[0].focus();
+					//navui[0].select();
 				}, 10);			
 			}
 			
@@ -203,7 +207,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 						sofia.analytics.record('usernav', 'input', sectionid + ':' + currentTextInfo.id);					
 					}
 					
-					scroller.load('text', sectionid);
+					scroller.load('text', sectionid, fragmentid);
 					textNavigator.hide();
 					
 					navui.val(bibleref.toString())
@@ -296,6 +300,11 @@ var TextWindow = function(id, node, init_data, text_type) {
 		navui.html('Reference').val('Reference');
 		textlistui.html('Version');
 	
+		console.log('textsindow init',init_data, isInitialized);
+		
+		if (init_data == null) {
+			return;
+		}
 						
 		// load the text specified by the init data		
 		TextInfoLoader.getText(init_data.textid, 
@@ -304,7 +313,10 @@ var TextWindow = function(id, node, init_data, text_type) {
 			function(loadedTextInfo) {		
 	
 				// store this setting
-				currentTextInfo = loadedTextInfo;		
+				currentTextInfo = loadedTextInfo;	
+				
+				isInitialized = true;
+					
 				startup();				
 			}, 
 			
@@ -336,7 +348,10 @@ var TextWindow = function(id, node, init_data, text_type) {
 					// let's try again with first one
 					TextInfoLoader.getText(newTextInfo.id, function(loadedTextInfo) {
 						// store this setting
-						currentTextInfo = loadedTextInfo;		
+						currentTextInfo = loadedTextInfo;	
+						
+						isInitialized = true;
+											
 						startup();				
 					
 					});			
@@ -361,7 +376,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 		}
 		
 		scroller.load('text', init_data.sectionid, init_data.fragmentid);			
-		
+	
 	}
 	
 	init();
@@ -387,16 +402,40 @@ var TextWindow = function(id, node, init_data, text_type) {
 			.outerHeight( container.height() - header.outerHeight(true));			
 			
 		textChooser.size(width, height);
-		textNavigator.size(width, height);		
+		textNavigator.size(width, height);	
 	}
 	
+	
+	$(window).on('resize', function() {
+		
+		if ($('body').hasClass('one-window')) {
+		
+			console.log('text chooser resize');
+			
+			var tcNode = textChooser.node(),
+				tcHeader = tcNode.find('.text-chooser-header');
+			
+			tcNode.find('.text-chooser-filter-text').hide();
+						
+			audioui.appendTo(tcHeader);
+			infoBtn.appendTo(tcHeader);
+		}		
+		
+	});
+	
 	function getData() {
+		// get data
 		if (currentTextInfo == null) {
 			currentTextInfo = textChooser.getTextInfo();
 		}
 		if (currentLocationInfo == null) {
 			currentLocationInfo = scroller.getLocationInfo();
 		}	
+		
+		// if not ready, then kill it
+		if (currentTextInfo == null || currentLocationInfo == null) {
+			return null;
+		}
 		
 		var data = {
 			// textinfo

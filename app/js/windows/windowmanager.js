@@ -48,13 +48,17 @@ var WindowManager = function(node) {
 		// remove this window from the array
 		windows.splice(windowIndex, 1);
 		
-		//window_to_close.close();
+		window_to_close.close();
+		
+		PlaceKeeper.storePlace();
 		
 		// remove from DOM		
 		window_to_close.node.remove();
 		
 		// resize
 		size();
+
+		PlaceKeeper.restorePlace();
 		
 		// trigger save
 		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
@@ -118,7 +122,7 @@ var Window = function(id, parentNode, className, data, manager) {
 	
 	var node = $('<div class="window ' + className + '"></div>')
 					.appendTo(parentNode),
-		close = $('<span class="window-close-button"></span>')
+		closeBtn = $('<span class="window-close-button"></span>')
 					.appendTo(node)			
 					.on('click', function() {
 						console.log(id, 'remove', manager);
@@ -157,6 +161,13 @@ var Window = function(id, parentNode, className, data, manager) {
 	function quit() {
 		controller.quit();
 	}
+	
+	function close() {
+		console.log('window.close', controller.close);
+		if (typeof controller.close != 'undefined') {
+			controller.close();
+		}
+	}	
 
 	var ext = {
 		size: size,
@@ -167,7 +178,8 @@ var Window = function(id, parentNode, className, data, manager) {
 			return controller.getData();
 		},
 		controller: controller,
-		node: node
+		node: node,
+		close: close
 	};
 	ext = $.extend(true, ext, EventEmitter);
 	

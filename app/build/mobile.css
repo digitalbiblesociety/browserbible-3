@@ -12,7 +12,7 @@ a {
 	color: #333;
 }
 
-header, footer {
+.header, header, .footer, footer {
 	height: 50px;
 	padding: 10px;
 	background: #333;
@@ -22,11 +22,11 @@ header, footer {
 	font-family: Avenir, Helvetica;
 }
 
-header {
+.header, header {
 	position: relative;
 }
 
-header a, footer a {
+.header a, header a, .footer a, footer a {
 	color: #fff;
 }
 
@@ -35,7 +35,13 @@ header .next,
 header .home,
 footer .home,
 footer .prev, 
-footer .next {
+footer .next,
+.header .prev, 
+.header .next,
+.header .home,
+.footer .home,
+.footer .prev, 
+.footer .next {
 	font-family: Arial;
 	position: absolute;
 	width: 40px;
@@ -48,7 +54,9 @@ footer .next {
 	background: transparent url(images/mobile.png) 0 0 no-repeat;
 }
 header .home,
-footer .home {
+footer .home,
+.header .home,
+.footer .home {
 	top: 0;
 	left: 0px;
 	width: 50px;
@@ -56,7 +64,9 @@ footer .home {
 }
 
 header .prev,
-footer .prev {
+footer .prev,
+.header .prev,
+.footer .prev {
 	width: 40px;
 	top: 0;
 	right: 40px;
@@ -64,7 +74,9 @@ footer .prev {
 	background-position-y: -50px;
 }
 header .next,
-footer .next {
+footer .next,
+.header .next,
+.footer .next {
 	width: 40px;
 	top: 0;
 	right: 0;
@@ -73,23 +85,30 @@ footer .next {
 
 
 [dir=rtl] header .prev,
-[dir=rtl] footer .prev {
-	right: auto;
-	left: 40px;
-}
-[dir=rtl] header .next,
-[dir=rtl] footer .next {
+[dir=rtl] footer .prev,
+[dir=rtl] .header .prev,
+[dir=rtl] .footer .prev {
 	right: auto;
 	left: 0;
 }
+[dir=rtl] header .next,
+[dir=rtl] footer .next,
+[dir=rtl] .header .next,
+[dir=rtl] .footer .next {
+	right: auto;
+	left: 40px;
+}
 [dir=rtl] header .home,
-[dir=rtl] footer .home {
+[dir=rtl] footer .home,
+[dir=rtl] .header .home,
+[dir=rtl] .footer .home {
 	left: auto;
 	right: 0;
 }
 
 
-header .name {
+header .name,
+.header .name {
 	position: absolute;
 	top: 8px;
 	left: 0;
@@ -98,7 +117,8 @@ header .name {
 	text-align: center;
 	color: #eee;
 }
-header .location {
+header .location,
+.header .location {
 	position: absolute;
 	bottom: 8px;
 	left: 0;
@@ -218,10 +238,6 @@ header .home {
 	font-size: 14pt;
 	font-family: Cambria, Times;
 }
-
-
-
-
 
 
 

@@ -179,10 +179,14 @@ var AudioController = function(container, ui, scroller) {
 		if (!hasAudio) {
 			return;
 		}	
+		
+		if (typeof newFragmentid == 'undefined') {
+			return;
+		}
 			
 		if (fragmentid != newFragmentid) {
 		
-			//console.log('loading',newSectionid,textInfo, hasAudio);			
+			//console.log('AUDIO loading',newFragmentid,textInfo, hasAudio);			
 		
 			fragmentid = newFragmentid;
 					
@@ -406,6 +410,7 @@ var AudioController = function(container, ui, scroller) {
 			
 			// reset
 			title.html('');
+			subtitle.html('');
 			audioSliderCurrent.css({left: '0%' });
 			audioSliderHandle.css({left: '0%' });
 			currenttime.html( secondsToTimeCode(0) );		
@@ -431,14 +436,30 @@ var AudioController = function(container, ui, scroller) {
 					if (newAudioInfo != null) {		
 						audioInfo = newAudioInfo;
 					
-						console.log('AUDIO: YES', textInfo.id, textInfo.lang, newAudioInfo);
+						console.log('AUDIO: YES', textInfo.id, textInfo.lang, newAudioInfo, 'fid:' +fragmentid);
 						
 						hasAudio = true;
+
+						sectionid = '';						
 						
 						if (fragmentid != '') {
-							console.log('info, loading', hasAudio, fragmentid);
-							loadAudio(fragmentid);
+							var newFragmentid = fragmentid;
+
+							fragmentid = '';
+							console.log('AUDIO, new from old ', newFragmentid);
+							loadAudio(newFragmentid);
+						} else {
+
+							locationInfo = scroller.getLocationInfo();
+
+							console.log('AUDIO, new from new ', locationInfo);
+							if (locationInfo != null) {
+								loadAudio(locationInfo.fragmentid);
+							}
+													
+							
 						}
+						//}
 						
 						// start load
 						//block.show();

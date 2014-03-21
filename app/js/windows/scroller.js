@@ -389,7 +389,7 @@ var Scroller = function(node) {
 			//console.log('need to load', fragmentid);
 			
 			var sectionid = fragmentid.split('_')[0],
-				hasSection = currentTextInfo.sections.indexOf(sectionid) > -1; 
+				hasSection = currentTextInfo != null ? currentTextInfo.sections.indexOf(sectionid) > -1 : false; 
 						
 			if (hasSection) {
 				load('text', sectionid, fragmentid);

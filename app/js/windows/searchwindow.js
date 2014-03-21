@@ -12,16 +12,24 @@ var SearchWindow = function(id, parentNode, init_data) {
 					'</div>').appendTo(parentNode),
 		main = $('<div class="search-main"><div class="search-wrapper">' + 
 					'<div class="search-top">' + 
-						'<h2></h2>' + 
+						//'<h2></h2>' + 
 						'<div class="search-progress-bar">' + 
 							'<div class="search-progress-bar-inner"></div>' + 
 							'<span class="search-progress-bar-label"></span>' + 
-						'</div>' +															
+						'</div>' +	
+						'<div class="search-visual"></div>' +
+						'<span class="search-visual-label"></span>' +
+						'<div class="search-lemma-info"></div>' +						
+						'<div class="search-usage"></div>' +
 					'</div>' +
 					'<div class="search-results"></div>' +									
 				'</div></div>').appendTo(parentNode),
 		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
 
+		topLemmaInfo = main.find('.search-lemma-info').hide(),	
+		topVisual = main.find('.search-visual').hide(),	
+		topVisualLabel = main.find('.search-visual-label'),			
+		topUsage = main.find('.search-usage'),			
 		topBlock = main.find('.search-top'),	
 		topBlockTitle = topBlock.find('h2'),	
 		searchProgressBar = topBlock.find('.search-progress-bar').hide(),			
@@ -177,6 +185,13 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	textSearch.on('complete', function(e) {
 		
+
+		// store results
+		currentResults = e.data.results;
+		searchIndexesData = e.data.searchIndexesData;
+		searchTermsRegExp = e.data.searchTermsRegExp;
+		isLemmaSearch = e.data.isLemmaSearch;			
+		
 		//console.log('searcher:complete'); // , e.data.results);
 		
 		var results = e.data.results,
@@ -185,42 +200,242 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 		searchProgressBarInner.css({'width': '100%'  });
 		setFinalResultsCount(e.data.results.length);
+		resultsBlock.removeClass('search-main-loading');
 		
-		for (var i=0, il=results.length; i<il; i++) {
-			var result = results[i],
-				label = '';
+		if (results.length > 0) {
+		
+			// create visual array
+			var divisionCount = {},
+				bookList = null;
+					
+		
+			if (isLemmaSearch) {
+				var text = input.val();
 			
-			if (textInfo.type.toLowerCase() == 'bible') {
-				var br = new bible.Reference(result.fragmentid);
-				
-				////console.log(br, br.toString(), bible.BOOK_DATA['GN'].names[textInfo.lang]);
-				
-				if (bible.BOOK_DATA['GN'].names[textInfo.lang]) {				
-					br.lang = textInfo.lang;
+				if (text.substr(0,1) == 'G') {
+					bookList = bible.NT_BOOKS;
+				} else if (text.substr(0,1) == 'H') {
+					bookList = bible.OT_BOOKS;
 				}
-				label = br.toString();	
 			} else {
-				label = result.fragmentid;
+				bookList = textInfo.divisions;
+			}
+			
+			for (var i=0, il=bookList.length; i<il; i++) {
+				divisionCount[ bookList[i] ] = 0;
+			}
+	
+			
+			
+			for (var i=0, il=results.length; i<il; i++) {
+				var result = results[i],
+					label = '',
+					fragmentid = result.fragmentid,
+					dbsBookCode = fragmentid.substr(0,2);
+					
+				divisionCount[dbsBookCode]++;
+				
+				if (textInfo.type.toLowerCase() == 'bible') {
+					var br = new bible.Reference(result.fragmentid);
+					
+					////console.log(br, br.toString(), bible.BOOK_DATA['GN'].names[textInfo.lang]);
+					
+					if (bible.BOOK_DATA['GN'].names[textInfo.lang]) {				
+						br.lang = textInfo.lang;
+					}
+					label = br.toString();	
+				} else {
+					label = result.fragmentid;
+				}
+					
+				html += '<tr data-fragmentid="' + result.fragmentid + '" class="divisionid-' + result.fragmentid.substr(0,2) + '"><th>' + label + '</th><td lang="' + textInfo.lang + '">' + result.html + '</td></tr>';
+			}
+			html += '</table>';
+			
+			
+			resultsBlock.html( html );
+			
+			// render book list
+			renderResultsVisual(divisionCount, bookList); 
+			
+			if (isLemmaSearch) {
+				renderLemmaInfo();
+				renderUsage();
 			}
 				
-			html += '<tr data-fragmentid="' + result.fragmentid + '"><th>' + label + '</th><td>' + result.html + '</td></tr>';
-		}
-		html += '</table>';
+				
+			createHighlights();	
+		}	
 		
-		
-		resultsBlock.removeClass('search-main-loading');		
-		resultsBlock.html( html );
-		
-		
-		
-		// store results
-		currentResults = e.data.results;
-		searchIndexesData = e.data.searchIndexesData;
-		searchTermsRegExp = e.data.searchTermsRegExp;
-		isLemmaSearch = e.data.isLemmaSearch;		
-			
-		createHighlights();		
+		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
 	});	
+	
+	function renderLemmaInfo() {
+		var text = input.val(),
+			strongs = text.split(' ')[0],
+			strongsNumber = strongs.substr(1),
+			strongLang = strongs.substr(0,1),
+			langCode = (strongLang == 'H' ? 'heb' : 'grc'),
+			dir = langCode == 'heb' ? 'ltr' : 'rtl';
+			
+		$.ajax({
+			dataType: 'json',
+			url: 'content/lexicons/strongs/entries/' + strongs + '.json',
+			success: function(data) {
+				
+				var html = '<div class="lemma-word">' + 
+								'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' + 
+								'  <span class="lemma-strongs" dir="ltr"> [strongs:' + strongsNumber + ']</span>' + 
+							'</div>';
+							
+				//html += '<div class="lemma-outline">' + data.outline + '</div>';
+				
+				topLemmaInfo
+					.html(html)
+					.show();
+			}			
+		});		
+		
+	}
+	
+	function renderUsage() {
+		var usages = {},
+			usageArray = [];
+		
+		resultsBlock.find('tr').each(function() {
+			var tr = $(this),
+				fragmentid = tr.attr('data-fragmentid'),
+				highlightedPhrase = tr.find('.highlight')[0].textContent;
+				
+			highlightedPhrase = highlightedPhrase.replace(/\b(with|or|and|if|a|the|in|a|by|of|for)\b/gi,'').trim();
+				
+			if (typeof usages[highlightedPhrase] == 'undefined') {
+				usages[highlightedPhrase] = 0;
+			}
+			
+			usages[highlightedPhrase]++;
+		});
+		
+		// turn into array
+		for (var usage in usages) {
+			usageArray.push({usage: usage, count: usages[usage]});			
+		}
+		
+		// sort
+		usageArray.sort(function(a, b) {
+			if (a.count < b.count) {
+				return 1;
+			} else if (a.count > b.count) {
+				return -1;
+			} else {
+				return 0;
+			}
+			
+		});
+		
+		
+		var html = '';
+		for (var i=0, il=usageArray.length; i<il; i++) {
+			//html += '<tr><td>' + usageArray[i].usage + '</td><td>' + usageArray[i].count + '</td></tr>';			
+			html += (i > 0 ? ', ' : '') + usageArray[i].usage + ' (' + usageArray[i].count + ')'; 
+		}
+		//for (var usage in usages) {
+		//	html += '<tr><td>' + usage + '</td><td>' + usages[usage] + '</td></tr>';			
+		//}
+		
+		//topUsage.html('<table>' + html + '</table>');
+		topUsage
+			.html(html)
+			.show();
+		//topUsage.hide();
+		
+	}
+	
+	function renderResultsVisual(divisionCount, bookList) {
+		var totalWidth = topVisual.outerWidth(),
+			totalBooks = bookList.length,
+			width = 1/totalBooks*100,
+			html = '',
+			maxCount = 0,
+			baseHeight = 2;
+			maxHeight = 38;
+
+		for (var i=0, il=bookList.length; i<il; i++) {
+			var count = divisionCount[ bookList[i] ];
+			if (count > maxCount) {
+				maxCount = count;
+			}
+		}			
+					
+			
+		for (var i=0, il=bookList.length; i<il; i++) {
+			var dbsBookCode = bookList[i],
+				count = divisionCount[dbsBookCode],
+				height = maxHeight * count / maxCount + baseHeight,
+				top = maxHeight + baseHeight - height;
+				
+			html += '<span class="search-result-book-bar ' + dbsBookCode + '" data-count="' + count + '" data-id="' + dbsBookCode + '" style="width:' + width + '%;"><span class="divisionid-' + dbsBookCode + '" style="height:' + height + 'px; margin-top: ' + top + 'px;"></span></span>';
+		}			
+		
+		topVisual.html(html).show();		
+	}
+	
+	topVisual.on('mouseover', '.search-result-book-bar', function() {
+		
+		var bookBar = $(this),
+			count = bookBar.attr('data-count'),
+			dbsBookCode = bookBar.attr('data-id'),			
+			bookInfo = bible.BOOK_DATA[dbsBookCode],
+			win = bookBar.closest('.window'),
+			winPos = win.offset(),
+			winWidth = win.outerWidth(true),
+			bookBarPos = bookBar.offset(),
+			top = bookBarPos.top + bookBar.height() + 10 - winPos.top,
+			left = bookBarPos.left - winPos.left;
+						
+
+		topVisualLabel
+			.html(bookInfo.names[textInfo.lang][0] + ': ' + count)
+			.css({top: top, left: left})
+			.show();
+
+		if (left + topVisualLabel.outerWidth() > winWidth) {
+			left = winWidth - topVisualLabel.outerWidth() - 20;
+
+			topVisualLabel
+				.css({left: left}); 				
+		}
+			
+			
+	}).on('mouseout', '.search-result-book-bar', function() {
+		
+		topVisualLabel
+			.hide();		
+	}).on('click', '.search-result-book-bar', function() {
+		
+		var bookBar = $(this),
+			dbsBookCode = bookBar.attr('data-id'),			
+			bookInfo = bible.BOOK_DATA[dbsBookCode];
+			
+		// find first result?
+		resultsBlock.find('tr').each(function() {
+			var tr = $(this),
+				fragmentid = tr.attr('data-fragmentid');
+				
+			if (fragmentid.indexOf(dbsBookCode) == 0) {
+				
+				// scrollTo
+				console.log('found', tr.offset());
+				
+				main.scrollTop( tr.offset().top - tr.outerHeight(true) - 50);
+				
+				return false;
+			}
+			
+		});
+
+	
+	});
 	
 	function setFinalResultsCount(count) {
 					
@@ -258,6 +473,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 		footer.html('');
 		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');
 		resultsBlock.html('');
+		topVisual.html('').hide();
+		topLemmaInfo.html('').hide();
+		topUsage.html('').hide();
 		searchProgressBarLabel.html('');
 		searchProgressBarInner.width(0);
 		
@@ -323,7 +541,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 	init();
 
 	function removeHighlights() {	
-		$('.TextWindow .highlight').each(function(i, el) {
+		$('.BibleWindow .highlight').each(function(i, el) {
 			
 			if (el.tagName.toLowerCase() == 'l') {
 				// for Lemma tags, jsut remove hte hlight
@@ -382,6 +600,11 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}
 		
 	}
+	
+	function close() {
+		console.log('search close');
+		removeHighlights();		
+	}
 
 	var ext = {
 		size: size,
@@ -391,7 +614,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 				searchtext: input.val(),
 				textid: (selectedText != null) ? selectedText.id : null
 			}			
-		}
+		},
+		close: close
 	};	
 	ext = $.extend(true, ext, EventEmitter);
 	

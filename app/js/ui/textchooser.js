@@ -211,15 +211,15 @@ var TextChooser = function(container, target, text_type) {
 		//}
 		
 		// filter by type
-		console.log('before',arrayOfTexts);
+		//console.log('before',arrayOfTexts);
 		arrayOfTexts = arrayOfTexts.filter(function(t) {
 			var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
 			
-			console.log(thisTextType, text_type, t.type);
+			//console.log(thisTextType, text_type, t.type);
 						
 			return thisTextType == text_type;			
 		});
-		console.log('after',arrayOfTexts);			
+		//console.log('after',arrayOfTexts);			
 		
 		if (showHeaders) {
 			// find languages
@@ -271,7 +271,7 @@ var TextChooser = function(container, target, text_type) {
 				
 				html.push('<tr class="text-chooser-row-header' + (hasTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
 							textsInLang[0].langName + 
-								( textsInLang[0].langName != textsInLang[0].langNameEnglish ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
+								( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
 							'</td></tr>'
 				);	
 				html.push(langHtml.join(''));				

@@ -1,6 +1,6 @@
 TextLoader = (function() {
 	
-	var dataType = 'html',
+	var 
 		cachedTexts = {},
 		baseFolder = 'content/texts/';
 	
@@ -39,48 +39,34 @@ TextLoader = (function() {
 			return;
 		}
 		
-		var url = baseFolder + textid + '/' + sectionid + '.' + dataType + '?' + new Date();
+		var url = baseFolder + textid + '/' + sectionid + '.html' + '?' + new Date();
 					
 		$.ajax({
 			url: url,
-			dataType: dataType,
 			success: function(data) {
 				
-				var content = $( dataType == 'html' ? data : data.text );
+				// split at the closing head tag to prevent problems with loading head material
+				var main = $( data.indexOf('</head>') > -1 ? data.split('</head>')[1] : data ),
+					content = main.filter('.section'),
+					footnotes = main.filter('.footnotes'),
+					notes = footnotes.find('.footnote');
 					
+				// move notes into place
+				if (notes.length > 0) {
+					notes.each(function() {
+						var footnote = $(this),
+							noteid = footnote.find('a').attr('href'),
+							footnotetext = footnote.find('.text'),
+							noteintext = content.find(noteid);
 
-				
-				// Should be just 
-				/*
-				<div class="chapter section">
-				
-				</div>				
-				*/
-				
-				// but tring to account for 
-				/*
-				<html><body>
-				<div class="chapter">
-				
-				</div>
-				</body></html>			
-				*/
-				
-				content.find('meta,header,footer,style,script').remove();
-				
+						console.log(noteid, noteintext);
+						
+						noteintext.append(footnotetext);
 
-				// when we dont' start with a div, it's probably a <!-- --> or <html> or something
-				if (!content[0].tagName || content[0].tagName.toLowerCase() != 'div') {
-					var innerNode = content.filter('.chapter, .section');
+					});
 					
-					if (innerNode.length > 0) {
-						content = innerNode;					
-					}
 				}
-				
-				if (!content.hasClass('section')) {
-					content.addClass('section');
-				}
+					
 				
 				content.attr('data-textid', textid);
 				

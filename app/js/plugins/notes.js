@@ -24,6 +24,8 @@ var NotesPopupPlugin = function(app) {
 
 	$('.windows-main').on('click','.note .key, .cf .key', function(e) {
 			
+		e.preventDefault();	
+			
 		console.log('notes');	
 			
 		var key = $(this);

@@ -164,6 +164,8 @@ var AddWindowButton = function(node) {
 	
 	function buttonClick(e) {
 	
+		e.preventDefault();
+	
 		if (buttonMenu.is(':visible')) {
 			buttonMenu.hide();
 			$(document).off('click', docClick);			
@@ -174,7 +176,7 @@ var AddWindowButton = function(node) {
 			},50);
 		}
 		
-		//return false;
+		return false;
 	}
 	
 	function docClick(e) {
@@ -230,13 +232,15 @@ var AddWindowButton = function(node) {
 		// when starting a bible or commentary window, try to match it up with the others
 		if (settings.type == 'BibleWindow' || settings.type == 'CommentaryWindow') {
 			
+			// get location from ifrst window
 			var 
 				firstBCWindow = (sofia.app.windowManager) ? 
 									sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] : 
 									null,
 				currentData = (firstBCWindow != null) ? firstBCWindow.getData() : null;		
 		
-					
+			
+			// if no location, then use the defaults from config
 			if (currentData != null) {
 				console.log('first window', currentData);
 				settings.data.fragmentid = currentData.fragmentid;

@@ -362,6 +362,11 @@ var Scroller = function(node) {
 	}
 	
 	function scrollTo(fragmentid, offset) {
+	
+		if (typeof fragmentid == 'undefined') {
+			return;
+		}
+	
 		
 		// find the fragment	
 		var fragment = wrapper.find('.' + fragmentid);

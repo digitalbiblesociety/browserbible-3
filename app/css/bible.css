@@ -82,7 +82,7 @@
 
 /* notes and cross references */
 .note,.cf                                                   {display:inline;}
-.note .key,.cf .key                                         {vertical-align:top;font-size:60%;font-weight: normal; font-style: normal; color:#7491CE;cursor:pointer;display:inline; }
+.note .key,.cf .key                                         {vertical-align:top;font-size:60%;font-weight: normal; font-style: normal; color:#7491CE;cursor:pointer;display:inline; text-decoration: none; }
 .chapter .note .key:hover,.chapter .cf.key:hover            {color:#fff;background:#3333cc;}
 .chapter .note .text,.chapter .cf .text                     {display:none;}
 .document-footer .cf .key,.document-footer .note .key       {display:inline;vertical-align:top;font-size:8px;font-weight:bold;color:#3333cc;}

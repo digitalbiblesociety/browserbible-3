@@ -3,7 +3,9 @@ var fs = require('fs'),
 	path = require('path'),
 	bibleData = require('bible_data'),
 	bibleFormatter = require('bible_formatter'),
-	verseIndexer = require('verse_indexer');
+	verseIndexer = require('verse_indexer'),
+	ProgressBar = require('progress'),
+	argv = require('minimist')(process.argv.slice(2));
 	
 
 //console.log( bibleData.getBookInfoByUnboundCode('40N') );
@@ -14,9 +16,24 @@ var fs = require('fs'),
 var
 	baseOutput = '../../app/content/texts/',
 	baseInput = 'input',
-	createIndex = true;
+	createIndex = false,
+	progressBar = null;
 
 console.log('\r\r\r');
+
+
+function startProgress(total, label) {
+
+	label = label || 'Progress';
+	
+	if (progressBar != null) {
+		progressBar.terminate();
+	}
+	progressBar = new ProgressBar(label + ' :bar [:current/:total] :elapsed', { total: total, width: 50 });
+}
+function updateProgress() {
+	progressBar.tick();
+}
 
 function convertFolder(inputPath) {
 
@@ -27,10 +44,18 @@ function convertFolder(inputPath) {
 	
 		var info = JSON.parse( fs.readFileSync(infoFilePath, 'utf8') ),
 			generatorName = info.generator,
-			generator = require('generate_' + generatorName),
 			outputPath = path.join(baseOutput, info['id']),
 			indexOutputPath = path.join(outputPath, 'index'),
-			indexLemmaOutputPath = path.join(outputPath, 'indexlemma');
+			indexLemmaOutputPath = path.join(outputPath, 'indexlemma'),
+			generator = null;
+			
+			
+		try {
+			generator = require('generate_' + generatorName);
+		} catch (ex) {
+			console.log("Can't find: " + generatorName);
+			return;
+		}
 			
 		console.log('-----');
 		console.log(info['name'],  outputPath);
@@ -59,7 +84,7 @@ function convertFolder(inputPath) {
 			
 		// RUN GENERATOR		
 		console.time('processText');
-		var data = generator.generate(inputPath, info, createIndex);
+		var data = generator.generate(inputPath, info, createIndex, startProgress, updateProgress);
 		console.timeEnd('processText');		
 
 		// create chapters
@@ -69,6 +94,7 @@ function convertFolder(inputPath) {
 			var thisChapter = data.chapterData[i],
 				chapterHtml = bibleFormatter.openChapterDocument(info, thisChapter) +
 								thisChapter.html +
+								(typeof (thisChapter.notes) != 'undefined' ? bibleFormatter.breakChar + '<div class="footnotes">' + bibleFormatter.breakChar + thisChapter.notes + bibleFormatter.breakChar + '</div>' + bibleFormatter.breakChar: '') +							
 								bibleFormatter.closeChapterDocument(info, thisChapter),
 																
 				filePath = path.join(outputPath, thisChapter.id + '.html');
@@ -150,11 +176,14 @@ function convertFolder(inputPath) {
 		fs.writeFileSync(infoPath, JSON.stringify(info));
 				
 		// save about
-		if (data.aboutHtml != '') {
-			var aboutPath = path.join(outputPath, 'about.html');
-			fs.writeFileSync(aboutPath, data.aboutHtml);			
+		
+		var aboutPage = bibleFormatter.openAboutPage(info) + 
+						(typeof data.aboutHtml != 'undefined' ? data.aboutHtml : '') +
+						bibleFormatter.closeAboutPage(info),
+						
+			aboutPath = path.join(outputPath, 'about.html');
 			
-		}		
+		fs.writeFileSync(aboutPath, aboutPage);	
 		
 		if (typeof info.stylesheet != 'undefined') {
 			var inStylePath = path.join(inputPath, info.stylesheet),
@@ -166,6 +195,11 @@ function convertFolder(inputPath) {
 				
 		var endDate = new Date();		
 		console.log('-time: ' + MillisecondsToDuration(endDate - startDate));			
+	}	
+	
+	
+	if (progressBar != null) {
+		progressBar.terminate();
 	}	
 }
 
@@ -228,6 +262,54 @@ if (!fs.existsSync(baseInput)) {
 }
 
 
+// parse arguments
+
+
+console.log(argv);
+//return;
+
+if (argv['i']) {
+	createIndex = true;
+}
+
+// DO ALL
+if (argv['a']) {
+	convertFolders();		
+	
+// DO SOME
+} else if (typeof argv['v'] != 'undefined') {
+	var folders = argv['v'].split(',');
+	
+	folders.forEach(function(folder) {
+		convertFolder(baseInput + '/' + folder);	
+	});
+// DO SOME
+} else if (typeof argv['e'] != 'undefined') {
+	var foldersToExclude = argv['e'].split(',');
+	
+	var folders = fs.readdirSync(baseInput);
+	
+	// DO ALL
+	for (var f in folders) {
+		var folder = folders[f],
+			inputPath = path.join(baseInput, folder);
+			
+		if (foldersToExclude.indexOf(folder) > -1) {
+			continue;
+		}
+		
+		convertFolder(inputPath);
+	}		
+	
+	
+	folders.forEach(function(folder) {
+		convertFolder(baseInput + '/' + folder);	
+	});
+}
+
+
+
+/*
 // process 1 or more folders
 if (process.argv.length > 2) {
 
@@ -241,4 +323,7 @@ if (process.argv.length > 2) {
 } else {
 	convertFolders();		
 }
+*/
+
+
 

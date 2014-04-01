@@ -101,7 +101,7 @@ var App = function() {
 	
 		
 	function resize() {
-		////console.log('app resize');
+		console.log('app resize');
 	
 		PlaceKeeper.storePlace();
 	
@@ -201,9 +201,10 @@ var App = function() {
 	
 	function handleGlobalMessage(e) {
 		// give to other windows
+		var windows = ext.windowManager.getWindows();
 						
-		for (var i=0, il=ext.windowManager.windows.length; i<il; i++) {
-			var w = ext.windowManager.windows[i];
+		for (var i=0, il=windows.length; i<il; i++) {
+			var w = windows[i];
 		 	
 			if (w.id != e.id) {
 		 		// pass message down

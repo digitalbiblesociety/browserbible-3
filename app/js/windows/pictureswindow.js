@@ -77,6 +77,12 @@ var PicturesWindow = function(id, parentNode, data) {
 		
 	}
 	
+	function close() {
+		
+		ext.clearListeners();
+		
+	}
+	
 	
 	function size(width, height) {
 		// do notheirng?

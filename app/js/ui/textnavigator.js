@@ -25,7 +25,7 @@ var TextNavigator = function(container, target) {
 		header = changer.find('.text-navigator-header'),
 		title = changer.find('.text-navigator-title'),
 		back = changer.find('.text-navigator-back').hide(),
-		close = changer.find('.text-navigator-close').hide(),
+		closeBtn = changer.find('.text-navigator-close').hide(),
 		fullname = $('<div class="text-navigator-fullname"></div>').appendTo( $('body') ).hide(),							
 		textInfo = null,
 		
@@ -66,7 +66,7 @@ var TextNavigator = function(container, target) {
 			
 	});
 		
-	close.on('click', function() {
+	closeBtn.on('click', function() {
 		hide();
 	});
 	
@@ -314,6 +314,11 @@ var TextNavigator = function(container, target) {
 		return changer;		
 	}	
 	
+	function close() {
+		ext.clearListeners();
+		
+		changer.remove();
+	}	
 	
 	// this is the return object!
 	var ext = {
@@ -323,7 +328,8 @@ var TextNavigator = function(container, target) {
 		isVisible: isVisible,
 		node: node,		
 		setTextInfo: setTextInfo,
-		size: size
+		size: size,
+		close:close
 	}
 	
 	ext = $.extend(true, ext, EventEmitter);

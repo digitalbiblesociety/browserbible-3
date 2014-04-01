@@ -27,7 +27,7 @@ var TextChooser = function(container, target, text_type) {
 		main = textSelector.find('.text-chooser-main'),
 		filter = textSelector.find('.text-chooser-filter-text'),
 		title = textSelector.find('.text-chooser-title'),
-		close = textSelector.find('.text-chooser-close').hide(),
+		closeBtn = textSelector.find('.text-chooser-close').hide(),
 		moreToggle = textSelector.find('.text-chooser-more-toggle'),		
 		allTextsVisible = false,
 		hasTopTexts = false;
@@ -35,7 +35,7 @@ var TextChooser = function(container, target, text_type) {
 		
 	title.html("Texts");
 	
-	close.on('click', hide);
+	closeBtn.on('click', hide);
 	
 	
 	filter.on('keyup keypress', filterVersions);
@@ -460,6 +460,11 @@ var TextChooser = function(container, target, text_type) {
 		return textSelector;		
 	}
 	
+	function close() {		
+		textSelector.remove();
+		ext.clearListeners();		
+	}
+	
 	var ext = {
 		show: show,
 		hide: hide,
@@ -469,7 +474,8 @@ var TextChooser = function(container, target, text_type) {
 		getTextInfo: getTextInfo,
 		setTextInfo: setTextInfo,
 		renderTexts: renderTexts,
-		size: size
+		size: size,
+		close: close
 	};
 	ext = $.extend(true, ext, EventEmitter);
 

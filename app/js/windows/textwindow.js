@@ -65,8 +65,16 @@ var TextWindow = function(id, node, init_data, text_type) {
 			$.ajax({
 				dataType: 'html',
 				url: 'content/texts/' + currentTextInfo.id + '/about.html',
-				success: function(data) {					
-					info.html( data );
+				success: function(htmlString) {
+				
+					var breakTag = '<body',
+						fixedHtml = htmlString.indexOf(breakTag) > -1 ? 
+											breakTag + htmlString.split(breakTag)[1] :
+											'',				
+						aboutDoc = $(fixedHtml);
+					
+					info.html('');
+					info.append( aboutDoc );
 				}				
 			});
 		}
@@ -453,10 +461,21 @@ var TextWindow = function(id, node, init_data, text_type) {
 		return data;	
 	}
 
+
+	function close() {
+
+		
+		textChooser.close();
+		textNavigator.close();		
+		audioController.close();		
+		
+		ext.clearListeners();		
+	}
 	
 	var ext = {
 		size: size,
-		getData: getData
+		getData: getData,
+		close: close
 	}
 	ext = $.extend(true, ext, EventEmitter);
 

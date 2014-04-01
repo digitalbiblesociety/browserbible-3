@@ -602,8 +602,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 	}
 	
 	function close() {
-		console.log('search close');
 		removeHighlights();		
+		
+		ext.clearListeners();
+		ext = null;
 	}
 
 	var ext = {

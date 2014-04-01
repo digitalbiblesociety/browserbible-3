@@ -239,6 +239,11 @@ var MediaWindow = function(id, parentNode, data) {
 	main.on('click', '.image-library-thumbs .media-video-jfm a', sofia.globals.mediaVideoJfmClick);	
 	
 	
+	function close() {
+		
+		ext.clearListeners();
+	}
+	
 	function size(width, height) {
 		// do notheirng?
 		main.outerHeight(height - header.outerHeight())
@@ -249,7 +254,8 @@ var MediaWindow = function(id, parentNode, data) {
 		size: size,
 		getData: function() { 		
 			return {}		
-		}
+		},
+		close: close
 	};	
 	ext = $.extend(true, ext, EventEmitter);
 		

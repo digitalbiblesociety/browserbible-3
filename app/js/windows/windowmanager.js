@@ -6,7 +6,7 @@ var WindowManager = function(node) {
 	
 	function addWindow(className, data) {
 	
-		var id = 'win' + (windows.length+1);
+		var id = 'win' + (new Date()).getTime().toString();
 		
 		if (className == 'TextWindow') {
 			className = 'BibleWindow';
@@ -31,33 +31,33 @@ var WindowManager = function(node) {
 		
 		size();
 	}
-	function removeWindow(window_to_close) {
+	function removeWindow(id) {
 	
-		var windowIndex = -1;
-		
-		for (var i=0, il=windows.length; i<il; i++) {
-			var win = windows[i];
-			
-			if (win.id == window_to_close.id) {
-				
-				windowIndex = i				
-				break;
-			}
+	
+		// find window
+		var windowsToClose = windows.filter(function(win) {
+				return win.id == id;			
+			}),
+			windowToClose = (windowsToClose.length == 1) ? windowsToClose[0] : null;
+					
+		if (windowToClose == null) {
+			console.log('ERROR', "Can't find window", id);
+			return;
 		}
 		
-		// remove this window from the array
-		windows.splice(windowIndex, 1);
-		
-		window_to_close.close();
-		
+		// remove from array
+		windows = windows.filter(function(win) {
+			return win.id != id;			
+		});
+				
 		PlaceKeeper.storePlace();
 		
-		// remove from DOM		
-		window_to_close.node.remove();
+		// remove from DOM, run delete functions
+		windowToClose.close();
+		windowToClose = null;
 		
-		// resize
+		// resize and reset
 		size();
-
 		PlaceKeeper.restorePlace();
 		
 		// trigger save
@@ -74,12 +74,22 @@ var WindowManager = function(node) {
 			height = node.height();			
 		}
 			
+		console.log('manage resize', windows.length);
 			
 		if (windows.length > 0) {
-			var windowWidth = Math.floor(width/windows.length) 
-									- parseInt(windows[0].node.css('margin-left'), 10)
-									- parseInt(windows[0].node.css('margin-right'), 10);		
-		
+			var windowWidth = Math.floor(width/windows.length),
+				firstMarginLeft = parseInt(windows[0].node.css('margin-left'), 10),
+				firstMarginRight =parseInt(windows[0].node.css('margin-right'), 10);
+				
+			
+			if (!isNaN(firstMarginLeft)) {
+				windowWidth = windowWidth - firstMarginLeft;
+			}
+			if (!isNaN(firstMarginRight)) {
+				windowWidth = windowWidth - firstMarginRight;
+			}			
+				 
+						
 			for (var i=0, il=windows.length; i<il; i++) {
 				windows[i].size(windowWidth, height);
 			}
@@ -110,7 +120,7 @@ var WindowManager = function(node) {
 		remove: removeWindow,
 		size: size,
 		getSettings: getSettings,
-		windows: windows
+		getWindows: function() { return windows; }
 	};
 	
 	ext = $.extend(true, ext, EventEmitter);
@@ -128,7 +138,7 @@ var Window = function(id, parentNode, className, data, manager) {
 						console.log(id, 'remove', manager);
 						
 						
-						manager.remove(ext);
+						manager.remove(id);
 					});
 					
 	var controller = new window[className](id, node, data);
@@ -163,10 +173,17 @@ var Window = function(id, parentNode, className, data, manager) {
 	}
 	
 	function close() {
+			
 		console.log('window.close', controller.close);
+		
 		if (typeof controller.close != 'undefined') {
 			controller.close();
-		}
+		}		
+		controller = null;
+		
+		ext.clearListeners();
+		
+		node.remove();			
 	}	
 
 	var ext = {

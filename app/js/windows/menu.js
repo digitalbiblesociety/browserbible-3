@@ -235,7 +235,7 @@ var AddWindowButton = function(node) {
 			// get location from ifrst window
 			var 
 				firstBCWindow = (sofia.app.windowManager) ? 
-									sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] : 
+									sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] : 
 									null,
 				currentData = (firstBCWindow != null) ? firstBCWindow.getData() : null;		
 		
@@ -776,7 +776,7 @@ var PlaceKeeper = (function() {
 		
 	function storePlace() {
 		currentWindow = (sofia.app.windowManager) ? 
-							sofia.app.windowManager.windows.filter(function(w) { return w.className == 'BibleWindow'})[0] : 
+							sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow'})[0] : 
 							null;
 		
 		currentData = (currentWindow != null) ? currentWindow.getData() : null;

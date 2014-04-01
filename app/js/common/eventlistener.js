@@ -31,6 +31,10 @@ var EventEmitter = {
 		}
 	},
 	
+	clearListeners: function() {
+		this.events = [];
+	},
+	
 	// jQuery like names
 	on: function(eventName, callback, bubble) {
 		this.addEventListener.call(this, eventName, callback, bubble);	

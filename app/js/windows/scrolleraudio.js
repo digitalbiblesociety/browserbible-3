@@ -502,9 +502,20 @@ var AudioController = function(container, ui, scroller) {
 	
 	//$(window).on('resize')
 	
+	function close() {
+		ext.clearListeners();
+		
+		block.remove();
+		options.remove();
+		
+		block = null;
+		options = null;
+	}
+	
 	var ext = {
 		setTextInfo: setTextInfo,
-		size: size
+		size: size,
+		close: close
 	}	
 	ext = $.extend(true, ext, EventEmitter);
 		

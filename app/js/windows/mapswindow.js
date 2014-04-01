@@ -297,6 +297,9 @@ var MapsWindow = function(id, parentNode, data) {
 	
 	var contentToHighlight = [];
 	function highlightStoredLocations() {
+		//removeHighlights();
+	
+	
 		if (contentToHighlight.length > 0) {
 			for (var i=0, il=contentToHighlight.length; i<il; i++) {
 				highlightLocations(contentToHighlight[i]);
@@ -339,6 +342,35 @@ var MapsWindow = function(id, parentNode, data) {
 		
 
 	}
+	
+	function removeHighlights() {	
+		$('.BibleWindow .linked-location').each(function(i, el) {
+			
+			if (el.tagName.toLowerCase() == 'l') {
+				// for Lemma tags, just remove the class
+				el.className = el.className.replace(/linked-location/gi, '');
+			} else {		
+				// if it's just <span class="linked-location">, replace it with text
+				var textFragment = document.createTextNode(el.textContent);
+				el.parentNode.insertBefore(textFragment, el);
+				el.parentNode.removeChild(el);
+			}
+			
+		});		
+	}	
+	
+	
+	function close() {
+		console.log('closing maps');
+		
+		geocoder = null;
+		map = null;
+		infowindow = null;		
+		
+		ext.clearListeners();		
+		
+		removeHighlights();	
+	}
 
 	function text_location_clicked() {
 		var element = $(this);
@@ -349,7 +381,8 @@ var MapsWindow = function(id, parentNode, data) {
 	var ext = {
 		size: size,
 		getData: getData,
-		sendMessage: function() {}
+		sendMessage: function() {},
+		close: close
 	};	
 	ext = $.extend(true, ext, EventEmitter);
 	

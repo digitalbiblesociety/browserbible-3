@@ -417,7 +417,12 @@ sofia.menuComponents.push('FullScreenButton');
             }
         }
         fullScreenApi.requestFullScreen = function(el) {
-            return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
+        	if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+	        	el.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);	
+        	}
+            else {
+            	return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
+            }
         }
         fullScreenApi.cancelFullScreen = function(el) {
             return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();

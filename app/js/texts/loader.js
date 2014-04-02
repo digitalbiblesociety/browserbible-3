@@ -59,7 +59,7 @@ TextLoader = (function() {
 							footnotetext = footnote.find('.text'),
 							noteintext = content.find(noteid);
 
-						console.log(noteid, noteintext);
+						//console.log(noteid, noteintext);
 						
 						noteintext.append(footnotetext);
 

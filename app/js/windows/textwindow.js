@@ -414,12 +414,15 @@ var TextWindow = function(id, node, init_data, text_type) {
 	}
 	
 	
-	$(window).on('resize', function() {
+	$(window).on('resize', moveIcons);
+	
+	var iconsAreNormal = true;
+	function moveIcons() {
 		
-		if ($('body').hasClass('one-window')) {
+		var winWidth = $(window).width();
 		
-			console.log('text chooser resize');
-			
+		if (winWidth < 480 && iconsAreNormal) {
+	
 			var tcNode = textChooser.node(),
 				tcHeader = tcNode.find('.text-chooser-header');
 			
@@ -427,9 +430,28 @@ var TextWindow = function(id, node, init_data, text_type) {
 						
 			audioui.appendTo(tcHeader);
 			infoBtn.appendTo(tcHeader);
-		}		
+			
+			iconsAreNormal = false;
+		}
 		
-	});
+		if (winWidth >= 480 && !iconsAreNormal) {
+	
+			var 
+				headerInner = container.find('.scroller-header-inner'),
+				tcNode = textChooser.node(),
+				tcHeader = tcNode.find('.text-chooser-header');
+			
+			tcNode.find('.text-chooser-filter-text').show();
+						
+			audioui.appendTo(headerInner);
+			infoBtn.appendTo(headerInner);
+			
+			iconsAreNormal = true;
+		}		
+				
+		
+	};
+	moveIcons();
 	
 	function getData() {
 		// get data
@@ -463,7 +485,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 
 
 	function close() {
-
+		$(window).off('resize', moveIcons);
 		
 		textChooser.close();
 		textNavigator.close();		

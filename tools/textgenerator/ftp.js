@@ -121,8 +121,8 @@ function uploadText(folder) {
 		});
 	}	
 		
-		
-	bar = new ProgressBar(folder + ' :bar [:current/:total] :elapsed', { total: files.length, width: 50 });
+	console.log(folder);
+	bar = new ProgressBar('[:bar] [:current/:total] :elapsed', { total: files.length, width: 50 });
 		
 	
 	function upload_next_file() {

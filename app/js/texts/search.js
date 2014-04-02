@@ -83,7 +83,7 @@ TextSearch = function() {
 		createSearchTerms();
 		
 		
-		if (typeof sofia.config.serverSearchUrl != 'undefined' && sofia.config.serverSearchUrl != '') {
+		if (typeof sofia.config.serverSearchUrl != 'undefined' && sofia.config.serverSearchUrl != '' && window.location.protocol != 'file:') {
 		
 			startServerSearch(textInfo, searchText, isLemmaSearch);
 		} else {		
@@ -622,6 +622,12 @@ SearchIndexLoader = function() {
 			
 		// attempt to load in index
 		$.ajax({
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/json");
+				}
+			},		
+
 			dataType: 'json',
 			url: indexUrl,
 			success: function(data) {		

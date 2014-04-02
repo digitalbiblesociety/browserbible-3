@@ -24,7 +24,12 @@ TextInfoLoader = (function() {
 		// load it!
 		var infoUrl = locationBase + textid + '/info.json';
 		
-		$.ajax({
+		$.ajax({		
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/json");
+				}
+			},		
 			url: infoUrl,
 			dataType: 'json',
 			//dataType: 'text',
@@ -77,6 +82,11 @@ TextInfoLoader = (function() {
 		}	
 					
 		$.ajax({
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/json");
+				}
+			},		
 			url: locationBase + textsFilename,
 			dataType: 'json',
 			cache: false,
@@ -92,7 +102,8 @@ TextInfoLoader = (function() {
 			error: function(jqXHR, textStatus, errorThrown) {
 				//console.log('error loading texts.json'); //, jqXHR, textStatus, errorThrown);
 				//console.log(textStatus);				
-				
+
+				/*
 				var modal = new MovableWindow(600,250, 'Chrome Local Error');
 				//modal.size(500, 200).center();
 				
@@ -106,7 +117,7 @@ TextInfoLoader = (function() {
 				);
 				modal.show();
 
-				
+				*/				
 			}
 		});
 	}

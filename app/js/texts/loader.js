@@ -42,6 +42,7 @@ TextLoader = (function() {
 		var url = baseFolder + textid + '/' + sectionid + '.html' + '?' + new Date();
 					
 		$.ajax({
+			dataType: 'text',
 			url: url,
 			success: function(data) {
 				

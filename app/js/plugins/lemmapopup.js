@@ -166,6 +166,11 @@ var LemmaPopupPlugin = function(app) {
 
 				(function(strongsNumber, morphKey) {
 					$.ajax({
+						beforeSend: function(xhr){
+							if (xhr.overrideMimeType){
+								xhr.overrideMimeType("application/json");
+							}
+						},					
 						dataType: 'json',
 						url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
 						success: function(data) {

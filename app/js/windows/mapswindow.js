@@ -157,6 +157,11 @@ var MapsWindow = function(id, parentNode, data) {
 		console.log('MAP: loading pins');
 	
 		$.ajax({
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/json");
+				}
+			},		
 			dataType: 'json',
 			url: 'content/maps/maps.json',
 			success: function(data) {

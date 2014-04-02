@@ -176,6 +176,11 @@ var MediaLibrary = (function(){
 		
 		// load main info
 		$.ajax({
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/json");
+				}
+			},		
 			dataType: 'json',
 			url: 'content/media/media.json',
 			success: function(data) {
@@ -198,6 +203,11 @@ var MediaLibrary = (function(){
 			currentMediaIndex++;
 						
 			$.ajax({
+				beforeSend: function(xhr){
+					if (xhr.overrideMimeType){
+						xhr.overrideMimeType("application/json");
+					}
+				},				
 				dataType: 'json',
 				url: 'content/media/' + mediaLibrary.folder + '/info.json',
 				success: function(data) {									

@@ -67,8 +67,7 @@ TextLoader = (function() {
 					});
 					
 				}
-					
-				
+								
 				content.attr('data-textid', textid);
 				
 				// store as text

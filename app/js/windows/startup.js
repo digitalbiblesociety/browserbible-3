@@ -35,6 +35,11 @@ $(function() {
 							'<code>/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --allow-file-access-from-files</code>';
 					}
 					
+				} else {
+					
+					errorMessage = 	
+						'<p>Unknown error loading files (cannot load about.html)</p>';
+					
 				}
 				
 				modal.body.css({background: '#000', color: '#fff' }).html(
@@ -42,7 +47,7 @@ $(function() {
 						errorMessage +
 					'</div>'
 				);
-				modal.show();								
+				modal.show().center();								
 			}
 		});
 				

@@ -29,7 +29,7 @@ function startProgress(total, label) {
 	if (progressBar != null) {
 		progressBar.terminate();
 	}
-	progressBar = new ProgressBar(label + ' :bar [:current/:total] :elapsed', { total: total, width: 50 });
+	progressBar = new ProgressBar('[:bar] [:current/:total] :elapsed', { total: total, width: 50 });
 }
 function updateProgress() {
 	progressBar.tick();
@@ -194,13 +194,17 @@ function convertFolder(inputPath) {
 		
 				
 		var endDate = new Date();		
-		console.log('-time: ' + MillisecondsToDuration(endDate - startDate));			
+		console.log('-time: ' + MillisecondsToDuration(endDate - startDate));	
+		
+		
 	}	
-	
-	
+	/*
 	if (progressBar != null) {
 		progressBar.terminate();
-	}	
+	}
+	*/	
+
+	return;
 }
 
 function convertFolders() {
@@ -218,6 +222,8 @@ function convertFolders() {
 	var endDate = new Date();
 	
 	console.log('TOTAL: ' + MillisecondsToDuration(endDate - startDate));
+	
+	process.exit();	
 }
 
 function deleteAllFiles(pathToDelete) {
@@ -264,9 +270,17 @@ if (!fs.existsSync(baseInput)) {
 
 // parse arguments
 
+if (Object.keys(argv).length == 1) {
+	console.log('----------------\n' + 
+				'Generator Help\n' + 
+				'-v VERSION,VERSION = only some versions\n' + 
+				'-e VERSION,VERSION = exclude some versions\n' + 
+				'-a = process all versions\n' + 
+				'-i = create index\n');
+	return;
+}
 
-console.log(argv);
-//return;
+
 
 if (argv['i']) {
 	createIndex = true;
@@ -281,8 +295,9 @@ if (argv['a']) {
 	var folders = argv['v'].split(',');
 	
 	folders.forEach(function(folder) {
-		convertFolder(baseInput + '/' + folder);	
+		convertFolder(baseInput + '/' + folder);
 	});
+
 // DO SOME
 } else if (typeof argv['e'] != 'undefined') {
 	var foldersToExclude = argv['e'].split(',');
@@ -307,23 +322,5 @@ if (argv['a']) {
 	});
 }
 
-
-
-/*
-// process 1 or more folders
-if (process.argv.length > 2) {
-
-	var folders = process.argv[2].split(',');
-	
-	folders.forEach(function(folder) {
-		convertFolder(baseInput + '/' + folder);	
-	});
-
-
-} else {
-	convertFolders();		
-}
-*/
-
-
-
+process.exit();
+return;

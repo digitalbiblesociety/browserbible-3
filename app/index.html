@@ -6,11 +6,8 @@
 	<title>Bible - Windows</title>
 	
 	<!-- Apple specific code -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="initial-scale=1.0">
-	<meta name="viewport" content="maximum-scale=1.0">
-	<meta name="viewport" content="user-scalable=no">
-	<meta name="viewport" content="width=device-width">		
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />		
 
 	<link rel="stylesheet" href="css/common-ui.css" />	
 	<link rel="stylesheet" href="css/bible.css" />
@@ -29,11 +26,12 @@
 	<link rel="stylesheet" href="js/lib/jquery-ui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css"  data-build="copy"/>	
 	
 	<!-- app start -->
-	<script src="js/windows/config.js" data-build="copy"></script>	
+	<script src="js/windows/namespace.js"></script>	
 	
 	<!-- external libraries -->
 	<script src="js/lib/base32.js"></script>
-	<script src="js/lib/xregexp.js"></script>		
+	<script src="js/lib/xregexp.js"></script>
+	<script src="js/lib/ZeroClipboard.js"></script>
 	
 	<!- data -->
 	<script src="js/common/languagedata.js"></script>	
@@ -42,7 +40,8 @@
 	<script src="js/common/appsettings.js"></script>	
 	<script src="js/common/eventlistener.js"></script>
 	<script src="js/common/timer.js"></script>			
-	<script src="js/common/stringutility.js"></script>			
+	<script src="js/common/stringutility.js"></script>
+	<script src="js/common/detection.js"></script>				
 	
 	<!- bible -->
 	<script src="js/bible/bible.data.js"></script>
@@ -60,15 +59,18 @@
 	<script src="js/ui/infowindow.js"></script>	
 	<script src="js/ui/movablewindow.js"></script>					
 
+	<script src="js/plugins/crossreferences.js"></script>
 	<script src="js/plugins/lemmainfo.js"></script>
 	<script src="js/plugins/lemmamatch.js"></script>
 	<script src="js/plugins/lemmapopup.js"></script>
 	<script src="js/plugins/versematch.js"></script>	
 	<script src="js/plugins/notes.js"></script>	
 	<script src="js/plugins/eng2p.js"></script>	
-	<script src="js/plugins/googleanalytics.js"></script>			
+	<script src="js/plugins/googleanalytics.js"></script>
+	<script src="js/plugins/visualfilters.js"></script>				
 
-	<script src="js/media/audiodatamanager.js"></script>	
+	<script src="js/media/audiodatamanager.js"></script>
+	<script src="js/media/jesusfilmapi.js"></script>	
 	<script src="js/media/medialibrary.js"></script>				
 	<script src="js/media/mediaplugin.js"></script>	
 	<script src="js/media/mediawindow.js"></script>	
@@ -83,10 +85,21 @@
 	
 	<!-- startup -->	
 	<script src="js/windows/windowapp.js"></script>		
-					
+	<script src="js/windows/startup.js"></script>		
+	<script src="js/windows/config.js" data-build="copy"></script>					
 	
 </head>
 <body>	
+
+	<div id="startup">
+		<h1>Browser Bible</h1>
+		
+		<p>Bible study application with Greek and Hebrew.</p>
+		
+		<p>Developed by <a href="http://www.digitalbiblesociety.com/">Digital Bible Society</a> with major contributions from <a href="http://j.hn/">John Dyer</a> and <a href="http://ebible.org/">Michael Johnson</a>. Audio provided by <a href="https://www.faithcomesbyhearing.com/‎">Faith Comes by Hearing</a> and video by <A href="http://www.jesusfilm.org/‎">Jesus Film Project</a>.</p>
+		
+		<p>Source code: <a href="https://github.com/digitalbiblesociety/browserbible-3">Download from Github</a></p>	
+	</div>
 
 </body>
 </html>

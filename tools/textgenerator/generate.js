@@ -187,9 +187,17 @@ function convertFolder(inputPath) {
 		
 		if (typeof info.stylesheet != 'undefined') {
 			var inStylePath = path.join(inputPath, info.stylesheet),
+				inStyleText = fs.readFileSync(inStylePath, 'utf8' ),
 				outStylePath = path.join(outputPath, info.stylesheet);
+			
+			fs.writeFileSync(outStylePath, inStyleText);
+			
+			console.log('Copying stylesheet', inStylePath, outStylePath);
 				
-			fs.createReadStream(inStylePath).pipe(fs.createWriteStream(outStylePath));			
+			//fs.createReadStream(inStylePath).pipe(fs.createWriteStream(outStylePath));			
+			//copyFile(inStylePath, outStylePath, function(error) {
+			//	console.log('Error', error);				
+			//});
 		}
 		
 				
@@ -205,6 +213,28 @@ function convertFolder(inputPath) {
 	*/	
 
 	return;
+}
+
+
+function copyFile(source, target, cb) {
+	var cbCalled = false;
+	
+	var rd = fs.createReadStream(source);
+	rd.on("error", done);
+	
+	var wr = fs.createWriteStream(target);
+	wr.on("error", done);
+	wr.on("close", function(ex) {
+		done();
+	});
+	rd.pipe(wr);
+	
+	function done(err) {
+		if (!cbCalled) {
+		cb(err);
+			cbCalled = true;
+		}
+	}
 }
 
 function convertFolders() {

@@ -85,6 +85,8 @@ function processNextText() {
 	
 		console.log('closing');
 		client.end();
+		
+		process.exit();
 	}
 	
 }

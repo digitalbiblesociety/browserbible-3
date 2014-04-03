@@ -335,6 +335,7 @@
 		color: #fff;
 		position: relative;
 		background: #444;	
+		overflow: hidden;
 	}
 	
 	.text-chooser .text-chooser-filter-text {

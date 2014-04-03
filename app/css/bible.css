@@ -58,7 +58,7 @@
 .chapter[lang=he] .p
 .chapter[lang=heb] .p { 
 	font-family:'SBL Hebrew', 'Ezra SIL', EzraSILRegular !important; 
-	font-size: 125%;
+	font-size: 1.5em;
 }
 
 [lang=gre],
@@ -261,6 +261,15 @@ div.is1 {
 	margin-top: 0em;
 }
 
+/* introduction */
+.is {
+	margin-top: 1.0em;
+	text-align: center;
+}
+.ip {
+	line-height: 1.2;
+	font-size: 0.9em;
+}
 
 
 /* commentaries */
@@ -268,4 +277,8 @@ div.is1 {
 	font-weight: bold;
 	display: block;
 	margin: 3em 0 0 0 ;
+}
+.commentary {
+	line-height: 1.5;
+	font-size: 0.9em;	
 }

@@ -57,6 +57,45 @@ class Crock32 {
 }
 
 
+function uniord($c) {
+    $h = ord($c{0});
+    if ($h <= 0x7F) {
+        return $h;
+    } else if ($h < 0xC2) {
+        return false;
+    } else if ($h <= 0xDF) {
+        return ($h & 0x1F) << 6 | (ord($c{1}) & 0x3F);
+    } else if ($h <= 0xEF) {
+        return ($h & 0x0F) << 12 | (ord($c{1}) & 0x3F) << 6
+                                 | (ord($c{2}) & 0x3F);
+    } else if ($h <= 0xF4) {
+        return ($h & 0x0F) << 18 | (ord($c{1}) & 0x3F) << 12
+                                 | (ord($c{2}) & 0x3F) << 6
+                                 | (ord($c{3}) & 0x3F);
+    } else {
+        return false;
+    }
+}
+
+
+function hash_word($word) {
+	$HASHSIZE = 20;
+	
+	$hash = 0;
+	$word_length = mb_strlen($word, 'UTF-8');
+	
+	
+	for ($i=0; $i<$word_length; $i++) {
+		$hash += uniord( mb_substr($word, $i, 1, 'UTF-8') );
+		
+		$hash %= $HASHSIZE ;		
+	}
+	
+	return $hash;	
+}
+
+
+
 /// DATAT
 $dbsBookCodes = array("GN","EX","");
 $isLemmaRegExp = '/(G|H)\\d{1,6}/';
@@ -88,25 +127,45 @@ foreach ($words as &$word) {
 	$path_to_index = './content/texts/' . $textid;
 
 	if ($is_lemma_search) {
-		$path_to_index .= '/indexlemma/' . $word . '.json';		
+		//$path_to_index .= '/indexlemma/' . $word . '.json';		
+		
+		$letter = substr($word,0,1);
+		$thousands = '0';
+		if (strlen($word) == 5) {
+			$thousands = substr($word,1,1);
+		}
+		
+		$path_to_index .= '/indexlemma/' . '_' . strtoupper($letter) . $thousands . '000' . '.json';		
 		
 	} else {
-		// load index	
-		$base_word = $base32->encode( utf8_encode(trim($word)) );
-		$path_to_index .= '/index/' . $base_word . '.json';	
+	
+		$word = strtolower($word);
 		
+		// load index	
+		/*
+		$base_word = $base32->encode( utf8_encode(trim($word)) );
+		$path_to_index .= '/index/' . $base_word . '.json';			
 		$output["base32"] .= $base_word . ' ';	
+		*/
+		
+		$path_to_index .= '/index/_' . hash_word($word) . '.json';			
 	}
 	
 		
 	if (file_exists($path_to_index)) {
 		$file_contents = file_get_contents($path_to_index);
 		$json_data = json_decode($file_contents);
-	
+
 		// store this index along with other words to be combined later
-		$indexes[] = $json_data->occurrences;
+		if ($json_data->occurrences) {
+			$indexes[] = $json_data->occurrences;
+		} else {
+			$indexes[] = $json_data->{$word};			
+		}
 	}	
 }
+
+
 
 // Combined index
 $combined_index = array();
@@ -154,8 +213,9 @@ if ($search_type == "AND") {
 
 // load the data
 foreach ($combined_index as &$verseid) {
-	//$chapter_code = substr($verseid, 0, 2);
-	$chapter_code = explode('_', $verseid)[0];
+	//$chapter_code = substr($verseid, 0, 2);;
+	$verse_exploded = explode('_', $verseid);
+	$chapter_code = $verse_exploded[0];
 	$verse_html = '';
 	
 	// load chapter
@@ -178,6 +238,8 @@ foreach ($combined_index as &$verseid) {
 	libxml_clear_errors();
 	$XPath = new DOMXPath($doc);
 	
+	$doc->preserveWhiteSpace = true;
+	$doc->formatOutput       = true;
 			
 	// remove notes
 	$note_nodes = $XPath->query("//span[contains(@class,'note')]");
@@ -202,12 +264,24 @@ foreach ($combined_index as &$verseid) {
 		// need to double check that it's exact (DN1_1, but not DN1_12)
 		if ( preg_match( '/\\b' . $verseid . '\\b/', $verse_node->attributes->getNamedItem('class')->nodeValue ) == 1) {
 			
+			
+			$outXML = $verse_node->ownerDocument->saveXML($verse_node); 
+			$xml = new DOMDocument(); 
+			$xml->preserveWhiteSpace = false; 
+			$xml->formatOutput = true; 
+			$xml->loadXML($outXML); 
+			$verse_html .=  $xml->saveXML(); 			
+			
+			/*
 			foreach($verse_node->childNodes as $child_node) {
 				if (is_object($child_node)) {
+				
 					//$verse_html .= $dom->saveHTML($child_node);
-					$verse_html .= $verse_node->ownerDocument->saveHTML($child_node) . ' ';					
+					$verse_html .= $verse_node->ownerDocument->saveHTML($child_node);					
 				}
-			}			
+				$verse_html .= ' ';
+			}
+			*/			
 			
 			//$verse_html .= $doc->saveHTML($verse_node);
 			// $verse_html .= $verse_node->nodeValue;			
@@ -217,10 +291,14 @@ foreach ($combined_index as &$verseid) {
 		
 	}
 	
+	// strange fix for PHP?
+	$verse_html = str_replace('l><', 'l> <', $verse_html);
+	$verse_html = str_replace('<?xml version="1.0"?>','', $verse_html);
+	
 	// TODO: highlight?
 	
 	// push into array
-	$output[results][] = array($verseid => $verse_html);
+	$output['results'][] = array($verseid => $verse_html);
 }
 
 

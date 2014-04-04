@@ -67,9 +67,9 @@ header .prev,
 footer .prev,
 .header .prev,
 .footer .prev {
-	width: 40px;
+	width: 45px;
 	top: 0;
-	right: 40px;
+	right: 45px;
 	padding: 8px;
 	background-position-y: -50px;
 }
@@ -79,7 +79,7 @@ footer .next,
 .footer .next {
 	width: 40px;
 	top: 0;
-	right: 0;
+	right: 5px;
 	padding: 8px;	
 }
 
@@ -89,21 +89,21 @@ footer .next,
 [dir=rtl] .header .prev,
 [dir=rtl] .footer .prev {
 	right: auto;
-	left: 0;
+	left: 5px;
 }
 [dir=rtl] header .next,
 [dir=rtl] footer .next,
 [dir=rtl] .header .next,
 [dir=rtl] .footer .next {
 	right: auto;
-	left: 40px;
+	left: 45px;
 }
 [dir=rtl] header .home,
 [dir=rtl] footer .home,
 [dir=rtl] .header .home,
 [dir=rtl] .footer .home {
 	left: auto;
-	right: 0;
+	right: 5px;
 }
 
 
@@ -241,8 +241,34 @@ header .home {
 
 
 
+.footnotes {
+	margin: 1em;
+	border-top: 1px solid #666;
+	padding-top: 1em;
+	font-size: 0.8em;
+}
+.footnotes .footnote {
+	margin-bottom: 1em;
+	padding-left: 1.1em;
 
+	position: relative;
+	display: block;
 
+}
+.footnotes .footnote .key {
+	position: absolute;
+	top: 0.25em;
+	left: 0;
+	width: 10px;
+	font-size: 0.6em;	
+	display: block;
+	text-align: right;	
+}
+.footnotes .footnote .backref  {
+	color: #2a85e8;
+	display: inline-block;
+	padding-right: 0.5em;
+}
 
 
 /* BIBLE.css *

@@ -12,12 +12,6 @@
 			"type": "jfm",			
 			"iconClassName" : "video-icon",			
 			"name": "Jesus Film Media"
-		},	
-		{
-			"folder": "video",
-			"type": "video",			
-			"iconClassName" : "video-icon",			
-			"name": "Jesus Film (Local)"
 		},		
 		{
 			"folder": "images",
@@ -27,6 +21,11 @@
 		}		
 	],
 	"unused": [	
-
+		{
+			"folder": "video",
+			"type": "video",			
+			"iconClassName" : "video-icon",			
+			"name": "Jesus Film (Local)"
+		}
 	]	
 }

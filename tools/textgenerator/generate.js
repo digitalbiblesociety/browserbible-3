@@ -160,13 +160,13 @@ function convertFolder(inputPath) {
 		if (createIndex && data.indexData) {
 			console.time('createIndex');		
 		
-			verseIndexer.createIndexFiles(indexOutputPath, data.indexData);
+			verseIndexer.createIndexFiles(indexOutputPath, data.indexData, 'words');
 			
 			console.timeEnd('createIndex');	
 			
 			console.time('createLemma');		
 		
-			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData);
+			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData, 'strongs');
 			
 			console.timeEnd('createLemma');								
 		}

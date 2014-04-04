@@ -7,7 +7,7 @@
     "jquery"   :  "*",
     "uglifyjs" : "*",
     "progress": "*",
-    "minimist": "*",    
+    "minimist": "*"
   },
   "license": "MIT"
 }

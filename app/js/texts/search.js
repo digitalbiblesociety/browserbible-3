@@ -127,7 +127,11 @@ TextSearch = function() {
 				ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
 				
 				isSearching = false;							
-			}			
+			}, 
+			error: function(a,b,c,d) {
+				console.log('error:serverSearch', a,b,c,d);
+				//reset()
+			}
 		})
 	}	
 	

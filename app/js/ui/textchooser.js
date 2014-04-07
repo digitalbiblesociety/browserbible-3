@@ -16,7 +16,7 @@ var TextChooser = function(container, target, text_type) {
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
 								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +
-								'<span class="text-chooser-more-toggle">More</span>' +
+								'<span class="text-chooser-more-toggle i18n" data-i18n="[placeholder]windows.bible.more"></span>' +
 								'<span class="text-chooser-close">Close</span>' +  						
 							'</div>' +
 							'<div class="text-chooser-main"></div>' +		
@@ -32,7 +32,7 @@ var TextChooser = function(container, target, text_type) {
 		allTextsVisible = false,
 		hasTopTexts = false;
 		
-	filter.i18n();
+	textSelector.find('.i18n').i18n();
 		
 	title.html("Texts");
 	
@@ -150,13 +150,17 @@ var TextChooser = function(container, target, text_type) {
 	*/
 	
 	moreToggle.on('click', function() {
+
+		// remove so that it isn't reset
+		moreToggle.attr('data-i18n','');
+	
 		if (moreToggle.hasClass('show-all')) {
 			allTextsVisible = false;
-			moreToggle.html('More');
+			moreToggle.html( i18n.t('windows.bible.more') );
 			moreToggle.removeClass('show-all');
 		} else {
 			allTextsVisible = true;
-			moreToggle.html('Less');							
+			moreToggle.html( i18n.t('windows.bible.less')  );							
 			moreToggle.addClass('show-all');			
 		}
 		

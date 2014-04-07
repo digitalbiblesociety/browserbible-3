@@ -38,7 +38,9 @@ sofia.resources["en"] = {
 				filter: 'Filter...',
 				ot: 'Old Testament',
 				nt: 'New Testament',
-				dc: 'Deuterocanonical Books'								
+				dc: 'Deuterocanonical Books',
+				more: 'More',
+				less: 'Less'								
 			},
 			commentary: {
 				label: 'Commentary'

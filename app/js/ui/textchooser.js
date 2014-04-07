@@ -15,7 +15,7 @@ var TextChooser = function(container, target, text_type) {
 							'<span class="up-arrow"></span>' +
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
-								'<input type="text" class="text-chooser-filter-text" placeholder="Filter..." />' +
+								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +
 								'<span class="text-chooser-more-toggle">More</span>' +
 								'<span class="text-chooser-close">Close</span>' +  						
 							'</div>' +
@@ -32,6 +32,7 @@ var TextChooser = function(container, target, text_type) {
 		allTextsVisible = false,
 		hasTopTexts = false;
 		
+	filter.i18n();
 		
 	title.html("Texts");
 	

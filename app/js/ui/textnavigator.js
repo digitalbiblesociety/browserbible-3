@@ -156,15 +156,15 @@ var TextNavigator = function(container, target) {
 				continue;
 				
 			if (bible.OT_BOOKS.indexOf(divisionid) > -1 && !hasPrintedOt) {
-				html.push('<div class="text-navigator-division-header">Old Testament</div>');
+				html.push('<div class="text-navigator-division-header">' + i18n.t('windows.bible.ot') + '</div>');
 				hasPrintedOt = true;
 			}
 			if (bible.NT_BOOKS.indexOf(divisionid) > -1 && !hasPrintedNt) {
-				html.push('<div class="text-navigator-division-header">New Testament</div>');
+				html.push('<div class="text-navigator-division-header">' + i18n.t('windows.bible.nt') + '</div>');
 				hasPrintedNt = true;
 			}
 			if (bible.AP_BOOKS.indexOf(divisionid) > -1 && !hasPrintedAp) {
-				html.push('<div class="text-navigator-division-header">Deuterocanonical Books</div>');
+				html.push('<div class="text-navigator-division-header">' + i18n.t('windows.bible.dc') + '</div>');
 				hasPrintedAp = true;
 			}
 

@@ -112,7 +112,7 @@ padding:5px 0 5px 25px;\
 			'<td><span class="eng2p-highlight-demo">Yourselves</span></td>' +
 		'</tr>' +	
 		
-		(typeof sofia.config["2p-enableAll"] != 'undefined' && sofia.config["2p-enableAll"] == true ?
+		(typeof sofia.config["eng2p-enableAll"] != 'undefined' && sofia.config["eng2p-enableAll"] == true ?
 		'<tr>' +
 			'<th>' +
 				'<input type="radio" name="eng2p-option" id="eng2p-option-youall" value="youall"  />' +

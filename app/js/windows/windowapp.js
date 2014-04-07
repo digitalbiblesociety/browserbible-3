@@ -226,6 +226,11 @@ var App = function() {
 	
 	ext.init = init;
 	ext.handleGlobalMessage = handleGlobalMessage;
+		
+	i18n.init({fallbackLng: 'en', resStore: sofia.resources});
+	setTimeout(function() {	
+		$('#config-language').val( i18n.lng() );
+	},50);
 	
 	return ext;	
 };

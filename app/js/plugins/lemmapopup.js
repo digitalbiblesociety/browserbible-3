@@ -186,7 +186,9 @@ var LemmaPopupPlugin = function(app) {
 								html += '<span class="lemma-morphology">' + bible.morphology[morphType].format( morphKey ) + '</span>';
 							}
 							
-							html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">Find all occurences (approximately ' + data.frequency + ')</span>';
+							html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">' + 
+								i18n.t('plugins.lemmapopup.findalloccurrences', {count: data.frequency}) +
+							'</span>';
 							
 							html += '<div class="lemma-outline">' + data.outline + '</div>';
 							

@@ -91,10 +91,20 @@ var MainLogo = function(node) {
 };
 sofia.menuComponents.push('MainLogo');
 
+var MobileButton = function(node) {
+	var MobileButton = $('<a id="main-mobile-button" class="main-menu-button" style="" href="../mobile/index.html"></a>')
+					.appendTo(node);
+};
+sofia.menuComponents.push('MobileButton');
+
 var MainSearchBox = function(node) {
 		
 	var searchBox = $('<div id="main-search-box">' + 
-							'<input type="search" placeholder="Search" id="main-search-input" />' +
+							//'<input type="search" placeholder="Search" id="main-search-input" />' +
+							
+							//'<input type="search" placeholder="' + i18n.t('menu.search.placeholder') + '" id="main-search-input" />' +
+							'<input type="search" class="i18n" data-i18n="[placeholder]menu.search.placeholder" id="main-search-input" />' +
+							
 							'<input type="button" id="main-search-button" value="" />' +
 					'</div>')
 			.appendTo(node),
@@ -152,189 +162,6 @@ var MainSearchBox = function(node) {
 };
 sofia.menuComponents.push('MainSearchBox');
 
-
-var AddWindowButton = function(node) {
-
-
-	var addButton = $('<div id="main-add-button" class="main-menu-button"></div>')
-					.appendTo(node)
-					.on('click', buttonClick),
-		buttonMenu = $('<div id="add-button-box" class="window-overlay"></div>')
-					.appendTo($('body')) 
-	
-	function buttonClick(e) {
-	
-		e.preventDefault();
-	
-		if (buttonMenu.is(':visible')) {
-			buttonMenu.hide();
-			$(document).off('click', docClick);			
-		} else {
-			buttonMenu.show();
-			setTimeout(function() {
-				$(document).on('click', docClick);
-			},50);
-		}
-		
-		return false;
-	}
-	
-	function docClick(e) {
-	
-		if ($(e.target).closest('#add-button-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {
-		
-			buttonMenu.hide();
-			
-			$(document).off('click', docClick);					
-		
-		}
-	}
-	
-
-	var windowTools = [
-		{type: 'BibleWindow', label: 'Bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
-	];
-
-	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
-		windowTools.push(	
-			{type: 'CommentaryWindow', label: 'Commentary', data: {'textid':sofia.config.newCommentaryWindowTextId,'fragmentid':''}}
-		);
-	}
-	
-	if (sofia.config.enableOnlineSources) {
-		windowTools.push(	
-			{type: 'MapsWindow', label: 'Maps', data: {'latitude': 31.7833, 'longitude': 35.2167}}
-		);
-	}	
-	windowTools.push(		
-		{type: 'SearchWindow', label: 'Search', data: {}}
-	);
-	windowTools.push(	
-		{type: 'MediaWindow', label: 'Media', data: {}}
-	);
-	
-	
-	
-	for (var x in windowTools) {
-		var tool = windowTools[x];
-		// ADD Button
-		var addButton = $('<div class="window-add" id="add-' + tool.type + '">' + tool.label + '</div>')
-					.appendTo(buttonMenu) 
-					.data('init', tool);			
-	}
-	
-	buttonMenu.on('click', '.window-add', function(e) {
-		buttonMenu.hide();
-	
-		var label = $(this),
-			settings = label.data('init');
-			
-		// when starting a bible or commentary window, try to match it up with the others
-		if (settings.type == 'BibleWindow' || settings.type == 'CommentaryWindow') {
-			
-			// get location from ifrst window
-			var 
-				firstBCWindow = (sofia.app.windowManager) ? 
-									sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] : 
-									null,
-				currentData = (firstBCWindow != null) ? firstBCWindow.getData() : null;		
-		
-			
-			// if no location, then use the defaults from config
-			if (currentData != null) {
-				console.log('first window', currentData);
-				settings.data.fragmentid = currentData.fragmentid;
-				settings.data.sectionid = currentData.sectionid;				
-			} else {
-				var fragmentid = (typeof sofia.config.newWindowFragmentid != 'undefined') ? sofia.config.newWindowFragmentid : 'JN1_1',
-					sectionid = fragmentid.split('_')[0];
-			
-				settings.data.fragmentid = fragmentid;
-				settings.data.sectionid = sectionid;				
-			}
-			
-			console.log('new window', settings);			
-		}
-			
-		PlaceKeeper.storePlace();
-		sofia.app.windowManager.add(settings.type, settings.data);	
-		PlaceKeeper.restorePlace();
-		
-		if (sofia.analytics) {
-			sofia.analytics.record('createwindow', settings.type);
-		}		
-
-		//windowManager.trigger('settingschange',{});
-	});	
-	
-	return addButton;
-
-};
-sofia.menuComponents.push('AddWindowButton');
-
-var MobileButton = function(node) {
-	var MobileButton = $('<a id="main-mobile-button" class="main-menu-button" style="" href="../mobile/index.html"></a>')
-					.appendTo(node);
-};
-sofia.menuComponents.push('MobileButton');
-
-var ConfigButton = function(node) {
-	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
-					.appendTo(node)
-					.on('click', buttonClick),
-					
-		mobileConfigButton = $('<div id="mobile-config-button" class="mobile-menu-button" style=""></div>')
-					.appendTo( $('body'))
-					.on('click', buttonClick),
-					
-		configMenu = $('<div id="main-config-box" class="window-overlay">' + 
-
-						'<div class="config-section" id="config-type">' + 
-							'<span class="config-header">Font</span>' + 
-							'<div class="config-body"></div>' +
-							'<div class="clear"></div>' +	
-						'</div>' + 
-						'<div class="config-section" id="config-toggles">' + 
-							'<span class="config-header">Settings</span>' + 
-							'<div class="config-body"></div>' +
-							'<div class="clear"></div>' +	
-						'</div>' + 						
-						'<div class="config-section" id="config-tools">' + 
-							'<span class="config-header">Tools</span>' + 
-							'<div class="config-body"></div>' +
-							'<div class="clear"></div>' +	
-						'</div>' + 
-		
-					'</div>')
-					.appendTo($('body'));
-					
-	
-	function docClick(e) {
-	
-		if ($(e.target).closest('#main-config-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {	
-			configMenu.hide();
-			$(document).off('click', docClick);
-		}
-	}	
-	
-	function buttonClick(e) {
-	
-		e.preventDefault();	
-	
-		if (configMenu.is(':visible')) {
-			configMenu.hide();
-			
-			$(document).off('click', docClick);			
-		} else {
-			configMenu.show();
-			
-			$(document).on('click', docClick);
-		}
-		
-		return false;		
-	}
-};
-sofia.menuComponents.push('ConfigButton');
 
 
 var FullScreenButton = function(node) {
@@ -445,9 +272,199 @@ sofia.menuComponents.push('FullScreenButton');
     window.fullScreenApi = fullScreenApi;
 })();
 
+var ConfigButton = function(node) {
+	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
+					.appendTo(node)
+					.on('click', buttonClick),
+					
+		mobileConfigButton = $('<div id="mobile-config-button" class="mobile-menu-button" style=""></div>')
+					.appendTo( $('body'))
+					.on('click', buttonClick),
+					
+		configMenu = $('<div id="main-config-box" class="window-overlay">' + 
+
+						'<div class="config-section" id="config-type">' + 
+							//'<span class="config-header">Font</span>' + 
+							'<span class="config-header i18n" data-i18n="[html]menu.config.font"></span>' + 						
+							'<div class="config-body"></div>' +
+							'<div class="clear"></div>' +	
+						'</div>' + 
+						'<div class="config-section" id="config-toggles">' + 
+//							'<span class="config-header">Settings</span>' + 
+							'<span class="config-header i18n" data-i18n="[html]menu.config.settings"></span>' + 						
+							'<div class="config-body"></div>' +
+							'<div class="clear"></div>' +	
+						'</div>' + 						
+						'<div class="config-section" id="config-tools">' + 
+							'<span class="config-header i18n" data-i18n="[html]menu.config.tools"></span>' + 									
+							//'<span class="config-header">Tools</span>' + 
+							'<div class="config-body"></div>' +
+							'<div class="clear"></div>' +	
+						'</div>' + 
+		
+					'</div>')
+					.appendTo($('body'));
+					
+	
+	function docClick(e) {
+	
+		if ($(e.target).closest('#main-config-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {	
+			configMenu.hide();
+			$(document).off('click', docClick);
+		}
+	}	
+	
+	function buttonClick(e) {
+	
+		e.preventDefault();	
+	
+		if (configMenu.is(':visible')) {
+			configMenu.hide();
+			
+			$(document).off('click', docClick);			
+		} else {
+		
+			$('.window-overlay').hide();
+					
+			configMenu.show();
+			
+			$(document).on('click', docClick);
+		}
+		
+		return false;		
+	}
+};
+sofia.menuComponents.push('ConfigButton');
 
 
 
+var AddWindowButton = function(node) {
+
+
+	var addButton = $('<div id="main-add-button" class="main-menu-button"></div>')
+					.appendTo(node)
+					.on('click', buttonClick),
+		buttonMenu = $('<div id="add-button-box" class="window-overlay"></div>')
+					.appendTo($('body')) 
+	
+	function buttonClick(e) {
+
+	
+		e.preventDefault();
+	
+		if (buttonMenu.is(':visible')) {
+			buttonMenu.hide();
+			$(document).off('click', docClick);			
+		} else {
+			$('.window-overlay').hide();
+			buttonMenu.show();
+			setTimeout(function() {
+				$(document).on('click', docClick);
+			},50);
+		}
+		
+		return false;
+	}
+	
+	function docClick(e) {
+	
+		if ($(e.target).closest('#add-button-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {
+		
+			buttonMenu.hide();
+			
+			$(document).off('click', docClick);					
+		
+		}
+	}
+	
+
+	var windowTools = [
+		{type: 'BibleWindow', label: 'bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
+	];
+
+	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
+		windowTools.push(	
+			{type: 'CommentaryWindow', label: 'commentary', data: {'textid':sofia.config.newCommentaryWindowTextId,'fragmentid':''}}
+		);
+	}
+	
+	if (sofia.config.enableOnlineSources) {
+		windowTools.push(	
+			{type: 'MapsWindow', label: 'map', data: {'latitude': 31.7833, 'longitude': 35.2167}}
+		);
+	}	
+	windowTools.push(		
+		{type: 'SearchWindow', label: 'search', data: {}}
+	);
+	windowTools.push(	
+		{type: 'MediaWindow', label: 'media', data: {}}
+	);
+	
+	
+	
+	for (var x in windowTools) {
+		var tool = windowTools[x];
+		// ADD Button
+		var addButton = $('<div class="window-add i18n" id="add-' + tool.type + '" data-i18n="[html]windows.' + tool.label + '.label"></div>')
+					.appendTo(buttonMenu) 
+					.data('init', tool);			
+	}
+	
+	buttonMenu.on('click', '.window-add', function(e) {
+		buttonMenu.hide();
+	
+		var label = $(this),
+			settings = label.data('init');
+			
+		// when starting a bible or commentary window, try to match it up with the others
+		if (settings.type == 'BibleWindow' || settings.type == 'CommentaryWindow') {
+			
+			// get location from ifrst window
+			var 
+				firstBCWindow = (sofia.app.windowManager) ? 
+									sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] : 
+									null,
+				currentData = (firstBCWindow != null) ? firstBCWindow.getData() : null;		
+		
+			
+			// if no location, then use the defaults from config
+			if (currentData != null) {
+				console.log('first window', currentData);
+				settings.data.fragmentid = currentData.fragmentid;
+				settings.data.sectionid = currentData.sectionid;				
+			} else {
+				var fragmentid = (typeof sofia.config.newWindowFragmentid != 'undefined') ? sofia.config.newWindowFragmentid : 'JN1_1',
+					sectionid = fragmentid.split('_')[0];
+			
+				settings.data.fragmentid = fragmentid;
+				settings.data.sectionid = sectionid;				
+			}
+			
+			console.log('new window', settings);			
+		}
+			
+		PlaceKeeper.storePlace();
+		sofia.app.windowManager.add(settings.type, settings.data);	
+		PlaceKeeper.restorePlace();
+		
+		if (sofia.analytics) {
+			sofia.analytics.record('createwindow', settings.type);
+		}		
+
+		//windowManager.trigger('settingschange',{});
+	});	
+	
+	$('<span class="window-reset">Reset</span>')
+		.on('click', function() {
+			window.location.reload();			
+		})
+		.appendTo(buttonMenu);
+	
+	
+	return addButton;
+
+};
+sofia.menuComponents.push('AddWindowButton');
 
 
 var FontSizeSettings = function(node) {
@@ -571,6 +588,39 @@ var FontFamilySettings = function(node) {
 
 sofia.menuComponents.push('FontFamilySettings');
 
+
+
+
+
+var LanguageSetting = function(node) {
+	var 
+		body = $('#config-type .config-body'),
+		list = $('<select id="config-language"></select>')
+					.appendTo(body),
+		langKeys = Object.keys(sofia.resources);
+		
+		
+		
+		
+	for(var i=0, il=langKeys.length; i<il; i++) {
+		var langKey = langKeys[i],
+			langName = sofia.resources[langKey].translation.name;
+		
+		$('<option value="' + langKey + '">' + langName + '</option>')
+			.appendTo(list);		
+	}
+	
+	// handle clciks
+	list.on('change', function() {
+		var newLang = list.val();
+
+		i18n.setLng(newLang);
+		$('.i18n').i18n();					
+	});
+};
+
+
+sofia.menuComponents.push('LanguageSetting');
 
 
 var ConfigToggles = function(node) {

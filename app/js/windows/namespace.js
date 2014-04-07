@@ -8,3 +8,5 @@ sofia.menuComponents = [];
 
 sofia.globals = {};
 
+// language
+sofia.resources = {};

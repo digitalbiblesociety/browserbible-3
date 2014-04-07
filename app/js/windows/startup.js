@@ -78,5 +78,8 @@ $(function() {
 		// create app
 		sofia.app = new App();
 		sofia.app.init();
+		
+		$('.i18n').i18n();
+		
 	}
 });

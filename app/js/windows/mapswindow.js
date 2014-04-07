@@ -12,7 +12,7 @@ var MapsWindow = function(id, parentNode, data) {
 		inputMarginLeft = 10,		
 		inputMarginRight = 45,	
 		inputMarginTop = 10,				
-		mapSearchInput = $('<input placeholder="Search..." type="text" style="height: 32px; background: #fff; border: solid 0px #333; padding: 7px; position: absolute; top: ' + inputMarginTop + 'px; left: ' + inputMarginLeft + 'px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); z-index: 2; font-size: 14px;" />').appendTo(parentNode),
+		mapSearchInput = $('<input placeholder="" type="text" class="i18n" data-i18n="[placeholder]windows.map.placeholder" style="height: 32px; background: #fff; border: solid 0px #333; padding: 7px; position: absolute; top: ' + inputMarginTop + 'px; left: ' + inputMarginLeft + 'px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); z-index: 2; font-size: 14px;" />').appendTo(parentNode),
 		
 		//mapSearchInput = header.find('input'),
 		

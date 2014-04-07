@@ -171,9 +171,9 @@ var VisualFilters = function(node) {
 								'<thead>' +
 									'<tr>' + 
 										'<th class="visualfilters-active"></th>' +
-										'<th class="visualfilters-strongs">Strong\'s #</th>' +
-										'<th class="visualfilters-morph">Morphology</th>' +
-										'<th class="visualfilters-style">Style</th>' +
+										'<th class="visualfilters-strongs i18n" data-i18n="[html]plugins.visualfilters.strongsnumber"></th>' +
+										'<th class="visualfilters-morph i18n" data-i18n="[html]plugins.visualfilters.morphology">Morphology</th>' +
+										'<th class="visualfilters-style i18n" data-i18n="[html]plugins.visualfilters.style">Style</th>' +
 										'<th class="visualfilters-example"></th>' +									
 										'<th class="visualfilters-remove"></th>' + 
 									'</tr>' +
@@ -197,14 +197,17 @@ var VisualFilters = function(node) {
 										tbody.append(row);										
 									}),
 				
-		openVisualizationsButton = $('<span class="config-button" id="config-visualfilters-button">Visual Filters</span>')
+		openVisualizationsButton = $('<span class="config-button i18n" data-i18n="[html]plugins.visualfilters.button" id="config-visualfilters-button"></span>')
 						.appendTo( $('#config-tools .config-body') );	
 						
 	console.log('LOADED VIZ',visualSettings);
 	
 	// Attach to Config pane
 	
-	filtersWindow.title.html('Visual Filters');
+	//filtersWindow.title.html('Visual Filters');
+	filtersWindow.title
+				.addClass('i18n')
+				.attr('data-i18n','[html]plugins.visualfilters.title')	
 						
 	openVisualizationsButton.on('click', function() {
 		

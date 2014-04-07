@@ -23,9 +23,9 @@ var AudioController = function(container, ui, scroller) {
 		options = $(
 				'<div class="audio-options">' + 
 					'<span class="audio-options-close"></span>' + 
-					'<strong>Audio Options</strong>' + 
-					'<label><input type="checkbox" class="audio-scroll" checked />Sync Text (beta)</label>' +
-					'<label><input type="checkbox" class="audio-autoplay" checked />Autoplay Next</label>' +				
+					'<strong class="i18n" data-i18n="[html]windows.audio.options"></strong>' + 
+					'<label><input type="checkbox" class="audio-scroll" checked /><span class="i18n" data-i18n="[html]windows.audio.synctext" /></label>' +
+					'<label><input type="checkbox" class="audio-autoplay" checked /><span class="i18n" data-i18n="[html]windows.audio.autoplay" /></label>' +				
 				'</div>'
 				).appendTo(container),
 		scrollCheckbox = options.find('.audio-scroll').prop('checked', false),
@@ -61,6 +61,8 @@ var AudioController = function(container, ui, scroller) {
 	
 	//autoplayCheckbox.prop('checked',false);	
 	//autoplayCheckbox.parent().hide();
+	
+	options.find('.i18n').i18n();
 	
 	block.hide();
 	ui.hide();	

@@ -1,10 +1,17 @@
+
 	
 /**
  * Highlights words based on morphological data
  *
  * @author John Dyer (http://j.hn/)
  */
- 
+
+
+/* 
+Add
+,"2p-enableAll": true 
+to config in order to enable all the options
+*/ 
 var Eng2pPlugin = function(node) {
 
 	/*
@@ -104,6 +111,8 @@ padding:5px 0 5px 25px;\
 			'<td><span class="eng2p-highlight-demo">Yours</span></td>' +
 			'<td><span class="eng2p-highlight-demo">Yourselves</span></td>' +
 		'</tr>' +	
+		
+		(typeof sofia.config["2p-enableAll"] != 'undefined' && sofia.config["2p-enableAll"] == true ?
 		'<tr>' +
 			'<th>' +
 				'<input type="radio" name="eng2p-option" id="eng2p-option-youall" value="youall"  />' +
@@ -173,16 +182,20 @@ padding:5px 0 5px 25px;\
 			'<td>Ye\'s</td>' +
 			'<td>Ye\'s</td>' +
 			'<td>Yeselves</td>' +				
-		'</tr>' +						
+		'</tr>' 				
+		:'') +		
 	'</tbody>' +	
 '</table>' +
 			'</div>')
 			.appendTo( engWindow.body ),
-			button = $('<span class="config-button" id="config-eng2p-button">English 2nd Person Plural</span>')
+			button = $('<span class="config-button i18n" data-i18n="[html]plugins.eng2p.title" id="config-eng2p-button"></span>')
 						.appendTo( $('#config-tools .config-body') );	
 						
 						
-	engWindow.title.html('English Second Person Plural');
+	//engWindow.title.html('English Second Person Plural');
+	engWindow.title
+				.addClass('i18n')
+				.attr('data-i18n','[html]plugins.eng2p.title')
 						
 	button.on('click', function() {
 		

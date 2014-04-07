@@ -5,8 +5,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	var header = $('<div class="window-header search-header" >' + 
 						
-						'<input type="text" class="search-text header-input" placeholder="Search" />' + 
-						'<input type="button" value="Search" class="search-button header-button" />' + 		
+						'<input type="text" class="search-text header-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' + 
+						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' + 		
 						'<div class="text-list header-list" style="">&nbsp;</div>' + 
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' + 				
 					'</div>').appendTo(parentNode),
@@ -51,7 +51,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 		searchIndexesData = null, 
 		searchTermsRegExp = null,
 		isLemmaSearch = false
-		;		
+		;	
+		
+	header.find('.i18n').i18n();	
 	
 	// EVENTS
 	input.on('keypress', function(e) {
@@ -180,7 +182,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		//console.log('searcher:indexcomplete', e.data);
 	
 	
-		footer.html('Results: ' + e.data.searchIndexesData.length );
+		footer.html(i18n.t('windows.search.results') + e.data.searchIndexesData.length );
 	});
 	
 	textSearch.on('complete', function(e) {
@@ -439,10 +441,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 	function setFinalResultsCount(count) {
 					
-		footer.html('Results: ' + count );
+		footer.html(i18n.t('windows.search.results') + ': ' + count );
 		
 		// move to center
-		searchProgressBarLabel.html(count + ' verses');
+		searchProgressBarLabel.html(count + ' ' + i18n.t('windows.search.verses'));
 		
 		var progressWidth = searchProgressBarInner.outerWidth(true),
 			labelWidth = searchProgressBarLabel.outerWidth(true),

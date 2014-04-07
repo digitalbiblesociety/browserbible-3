@@ -1,11 +1,11 @@
 /* Google Translate */
 
-sofia.resources["zh-CN"] = { 
+sofia.resources["zh-CN"] = {
 	translation: {
 		name: '中文 (Chinese - Simplified)',	
 	
 		menu: {
-			搜索: {
+			search: {
 				placeholder:'搜索'
 			},
 			config: {

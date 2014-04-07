@@ -229,7 +229,22 @@ var App = function() {
 		
 	i18n.init({fallbackLng: 'en', resStore: sofia.resources});
 	setTimeout(function() {	
-		$('#config-language').val( i18n.lng() );
+		
+		// look for match
+		var option = $('#config-language option[val="' + i18n.lng() + '"]');
+		
+		if (option.length == 0) {
+			option = $('#config-language option[val="' + i18n.lng().split('-')[0] + '"]');
+		}
+		
+		if (option.length > 0) {
+			option.prop('selected',true);
+		}
+		
+		//$('#config-language').val( i18n.lng() );
+		
+		
+		
 	},50);
 	
 	return ext;	

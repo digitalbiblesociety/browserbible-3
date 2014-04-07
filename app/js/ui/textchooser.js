@@ -16,7 +16,7 @@ var TextChooser = function(container, target, text_type) {
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
 								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +
-								'<span class="text-chooser-more-toggle i18n" data-i18n="[placeholder]windows.bible.more"></span>' +
+								'<span class="text-chooser-more-toggle i18n" data-i18n="[html]windows.bible.more"></span>' +
 								'<span class="text-chooser-close">Close</span>' +  						
 							'</div>' +
 							'<div class="text-chooser-main"></div>' +		

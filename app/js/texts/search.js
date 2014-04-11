@@ -38,7 +38,7 @@ TextSearch = function() {
 		searchText = '',
 		searchTextid = '',
 		isAsciiRegExp = new XRegExp('^[\040-\176]*$', 'gi'),
-		isLemmaRegExp = /(G|H)\d{1,6}/g,
+		isLemmaRegExp = /[GgHh]\d{1,6}/g,
 		
 		isLemmaSearch = false,
 		startTime = null,
@@ -100,7 +100,7 @@ TextSearch = function() {
 			url: sofia.config.serverSearchUrl,
 			data: {
 				textid: textInfo.id,
-				search: searchText,
+				search: searchText.toLowerCase(),
 				date: (new Date()).toString()			
 			}, 
 			success: function(data) {
@@ -532,7 +532,18 @@ SearchTools = {
 		addWord();
 	
 		return words;
-	}
+	},
+	
+	HASHSIZE: 20,
+	
+	hashWord: function(word) {
+	    var hash = 0;
+	    for (i = 0; i < word.length; i++) {
+	        hash += word.charCodeAt(i);
+	        hash %= SearchTools.HASHSIZE;
+	   }
+	   return hash;
+	}	
 };
 
 SearchIndexLoader = function() {
@@ -604,17 +615,27 @@ SearchIndexLoader = function() {
 	
 	function loadSearchTermIndex(searchTerm) {
 		
-		var indexUrl = '';
+		var indexUrl = '',
+			key = '';
 		
 		if (isLemmaSearch) {
+			key = searchTerm.toUpperCase();
+			var letter = key.substr(0,1),
+				firstNumber = searchTerm.substr(1,1);
+			
 		
-			indexUrl = baseContentPath + textInfo.id + '/indexlemma/' + searchTerm + '.json';
+		
+			indexUrl = baseContentPath + textInfo.id + '/indexlemma/_' + letter.toUpperCase() + firstNumber + '000' + '.json';
 			
 		} else {
+			key = searchTerm;
+					
+			//var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
+			var hash = SearchTools.hashWord(searchTerm); //base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
+
+			
 		
-			var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
-		
-			indexUrl = baseContentPath + textInfo.id + '/index/' + searchTermEncoded + '.json';
+			indexUrl = baseContentPath + textInfo.id + '/index/_' + hash + '.json';
 		}
 			
 		if (searchTerm == 'undefined') {
@@ -634,8 +655,11 @@ SearchIndexLoader = function() {
 
 			dataType: 'json',
 			url: indexUrl,
-			success: function(data) {		
-				loadedIndexes.push(data);
+			success: function(data) {	
+				
+				var fragments = data[key];
+							
+				loadedIndexes.push(fragments);
 				
 				loadNextIndex();
 			}, 
@@ -658,7 +682,7 @@ SearchIndexLoader = function() {
 		if (searchType == 'OR') {
 			// combine all the fragments
 			for (var i=0, il=loadedIndexes.length; i<il; i++) {
-				fragmentids = fragmentids.concat( loadedIndexes[i].occurrences );
+				fragmentids = fragmentids.concat( loadedIndexes[i] ); // .occurrences );
 				////console.log(loadedIndexes[i].term);
 				////console.log(loadedIndexes[i].occurrences);
 			}
@@ -700,12 +724,14 @@ SearchIndexLoader = function() {
 			// combine arrays to only include fragments (verses) where all indexes overlap (truth AND love)
 			var totalIndexes = loadedIndexes.length;	
 			if (totalIndexes == 1) {		
-				fragmentids = loadedIndexes[0].occurrences;
+				fragmentids = loadedIndexes[0]; // .occurrences;
 			} else if (totalIndexes > 1) {
-				fragmentids = loadedIndexes[0].occurrences.filter(function(val) {
+				//fragmentids = loadedIndexes[0].occurrences.filter(function(val) {
+				fragmentids = loadedIndexes[0].filter(function(val) {
 					var inOtherArrays = true;
 					for (var i=1; i<totalIndexes; i++) {
-						if (loadedIndexes[i].occurrences.indexOf(val) == -1) {
+						//if (loadedIndexes[i].occurrences.indexOf(val) == -1) {
+						if (loadedIndexes[i].indexOf(val) == -1) {
 							inOtherArrays = false;
 							break;
 						}
@@ -719,19 +745,24 @@ SearchIndexLoader = function() {
 		// reformat fragments into sectionids
 		// ['JN1_1','JN1_2'] => [{sectionid: 'JN1', fragmentids: ['JN1_1','JN1_2']}]
 		for (var i=0, il=fragmentids.length; i<il; i++) {
-			var fragmentid = fragmentids[i],
-				sectionid = fragmentid.split('_')[0];
-				
-			// see if we already created data for this section id
-			var sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });	
+			var fragmentid = fragmentids[i];
 			
-			// create new data
-			if (sectionidInfo.length == 0) { 
-				loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
-			} 
-			// add to this sectionid
-			else {	
-				sectionidInfo[0].fragmentids.push(fragmentid);
+			if (fragmentid != '' && fragmentid != null) {
+			
+			
+				var	sectionid = fragmentid.split('_')[0],
+					
+					// see if we already created data for this section id
+					sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });	
+				
+				// create new data
+				if (sectionidInfo.length == 0) { 
+					loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
+				} 
+				// add to this sectionid
+				else {	
+					sectionidInfo[0].fragmentids.push(fragmentid);
+				}
 			}
 			
 		

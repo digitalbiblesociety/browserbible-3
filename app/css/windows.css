@@ -11,7 +11,7 @@ html, body {
 
 body {
 	background: #ffffff;
-	font-family: Avenir, Helvetica;
+	font-family: Avenir, Helvetica, Arial;
 }
 
 .clear {
@@ -28,6 +28,7 @@ input:focus {
 .windows-header {
 	background-color: #333;
 	height: 60px;
+	padding-right :10px;
 }
 .windows-main {
 
@@ -55,7 +56,7 @@ input:focus {
 		border-bottom: solid 1px #ccc;
 		height: 50px;
 		z-index: 1;
-		font-family: Avenir, Helvetica;
+		font-family: Avenir, Helvetica, Arial;
 		font-size: 12px;	
 	}
 	
@@ -356,13 +357,15 @@ input:focus {
 	
 .main-menu-button {
 	cursor: pointer; 
-	position: absolute; 
-	top: 15px; 
+	-x-position: absolute; 
+	-x-top: 15px; 
 	width: 30px; 
 	height: 30px; 
 	background-repeat: no-repeat; 
 	background-position: center center; 
-	background-size: 30px 30px;		
+	background-size: 30px 30px;	
+	float: right;
+	margin: 15px 5px;		
 }
 	#main-mobile-button {
 		background-image: url(images/mobile.svg); 
@@ -403,6 +406,9 @@ input:focus {
 		}
 	}
 	
+#config-language{
+	margin-top: 10px;
+}
 	
 
 @media only screen and (max-width: 460px) {
@@ -438,7 +444,7 @@ input:focus {
 	background-size: 45px 45px;
 	background-position: center top;
 	background-repeat: no-repeat;	
-	font-family: Avenir, Helvetica;
+	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
 }
 .window-add:hover {	
@@ -468,6 +474,18 @@ input:focus {
 }
 #add-MediaWindow {
 	background-image: url(images/pictures.svg);
+}
+
+#add-button-box {
+	
+}
+.window-reset {
+	position: absolute;
+	bottom: 10px;
+	right:10px;
+	display: block;
+	cursor: pointer;	
+	font-size: 	10px
 }
 
 
@@ -523,7 +541,7 @@ input:focus {
 	padding: 5px;
 	height: 60px;
 	-x-box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	font-family: Avenir;
+	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
 }
 
@@ -538,7 +556,7 @@ input:focus {
 	height: 90px;
 	
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	font-family: Avenir;
+	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
 }
 

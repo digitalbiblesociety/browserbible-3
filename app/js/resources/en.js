@@ -1,4 +1,5 @@
 sofia.resources["en"] = { 
+
 	translation: {
 		name: 'English',	
 	

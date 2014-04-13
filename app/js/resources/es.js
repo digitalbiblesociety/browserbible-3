@@ -1,0 +1,71 @@
+sofia.resources['es'] = {
+	"translation": {
+		"name": "Inglés",
+		"menu": {
+			"search": {
+				"placeholder": "Búsqueda"
+			},
+			"config": {
+				"font": "Fuente",
+				"settings": "Configuración",
+				"tools": "Instrumentos"
+			},
+			"reset": "reajustar"
+		},
+		"plugins": {
+			"visualfilters": {
+				"button": "Visual Filtros",
+				"title": "Visual Filtros",
+				"newfilter": "Nuevo filtro",
+				"strongsnumber": "Strong #",
+				"morphology": "Morfología",
+				"style": "Estilo"
+			},
+			"eng2p": {
+				"button": "Inglés segunda persona del plural",
+				"title": "Inglés Segunda Persona del Plural"
+			},
+			"lemmapopup": {
+				"findalloccurrences": "Buscar todas las ocurrencias (aproximadamente __ count__)"
+			}
+		},
+		"windows": {
+			"bible": {
+				"label": "Biblia",
+				"filter": "Filtro ...",
+				"ot": "Antiguo Testamento",
+				"nt": "Nuevo Testamento",
+				"dc": "Libros Deuterocanónicos",
+				"more": "Más",
+				"less": "Menos"
+			},
+			"commentary": {
+				"label": "Comentario"
+			},
+			"map": {
+				"label": "Mapas",
+				"placeholder": "Buscar ..."
+			},
+			"search": {
+				"label": "Búsqueda",
+				"placeholder": "Búsqueda",
+				"button": "Búsqueda",
+				"results": "Resultados",
+				"verses": "versos"
+			},
+			"media": {
+				"label": "Medios de comunicación"
+			},
+			"notes": {
+				"label": "Notas"
+			},
+			"audio": {
+				"options": "Opciones de audio",
+				"synctext": "Sincronizar texto (beta)",
+				"autoplay": "Reproducción automática Siguiente",
+				"drama": "Drama",
+				"nondrama": "No drama"
+			}
+		}
+	}
+}

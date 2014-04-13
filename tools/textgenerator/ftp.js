@@ -4,6 +4,18 @@ var ftp = require('ftp'),
 	path = require('path'),
 	argv = require('minimist')(process.argv.slice(2));
 	
+/*
+ftp-config.js
+
+{
+	"host": "",
+	"user": "",
+	"password": "",
+	"directory": ""
+}
+*/
+	
+	
 	
 var 
 	ftp_settings = JSON.parse( fs.readFileSync( 'ftp-config.js', 'utf8') ),
@@ -12,6 +24,7 @@ var
 	folders = [],
 	file_filter = [],
 	includeIndexes = false,
+	excludeText = false,
 	currentFolderIndex = 0;
 	
 // process 1 or more folders
@@ -23,12 +36,17 @@ if (Object.keys(argv).length == 1) {
 				'-e VERSION,VERSION = exclude some versions\n' + 
 				'-f FILENAME,FILENAME = include only some files\n' + 
 				'-a = process all versions\n' + 
-				'-i = include index\n');
+				'-i = include index\n' + 
+				'-t = exclude texts (when using index)\n');
 	return;
 }
 
 if (argv['i']) {
 	includeIndexes = true;
+}
+
+if (argv['t']) {
+	excludeText = true;
 }
 
 // DO ALL
@@ -65,7 +83,7 @@ client.on('ready', function() {
 
 client.on('error', function(e) {
 	console.log('error', e);
-	exit();
+	process.exit();
 });
 
 
@@ -111,19 +129,53 @@ function uploadText(folder) {
 	}
 	
 	// make sure target exists
+
+
+	uploadFilesInFolder(folder, local_folder);
+}
 	
-	var files = fs.readdirSync(local_folder)
+function uploadFilesInFolder(folder, local_folder) {
+	
+	
+	
+	// GET LOCAL FILES
+	
+	var files = [], 
 		file_index = 0,
 		bar = null;
 		
+	// always include unless we choose not too :)
+	if (!excludeText) {
+		files = fs.readdirSync(local_folder);	
 	
-	if (file_filter.length > 0) {
-		files = files.filter(function(f) {			
-			return file_filter.indexOf(f) > -1;			
-		});
-	}	
+		if (file_filter.length > 0) {
+			files = files.filter(function(f) {			
+				return file_filter.indexOf(f) > -1;			
+			});
+		}	
+	}
+	
+	// only add if we ask to
+	if (includeIndexes) {
+		var index_folder_names = ['index', 'indexlemma'];
 		
-	console.log(folder);
+		for (var index_folder_index in index_folder_names) {
+		
+			var index_folder_name = index_folder_names[index_folder_index],
+				index_folder = path.join(local_folder, index_folder_name);
+						
+			if (fs.existsSync(index_folder)) {
+				var indexFiles = fs.readdirSync(index_folder);
+				indexFiles.forEach(function(value, index, indexFilesArr) {
+					indexFilesArr[index] = path.join(index_folder_name, value);
+				});
+			
+				files = files.concat(indexFiles);
+			}
+		}
+	}
+		
+	console.log(folder, excludeText, includeIndexes, files.length);
 	bar = new ProgressBar('[:bar] [:current/:total] :elapsed', { total: files.length, width: 50 });
 		
 	
@@ -141,17 +193,11 @@ function uploadText(folder) {
 
 					bar.tick();
 					file_index++;
-					upload_next_file();					
-				});
-			
+					upload_next_file();		
+				});			
 			}
 			
-			
-			
 		} else {
-			
-			//console.log('[[done]]');
-			
 			processNextText();
 		}
 		

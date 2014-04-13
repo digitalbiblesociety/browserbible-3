@@ -52,7 +52,11 @@ scripts.forEach(function(url) {
 	
 	var localPath = path.join(rootPath, url);
 	
+	try {
 	minifiedScript += uglify.minify(localPath).code;
+	} catch (e) {
+		console.log('error minifiy', localPath);
+	}
 	combinedScript += fs.readFileSync(path.join(rootPath, url), 'utf8');
 });
 

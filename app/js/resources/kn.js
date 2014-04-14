@@ -26,7 +26,7 @@ sofia.resources['kn'] = {
 				"title": "ಇಂಗ್ಲೀಷ್ ಎರಡನೇ ವ್ಯಕ್ತಿ ಬಹುವಚನ"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "ಎಲ್ಲಾ ಘಟನೆಗಳು ಹುಡುಕಿ (ಸುಮಾರು __ count__)"
+				"findalloccurrences": "ಎಲ್ಲಾ ಘಟನೆಗಳು ಹುಡುಕಿ (ಸುಮಾರು __count__)"
 			}
 		},
 		"windows": {

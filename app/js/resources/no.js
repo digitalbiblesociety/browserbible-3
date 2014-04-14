@@ -26,7 +26,7 @@ sofia.resources['no'] = {
 				"title": "Norsk Second Person Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Finn alle forekomster (ca. __ count__)"
+				"findalloccurrences": "Finn alle forekomster (ca. __count__)"
 			}
 		},
 		"windows": {

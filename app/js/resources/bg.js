@@ -26,7 +26,7 @@ sofia.resources['bg'] = {
 				"title": "English второ лице множествено число"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Намери всички срещания (приблизително __ count__)"
+				"findalloccurrences": "Намери всички срещания (приблизително __count__)"
 			}
 		},
 		"windows": {

@@ -26,7 +26,7 @@ sofia.resources['is'] = {
 				"title": "English Second Person Fleirtala"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Finna öll tilfelli (u.þ.b. __ count__)"
+				"findalloccurrences": "Finna öll tilfelli (u.þ.b. __count__)"
 			}
 		},
 		"windows": {

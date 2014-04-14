@@ -26,7 +26,7 @@ sofia.resources['jw'] = {
 				"title": "English kapindho Person jamak"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Nemokake kabeh manéka (kira-kira __ count__)"
+				"findalloccurrences": "Nemokake kabeh manéka (kira-kira __count__)"
 			}
 		},
 		"windows": {

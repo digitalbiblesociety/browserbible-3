@@ -26,7 +26,7 @@ sofia.resources['eo'] = {
 				"title": "Angla Dua Persono Pluralo"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Trovu ĉiujn spritaĵoj (proksimume __ count__)"
+				"findalloccurrences": "Trovu ĉiujn spritaĵoj (proksimume __count__)"
 			}
 		},
 		"windows": {

@@ -26,7 +26,7 @@ sofia.resources['tr'] = {
 				"title": "İngilizce İkinci Kişi Çoğul"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Tüm tekrarlamalarını bulmak (yaklaşık __ count__)"
+				"findalloccurrences": "Tüm tekrarlamalarını bulmak (yaklaşık __count__)"
 			}
 		},
 		"windows": {

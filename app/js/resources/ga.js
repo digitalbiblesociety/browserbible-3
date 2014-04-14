@@ -26,7 +26,7 @@ sofia.resources['ga'] = {
 				"title": "Béarla Dara Duine Iolra"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Aimsigh na tarluithe (thart __ count__)"
+				"findalloccurrences": "Aimsigh na tarluithe (thart __count__)"
 			}
 		},
 		"windows": {

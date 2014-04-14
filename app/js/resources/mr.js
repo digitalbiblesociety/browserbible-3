@@ -26,7 +26,7 @@ sofia.resources['mr'] = {
 				"title": "इंग्रजी द्वितीय व्यक्तीचे अनेकवचन"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "सर्व घटना शोधा (अंदाजे __ count__)"
+				"findalloccurrences": "सर्व घटना शोधा (अंदाजे __count__)"
 			}
 		},
 		"windows": {

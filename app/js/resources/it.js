@@ -26,7 +26,7 @@ sofia.resources['it'] = {
 				"title": "Inglese Seconda Persona Plurale"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Trova tutte le occorrenze (circa __ count__)"
+				"findalloccurrences": "Trova tutte le occorrenze (circa __count__)"
 			}
 		},
 		"windows": {

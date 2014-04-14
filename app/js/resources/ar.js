@@ -26,7 +26,7 @@ sofia.resources['ar'] = {
 				"title": "الانجليزية الشخص الثاني الجمع"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "البحث عن كافة تواجدات (حوالي __ count__)"
+				"findalloccurrences": "البحث عن كافة تواجدات (حوالي __count__)"
 			}
 		},
 		"windows": {

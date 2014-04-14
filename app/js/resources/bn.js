@@ -26,7 +26,7 @@ sofia.resources['bn'] = {
 				"title": "ইংরেজি দ্বিতীয় ব্যক্তি বহুবচন"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "সব ঘটনার খুঁজুন (আনুমানিক __ count__)"
+				"findalloccurrences": "সব ঘটনার খুঁজুন (আনুমানিক __count__)"
 			}
 		},
 		"windows": {

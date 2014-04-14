@@ -26,7 +26,7 @@ sofia.resources['ru'] = {
 				"title": "Английский Второе Лицо Множественное"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Найти все вхождения (примерно __ count__)"
+				"findalloccurrences": "Найти все вхождения (примерно __count__)"
 			}
 		},
 		"windows": {

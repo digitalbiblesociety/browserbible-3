@@ -26,7 +26,7 @@ sofia.resources['ms'] = {
 				"title": "English Pihak Kedua Majmuk"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Cari semua kejadian (kira-kira __ count__)"
+				"findalloccurrences": "Cari semua kejadian (kira-kira __count__)"
 			}
 		},
 		"windows": {

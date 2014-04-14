@@ -26,7 +26,7 @@ sofia.resources['ht'] = {
 				"title": "Angle Dezyèm Chèche pluryèl"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Jwenn tout evènman (apeprè __ count__)"
+				"findalloccurrences": "Jwenn tout evènman (apeprè __count__)"
 			}
 		},
 		"windows": {

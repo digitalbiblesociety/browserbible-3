@@ -26,7 +26,7 @@ sofia.resources['te'] = {
 				"title": "ఇంగ్లీష్ రెండవ వ్యక్తి బహువచనం"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "అన్ని సంఘటనలు కనుగొను (సుమారు __ count__)"
+				"findalloccurrences": "అన్ని సంఘటనలు కనుగొను (సుమారు __count__)"
 			}
 		},
 		"windows": {

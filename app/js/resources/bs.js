@@ -26,7 +26,7 @@ sofia.resources['bs'] = {
 				"title": "Engleski Drugo lice množine"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Pronađi sve pojave (oko __ count__)"
+				"findalloccurrences": "Pronađi sve pojave (oko __count__)"
 			}
 		},
 		"windows": {

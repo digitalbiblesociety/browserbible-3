@@ -26,7 +26,7 @@ sofia.resources['gu'] = {
 				"title": "ઇંગલિશ બીજી વ્યક્તિ બહુવચન"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "બધા વારાઓ શોધો (આશરે __ count__)"
+				"findalloccurrences": "બધા વારાઓ શોધો (આશરે __count__)"
 			}
 		},
 		"windows": {

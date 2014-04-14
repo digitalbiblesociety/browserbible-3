@@ -26,7 +26,7 @@ sofia.resources['cy'] = {
 				"title": "Saesneg Ail Person Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Dod o hyd pob digwyddiad (tua __ count__)"
+				"findalloccurrences": "Dod o hyd pob digwyddiad (tua __count__)"
 			}
 		},
 		"windows": {

@@ -26,7 +26,7 @@ sofia.resources['sk'] = {
 				"title": "Angličtina druhej osobe množného čísla"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Nájsť všetky výskyty (približne __ count__)"
+				"findalloccurrences": "Nájsť všetky výskyty (približne __count__)"
 			}
 		},
 		"windows": {

@@ -26,7 +26,7 @@ sofia.resources['fi'] = {
 				"title": "Englanti Toinen henkilö Monikko"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Etsi kaikki esiintymät (noin __ count__)"
+				"findalloccurrences": "Etsi kaikki esiintymät (noin __count__)"
 			}
 		},
 		"windows": {

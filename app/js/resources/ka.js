@@ -26,7 +26,7 @@ sofia.resources['ka'] = {
 				"title": "English მეორე პირის მრავლობითი"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "ს ყველა წერილის მოძებნა შემთხვევები (დაახლოებით __ count__)"
+				"findalloccurrences": "ს ყველა წერილის მოძებნა შემთხვევები (დაახლოებით __count__)"
 			}
 		},
 		"windows": {

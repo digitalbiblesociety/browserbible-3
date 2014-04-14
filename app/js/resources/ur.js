@@ -26,7 +26,7 @@ sofia.resources['ur'] = {
 				"title": "انگریزی دوسری ہستی تعدد"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "تمام واقعات تلاش (تقریبا __ count__)"
+				"findalloccurrences": "تمام واقعات تلاش (تقریبا __count__)"
 			}
 		},
 		"windows": {

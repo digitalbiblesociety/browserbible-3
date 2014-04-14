@@ -26,7 +26,7 @@ sofia.resources['ceb'] = {
 				"title": "Iningles Ikaduhang Tawo Dinaghan nga"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Find sa tanan nga mga teksto (gibana-bana nga __ count__)"
+				"findalloccurrences": "Find sa tanan nga mga teksto (gibana-bana nga __count__)"
 			}
 		},
 		"windows": {

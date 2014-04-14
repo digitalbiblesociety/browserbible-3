@@ -26,7 +26,7 @@ sofia.resources['sw'] = {
 				"title": "Kiingereza Pili Mtu vyama vingi"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Kupata matukio yote (takriban __ count__)"
+				"findalloccurrences": "Kupata matukio yote (takriban __count__)"
 			}
 		},
 		"windows": {

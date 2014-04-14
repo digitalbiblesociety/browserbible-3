@@ -1,6 +1,6 @@
 sofia.resources['es'] = {
 	"translation": {
-		"name": "Inglés",
+		"name": "Español (Spanish)",
 		"menu": {
 			"search": {
 				"placeholder": "Búsqueda"
@@ -26,7 +26,7 @@ sofia.resources['es'] = {
 				"title": "Inglés Segunda Persona del Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Buscar todas las ocurrencias (aproximadamente __ count__)"
+				"findalloccurrences": "Buscar todas las ocurrencias (aproximadamente __count__)"
 			}
 		},
 		"windows": {

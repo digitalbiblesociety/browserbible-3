@@ -26,7 +26,7 @@ sofia.resources['iw'] = {
 				"title": "אנגלית השנייה של אדם בלשון רב"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "מצא את כל המופעים (כ __ count__)"
+				"findalloccurrences": "מצא את כל המופעים (כ __count__)"
 			}
 		},
 		"windows": {

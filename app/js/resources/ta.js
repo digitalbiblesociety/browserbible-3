@@ -26,7 +26,7 @@ sofia.resources['ta'] = {
 				"title": "ஆங்கிலம் இரண்டாம் நபர் பன்மை"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "அனைத்து தேடலாம் (சுமார் __ count__)"
+				"findalloccurrences": "அனைத்து தேடலாம் (சுமார் __count__)"
 			}
 		},
 		"windows": {

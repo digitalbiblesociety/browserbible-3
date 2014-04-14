@@ -26,7 +26,7 @@ sofia.resources['sl'] = {
 				"title": "Angleščina Drugi osebi množine"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Najdi vse ponovitve (približno __ count__)"
+				"findalloccurrences": "Najdi vse ponovitve (približno __count__)"
 			}
 		},
 		"windows": {

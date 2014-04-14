@@ -26,7 +26,7 @@ sofia.resources['hu'] = {
 				"title": "English Second Person Többes szám"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Találd meg az összes eseményt (kb. __ count__)"
+				"findalloccurrences": "Találd meg az összes eseményt (kb. __count__)"
 			}
 		},
 		"windows": {

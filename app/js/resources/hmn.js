@@ -26,7 +26,7 @@ sofia.resources['hmn'] = {
 				"title": "English Ob Tus Neeg plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Nrhiav tau tag nrho occurrences (kwv yees li __ count__)"
+				"findalloccurrences": "Nrhiav tau tag nrho occurrences (kwv yees li __count__)"
 			}
 		},
 		"windows": {

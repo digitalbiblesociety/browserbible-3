@@ -26,7 +26,7 @@ sofia.resources['eu'] = {
 				"title": "English Second Person Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Aurkituko gertaera guztiak (gutxi gorabehera __ count__)"
+				"findalloccurrences": "Aurkituko gertaera guztiak (gutxi gorabehera __count__)"
 			}
 		},
 		"windows": {

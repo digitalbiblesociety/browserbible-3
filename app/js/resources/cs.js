@@ -26,7 +26,7 @@ sofia.resources['cs'] = {
 				"title": "Angličtina druhé osobě množného čísla"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Najít všechny výskyty (přibližně __ count__)"
+				"findalloccurrences": "Najít všechny výskyty (přibližně __count__)"
 			}
 		},
 		"windows": {

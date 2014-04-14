@@ -26,7 +26,7 @@ sofia.resources['km'] = {
 				"title": "ភាសា​អង់គ្លេស​ទីពីរ​បុគ្គល​ពហុ"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "ស្វែង​រក​ជួបប្រទះ​ទាំង​អស់ (ប្រមាណ __ count__​)"
+				"findalloccurrences": "ស្វែង​រក​ជួបប្រទះ​ទាំង​អស់ (ប្រមាណ __count__​)"
 			}
 		},
 		"windows": {

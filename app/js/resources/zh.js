@@ -26,7 +26,7 @@ sofia.resources['zh'] = {
 				"title": "英语第二人称复数"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "查找所有出现（约__ count__）"
+				"findalloccurrences": "查找所有出现（约__count__）"
 			}
 		},
 		"windows": {

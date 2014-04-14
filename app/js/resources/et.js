@@ -26,7 +26,7 @@ sofia.resources['et'] = {
 				"title": "Inglise Second mitmuse"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Leia kõik vahejuhtumid (umbes __ count__)"
+				"findalloccurrences": "Leia kõik vahejuhtumid (umbes __count__)"
 			}
 		},
 		"windows": {

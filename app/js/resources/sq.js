@@ -26,7 +26,7 @@ sofia.resources['sq'] = {
 				"title": "English dytë Person Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Gjej të gjitha dukurive (përafërsisht __ count__)"
+				"findalloccurrences": "Gjej të gjitha dukurive (përafërsisht __count__)"
 			}
 		},
 		"windows": {

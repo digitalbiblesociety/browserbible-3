@@ -26,7 +26,7 @@ sofia.resources['ja'] = {
 				"title": "英語二人目は複数"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "すべて検索（約__ count__）"
+				"findalloccurrences": "すべて検索（約__count__）"
 			}
 		},
 		"windows": {

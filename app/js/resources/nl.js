@@ -26,7 +26,7 @@ sofia.resources['nl'] = {
 				"title": "Engels Tweede persoon meervoud"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Zoek alle voorvallen (ongeveer __ count__)"
+				"findalloccurrences": "Zoek alle voorvallen (ongeveer __count__)"
 			}
 		},
 		"windows": {

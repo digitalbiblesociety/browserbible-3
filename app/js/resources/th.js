@@ -26,7 +26,7 @@ sofia.resources['th'] = {
 				"title": "อังกฤษสองคนพหูพจน์"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "ค้นหาเหตุการณ์ทั้งหมด (ประมาณ __ count__)"
+				"findalloccurrences": "ค้นหาเหตุการณ์ทั้งหมด (ประมาณ __count__)"
 			}
 		},
 		"windows": {

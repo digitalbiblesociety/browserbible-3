@@ -26,7 +26,7 @@ sofia.resources['sv'] = {
 				"title": "Engelska Second Person Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Hitta alla förekomster (ca __ count__)"
+				"findalloccurrences": "Hitta alla förekomster (ca __count__)"
 			}
 		},
 		"windows": {

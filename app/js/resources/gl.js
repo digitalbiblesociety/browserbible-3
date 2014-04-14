@@ -26,7 +26,7 @@ sofia.resources['gl'] = {
 				"title": "Inglés Segunda Persoa Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Atopar todas as ocorrencias (aproximadamente __ count__)"
+				"findalloccurrences": "Atopar todas as ocorrencias (aproximadamente __count__)"
 			}
 		},
 		"windows": {

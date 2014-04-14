@@ -26,7 +26,7 @@ sofia.resources['ko'] = {
 				"title": "영어 두 번째 인 복수"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "모든 항목을 찾을 수 있습니다 (약 __ count__)"
+				"findalloccurrences": "모든 항목을 찾을 수 있습니다 (약 __count__)"
 			}
 		},
 		"windows": {

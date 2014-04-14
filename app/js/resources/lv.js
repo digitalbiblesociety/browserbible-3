@@ -26,7 +26,7 @@ sofia.resources['lv'] = {
 				"title": "Angļu Otrā Persona Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Atrast visus gadījumus (aptuveni __ count__)"
+				"findalloccurrences": "Atrast visus gadījumus (aptuveni __count__)"
 			}
 		},
 		"windows": {

@@ -26,7 +26,7 @@ sofia.resources['be'] = {
 				"title": "Англійская Другой Асобы Множны"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Знайсці ўсе ўваходжання (прыкладна __ count__)"
+				"findalloccurrences": "Знайсці ўсе ўваходжання (прыкладна __count__)"
 			}
 		},
 		"windows": {

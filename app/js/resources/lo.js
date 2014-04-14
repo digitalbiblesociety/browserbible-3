@@ -26,7 +26,7 @@ sofia.resources['lo'] = {
 				"title": "ພາ​ສາ​ອັງ​ກິດ​ຄັ້ງ​ທີ​ສອງ​ໃນ​ບຸກ​ຄົນ​ສຽງ"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "ຊອກ​ຫາ​ການ​ປະ​ກົດ​ຕົວ​ການ​ທັງ​ຫມົດ (ປະ​ມານ __ count__​)"
+				"findalloccurrences": "ຊອກ​ຫາ​ການ​ປະ​ກົດ​ຕົວ​ການ​ທັງ​ຫມົດ (ປະ​ມານ __count__​)"
 			}
 		},
 		"windows": {

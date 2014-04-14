@@ -26,7 +26,7 @@ sofia.resources['az'] = {
 				"title": "English İkinci şəxs Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Bütün hadisələr tapmaq (təxminən __ count__)"
+				"findalloccurrences": "Bütün hadisələr tapmaq (təxminən __count__)"
 			}
 		},
 		"windows": {

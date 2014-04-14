@@ -26,7 +26,7 @@ sofia.resources['ca'] = {
 				"title": "Anglès Segona Persona de l&#39;Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Cercar totes les ocurrències (aproximadament __ count__)"
+				"findalloccurrences": "Cercar totes les ocurrències (aproximadament __count__)"
 			}
 		},
 		"windows": {

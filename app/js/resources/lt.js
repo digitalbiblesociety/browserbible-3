@@ -26,7 +26,7 @@ sofia.resources['lt'] = {
 				"title": "Anglų Antrasis Asmuo užstatas"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Ieškoti visų įvykių (maždaug __ count__)"
+				"findalloccurrences": "Ieškoti visų įvykių (maždaug __count__)"
 			}
 		},
 		"windows": {

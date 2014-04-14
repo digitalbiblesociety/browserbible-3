@@ -26,7 +26,7 @@ sofia.resources['tl'] = {
 				"title": "Ingles Pangalawang Tao Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Hanapin ang lahat ng mga pangyayari (humigit-kumulang __ count__)"
+				"findalloccurrences": "Hanapin ang lahat ng mga pangyayari (humigit-kumulang __count__)"
 			}
 		},
 		"windows": {

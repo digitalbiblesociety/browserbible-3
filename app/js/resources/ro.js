@@ -26,7 +26,7 @@ sofia.resources['ro'] = {
 				"title": "Engleză a doua persoană Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Găsi toate aparițiile (aproximativ __ count__)"
+				"findalloccurrences": "Găsi toate aparițiile (aproximativ __count__)"
 			}
 		},
 		"windows": {

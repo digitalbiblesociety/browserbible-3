@@ -26,7 +26,7 @@ sofia.resources['vi'] = {
 				"title": "Tiếng Anh Người thứ hai số nhiều"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Tìm tất cả các lần xuất hiện (khoảng __ count__)"
+				"findalloccurrences": "Tìm tất cả các lần xuất hiện (khoảng __count__)"
 			}
 		},
 		"windows": {

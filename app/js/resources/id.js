@@ -26,7 +26,7 @@ sofia.resources['id'] = {
 				"title": "English Kedua Orang Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Cari semua kejadian (sekitar __ count__)"
+				"findalloccurrences": "Cari semua kejadian (sekitar __count__)"
 			}
 		},
 		"windows": {

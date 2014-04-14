@@ -26,7 +26,7 @@ sofia.resources['da'] = {
 				"title": "Engelsk Anden person Flertal"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Find alle forekomster (ca. __ count__)"
+				"findalloccurrences": "Find alle forekomster (ca. __count__)"
 			}
 		},
 		"windows": {

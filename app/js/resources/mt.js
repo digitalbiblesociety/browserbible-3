@@ -26,7 +26,7 @@ sofia.resources['mt'] = {
 				"title": "English Tieni Persuna Plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Sib okkorrenzi kollha (madwar __ count__)"
+				"findalloccurrences": "Sib okkorrenzi kollha (madwar __count__)"
 			}
 		},
 		"windows": {

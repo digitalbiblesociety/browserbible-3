@@ -26,7 +26,7 @@ sofia.resources['fa'] = {
 				"title": "انگلیسی دوم شخص جمع"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "یافتن تمام موارد (حدود __ count__)"
+				"findalloccurrences": "یافتن تمام موارد (حدود __count__)"
 			}
 		},
 		"windows": {

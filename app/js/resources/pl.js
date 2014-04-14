@@ -26,7 +26,7 @@ sofia.resources['pl'] = {
 				"title": "Angielski w drugiej osobie liczby mnogiej"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Znajdź wszystkie wystąpienia (około __ count__)"
+				"findalloccurrences": "Znajdź wszystkie wystąpienia (około __count__)"
 			}
 		},
 		"windows": {

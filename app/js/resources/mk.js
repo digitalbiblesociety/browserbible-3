@@ -26,7 +26,7 @@ sofia.resources['mk'] = {
 				"title": "Англиски второ лице множина"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Најди ги сите појави (приближно __ count__)"
+				"findalloccurrences": "Најди ги сите појави (приближно __count__)"
 			}
 		},
 		"windows": {

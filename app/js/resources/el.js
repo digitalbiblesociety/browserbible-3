@@ -26,7 +26,7 @@ sofia.resources['el'] = {
 				"title": "Αγγλικά Δεύτερο Πρόσωπο Πληθυντικός"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Βρείτε όλες τις εμφανίσεις (περίπου __ count__)"
+				"findalloccurrences": "Βρείτε όλες τις εμφανίσεις (περίπου __count__)"
 			}
 		},
 		"windows": {

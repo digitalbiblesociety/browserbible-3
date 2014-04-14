@@ -228,22 +228,17 @@ var App = function() {
 	ext.handleGlobalMessage = handleGlobalMessage;
 		
 	i18n.init({fallbackLng: 'en', resStore: sofia.resources});
+	
 	setTimeout(function() {	
 		
-		// look for match
-		var option = $('#config-language option[val="' + i18n.lng() + '"]');
+		var lang = i18n.lng(),
+			langSelector = $('#config-language');
 		
-		if (option.length == 0) {
-			option = $('#config-language option[val="' + i18n.lng().split('-')[0] + '"]');
+		langSelector.val( lang );
+		
+		if (lang != langSelector.val() ) {		
+			langSelector.val(  lang.split('-')[0] );
 		}
-		
-		if (option.length > 0) {
-			option.prop('selected',true);
-		}
-		
-		//$('#config-language').val( i18n.lng() );
-		
-		
 		
 	},50);
 	

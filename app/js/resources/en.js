@@ -8,11 +8,16 @@ sofia.resources["en"] = {
 				placeholder:'Search'
 			},
 			config: {
-				font: 'Font',
+				font: 'Style',
 				settings: 'Settings',
 				tools: 'Tools'
 			},
-			reset: 'reset'
+			reset: 'reset',
+			themes: {
+				default: 'Normal',
+				sepia: 'Sepia',				
+				dark: 'Low Light'
+			}
 		},
 		
 		plugins: {

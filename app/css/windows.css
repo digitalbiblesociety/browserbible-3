@@ -1295,6 +1295,7 @@ input:focus {
 }
 
 .toggle-media-off .image-icon,
+.toggle-media-off .map-icon,
 .toggle-media-off .video-icon {
 	display: none;		
 } 
@@ -1408,10 +1409,12 @@ input:focus {
 	background-color: #FBF0D9;
 	color: #5F4B32 ;
 }
+/*
 .theme-sepia .window .window-header  {
 	background: #5F4B32;
 	border-bottom: solid 1px #5F4B32;	
 }
+*/
 
 /* DARK: LOW LIGHT */
 .theme-dark {
@@ -1458,6 +1461,14 @@ input:focus {
 .theme-dark .window .window-header .header-list {
 	background-color: #666;
 	border: solid 1px #333;
+}
+
+@media only screen and (max-width: 460px) {
+	.theme-dark .window .window-header .header-input,
+	.theme-dark .window .window-header .header-list {
+		background-color: transparent;
+		border: solid 1px transparent;
+	}
 }
 
 .theme-dark #main-search-input {

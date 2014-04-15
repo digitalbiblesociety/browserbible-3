@@ -10,46 +10,46 @@ sofia.resources['ar'] = {
 				"settings": "إعدادات",
 				"tools": "أدوات"
 			},
-			"reset": "إعادة تعيين",
+			"reset": "إعادة ضبط",
 			"themes": {
-				"default": "طبيعي",
+				"default": "افتراضي",
 				"sepia": "بني داكن",
-				"dark": "منخفض الخفيفة"
+				"dark": "خلفيفة غامقة"
 			}
 		},
 		"plugins": {
 			"visualfilters": {
 				"button": "مرشحات بصرية",
 				"title": "مرشحات بصرية",
-				"newfilter": "تصفية جديدة",
-				"strongsnumber": "القوي #",
-				"morphology": "علم التشكل المورفولوجيا",
+				"newfilter": "مرشح جديد",
+				"strongsnumber": "الرقم في فهرس سترونج",
+				"morphology": "لغويات",
 				"style": "أسلوب"
 			},
 			"eng2p": {
-				"button": "الانجليزية 2 شخص الجمع",
-				"title": "الانجليزية الشخص الثاني الجمع"
+				"button": "استخدام كلمة أنت للجمع في الإنجليزية",
+				"title": "استخدام كلمة أنت للجمع في الإنجليزية"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "البحث عن كافة تواجدات (حوالي __count__)"
+				"findalloccurrences": "بحث كل الحالات"
 			}
 		},
 		"windows": {
 			"bible": {
 				"label": "الكتاب المقدس",
-				"filter": "تصفية ...",
+				"filter": "ترشيح القائمة",
 				"ot": "العهد القديم",
 				"nt": "العهد الجديد",
-				"dc": "من deuterocanonical كتب",
+				"dc": "الأسفار القانونية",
 				"more": "أكثر",
 				"less": "أقل"
 			},
 			"commentary": {
-				"label": "تعليق"
+				"label": "تفاسير"
 			},
 			"map": {
 				"label": "خرائط",
-				"placeholder": "البحث ..."
+				"placeholder": "بحث"
 			},
 			"search": {
 				"label": "بحث",
@@ -59,17 +59,17 @@ sofia.resources['ar'] = {
 				"verses": "الآيات"
 			},
 			"media": {
-				"label": "وسائل الإعلام"
+				"label": "سمعيات وبصريات"
 			},
 			"notes": {
-				"label": "الملاحظات"
+				"label": "ملاحظات"
 			},
 			"audio": {
 				"options": "خيارات الصوت",
-				"synctext": "نص متزامنة (بيتا)",
-				"autoplay": "التشغيل التلقائي التالي",
-				"drama": "دراما",
-				"nondrama": "غير دراما-"
+				"synctext": "تحريك النص مع الصوت",
+				"autoplay": "تشغيل الأصحاح التالي تلقائياً",
+				"drama": "قراءة درامية",
+				"nondrama": "قراءة غير درامية"
 			}
 		}
 	}

@@ -91,11 +91,13 @@ var MainLogo = function(node) {
 };
 sofia.menuComponents.push('MainLogo');
 
+/*
 var MobileButton = function(node) {
 	var MobileButton = $('<a id="main-mobile-button" class="main-menu-button" style="" href="../mobile/index.html"></a>')
 					.appendTo(node);
 };
 sofia.menuComponents.push('MobileButton');
+*/
 
 var MainSearchBox = function(node) {
 		
@@ -384,7 +386,7 @@ var AddWindowButton = function(node) {
 
 	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
 		windowTools.push(	
-			{type: 'CommentaryWindow', label: 'commentary', data: {'textid':sofia.config.newCommentaryWindowTextId,'fragmentid':''}}
+			{type: 'CommentaryWindow', label: 'commentary', data: {'textid':sofia.config.newWindowFragmentid,'fragmentid':''}}
 		);
 	}
 	

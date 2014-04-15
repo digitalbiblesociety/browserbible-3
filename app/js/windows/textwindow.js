@@ -342,7 +342,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 						
 					for (var i=0, il=textInfoData.length; i<il; i++) {
 						var textInfo = textInfoData[i];
-						if (textInfo.lang == lang || textInfo.id.substring(0, lang.length) == lang) {
+						
+						if (textInfo.type == text_type && (textInfo.lang == lang || textInfo.id.substring(0, lang.length) == lang)) {
 							newTextInfo = textInfo;
 							break;							
 						}						

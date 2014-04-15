@@ -621,7 +621,7 @@ SearchIndexLoader = function() {
 		if (isLemmaSearch) {
 			key = searchTerm.toUpperCase();
 			var letter = key.substr(0,1),
-				firstNumber = searchTerm.substr(1,1);
+				firstNumber = searchTerm.length >= 5 ? searchTerm.substr(1,1) : '0';
 			
 		
 		

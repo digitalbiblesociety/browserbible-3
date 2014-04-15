@@ -1,67 +1,76 @@
-/* Google Translate */
-
-sofia.resources["fr"] = { 
-	translation: {
-		name: 'Français (French)',	
-	
-		menu: {
-			search: {
-				placeholder:'Rechercher'
+sofia.resources['fr'] = {
+	"translation": {
+		"name": "Français (French)",
+		"menu": {
+			"search": {
+				"placeholder": "Recherche"
 			},
-			config: {
-				font: 'Police',
-				settings: 'Paramètres',
-				tools: 'Outils'
+			"config": {
+				"font": "Style",
+				"settings": "Paramètres",
+				"tools": "Outils"
 			},
-			reset: 'réinitialiser'
-		},
-		
-		plugins: {
-			visualfilters: {
-				button: 'Filtres Visuels',
-				title: 'Filtres Visuels'
-			},
-			eng2p: {
-				button: 'Anglais 2ème personne pluriel',
-				title: 'Anglais 2ème personne pluriel'
+			"reset": "remettre",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sépia",
+				"dark": "Low Light"
 			}
-		},		
-		
-		windows: {
-			bible: {
-				label: 'Bible',
-				filter: 'Filtrer...',
-				ot: 'Ancien Testament',
-				nt: 'Nouveau Testament',
-				dc: 'deutérocanoniques'								
+		},
+		"plugins": {
+			"visualfilters": {
+				"button": "Filtres visuels",
+				"title": "Filtres visuels",
+				"newfilter": "Nouveau filtre",
+				"strongsnumber": "De Strong #",
+				"morphology": "Morphologie",
+				"style": "Style"
 			},
-			commentary: {
-				label: 'Commentaire'
+			"eng2p": {
+				"button": "Anglais 2ème personne pluriel",
+				"title": "Anglais Deuxième personne pluriel"
 			},
-			map: {
-				label: 'Cartes',
-				placeholder: 'Rechercher...'
+			"lemmapopup": {
+				"findalloccurrences": "Trouver toutes les occurrences (environ __count__)"
+			}
+		},
+		"windows": {
+			"bible": {
+				"label": "Bible",
+				"filter": "Filtrer ...",
+				"ot": "Ancien Testament",
+				"nt": "Le Nouveau Testament",
+				"dc": "Deutérocanoniques",
+				"more": "Plus",
+				"less": "Moins"
 			},
-			search: {
-				label: 'Rechercher',
-				placeholder: 'Rechercher',			
-				button: 'Rechercher',
-				results: 'Résultats',
-				verses: 'versets'				
+			"commentary": {
+				"label": "Commentaire"
 			},
-			media: {
-				label: 'Media'
+			"map": {
+				"label": "Cartes",
+				"placeholder": "Recherche ..."
 			},
-			notes: {
-				label: 'Notes'
+			"search": {
+				"label": "Recherche",
+				"placeholder": "Recherche",
+				"button": "Recherche",
+				"results": "Résultats",
+				"verses": "versets"
 			},
-			audio: {
-				options: 'Options audio',
-				synctext: 'Synchronisation du texte  (beta)',
-				autoplay: 'Autoplay Suivant',								
-				drama: 'Drame',
-				nondrama: 'Non-Art Dramatique'
+			"media": {
+				"label": "Médias"
+			},
+			"notes": {
+				"label": "Remarques"
+			},
+			"audio": {
+				"options": "Options audio",
+				"synctext": "Synchronisation du texte (beta)",
+				"autoplay": "Autoplay Suivant",
+				"drama": "Drame",
+				"nondrama": "Non Drame"
 			}
 		}
 	}
-};
+}

@@ -10,7 +10,12 @@ sofia.resources['fa'] = {
 				"settings": "تنظیمات",
 				"tools": "ابزار"
 			},
-			"reset": "تنظیم مجدد"
+			"reset": "تنظیم مجدد",
+			"themes": {
+				"default": "طبیعی",
+				"sepia": "رنگ قرمز قهوهای",
+				"dark": "نور پایین"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

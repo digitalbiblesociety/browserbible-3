@@ -10,7 +10,12 @@ sofia.resources['uk'] = {
 				"settings": "Налаштування",
 				"tools": "Інструментарій"
 			},
-			"reset": "скидання"
+			"reset": "скидання",
+			"themes": {
+				"default": "Нормальний",
+				"sepia": "Сепія",
+				"dark": "Низька освітленість"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

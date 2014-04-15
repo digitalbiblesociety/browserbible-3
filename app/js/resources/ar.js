@@ -1,6 +1,6 @@
 sofia.resources['ar'] = {
 	"translation": {
-		"name": "الإنجليزية (Arabic)",
+		"name": "العربية (Arabic)",
 		"menu": {
 			"search": {
 				"placeholder": "بحث"
@@ -10,7 +10,12 @@ sofia.resources['ar'] = {
 				"settings": "إعدادات",
 				"tools": "أدوات"
 			},
-			"reset": "إعادة تعيين"
+			"reset": "إعادة تعيين",
+			"themes": {
+				"default": "طبيعي",
+				"sepia": "بني داكن",
+				"dark": "منخفض الخفيفة"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

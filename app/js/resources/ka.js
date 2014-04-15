@@ -10,7 +10,12 @@ sofia.resources['ka'] = {
 				"settings": "პარამეტრები",
 				"tools": "ინსტრუმენტები"
 			},
-			"reset": "გადატვირთვის"
+			"reset": "გადატვირთვის",
+			"themes": {
+				"default": "ნორმალური",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

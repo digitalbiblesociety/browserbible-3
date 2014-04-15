@@ -10,7 +10,12 @@ sofia.resources['tl'] = {
 				"settings": "Mga Setting",
 				"tools": "Mga tool"
 			},
-			"reset": "i-reset ang"
+			"reset": "i-reset ang",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepya",
+				"dark": "Mababang Banayad"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

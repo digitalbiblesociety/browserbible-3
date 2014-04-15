@@ -10,7 +10,12 @@ sofia.resources['el'] = {
 				"settings": "Ρυθμίσεις",
 				"tools": "Εργαλεία"
 			},
-			"reset": "επαναφορά"
+			"reset": "επαναφορά",
+			"themes": {
+				"default": "Κανονικός",
+				"sepia": "Καστανόχρους",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

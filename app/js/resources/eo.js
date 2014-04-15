@@ -10,7 +10,12 @@ sofia.resources['eo'] = {
 				"settings": "Agordoj",
 				"tools": "Iloj"
 			},
-			"reset": "reset"
+			"reset": "reset",
+			"themes": {
+				"default": "Normala",
+				"sepia": "Sepia",
+				"dark": "Malaltaj Lumo"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

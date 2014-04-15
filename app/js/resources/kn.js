@@ -10,7 +10,12 @@ sofia.resources['kn'] = {
 				"settings": "ಸೆಟ್ಟಿಂಗ್ಗಳು",
 				"tools": "ಪರಿಕರಗಳು"
 			},
-			"reset": "ಮತ್ತೆ ಜೋಡಿಸು"
+			"reset": "ಮತ್ತೆ ಜೋಡಿಸು",
+			"themes": {
+				"default": "ಸಾಧಾರಣ",
+				"sepia": "ಸೆಪಿಯಾ",
+				"dark": "ಕಡಿಮೆ ಬೆಳಕಿನ"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

@@ -10,7 +10,12 @@ sofia.resources['lv'] = {
 				"settings": "Iestatījumi",
 				"tools": "Darbarīki"
 			},
-			"reset": "reset"
+			"reset": "reset",
+			"themes": {
+				"default": "Normāls",
+				"sepia": "Sepia",
+				"dark": "Vājā apgaismojumā"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

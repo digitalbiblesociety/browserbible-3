@@ -10,7 +10,12 @@ sofia.resources['ht'] = {
 				"settings": "Anviwònman",
 				"tools": "Zouti"
 			},
-			"reset": "Reyajiste"
+			"reset": "Reyajiste",
+			"themes": {
+				"default": "Nòmal",
+				"sepia": "Sépia",
+				"dark": "Ba limyè"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

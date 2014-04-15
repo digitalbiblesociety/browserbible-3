@@ -10,7 +10,12 @@ sofia.resources['sq'] = {
 				"settings": "Cilësimet",
 				"tools": "Tools"
 			},
-			"reset": "rivendosur"
+			"reset": "rivendosur",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Bojë e zezë supje",
+				"dark": "Drita e ulët"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

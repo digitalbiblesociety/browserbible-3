@@ -10,7 +10,12 @@ sofia.resources['zh'] = {
 				"settings": "设置",
 				"tools": "工具"
 			},
-			"reset": "重置"
+			"reset": "重置",
+			"themes": {
+				"default": "正常",
+				"sepia": "乌贼",
+				"dark": "弱光"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

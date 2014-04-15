@@ -10,7 +10,12 @@ sofia.resources['ta'] = {
 				"settings": "அமைப்புகள்",
 				"tools": "கருவிகள்"
 			},
-			"reset": "மீட்டமைக்க"
+			"reset": "மீட்டமைக்க",
+			"themes": {
+				"default": "வழக்கமான",
+				"sepia": "செபியா",
+				"dark": "குறைந்த ஒளி"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

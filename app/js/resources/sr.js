@@ -10,7 +10,12 @@ sofia.resources['sr'] = {
 				"settings": "Подешавања",
 				"tools": "Алат"
 			},
-			"reset": "ресетовање"
+			"reset": "ресетовање",
+			"themes": {
+				"default": "Нормалан",
+				"sepia": "Сепија",
+				"dark": "Лов Лигхт"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

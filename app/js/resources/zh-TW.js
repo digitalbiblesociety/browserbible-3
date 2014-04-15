@@ -1,6 +1,6 @@
 sofia.resources['zh-TW'] = {
 	"translation": {
-		"name": "中文(繁體) (Chinese Traditional)",
+		"name": "中文(繁體) (Chinese (Traditional))",
 		"menu": {
 			"search": {
 				"placeholder": "搜索"
@@ -10,7 +10,12 @@ sofia.resources['zh-TW'] = {
 				"settings": "設置",
 				"tools": "工具"
 			},
-			"reset": "重置"
+			"reset": "重置",
+			"themes": {
+				"default": "正常",
+				"sepia": "烏賊",
+				"dark": "弱光"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

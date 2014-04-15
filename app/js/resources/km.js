@@ -10,7 +10,12 @@ sofia.resources['km'] = {
 				"settings": "ការ​កំណត់",
 				"tools": "ឧបករណ៍"
 			},
-			"reset": "កំណត់​ឡើង​វិញ"
+			"reset": "កំណត់​ឡើង​វិញ",
+			"themes": {
+				"default": "ធម្មតា",
+				"sepia": "Sepia",
+				"dark": "ពន្លឺ​ទាប"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

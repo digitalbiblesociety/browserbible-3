@@ -10,7 +10,12 @@ sofia.resources['hu'] = {
 				"settings": "Beállítások",
 				"tools": "Eszközök"
 			},
-			"reset": "vissza"
+			"reset": "vissza",
+			"themes": {
+				"default": "Normál",
+				"sepia": "Szépia",
+				"dark": "Kevés fény"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

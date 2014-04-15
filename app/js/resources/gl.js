@@ -10,7 +10,12 @@ sofia.resources['gl'] = {
 				"settings": "Configuración",
 				"tools": "Ferramentas"
 			},
-			"reset": "restablecer"
+			"reset": "restablecer",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

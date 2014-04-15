@@ -10,7 +10,12 @@ sofia.resources['mr'] = {
 				"settings": "सेटिंग्ज",
 				"tools": "साधने"
 			},
-			"reset": "रीसेट"
+			"reset": "रीसेट",
+			"themes": {
+				"default": "सामान्य",
+				"sepia": "दाट तपकिरी रंग",
+				"dark": "किमान हलका"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

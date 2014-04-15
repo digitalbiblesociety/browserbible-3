@@ -10,7 +10,12 @@ sofia.resources['bg'] = {
 				"settings": "Настройки",
 				"tools": "Инструменти"
 			},
-			"reset": "нулиране"
+			"reset": "нулиране",
+			"themes": {
+				"default": "Нормален",
+				"sepia": "Сепия",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

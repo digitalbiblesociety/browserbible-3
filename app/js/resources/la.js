@@ -10,7 +10,12 @@ sofia.resources['la'] = {
 				"settings": "Tempus",
 				"tools": "Apocrypha"
 			},
-			"reset": "Duis"
+			"reset": "Duis",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepiam",
+				"dark": "Minimum Lumen,"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

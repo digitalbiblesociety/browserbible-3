@@ -10,7 +10,12 @@ sofia.resources['ur'] = {
 				"settings": "ترتیبات",
 				"tools": "فورم کے اوزار"
 			},
-			"reset": "ری سیٹ"
+			"reset": "ری سیٹ",
+			"themes": {
+				"default": "عمومی",
+				"sepia": "سیپیا",
+				"dark": "کم روشنی"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

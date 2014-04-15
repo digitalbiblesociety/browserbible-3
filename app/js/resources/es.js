@@ -1,6 +1,6 @@
 sofia.resources['es'] = {
 	"translation": {
-		"name": "Español (Spanish)",
+		"name": "español (Spanish)",
 		"menu": {
 			"search": {
 				"placeholder": "Búsqueda"
@@ -10,7 +10,12 @@ sofia.resources['es'] = {
 				"settings": "Configuración",
 				"tools": "Instrumentos"
 			},
-			"reset": "reajustar"
+			"reset": "reajustar",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

@@ -10,7 +10,12 @@ sofia.resources['fi'] = {
 				"settings": "Asetukset",
 				"tools": "Työkalut"
 			},
-			"reset": "asettaa uudelleen"
+			"reset": "asettaa uudelleen",
+			"themes": {
+				"default": "Normaali",
+				"sepia": "Seepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

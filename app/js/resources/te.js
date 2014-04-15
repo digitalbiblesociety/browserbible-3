@@ -10,7 +10,12 @@ sofia.resources['te'] = {
 				"settings": "సెట్టింగ్స్",
 				"tools": "ఉపకరణాలు"
 			},
-			"reset": "రీసెట్"
+			"reset": "రీసెట్",
+			"themes": {
+				"default": "సాధారణ",
+				"sepia": "సేపియా",
+				"dark": "తక్కువ లైట్"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

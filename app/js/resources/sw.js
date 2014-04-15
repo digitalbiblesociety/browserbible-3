@@ -10,7 +10,12 @@ sofia.resources['sw'] = {
 				"settings": "Mazingira",
 				"tools": "Vyombo vya"
 			},
-			"reset": "upya"
+			"reset": "upya",
+			"themes": {
+				"default": "Kawaida",
+				"sepia": "Sepia",
+				"dark": "Low Mwanga"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

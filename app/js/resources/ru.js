@@ -10,7 +10,12 @@ sofia.resources['ru'] = {
 				"settings": "Настройки",
 				"tools": "Инструментарий"
 			},
-			"reset": "сброс"
+			"reset": "сброс",
+			"themes": {
+				"default": "Нормальный",
+				"sepia": "Сепия",
+				"dark": "Низкая освещенность"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

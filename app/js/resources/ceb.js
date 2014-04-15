@@ -10,7 +10,12 @@ sofia.resources['ceb'] = {
 				"settings": "Setting",
 				"tools": "Tools"
 			},
-			"reset": "Reset"
+			"reset": "Reset",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Ubos Kahayag"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

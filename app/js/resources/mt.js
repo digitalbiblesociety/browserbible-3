@@ -10,7 +10,12 @@ sofia.resources['mt'] = {
 				"settings": "Settings",
 				"tools": "Għodod"
 			},
-			"reset": "reset"
+			"reset": "reset",
+			"themes": {
+				"default": "Normali",
+				"sepia": "Sepja",
+				"dark": "Light baxxa"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

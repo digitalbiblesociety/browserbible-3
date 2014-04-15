@@ -10,7 +10,12 @@ sofia.resources['lo'] = {
 				"settings": "ການ​ປັບ​ຄ່າ",
 				"tools": "ເຄື່ອງ​ມື"
 			},
-			"reset": "ປັບ"
+			"reset": "ປັບ",
+			"themes": {
+				"default": "ຕາມ​ປົກ​ກະ​ຕິ",
+				"sepia": "Sepia",
+				"dark": "ແສງ​ຕ​່​ໍ​າ"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

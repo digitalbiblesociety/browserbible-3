@@ -10,7 +10,12 @@ sofia.resources['cy'] = {
 				"settings": "Gosodiadau",
 				"tools": "Offer"
 			},
-			"reset": "ailosod"
+			"reset": "ailosod",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Golau Isel"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

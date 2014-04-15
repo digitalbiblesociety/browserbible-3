@@ -10,7 +10,12 @@ sofia.resources['gu'] = {
 				"settings": "સેટિંગ્સ",
 				"tools": "સાધનો"
 			},
-			"reset": "રીસેટ કરો"
+			"reset": "રીસેટ કરો",
+			"themes": {
+				"default": "સામાન્ય",
+				"sepia": "સેપિયા",
+				"dark": "નીચા લાઇટ"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

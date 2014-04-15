@@ -10,7 +10,12 @@ sofia.resources['bn'] = {
 				"settings": "সেটিংস",
 				"tools": "সরঞ্জাম"
 			},
-			"reset": "রিসেট করুন"
+			"reset": "রিসেট করুন",
+			"themes": {
+				"default": "স্বাভাবিক",
+				"sepia": "ছবি আঁকার একধরনের কালচে - বাদামী রং",
+				"dark": "কম আলো"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

@@ -10,7 +10,12 @@ sofia.resources['hmn'] = {
 				"settings": "Chaw",
 				"tools": "Lwm yam cuab yeej"
 			},
-			"reset": "pib dua"
+			"reset": "pib dua",
+			"themes": {
+				"default": "Ib txwm",
+				"sepia": "Sepia",
+				"dark": "Tsawg Lub teeb"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

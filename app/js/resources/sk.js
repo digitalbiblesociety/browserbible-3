@@ -10,7 +10,12 @@ sofia.resources['sk'] = {
 				"settings": "Nastavenie",
 				"tools": "Nástroje"
 			},
-			"reset": "obnoviť"
+			"reset": "obnoviť",
+			"themes": {
+				"default": "Normálny",
+				"sepia": "Sépia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

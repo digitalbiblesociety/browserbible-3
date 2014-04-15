@@ -10,7 +10,12 @@ sofia.resources['hr'] = {
 				"settings": "Postavke",
 				"tools": "Alat"
 			},
-			"reset": "reset"
+			"reset": "reset",
+			"themes": {
+				"default": "Normalan",
+				"sepia": "Sepija",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

@@ -10,7 +10,12 @@ sofia.resources['jw'] = {
 				"settings": "Setelan",
 				"tools": "Pribadi"
 			},
-			"reset": "ngreset"
+			"reset": "ngreset",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Kurang cahya"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

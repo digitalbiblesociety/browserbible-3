@@ -10,7 +10,12 @@ sofia.resources['yi'] = {
 				"settings": "סעטטינגס",
 				"tools": "מכשירים"
 			},
-			"reset": "באַשטעטיק"
+			"reset": "באַשטעטיק",
+			"themes": {
+				"default": "נאָרמאַל",
+				"sepia": "סיפּיאַ",
+				"dark": "נידעריק ליכט"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

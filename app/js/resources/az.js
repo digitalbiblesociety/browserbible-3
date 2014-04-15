@@ -10,7 +10,12 @@ sofia.resources['az'] = {
 				"settings": "Settings",
 				"tools": "Tools"
 			},
-			"reset": "əvvəlki vəziyyətinə qaytarmaq"
+			"reset": "əvvəlki vəziyyətinə qaytarmaq",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

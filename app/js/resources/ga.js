@@ -10,7 +10,12 @@ sofia.resources['ga'] = {
 				"settings": "Socruithe",
 				"tools": "Uirlisí"
 			},
-			"reset": "athshocrú"
+			"reset": "athshocrú",
+			"themes": {
+				"default": "Gnáth",
+				"sepia": "Sepia",
+				"dark": "Solas Íseal"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

@@ -10,7 +10,12 @@ sofia.resources['vi'] = {
 				"settings": "Thiết lập",
 				"tools": "Công cụ"
 			},
-			"reset": "thiết lập lại"
+			"reset": "thiết lập lại",
+			"themes": {
+				"default": "Bình thường",
+				"sepia": "Loại cá mực",
+				"dark": "Ánh sáng thấp"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

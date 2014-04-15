@@ -10,7 +10,12 @@ sofia.resources['iw'] = {
 				"settings": "הגדרות",
 				"tools": "כלי עבודה"
 			},
-			"reset": "לאתחל"
+			"reset": "לאתחל",
+			"themes": {
+				"default": "נורמלי",
+				"sepia": "חום כהה",
+				"dark": "אור נמוך"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

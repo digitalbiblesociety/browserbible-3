@@ -10,7 +10,12 @@ sofia.resources['th'] = {
 				"settings": "การตั้งค่า",
 				"tools": "เครื่องมือ"
 			},
-			"reset": "ตั้งใหม่"
+			"reset": "ตั้งใหม่",
+			"themes": {
+				"default": "ปกติ",
+				"sepia": "หมึกในตัวปลาหมึก",
+				"dark": "แสงต่ำ"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

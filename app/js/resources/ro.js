@@ -10,7 +10,12 @@ sofia.resources['ro'] = {
 				"settings": "Setări",
 				"tools": "Instrumente"
 			},
-			"reset": "restabili"
+			"reset": "restabili",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Lumină scăzută"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

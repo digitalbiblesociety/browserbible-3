@@ -10,7 +10,12 @@ sofia.resources['bs'] = {
 				"settings": "Postavke",
 				"tools": "Alat"
 			},
-			"reset": "resetovanje"
+			"reset": "resetovanje",
+			"themes": {
+				"default": "Normalan",
+				"sepia": "Sepija",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

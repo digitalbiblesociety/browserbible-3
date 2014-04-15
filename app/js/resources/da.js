@@ -10,7 +10,12 @@ sofia.resources['da'] = {
 				"settings": "Indstillinger",
 				"tools": "Værktøj"
 			},
-			"reset": "nulstille"
+			"reset": "nulstille",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

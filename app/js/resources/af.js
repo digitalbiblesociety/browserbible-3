@@ -1,6 +1,6 @@
 sofia.resources['af'] = {
 	"translation": {
-		"name": "Afrikaans",
+		"name": "Afrikaans (Afrikaans)",
 		"menu": {
 			"search": {
 				"placeholder": "Soek"
@@ -10,7 +10,12 @@ sofia.resources['af'] = {
 				"settings": "Instellings",
 				"tools": "Gereedskap"
 			},
-			"reset": "herstel"
+			"reset": "herstel",
+			"themes": {
+				"default": "Normale",
+				"sepia": "Sepia",
+				"dark": "Lae lig"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

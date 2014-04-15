@@ -10,7 +10,12 @@ sofia.resources['de'] = {
 				"settings": "Einstellungen",
 				"tools": "Werkzeuge"
 			},
-			"reset": "rücksetzen"
+			"reset": "rücksetzen",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

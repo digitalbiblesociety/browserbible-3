@@ -10,7 +10,12 @@ sofia.resources['ms'] = {
 				"settings": "Tetapan",
 				"tools": "Alat"
 			},
-			"reset": "menetapkan semula"
+			"reset": "menetapkan semula",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

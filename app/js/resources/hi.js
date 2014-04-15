@@ -1,71 +1,80 @@
-/* Google translate */
-
-sofia.resources["hi"] = { 
-	translation: {
-		name: 'हिंदी (Hindi)',	
-	
-		menu: {
-			search: {
-				placeholder:'खोज'
+sofia.resources['hi'] = {
+	"translation": {
+		"name": "हिन्दी (Hindi)",
+		"menu": {
+			"search": {
+				"placeholder": "खोज"
 			},
-			config: {
-				font: 'फ़ॉन्ट',
-				settings: 'सेटिंग',
-				tools: 'उपकरण'
+			"config": {
+				"font": "फ़ॉन्ट",
+				"settings": "सेटिंग",
+				"tools": "उपकरण"
 			},
-			tools: {
-				visualfilters: 'विजुअल फ़िल्टर',
-				eng2p: 'अंग्रेजी 2 व्यक्ति बहुवचन'
+			"tools": {
+				"visualfilters": "विजुअल फ़िल्टर",
+				"eng2p": "अंग्रेजी 2 व्यक्ति बहुवचन"
 			},
-			reset: 'रीसेट'
-		},
-		
-		plugins: {
-			visualfilters: {
-				button: 'विजुअल फ़िल्टर',
-				title: 'विजुअल फ़िल्टर'				
-			},
-			eng2p: {
-				button: 'अंग्रेजी 2 व्यक्ति बहुवचन',
-				title: 'अंग्रेजी 2 व्यक्ति बहुवचन'				
+			"reset": "रीसेट",
+			"themes": {
+				"default": "साधारण",
+				"sepia": "एक प्रकार की मछली",
+				"dark": "कम रोशनी"
 			}
-		},			
-		
-		windows: {
-			bible: {
-				label: 'बाइबल',
-				filter: 'तक...',
-				ot: 'ओल्ड टेस्टामेंट',
-				nt: 'न्यू टेस्टामेंट',
-				dc: 'Deuterocanonical Books'								
+		},
+		"plugins": {
+			"visualfilters": {
+				"button": "विजुअल फ़िल्टर",
+				"title": "विजुअल फ़िल्टर",
+				"newfilter": "नया फ़िल्टर",
+				"strongsnumber": "मजबूत #",
+				"morphology": "आकृति विज्ञान",
+				"style": "शैली"
 			},
-			commentary: {
-				label: 'टीका'
+			"eng2p": {
+				"button": "अंग्रेजी 2 व्यक्ति बहुवचन",
+				"title": "अंग्रेजी 2 व्यक्ति बहुवचन"
 			},
-			map: {
-				label: 'मानचित्र',
-				placeholder: 'खोज...'
+			"lemmapopup": {
+				"findalloccurrences": "सभी घटनाओं का पता (लगभग __count__)"
+			}
+		},
+		"windows": {
+			"bible": {
+				"label": "बाइबल",
+				"filter": "तक...",
+				"ot": "ओल्ड टेस्टामेंट",
+				"nt": "न्यू टेस्टामेंट",
+				"dc": "Deuterocanonical Books",
+				"more": "अधिक",
+				"less": "कम"
 			},
-			search: {
-				label: 'खोज',
-				placeholder: 'खोज',			
-				button: 'खोज',
-				results: 'परिणाम',
-				verses: 'छंद'				
+			"commentary": {
+				"label": "टीका"
 			},
-			media: {
-				label: 'मीडिया'
+			"map": {
+				"label": "मानचित्र",
+				"placeholder": "खोज..."
 			},
-			notes: {
-				label: 'नोट्स'
+			"search": {
+				"label": "खोज",
+				"placeholder": "खोज",
+				"button": "खोज",
+				"results": "परिणाम",
+				"verses": "छंद"
 			},
-			audio: {
-				options: 'ऑडियो विकल्प',
-				synctext: 'सिंक पाठ ( बीटा )',
-				autoplay: 'ऑटोप्ले अगला',								
-				drama: 'ड्रामा',
-				nondrama: 'गैर ड्रामा'
+			"media": {
+				"label": "मीडिया"
+			},
+			"notes": {
+				"label": "नोट्स"
+			},
+			"audio": {
+				"options": "ऑडियो विकल्प",
+				"synctext": "सिंक पाठ ( बीटा )",
+				"autoplay": "ऑटोप्ले अगला",
+				"drama": "ड्रामा",
+				"nondrama": "गैर ड्रामा"
 			}
 		}
 	}
-};
+}

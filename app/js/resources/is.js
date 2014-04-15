@@ -10,7 +10,12 @@ sofia.resources['is'] = {
 				"settings": "Stillingar",
 				"tools": "Verkfæri"
 			},
-			"reset": "endurstilla"
+			"reset": "endurstilla",
+			"themes": {
+				"default": "Eðlilegt",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

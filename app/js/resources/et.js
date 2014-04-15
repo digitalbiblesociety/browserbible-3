@@ -10,7 +10,12 @@ sofia.resources['et'] = {
 				"settings": "Seaded",
 				"tools": "Töövahendid"
 			},
-			"reset": "lähtestama"
+			"reset": "lähtestama",
+			"themes": {
+				"default": "Tavaline",
+				"sepia": "Seepia",
+				"dark": "Vähese valguse"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

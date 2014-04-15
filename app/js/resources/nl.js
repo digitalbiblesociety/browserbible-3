@@ -10,7 +10,12 @@ sofia.resources['nl'] = {
 				"settings": "Instellingen",
 				"tools": "Gereedschap"
 			},
-			"reset": "reset"
+			"reset": "reset",
+			"themes": {
+				"default": "Normaal",
+				"sepia": "Sepia",
+				"dark": "Low Light"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

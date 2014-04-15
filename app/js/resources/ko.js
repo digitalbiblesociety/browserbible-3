@@ -10,7 +10,12 @@ sofia.resources['ko'] = {
 				"settings": "설정",
 				"tools": "도구"
 			},
-			"reset": "재설정"
+			"reset": "재설정",
+			"themes": {
+				"default": "표준",
+				"sepia": "세피아",
+				"dark": "저 조명"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

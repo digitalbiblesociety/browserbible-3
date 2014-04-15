@@ -10,7 +10,12 @@ sofia.resources['eu'] = {
 				"settings": "Ezarpenak",
 				"tools": "Tresnak"
 			},
-			"reset": "berrezarri"
+			"reset": "berrezarri",
+			"themes": {
+				"default": "Normala",
+				"sepia": "Sepia",
+				"dark": "Argi txikia"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

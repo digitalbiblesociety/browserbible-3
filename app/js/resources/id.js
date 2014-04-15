@@ -10,7 +10,12 @@ sofia.resources['id'] = {
 				"settings": "Pengaturan",
 				"tools": "Alat"
 			},
-			"reset": "ulang"
+			"reset": "ulang",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Warna coklat tua",
+				"dark": "Cahaya Rendah"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

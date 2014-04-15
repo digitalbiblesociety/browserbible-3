@@ -10,7 +10,12 @@ sofia.resources['tr'] = {
 				"settings": "Ayarlar",
 				"tools": "Araçlar"
 			},
-			"reset": "ayarlamak"
+			"reset": "ayarlamak",
+			"themes": {
+				"default": "Normal",
+				"sepia": "Sepya",
+				"dark": "Düşük Işık"
+			}
 		},
 		"plugins": {
 			"visualfilters": {

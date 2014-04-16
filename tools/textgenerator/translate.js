@@ -10,7 +10,12 @@ var
 	baseFolder = '../../app/js/resources',
 	baseLangCode = 'en',
 	baseLangData = null,
+	overwrite = false,
 	langs = [];
+
+if (argv['o']) {
+	overwrite = true;
+}
 	
 	
 if (argv['l']) {
@@ -20,7 +25,10 @@ if (argv['l']) {
 	// non 
 
 } else {
-	console.log('HELP\n-l lang,lang,lang\b-a do all\n\n');
+	console.log('HELP\n' + 
+				'-l lang,lang,lang\n' + 
+				'-a do all\n' + 
+				'-o overwrite\n\n');
 	return;
 }
 	
@@ -32,16 +40,18 @@ var sofia = {
 function readLang(langCode) {
 	
 	// read in file
-	var langPath = path.join(baseFolder, langCode + '.js'),
+	var langObj = {},
+		langPath = path.join(baseFolder, langCode + '.js');
+	
+	if (fs.existsSync(langPath)) {
 		text = fs.readFileSync(langPath, 'utf-8');
 		
-	eval(text);
+		eval(text);
 	
+		langObj = sofia.resources[langCode];		
+	}
 
-	var obj = sofia.resources[langCode];		
-
-
-	return obj;
+	return langObj;
 }
 
 function langToFlat(langJson) {
@@ -66,52 +76,56 @@ function langToFlat(langJson) {
 	}
 	
 	// recursively parse all notes
-	parseNode(langJson.translation, '');
+	if (typeof langJson.translation != 'undefined') {
+		parseNode(langJson.translation, '');
+	}
 	
 	return output;
 }
 
 
 
-function translateKeys(flatLang, targetLang, callback) {
+function translateKeys(sourceFlatLang, targetFlatLang, targetLang, callback) {
 
 	var 
-		translatedKeys = {},
-		keys = Object.keys(flatLang),
+		keys = Object.keys(sourceFlatLang),
 		keyIndex = 0,
 		translatedWords = {};
 		
 	function nextKey() {
 		if (keyIndex < keys.length) {
 			var key = keys[keyIndex],
-				word = flatLang[key];
+				srcWord = sourceFlatLang[key],
+				targetWord = targetFlatLang[key];
 				
-				
-			if (typeof translatedWords[word] != 'undefined') {
-				
-				// use existing translation
-				translatedKeys[key] = translatedWords[word];
-				
-				keyIndex++;
-				nextKey();						
-				
-			} else {
-				translateWord(word, baseLangCode, targetLang, function(translatedWord) {
+			if (overwrite || typeof targetWord == 'undefined' ) {
+							
+				if (typeof translatedWords[srcWord] != 'undefined') {
 					
-					console.log(word, targetLang, translatedWord);
-					
-					translatedWords[word] = translatedKeys[key] = translatedWord;
+					// use existing translation
+					targetFlatLang[key] = translatedWords[srcWord];
 					
 					keyIndex++;
-					nextKey();				
-				});				
+					nextKey();						
+					
+				} else {
+					translateWord(srcWord, baseLangCode, targetLang, function(translatedWord) {
+						
+						console.log(srcWord, '==', targetLang, '==', translatedWord);
+						
+						targetFlatLang[key] = translatedWords[key] = translatedWord;
+						
+						keyIndex++;
+						nextKey();				
+					});				
+				}
+			} else {
+				keyIndex++;
+				nextKey();								
 			}
-				
-
-			
 			
 		} else {
-			callback( translatedKeys);
+			callback( targetFlatLang );
 		}
 	}
 
@@ -185,7 +199,7 @@ function langToJson(flatLang) {
 
 function saveLang(langJson, lang) {
 	var langPath = path.join(baseFolder, lang + '.js');
-		text = "sofia.resources['" + lang + "'] = " + JSON.stringify({translation: langJson }, null, '\t');
+		text = "sofia.resources['" + lang + "'] = " + JSON.stringify({translation: langJson }, null, '\t').replace('__ count__', '__count__');
 	
 	//console.log(langPath);
 		
@@ -197,8 +211,7 @@ function saveLang(langJson, lang) {
 
 
 // LOAD
-var baseLangObj = readLang(baseLangCode),
-	baseFlatLangObj = langToFlat(baseLangObj);
+
 	
 //console.log(baseFlatLangObj);
 	
@@ -214,21 +227,28 @@ var baseLangObj = readLang(baseLangCode),
 var currentIndex = 0;
 
 function translateNextLang() {
+	
 	if (currentIndex < langs.length) {
-		var lang = langs[currentIndex];
+		var lang = langs[currentIndex],
+			langObj = readLang(lang),
+			flatLangObj = langToFlat(langObj);		
 		
+		// load the language to show it 
 		loadLanguageNames(lang, function(langData) {
-
-			translateKeys(baseFlatLangObj, lang, function(translatedKeys) {
+		
+			
+			// do translation
+			translateKeys(baseFlatLangObj, flatLangObj, lang, function(translatedKeys) {
 				
 				var translatedObj = langToJson(translatedKeys);
 				
 				translatedObj.name = getLanguageName(lang, langData) + ' (' + getLanguageName(lang, baseLangData) + ')';
 				
+				// save
 				saveLang(translatedObj, lang);
 				
-				currentIndex++;
-				
+				// move on!
+				currentIndex++;				
 				translateNextLang();
 			});
 
@@ -274,6 +294,7 @@ function loadBaseLanguages() {
 		if (argv["a"]) {
 			langs = [];
 			
+			/*
 			var langFiles = fs.readdirSync(baseFolder);
 			
 			for (var i=0, il=baseLangData.data.languages.length; i<il; i++) {
@@ -285,16 +306,26 @@ function loadBaseLanguages() {
 					langs.push(langInfo.language);
 				}
 								
-			}		
+			}
+			*/	
+			
+			for (var i=0, il=baseLangData.data.languages.length; i<il; i++) {
+				var langInfo = baseLangData.data.languages[i];
+
+				langs.push(langInfo.language);								
+			}				
 	
 		}
 		
-		//console.log(langs);
+		console.log('langs', langs);
 		
 		translateNextLang();
 	});
 }
 
-loadBaseLanguages();
+// START
 
-//translateNextLang();
+var baseLangObj = readLang(baseLangCode),
+	baseFlatLangObj = langToFlat(baseLangObj);
+
+loadBaseLanguages();

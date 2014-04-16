@@ -801,6 +801,11 @@ input:focus {
 	font-size: 0.8em;
 }
 
+.search-wrapper table td .note,
+.search-wrapper table td .cf {
+	display: none;
+}
+
 .search-wrapper table tr:hover {
 	cursor: pointer;
 	background-color: #dbe9fa;
@@ -1500,5 +1505,9 @@ input:focus {
 }
 .theme-dark .highlight {
 	background-color: #bab432;
-	
+}	
+.theme-dark h3.is1, 
+.theme-dark div.s, 
+.theme-dark div.is1 { 
+	color: #eee;
 }

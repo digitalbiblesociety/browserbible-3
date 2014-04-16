@@ -456,7 +456,7 @@ var AddWindowButton = function(node) {
 		//windowManager.trigger('settingschange',{});
 	});	
 	
-	$('<span class="window-reset">Reset</span>')
+	$('<span class="window-reset i18n" data-i18n="[html]menu.reset">Reset</span>')
 		.on('click', function() {
 			window.location.reload();			
 		})

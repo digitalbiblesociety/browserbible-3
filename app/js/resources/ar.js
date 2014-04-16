@@ -22,7 +22,7 @@ sofia.resources['ar'] = {
 				"button": "مرشحات بصرية",
 				"title": "مرشحات بصرية",
 				"newfilter": "مرشح جديد",
-				"strongsnumber": "الرقم في فهرس سترونج",
+				"strongsnumber": "رقم فهرس سترونج",
 				"morphology": "لغويات",
 				"style": "أسلوب"
 			},

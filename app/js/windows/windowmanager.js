@@ -77,22 +77,29 @@ var WindowManager = function(node) {
 		//console.log('manage resize', windows.length);
 			
 		if (windows.length > 0) {
-			var windowWidth = Math.floor(width/windows.length),
-				firstMarginLeft = parseInt(windows[0].node.css('margin-left'), 10),
-				firstMarginRight =parseInt(windows[0].node.css('margin-right'), 10);
-				
+		
+			if (width < 480) {
 			
-			if (!isNaN(firstMarginLeft)) {
-				windowWidth = windowWidth - firstMarginLeft;
-			}
-			if (!isNaN(firstMarginRight)) {
-				windowWidth = windowWidth - firstMarginRight;
-			}			
-				 
-						
-			for (var i=0, il=windows.length; i<il; i++) {
-				windows[i].size(windowWidth, height);
-			}
+				windows[0].size(width, height);
+			
+			} else {
+		
+				var windowWidth = Math.floor(width/windows.length),
+					firstMarginLeft = parseInt(windows[0].node.css('margin-left'), 10),
+					firstMarginRight =parseInt(windows[0].node.css('margin-right'), 10);
+					
+				
+				if (!isNaN(firstMarginLeft)) {
+					windowWidth = windowWidth - firstMarginLeft;
+				}
+				if (!isNaN(firstMarginRight)) {
+					windowWidth = windowWidth - firstMarginRight;
+				}			
+							
+				for (var i=0, il=windows.length; i<il; i++) {
+					windows[i].size(windowWidth, height);
+				}
+			} 
 		}
 		
 		if (windows.length == 1) {

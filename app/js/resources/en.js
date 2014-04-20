@@ -10,7 +10,7 @@ sofia.resources['en'] = {
 				"settings": "Settings",
 				"tools": "Tools"
 			},
-			"reset": "reset",
+			"reset": "restore",
 			"themes": {
 				"default": "Normal",
 				"sepia": "Sepia",

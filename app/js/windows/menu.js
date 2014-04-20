@@ -386,7 +386,7 @@ var AddWindowButton = function(node) {
 
 	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
 		windowTools.push(	
-			{type: 'CommentaryWindow', label: 'commentary', data: {'textid':sofia.config.newWindowFragmentid,'fragmentid':''}}
+			{type: 'CommentaryWindow', label: 'commentary', data: {'textid':sofia.config.newCommentaryWindowTextId,'fragmentid':''}}
 		);
 	}
 	

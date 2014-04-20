@@ -33,10 +33,14 @@ var LemmaPopupPlugin = function(app) {
 	display: block;\
 	cursor: pointer;\
 	color: #2a85e8;\
-	-x-text-align: right;\
 }\
 .lemma-findall:hover {\
 	text-decoration: underline;\
+}\
+@media only screen and (max-width: 460px) {\
+	.lemma-findall {\
+		display: none;\
+	}\
 }\
 </style>').appendTo( $('head') );
 

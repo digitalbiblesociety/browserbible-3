@@ -1,8 +1,6 @@
 TextInfoLoader = (function() {
 
 	var 
-		locationBase = 'content/texts/',
-		textIds = null,
 		textInfoData = null,
 		textData = {};
 
@@ -20,48 +18,19 @@ TextInfoLoader = (function() {
 			
 			return textinfo;
 		}
-	
-		// load it!
-		var infoUrl = locationBase + textid + '/info.json';
 		
-		$.ajax({		
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/json");
-				}
-			},		
-			url: infoUrl,
-			dataType: 'json',
-			//dataType: 'text',
-			success: function(data) {
-				/*	
-				// TEMP fix for Michael's data
-				if (data.indexOf("audioDirectory") > -1) {
-					var indexOfReturn = data.indexOf('\n', data.indexOf('audioDirectory') +1);
-					
-					if (indexOfReturn > -1) {
-						data = data.substr(0,indexOfReturn) + ',' + data.substr(indexOfReturn);						
-					}					
-				}
-				
-				data = JSON.parse(data);
-				*/
-				
-				
-				// store this one			
-				textData[data.id] = data;
-				
-				callback(data);
-			},
-			error: function(error) {
-				
-				console.log("ERROR TextInfoLoader.getText", infoUrl); 
+		var providerName = 'local';
+		
+		sofia.textproviders[providerName].getTextInfo(textid, function(data) {
+
+			// store
+			textData[data.id] = data;
 			
-				if (errorCallback) {
-					errorCallback(error);	
-				}			
-			}
-		});		
+			// send back
+			callback(data);
+			
+		}, errorCallback);
+		
 	}
 	
 	function loadTexts(callback) {
@@ -74,50 +43,19 @@ TextInfoLoader = (function() {
 
 	function loadTextsManifest(callback) {
 	
-		var 
-			textsFilename = 'texts.json';
+		var providerName = 'local';	
+	
+		sofia.textproviders[providerName].getTextManifest(function(data) {
+			textInfoData = data;
 			
-		if (typeof sofia.config.textsIndex != 'undefined' && sofia.config.textsIndex != '') {
-			textsFilename = sofia.config.textsIndex;			
-		}	
-					
-		$.ajax({
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/json");
-				}
-			},		
-			url: locationBase + textsFilename,
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-			
-				textIds = data.textIds;
-				textInfoData = data.textInfoData;
-				
-				if (callback) { 
-					callback(textInfoData);
-				}
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				//console.log('error loading texts.json', jqXHR, textStatus, errorThrown);
-				//console.log(textStatus);				
-
-				var modal = new MovableWindow(600,250, 'Texts Error');
-				//modal.size(500, 200).center();
-				
-				modal.body.css({background: '#000', color: '#fff' }).html(
-					'<div style="padding: 20px;">' + 
-						'<p>Problem loading <code>' + locationBase + textsFilename + '</code></p>' + 
-						'<p>Status:' + textStatus + '</p>'+ 
-						'<p>Error:' + errorThrown + '</p>'+						
-					'</div>'
-				);
-				modal.show().center();
-			
-			}
+			if (callback) { 
+				callback(textInfoData);
+			}			
 		});
+				
 	}
+	
+	// when the document is ready, start loading texts
 	$(function() {
 		loadTextsManifest();	
 	});

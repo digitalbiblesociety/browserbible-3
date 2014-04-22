@@ -28,8 +28,8 @@ var AudioController = function(container, ui, scroller) {
 					'<label><input type="checkbox" class="audio-autoplay" checked /><span class="i18n" data-i18n="[html]windows.audio.autoplay" /></label>' +				
 				'</div>'
 				).appendTo(container),
-		scrollCheckbox = options.find('.audio-scroll').prop('checked', false),
-		autoplayCheckbox = options.find('.audio-autoplay').prop('checked', false),
+		scrollCheckbox = options.find('.audio-scroll').prop('checked', true),
+		autoplayCheckbox = options.find('.audio-autoplay').prop('checked', true),
 		optionsCloseButton = options.find('.audio-options-close'),
 
 		audio = block.find('audio')[0],

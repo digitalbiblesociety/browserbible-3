@@ -514,7 +514,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	
 		if (init_data.textid) {
-			TextInfoLoader.getText(init_data.textid, function(data) {
+			TextLoader.getText(init_data.textid, function(data) {
 					
 				selectedText = data;
 				
@@ -532,8 +532,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		} else {	
 			//console.log('SEARCH: no init textid');
 			
-			for (var index in TextInfoLoader.textData) {
-				var textInfo = TextInfoLoader.textData[index];
+			for (var index in TextLoader.textData) {
+				var textInfo = TextLoader.textData[index];
 				textChooser.setTextInfo(textInfo);
 				textui.html(textInfo.abbr);
 				break;

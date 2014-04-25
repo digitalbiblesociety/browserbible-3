@@ -116,7 +116,7 @@ var TextChooser = function(container, target, text_type) {
 			.removeClass('selected');
 			
 				
-		TextInfoLoader.getText(textid, function(data) {
+		TextLoader.getText(textid, function(data) {
 		
 			selectedTextInfo = data;
 		
@@ -216,15 +216,11 @@ var TextChooser = function(container, target, text_type) {
 		//}
 		
 		// filter by type
-		//console.log('before',arrayOfTexts);
 		arrayOfTexts = arrayOfTexts.filter(function(t) {
 			var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
-			
-			//console.log(thisTextType, text_type, t.type);
 						
 			return thisTextType == text_type;			
 		});
-		//console.log('after',arrayOfTexts);			
 		
 		if (showHeaders) {
 			// find languages
@@ -256,6 +252,16 @@ var TextChooser = function(container, target, text_type) {
 					hasTopText = false,
 					langHtml = [];
 						
+				textsInLang = textsInLang.sort(function(a,b) {
+					if (a.name == b.name) {
+						return 0;
+					} else if (a.name > b.name) {
+						return 1;
+					} else if (a.name < b.name) {					
+						return -1;						
+					}
+				});
+				
 				
 				for (var textIndex in textsInLang) {
 					var text = textsInLang[textIndex],
@@ -371,7 +377,7 @@ var TextChooser = function(container, target, text_type) {
 		if (!textsHaveRendered) {
 			main.html('Loading');
 			
-			TextInfoLoader.loadTexts(function(data) {
+			TextLoader.loadTexts(function(data) {
 				renderTexts(data);
 			});			
 		}

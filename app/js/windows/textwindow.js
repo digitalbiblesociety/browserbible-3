@@ -62,21 +62,34 @@ var TextWindow = function(id, node, init_data, text_type) {
 		flipper.toggleClass('showinfo');
 		
 		if (flipper.hasClass('showinfo')) {
-			$.ajax({
-				dataType: 'html',
-				url: 'content/texts/' + currentTextInfo.id + '/about.html',
-				success: function(htmlString) {
+		
+			console.log('info', currentTextInfo.aboutHtml);
+		
+			if (typeof currentTextInfo.aboutHtml != 'undefined') {
 				
-					var breakTag = '<body',
-						fixedHtml = htmlString.indexOf(breakTag) > -1 ? 
-											breakTag + htmlString.split(breakTag)[1] :
-											'',				
-						aboutDoc = $(fixedHtml);
+				var aboutDoc = $(currentTextInfo.aboutHtml);
+				
+				info.html('');
+				info.append( aboutDoc );				
+				
+			} else {
+			
+				$.ajax({
+					dataType: 'html',
+					url: 'content/texts/' + currentTextInfo.id + '/about.html',
+					success: function(htmlString) {
 					
-					info.html('');
-					info.append( aboutDoc );
-				}				
-			});
+						var breakTag = '<body',
+							fixedHtml = htmlString.indexOf(breakTag) > -1 ? 
+												breakTag + htmlString.split(breakTag)[1] :
+												'',				
+							aboutDoc = $(fixedHtml);
+						
+						info.html('');
+						info.append( aboutDoc );
+					}				
+				});
+			}
 		}
 		
 		return;
@@ -315,7 +328,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 		}
 						
 		// load the text specified by the init data		
-		TextInfoLoader.getText(init_data.textid, 
+		TextLoader.getText(init_data.textid, 
 			
 			// success
 			function(loadedTextInfo) {		
@@ -334,7 +347,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 				console.log('ERROR', init_data.textid, 'doesnt exist');
 							
 				// load all possible versions
-				TextInfoLoader.loadTexts(function(textInfoData) {
+				TextLoader.loadTexts(function(textInfoData) {
 				
 					// find a text with the same language
 					var newTextInfo = null,
@@ -355,7 +368,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 					}
 				
 					// let's try again with first one
-					TextInfoLoader.getText(newTextInfo.id, function(loadedTextInfo) {
+					TextLoader.getText(newTextInfo.id, function(loadedTextInfo) {
 						// store this setting
 						currentTextInfo = loadedTextInfo;	
 						

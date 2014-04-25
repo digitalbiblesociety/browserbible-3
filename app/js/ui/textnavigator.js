@@ -301,9 +301,9 @@ var TextNavigator = function(container, target) {
 		
 		
 		// set names
-		bible.addNames(textInfo.lang, textInfo.divisions, textInfo.divisionNames);
-		
-
+		if (textInfo.divisionNames) {
+			bible.addNames(textInfo.lang, textInfo.divisions, textInfo.divisionNames);
+		}
 	}
 	
 	function isVisible() {

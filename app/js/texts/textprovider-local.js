@@ -1,4 +1,3 @@
-sofia.textproviders = {};
 
 sofia.textproviders['local'] = (function() {
 
@@ -23,7 +22,10 @@ sofia.textproviders['local'] = (function() {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {			
-				callback(data.textInfoData);
+			
+				var textInfoData = data.textInfoData;
+			
+				callback(textInfoData);
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				//console.log('error loading texts.json', jqXHR, textStatus, errorThrown);
@@ -127,7 +129,7 @@ sofia.textproviders['local'] = (function() {
 	
 })();
 
-
+/*
 sofia.textproviders['example'] = (function() {
 	
 	function getTextManifest (callback) {
@@ -149,3 +151,4 @@ sofia.textproviders['example'] = (function() {
 	}		
 	
 })();
+*/

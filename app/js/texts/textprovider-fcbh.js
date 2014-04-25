@@ -146,10 +146,12 @@ sofia.textproviders['fcbh'] = (function() {
 
 					}
 
+					/*
 					var w = new MovableWindow();
 					w.body.html( '<textarea>' +  JSON.stringify(text_data, null, '\t') + '</textarea>' );
 					w.show();
-
+					*/
+					
 					//console.log( JSON.stringify(text_data) );
 
 					console.log( text_data );

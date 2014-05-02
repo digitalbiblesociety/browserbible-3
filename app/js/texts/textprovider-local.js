@@ -121,10 +121,23 @@ sofia.textproviders['local'] = (function() {
 		
 	}
 	
+	function startSearch(textid, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+		
+		var textSearch = new TextSearch();
+		
+		textSearch.on('load', onSearchLoad);	
+		textSearch.on('indexcomplete', onSearchIndexComplete);	
+		textSearch.on('complete', onSearchComplete);
+		
+		textSearch.start(text, textid);		
+		
+	}
+	
 	return {
 		getTextManifest: getTextManifest,
 		getTextInfo: getTextInfo,
-		loadSection: loadSection
+		loadSection: loadSection,
+		startSearch: startSearch
 	}	
 	
 })();

@@ -154,7 +154,7 @@ sofia.textproviders['fcbh'] = (function() {
 					
 					//console.log( JSON.stringify(text_data) );
 
-					console.log( text_data );
+					//console.log( text_data );
 
 					callback(text_data);
 
@@ -322,11 +322,113 @@ sofia.textproviders['fcbh'] = (function() {
 
 		});
 	}
+	
+	function startSearch(textid, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+		
+		var info = getTextInfoSync(textid);
+		
+		
+		var e = {
+			type:'complete', 
+			target: this,
+			data: {						
+				results: [], 
+				searchIndexesData: [], // not needed for SearchWindow
+				searchTermsRegExp: SearchTools.createSearchTerms(text, false), 
+				isLemmaSearch: false
+			}					
+		};	
+		
+		console.log('start', e);	
+		
+		
+		var dam_id = '';
+		
+		if (info.ot_dam_id != '') {
+			dam_id = info.ot_dam_id;
+		} else if (info.nt_dam_id != '') {
+			dam_id = info.nt_dam_id;
+		}
+			
+			
+		doSearch(dam_id, text, e, function() {
+		
+			onSearchComplete(e);
+		
+		});			
+		
+		/*
+		if (info.ot_dam_id != '') {
+			doSearch(info.ot_dam_id, text, e, function() {
+
+				if (info.nt_dam_id != '') {
+					doSearch(info.nt_dam_id, text, e, function() {
+
+						onSearchComplete(e);
+
+					});
+				}
+
+			});
+		} else 	if (info.nt_dam_id != '') {
+			doSearch(info.nt_dam_id, text, e, function() {
+
+				onSearchComplete(e);
+
+			});
+		} else {
+
+			console.log('FCBH error', 'No NT or OT id', info);
+
+		}
+		*/		
+		
+	}	
+	function doSearch(dam_id, text, e, callback) {
+			
+		$.ajax({
+			url: 'http://dbt.io/text/search?v=2&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
+			success: function(data) {
+			
+				for (var i=0, il=data[1].length; i<il; i++) {
+					var verse = data[1][i],
+						dbsBookCode = bible.DEFAULT_BIBLE[ bible.DEFAULT_BIBLE_OSIS.indexOf(verse.book_id) ],
+						fragmentid = dbsBookCode + verse.chapter_id + '_' + verse.verse_id;
+					
+					e.data.results.push({
+						fragmentid: fragmentid, 
+						html: highlightWords(verse.verse_text, e.data.searchTermsRegExp)
+					});
+				}
+								
+				callback(data);				
+			}			
+		});		
+	}
+	
+	function highlightWords(text, searchTermsRegExp) {
+
+		var processedHtml = text;
+				
+		for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+			
+			searchTermsRegExp[j].lastIndex = 0;
+			
+			// surround the word with a highlight
+			processedHtml = processedHtml.replace(searchTermsRegExp[j], function(match) {
+				return '<span class="highlight">' + match + '</span>';
+			});
+		}		
+	
+		return processedHtml;		
+	}
+	
 
 	return {
 		getTextManifest: getTextManifest,
 		getTextInfo: getTextInfo,
-		loadSection: loadSection
+		loadSection: loadSection,
+		startSearch: startSearch
 	}
 
 })();

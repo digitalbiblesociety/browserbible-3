@@ -43,7 +43,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 		textui = header.find('.text-list'),
 		textChooser = new TextChooser(parentNode, textui, 'bible'),
 		//encoder = new base32.Encoder(),
-		textSearch = new TextSearch(),
 		selectedText = null,
 		
 		
@@ -114,9 +113,30 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}
 	}
 	
+	resultsBlock.on('click', 'tr', function(e) {
+		
+		var tr = $(this),
+			fragmentid = tr.attr('data-fragmentid');
+			
+		//console.log('search click', fragmentid);	
+		
+		ext.trigger('globalmessage', {
+								type: 'globalmessage',
+								target: this, 
+								data: {
+									messagetype:'nav',
+									type: 'bible', 
+									locationInfo: {
+										fragmentid: fragmentid,
+										sectionid: fragmentid.split('_')[0],
+										offset: 0
+									}
+								}
+							});
 	
-	textSearch.on('load', function(e) {
+	});
 	
+	function searchLoadHandler(e) {
 		searchProgressBar.show();
 		
 		// give feedback!
@@ -150,49 +170,24 @@ var SearchWindow = function(id, parentNode, init_data) {
 			searchProgressBarLabel
 				.css({left: (progressWidth-labelWidth) + 'px', margin: '' })
 				.removeClass('search-progress-bar-label-outside');			
-		}
-		
-	});
+		}		
+	}
 	
-	resultsBlock.on('click', 'tr', function(e) {
-		
-		var tr = $(this),
-			fragmentid = tr.attr('data-fragmentid');
-			
-		//console.log('search click', fragmentid);	
-		
-		ext.trigger('globalmessage', {
-								type: 'globalmessage',
-								target: this, 
-								data: {
-									messagetype:'nav',
-									type: 'bible', 
-									locationInfo: {
-										fragmentid: fragmentid,
-										sectionid: fragmentid.split('_')[0],
-										offset: 0
-									}
-								}
-							});
-	
-	});
-
-	textSearch.on('indexcomplete', function(e) {
+	function searchIndexCompleteHandler(e) {
 		var results = e.data.results;
 		//console.log('searcher:indexcomplete', e.data);
 	
 	
-		footer.html(i18n.t('windows.search.results') + e.data.searchIndexesData.length );
-	});
+		footer.html(i18n.t('windows.search.results') + e.data.searchIndexesData.length );		
+	}
 	
-	textSearch.on('complete', function(e) {
-		
-
+	function searchCompleteHandler(e) {
+	
 		// store results
 		currentResults = e.data.results;
 		searchIndexesData = e.data.searchIndexesData;
 		searchTermsRegExp = e.data.searchTermsRegExp;
-		isLemmaSearch = e.data.isLemmaSearch;			
+		isLemmaSearch = e.data.isLemmaSearch;		
 		
 		//console.log('searcher:complete'); // , e.data.results);
 		
@@ -270,7 +265,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}	
 		
 		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
-	});	
+		
+	}
 	
 	function renderLemmaInfo() {
 		var text = input.val(),
@@ -334,23 +330,15 @@ var SearchWindow = function(id, parentNode, init_data) {
 			}
 			
 		});
-		
-		
+				
 		var html = '';
 		for (var i=0, il=usageArray.length; i<il; i++) {
-			//html += '<tr><td>' + usageArray[i].usage + '</td><td>' + usageArray[i].count + '</td></tr>';			
 			html += (i > 0 ? ', ' : '') + usageArray[i].usage + ' (' + usageArray[i].count + ')'; 
 		}
-		//for (var usage in usages) {
-		//	html += '<tr><td>' + usage + '</td><td>' + usages[usage] + '</td></tr>';			
-		//}
 		
-		//topUsage.html('<table>' + html + '</table>');
 		topUsage
 			.html(html)
 			.show();
-		//topUsage.hide();
-		
 	}
 	
 	function renderResultsVisual(divisionCount, bookList) {
@@ -462,13 +450,14 @@ var SearchWindow = function(id, parentNode, init_data) {
 	
 		disable();	
 
+		textInfo = textChooser.getTextInfo();
+
 		var text = input.val(),
-			//textid = list.val(),
-			textInfo = textChooser.getTextInfo(),
+			//textid = list.val(),			
 			textid = textInfo.id;
 			
 			
-		//console.log('search', textid, text);
+		console.log('search', textid, text, textInfo);
 		
 		
 		// clear results
@@ -483,8 +472,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		
 		resultsBlock.addClass('search-main-loading');
 		
-		textSearch.start(text, textid);
-		
+		TextLoader.startSearch(textid, text, searchLoadHandler, searchIndexCompleteHandler, searchCompleteHandler);
+			
 		removeHighlights();
 		
 		enable();	
@@ -530,7 +519,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 				
 			});						
 		} else {	
-			//console.log('SEARCH: no init textid');
+			console.log('SEARCH: no init textid');
 			
 			for (var index in TextLoader.textData) {
 				var textInfo = TextLoader.textData[index];

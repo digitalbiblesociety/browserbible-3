@@ -68,7 +68,7 @@ TextSearch = function() {
 		// store variables
 		searchText = text;
 		searchTextid = textid;
-		textInfo = TextInfoLoader.getText(searchTextid);
+		textInfo = TextLoader.getText(searchTextid);
 		
 		
 		// reset
@@ -80,8 +80,9 @@ TextSearch = function() {
 		searchIndexesCurrentIndex = 0;
 		searchType = /\bOR\b/gi.test(text) ? 'OR' : 'AND';
 	
-		createSearchTerms();
-		
+		//createSearchTerms();
+		isLemmaSearch = isLemmaRegExp.test(searchText);
+		searchTermsRegExp = SearchTools.createSearchTerms(text, isLemmaSearch);		
 		
 		if (typeof sofia.config.serverSearchUrl != 'undefined' && sofia.config.serverSearchUrl != '' && window.location.protocol != 'file:') {
 		
@@ -220,7 +221,7 @@ TextSearch = function() {
 			
 			ext.trigger('load', {type: 'load', target:this, data: {sectionid: sectionid, index: searchIndexesCurrentIndex, total: searchIndexesData.length}});
 				
-			TextLoader.load(textInfo, sectionid, function(content) {
+			TextLoader.loadSection(textInfo, sectionid, function(content) {
 
 				for (var i=0, il=fragmentids.length; i<il; i++) {
 					var 
@@ -241,55 +242,7 @@ TextSearch = function() {
 					});					
 						
 					if (fragmentNode.length > 0) {
-						
-						/*
-						
-						var foundMatch = false,
-							regMatches = new Array(searchTermsRegExp.length);
-					
-						for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
-							
-							searchTermsRegExp[j].lastIndex = 0;
-							
-							if (isLemmaSearch) {
-								
-								// add the 'highlight' class to the <l> node
-								html = html.replace(searchTermsRegExp[j], function(match) {
-									regMatches[j] = true;
-									foundMatch = true;
-									return match + ' class="highlight" ';
-								});				
-
-							} else {
-
-								// surround the word with a highlight
-								html = html.replace(searchTermsRegExp[j], function(match) {
-									regMatches[j] = true;
-									foundMatch = true;
-									return '<span class="highlight">' + match + '</span>';
-								});								
-								
-							}
-						}
-						
-						if (searchType == 'AND') {
-							var foundAll = true;
-							for (var j=0, jl=regMatches.length; j<jl; j++) {
-								if (regMatches[j] !== true) {
-									foundAll = false;
-									break;									
-								}
-							}
-							foundMatch = foundAll;
-							
-						}
-						
-						if (foundMatch) {
-							searchFinalResults.push({fragmentid: fragmentid, html: html});
-						}
-												
-						*/
-						
+				
 						var result = findMatchesInVerse(html);
 						
 						if (result.foundMatch) {
@@ -469,6 +422,77 @@ TextSearch = function() {
 };
 
 SearchTools = {
+
+	isAsciiRegExp: new XRegExp('^[\040-\176]*$', 'gi'),
+	
+	isLemmaRegExp: /[GgHh]\d{1,6}/g,
+
+	createSearchTerms: function (searchText, isLemmaSearch) {
+		var searchTermsRegExp = [];
+		
+		if (isLemmaSearch) {
+
+			var strongNumbers = searchText.split(' ');
+					
+			for (var i=0, il=strongNumbers.length; i<il; i++) {
+			
+				var part = strongNumbers[i];
+								
+				searchTermsRegExp.push( new RegExp('s="' + '(G|H)?' + part.substr(1) + '"', 'gi') );
+		
+			}			
+			
+		} else {
+	
+			// ASCII characters have predictable word boundaries (space ' ' = \b)
+			SearchTools.isAsciiRegExp.lastIndex = -1;
+			
+			if (SearchTools.isAsciiRegExp.test( searchText )) {
+						
+				// check for quoted search "jesus christ"
+				if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
+					var part = searchText;
+					part = part						
+							.split(' OR ').join('|')
+					
+							// remove the quotes
+							.replace(/"/gi,'')
+					
+							// find punctuation in between the words
+							.replace(/ /gi,'[\\s\\.,"\';:]+');
+			
+					searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );			
+				} else {
+				
+					// for non-quoted searches, use "AND" search				
+					var andSearchParts = searchText.split(/\s+AND\s+|\s+/gi);
+					
+					for (var i=0, il=andSearchParts.length; i<il; i++) {
+					
+						var part = andSearchParts[i];
+										
+						searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
+				
+					}			
+				}
+						
+			}
+			// non-ASCII characters
+			else {	
+	
+				var words = SearchTools.splitWords(searchText);
+				
+				for (var j=0, jl=words.length; j<jl; j++) {
+				
+					searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
+				
+				}		
+			}	
+		}	
+		
+		return searchTermsRegExp;	
+	},
+
 	splitWords: function(input) {
 
 		var 
@@ -678,94 +702,99 @@ SearchIndexLoader = function() {
 		fragmentids = [];
 		// then pair down to this [{sectionid:'GN1', fragmentids: ['GN1_1','GN1_2']}]
 		loadedResults = [];
+		
+		if (loadedIndexes.length > 0) {
 			
-		if (searchType == 'OR') {
-			// combine all the fragments
-			for (var i=0, il=loadedIndexes.length; i<il; i++) {
-				fragmentids = fragmentids.concat( loadedIndexes[i] ); // .occurrences );
-				////console.log(loadedIndexes[i].term);
-				////console.log(loadedIndexes[i].occurrences);
-			}
-			
-			// sort!
-			fragmentids.sort(function(a, b) {
-				// split into parts
-				function splitFragment(fragmentid) {
-					var parts = fragmentid.split('_'),
-						sectionid = parts[0],
-						sectionIndex = textInfo.sections.indexOf(sectionid),
-						fragmentNum = parseInt(parts[1], 10),
-						value = {
-							sectionid: sectionid,
-							sectionIndex: sectionIndex,
-							fragmentNum: fragmentNum
-						};
-						
-					return value;
+			if (searchType == 'OR') {
+				// combine all the fragments
+				for (var i=0, il=loadedIndexes.length; i<il; i++) {
+					fragmentids = fragmentids.concat( loadedIndexes[i] ); // .occurrences );
+					////console.log(loadedIndexes[i].term);
+					////console.log(loadedIndexes[i].occurrences);
 				}
 				
-				var fraga = splitFragment(a),
-					fragb = splitFragment(b);
-			
-			
-				if (fraga.sectionIndex < fragb.sectionIndex || 
-					(fraga.sectionIndex == fragb.sectionIndex && fraga.fragmentNum < fragb.fragmentNum) )
-					return -1;
-				if (fraga.sectionIndex > fragb.sectionIndex || 
-					(fraga.sectionIndex == fragb.sectionIndex && fraga.fragmentNum > fragb.fragmentNum) )
-					return 1;
-				// a must be equal to b
-				return 0;			
-			});
-				
-		
-		} else if (searchType == 'AND') {
-		
-			// combine arrays to only include fragments (verses) where all indexes overlap (truth AND love)
-			var totalIndexes = loadedIndexes.length;	
-			if (totalIndexes == 1) {		
-				fragmentids = loadedIndexes[0]; // .occurrences;
-			} else if (totalIndexes > 1) {
-				//fragmentids = loadedIndexes[0].occurrences.filter(function(val) {
-				fragmentids = loadedIndexes[0].filter(function(val) {
-					var inOtherArrays = true;
-					for (var i=1; i<totalIndexes; i++) {
-						//if (loadedIndexes[i].occurrences.indexOf(val) == -1) {
-						if (loadedIndexes[i].indexOf(val) == -1) {
-							inOtherArrays = false;
-							break;
-						}
-					}	
+				// sort!
+				fragmentids.sort(function(a, b) {
+					// split into parts
+					function splitFragment(fragmentid) {
+						var parts = fragmentid.split('_'),
+							sectionid = parts[0],
+							sectionIndex = textInfo.sections.indexOf(sectionid),
+							fragmentNum = parseInt(parts[1], 10),
+							value = {
+								sectionid: sectionid,
+								sectionIndex: sectionIndex,
+								fragmentNum: fragmentNum
+							};
+							
+						return value;
+					}
 					
-					return inOtherArrays;				
+					var fraga = splitFragment(a),
+						fragb = splitFragment(b);
+				
+				
+					if (fraga.sectionIndex < fragb.sectionIndex || 
+						(fraga.sectionIndex == fragb.sectionIndex && fraga.fragmentNum < fragb.fragmentNum) )
+						return -1;
+					if (fraga.sectionIndex > fragb.sectionIndex || 
+						(fraga.sectionIndex == fragb.sectionIndex && fraga.fragmentNum > fragb.fragmentNum) )
+						return 1;
+					// a must be equal to b
+					return 0;			
 				});
-			}
-		}
-	
-		// reformat fragments into sectionids
-		// ['JN1_1','JN1_2'] => [{sectionid: 'JN1', fragmentids: ['JN1_1','JN1_2']}]
-		for (var i=0, il=fragmentids.length; i<il; i++) {
-			var fragmentid = fragmentids[i];
-			
-			if (fragmentid != '' && fragmentid != null) {
-			
-			
-				var	sectionid = fragmentid.split('_')[0],
 					
-					// see if we already created data for this section id
-					sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });	
-				
-				// create new data
-				if (sectionidInfo.length == 0) { 
-					loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
-				} 
-				// add to this sectionid
-				else {	
-					sectionidInfo[0].fragmentids.push(fragmentid);
+			
+			} else if (searchType == 'AND') {
+			
+				// combine arrays to only include fragments (verses) where all indexes overlap (truth AND love)
+				var totalIndexes = loadedIndexes.length;	
+				if (totalIndexes == 1) {		
+					fragmentids = loadedIndexes[0]; // .occurrences;
+				} else if (totalIndexes > 1) {
+					//fragmentids = loadedIndexes[0].occurrences.filter(function(val) {
+					fragmentids = loadedIndexes[0].filter(function(val) {
+						var inOtherArrays = true;
+						for (var i=1; i<totalIndexes; i++) {
+							//if (loadedIndexes[i].occurrences.indexOf(val) == -1) {
+							if (loadedIndexes[i].indexOf(val) == -1) {
+								inOtherArrays = false;
+								break;
+							}
+						}	
+						
+						return inOtherArrays;				
+					});
 				}
 			}
-			
 		
+			// reformat fragments into sectionids
+			// ['JN1_1','JN1_2'] => [{sectionid: 'JN1', fragmentids: ['JN1_1','JN1_2']}]
+			if (fragmentids) {
+				for (var i=0, il=fragmentids.length; i<il; i++) {
+					var fragmentid = fragmentids[i];
+					
+					if (fragmentid != '' && fragmentid != null) {
+					
+					
+						var	sectionid = fragmentid.split('_')[0],
+							
+							// see if we already created data for this section id
+							sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });	
+						
+						// create new data
+						if (sectionidInfo.length == 0) { 
+							loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
+						} 
+						// add to this sectionid
+						else {	
+							sectionidInfo[0].fragmentids.push(fragmentid);
+						}
+					}
+					
+				
+				}
+			}
 		}
 		
 		

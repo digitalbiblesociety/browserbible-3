@@ -1,6 +1,5 @@
 sofia.textproviders = {};
 
-
 TextLoader = (function() {
 
 	var 
@@ -16,9 +15,7 @@ TextLoader = (function() {
 		// full data with chapter arrays, etc.
 		textData = {},
 		
-
 		cachedTexts = {};
-	
 		
 	function loadSection(textInfo, sectionid, successCallback, errorCallback) {
 		
@@ -61,6 +58,31 @@ TextLoader = (function() {
 		});
 	}		
 
+	function getProviderName(textid) {
+		
+		// if not loaded, get it from provider
+		var providerName = '',
+	
+			textInfo = textInfoData.filter(function(info) {
+				return info.id == textid;
+			})[0];
+			
+		if (textInfo) {
+			providerName = textInfo.provider;
+		} else {
+			if (textid.indexOf('fcbh_') > 0) {
+				providerName = 'fcbh';
+			} else {
+				providerName = 'local'; // ???				
+			}
+	
+		}	
+	
+	
+		return providerName;
+	
+	}
+
 
 	function getText(textid, callback, errorCallback) {
 		
@@ -75,23 +97,8 @@ TextLoader = (function() {
 			return textinfo;
 		}
 		
-		// if not loaded, get it from provider
-		var providerName = '',
+		var providerName = getProviderName(textid);
 
-			textInfo = textInfoData.filter(function(info) {
-				return info.id == textid;
-			})[0];
-			
-		if (textInfo) {
-			providerName = textInfo.provider;
-		} else {
-			if (textid.indexOf('fcbh_') > 0) {
-				providerName = 'fcbh';
-			} else {
-				providerName = 'local'; // ???				
-			}
-
-		}
 		
 		sofia.textproviders[providerName].getTextInfo(textid, function(data) {
 
@@ -168,6 +175,14 @@ TextLoader = (function() {
 				
 	}
 	
+	function startSearch(textid, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+
+		var providerName = getProviderName(textid);
+		
+		sofia.textproviders[providerName].startSearch(textid, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete);
+		
+	}
+	
 	// when the document is ready, start loading texts from providers
 	$(function() {
 		loadTextsManifest();	
@@ -177,7 +192,8 @@ TextLoader = (function() {
 		getText: getText,
 		loadTexts: loadTexts,
 		textData: textData,
-		loadSection: loadSection	
+		loadSection: loadSection,
+		startSearch: startSearch	
 	}
 			
 	return ext;

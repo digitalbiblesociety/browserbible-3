@@ -351,7 +351,7 @@ var AudioController = function(container, ui, scroller) {
 							- sectionNode.find('.v:first').height()
 							- (sectionNode.find('.v:last').height()*fraction);
 				
-			console.log(fraction, sectionHeight, offset);
+			//console.log(fraction, sectionHeight, offset);
 				
 			if (offset <= 0) {
 				offset = 0;	

@@ -184,13 +184,13 @@ if (is_array($combined_index)) {
 		$verse_html = '';
 		
 		// load chapter
-		$path_to_index = './content/texts/' . $textid . '/' . $chapter_code . '.html';
+		$path_to_chapter = './content/texts/' . $textid . '/' . $chapter_code . '.html';
 		
-		if (!file_exists($path_to_index)) {
+		if (!file_exists($path_to_chapter)) {
 			continue;
 		}
 		
-		$file_contents = file_get_contents($path_to_index);
+		$file_contents = file_get_contents($path_to_chapter);
 		
 		// supress HTML5 errors
 		$doc = new DOMDocument();
@@ -219,7 +219,8 @@ if (is_array($combined_index)) {
 		}	
 			
 		// find matching verses
-		$xpath_query = "//span[contains(@class,'" . $verseid . "')]";
+		//$xpath_query = "//span[contains(@class,'" . $verseid . "')]";
+		$xpath_query = "//span[contains(@class,'v')]";
 		$verse_nodes = $XPath->query($xpath_query);
 			
 		foreach ($verse_nodes as $verse_node) {
@@ -231,15 +232,37 @@ if (is_array($combined_index)) {
 				
 				
 				$outXML = $verse_node->ownerDocument->saveXML($verse_node); 
+				$verse_html .= $outXML;		
+
+
+				// I thought this woudl be better, but ... I guess not
+				/*
 				$xml = new DOMDocument(); 
 				$xml->preserveWhiteSpace = false; 
 				$xml->formatOutput = true; 
 				$xml->loadXML($outXML); 
-				$verse_html .=  $xml->saveXML(); 			
-							
+				$verse_html .= $xml->saveXML(); 
+				*/
+					
+				// unncessary I guess
+				/*
+				foreach($verse_node->childNodes as $child_node) {
+					if (is_object($child_node)) {
+					
+						//$verse_html .= $dom->saveHTML($child_node);
+						$verse_html .= $verse_node->ownerDocument->saveHTML($child_node);					
+					}
+					$verse_html .= ' ';
+				}
+				*/			
+				
+				//$verse_html .= $doc->saveHTML($verse_node);
+				// $verse_html .= $verse_node->nodeValue;
+
+				$verse_html .= ' ';			
 			}
 			
-			$verse_html .= ' ';
+			
 			
 		}
 		
@@ -252,6 +275,10 @@ if (is_array($combined_index)) {
 		// fix entities
 		$verse_html = html_entity_decode($verse_html);
 		
+		if (is_null($verse_html) || $verse_html == null) {
+			$verse_html = '';
+		}
+
 		// push into array
 		$output['results'][] = array($verseid => $verse_html);
 	}

@@ -76,7 +76,7 @@ var TextChooser = function(container, target, text_type) {
 					
 			//runTopTextsSelector();
 		} else {
-			
+		
 			text = text.toLowerCase();
 		
 			// hide the headers
@@ -102,6 +102,10 @@ var TextChooser = function(container, target, text_type) {
 				}
 				
 			});
+			
+			// remove the recently used so there are no duplicates			
+			main.find('.text-chooser-recently-used').hide().addClass('filtered');			
+			
 			
 		}
 		

@@ -1,2 +1,7 @@
 tests/
 tools/textgenerator/ftp-config.js
+tools/textgenerator/input/
+tools/utilities/
+tools/_old/
+content/texts/
+build/

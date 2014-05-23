@@ -70,6 +70,8 @@ var Scroller = function(node) {
 					break;		
 			}
 		}
+		
+;
 
 		var fragments = node.find( fragmentSelector );
 		
@@ -154,7 +156,7 @@ var Scroller = function(node) {
 			ext.trigger('locationchange', {type:'locationchange', target: this, data: newLocationInfo});
 		}	
 		
-		//console.log('location', newLocationInfo);	
+		//console.log('new location', newLocationInfo);	
 		
 		locationInfo = newLocationInfo;
 	};
@@ -312,7 +314,9 @@ var Scroller = function(node) {
 					}
 					
 					locationInfo = null;
-					update_location_info();					
+					
+					update_location_info();
+					//ext.trigger('scroll', {type: 'scroll', target: this, data: {locationInfo: locationInfo}});
 												
 					break;
 				

@@ -107,27 +107,37 @@ TextSearch = function() {
 			success: function(data) {
 				
 				// create results	
-				
-				for (var i=0, il=data.results.length; i<il; i++) {
-					var result = data.results[i],
-						fragmentid = Object.keys(result)[0],
-						html = result[fragmentid];
+				if (data && data.results) {
+					for (var i=0, il=data.results.length; i<il; i++) {
+						var result = data.results[i],
+							fragmentid = Object.keys(result)[0],
+							html = result[fragmentid];
+							
+							
+						var result = findMatchesInVerse(html);
 						
-						
-					var result = findMatchesInVerse(html);
+						if (result.foundMatch) {
+							searchFinalResults.push({fragmentid: fragmentid, html: result.html});
+						}									
+							
+						// add to reults
+						//searchFinalResults.push({fragmentid: fragmentid, html: html});					
+					}	
 					
-					if (result.foundMatch) {
-						searchFinalResults.push({fragmentid: fragmentid, html: result.html});
-					}									
-						
-					// add to reults
-					//searchFinalResults.push({fragmentid: fragmentid, html: html});					
+										
+					ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
+					
+					
+				} else {
+					
+					ext.trigger('complete', {type: 'complete', target: this, data: {results: null, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
+										
+					
 				}	
 				
-									
-				ext.trigger('complete', {type: 'complete', target:this, data: {results: searchFinalResults, searchIndexesData: searchIndexesData, searchTermsRegExp: searchTermsRegExp, isLemmaSearch: isLemmaSearch}});
 				
-				isSearching = false;							
+				
+				isSearching = false;						
 			}, 
 			error: function(a,b,c,d) {
 				console.log('error:serverSearch', a,b,c,d);

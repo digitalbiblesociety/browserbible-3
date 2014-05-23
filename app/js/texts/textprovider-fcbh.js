@@ -279,8 +279,6 @@ sofia.textproviders['fcbh'] = (function() {
 		// check for complete textinfo first, since we'll need the .sections data to make this work		
 		getTextInfo(textid, function(textinfo) {
 				
-			console.log('sections', textinfo.sections);	
-				
 			var 
 				bookid = sectionid.substring(0,2),
 				chapter = sectionid.substring(2),

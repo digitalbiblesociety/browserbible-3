@@ -156,7 +156,7 @@ var TextChooser = function(container, target, text_type) {
 			}
 		}
 		
-		console.log('storeRecentlyUsed',recentlyUsed.recent.length);		
+		//console.log('storeRecentlyUsed',recentlyUsed.recent.length);		
 					
 		// save
 		AppSettings.setValue(recentlyUsedKey, recentlyUsed);				
@@ -166,7 +166,7 @@ var TextChooser = function(container, target, text_type) {
 
 				
 		// RECENTly Used
-		console.log('updateRecentlyUsed',recentlyUsed.recent.length);
+		//console.log('updateRecentlyUsed',recentlyUsed.recent.length);
 		
 		if (recentlyUsed.recent.length > 0) {
 		

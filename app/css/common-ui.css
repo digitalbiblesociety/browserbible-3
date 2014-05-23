@@ -11,7 +11,7 @@
 		z-index:100;
 		background: #ccc;
 		padding: 1px 0 0 1px;
-		font-family: Avenir;
+		font-family: Avenir, Helvetica, Arial;
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
 		width: 320px;
@@ -24,7 +24,7 @@
 		z-index:100;
 		background: #fff;
 		padding: 0 0 0 0;
-		font-family: Avenir;
+		font-family: Avenir, Helvetica, Arial;
 		
 		font-size: 14px;		
 		-x-border: solid 1px #ccc;
@@ -260,7 +260,7 @@
 		z-index:100;
 		background: #fff;
 		-x-padding: 1px 0 0 1px;
-		font-family: Avenir;
+		font-family: Avenir, Helvetica, Arial;
 		width: 320px;
 		font-size: 14px;		
 		-x-border: solid 1px #ccc;

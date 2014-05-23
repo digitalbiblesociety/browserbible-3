@@ -20,7 +20,7 @@ TextLoader = (function() {
 	function loadSection(textInfo, sectionid, successCallback, errorCallback) {
 		
 		// double check
-		if (sectionid == 'null') {
+		if (sectionid == 'null' || sectionid == null) {
 			return;
 		}
 		
@@ -31,11 +31,11 @@ TextLoader = (function() {
 		} else {		
 			textid = textInfo.id;
 			
-			if (textInfo.sections.indexOf(sectionid) == -1) {
+			// sometimes the sections aren't yet known, so we'll check for them and hope for the best :)
+			if (textInfo.sections.length > 0 && textInfo.sections.indexOf(sectionid) == -1) {
 				sectionid = textInfo.sections[0];
 			}
-		}
-		
+		}		
 		
 		// use stored text if present
 		if (typeof cachedTexts[textid] == 'undefined') {

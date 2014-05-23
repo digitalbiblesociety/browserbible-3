@@ -196,7 +196,7 @@ sofia.textproviders['fcbh'] = (function() {
 			return text.id == textid;
 		})[0];
 
-		if (typeof info.divisions == 'undefined') {
+		if (typeof info.divisions == 'undefined' || info.divisions.length == 0) {
 
 			info.provider = 'fcbh';
 			info.divisions = [];
@@ -275,61 +275,72 @@ sofia.textproviders['fcbh'] = (function() {
 
 
 	function loadSection(textid, sectionid, callback) {
-
-		var textinfo = getTextInfoSync(textid),
-			bookid = sectionid.substring(0,2),
-			chapter = sectionid.substring(2),
-			lang = '',
-			//usfmbook = bible.BOOK_DATA[bookid].usfm.substr(0,1).toUpperCase() + bible.BOOK_DATA[bookid].usfm.substr(1).toLowerCase(),
-			usfmbook = bible.BOOK_DATA[bookid].osis,
-			dam_id = bible.OT_BOOKS.indexOf(bookid) > -1 ? textinfo.ot_dam_id : textinfo.nt_dam_id,
-			sectionIndex = textinfo.sections.indexOf(sectionid),
-			previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
-			nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
-			url = 'http://dbt.io/library/verse?v=2&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
-
-		//console.log(url);
-
-		$.ajax({
-			url: url,
-			success: function(chapter_data) {
-				var html = [];
-
-
-				//<div class="section chapter AC AC1 eng_kjv eng" dir="ltr" lang="eng" data-id="AC1" data-nextid="AC2" data-previd="JN21">
-				html.push('<div class="section chapter ' + textid + ' ' + bookid + ' ' + sectionid + ' ' + lang + ' " ' +
-							'data-textid="' + textid + '"' +
-							'data-id="' + sectionid + '"' +
-							'data-nextid="' + nextid + '"' +
-							'data-previd="' + previd + '"' +
-							'>');
-
-				if (chapter == '1') {
-					html.push('<div class="mt">' + textinfo.divisionNames[textinfo.divisions.indexOf(bookid)] + '</div>');
+	
+		// check for complete textinfo first, since we'll need the .sections data to make this work		
+		getTextInfo(textid, function(textinfo) {
+				
+			console.log('sections', textinfo.sections);	
+				
+			var 
+				bookid = sectionid.substring(0,2),
+				chapter = sectionid.substring(2),
+				lang = '',
+				//usfmbook = bible.BOOK_DATA[bookid].usfm.substr(0,1).toUpperCase() + bible.BOOK_DATA[bookid].usfm.substr(1).toLowerCase(),
+				usfmbook = bible.BOOK_DATA[bookid].osis,
+				dam_id = bible.OT_BOOKS.indexOf(bookid) > -1 ? textinfo.ot_dam_id : textinfo.nt_dam_id,
+				sectionIndex = textinfo.sections.indexOf(sectionid),
+				previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
+				nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
+				url = 'http://dbt.io/library/verse?v=2&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
+	
+			//console.log(url);
+	
+			$.ajax({
+				url: url,
+				success: function(chapter_data) {
+					var html = [];
+	
+	
+					//<div class="section chapter AC AC1 eng_kjv eng" dir="ltr" lang="eng" data-id="AC1" data-nextid="AC2" data-previd="JN21">
+					html.push('<div class="section chapter ' + textid + ' ' + bookid + ' ' + sectionid + ' ' + lang + ' " ' +
+								'data-textid="' + textid + '"' +
+								'data-id="' + sectionid + '"' +
+								'data-nextid="' + nextid + '"' +
+								'data-previd="' + previd + '"' +
+								'>');
+	
+					if (chapter == '1') {
+						html.push('<div class="mt">' + textinfo.divisionNames[textinfo.divisions.indexOf(bookid)] + '</div>');
+					}
+	
+					html.push('<div class="c">' + chapter + '</div>');
+	
+					html.push('<div class="p">');
+					for (var i=0, il=chapter_data.length; i<il; i++ ) {
+						var verse = chapter_data[i],
+							text = verse.verse_text,
+							vnum = verse.verse_id,
+							vid = sectionid + '_' + vnum;
+	
+						html.push('<span class="v-num v-' + vnum + '">' + vnum + '&nbsp;</span><span class="v ' + vid + '" data-id="' + vid + '">' + text + '</span>');
+	
+					}
+	
+					html.push('</div>'); // p
+					html.push('</div>'); // section
+	
+	
+	
+					callback(html.join(''));
 				}
-
-				html.push('<div class="c">' + chapter + '</div>');
-
-				html.push('<div class="p">');
-				for (var i=0, il=chapter_data.length; i<il; i++ ) {
-					var verse = chapter_data[i],
-						text = verse.verse_text,
-						vnum = verse.verse_id,
-						vid = sectionid + '_' + vnum;
-
-					html.push('<span class="v-num v-' + vnum + '">' + vnum + '&nbsp;</span><span class="v ' + vid + '" data-id="' + vid + '">' + text + '</span>');
-
-				}
-
-				html.push('</div>'); // p
-				html.push('</div>'); // section
-
-
-
-				callback(html.join(''));
-			}
-
+	
+			});		
+		
+		
 		});
+	
+
+
 	}
 	
 	function startSearch(textid, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
@@ -348,7 +359,7 @@ sofia.textproviders['fcbh'] = (function() {
 			}					
 		};	
 		
-		console.log('start', e);	
+		//console.log('start', e);	
 		
 		
 		var dam_id = '';

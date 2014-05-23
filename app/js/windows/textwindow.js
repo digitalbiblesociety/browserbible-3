@@ -1,9 +1,22 @@
 
 var TextWindow = function(id, node, init_data, text_type) {
 	
+	
+	// detect backflip
+	var 
+		ua = window.navigator.userAgent.toLowerCase(),
+		supports3d = !(ua.indexOf('unix') > -1
+						|| ua.indexOf('linux') > -1
+						|| ua.indexOf('opera') > -1
+						//|| ua.indexOf('msie') > -1
+						//|| ua.indexOf('trident') > -1
+						//|| ua.indexOf('explorer')  > -1 						
+						);
+	
+	
 	var 		
 		container =
-			$('<div class="scroller-container">'+
+			$('<div class="scroller-container' + (supports3d ? ' supports-3d' : '') + '">'+
 				'<div class="window-header scroller-header">'+
 					'<div class="scroller-header-inner">'+
 						//(Detection.hasTouch ? '<span class="header-input text-nav" ></span>' : '<input type="text" class="header-input text-nav" />') +
@@ -14,12 +27,10 @@ var TextWindow = function(id, node, init_data, text_type) {
 					'</div>'+
 				'</div>'+
 				'<div class="scroller-flipper">' + 
-					'<div class="scroller-info">Text info</div>' + 
-					
 					'<div class="scroller-main">' + 
 						'<div class="scroller-text-wrapper"></div>' +
 					'</div>'+
-					
+					'<div class="scroller-info">Text info</div>' + 								
 				'</div>' +
 			'</div>').appendTo(node),
 		
@@ -53,6 +64,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 		navui.prop('disabled',true);
 	}
 	*/
+
+	
 			
 	infoBtn.on('click', function() {
 	
@@ -62,9 +75,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 		flipper.toggleClass('showinfo');
 		
 		if (flipper.hasClass('showinfo')) {
-		
-			console.log('info', currentTextInfo.aboutHtml);
-		
+				
 			if (typeof currentTextInfo.aboutHtml != 'undefined') {
 				
 				var aboutDoc = $(currentTextInfo.aboutHtml);
@@ -84,9 +95,12 @@ var TextWindow = function(id, node, init_data, text_type) {
 												breakTag + htmlString.split(breakTag)[1] :
 												'',				
 							aboutDoc = $(fixedHtml);
-						
+												
 						info.html('');
 						info.append( aboutDoc );
+						
+						// store for next time
+						currentTextInfo.aboutHtml = fixedHtml;
 					}				
 				});
 			}
@@ -228,6 +242,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 						sofia.analytics.record('usernav', 'input', sectionid + ':' + currentTextInfo.id);					
 					}
 					
+					TextNavigation.locationChange(fragmentid);					
+					
 					scroller.load('text', sectionid, fragmentid);
 					textNavigator.hide();
 					
@@ -245,7 +261,9 @@ var TextWindow = function(id, node, init_data, text_type) {
 		
 		if (sofia.analytics) {
 			sofia.analytics.record('usernav', 'menu', e.data + ':' + currentTextInfo.id);					
-		}		
+		}	
+		
+		TextNavigation.locationChange(e.data);
 	
 		// load new content
 		scroller.load('text', e.data);

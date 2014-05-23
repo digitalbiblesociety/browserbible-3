@@ -888,7 +888,7 @@ var ConfigUrl = function(node) {
 		}
 		//mergedArray.reverse();
 		
-		url = location.origin + location.pathname + '?' + mergedArray.join('&');
+		url = location.protocol + '//' + location.host + location.pathname + '?' + mergedArray.join('&');
 			
 		urlInput.val(url);
 			

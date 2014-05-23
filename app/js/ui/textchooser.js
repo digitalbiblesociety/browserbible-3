@@ -30,7 +30,9 @@ var TextChooser = function(container, target, text_type) {
 		closeBtn = textSelector.find('.text-chooser-close').hide(),
 		moreToggle = textSelector.find('.text-chooser-more-toggle'),		
 		allTextsVisible = false,
-		hasTopTexts = false;
+		hasTopTexts = false,
+		recentlyUsedKey = 'text-recently-used',
+		recentlyUsed = AppSettings.getValue(recentlyUsedKey, {"recent":[]} );
 		
 	textSelector.find('.i18n').i18n();
 		
@@ -48,8 +50,7 @@ var TextChooser = function(container, target, text_type) {
 	});
 	
 	function filterVersions(e) {
-	
-	
+
 		// when the user presses return and there is only one version, attempt to go to that one
 		if (e && e.which == 13) {
 			var visibleRows = main.find('.text-chooser-row:visible');
@@ -122,12 +123,87 @@ var TextChooser = function(container, target, text_type) {
 		
 			hide();
 			
+			storeRecentlyUsed(selectedTextInfo);
+			
+			updateRecentlyUsed();
+			
 			//console.log('chooser:change:click', selectedTextInfo);
 			ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 		
 		});
 		
 	});
+	
+	
+	function storeRecentlyUsed(textInfo) {
+		// look for this version
+		var existingVersions = recentlyUsed.recent.filter(function(t) {
+			return t.id == textInfo.id;			
+		});
+		
+		if (existingVersions.length == 0) {
+				
+			// store recent text
+			recentlyUsed.recent.unshift(textInfo);
+			
+			// limit to 5
+			while (recentlyUsed.recent.length > 5 ) {
+				recentlyUsed.recent.pop();				
+			}
+		}
+		
+		console.log('storeRecentlyUsed',recentlyUsed.recent.length);		
+					
+		// save
+		AppSettings.setValue(recentlyUsedKey, recentlyUsed);				
+	}
+	
+	function updateRecentlyUsed() {
+
+				
+		// RECENTly Used
+		console.log('updateRecentlyUsed',recentlyUsed.recent.length);
+		
+		if (recentlyUsed.recent.length > 0) {
+		
+			var isTopText = false;
+		
+			// find if this should be a priority text shown at the beginning
+			if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
+				isTopText = true;
+			}
+					
+		
+			var recentlyUsedHtml = 
+				'<tr class="text-chooser-recently-used text-chooser-row-header ' + (isTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
+					i18n.t('windows.bible.recentlyused') + 
+				'</td></tr>';
+
+			for (var i=0, il=recentlyUsed.recent.length; i<il; i++) {				
+				var textInfo = recentlyUsed.recent[i];
+				
+				recentlyUsedHtml +=
+							'<tr class="text-chooser-recently-used text-chooser-row ' + (isTopText ? ' is-top-text' : '') + '" data-id="' + textInfo.id + '" data-lang-name="' + textInfo.langName + '" data-lang-name-english="' + textInfo.langNameEnglish + '">' +
+								'<td class="text-chooser-abbr">' + textInfo.abbr + '</td>' +
+								'<td class="text-chooser-name"><span>' + textInfo.name + '</span></td>' +
+							'</tr>';
+				
+				
+			}
+			
+			
+			
+			
+			
+			// remove existing
+			main.find('.text-chooser-recently-used').remove();
+			
+			// add update recent stuff
+			var recentRow = $(recentlyUsedHtml);
+			main.find('table tbody').prepend(recentRow);			
+		}		
+		
+	}
 	
 	/*
 	textSelector.on('click', '.text-chooser-more', function(e) {
@@ -289,8 +365,6 @@ var TextChooser = function(container, target, text_type) {
 				
 			}
 			
-			
-			
 		} else {
 			
 			// sort by name
@@ -317,8 +391,13 @@ var TextChooser = function(container, target, text_type) {
 				);
 			}			
 		}
+		
+		
+	
 	
 		main.html('<table cellspacing="0">' + html.join('') + '</table>');
+		
+		updateRecentlyUsed();
 		
 		// wait just a second to adjust the size
 		/*
@@ -379,9 +458,11 @@ var TextChooser = function(container, target, text_type) {
 			
 			TextLoader.loadTexts(function(data) {
 				renderTexts(data);
-			});			
+			});
+		} else {			
+			updateRecentlyUsed();
 		}
-	
+			
 		textSelector.show();
 		size();
 		filter.val('');
@@ -399,6 +480,9 @@ var TextChooser = function(container, target, text_type) {
 	
 	function setTextInfo(text) {
 		selectedTextInfo = text;
+		
+		storeRecentlyUsed(selectedTextInfo);
+		updateRecentlyUsed();
 		//node.html( selectedTextInfo.name );	
 	}
 

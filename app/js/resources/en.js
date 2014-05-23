@@ -37,6 +37,7 @@ sofia.resources['en'] = {
 		"windows": {
 			"bible": {
 				"label": "Bible",
+				"recentlyused": "Recently Used",
 				"filter": "Filter...",
 				"ot": "Old Testament",
 				"nt": "New Testament",

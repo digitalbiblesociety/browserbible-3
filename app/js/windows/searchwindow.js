@@ -196,10 +196,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 					'<table>';
 		
 		searchProgressBarInner.css({'width': '100%'  });
-		setFinalResultsCount(e.data.results.length);
+		setFinalResultsCount(e.data.results ? e.data.results.length : 0);
 		resultsBlock.removeClass('search-main-loading');
 		
-		if (results.length > 0) {
+		if (results && results.length > 0) {
 		
 			// create visual array
 			var divisionCount = {},
@@ -262,7 +262,11 @@ var SearchWindow = function(id, parentNode, init_data) {
 				
 				
 			createHighlights();	
-		}	
+		} else {
+			
+			resultsBlock.html( "No results" );
+			
+		}
 		
 		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
 		

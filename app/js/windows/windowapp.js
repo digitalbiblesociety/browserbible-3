@@ -70,6 +70,15 @@ var App = function() {
 			//console.log('create',i, windowType, setting.data);
 			windowManager.add(windowType, setting.data);	
 		}
+		
+		// get first window
+		var bibleWindows = settings.windows.filter(function(s) { return s.windowType == 'BibleWindow'; }),
+			firstBibleWindow = bibleWindows.length > 0 ? bibleWindows[0] : null,
+			firstFragmentid = firstBibleWindow != null ? firstBibleWindow.data.fragmentid : null;
+			
+		if (firstFragmentid != null) {
+			TextNavigation.firstState( firstFragmentid );
+		}
 			
 		var settingsTimer = new Timer(storeSettings, 1000);
 		

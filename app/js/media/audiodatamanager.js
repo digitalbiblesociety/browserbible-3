@@ -494,7 +494,7 @@ var FaithComesByHearingAudio = (function() {
 		
 		var collectionInfo = getFbchCollectionById(dam_id);
 		if (collectionInfo != null) {
-			audioInfo.title = 'FCBH: ' + collectionInfo.volume_name;
+			audioInfo.title = 'FCBH: ' + collectionInfo.version_code + '-' + (collectionInfo.version_name != '' ? collectionInfo.version_name : collectionInfo.volume_name);
 		}
 		
 		var

@@ -42,7 +42,8 @@ sofia.resources['lo'] = {
 				"nt": "ພຣະ​ສັນ​ຍາ​ໃຫມ່",
 				"dc": "Deuterocanonical ປຶ້ມ",
 				"more": "ອ່ານ​ຕໍ່",
-				"less": "ຫນ້ອຍ"
+				"less": "ຫນ້ອຍ",
+				"recentlyused": "ການ​ນໍາ​ໃຊ້​ບໍ່​ດົນ​ມາ​ນີ້"
 			},
 			"commentary": {
 				"label": "ຄໍາ​ເຫັນ"

@@ -42,7 +42,8 @@ sofia.resources['mt'] = {
 				"nt": "Testment il-Ġdid",
 				"dc": "Deuterocanonical Books",
 				"more": "Aktar",
-				"less": "Inqas"
+				"less": "Inqas",
+				"recentlyused": "Riċentement Użati"
 			},
 			"commentary": {
 				"label": "Kummentarju"

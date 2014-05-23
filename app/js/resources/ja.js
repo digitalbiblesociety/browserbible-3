@@ -42,7 +42,8 @@ sofia.resources['ja'] = {
 				"nt": "新約聖書",
 				"dc": "第二正典",
 				"more": "もっと",
-				"less": "レス"
+				"less": "レス",
+				"recentlyused": "最近使用された"
 			},
 			"commentary": {
 				"label": "解説"

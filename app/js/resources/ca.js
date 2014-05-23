@@ -42,7 +42,8 @@ sofia.resources['ca'] = {
 				"nt": "Nou Testament",
 				"dc": "Llibres Deuterocanónicos",
 				"more": "Més",
-				"less": "Menys"
+				"less": "Menys",
+				"recentlyused": "Usats recentment"
 			},
 			"commentary": {
 				"label": "Comentari"

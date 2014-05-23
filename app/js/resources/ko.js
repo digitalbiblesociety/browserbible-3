@@ -42,7 +42,8 @@ sofia.resources['ko'] = {
 				"nt": "신약 성서",
 				"dc": "Deuterocanonical 책",
 				"more": "더",
-				"less": "적게"
+				"less": "적게",
+				"recentlyused": "최근 사용"
 			},
 			"commentary": {
 				"label": "해설"

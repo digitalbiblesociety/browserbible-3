@@ -42,7 +42,8 @@ sofia.resources['ceb'] = {
 				"nt": "Bag-ong Tugon",
 				"dc": "Deuterocanonical Books",
 				"more": "More",
-				"less": "Dili kaayo"
+				"less": "Dili kaayo",
+				"recentlyused": "Bag-ohay lang Used"
 			},
 			"commentary": {
 				"label": "Commentary"

@@ -42,7 +42,8 @@ sofia.resources['gu'] = {
 				"nt": "નવા કરારમાં",
 				"dc": "ડેઉટેરોકાનોનીકલ પુસ્તકો",
 				"more": "વધુ",
-				"less": "ઓછી"
+				"less": "ઓછી",
+				"recentlyused": "તાજેતરમાં વપરાયેલ"
 			},
 			"commentary": {
 				"label": "કોમેન્ટરી"

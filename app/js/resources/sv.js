@@ -42,7 +42,8 @@ sofia.resources['sv'] = {
 				"nt": "Nya Testamentet",
 				"dc": "Deuterokanoniska böcker",
 				"more": "Mer",
-				"less": "Mindre"
+				"less": "Mindre",
+				"recentlyused": "Senast använda"
 			},
 			"commentary": {
 				"label": "Kommentar"

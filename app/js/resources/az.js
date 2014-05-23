@@ -42,7 +42,8 @@ sofia.resources['az'] = {
 				"nt": "Əhdi-cədid",
 				"dc": "Deuterocanonical Kitablar",
 				"more": "Daha",
-				"less": "Less"
+				"less": "Less",
+				"recentlyused": "Son İstifadə"
 			},
 			"commentary": {
 				"label": "Şərh"

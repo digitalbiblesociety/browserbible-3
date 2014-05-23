@@ -42,7 +42,8 @@ sofia.resources['ro'] = {
 				"nt": "Noul Testament",
 				"dc": "Deuterocanonice Cărți",
 				"more": "Mai mult",
-				"less": "Mai puțin"
+				"less": "Mai puțin",
+				"recentlyused": "Folosit recent"
 			},
 			"commentary": {
 				"label": "Comentariu"

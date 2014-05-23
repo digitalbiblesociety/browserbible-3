@@ -42,7 +42,8 @@ sofia.resources['mr'] = {
 				"nt": "नवीन करार",
 				"dc": "Deuterocanonical पुस्तके",
 				"more": "अधिक",
-				"less": "कमी"
+				"less": "कमी",
+				"recentlyused": "अलीकडे वापरलेले"
 			},
 			"commentary": {
 				"label": "समालोचन"

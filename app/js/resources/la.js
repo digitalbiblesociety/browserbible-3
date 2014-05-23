@@ -42,7 +42,8 @@ sofia.resources['la'] = {
 				"nt": "New Testament",
 				"dc": "Deuterocanonicis",
 				"more": "More",
-				"less": "Minus"
+				"less": "Minus",
+				"recentlyused": "Quae nuper"
 			},
 			"commentary": {
 				"label": "Latin"

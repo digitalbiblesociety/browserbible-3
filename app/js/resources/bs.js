@@ -42,7 +42,8 @@ sofia.resources['bs'] = {
 				"nt": "Novi zavjet",
 				"dc": "Deuterocanonical Knjige",
 				"more": "Više",
-				"less": "Manje"
+				"less": "Manje",
+				"recentlyused": "Nedavno Rabljeni"
 			},
 			"commentary": {
 				"label": "Komentar"

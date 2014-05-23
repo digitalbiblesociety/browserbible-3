@@ -42,7 +42,8 @@ sofia.resources['te'] = {
 				"nt": "కొత్త నిబంధన",
 				"dc": "Deuterocanonical పుస్తకాలు",
 				"more": "మరిన్ని",
-				"less": "తక్కువ"
+				"less": "తక్కువ",
+				"recentlyused": "ఇటీవల వాడిన"
 			},
 			"commentary": {
 				"label": "భాష్యం"

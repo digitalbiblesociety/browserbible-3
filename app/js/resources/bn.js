@@ -42,7 +42,8 @@ sofia.resources['bn'] = {
 				"nt": "নববিধান",
 				"dc": "Deuterocanonical বই",
 				"more": "অধিক",
-				"less": "কম"
+				"less": "কম",
+				"recentlyused": "সম্প্রতি ব্যবহৃত"
 			},
 			"commentary": {
 				"label": "ভাষ্য"

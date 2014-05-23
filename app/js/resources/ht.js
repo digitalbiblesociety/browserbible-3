@@ -42,7 +42,8 @@ sofia.resources['ht'] = {
 				"nt": "Nouvo Testaman",
 				"dc": "Deuterocanonical Liv",
 				"more": "Plis",
-				"less": "Mwens"
+				"less": "Mwens",
+				"recentlyused": "Dènyèman te itilize"
 			},
 			"commentary": {
 				"label": "Ladann"

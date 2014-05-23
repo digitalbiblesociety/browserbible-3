@@ -42,7 +42,8 @@ sofia.resources['hmn'] = {
 				"nt": "Phau Tshiab",
 				"dc": "Deuterocanonical Phau ntawv",
 				"more": "Ntau",
-				"less": "Tsawg"
+				"less": "Tsawg",
+				"recentlyused": "Tsis ntev los no Siv"
 			},
 			"commentary": {
 				"label": "Lus xav"

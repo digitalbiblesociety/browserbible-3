@@ -42,7 +42,8 @@ sofia.resources['fa'] = {
 				"nt": "کتب عهد جدید مسیحیان",
 				"dc": "Deuterocanonical کتاب",
 				"more": "بیشتر",
-				"less": "کمتر"
+				"less": "کمتر",
+				"recentlyused": "به تازگی مورد استفاده"
 			},
 			"commentary": {
 				"label": "تفسیر"

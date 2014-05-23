@@ -42,7 +42,8 @@ sofia.resources['hu'] = {
 				"nt": "Újszövetség",
 				"dc": "Deuterokanonikus Books",
 				"more": "Több",
-				"less": "Kevesebb"
+				"less": "Kevesebb",
+				"recentlyused": "Legutóbb használt"
 			},
 			"commentary": {
 				"label": "Kommentár"

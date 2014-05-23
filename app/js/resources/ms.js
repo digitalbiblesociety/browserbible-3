@@ -42,7 +42,8 @@ sofia.resources['ms'] = {
 				"nt": "Perjanjian Baru",
 				"dc": "Deuterokanonika Buku",
 				"more": "Lebih",
-				"less": "Kurang"
+				"less": "Kurang",
+				"recentlyused": "Baru-baru ini Digunakan"
 			},
 			"commentary": {
 				"label": "Ulasan"

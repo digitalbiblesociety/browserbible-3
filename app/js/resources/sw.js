@@ -42,7 +42,8 @@ sofia.resources['sw'] = {
 				"nt": "New Testament",
 				"dc": "Deuterocanonical vitabu",
 				"more": "Zaidi",
-				"less": "Chini ya"
+				"less": "Chini ya",
+				"recentlyused": "Kutumika hivi karibuni"
 			},
 			"commentary": {
 				"label": "Ufafanuzi"

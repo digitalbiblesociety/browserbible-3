@@ -1,6 +1,6 @@
 sofia.resources['ur'] = {
 	"translation": {
-		"name": "null (Urdu)",
+		"name": "اردو (Urdu)",
 		"menu": {
 			"search": {
 				"placeholder": "تلاش"
@@ -42,7 +42,8 @@ sofia.resources['ur'] = {
 				"nt": "نئے عہد نامہ",
 				"dc": "Deuterocanonical کتب",
 				"more": "مزید",
-				"less": "کم"
+				"less": "کم",
+				"recentlyused": "حال ہی میں استعمال کیا جاتا ہے"
 			},
 			"commentary": {
 				"label": "تفسیر"

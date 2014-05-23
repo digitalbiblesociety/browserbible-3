@@ -42,7 +42,8 @@ sofia.resources['jw'] = {
 				"nt": "Prajanjian Anyar",
 				"dc": "Deuterocanonical Books",
 				"more": "More",
-				"less": "Kurang"
+				"less": "Kurang",
+				"recentlyused": "Bubar digunakake"
 			},
 			"commentary": {
 				"label": "Katrangan"

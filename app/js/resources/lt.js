@@ -42,7 +42,8 @@ sofia.resources['lt'] = {
 				"nt": "Naujasis Testamentas",
 				"dc": "Deuterocanonical Knygos",
 				"more": "Daugiau",
-				"less": "Mažiau"
+				"less": "Mažiau",
+				"recentlyused": "Neseniai naudotas"
 			},
 			"commentary": {
 				"label": "Komentaras"

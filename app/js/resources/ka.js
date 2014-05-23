@@ -42,7 +42,8 @@ sofia.resources['ka'] = {
 				"nt": "ახალი აღთქმა",
 				"dc": "Deuterocanonical წიგნები",
 				"more": "More",
-				"less": "ნაკლებია,"
+				"less": "ნაკლებია,",
+				"recentlyused": "ცოტა მეორადი"
 			},
 			"commentary": {
 				"label": "კომენტარი"

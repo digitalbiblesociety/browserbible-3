@@ -42,7 +42,8 @@ sofia.resources['sq'] = {
 				"nt": "Dhjata e Re",
 				"dc": "Deuterocanonical Libra",
 				"more": "Më shumë",
-				"less": "Më pak"
+				"less": "Më pak",
+				"recentlyused": "Përdoret Kohët e fundit"
 			},
 			"commentary": {
 				"label": "Koment"

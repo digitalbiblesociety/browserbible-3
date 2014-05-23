@@ -42,7 +42,8 @@ sofia.resources['sl'] = {
 				"nt": "Nova zaveza",
 				"dc": "Deuterocanonical Knjige",
 				"more": "Več",
-				"less": "Manj"
+				"less": "Manj",
+				"recentlyused": "Pred kratkim Avto"
 			},
 			"commentary": {
 				"label": "Komentar"

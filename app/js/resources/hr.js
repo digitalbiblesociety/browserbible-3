@@ -42,7 +42,8 @@ sofia.resources['hr'] = {
 				"nt": "Novi zavjet",
 				"dc": "Deuterokanonske Books",
 				"more": "Više",
-				"less": "Manje"
+				"less": "Manje",
+				"recentlyused": "Nedavno Koristi"
 			},
 			"commentary": {
 				"label": "Komentar"

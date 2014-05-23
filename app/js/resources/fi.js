@@ -42,7 +42,8 @@ sofia.resources['fi'] = {
 				"nt": "Uusi testamentti",
 				"dc": "Deuterocanonical Kirjat",
 				"more": "Lisää",
-				"less": "Vähemmän"
+				"less": "Vähemmän",
+				"recentlyused": "Viimeksi käytetyt"
 			},
 			"commentary": {
 				"label": "Selostus"

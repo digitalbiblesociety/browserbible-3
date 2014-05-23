@@ -42,7 +42,8 @@ sofia.resources['da'] = {
 				"nt": "New Testament",
 				"dc": "Deuterocanonical Books",
 				"more": "Mere",
-				"less": "Mindre"
+				"less": "Mindre",
+				"recentlyused": "Senest anvendt"
 			},
 			"commentary": {
 				"label": "Kommentar"

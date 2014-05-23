@@ -42,7 +42,8 @@ sofia.resources['eo'] = {
 				"nt": "Nova Testamento",
 				"dc": "Duakanonaj libroj",
 				"more": "Pli",
-				"less": "Malpli"
+				"less": "Malpli",
+				"recentlyused": "Ĵus Uzita"
 			},
 			"commentary": {
 				"label": "Komento"

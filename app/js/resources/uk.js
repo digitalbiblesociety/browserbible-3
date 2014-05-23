@@ -1,6 +1,6 @@
 sofia.resources['uk'] = {
 	"translation": {
-		"name": "ук��аїнська (Ukrainian)",
+		"name": "українська (Ukrainian)",
 		"menu": {
 			"search": {
 				"placeholder": "Пошук"
@@ -42,7 +42,8 @@ sofia.resources['uk'] = {
 				"nt": "Новий Завіт",
 				"dc": "Второканонічні книги",
 				"more": "Більш",
-				"less": "Менше"
+				"less": "Менше",
+				"recentlyused": "Нещодавно використані"
 			},
 			"commentary": {
 				"label": "Коментар"

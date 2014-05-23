@@ -42,7 +42,8 @@ sofia.resources['eu'] = {
 				"nt": "Itun berria",
 				"dc": "Deuterocanonical Liburuak",
 				"more": "Gehiago",
-				"less": "Gutxiago"
+				"less": "Gutxiago",
+				"recentlyused": "Duela gutxi erabilia"
 			},
 			"commentary": {
 				"label": "Comentario"

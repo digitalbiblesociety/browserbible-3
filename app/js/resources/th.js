@@ -42,7 +42,8 @@ sofia.resources['th'] = {
 				"nt": "พันธสัญญาใหม่",
 				"dc": "deuterocanonical หนังสือ",
 				"more": "ขึ้น",
-				"less": "น้อยลง"
+				"less": "น้อยลง",
+				"recentlyused": "ที่ใช้ล่าสุด"
 			},
 			"commentary": {
 				"label": "ความเห็น"

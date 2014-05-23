@@ -42,7 +42,8 @@ sofia.resources['bg'] = {
 				"nt": "Новият завет",
 				"dc": "Deuterocanonical Books",
 				"more": "Още",
-				"less": "По-малко"
+				"less": "По-малко",
+				"recentlyused": "Неотдавна Използван"
 			},
 			"commentary": {
 				"label": "Коментар"

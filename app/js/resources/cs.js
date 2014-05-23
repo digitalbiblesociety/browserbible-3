@@ -42,7 +42,8 @@ sofia.resources['cs'] = {
 				"nt": "Nový zákon",
 				"dc": "Deuterokanonické knihy",
 				"more": "Více",
-				"less": "Méně"
+				"less": "Méně",
+				"recentlyused": "Naposledy použité"
 			},
 			"commentary": {
 				"label": "Komentář"

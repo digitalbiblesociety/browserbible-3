@@ -42,7 +42,8 @@ sofia.resources['km'] = {
 				"nt": "គម្ពីរ​សញ្ញា​ថ្មី",
 				"dc": "Deuterocanonical សៀវភៅ",
 				"more": "ច្រើន​ទៀត",
-				"less": "តិច"
+				"less": "តិច",
+				"recentlyused": "ប្រើ​ពេល​ថ្មី​នេះ"
 			},
 			"commentary": {
 				"label": "អត្ថា​ធិ​ប្បា​យ"

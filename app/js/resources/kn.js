@@ -42,7 +42,8 @@ sofia.resources['kn'] = {
 				"nt": "ಹೊಸ ಒಡಂಬಡಿಕೆಯಲ್ಲಿ",
 				"dc": "Deuterocanonical ಪುಸ್ತಕಗಳು",
 				"more": "ಇನ್ನಷ್ಟು",
-				"less": "ಕಡಿಮೆ"
+				"less": "ಕಡಿಮೆ",
+				"recentlyused": "ಇತ್ತೀಚೆಗೆ ಉಪಯೋಗಿಸಿದ"
 			},
 			"commentary": {
 				"label": "ಕಾಮೆಂಟರಿ"

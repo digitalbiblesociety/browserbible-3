@@ -46,7 +46,8 @@ sofia.resources['hi'] = {
 				"nt": "न्यू टेस्टामेंट",
 				"dc": "Deuterocanonical Books",
 				"more": "अधिक",
-				"less": "कम"
+				"less": "कम",
+				"recentlyused": "हाल ही में प्रयुक्त"
 			},
 			"commentary": {
 				"label": "टीका"

@@ -42,7 +42,8 @@ sofia.resources['nl'] = {
 				"nt": "Nieuwe Testament",
 				"dc": "Apocriefe boeken",
 				"more": "Meer",
-				"less": "Minder"
+				"less": "Minder",
+				"recentlyused": "Onlangs gebruikte"
 			},
 			"commentary": {
 				"label": "Commentaar"

@@ -42,7 +42,8 @@ sofia.resources['ar'] = {
 				"nt": "العهد الجديد",
 				"dc": "الأسفار القانونية",
 				"more": "أكثر",
-				"less": "أقل"
+				"less": "أقل",
+				"recentlyused": "المستخدمة مؤخرا"
 			},
 			"commentary": {
 				"label": "تفاسير"

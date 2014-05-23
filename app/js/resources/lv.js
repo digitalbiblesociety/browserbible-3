@@ -42,7 +42,8 @@ sofia.resources['lv'] = {
 				"nt": "Jaunā derība",
 				"dc": "Deuterocanonical Grāmatas",
 				"more": "Vairāk",
-				"less": "Mazāk"
+				"less": "Mazāk",
+				"recentlyused": "Nesen lietotas"
 			},
 			"commentary": {
 				"label": "Komentārs"

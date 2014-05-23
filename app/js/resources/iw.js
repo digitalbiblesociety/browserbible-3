@@ -42,7 +42,8 @@ sofia.resources['iw'] = {
 				"nt": "הברית החדשה",
 				"dc": "ספרי Deuterocanonical",
 				"more": "יותר",
-				"less": "פחות"
+				"less": "פחות",
+				"recentlyused": "היה בשימוש לאחרונה"
 			},
 			"commentary": {
 				"label": "פרשנות"

@@ -42,7 +42,8 @@ sofia.resources['cy'] = {
 				"nt": "Testament Newydd",
 				"dc": "Deuterocanonical Books",
 				"more": "Mwy",
-				"less": "Llai"
+				"less": "Llai",
+				"recentlyused": "Used yn ddiweddar"
 			},
 			"commentary": {
 				"label": "Sylwadau"

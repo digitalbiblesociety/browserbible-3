@@ -42,7 +42,8 @@ sofia.resources['tr'] = {
 				"nt": "Yeni Ahit",
 				"dc": "Deuterocanonical Kitaplar",
 				"more": "Daha fazla",
-				"less": "Daha az"
+				"less": "Daha az",
+				"recentlyused": "Son Kullanılan"
 			},
 			"commentary": {
 				"label": "Yorum"

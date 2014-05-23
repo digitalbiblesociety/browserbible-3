@@ -42,7 +42,8 @@ sofia.resources['zh'] = {
 				"nt": "新约全书",
 				"dc": "经书",
 				"more": "更多",
-				"less": "少"
+				"less": "少",
+				"recentlyused": "最近使用"
 			},
 			"commentary": {
 				"label": "评论"

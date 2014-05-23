@@ -3,64 +3,8 @@ sofia.textproviders['fcbh'] = (function() {
 
 	// all
 	// http://dbt.io/library/volume?v=2&key=111a125057abd2f8931f6d6ad9f2921f&media=text
-
 	var text_data = [];
 
-	var fcbh_versions = [
-		// http://dbt.io/library/volume?v=2&key=111a125057abd2f8931f6d6ad9f2921f&dam_id=ENGEVDO2ET
-		{
-			"id": "fcbh_evd",
-			"name": "English Version for the Deaf",
-			"nameEnglish": "",
-			"abbr": "EVD",
-			"lang": "eng",
-			"langName": "English",
-			"langNameEnglish": "",
-			"dir": "ltl",
-			"type": "bible",
-			"ot_dam_id": "ENGEVDO2ET",
-			"nt_dam_id": "ENGEVDN2ET"
-		},
-		{
-			"id": "fcbh_gbt",
-			"name": "Global Bible Translators",
-			"nameEnglish": "",
-			"abbr": "GBT",
-			"lang": "eng",
-			"langName": "English",
-			"langNameEnglish": "",
-			"dir": "ltl",
-			"type": "bible",
-			"ot_dam_id": "ENGGBTO2ET",
-			"nt_dam_id": "ENGGBTN2ET"
-		},
-		{
-			"id": "fcbh_esv",
-			"name": "English Standard Version",
-			"nameEnglish": "",
-			"abbr": "ESV",
-			"lang": "eng",
-			"langName": "English",
-			"langNameEnglish": "",
-			"dir": "ltl",
-			"type": "bible",
-			"ot_dam_id": "ENGESVO2ET",
-			"nt_dam_id": "ENGESVN2ET"
-		},
-		{
-			"id": "fcbh_ibs",
-			"name": "1997 Today's Aceh Version",
-			"nameEnglish": "",
-			"abbr": "IBS",
-			"lang": "ac1",
-			"langName": "Aceh",
-			"langNameEnglish": "Aceh",
-			"dir": "ltl",
-			"type": "bible",
-			"ot_dam_id": "AC1IBSO2ET",
-			"nt_dam_id": "AC1IBSN2ET"
-		}
-	];
 
 	function getTextManifest (callback) {
 
@@ -69,98 +13,138 @@ sofia.textproviders['fcbh'] = (function() {
 			return;
 		}
 
-
 		if (text_data.length > 0) {
 
 			callback(text_data);
 
 		} else {
+		
+			if (sofia.config["fcbhLoadVersions"] != 'undefined' && sofia.config["fcbhLoadVersions"] === true) {
+				
+				// hard work to parse!
 
-			$.ajax({
-				url: 'http://dbt.io/library/volume?v=2&key=' + sofia.config.fcbhKey, //  + '&media=text',
-				success: function(data) {
-
-					// first do texts
-					var fcbh_texts = data.filter(function(v) {
-							return v.media == 'text';
-						}),
-						fcbh_audio = data.filter(function(v) {
-							return v.media == 'audio';
-						});
-
-					// find and link up all text values
-					for (var i=0, il=fcbh_texts.length; i<il; i++) {
-						var fcbh_entry = fcbh_texts[i],
-							matches = text_data.filter(function(text_info) {
-								return text_info.abbr == fcbh_entry.version_code;
+				$.ajax({
+					url: 'http://dbt.io/library/volume?v=2&key=' + sofia.config.fcbhKey, //  + '&media=text',
+					success: function(data) {
+	
+						// first do texts
+						var fcbh_texts = data.filter(function(v) {
+								return v.media == 'text';
+							}),
+							fcbh_audio = data.filter(function(v) {
+								return v.media == 'audio';
 							});
-
-						if (matches.length > 0) {
-							if (fcbh_entry.collection_code == "OT") {
-								matches[0].ot_dam_id = fcbh_entry.dam_id;
-							} else if (fcbh_entry.collection_code == "NT") {
-								matches[0].nt_dam_id = fcbh_entry.dam_id;
-							}
-						} else {
-							var
-								title = fcbh_entry.version_name != '' ? fcbh_entry.version_name : fcbh_entry.language_name + ' ' + fcbh_entry.volume_name,
-								new_entry = matches.length > 0 ? matches[0] : {
-								"id": "fcbh_" + fcbh_entry.version_code.toLowerCase(),
-								"name": title + ' [DBP]',
-								"nameEnglish": fcbh_entry.version_english,
-								"abbr": fcbh_entry.version_code,
-								"lang": fcbh_entry.language_iso,
-								"langName": fcbh_entry.language_iso_name,
-								"langNameEnglish": fcbh_entry.language_family_english,
-								"dir": "ltl",
-								"type": "bible",
-								"ot_dam_id": fcbh_entry.collection_code == "OT" ? fcbh_entry.dam_id : '',
-								"nt_dam_id": fcbh_entry.collection_code == "NT" ? fcbh_entry.dam_id : '',
-								"aboutHtml": createAboutHtml(title, fcbh_entry.version_code)
-							};
-
-							text_data.push(new_entry);
-
-						}
-					}
-
-					for (var i=0, il=text_data.length; i<il; i++) {
-						var text_info = text_data[i],
-							audio_matches = fcbh_audio.filter(function(audio_info) {
-								return text_info.abbr == audio_info.version_code;
-							});
-
-						for (var j=0, jl=audio_matches.length; j<jl; j++) {
-							var audio_info = audio_matches[j];
-
-							if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'OT') {
-								text_info.fcbh_drama_ot = audio_info.dam_id;
-							} else if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'NT') {
-								text_info.fcbh_drama_nt = audio_info.dam_id;
-							} else if (audio_info.media_type == 'Non-Drama' && audio_info.collection_code == 'OT') {
-								text_info.fcbh_audio_ot = audio_info.dam_id;
-							} else if (audio_info.media_type == 'Non-Drama' && audio_info.collection_code == 'NT') {
-								text_info.fcbh_audio_nt = audio_info.dam_id;
+	
+						// find and link up all text values
+						for (var i=0, il=fcbh_texts.length; i<il; i++) {
+							var fcbh_entry = fcbh_texts[i],
+								matches = text_data.filter(function(text_info) {
+									return text_info.abbr == fcbh_entry.version_code;
+								});
+	
+							if (matches.length > 0) {
+								if (fcbh_entry.collection_code == "OT") {
+									matches[0].ot_dam_id = fcbh_entry.dam_id;
+								} else if (fcbh_entry.collection_code == "NT") {
+									matches[0].nt_dam_id = fcbh_entry.dam_id;
+								}
+							} else {
+								var
+									title = fcbh_entry.version_name != '' ? fcbh_entry.version_name : fcbh_entry.language_name + ' ' + fcbh_entry.volume_name,
+									new_entry = matches.length > 0 ? matches[0] : {
+									"id": "fcbh_" + fcbh_entry.version_code.toLowerCase(),
+									"name": title + ' [DBP]',
+									"nameEnglish": fcbh_entry.version_english,
+									"abbr": fcbh_entry.version_code,
+									"lang": fcbh_entry.language_iso,
+									"langName": fcbh_entry.language_iso_name,
+									"langNameEnglish": fcbh_entry.language_family_english,
+									"dir": "ltl",
+									"type": "bible",
+									"ot_dam_id": fcbh_entry.collection_code == "OT" ? fcbh_entry.dam_id : '',
+									"nt_dam_id": fcbh_entry.collection_code == "NT" ? fcbh_entry.dam_id : '',
+									"aboutHtml": createAboutHtml(title, fcbh_entry.version_code)
+								};
+	
+								text_data.push(new_entry);
+	
 							}
 						}
-
+	
+						for (var i=0, il=text_data.length; i<il; i++) {
+							var text_info = text_data[i],
+								audio_matches = fcbh_audio.filter(function(audio_info) {
+									return text_info.abbr == audio_info.version_code;
+								});
+	
+							for (var j=0, jl=audio_matches.length; j<jl; j++) {
+								var audio_info = audio_matches[j];
+	
+								if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'OT') {
+									text_info.fcbh_drama_ot = audio_info.dam_id;
+								} else if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'NT') {
+									text_info.fcbh_drama_nt = audio_info.dam_id;
+								} else if (audio_info.media_type == 'Non-Drama' && audio_info.collection_code == 'OT') {
+									text_info.fcbh_audio_ot = audio_info.dam_id;
+								} else if (audio_info.media_type == 'Non-Drama' && audio_info.collection_code == 'NT') {
+									text_info.fcbh_audio_nt = audio_info.dam_id;
+								}
+							}
+	
+						}
+	
+						/*
+						var w = new MovableWindow();
+						w.body.html( '<textarea>' +  JSON.stringify(text_data, null, '\t') + '</textarea>' );
+						w.show();
+						*/
+						
+						//console.log( JSON.stringify(text_data) );
+	
+						//console.log( text_data );
+	
+						callback(text_data);
+	
+	
 					}
+				});
+			} else {
+				
+				// easy load
 
-					/*
-					var w = new MovableWindow();
-					w.body.html( '<textarea>' +  JSON.stringify(text_data, null, '\t') + '</textarea>' );
-					w.show();
-					*/
+				$.ajax({
+					beforeSend: function(xhr){
+						if (xhr.overrideMimeType){
+							xhr.overrideMimeType("application/json");
+						}
+					},		
+					url: 'content/texts/texts_fcbh.json',
+					dataType: 'json',
+					cache: false,
+					success: function(data) {			
 					
-					//console.log( JSON.stringify(text_data) );
-
-					//console.log( text_data );
-
-					callback(text_data);
-
-
-				}
-			});
+						text_data = data.textInfoData;
+						
+						console.log('FCBH', data);
+					
+					
+						for (var i=0, il=text_data.length; i<il; i++) {
+							
+							text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
+							
+						}
+					
+					
+						callback(text_data);
+						
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						callback(null);
+					}
+				});		
+	
+				
+			}
 		}
 	}
 

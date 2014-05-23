@@ -144,13 +144,15 @@ TextLoader = (function() {
 				
 				sofia.textproviders[providerName].getTextManifest(function(data) {
 					
-					// add provider name to each one			
-					for (var i=0, il=data.length; i<il; i++) {
-						data[i].provider = providerName;
+					if (data && data != null) {
+						// add provider name to each one			
+						for (var i=0, il=data.length; i<il; i++) {
+							data[i].provider = providerName;
+						}
+									
+						// append to array from previous provider
+						textInfoData = textInfoData.concat(data);
 					}
-								
-					// append to array from previous provider
-					textInfoData = textInfoData.concat(data);
 					
 					currentProviderIndex++;					
 					loadNextProvider();

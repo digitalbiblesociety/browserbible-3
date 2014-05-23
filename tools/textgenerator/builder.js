@@ -4,7 +4,8 @@ var
 	path = require('path'),	
 	jsdom = require("jsdom"),
 	$ = require('jquery')(jsdom.jsdom().createWindow()),
-	uglify = require("uglify-js"),
+	uglifyjs = require("uglify-js"),
+	uglifycss = require("uglifycss"),
 	jsp = require("uglify-js").parser,
 	pro = require("uglify-js").uglify;
 
@@ -53,7 +54,7 @@ scripts.forEach(function(url) {
 	var localPath = path.join(rootPath, url);
 	
 	try {
-	minifiedScript += uglify.minify(localPath).code;
+		minifiedScript += uglifyjs.minify(localPath).code;
 	} catch (e) {
 		console.log('error minifiy', localPath);
 	}
@@ -84,12 +85,17 @@ stylesheets.forEach(function(url) {
 	
 	var localPath = path.join(rootPath, url);
 	
+	try {
+		minifiedCss += uglifycss.processFiles([localPath]);
+	} catch (e) {
+		console.log('error Css minifiy', localPath, e);
+	}	
 	combinedCss += fs.readFileSync(path.join(rootPath, url), 'utf8');
 });
 
 // write out
 fs.writeFileSync(outputCssPath, combinedCss);
-fs.writeFileSync(outputCssPathMinified, combinedCss);  // TEMP: no compression
+fs.writeFileSync(outputCssPathMinified, minifiedCss);  // TEMP: no compression
 
 // COPY 
 // copy remaining

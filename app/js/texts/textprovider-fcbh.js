@@ -3,22 +3,38 @@ sofia.textproviders['fcbh'] = (function() {
 
 	// all
 	// http://dbt.io/library/volume?v=2&key=111a125057abd2f8931f6d6ad9f2921f&media=text
-	var text_data = [];
+	var text_data = [],
+		text_data_is_loaded = false,
+		text_data_is_loading = false,		
+		text_data_callbacks = [];
 
 
 	function getTextManifest (callback) {
 
+		// check for oofline use
 		if (!sofia.config.enableOnlineSources || typeof sofia.config.fcbhKey == 'undefined' || sofia.config.fcbhKey == '') {
-			callback(text_data);
+			callback(null);
 			return;
 		}
 
-		if (text_data.length > 0) {
+		// if loaded immediately callback
+		if (text_data_is_loaded) {
 
 			callback(text_data);
 
 		} else {
+			
+			// store callback
+			text_data_callbacks.push(callback);
 		
+			// don't continue
+			if (text_data_is_loading) {
+				return;
+			}
+			
+			text_data_is_loading = true;
+		
+			// loading from FCBH (big file!)
 			if (sofia.config["fcbhLoadVersions"] != 'undefined' && sofia.config["fcbhLoadVersions"] === true) {
 				
 				// hard work to parse!
@@ -102,10 +118,8 @@ sofia.textproviders['fcbh'] = (function() {
 						//console.log( JSON.stringify(text_data) );
 	
 						//console.log( text_data );
-	
-						callback(text_data);
-	
-	
+
+						finish();
 					}
 				});
 			} else {
@@ -126,26 +140,34 @@ sofia.textproviders['fcbh'] = (function() {
 						text_data = data.textInfoData;
 						
 						console.log('FCBH', data);
-					
-					
+										
 						for (var i=0, il=text_data.length; i<il; i++) {
 							
 							text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
 							
 						}
-					
-					
-						callback(text_data);
-						
+										
+						finish();						
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
-						callback(null);
+						text_data = null;
+						finish();
 					}
 				});		
 	
 				
 			}
 		}
+	}
+	
+	function finish() {
+		text_data_is_loading = false;
+		text_data_is_loaded = true;
+
+		while (text_data_callbacks.length > 0) {
+			var cb = text_data_callbacks.pop();
+			cb(text_data);
+		}		
 	}
 
 	function createAboutHtml(title, version_code) {
@@ -156,14 +178,18 @@ sofia.textproviders['fcbh'] = (function() {
 
 					'<dt>API EULA</dt>' +
 					'<dd><a href="https://www.digitalbibleplatform.com/eula/">End User License Agreement</a> for API</dd>' +
-
-
-				'</dl>'
-
-
+				'</dl>';
 	}
 
 	function getTextInfo(textid, callback) {
+	
+		if (!text_data_is_loaded) {
+			
+			getTextManifest (function() {
+				getTextInfo(textid, callback);
+			});			
+			return;
+		}
 
 		// get initial data
 		var info = text_data.filter(function(text) {
@@ -176,7 +202,6 @@ sofia.textproviders['fcbh'] = (function() {
 			info.divisions = [];
 			info.divisionNames = [];
 			info.sections = [];
-
 
 			if (info.ot_dam_id != '') {
 				loadBooks(info, info.ot_dam_id, function() {

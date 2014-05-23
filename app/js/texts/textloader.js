@@ -69,13 +69,10 @@ TextLoader = (function() {
 			
 		if (textInfo) {
 			providerName = textInfo.provider;
+		} else if (textid.indexOf(':') > -1) {
+			providerName = textid.split(':')[0];	
 		} else {
-			if (textid.indexOf('fcbh_') > 0) {
-				providerName = 'fcbh';
-			} else {
-				providerName = 'local'; // ???				
-			}
-	
+			providerName = 'local'; // ???				
 		}	
 	
 	

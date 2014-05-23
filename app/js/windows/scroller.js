@@ -274,6 +274,11 @@ var Scroller = function(node) {
 			return;
 		}
 		
+		if (loadType == 'text') {
+			wrapper.html('<div class="loading-indicator" style="height:' + node.height() + 'px;"></div>');
+			node.scrollTop(0);
+		}
+		
 		//console.log(loadType, sectionid, fragmentid);
 
 		TextLoader.loadSection( currentTextInfo, sectionid, function(content) {
@@ -284,10 +289,8 @@ var Scroller = function(node) {
 				
 				if (fragmentid && fragmentid.trim() != '' && wrapper.find('.' + fragmentid).length > 0) {
 					scrollTo(fragmentid);
-
 				}
-				return;
-				
+				return;				
 			}
 			
 			ignoreScrollEvent = true;

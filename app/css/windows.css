@@ -1423,6 +1423,20 @@ input:focus {
 	vertical-align:top;
 }
 
+#config-global-url div {
+	opacity: 1;
+	width: 210px;
+	display: inline-block;	
+	padding: 4px;
+	height: 25px;
+	margin: 0;
+	vertical-align: center;
+	border: solid 1px #bbb;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 10px;
+}
+
 
 
 #about {

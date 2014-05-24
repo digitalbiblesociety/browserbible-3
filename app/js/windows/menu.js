@@ -796,10 +796,13 @@ var ConfigUrl = function(node) {
 		$('<div id="config-global-url">' + 
 				//'<span class="config-header">URL</span>' + 
 				'<span ></span>' +
-				'<input type="text"  />' +
+				'<input type="text" />' +
+				//'<div ></div>' +
 			'</div>'),
-		linkButton = urlBox.find('span');
-		urlInput = urlBox.find('input');
+		linkButton = urlBox.find('span'),
+		urlInput = urlBox.find('input'),
+		urlDiv = urlBox.find('div'),
+		clickables = [linkButton, urlInput, urlDiv];
 					//.on('focus', function() {
 					//	$(this).select();								
 					//});
@@ -822,16 +825,30 @@ var ConfigUrl = function(node) {
 	}, 1000);
 	
 	
-	ZeroClipboard.config( { moviePath: 'build/ZeroClipboard.swf' } );
-	var client = new ZeroClipboard(linkButton);	
-	client.on( 'dataRequested', function (client, args) {
-		client.setText( urlInput.val() );
+	ZeroClipboard.config( { moviePath: 'build/ZeroClipboard.swf' } );	
+	for (var c in clickables) {
+		var el = clickables[c];
 		
-		urlInput.select();		
-	});	
+		var client = new ZeroClipboard(el);	
+		client.on( 'dataRequested', function (client, args) {
+			
+			updateUrl();
+			
+			client.setText( urlInput.val() );
+			
+			urlInput.select();		
+		});		
+	}
+
 	
+	
+	urlInput.on('click', function() {
+		updateUrl();	
+	});
 	
 	linkButton.on('click', function() {
+		updateUrl();
+		
 		urlInput.select();		
 	});
 	
@@ -878,12 +895,21 @@ var ConfigUrl = function(node) {
 				
 			}			
 		}
+
+		// keep all parameters that aren't windowed ones
+		for (var param in existingParams) {
+			// check if it's blank or if it's a previously existing parameter (say the third window, and now there is only 2)
+			if (param != '' && param.indexOf('win') != 0  && param.indexOf('textid') != 0  && param.indexOf('searchtext') != 0  && param.indexOf('fragmentid') != 0 ) {
+				mergedParams[ param ] = existingParams[param];			
+			}
+		}				
 		
-		mergedParams = $.extend(mergedParams, existingParams, newParams); 
 		
-		for (var index in mergedParams) {
-			if (index != '') {
-				mergedArray.push( index + '=' + mergedParams[index] );			
+		mergedParams = $.extend({}, mergedParams, newParams); 
+		
+		for (var param in mergedParams) {
+			if (param != '' ) {
+				mergedArray.push( param + '=' + mergedParams[param] );			
 			}
 		}
 		//mergedArray.reverse();
@@ -891,6 +917,7 @@ var ConfigUrl = function(node) {
 		url = location.protocol + '//' + location.host + location.pathname + '?' + mergedArray.join('&');
 			
 		urlInput.val(url);
+		urlDiv.html(url);
 			
 		//console.log('URL', windowSettings, parts);
 	}

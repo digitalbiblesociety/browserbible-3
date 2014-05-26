@@ -1,5 +1,5 @@
 
-var AudioController = function(container, ui, scroller) {
+var AudioController = function(id, container, ui, scroller) {
 	
 	var block = $(
 				'<div class="audio-controller">' + 
@@ -20,17 +20,27 @@ var AudioController = function(container, ui, scroller) {
 				'</div>'
 				).appendTo(container),
 		optionsButton = block.find('.audio-options-button'),
+		
 		options = $(
 				'<div class="audio-options">' + 
 					'<span class="audio-options-close"></span>' + 
 					'<strong class="i18n" data-i18n="[html]windows.audio.options"></strong>' + 
 					'<label><input type="checkbox" class="audio-scroll" checked /><span class="i18n" data-i18n="[html]windows.audio.synctext" /></label>' +
-					'<label><input type="checkbox" class="audio-autoplay" checked /><span class="i18n" data-i18n="[html]windows.audio.autoplay" /></label>' +				
+					'<label><input type="checkbox" class="audio-autoplay" checked /><span class="i18n" data-i18n="[html]windows.audio.autoplay" /></label>' +	
+					
+					'<div class="audio-dramatic-option">' +			
+						'<label><input type="radio" name="' + id + '-dramatic-option" class="audio-dramatic-audio" disabled /><span class="i18n" data-i18n="[html]windows.audio.nondrama" /></label>' +	
+						'<label><input type="radio" name="' + id + '-dramatic-option" class="audio-dramatic-drama" disabled /><span class="i18n" data-i18n="[html]windows.audio.drama" /></label>' +						
+					'</div>' +					
 				'</div>'
 				).appendTo(container),
 		scrollCheckbox = options.find('.audio-scroll').prop('checked', true),
 		autoplayCheckbox = options.find('.audio-autoplay').prop('checked', true),
 		optionsCloseButton = options.find('.audio-options-close'),
+		
+		optionsDramaticBox = options.find('.audio-dramatic-option'),
+		optionsDramaticDrama = options.find('.audio-dramatic-drama'),
+		optionsDramaticAudio = options.find('.audio-dramatic-audio'),				
 
 		audio = block.find('audio')[0],
 
@@ -80,8 +90,31 @@ var AudioController = function(container, ui, scroller) {
 	optionsCloseButton.on('click', function() {
 		options.hide();
 	});
-
+	
+	optionsDramaticAudio.on('change', updateDramatic);
+	optionsDramaticDrama.on('change', updateDramatic);	
+	
+	function updateDramatic() {
 		
+		console.log('change dramatic');
+	
+		var storedFragmentid = fragmentid;
+		
+		// kill all existing values
+		fragmentid = '';
+		sectionid = '';
+		fragmentAudioData = null;
+		
+		// stop audio
+		if (!audio.paused && !audio.ended) {
+			audio.pause();
+			audio.src = '';
+		}
+		
+		$(audio).on('loadeddata', playWhenLoaded);
+		loadAudio(storedFragmentid);
+	}
+	
 		
 	// MAIN
 	ui.on('click', function() {
@@ -98,7 +131,6 @@ var AudioController = function(container, ui, scroller) {
 			return;
 		}
 		
-	
 		if (audio.paused || audio.ended) {
 			audio.play();
 		} else {
@@ -106,7 +138,6 @@ var AudioController = function(container, ui, scroller) {
 		}		
 	});
 			
-	
 	prevButton.on('click', function() {
 
 		audioDataManager.getPrevFragment(textInfo, audioInfo, fragmentid, function(prevFragmentid) {
@@ -131,8 +162,6 @@ var AudioController = function(container, ui, scroller) {
 		
 	});
 	nextButton.on('click', function() {
-
-
 
 		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(nextFragmentid) {
 
@@ -202,7 +231,10 @@ var AudioController = function(container, ui, scroller) {
 			
 			// only do a checks when we need to!	
 			if (loadNewData) {
-				audioDataManager.getFragmentAudio(textInfo, audioInfo, fragmentid, function(newFragmentAudioData) {
+			
+				var audioOption = optionsDramaticDrama.is(':checked') ? 'drama' : optionsDramaticAudio.is(':checked') ? 'audio' : '';
+			
+				audioDataManager.getFragmentAudio(textInfo, audioInfo, fragmentid, audioOption, function(newFragmentAudioData) {
 				
 					// only update if this is new data
 					if (fragmentAudioData == null || newFragmentAudioData == null || fragmentAudioData.id != newFragmentAudioData.id) {
@@ -438,11 +470,61 @@ var AudioController = function(container, ui, scroller) {
 					if (newAudioInfo != null) {		
 						audioInfo = newAudioInfo;
 					
-						// console.log('AUDIO: YES', textInfo.id, textInfo.lang, newAudioInfo, 'fid:' +fragmentid);
+						console.log('AUDIO: YES', textInfo.id, textInfo.lang, audioInfo.type);						
 						
 						hasAudio = true;
 
 						sectionid = '';						
+						
+						
+						if (audioInfo.type == 'local') {
+							optionsDramaticBox.hide();
+						} else if (audioInfo.type == 'fcbh') {
+							optionsDramaticBox.show();
+							
+							var hasNonDrama = 
+										(typeof audioInfo.fcbh_audio_nt != 'undefined' && audioInfo.fcbh_audio_nt != '') ||
+										(typeof audioInfo.fcbh_audio_ot != 'undefined' && audioInfo.fcbh_audio_ot != ''),
+								hasDrama = 
+										(typeof audioInfo.fcbh_drama_nt != 'undefined' && audioInfo.fcbh_drama_nt != '') ||
+										(typeof audioInfo.fcbh_drama_ot != 'undefined' && audioInfo.fcbh_drama_ot != '');
+								
+							console.log(audioInfo, 'drama', hasDrama, 'audio', hasNonDrama);	
+								
+							// show hide							
+							if (hasNonDrama && hasDrama) {
+								optionsDramaticAudio.prop('disabled', false);
+								optionsDramaticDrama.prop('disabled', false);
+							} else {
+								optionsDramaticAudio.prop('disabled', true);
+								optionsDramaticDrama.prop('disabled', true);								
+							}
+							
+							if (hasNonDrama) {
+								optionsDramaticAudio.prop('checked', true);
+								optionsDramaticDrama.prop('checked', false);
+							} else {
+								optionsDramaticAudio.prop('checked', false);
+								optionsDramaticDrama.prop('checked', true);								
+							}
+							
+
+							
+						}
+					
+						/*
+						if (audioInfo.type == 'local') {
+							optionsDramaticBox.hide();
+					
+						} else if (audioInfo.type == 'fcbh') {
+							optionsDramaticBox.show();
+							
+							var hasDrama = (audioInfo.fcbh_audio_nt != '' || audioInfo.fcbh_audio_ot != ''),
+								hasAudio = (audioInfo.fcbh_drama_nt != '' || audioInfo.fcbh_drama_nt != '');
+						}
+						*/
+						
+						console.log("after dramatic switch");
 						
 						if (fragmentid != '') {
 							var newFragmentid = fragmentid;

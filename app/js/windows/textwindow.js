@@ -50,7 +50,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 		scroller = new Scroller(main),		
 
 		audioui = container.find('.audio-button'),	
-		audioController = new AudioController(container, audioui, scroller),				
+		audioController = new AudioController(id, container, audioui, scroller),				
 		
 		// settings
 		currentTextInfo = null,

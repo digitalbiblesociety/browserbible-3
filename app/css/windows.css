@@ -645,7 +645,7 @@ input:focus {
 	width: 200px;
 	
 	padding: 10px;
-	height: 90px;
+	height: 100px;
 	
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	font-family: Avenir, Helvetica, Arial;
@@ -654,6 +654,15 @@ input:focus {
 
 .audio-options label {
 	display: block;	
+}
+
+.audio-options .audio-dramatic-option {
+	margin-top: 5px;	
+}
+
+.audio-options .audio-dramatic-option label {
+	display: inline-block;	
+	margin-right: 10px;
 }
 
 .audio-options .audio-options-close {

@@ -5,8 +5,6 @@ if (typeof sofia != 'undefined') {
 
 var AudioDataManager = function() {
 
-
-	
 	function getAudioInfo(textInfo, callback) {
 				
 		var index = 0;
@@ -43,17 +41,14 @@ var AudioDataManager = function() {
 			}
 			
 		}
-		
-		
+			
 		doNext();
-
-	
 	}
 	
-	function getFragmentAudio(textInfo, audioInfo, fragmentid, callback) {
+	function getFragmentAudio(textInfo, audioInfo, fragmentid, audioOption, callback) {
 
 		// pass to the correct source using the index number assigned when getAudioInfo was called
-		sofia.audioSources[audioInfo.audioSourceIndex].getFragmentAudio(textInfo, audioInfo, fragmentid, callback);
+		sofia.audioSources[audioInfo.audioSourceIndex].getFragmentAudio(textInfo, audioInfo, fragmentid, audioOption, callback);
 		
 	}
 
@@ -101,6 +96,7 @@ var LocalAudio = (function() {
 			url: 'content/audio/' + checkDirectory + '/info.json',
 			success: function(audioInfo) {
 			
+				audioInfo.type = 'local';
 				audioInfo.directory = checkDirectory;						
 				
 				if (!audioInfo.title) {
@@ -120,7 +116,7 @@ var LocalAudio = (function() {
 		});
 	}
 	
-	function getFragmentAudio(textInfo, audioInfo, fragmentid, callback) {
+	function getFragmentAudio(textInfo, audioInfo, fragmentid, audioOption, callback) {
 	
 		var fragmentData = findFragmentData(audioInfo, fragmentid);
 		
@@ -295,7 +291,7 @@ var FaithComesByHearingAudio = (function() {
 		if (fcbhIsLoaded && currentTextInfo != null) {
 			var fcbhKeys = ['fcbh_audio_nt','fcbh_audio_ot','fcbh_drama_nt','fcbh_drama_ot'],
 				fcbhExists = false,
-				audioData = {title: 'FCBH'};
+				audioData = {title: 'FCBH', type: 'fcbh'};
 			
 			for (var i=0, il=fcbhKeys.length; i<il; i++) {
 				var key = fcbhKeys[i],
@@ -459,7 +455,7 @@ var FaithComesByHearingAudio = (function() {
 		return collection;
 	}
 	
-	function getFragmentAudio(textInfo, audioInfo, fragmentid, callback) {
+	function getFragmentAudio(textInfo, audioInfo, fragmentid, audioOption, callback) {
 		if (audioInfo == null) {
 			callback(null);
 			return;
@@ -485,16 +481,31 @@ var FaithComesByHearingAudio = (function() {
 			return;			
 		}
 		
+		
+		
 		// find correct damID
-		if (audioInfo[dramaKey] && audioInfo[dramaKey] != '') {
-			dam_id = audioInfo[dramaKey];
-		} if (audioInfo[audioKey] && audioInfo[audioKey] != '') {
-			dam_id = audioInfo[audioKey];
+		if (audioOption == 'audio') {
+		
+			if (audioInfo[audioKey] && audioInfo[audioKey] != '') {
+				dam_id = audioInfo[audioKey];
+			} else if (audioInfo[dramaKey] && audioInfo[dramaKey] != '') {
+				dam_id = audioInfo[dramaKey];
+			}
+
+		} else if (audioOption == 'drama') {		
+		
+			if (audioInfo[dramaKey] && audioInfo[dramaKey] != '') {
+				dam_id = audioInfo[dramaKey];
+			} else if (audioInfo[audioKey] && audioInfo[audioKey] != '') {
+				dam_id = audioInfo[audioKey];
+			}
 		}
+		
+		console.log('audio preference', audioOption, dam_id);
 		
 		var collectionInfo = getFbchCollectionById(dam_id);
 		if (collectionInfo != null) {
-			audioInfo.title = 'FCBH: ' + collectionInfo.version_code + '-' + (collectionInfo.version_name != '' ? collectionInfo.version_name : collectionInfo.volume_name);
+			audioInfo.title = 'FCBH: ' + collectionInfo.version_code; //  + '-' + (collectionInfo.version_name != '' ? collectionInfo.version_name : collectionInfo.volume_name);
 		}
 		
 		var

@@ -69,8 +69,8 @@ sofia.resources['en'] = {
 				"options": "Audio Options",
 				"synctext": "Sync Text (beta)",
 				"autoplay": "Autoplay Next",
-				"drama": "Drama",
-				"nondrama": "Non-Drama"
+				"drama": "Dramatized",
+				"nondrama": "Spoken"
 			}
 		}
 	}

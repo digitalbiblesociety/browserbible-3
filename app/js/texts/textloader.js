@@ -102,7 +102,12 @@ TextLoader = (function() {
 			data.provider = providerName;
 
 			// store
-			textData[data.id] = data;
+			textData[data.id] = data;	
+			
+			// set names
+			if (data.divisionNames) {
+				bible.addNames(data.lang, data.divisions, data.divisionNames);
+			}			
 			
 			// send back
 			callback(data);

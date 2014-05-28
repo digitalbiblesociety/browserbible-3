@@ -378,31 +378,8 @@ var AddWindowButton = function(node) {
 		
 		}
 	}
-	
-	/*
-	var windowTools = [
-		{type: 'BibleWindow', label: 'bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
-	];
 
-	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
-		windowTools.push(	
-			{type: 'CommentaryWindow', label: 'commentary', data: {'textid':sofia.config.newCommentaryWindowTextId,'fragmentid':''}}
-		);
-	}
-	
-	if (sofia.config.enableOnlineSources) {
-		windowTools.push(	
-			{type: 'MapWindow', label: 'map', data: {'latitude': 31.7833, 'longitude': 35.2167}}
-		);
-	}	
-	windowTools.push(		
-		{type: 'SearchWindow', label: 'search', data: {}}
-	);
-	windowTools.push(	
-		{type: 'MediaWindow', label: 'media', data: {}}
-	);
-	*/
-	
+	// create window buttons from window Types	
 	windowTools = [];
 	for (var i=0, il=sofia.windowTypes.length; i<il; i++) {
 		var winType = sofia.windowTypes[i];
@@ -889,37 +866,9 @@ var ConfigUrl = function(node) {
 				var paramData = winSettings.data.params[paramName];
 				newParams[ paramName + (i+1) ] = paramData;
 
-				console.log(paramName, paramData);				
+				//console.log(paramName, paramData);				
 			}
-			
-			
-			//console.log('setting', i, winSettings);
-			/*
-			switch (winSettings.windowType) {
-				case 'BibleWindow':
-					newParams['win' + (i+1)] = 'bible';
-					newParams['textid' + (i+1)] =  winSettings.data.textid;
-					newParams['fragmentid' + (i+1)] = winSettings.data.fragmentid;
-					break;
-				case 'CommentaryWindow':
-					newParams['win' + (i+1)] = 'commentary';
-					newParams['textid' + (i+1)] =  winSettings.data.textid;
-					newParams['fragmentid' + (i+1)] = winSettings.data.fragmentid;
-					break;
-				case 'SearchWindow':
-					newParams['win' + (i+1)] = 'search';
-					newParams['textid' + (i+1)] =  winSettings.data.textid;
-					newParams['searchtext' + (i+1)] = winSettings.data.searchtext;
-					break;
-				case 'MapsWindow':
-					newParams['win' + (i+1)] = 'map';
-					break;									
-				case 'MediaWindow':
-					newParams['win' + (i+1)] =  'media';
-					break;									
 				
-			}
-			*/			
 		}
 
 		// keep all parameters that aren't windowed ones

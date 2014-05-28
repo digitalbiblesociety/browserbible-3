@@ -49,7 +49,7 @@ sofia.resources['en'] = {
 				"label": "Commentary"
 			},
 			"map": {
-				"label": "Maps",
+				"label": "Map",
 				"placeholder": "Search..."
 			},
 			"search": {
@@ -59,6 +59,11 @@ sofia.resources['en'] = {
 				"results": "Results",
 				"verses": "verses"
 			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading..."
+			},			
+			
 			"media": {
 				"label": "Media"
 			},

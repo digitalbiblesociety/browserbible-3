@@ -1200,6 +1200,48 @@ input:focus {
 }
 
 
+/* Parallels */
+.parallels-main {
+	padding: 15px;	
+	overflow: auto;
+}
+.parallels-main table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.parallels-main td,
+.parallels-main th 
+ {
+	text-align: left;
+	font-weight: normal;
+	padding: 2px;
+	vertical-align: top;
+}
+.parallels-main td {
+	border: 1px solid #999;
+}
+
+.parallels-main table[dir=rtl] td,
+.parallels-main table[dir=rtl] th {
+	text-align: right;
+}
+
+.parallels-main .section-title  {
+	 padding: 10px 2px 2px 2px;
+	 font-weight: bold;
+	 text-align: center;
+}
+.parallels-main .parallel-title  {
+	 padding: 10px 2px 2px 2px;
+	 font-style: italic;
+}
+.parallels-main td  {
+	 width: 25%;
+}
+.parallels-main td .v-1 {
+	display: inherit;
+}
+
 
 /* config options */
 #main-config-box {

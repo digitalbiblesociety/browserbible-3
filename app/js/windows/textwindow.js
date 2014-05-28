@@ -509,7 +509,12 @@ var TextWindow = function(id, node, init_data, text_type) {
 			fragmentid: currentLocationInfo.fragmentid,
 			label: currentLocationInfo.label,
 			labelLong: currentLocationInfo.labelLong,
-			hasFocus: hasFocus
+			hasFocus: hasFocus,
+			params: {
+				'win': text_type,
+				'textid': currentTextInfo.id,
+				'fragmentid': currentLocationInfo.fragmentid	
+			}
 		};
 		
 		return data;	
@@ -554,13 +559,39 @@ var TextWindow = function(id, node, init_data, text_type) {
 var BibleWindow = function(id, node, init_data) {	
 	return new TextWindow(id, node, init_data, 'bible');	
 };
-sofia.windowTypes.push('BibleWindow');
+
+sofia.initMethods.push(function() {
+
+	sofia.windowTypes.push( {
+				className:'BibleWindow', 
+				param: 'bible', 
+				init: {
+					'textid':sofia.config.newBibleWindowVersion,
+					'fragmentid':sofia.config.newBibleWindowVerse
+				}
+	});
+				
+});
+
 
 //if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
-	
-	var CommentaryWindow = function(id, node, init_data) {	
-		return new TextWindow(id, node, init_data, 'commentary');
-	};
-	sofia.windowTypes.push('CommentaryWindow');
-	
+
+var CommentaryWindow = function(id, node, init_data) {	
+	return new TextWindow(id, node, init_data, 'commentary');
+};
+
+sofia.initMethods.push(function() {	
+
+	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
+
+		sofia.windowTypes.push( {
+					className:'CommentaryWindow', 
+					param: 'commentary', 
+					init: {
+						'textid':sofia.config.newCommentaryWindowTextId,
+						'fragmentid':''
+					}
+		});	
+	}
+});
 //}

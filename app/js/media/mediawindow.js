@@ -255,7 +255,13 @@ var MediaWindow = function(id, parentNode, data) {
 	var ext = {
 		size: size,
 		getData: function() { 		
-			return {}		
+			return {
+				
+				params: {
+					'win': 'media'
+				}
+				
+			}		
 		},
 		close: close
 	};	
@@ -295,4 +301,22 @@ var MediaWindow = function(id, parentNode, data) {
 	return ext;		
 
 };
-sofia.windowTypes.push('MediaWindow');
+//sofia.windowTypes.push('MediaWindow');
+
+
+
+
+
+sofia.initMethods.push(function() {	
+
+	
+	sofia.windowTypes.push( {
+				className:'MediaWindow', 
+				param: 'media', 
+				init: {
+					'latitude': 31.7833, 
+					'longitude': 35.2167
+				}
+	});	
+
+});

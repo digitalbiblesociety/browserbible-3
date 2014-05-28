@@ -588,7 +588,7 @@ var FaithComesByHearingAudio = (function() {
 
 
 // FCBH First (March 2014)
-$(function() {
+sofia.initMethods.push(function() {
 	if (typeof sofia != 'undefined') {
 		if (sofia.config.enableOnlineSources) {
 	

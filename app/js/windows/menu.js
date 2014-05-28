@@ -379,7 +379,7 @@ var AddWindowButton = function(node) {
 		}
 	}
 	
-
+	/*
 	var windowTools = [
 		{type: 'BibleWindow', label: 'bible', data: {'textid':sofia.config.newBibleWindowVersion,'fragmentid':sofia.config.newBibleWindowVerse}}
 	];
@@ -392,7 +392,7 @@ var AddWindowButton = function(node) {
 	
 	if (sofia.config.enableOnlineSources) {
 		windowTools.push(	
-			{type: 'MapsWindow', label: 'map', data: {'latitude': 31.7833, 'longitude': 35.2167}}
+			{type: 'MapWindow', label: 'map', data: {'latitude': 31.7833, 'longitude': 35.2167}}
 		);
 	}	
 	windowTools.push(		
@@ -401,6 +401,20 @@ var AddWindowButton = function(node) {
 	windowTools.push(	
 		{type: 'MediaWindow', label: 'media', data: {}}
 	);
+	*/
+	
+	windowTools = [];
+	for (var i=0, il=sofia.windowTypes.length; i<il; i++) {
+		var winType = sofia.windowTypes[i];
+		
+		windowTools.push({
+			type: winType.className,
+			label: winType.param,
+			data: winType.init
+		});
+		
+		
+	}
 	
 	
 	
@@ -864,12 +878,23 @@ var ConfigUrl = function(node) {
 		for (var i=0, il=windowSettings.length; i<il; i++) {
 			var winSettings = windowSettings[i];
 			
-			if (winSettings.data == null) {
+			if (winSettings.data == null || typeof winSettings.data.params == 'undefined') {
 				continue;
 			}
 			
-			//console.log('setting', i, winSettings);
+			// go through the params object
+			// params: {'win': 'bible', 'fragmentid': 'JN1_1'}
+			//for (var j=0,jl=winSettings.data.params.length; j<jl; j++) {
+			for (var paramName in winSettings.data.params) {
+				var paramData = winSettings.data.params[paramName];
+				newParams[ paramName + (i+1) ] = paramData;
+
+				console.log(paramName, paramData);				
+			}
 			
+			
+			//console.log('setting', i, winSettings);
+			/*
 			switch (winSettings.windowType) {
 				case 'BibleWindow':
 					newParams['win' + (i+1)] = 'bible';
@@ -893,7 +918,8 @@ var ConfigUrl = function(node) {
 					newParams['win' + (i+1)] =  'media';
 					break;									
 				
-			}			
+			}
+			*/			
 		}
 
 		// keep all parameters that aren't windowed ones

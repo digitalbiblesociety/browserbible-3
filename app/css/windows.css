@@ -184,7 +184,7 @@ input:focus {
 
 			color: #fff;	
 		}
-		.MapsWindow .window-close-button {		
+		.MapWindow .window-close-button {		
 			background-color: #e5bfb7;
 		}	
 
@@ -544,7 +544,7 @@ input:focus {
 #add-CommentaryWindow {
 	background-image: url(images/commentary.svg);
 }
-#add-MapsWindow {
+#add-MapWindow {
 	background-image: url(images/map.svg);
 }
 #add-VideoWindow {

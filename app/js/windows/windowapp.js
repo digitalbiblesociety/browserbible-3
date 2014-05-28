@@ -40,8 +40,25 @@ var App = function() {
 		// create windows
 		for (var i=0, il=settings.windows.length; i<il; i++) {
 			var setting = settings.windows[i],
-				windowType = setting.windowType;
+				windowClassName = setting.windowType;
 				
+			// try to find ClassName by the parameter
+			if (!windowClassName) {
+				var param = setting.type,
+					filteredWindowTypes = sofia.windowTypes.filter(function(wt) {
+						return wt.param == param;
+					});
+					
+				if (filteredWindowTypes.length == 1) {
+					windowClassName = filteredWindowTypes[0].className;
+				}				
+			}
+				
+			console.log('create window', setting, windowClassName);
+			windowManager.add(windowClassName, setting.data);				
+
+			
+			/*	
 			if (!setting.windowType) {
 				
 				switch (setting.type) {
@@ -65,10 +82,11 @@ var App = function() {
 					
 				}
 			}
+			*/
 	
 			// create window
 			//console.log('create',i, windowType, setting.data);
-			windowManager.add(windowType, setting.data);	
+			//windowManager.add(windowClassName, setting.data);	
 		}
 		
 		// get first window

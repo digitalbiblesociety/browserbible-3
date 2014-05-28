@@ -1,5 +1,5 @@
 
-var MapsWindow = function(id, parentNode, data) {
+var MapWindow = function(id, parentNode, data) {
 
 	//parentNode.css({position: 'relative'});
 
@@ -294,7 +294,12 @@ var MapsWindow = function(id, parentNode, data) {
 		var center = map.getCenter(),
 			data = {
 				latitude: center.lat(),
-				longitude: center.lng()
+				longitude: center.lng(),
+				params: {
+					'win': 'maps',
+					'latitude': center.lat(),
+					'longitude': center.lng()
+				}				
 			};
 		
 		return data
@@ -416,4 +421,21 @@ var MapsWindow = function(id, parentNode, data) {
 	return ext;
 };
 
-sofia.windowTypes.push('MapsWindow');
+//sofia.windowTypes.push('MapsWindow');
+
+
+
+sofia.initMethods.push(function() {	
+
+	if (sofia.config.enableOnlineSources) {
+
+		sofia.windowTypes.push( {
+					className:'MapWindow', 
+					param: 'map', 
+					init: {
+						'latitude': 31.7833, 
+						'longitude': 35.2167
+					}
+		});	
+	}
+});

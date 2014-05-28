@@ -66,13 +66,17 @@ $(function() {
 			
 			if (typeof customizations != 'undefined' && customizations != null) {		
 				sofia.config = $.extend(sofia.config, customizations);
-			}
-			
+			}			
 		}
 		
 		// load css
 		if (typeof sofia.config.customCssUrl != 'undefined' && sofia.config.customCssUrl != '') {
 			$('<link href="' + sofia.config.customCssUrl + '" rel="stylesheet" />').appendTo( $('head') );
+		}
+		
+		// run inits
+		for (var i=0, il=sofia.initMethods.length; i<il; i++) {
+			sofia.initMethods[i]();
 		}
 	
 		// create app

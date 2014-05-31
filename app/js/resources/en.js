@@ -61,7 +61,9 @@ sofia.resources['en'] = {
 			},
 			"parallel": {
 				"label": "Parallels",
-				"loading": "Loading..."
+				"loading": "Loading...",
+				"showall": "Show All",
+				"hideall": "Hide All"				
 			},			
 			
 			"media": {

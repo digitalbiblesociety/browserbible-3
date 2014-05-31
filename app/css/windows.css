@@ -134,7 +134,7 @@ input:focus {
 		.window .window-header .header-list {
 			padding-right: 20px;
 			cursor: pointer;
-
+			border-radius: 0;
 			background-image: url(images/down-arrow.svg);			
 			background-position: right center;
 			background-repeat: no-repeat;		
@@ -558,6 +558,9 @@ input:focus {
 }
 #add-MediaWindow {
 	background-image: url(images/pictures.svg);
+}
+#add-ParallelsWindow {
+	background-image: url(images/parallel.svg);
 }
 
 #add-button-box {
@@ -1216,9 +1219,12 @@ input:focus {
 	font-weight: normal;
 	padding: 2px;
 	vertical-align: top;
+	-x-border: 1px solid #ddd;
 }
 .parallels-main td {
-	border: 1px solid #999;
+	border: 1px solid #ddd;
+	border-width: 0 1px;
+	padding: 8px;
 }
 
 .parallels-main table[dir=rtl] td,
@@ -1227,20 +1233,56 @@ input:focus {
 }
 
 .parallels-main .section-title  {
-	 padding: 10px 2px 2px 2px;
+	 padding: 20px 0 20px 0;
 	 font-weight: bold;
 	 text-align: center;
+	 -x-background: #eee;
 }
 .parallels-main .parallel-title  {
-	 padding: 10px 2px 2px 2px;
+	 padding: 20px 0 6px 0;
 	 font-style: italic;
 }
-.parallels-main td  {
-	 width: 25%;
+
+.parallels-main .parallel-passage  {
+	text-align: center;
+	
 }
+
 .parallels-main td .v-1 {
-	display: inherit;
+	display: inline;
 }
+.parallels-main .passage-notloaded {
+	cursor: pointer;
+	color: #2a85e8;
+}
+
+.parallel-entry-header {
+	cursor: pointer;
+}
+.parallel-entry-header .parallel-title  {
+	padding: 8px;
+}
+
+.parallel-entry-text-collapsed {
+	display: none;
+}
+
+.parallels-list {
+}
+
+.parallels-buttons {
+	margin: 5px 0;
+}
+.parallels-buttons span {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+	padding: 8px 10px;
+	background-color: #2a85e8;
+	color: #fff;
+	font-size: 90%;
+	cursor: pointer;	
+}
+
 
 
 /* config options */

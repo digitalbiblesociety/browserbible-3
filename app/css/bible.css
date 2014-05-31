@@ -90,12 +90,12 @@
 .text .notetype { font-weight: bold; font-style: italic;}
 
 
-.bibleref {
+.bibleref, .xt {
 	color:#7491CE;
 	cursor: pointer;	
 }
 
-.bibleref:hover {
+.bibleref:hover, .xt:hover {
 	text-decoration: underline;
 }
 

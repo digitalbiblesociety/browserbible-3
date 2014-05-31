@@ -1,0 +1,1719 @@
+{
+	"title": "The Fourfold Gospel",
+	"description": "A four gospel synoptic parallel by Alexender Campbell from <a href=\"http://www.bible.ca/b-four-gospel-synoptic.htm\" target=\"_blank\">bible.ca</a>.",
+	"books": [
+		"MT",
+		"MK",
+		"LK",
+		"JN"
+	],
+	"parallels": [
+		{
+			"sectionTitle": "The Period of Christ's Life Prior to His Ministry"
+		},
+		{
+			"title": "Luke's Preface and Dedication",
+			"passages": [
+				null,
+				null,
+				"1:1-4",
+				null
+			]
+		},
+		{
+			"title": "John's Introduction",
+			"passages": [
+				null,
+				null,
+				null,
+				"1:1-18"
+			]
+		},
+		{
+			"title": "Genealogy of Jesus According to Matthew",
+			"passages": [
+				"1:1-17",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Genealogy According to Luke",
+			"passages": [
+				null,
+				null,
+				"3:23-38",
+				null
+			]
+		},
+		{
+			"title": "Annunication to Zacharias of the Birth of John the Baptist",
+			"passages": [
+				null,
+				null,
+				"1:5-25",
+				null
+			]
+		},
+		{
+			"title": "Annunciation of the Birth of Jesus",
+			"passages": [
+				null,
+				null,
+				"1:26-38",
+				null
+			]
+		},
+		{
+			"title": "Mary, Future Mother of Jesus, Visits Elisabeth, Future Mother of John the Baptist",
+			"passages": [
+				null,
+				null,
+				"1:39-56",
+				null
+			]
+		},
+		{
+			"title": "The Birth and Early Life of John the Baptist",
+			"passages": [
+				null,
+				null,
+				"1:57-80",
+				null
+			]
+		},
+		{
+			"title": "Annunication to Joseph of the Birth of Jesus",
+			"passages": [
+				"1:18-25",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Birth of Jesus",
+			"passages": [
+				null,
+				null,
+				"2:1-7",
+				null
+			]
+		},
+		{
+			"title": "The Birth of Jesus Proclaimed by Angels to the Shepherds",
+			"passages": [
+				null,
+				null,
+				"2:8-20",
+				null
+			]
+		},
+		{
+			"title": "Circumcision, Temple Service, and Naming of Jesus",
+			"passages": [
+				null,
+				null,
+				"2:21-39",
+				null
+			]
+		},
+		{
+			"title": "Eastern Wise-Men or Magi Visit Jesus, the New-born King",
+			"passages": [
+				"2:1-12",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Flight into Egypt and Slaughter of the Bethlehem Children",
+			"passages": [
+				"2:13-18",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Child Jesus Brought from Egypt to Nazareth",
+			"passages": [
+				"2:19-23",
+				null,
+				"2:39",
+				null
+			]
+		},
+		{
+			"title": "Jesus Living at Nazareth and Visiting Jerusalem in His Twelfth Year",
+			"passages": [
+				null,
+				null,
+				"2:40-52",
+				null
+			]
+		},
+		{
+			"sectionTitle": "Beginning of the Ministry of John the Baptist, the Forerunner"
+		},
+		{
+			"title": "John the Baptist's Person and Preaching",
+			"passages": [
+				"3:1-12",
+				"1:1-8",
+				"3:1-18",
+				null
+			]
+		},
+		{
+			"sectionTitle": "Beginning of Our Lord's Ministry"
+		},
+		{
+			"title": "Jesus Baptized by John in the Jordan",
+			"passages": [
+				"3:13-17",
+				"1:9-11",
+				"3:21,22",
+				null
+			]
+		},
+		{
+			"title": "Jesus Tempted in the Wilderness",
+			"passages": [
+				"4:1-11",
+				"1:12,13",
+				"4:1-13",
+				null
+			]
+		},
+		{
+			"title": "John's First Testimony to Jesus",
+			"passages": [
+				null,
+				null,
+				null,
+				"1:19-34"
+			]
+		},
+		{
+			"title": "Jesus Makes His First Disciples",
+			"passages": [
+				null,
+				null,
+				null,
+				"1:35-51"
+			]
+		},
+		{
+			"title": "Jesus Works His First Miracle at Cana in Galilee",
+			"passages": [
+				null,
+				null,
+				null,
+				"2:1-11"
+			]
+		},
+		{
+			"title": "Jesus' First Residence at Capernaum",
+			"passages": [
+				null,
+				null,
+				null,
+				"2:12"
+			]
+		},
+		{
+			"sectionTitle": "From the First to the Second Passover<br>Jesus Attends the First Passover of His Ministry"
+		},
+		{
+			"title": "Jesus Cleanses the Temple",
+			"passages": [
+				null,
+				null,
+				null,
+				"2:13-25"
+			]
+		},
+		{
+			"title": "Jesus Talks with Nicodemus",
+			"passages": [
+				null,
+				null,
+				null,
+				"3:1-21"
+			]
+		},
+		{
+			"title": "First Ministry in Judea / John's Second Testimony",
+			"passages": [
+				null,
+				null,
+				null,
+				"3:22-36"
+			]
+		},
+		{
+			"sectionTitle": "Jesus Sets out from Judea to Galilee"
+		},
+		{
+			"title": "Reasons for Retiring to Galilee",
+			"passages": [
+				"4:12",
+				"1:14",
+				"3:19,20",
+				"4:1-4"
+			]
+		},
+		{
+			"title": "At Jacob's Well, at Sychar",
+			"passages": [
+				null,
+				null,
+				null,
+				"4:5-42"
+			]
+		},
+		{
+			"title": "Arrival in Galilee",
+			"passages": [
+				null,
+				null,
+				"4:14",
+				"4:43-45"
+			]
+		},
+		{
+			"title": "General Account of Jesus' Teaching",
+			"passages": [
+				"4:17",
+				"1:14,15",
+				"4:14,15",
+				null
+			]
+		},
+		{
+			"title": "The Second Miracle at Cana",
+			"passages": [
+				null,
+				null,
+				null,
+				"4:46-54"
+			]
+		},
+		{
+			"title": "Jesus's Temporary Residence at Capernaum",
+			"passages": [
+				"4:13-16",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Jesus Calls Four Fishermen to Follow Him",
+			"passages": [
+				"4:18-22",
+				"1:16-20",
+				"5:1-11",
+				null
+			]
+		},
+		{
+			"title": "Healing a Demoniac in a Synagogue",
+			"passages": [
+				null,
+				"1:21-28",
+				"4:31-37",
+				null
+			]
+		},
+		{
+			"title": "Healing Peter's Mother-in-Law and Many Others",
+			"passages": [
+				"8:14-17",
+				"1:29:34",
+				"4:38-41",
+				null
+			]
+		},
+		{
+			"title": "Jesus Makes a Preaching Tour Through Galilee",
+			"passages": [
+				"4:23-25",
+				"1:35-39",
+				"4:42-44",
+				null
+			]
+		},
+		{
+			"title": "Jesus Heals a Leper and Creates Much Excitement",
+			"passages": [
+				"8:2-4",
+				"1-40-45",
+				"5:12-16",
+				null
+			]
+		},
+		{
+			"title": "Jesus Heals a Paralytic at Capernaum",
+			"passages": [
+				"9:2-8",
+				"2:1-12",
+				"5:17-26",
+				null
+			]
+		},
+		{
+			"title": "The Call of Matthew",
+			"passages": [
+				"9:9",
+				"2:13,14",
+				"5:27,28",
+				null
+			]
+		},
+		{
+			"sectionTitle": "From Second Passover Until Third. Time: One Year"
+		},
+		{
+			"title": "Jesus Heals on the Sabbath Day and Defends His Act",
+			"passages": [
+				null,
+				null,
+				null,
+				"5:1-47"
+			]
+		},
+		{
+			"title": "Jesus Defends Disciples Who Pluck Grain on the Sabbath",
+			"passages": [
+				"12:1-8",
+				"2:23-28",
+				"6:1-5",
+				null
+			]
+		},
+		{
+			"title": "Jesus Defends Healing a Withered Hand on the Sabbath",
+			"passages": [
+				"12:9-14",
+				"3:1-6",
+				"6:6-11",
+				null
+			]
+		},
+		{
+			"title": "Jesus Heals Multitudes Beside the Sea of Galilee",
+			"passages": [
+				"12:13-21",
+				"3:7-12",
+				null,
+				null
+			]
+		},
+		{
+			"title": "After Prayer Jesus Selects Twelve Apostles",
+			"passages": [
+				"10:2-4",
+				"3:13-19",
+				"6:12-16",
+				null
+			]
+		},
+		{
+			"sectionTitle": "The Sermon on the Mount"
+		},
+		{
+			"title": "Introductory Statement",
+			"passages": [
+				"5:1-2",
+				null,
+				"6:17-20",
+				null
+			]
+		},
+		{
+			"title": "Promises to Messiah's Subjects",
+			"passages": [
+				"5:3-12",
+				null,
+				"6:20-26",
+				null
+			]
+		},
+		{
+			"title": "Influence and Duties of Messiah's Subjects",
+			"passages": [
+				"5:13-16",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Relation of Messianic Teaching to Old Testament and Traditional Teaching",
+			"passages": [
+				"5:17-48",
+				null,
+				"6:27-30, 32-36",
+				null
+			]
+		},
+		{
+			"title": "Almsgiving, Prayer and Fasting to Be Performed Sincerely, Not Ostentatiously",
+			"passages": [
+				"6:1-18",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Security of Heavenly Treasures Contrasted with Earthly Anxieties",
+			"passages": [
+				"6:19-34",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Law Concerning Judging",
+			"passages": [
+				"7:1-6",
+				null,
+				"6:37-42",
+				null
+			]
+		},
+		{
+			"title": "Concerning Prayer",
+			"passages": [
+				"7:7-11",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Golden Rule",
+			"passages": [
+				"7:12",
+				null,
+				"6:31",
+				null
+			]
+		},
+		{
+			"title": "The Two Ways and the False Prophets",
+			"passages": [
+				"7:13-23",
+				null,
+				"6:43-45",
+				null
+			]
+		},
+		{
+			"title": "Two Builders",
+			"passages": [
+				"7:24-29",
+				null,
+				"6:46-49",
+				null
+			]
+		},
+		{
+			"title": "Healing the Centurion's Servant",
+			"passages": [
+				"8:1,5-13",
+				null,
+				"7:1-10",
+				null
+			]
+		},
+		{
+			"title": "Jesus Raises the Widow's Son",
+			"passages": [
+				null,
+				null,
+				"7:11-17",
+				null
+			]
+		},
+		{
+			"title": "The Baptist's Inquiry and Jesus' Discourse Suggested Thereby",
+			"passages": [
+				"11:2-30",
+				null,
+				"7:18-35",
+				null
+			]
+		},
+		{
+			"title": "Jesus' Feet Anointed in the House of a Pharisee",
+			"passages": [
+				null,
+				null,
+				"7:36-50",
+				null
+			]
+		},
+		{
+			"title": "Further Journeying About Galilee",
+			"passages": [
+				null,
+				null,
+				"8:1-3",
+				null
+			]
+		},
+		{
+			"title": "Blasphemous Accusations of the Jews",
+			"passages": [
+				"12:22-37",
+				"3:19-30",
+				"11:14-23",
+				null
+			]
+		},
+		{
+			"title": "Sign Seekers, and the Enthusiast Reproved",
+			"passages": [
+				"12:38-50",
+				null,
+				"11:24-36",
+				null
+			]
+		},
+		{
+			"title": "Christ's Teaching as to His Mother and Brethren",
+			"passages": [
+				"12:46-50",
+				"3:31-35",
+				"8:19-21",
+				null
+			]
+		},
+		{
+			"title": "Dining with a Pharisee, Jesus Denounces That Sect",
+			"passages": [
+				null,
+				null,
+				"11:37-54",
+				null
+			]
+		},
+		{
+			"title": "Concerning Hypocrisy, Worldly Anxiety, Watchfulness and His Approaching Passion",
+			"passages": [
+				null,
+				null,
+				"12:1-59",
+				null
+			]
+		},
+		{
+			"title": "Repentance Enjoined. Parable of the Barren Fig-Tree",
+			"passages": [
+				null,
+				null,
+				"13:1-9",
+				null
+			]
+		},
+		{
+			"sectionTitle": "The First Great Group of Parables"
+		},
+		{
+			"title": "Introduction",
+			"passages": [
+				"13:1-3",
+				"4:1,2",
+				"8:4",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Sower",
+			"passages": [
+				"13:3-23",
+				"4:3-25",
+				"8:5-18",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Seed Growing of Itself",
+			"passages": [
+				null,
+				"4:26-29",
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Parable of the Tares",
+			"passages": [
+				"13:24-30",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Parables of the Mustard Seed and Leaven",
+			"passages": [
+				"13:31-35",
+				"4:30-34",
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Parable of the Tares Explained",
+			"passages": [
+				"13:36-43",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Parables of Treasure, Pearl and Net",
+			"passages": [
+				"13:44-53",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Jesus Still the Storm",
+			"passages": [
+				"8:18-27",
+				"4:35-41",
+				"8:22-25",
+				null
+			]
+		},
+		{
+			"title": "Jesus Heals Two Gergesene Demoniacs",
+			"passages": [
+				"8:28-34; 9:1",
+				"5:1-21",
+				"8:26-40",
+				null
+			]
+		},
+		{
+			"title": "Matthew's Feast. Discourse on Fasting",
+			"passages": [
+				"9:10-17",
+				"2:15-22",
+				"5:29-39",
+				null
+			]
+		},
+		{
+			"title": "Jairus' Daughter and the Invalid Woman",
+			"passages": [
+				"9:18-26",
+				"5:22-43",
+				"8:41-56",
+				null
+			]
+		},
+		{
+			"title": "Healing Blind Men and a Dumb Demoniac",
+			"passages": [
+				"9:27-34",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Jesus Visits Nazareth and is Rejected",
+			"passages": [
+				"13:54-58",
+				"6:1-6",
+				"4:16:31",
+				null
+			]
+		},
+		{
+			"title": "Third Circuit of Galilee. The Twelve Instructed and Sent Forth",
+			"passages": [
+				"9:35-38; 10:1,5:4, 11:1",
+				"6:6-13",
+				"6:6-13",
+				null
+			]
+		},
+		{
+			"title": "Herod Antipas Supposes Jesus To Be John",
+			"passages": [
+				"14:1-12",
+				"6:14-29",
+				"9:7-9",
+				null
+			]
+		},
+		{
+			"sectionTitle": "First Withdrawal from Herod's Territory and Return"
+		},
+		{
+			"title": "Return of the Twelve and Retirement to the East Shore of Galilee",
+			"passages": [
+				"14:13",
+				"6:30-32",
+				"9:10",
+				"6:1"
+			]
+		},
+		{
+			"title": "Feeding the Five Thousand",
+			"passages": [
+				"14:13-21",
+				"6:33-44",
+				"9:11-17",
+				"6:2-14"
+			]
+		},
+		{
+			"title": "Jesus Walks Upon the Water",
+			"passages": [
+				"14:22-36",
+				"6:45-56",
+				null,
+				"6:15-21"
+			]
+		},
+		{
+			"title": "Discourse on Spiritual Food and True Discipleship. Peter's Confession",
+			"passages": [
+				null,
+				null,
+				null,
+				"6:22-71"
+			]
+		},
+		{
+			"sectionTitle": "From the Third Passover Until Our Lord's Arrival at Bethany"
+		},
+		{
+			"title": "Jesus Fails to Attend the Third Passover",
+			"passages": [
+				"15:1-20",
+				"7:1-23",
+				null,
+				"7:1"
+			]
+		},
+		{
+			"title": "Second Withdrawal from Herod's Territory",
+			"passages": [
+				"15:21",
+				"7:24",
+				null,
+				null
+			]
+		},
+		{
+			"title": "Healing a Phoenician Woman's Daughter",
+			"passages": [
+				"15:22-28",
+				"7:25-30",
+				null,
+				null
+			]
+		},
+		{
+			"title": "Another Avoiding of Herod's Territory",
+			"passages": [
+				"15:29",
+				"8:31",
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Deaf Stammerer Healed and Four Thousand Fed",
+			"passages": [
+				"15:30-38",
+				"8:32-9:9",
+				null,
+				null
+			]
+		},
+		{
+			"sectionTitle": "Third Withdrawal from Herod's Territory"
+		},
+		{
+			"title": "Pharisaic Leaven. A Blind Man Healed",
+			"passages": [
+				"15:39- 16:12",
+				"8:10-26",
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Great Confession Made by Peter",
+			"passages": [
+				"16:13-20",
+				"8:27-30",
+				"9:18-21",
+				null
+			]
+		},
+		{
+			"title": "Passion Foretold. Peter Rebuked",
+			"passages": [
+				"16:21-28",
+				"8:31-39; 9:1",
+				"9:22-27",
+				null
+			]
+		},
+		{
+			"title": "The Transfiguration Concerning Elijah",
+			"passages": [
+				"17:1-13",
+				"9:2-13",
+				"9:28-36",
+				null
+			]
+		},
+		{
+			"title": "E. Healing the Demoniac Boy",
+			"passages": [
+				"17:14-20",
+				"9:14-29",
+				"9:37-43",
+				null
+			]
+		},
+		{
+			"title": "Return to Galilee. The Passion Foretold",
+			"passages": [
+				"17:22,23",
+				"9:30-32",
+				"9:43-45",
+				null
+			]
+		},
+		{
+			"title": "Jesus Pays the Tribute Money",
+			"passages": [
+				"17:24-27",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "False Ambition Versus Childlikeness",
+			"passages": [
+				"18:1-14",
+				"9:33-50",
+				"9:46-50",
+				null
+			]
+		},
+		{
+			"title": "Sin and Forgiveness Between Brethren",
+			"passages": [
+				"18:15-35",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Jesus' Brothers Advise Him to Go to Judea",
+			"passages": [
+				null,
+				null,
+				null,
+				"7:2-9"
+			]
+		},
+		{
+			"title": "The Private Journey to Jerusalem",
+			"passages": [
+				null,
+				null,
+				"9:51-56",
+				"7:10"
+			]
+		},
+		{
+			"title": "As to Sacrifice for Christ's Service",
+			"passages": [
+				null,
+				null,
+				"9:57-62",
+				null
+			]
+		},
+		{
+			"title": "In the Temple at the Feast of Tabernacles",
+			"passages": [
+				null,
+				null,
+				null,
+				"7:11-52"
+			]
+		},
+		{
+			"title": "The Story of the Adulteress",
+			"passages": [
+				null,
+				null,
+				null,
+				"7:53- 8-11"
+			]
+		},
+		{
+			"title": "Messianic Claims Met by Attempt to Stone Jesus",
+			"passages": [
+				null,
+				null,
+				null,
+				"8:12-59"
+			]
+		},
+		{
+			"title": "Contention Over the Man Born Blind",
+			"passages": [
+				null,
+				null,
+				null,
+				"9:1-41"
+			]
+		},
+		{
+			"title": "Discourse on the Good Shepherd",
+			"passages": [
+				null,
+				null,
+				null,
+				"10:1-21"
+			]
+		},
+		{
+			"title": "Mission and Return of the Seventy",
+			"passages": [
+				null,
+				null,
+				"10:1-24",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Good Samaritan",
+			"passages": [
+				null,
+				null,
+				"10:25-37",
+				null
+			]
+		},
+		{
+			"title": "Jesus the Guest of Martha and Mary",
+			"passages": [
+				null,
+				null,
+				"10:38-42",
+				null
+			]
+		},
+		{
+			"title": "Prayer Taught and Encouraged",
+			"passages": [
+				null,
+				null,
+				"11:1-13",
+				null
+			]
+		},
+		{
+			"title": "Sabbath Healing. Mustard Seed and Leaven",
+			"passages": [
+				null,
+				null,
+				"13:10-21",
+				null
+			]
+		},
+		{
+			"title": "Feast of Dedication. The Jews Attempt to Stone Jesus and He Retires to Peraea",
+			"passages": [
+				null,
+				null,
+				null,
+				"10:22-42"
+			]
+		},
+		{
+			"title": "The Strait Gate. Warned Against Herod",
+			"passages": [
+				null,
+				null,
+				"13:22-35",
+				null
+			]
+		},
+		{
+			"title": "Dining with a Pharisee. Sabbath Healing and Three Lessons Suggested by the Event",
+			"passages": [
+				null,
+				null,
+				"14:1-24",
+				null
+			]
+		},
+		{
+			"title": "Cost of Discipleship Must Be Counted",
+			"passages": [
+				null,
+				null,
+				"14:25-35",
+				null
+			]
+		},
+		{
+			"sectionTitle": "Second Great Group of Parables"
+		},
+		{
+			"title": "Introduction",
+			"passages": [
+				null,
+				null,
+				"15:1,2",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Lost Sheep",
+			"passages": [
+				null,
+				null,
+				"15:3-7",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Lost Coin",
+			"passages": [
+				null,
+				null,
+				"15:8-10",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Lost Son",
+			"passages": [
+				null,
+				null,
+				"15:11-32",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Unrighteous Steward",
+			"passages": [
+				null,
+				null,
+				"16:1-18",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Rich Man and Lazarus",
+			"passages": [
+				null,
+				null,
+				"16:19-31",
+				null
+			]
+		},
+		{
+			"title": "Concerning Offenses, Faith and Service",
+			"passages": [
+				null,
+				null,
+				"17:1-10",
+				null
+			]
+		},
+		{
+			"title": "Peraea to Bethany. Raising of Lazarus",
+			"passages": [
+				null,
+				null,
+				null,
+				"11:1-46"
+			]
+		},
+		{
+			"title": "Retiring Before the Sanhedrin's Decree",
+			"passages": [
+				null,
+				null,
+				null,
+				"11:47-54"
+			]
+		},
+		{
+			"title": "Journey to Jerusalem. Ten Lepers. Concerning the Kingdom",
+			"passages": [
+				null,
+				null,
+				"17:11-37",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Importunate Widow",
+			"passages": [
+				null,
+				null,
+				"18:1-8",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Pharisee and Publican",
+			"passages": [
+				null,
+				null,
+				"18:9-14",
+				null
+			]
+		},
+		{
+			"title": "Journey to Jerusalem. Concerning Divorce",
+			"passages": [
+				"19:1-12",
+				"10:1-12",
+				null,
+				null
+			]
+		},
+		{
+			"title": "Blessing Children. Concerning Childlikeness",
+			"passages": [
+				"19:13-15",
+				"10:13-16",
+				"18:15-17",
+				null
+			]
+		},
+		{
+			"title": "The Rich Ruler. Peril of Riches.Reward of Sacrifice. Parable of the Laborers in the Vineyard",
+			"passages": [
+				"19:16- 20:16",
+				"10:17-31",
+				"18:18-20",
+				null
+			]
+		},
+		{
+			"title": "Foretelling His Passion. Rebuking Ambition",
+			"passages": [
+				"20:17-28",
+				"10:32-45",
+				"18:31-34",
+				null
+			]
+		},
+		{
+			"title": "Bartimaeus and His Companion Healed",
+			"passages": [
+				"20:29-34",
+				"10:46-52",
+				"18:35-43",
+				null
+			]
+		},
+		{
+			"title": "Zacchaeus. Parable of the Pounds. Journey to Jerusalem",
+			"passages": [
+				null,
+				null,
+				"19:1-28",
+				null
+			]
+		},
+		{
+			"sectionTitle": "Last Week of Our Lord's Ministry. The Fourth Passover. The Crucifixion"
+		},
+		{
+			"title": "Jesus Arrives and Is Feasted at Bethany",
+			"passages": [
+				"26:6-13",
+				"14:3-9",
+				null,
+				"11:55-57"
+			]
+		},
+		{
+			"title": "Jesus' Triumphal Entry into Jerusalem",
+			"passages": [
+				"21:1-12, 14-17",
+				"11:1-11",
+				"19:29-44",
+				"12:12-19"
+			]
+		},
+		{
+			"title": "Barren Fig-Tress. Temple Cleansed",
+			"passages": [
+				"21:18,19,12,13",
+				"11:12-18",
+				"19:45-48",
+				null
+			]
+		},
+		{
+			"title": "Finding the Fig-Tree Withered",
+			"passages": [
+				"21:20-22",
+				"11:19-25",
+				"21:37,38",
+				null
+			]
+		},
+		{
+			"sectionTitle": "In Reply to the Questions as to His Authority, Jesus Gives the Third Great Group of Parables"
+		},
+		{
+			"title": "Introduction",
+			"passages": [
+				"21:23-27",
+				"11:27-33",
+				"20:1-8",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Two Sons",
+			"passages": [
+				"21:28-32",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Parable of the Wicked Husbandmen",
+			"passages": [
+				"21:33-46",
+				"12:1-12",
+				"20:9-19",
+				null
+			]
+		},
+		{
+			"title": "Parable of the Marriage of the King's Son",
+			"passages": [
+				"22:1-14",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"sectionTitle": "Jewish Rulers Seek to Ensnare Jesus"
+		},
+		{
+			"title": "Pharisees and Herodians Ask About Tribute",
+			"passages": [
+				"22:15-22",
+				"12:13-17",
+				"20:20-26",
+				null
+			]
+		},
+		{
+			"title": "Sadducees Ask About the Resurrection",
+			"passages": [
+				"22:23-33",
+				"12:18-27",
+				"20:27-39",
+				null
+			]
+		},
+		{
+			"title": "A Lawyer Asks About the Great Commandment",
+			"passages": [
+				"22:34-40",
+				"12:28-34",
+				"20:40",
+				null
+			]
+		},
+		{
+			"title": "Jesus' Question Which None Could Answer",
+			"passages": [
+				"22:41-46",
+				"12:35-37",
+				"20:41-44",
+				null
+			]
+		},
+		{
+			"title": "Jesus' Last Public Discourse. Denunication of Scribes and Pharisees",
+			"passages": [
+				"23:1-39",
+				"12:38-40",
+				"20:45-47",
+				null
+			]
+		},
+		{
+			"title": "Observing the Offerings and Widow's Mites",
+			"passages": [
+				null,
+				"12:41-44",
+				"21:1-4",
+				null
+			]
+		},
+		{
+			"title": "Greeks Seek Jesus. He Foretells That He Shall Draw All Men unto Him",
+			"passages": [
+				null,
+				null,
+				null,
+				"12:20-50"
+			]
+		},
+		{
+			"title": "Destruction of Jerusalem Foretold",
+			"passages": [
+				"24:1-28",
+				"13:1-23",
+				"21:5-24",
+				null
+			]
+		},
+		{
+			"title": "The Second Coming of Christ",
+			"passages": [
+				"24:29-51",
+				"13:24-37",
+				"21:25-37",
+				null
+			]
+		},
+		{
+			"title": "Conclusion of Our Lord's Discourse. Parable of Virgins and Talents. Final Judgment.",
+			"passages": [
+				"25:1-46",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Jesus Predicts, the Rulers Plot for and Judas Bargains for His Death",
+			"passages": [
+				"26:1-5, 14-16",
+				"14:1,2, 10,11",
+				"22:1-6",
+				null
+			]
+		},
+		{
+			"title": "Preparation for Passover. Disciples Contend for Precedence",
+			"passages": [
+				"26:17-20",
+				"14:12-17",
+				"22:7-18, 24-30",
+				null
+			]
+		},
+		{
+			"title": "The Paschal Meal. Jesus Washes the Disciples' Feet",
+			"passages": [
+				null,
+				null,
+				null,
+				"13:1-20"
+			]
+		},
+		{
+			"title": "Judas' Betrayal and Peter's Denial Foretold",
+			"passages": [
+				"26:21-25, 31-35",
+				"14:18-21, 27-31",
+				"22:21-23, 31-38",
+				"13:21-38"
+			]
+		},
+		{
+			"title": "The Lord's Supper Instituted (I Cor. 11",
+			"passages": [
+				"26:26-29",
+				"14:22-25",
+				"22:19,20",
+				null
+			]
+		},
+		{
+			"title": "Farewell Discourse to Disciples",
+			"passages": [
+				null,
+				null,
+				null,
+				"14:1- 16:33"
+			]
+		},
+		{
+			"title": "The Lord's Prayer",
+			"passages": [
+				null,
+				null,
+				null,
+				"17:1-26"
+			]
+		},
+		{
+			"title": "Going to Gethsemane, and Agony Therein",
+			"passages": [
+				"26:30, 36-40",
+				"14:26, 32-42",
+				"22:39-46",
+				"18:1"
+			]
+		},
+		{
+			"title": "Jesus Betrayed, Arrested and Forsaken",
+			"passages": [
+				"26:47-56",
+				"14:43-52",
+				"22:47-53",
+				"18:2-11"
+			]
+		},
+		{
+			"title": "First Stage of Jewish Trial. Examination by Annas",
+			"passages": [
+				null,
+				null,
+				null,
+				"18:12-14, 19-23"
+			]
+		},
+		{
+			"title": "Second Stage of Jewish Trial. Jesus Condemned by Ciaphas and the Sanhedrin",
+			"passages": [
+				"26:57, 59-68",
+				"14:53, 55-65",
+				"22:54, 63-65",
+				"18:24"
+			]
+		},
+		{
+			"title": "Peter Thrice Denies the Lord",
+			"passages": [
+				"26:58, 69-75",
+				"14:54, 66-72",
+				"22:54-62",
+				"18:15-18, 25-27"
+			]
+		},
+		{
+			"title": "Third Stage of Jewish Trial. Jesus Formally Condemned by the Sanhedrin and Led to Pilate",
+			"passages": [
+				"27:1,2",
+				"15:1",
+				"22:66- 23:1",
+				"18.28"
+			]
+		},
+		{
+			"title": "First Stage of the Roman Trial. Jesus Before Pilate for the First Time",
+			"passages": [
+				"27:11-14",
+				"15:2-5",
+				"23:2-5",
+				"18:28-38"
+			]
+		},
+		{
+			"title": "Second Stage of the Roman Trial. Jesus Before Herod Antipas.",
+			"passages": [
+				null,
+				null,
+				"23:6-12",
+				null
+			]
+		},
+		{
+			"title": "Third Stage of the Roman Trial. Pilate Reluctantly Sentences Him to Crucifixion",
+			"passages": [
+				"27:15-30",
+				"15:6-19",
+				"23:13-25",
+				"18:39- 19:16"
+			]
+		},
+		{
+			"title": "Remorse and Suicide of Judas (Acts 1)",
+			"passages": [
+				"27:3-10",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"sectionTitle": "The Crucifixion"
+		},
+		{
+			"title": "On the Way to the Cross",
+			"passages": [
+				"27:31-34",
+				"15:20-23",
+				"23:26-33",
+				"19:17"
+			]
+		},
+		{
+			"title": "Jesus Crucified and Reviled. His Three Sayings During First Three Hours",
+			"passages": [
+				"27:35-44",
+				"15:24-32",
+				"23:33-43",
+				"19:18-27"
+			]
+		},
+		{
+			"title": "Darkness Three Hours, After Four More Sayings, Jesus Expires. Strange Events Attending His Death",
+			"passages": [
+				"27:45-56",
+				"15:33-41",
+				"23:44-49",
+				"19:28-30"
+			]
+		},
+		{
+			"title": "Jesus Found to Be Dead. His Body Buried and Guarded in the Tomb",
+			"passages": [
+				"27:57-66",
+				"16:42-47",
+				"23:50-56",
+				"19:31-42"
+			]
+		},
+		{
+			"sectionTitle": "Our Lord's Resurrection, Appearances and Ascension. Judaea and Gailiee. Time, Forty Days. A.D. 30"
+		},
+		{
+			"title": "Angels Announce the Resurrection to Certain Women. Peter and John Enter the Empty Tomb",
+			"passages": [
+				"28:1-8",
+				"16:1-8",
+				"24:1-8, 12",
+				"20:1-10"
+			]
+		},
+		{
+			"title": "First and Second Appearances of the Risen Christ. The Resurrection Reported to the Apostles",
+			"passages": [
+				"28:9,10",
+				"17:9-11",
+				"24:9-11",
+				"20:11-18"
+			]
+		},
+		{
+			"title": "Some of the Guards Report to the Jewish Rulers",
+			"passages": [
+				"28:11-15",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "Third and Fourth Appearances of Jesus (I Cor. 15)",
+			"passages": [
+				null,
+				"16:12,13",
+				"24:13-35",
+				null
+			]
+		},
+		{
+			"title": "Fifth Appearance of Jesus",
+			"passages": [
+				null,
+				"16:14",
+				"24:36-43",
+				"20:19-25"
+			]
+		},
+		{
+			"title": "Sixth Appearance of Jesus (I Cor. 15)",
+			"passages": [
+				null,
+				null,
+				null,
+				"20:26-31"
+			]
+		},
+		{
+			"title": "Seventh Appearance of Jesus",
+			"passages": [
+				null,
+				null,
+				null,
+				"21:1-25"
+			]
+		},
+		{
+			"title": "Eighth Appearance of Jesus (I Cor. 15)",
+			"passages": [
+				"28:16,17",
+				null,
+				null,
+				null
+			]
+		},
+		{
+			"title": "The Great Commission Given",
+			"passages": [
+				"28:18-20",
+				"16:15-18",
+				"24:46,47",
+				null
+			]
+		},
+		{
+			"title": "Ninth and Tenth Appearances of Jesus (I Cor. 15)",
+			"passages": [
+				null,
+				null,
+				"24:44-49",
+				null
+			]
+		},
+		{
+			"title": "The Ascension (Acts 1)",
+			"passages": [
+				null,
+				"16:19,20",
+				"24:50-53",
+				null
+			]
+		}
+	]
+}

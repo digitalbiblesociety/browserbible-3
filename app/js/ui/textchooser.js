@@ -462,6 +462,7 @@ var TextChooser = function(container, target, text_type) {
 			
 			TextLoader.loadTexts(function(data) {
 				renderTexts(data);
+				updateRecentlyUsed();
 			});
 		} else {			
 			updateRecentlyUsed();
@@ -476,6 +477,8 @@ var TextChooser = function(container, target, text_type) {
 		filterVersions();
 		
 		runTopTextsSelector();
+		
+		updateRecentlyUsed();
 	}
 	
 	function hide() {

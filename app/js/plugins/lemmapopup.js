@@ -70,7 +70,7 @@ var LemmaPopupPlugin = function(app) {
 		});
 	
 
-	$('.windows-main').on('click','.section l', function(e) {
+	$('.windows-main').on('click','l', function(e) {
 
 		//$(document).off('click', handleDocClick);
 			

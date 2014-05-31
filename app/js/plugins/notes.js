@@ -3,7 +3,7 @@ var NotesPopupPlugin = function(app) {
 
 	var notesPopup = new InfoWindow('NotesPopup');
 		
-	notesPopup.body.on('click', '.bibleref', function(e) {
+	notesPopup.body.on('click', '.bibleref, .xt', function(e) {
 	
 		sofia.globals.handleBibleRefClick.call(this, e);
 		
@@ -13,11 +13,11 @@ var NotesPopupPlugin = function(app) {
 	
 	
 	if (!Detection.hasTouch) {
-		notesPopup.body.on('mouseover', '.bibleref', function(e) {		
+		notesPopup.body.on('mouseover', '.bibleref, .xt', function(e) {		
 			sofia.globals.handleBibleRefMouseover.call(this, e, $(notesPopup.currentWord).closest('.section').attr('data-textid') );				
 		});	
 		
-		notesPopup.body.on('mouseout', '.bibleref', function(e) {		
+		notesPopup.body.on('mouseout', '.bibleref, .xt', function(e) {		
 			sofia.globals.handleBibleRefMouseout.call(this, e);				
 		});		
 	}

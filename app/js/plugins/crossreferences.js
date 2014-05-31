@@ -5,22 +5,36 @@ var CrossReferencePopupPlugin = function(app) {
 	
 	referencePopup.container.css({zIndex: 1000});
 	
+	function getFragmentidFromNode(node) {
+		var possibleTexts = [node.attr('data-id'), node.attr('title'), node.html()],
+			fragmentid = null;
+		
+		for (var i=0, il=possibleTexts.length; i<il; i++) {
+			var text = possibleTexts[i];
+			
+			if (typeof text != 'undefined' && text != null) {
+				var bref = new bible.Reference(text.split(';')[0].trim());
+				if (typeof bref.toSection != 'undefined') {
+					fragmentid = bref.toSection();	
+			
+					break;
+				}
+			}
+			
+		}	
+		
+		return fragmentid;		
+	}
+	
 	sofia.globals.handleBibleRefClick = function(e) {
 		var link = $(this),
-			fragmentid = link.attr('data-id');
-			
-			
-		if (fragmentid == null) {
-			var title = link.attr('title');
-		}
-		
-		if (fragmentid != null) {
-			var bref = new bible.Reference(fragmentid);
-			fragmentid = bref.toSection();				
-		}		
+			fragmentid = getFragmentidFromNode(link);
 			
 		
 		if (fragmentid != null && fragmentid != '') {
+		
+			TextNavigation.locationChange(fragmentid);
+		
 			ext.trigger('globalmessage', {
 								type: 'globalmessage',
 								target: this, 
@@ -40,24 +54,7 @@ var CrossReferencePopupPlugin = function(app) {
 	
 	sofia.globals.handleBibleRefMouseover = function(e, textid) {
 		var link = $(this),
-			possibleTexts = [link.attr('data-id'), link.attr('title'), link.html()],
-			fragmentid = null;
-			
-			
-		for (var i=0, il=possibleTexts.length; i<il; i++) {
-			var text = possibleTexts[i];
-			
-			if (typeof text != 'undefined' && text != null) {
-				var bref = new bible.Reference(text);
-				if (typeof bref.toSection != 'undefined') {
-					fragmentid = bref.toSection();	
-					
-					console.log(text, fragmentid);
-					break;
-				}
-			}
-			
-		}	
+			fragmentid = getFragmentidFromNode(link);
 					
 		if (fragmentid != null) {
 			
@@ -74,27 +71,29 @@ var CrossReferencePopupPlugin = function(app) {
 				}
 			}
 			
-				
-			console.log('hover', textid, sectionid, fragmentid);	
 			
-			TextLoader.load(textid, sectionid, function(contentNode) {
+			console.log('hover', textid, sectionid, fragmentid);				
 				
-				var verse = contentNode.find('.' + fragmentid),
-					html = '';
+			TextLoader.getText(textid, function(textInfo) {
 				
-				verse.find('.note').remove();
-				
-				verse.each(function() {
-					html += $(this).html();
+				TextLoader.loadSection(textInfo, sectionid, function(contentNode) {
+					
+					var verse = contentNode.find('.' + fragmentid),
+						html = '';
+					
+					verse.find('.note').remove();
+					
+					verse.each(function() {
+						html += $(this).html();
+					});
+					
+					
+					referencePopup.body.html( html );
+					referencePopup.show();
+					referencePopup.position(link);	
+					
 				});
-				
-				
-				referencePopup.body.html( html );
-				referencePopup.show();
-				referencePopup.position(link);	
-				
 			});
-			
 		
 		}	
 	}
@@ -105,11 +104,11 @@ var CrossReferencePopupPlugin = function(app) {
 	}	
 	
 
-	$('.windows-main').on('click','.bibleref', sofia.globals.handleBibleRefClick);
+	$('.windows-main').on('click','.bibleref, .xt', sofia.globals.handleBibleRefClick);
 
 	if (!Detection.hasTouch) {
-		$('.windows-main').on('mouseover','.bibleref', sofia.globals.handleBibleRefMouseover);	
-		$('.windows-main').on('mouseout','.bibleref', sofia.globals.handleBibleRefMouseout);	
+		$('.windows-main').on('mouseover','.bibleref, .xt', sofia.globals.handleBibleRefMouseover);	
+		$('.windows-main').on('mouseout','.bibleref, .xt', sofia.globals.handleBibleRefMouseout);	
 	}
 
 		

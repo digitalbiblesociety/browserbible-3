@@ -76,11 +76,13 @@ var LemmaPopupPlugin = function(app) {
 			
 		var l = $(this);
 		
-		if (lemmaPopup.container.is(':visible') && lemmaPopup.currentWord == this) {
+		if (lemmaPopup.container.is(':visible')) {
 			lemmaPopup.hide();
-			lemmaPopup.currentWord == null;
-			l.removeClass('selected-lemma');
-			return;	
+			if (lemmaPopup.currentWord == this) {
+				lemmaPopup.currentWord == null;
+				l.removeClass('selected-lemma');
+				return;	
+			}
 		}
 		
 		lemmaPopup.currentWord = this;

@@ -13,10 +13,13 @@ sofia.config = {
 		{type: 'search', data: {textid: 'eng-NASB1995', searchtext:'truth love'}}		
 	],
 	
+	// directory or URL to files (must be CORS enabled)
+	contentLocation: 'content/',
+	
 	textsIndex: 'texts.json',
 	
 	// texts shown before the "MORE" button ("eng-NASB1995", "eng-kjv", "eng_net")
-	topTexts: [],
+	//topTexts: ["eng-NASB1995", "eng-kjv", "eng_net"],
 	
 	// new window
 	newBibleWindowVersion: 'eng-NASB1995',
@@ -38,16 +41,25 @@ sofia.config = {
 
 	
 	// Faith Comes by Hearing
-	fcbhKey: '111a125057abd2f8931f6d6ad9f2921f',
+	fcbhKey: '',
 	
 	// jesus film media
-	jfmKey: '52b06248a3c6e8.12980089',
+	jfmKey: '',
 	
 	// Google Analytics key
-	gaKey: 'UA-3734687-19',
+	gaKey: '',
 	
 	// Google URL
-	gaUrl: ''		
+	gaUrl: ''
+	
+	
+	,"eng2pEnableAll": true
+	
+	
+	// true: live parse all versions
+	// false: loads texts_fcbh.json
+	, fcbhLoadVersions: false
+	
 };
 
 sofia.customConfigs = {

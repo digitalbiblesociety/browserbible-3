@@ -93,7 +93,7 @@ var LocalAudio = (function() {
 		
 		$.ajax({
 			dataType: 'json',
-			url: 'content/audio/' + checkDirectory + '/info.json',
+			url: sofia.config.contentLocation + 'audio/' + checkDirectory + '/info.json',
 			success: function(audioInfo) {
 			
 				audioInfo.type = 'local';
@@ -127,7 +127,7 @@ var LocalAudio = (function() {
 			
 		// yeah, we found one!
 		var audioData = {
-			url: 'content/audio/' + audioInfo.directory + '/' + fragmentData.filename + '.' + fragmentData.exts[0],
+			url: sofia.config.contentLocation + 'audio/' + audioInfo.directory + '/' + fragmentData.filename + '.' + fragmentData.exts[0],
 			id: fragmentData.index,
 			start: fragmentData.start,
 			end: fragmentData.end
@@ -247,6 +247,7 @@ var FaithComesByHearingAudio = (function() {
 	
 	function loadFcbHearingLocations() {
 		$.ajax({
+			dataType: 'jsonp',
 			url: 'http://dbt.io/audio/location?v=2&key=' + sofia.config.fcbhKey,
 			success: function(data) {
 				fcbhLocation = data;				
@@ -259,6 +260,7 @@ var FaithComesByHearingAudio = (function() {
 	
 	function loadFcbHearingInfo() {
 		$.ajax({
+			dataType: 'jsonp',		
 			url: 'http://dbt.io/library/volume?v=2&media=audio&delivery=web&key=' + sofia.config.fcbhKey,
 			success: function(data) {
 				fcbhList = data;	
@@ -512,6 +514,7 @@ var FaithComesByHearingAudio = (function() {
 			url = 'http://dbt.io/audio/path?v=2&dam_id=' + dam_id + '&book_id=' + bookInfo.osis.toLowerCase() + '&chapter_id=' + chapterNum.toString() + '&key=' + sofia.config.fcbhKey;
 			
 		$.ajax({
+			dataType: 'jsonp',		
 			url: url,
 			success: function(pathData) {
 				

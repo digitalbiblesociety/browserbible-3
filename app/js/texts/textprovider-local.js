@@ -1,8 +1,6 @@
 
 sofia.textproviders['local'] = (function() {
 
-	var 
-		locationBase = 'content/texts/';
 	
 	function getTextManifest(callback) {
 		var 
@@ -18,7 +16,7 @@ sofia.textproviders['local'] = (function() {
 					xhr.overrideMimeType("application/json");
 				}
 			},		
-			url: locationBase + textsFilename,
+			url: sofia.config.contentLocation + 'texts/' + textsFilename,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {			
@@ -36,7 +34,7 @@ sofia.textproviders['local'] = (function() {
 				
 				modal.body.css({background: '#000', color: '#fff' }).html(
 					'<div style="padding: 20px;">' + 
-						'<p>Problem loading <code>' + locationBase + textsFilename + '</code></p>' + 
+						'<p>Problem loading <code>' + sofia.config.contentLocation + 'texts/' + textsFilename + '</code></p>' + 
 						'<p>Status:' + textStatus + '</p>'+ 
 						'<p>Error:' + errorThrown + '</p>'+						
 					'</div>'
@@ -50,7 +48,7 @@ sofia.textproviders['local'] = (function() {
 	function getTextInfo(textid, callback, errorCallback) {
 	
 		// load it!
-		var infoUrl = locationBase + textid + '/info.json';
+		var infoUrl = sofia.config.contentLocation + 'texts/' + textid + '/info.json';
 		
 		$.ajax({		
 			beforeSend: function(xhr){
@@ -76,7 +74,7 @@ sofia.textproviders['local'] = (function() {
 	
 	function loadSection(textid, sectionid, callback, errorCallback) {
 		
-		var url = locationBase + textid + '/' + sectionid + '.html' + '?' + new Date();
+		var url = sofia.config.contentLocation + 'texts/' + textid + '/' + sectionid + '.html' + '?' + new Date();
 					
 		$.ajax({
 			dataType: 'text',

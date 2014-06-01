@@ -132,7 +132,7 @@ sofia.textproviders['fcbh'] = (function() {
 							xhr.overrideMimeType("application/json");
 						}
 					},		
-					url: 'content/texts/texts_fcbh.json',
+					url: sofia.config.contentLocation + 'texts/texts_fcbh.json',
 					dataType: 'json',
 					cache: false,
 					success: function(data) {			

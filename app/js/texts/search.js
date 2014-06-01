@@ -32,7 +32,7 @@ var singleWordLanguages = ['cht','chs','chi','zho','cmn', 'jpn', 'kor'];
 TextSearch = function() {
 
 	var
-		baseContentPath = 'content/texts/',
+		baseContentPath = sofia.config.contentLocation + 'texts/',
 		isSearching = false,
 		canceled = false,
 		searchText = '',
@@ -583,7 +583,7 @@ SearchTools = {
 SearchIndexLoader = function() {
 
 	var 
-		baseContentPath = 'content/texts/',
+		baseContentPath = sofia.config.contentLocation + 'texts/',
 		textInfo = null,
 		searchTerms = [],
 		searchTermsIndex = -1,

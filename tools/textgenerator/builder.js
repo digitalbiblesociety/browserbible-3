@@ -58,7 +58,7 @@ scripts.forEach(function(url) {
 	} catch (e) {
 		console.log('error minifiy', localPath);
 	}
-	combinedScript += fs.readFileSync(path.join(rootPath, url), 'utf8');
+	combinedScript += fs.readFileSync(path.join(rootPath, url), 'utf8') + '\n\n';
 });
 
 // write out

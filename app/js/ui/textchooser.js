@@ -164,6 +164,11 @@ var TextChooser = function(container, target, text_type) {
 	
 	function updateRecentlyUsed() {
 
+		if (text_type != 'bible') {
+			main.find('.text-chooser-recently-used').remove();
+			return;
+		}
+
 				
 		// RECENTly Used
 		//console.log('updateRecentlyUsed',recentlyUsed.recent.length);

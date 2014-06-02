@@ -176,7 +176,7 @@ var LemmaPopupPlugin = function(app) {
 							}
 						},					
 						dataType: 'json',
-						url: sofia.config.contentFolder + 'lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
+						url: sofia.config.contentLocation + 'lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
 						success: function(data) {
 							
 							var html = '<div class="lemma-word">' + 

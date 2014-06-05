@@ -85,9 +85,9 @@ var TextWindow = function(id, node, init_data, text_type) {
 				
 			} else {
 			
-				$.ajax({
-					dataType: 'html',
-					url: sofia.config.baseContentUrl + 'content/' + 'texts/' + currentTextInfo.id + '/about.html',
+				sofia.ajax({
+					dataType: 'text',
+					url: 'content/texts/' + currentTextInfo.id + '/about.html',
 					success: function(htmlString) {
 					
 						var breakTag = '<body',

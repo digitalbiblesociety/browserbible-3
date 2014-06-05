@@ -92,7 +92,7 @@ var App = function() {
 		// get first window
 		var bibleWindows = settings.windows.filter(function(s) { return s.windowType == 'BibleWindow'; }),
 			firstBibleWindow = bibleWindows.length > 0 ? bibleWindows[0] : null,
-			firstFragmentid = firstBibleWindow != null ? firstBibleWindow.data.fragmentid : null;
+			firstFragmentid = firstBibleWindow != null && firstBibleWindow.data != null ? firstBibleWindow.data.fragmentid : null;
 			
 		if (firstFragmentid != null) {
 			TextNavigation.firstState( firstFragmentid );

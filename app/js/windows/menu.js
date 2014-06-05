@@ -69,7 +69,7 @@ var MainLogo = function(node) {
 				aboutWindow.body.addClass('loading-indicator');
 				
 				$.ajax({
-					url: sofia.config.aboutPageUrl,
+					url: sofia.config.baseContentUrl + sofia.config.aboutPagePath,
 					dataType: 'html',
 					success: function(data) {
 						aboutWindow.body.removeClass('loading-indicator');
@@ -147,15 +147,16 @@ var MainSearchBox = function(node) {
 			}			
 		}
 		
+			
 		PlaceKeeper.storePlace();	
 			
-		textid = firstBibleWindow.data.textid;		
+		textid = firstBibleWindow != null ? firstBibleWindow.data.textid : sofia.config.newBibleWindowVersion;		
 		sofia.app.windowManager.add('SearchWindow', {searchtext: searchtext, textid: textid});
 			
 		PlaceKeeper.restorePlace();
-
 		
 		searchBox.val('');
+
 	}
 	
 	

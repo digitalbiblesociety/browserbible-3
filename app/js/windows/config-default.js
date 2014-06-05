@@ -13,9 +13,28 @@ sofia.config = {
 		{type: 'search', data: {textid: 'eng-NASB1995', searchtext:'truth love'}}		
 	],
 	
+	// URL to content
+	// (1) Leave bank to use local content folder. 
+	// (2) Enter URL (http://www.biblesite.com/) for CORS enabled sites
+	// (3) Enter URL (http://www.biblesite.com/) and udpdate
 	baseContentUrl: '',
 	
-	textsIndex: 'texts.json',
+	// (1) leave blank for local files or for CORS enabled CDN
+	// (2) enter path of script that will convert all files to JSONP (e.g., api.php)
+	baseContentApiPath: '',		
+	
+	// if your are creating a CDN for your content (see above) and want to send a key
+	baseContentApiKey: '',
+	
+	// file name of texts lists
+	textsIndexPath: 'texts.json',
+	
+	// URL to about page
+	aboutPagePath: 'about.html',
+	
+	// (1) leave blank for JSON search
+	// (2) enter path of script that will return JSON data
+	serverSearchPath: '',	
 	
 	// texts shown before the "MORE" button ("eng-NASB1995", "eng-kjv", "eng_net")
 	topTexts: [],
@@ -34,12 +53,6 @@ sofia.config = {
 	
 	// URL to custom CSS
 	customCssUrl: '',
-	
-	// URL to about page
-	aboutPageUrl: 'about.html',
-	
-	// leave blank for JSON search
-	serverSearchUrl: '',
 
 	// Faith Comes by Hearing
 	fcbhKey: '',

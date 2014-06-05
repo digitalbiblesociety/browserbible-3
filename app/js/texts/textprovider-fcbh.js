@@ -132,20 +132,15 @@ sofia.textproviders['fcbh'] = (function() {
 				
 				// easy load
 
-				$.ajax({
-					beforeSend: function(xhr){
-						if (xhr.overrideMimeType){
-							xhr.overrideMimeType("application/json");
-						}
-					},		
-					url: sofia.config.baseContentUrl + 'content/' + 'texts/texts_fcbh.json',
+				sofia.ajax({
+					url: 'content/texts/texts_fcbh.json',
 					dataType: 'json',
 					cache: false,
 					success: function(data) {			
 					
 						text_data = data.textInfoData;
 						
-						console.log('FCBH', data);
+						//console.log('FCBH', data);
 										
 						for (var i=0, il=text_data.length; i<il; i++) {
 							

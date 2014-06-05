@@ -120,8 +120,10 @@ var ParallelsWindow = function(id, node, init_data) {
 			return;
 		}
 		
-		$.ajax({
-			url: sofia.config.baseContentUrl + 'content/' + 'parallels/' + 'parallels.json',
+		sofia.ajax({
+	
+			dataType: 'json',
+			url: 'content/parallels/parallels.json',
 			success: function(data) {
 				
 				parallelsData = data.parallels;
@@ -239,8 +241,9 @@ var ParallelsWindow = function(id, node, init_data) {
 	
 		console.log('parallels', parallelsList.val());
 		
-		$.ajax({
-			url: sofia.config.baseContentUrl + 'content/' + 'parallels/' + parallelsList.val(),
+		sofia.ajax({
+			dataType: 'json',
+			url: 'content/parallels/' + parallelsList.val(),
 			success: function(data) {
 				console.log('loaded parallel data', data);
 				currentParallelData = data;

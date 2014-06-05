@@ -57,6 +57,7 @@ $isLemmaRegExp = '/[GgHh]\\d{1,6}/';
 //// START UP
 $textid = $_GET['textid'];
 $search = $_GET['search'];
+$callback = $_GET['callback'];
 $output = array(
 	"results" => array(),
 	"textid" => $textid,
@@ -287,6 +288,9 @@ if (is_array($combined_index)) {
 }
 
 
-echo json_encode( $output );
+echo 
+	($callback != '' ? $callback . '(' : '' ) .
+	json_encode( $output ) . 
+	($callback != '' ? ');' : '' );
 
 ?>

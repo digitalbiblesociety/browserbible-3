@@ -3,20 +3,10 @@ sofia.textproviders['local'] = (function() {
 
 	
 	function getTextManifest(callback) {
-		var 
-			textsFilename = 'texts.json';
-			
-		if (typeof sofia.config.textsIndex != 'undefined' && sofia.config.textsIndex != '') {
-			textsFilename = sofia.config.textsIndex;			
-		}	
-					
+		var textsUrl = 'content/texts/' + sofia.config.textsIndexPath;
+	
 		$.ajax({
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/json");
-				}
-			},		
-			url: sofia.config.baseContentUrl + 'content/' + 'texts/' + textsFilename,
+			url: textsUrl,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {			
@@ -48,14 +38,9 @@ sofia.textproviders['local'] = (function() {
 	function getTextInfo(textid, callback, errorCallback) {
 	
 		// load it!
-		var infoUrl = sofia.config.baseContentUrl + 'content/' + 'texts/' + textid + '/info.json';
+		var infoUrl = 'content/texts/' + textid + '/info.json';
 		
 		$.ajax({		
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/json");
-				}
-			},		
 			url: infoUrl,
 			dataType: 'json',
 			success: function(data) {
@@ -74,15 +59,17 @@ sofia.textproviders['local'] = (function() {
 	
 	function loadSection(textid, sectionid, callback, errorCallback) {
 		
-		var url = sofia.config.baseContentUrl + 'content/' + 'texts/' + textid + '/' + sectionid + '.html' + '?' + new Date();
+		var url = 'content/texts/' + textid + '/' + sectionid + '.html';
 					
-		$.ajax({
+		sofia.ajax({
 			dataType: 'text',
 			url: url,
 			success: function(data) {
-				
-				// split at the closing head tag to prevent problems with loading head material
-				var main = $( data.indexOf('</head>') > -1 ? data.split('</head>')[1] : data ),
+			
+				// text to treat this like JSON or text/html
+				var text = data,			
+					// split at the closing head tag to prevent problems with loading head material
+					main = $( text.indexOf('</head>') > -1 ? text.split('</head>')[1] : text ),
 					content = main.filter('.section'),
 					footnotes = main.filter('.footnotes'),
 					notes = footnotes.find('.footnote');

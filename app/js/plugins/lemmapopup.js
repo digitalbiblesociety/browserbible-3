@@ -171,14 +171,9 @@ var LemmaPopupPlugin = function(app) {
 			for (var i=0, il=strongs.length; i<il; i++) {
 
 				(function(strongsNumber, morphKey) {
-					$.ajax({
-						beforeSend: function(xhr){
-							if (xhr.overrideMimeType){
-								xhr.overrideMimeType("application/json");
-							}
-						},					
+					$.ajax({		
 						dataType: 'json',
-						url: sofia.config.baseContentUrl + 'content/' + 'lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
+						url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
 						success: function(data) {
 							
 							var html = '<div class="lemma-word">' + 

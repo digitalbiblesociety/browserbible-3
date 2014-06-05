@@ -175,14 +175,9 @@ var MediaLibrary = (function(){
 	function init() {
 		
 		// load main info
-		$.ajax({
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/json");
-				}
-			},		
+		sofia.ajax({
 			dataType: 'json',
-			url: sofia.config.baseContentUrl + 'content/' + 'media/media.json',
+			url: 'content/media/media.json',
 			success: function(data) {
 								
 				mediaLibraries = data.media;
@@ -202,14 +197,9 @@ var MediaLibrary = (function(){
 			var mediaLibrary = mediaLibraries[currentMediaIndex];					
 			currentMediaIndex++;
 						
-			$.ajax({
-				beforeSend: function(xhr){
-					if (xhr.overrideMimeType){
-						xhr.overrideMimeType("application/json");
-					}
-				},				
+			sofia.ajax({		
 				dataType: 'json',
-				url: sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/info.json',
+				url: 'content/media/' + mediaLibrary.folder + '/info.json',
 				success: function(data) {									
 					mediaLibrary.data = data;
 				}, 

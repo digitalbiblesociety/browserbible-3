@@ -84,7 +84,7 @@ TextSearch = function() {
 		isLemmaSearch = isLemmaRegExp.test(searchText);
 		searchTermsRegExp = SearchTools.createSearchTerms(text, isLemmaSearch);		
 		
-		if (typeof sofia.config.serverSearchUrl != 'undefined' && sofia.config.serverSearchUrl != '' && window.location.protocol != 'file:') {
+		if (sofia.config.serverSearchPath != '' && (window.location.protocol != 'file:' || sofia.config.baseContentUrl != '')) {
 		
 			startServerSearch(textInfo, searchText, isLemmaSearch);
 		} else {		
@@ -98,7 +98,8 @@ TextSearch = function() {
 	function startServerSearch(textInfo, searchText, isLemmaSearch) {
 		
 		$.ajax({
-			url: sofia.config.baseContentUrl + sofia.config.serverSearchUrl,
+			dataType: 'jsonp',
+			url: sofia.config.baseContentUrl + sofia.config.serverSearchPath,
 			data: {
 				textid: textInfo.id,
 				search: searchText.toLowerCase(),

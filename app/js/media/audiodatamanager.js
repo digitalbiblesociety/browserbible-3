@@ -91,10 +91,15 @@ var LocalAudio = (function() {
 			}
 		}	
 		
-		$.ajax({
+		sofia.ajax({
 			dataType: 'json',
-			url: sofia.config.baseContentUrl + 'content/' + 'audio/' + checkDirectory + '/info.json',
+			url: 'content/audio/' + checkDirectory + '/info.json',
 			success: function(audioInfo) {
+			
+				if (typeof audioInfo == 'undefined' ) {
+					callback(null);
+					return;					
+				}
 			
 				audioInfo.type = 'local';
 				audioInfo.directory = checkDirectory;						

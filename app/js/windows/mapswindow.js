@@ -156,14 +156,9 @@ var MapWindow = function(id, parentNode, data) {
 		
 		console.log('MAP: loading pins');
 	
-		$.ajax({
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/json");
-				}
-			},		
+		sofia.ajax({
 			dataType: 'json',
-			url: sofia.config.baseContentUrl + 'content/' + 'maps/maps.json',
+			url: 'content/maps/maps.json',
 			success: function(data) {
 			
 				// store data

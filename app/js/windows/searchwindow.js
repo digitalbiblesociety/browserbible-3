@@ -280,9 +280,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 			langCode = (strongLang == 'H' ? 'heb' : 'grc'),
 			dir = langCode == 'heb' ? 'ltr' : 'rtl';
 			
-		$.ajax({
+		sofia.ajax({
 			dataType: 'json',
-			url: sofia.config.baseContentUrl + 'content/lexicons/strongs/entries/' + strongs + '.json',
+			url: 'content/lexicons/strongs/entries/' + strongs + '.json',
 			success: function(data) {
 				
 				var html = '<div class="lemma-word">' + 

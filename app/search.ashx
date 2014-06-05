@@ -42,6 +42,7 @@ public class SofiaSearch : IHttpHandler
 		
 		string textid = Request["textid"] + "";
 		string search = Request["search"] + "";
+		string callback = Request["callback"] + "";
 
 		
 		var results = new SearchResults();
@@ -202,10 +203,10 @@ public class SofiaSearch : IHttpHandler
 		
 		
 		// DONE!
-		SendJson(context.Response, results);
+		SendJson(context.Response, results, callback);
     }
     
-    void SendJson(HttpResponse response, SearchResults results) {
+    void SendJson(HttpResponse response, SearchResults results, string callback) {
 		System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
 		response.ContentType = "application/json";
 		
@@ -215,7 +216,16 @@ public class SofiaSearch : IHttpHandler
 		//jsonString = jsonString.Replace("results\":{","results\":[");
 		//jsonString = jsonString.Replace("}}","]}");		
 		
+		if (callback != "") {
+			response.Write( callback + "(" );		
+		}
+		
 		response.Write( jsonString );		
+		
+		if (callback != "") {
+			response.Write( ")" );		
+		}
+		
 	    response.End();	    
     }
  

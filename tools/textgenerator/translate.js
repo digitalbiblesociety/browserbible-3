@@ -5,8 +5,8 @@ var fs = require('fs'),
 	https = require('https'),
 	$ = require('jquery');
 
-var
-	gKey = '',
+var translate_settings = JSON.parse( fs.readFileSync( 'translate-config.js', 'utf8') ),
+	gKey = translate_settings.googleKey,
 	baseFolder = '../../app/js/resources',
 	baseLangCode = 'en',
 	baseLangData = null,

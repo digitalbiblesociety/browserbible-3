@@ -33,7 +33,7 @@ sofia.ajax = function(params) {
 		if (params.success) {
 			
 			// convert back to text
-			if (params.dataType == 'text') {
+			if (params.dataType == 'text' && sofia.config.baseContentApiPath != '') {
 				data = data.text;
 			}
 		

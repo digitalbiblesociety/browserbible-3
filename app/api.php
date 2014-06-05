@@ -11,7 +11,9 @@ header('Content-type: application/javascript');
 //// START UP
 $action = $_GET['action'];
 $callback = $_GET['callback'];
+$key = $_GET['key'];
 
+// TODO:STORE Access by key for analytics?
 
 // load file
 $jsonformatted = '';

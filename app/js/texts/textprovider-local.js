@@ -5,7 +5,7 @@ sofia.textproviders['local'] = (function() {
 	function getTextManifest(callback) {
 		var textsUrl = 'content/texts/' + sofia.config.textsIndexPath;
 	
-		$.ajax({
+		sofia.ajax({
 			url: textsUrl,
 			dataType: 'json',
 			cache: false,
@@ -24,7 +24,7 @@ sofia.textproviders['local'] = (function() {
 				
 				modal.body.css({background: '#000', color: '#fff' }).html(
 					'<div style="padding: 20px;">' + 
-						'<p>Problem loading <code>' + sofia.config.baseContentUrl + 'content/' + 'texts/' + textsFilename + '</code></p>' + 
+						'<p>Problem loading <code>' + sofia.config.baseContentUrl + textsUrl + '</code></p>' + 
 						'<p>Status:' + textStatus + '</p>'+ 
 						'<p>Error:' + errorThrown + '</p>'+						
 					'</div>'
@@ -40,7 +40,7 @@ sofia.textproviders['local'] = (function() {
 		// load it!
 		var infoUrl = 'content/texts/' + textid + '/info.json';
 		
-		$.ajax({		
+		sofia.ajax({		
 			url: infoUrl,
 			dataType: 'json',
 			success: function(data) {

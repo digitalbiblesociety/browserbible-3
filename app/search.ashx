@@ -134,7 +134,7 @@ public class SofiaSearch : IHttpHandler
 			results.success = false;
 			results.errorMessage = "Found no indexes";
 			
-			SendJson(context.Response, results);
+			SendJson(context.Response, results, callback);
 			return;
 		}
 		

@@ -61,6 +61,7 @@ $(function() {
 		// load config
 		var params = stringUtility.parseQuerystring(),
 			custom = params["custom"];
+			
 		if (typeof custom != 'undefined' && custom != '') {
 			var customizations = sofia.customConfigs[custom];
 			

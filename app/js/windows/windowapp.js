@@ -54,7 +54,7 @@ var App = function() {
 				}				
 			}
 				
-			console.log('create window', setting, windowClassName);
+			//console.log('create window', setting, windowClassName);
 			windowManager.add(windowClassName, setting.data);				
 
 			

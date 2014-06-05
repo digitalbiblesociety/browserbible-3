@@ -1,3 +1,11 @@
+sofia.config = $.extend(sofia.config, {
+	// Google Analytics key
+	gaKey: '',
+	
+	// Google URL
+	gaUrl: ''
+});
+
 
 var GoogleAnalyticsPlugin = function(app) {
 

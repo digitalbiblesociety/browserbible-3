@@ -200,7 +200,7 @@ var VisualFilters = function(node) {
 		openVisualizationsButton = $('<span class="config-button i18n" data-i18n="[html]plugins.visualfilters.button" id="config-visualfilters-button"></span>')
 						.appendTo( $('#config-tools .config-body') );	
 						
-	console.log('LOADED VIZ',visualSettings);
+	//console.log('LOADED VIZ',visualSettings);
 	
 	// Attach to Config pane
 	
@@ -432,7 +432,7 @@ var VisualFilters = function(node) {
 			visualSettings.transforms.push(transform);
 		});
 		
-		console.log('saving', visualSettings);
+		//console.log('saving', visualSettings);
 					
 		// store for next load
 		AppSettings.setValue(settingsKey, visualSettings);
@@ -1222,7 +1222,7 @@ var MorphologySelector = function(parent) {
 	
 	function drawPartsOfSpeech() {
 	
-		console.log('drawing', currentMorphology);
+		//console.log('drawing', currentMorphology);
 		
 		morphSelectorPOS.empty();
 		

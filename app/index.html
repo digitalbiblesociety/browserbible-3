@@ -13,12 +13,7 @@
 	<link rel="stylesheet" href="css/bible.css" />
 	<link rel="stylesheet" href="css/windows.css" />
 	<link rel="stylesheet" href="css/plugins.css" />
-	
-	<!-- replacement console for IE -->
-	<script>
-	if (typeof console == 'undefined') { window.console = {log:function() {}}; }
-	</script>
-	
+
 	<!-- jquery -->	
 	<script src="js/lib/jquery.min.js" data-build="copy"></script>
 	<script src="js/lib/jquery.mobile.min.js" data-build="copy"></script>
@@ -27,6 +22,7 @@
 	
 	<!-- app start -->
 	<script src="js/windows/namespace.js"></script>	
+	<script src="js/windows/config-default.js"></script>		
 	
 	<!-- external libraries -->
 	<!-- <script src="js/lib/base32.js"></script> -->
@@ -108,7 +104,7 @@
 	<!-- startup -->	
 	<script src="js/windows/windowapp.js"></script>		
 	<script src="js/windows/startup.js"></script>		
-	<script src="js/windows/config.js" data-build="copy"></script>		
+	<script src="js/windows/config-custom.js" data-build="copy"></script>		
 	
 	<noscript><meta http-equiv="refresh" content="1; url=content/texts/"></noscript>
 	<!--[if lte IE 8]>

@@ -13,13 +13,12 @@ sofia.config = {
 		{type: 'search', data: {textid: 'eng-NASB1995', searchtext:'truth love'}}		
 	],
 	
-	// directory or URL to files (must be CORS enabled)
-	contentLocation: 'content/',
+	baseContentUrl: '',
 	
 	textsIndex: 'texts.json',
 	
 	// texts shown before the "MORE" button ("eng-NASB1995", "eng-kjv", "eng_net")
-	//topTexts: ["eng-NASB1995", "eng-kjv", "eng_net"],
+	topTexts: [],
 	
 	// new window
 	newBibleWindowVersion: 'eng-NASB1995',
@@ -30,6 +29,9 @@ sofia.config = {
 	// new commentary window
 	newCommentaryWindowTextId: 'comm_eng_wesley',
 	
+	// langauge for top
+	pinnedLanguage: '',
+	
 	// URL to custom CSS
 	customCssUrl: '',
 	
@@ -37,29 +39,20 @@ sofia.config = {
 	aboutPageUrl: 'about.html',
 	
 	// leave blank for JSON search
-	serverSearchUrl: 'search.php',
+	serverSearchUrl: '',
 
-	
 	// Faith Comes by Hearing
 	fcbhKey: '',
 	
-	// jesus film media
-	jfmKey: '',
-	
-	// Google Analytics key
-	gaKey: '',
-	
-	// Google URL
-	gaUrl: ''
-	
-	
-	,"eng2pEnableAll": true
-	
+	// any texts you want to ignore from FCBH
+	fcbhTextExclusions: [''],
 	
 	// true: live parse all versions
 	// false: loads texts_fcbh.json
-	, fcbhLoadVersions: false
-	
+	fcbhLoadVersions: false,
+		
+	// jesus film media
+	jfmKey: ''
 };
 
 sofia.customConfigs = {

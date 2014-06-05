@@ -53,7 +53,7 @@ var TextNavigation = (function() {
 	window.onpopstate=  handleNavigation;
 	
 	function handleNavigation(e) {		
-		console.log('handleNav', e, e.state);
+		//console.log('handleNav', e, e.state);
 		
 		if (e.state != null && typeof e.state.locationid != 'undefined') {
 		
@@ -81,7 +81,7 @@ var TextNavigation = (function() {
 
 	// upon startup, store the first place
 	function firstState(locationid) {
-		console.log('firststate',locationid);
+		//console.log('firststate',locationid);
 		window.history.replaceState({"locationid": locationid}, null, window.location.href);
 	}
 		

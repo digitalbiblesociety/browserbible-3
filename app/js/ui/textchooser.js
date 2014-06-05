@@ -140,6 +140,11 @@ var TextChooser = function(container, target, text_type) {
 	
 	
 	function storeRecentlyUsed(textInfo) {
+	
+		if (textInfo.type != 'bible') {			
+			return;
+		}
+	
 		// look for this version
 		var existingVersions = recentlyUsed.recent.filter(function(t) {
 			return t.id == textInfo.id;			
@@ -313,27 +318,35 @@ var TextChooser = function(container, target, text_type) {
 			for (var index in arrayOfTexts) {
 				var text = arrayOfTexts[index];
 				
-				if (languages.indexOf(text.lang) == -1) {
-					languages.push( text.lang );					
+				if (languages.indexOf(text.langName) == -1) {
+					languages.push( text.langName );					
 				}				
 			}
 			
-			// remove English
-			var englishIndex = languages.indexOf('eng');
-			if (englishIndex > -1) {
-				languages.splice(englishIndex, 1);				
+			// remove pinned
+			var pinnedIndex = -1;
+			if (sofia.config.pinnedLanguage && sofia.config.pinnedLanguage != '') {
+				
+				var pinnedIndex = languages.indexOf(sofia.config.pinnedLanguage);
+				if (pinnedIndex > -1) {
+					// pull it out
+					languages.splice(pinnedIndex, 1);				
+				}
 			}
-			languages.sort();
-			if (englishIndex > -1) {
-				languages.splice(0,0,'eng');
-			}			
 			
+			// sort
+			languages.sort();
+			
+			// put it back in 
+			if (pinnedIndex > -1) {
+				languages.splice(0,0, sofia.config.pinnedLanguage);			
+			}
 			
 			for (var index in languages) {
 			
 				// get all the ones with this langu
-				var lang = languages[index],
-					textsInLang = arrayOfTexts.filter(function(t) { if (t.lang == lang) { return t; } }),
+				var langName = languages[index],
+					textsInLang = arrayOfTexts.filter(function(t) { if (t.langName == langName) { return t; } }),
 					hasTopText = false,
 					langHtml = [];
 						

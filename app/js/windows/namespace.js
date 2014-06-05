@@ -1,3 +1,6 @@
+// replacement IE console
+if (typeof console == 'undefined') { window.console = {log:function() {}}; }
+
 // everthing goes here
 window.sofia = {};
 

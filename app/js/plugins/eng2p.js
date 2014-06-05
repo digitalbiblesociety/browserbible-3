@@ -1,3 +1,9 @@
+sofia.config = $.extend(sofia.config, {
+	
+	// enables all possible English options (false = just color 'you')
+	"eng2pEnableAll": true
+});
+
 
 	
 /**

@@ -429,7 +429,7 @@ var Scroller = function(node) {
 				styleLink = $('#' + styleId);
 				
 			if (styleLink.length == 0) {
-				styleLink = $('<link id="' + styleId + '" rel="stylesheet" href="content/texts/' + textinfo.id + '/' + textinfo.stylesheet + '" />')
+				styleLink = $('<link id="' + styleId + '" rel="stylesheet" href="' + sofia.config.baseContentUrl + 'content/texts/' + textinfo.id + '/' + textinfo.stylesheet + '" />')
 								.appendTo($('head'));
 			}
 		}

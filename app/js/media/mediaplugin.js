@@ -56,7 +56,7 @@ var MediaLibraryPlugin = function(app) {
 					var html = '';
 					for (var i=0, il=mediaForVerse.length; i<il; i++ ) {
 						var mediaInfo = mediaForVerse[i],
-							fullUrl = sofia.config.contentLocation + 'media/' + mediaLibrary.folder  + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
+							fullUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder  + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
 							thumbUrl = fullUrl.replace('.jpg', '-thumb.jpg');
 						
 						html += '<li>' + 
@@ -78,7 +78,7 @@ var MediaLibraryPlugin = function(app) {
 				
 				case 'video':
 					var mediaInfo = mediaForVerse[0],
-						videoUrl = sofia.config.contentLocation + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0];
+						videoUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0];
 					
 					sofia.globals.showVideo(videoUrl, mediaInfo.name);
 					

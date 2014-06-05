@@ -87,7 +87,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 			
 				$.ajax({
 					dataType: 'html',
-					url: 'content/texts/' + currentTextInfo.id + '/about.html',
+					url: sofia.config.baseContentUrl + 'content/' + 'texts/' + currentTextInfo.id + '/about.html',
 					success: function(htmlString) {
 					
 						var breakTag = '<body',
@@ -339,7 +339,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 		navui.html('Reference').val('Reference');
 		textlistui.html('Version');
 	
-		console.log('textsindow init',init_data, isInitialized);
+		// console.log('textsindow init',init_data, isInitialized);
 		
 		if (init_data == null) {
 			return;

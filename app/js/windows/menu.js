@@ -193,7 +193,7 @@ var FullScreenButton = function(node) {
 	
 	}
 	
-	console.log(fullScreenApi);
+	//console.log(fullScreenApi);
 	
 	if (!fullScreenApi.supportsFullScreen) {
 		fullscreenButton.hide();
@@ -816,7 +816,7 @@ var ConfigUrl = function(node) {
 	}, 1000);
 	
 	
-	ZeroClipboard.config( { moviePath: 'build/ZeroClipboard.swf' } );	
+	ZeroClipboard.config( { moviePath: sofia.config.baseContentUrl + 'build/ZeroClipboard.swf' } );	
 	for (var c in clickables) {
 		var el = clickables[c];
 		

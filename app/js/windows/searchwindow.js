@@ -282,7 +282,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 			
 		$.ajax({
 			dataType: 'json',
-			url: 'content/lexicons/strongs/entries/' + strongs + '.json',
+			url: sofia.config.baseContentUrl + 'content/lexicons/strongs/entries/' + strongs + '.json',
 			success: function(data) {
 				
 				var html = '<div class="lemma-word">' + 

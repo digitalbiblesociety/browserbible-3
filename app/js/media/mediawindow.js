@@ -79,7 +79,7 @@ var MediaWindow = function(id, parentNode, data) {
 						
 							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
 								var mediaInfo = mediaForVerse[j],
-									fullUrl = 'content/media/' + mediaLibrary.folder  + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
+									fullUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder  + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
 									thumbUrl = fullUrl.replace('.jpg', '-thumb.jpg'),
 									li = $('<li class="media-image">' + 
 												'<a href="' + fullUrl + '" target="_blank">' + 
@@ -105,8 +105,8 @@ var MediaWindow = function(id, parentNode, data) {
 						case 'video':
 	
 							var mediaInfo = mediaForVerse[0],
-								videoUrl = 'content/media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
-								thumbUrl = 'content/media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '-thumb.jpg';
+								videoUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
+								thumbUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '-thumb.jpg';
 	
 								$('<li class="media-video">' + 
 									'<a href="' + videoUrl + '" title="' + mediaInfo.name + '" target="_blank">' + 
@@ -123,7 +123,7 @@ var MediaWindow = function(id, parentNode, data) {
 	
 							var mediaInfo = mediaForVerse[0],
 								videoUrl = mediaInfo.filename,
-								thumbUrl = 'content/media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '-thumb.jpg';
+								thumbUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '-thumb.jpg';
 	
 								$('<li class="media-video-jfm">' + 
 									'<a href="' + videoUrl + '" title="' + mediaInfo.name + '" target="_blank">' + 

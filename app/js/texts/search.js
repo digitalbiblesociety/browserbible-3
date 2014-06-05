@@ -32,7 +32,7 @@ var singleWordLanguages = ['cht','chs','chi','zho','cmn', 'jpn', 'kor'];
 TextSearch = function() {
 
 	var
-		baseContentPath = sofia.config.contentLocation + 'texts/',
+		baseContentPath = sofia.config.baseContentUrl + 'content/' + 'texts/',
 		isSearching = false,
 		canceled = false,
 		searchText = '',
@@ -98,7 +98,7 @@ TextSearch = function() {
 	function startServerSearch(textInfo, searchText, isLemmaSearch) {
 		
 		$.ajax({
-			url: sofia.config.serverSearchUrl,
+			url: sofia.config.baseContentUrl + sofia.config.serverSearchUrl,
 			data: {
 				textid: textInfo.id,
 				search: searchText.toLowerCase(),
@@ -583,7 +583,7 @@ SearchTools = {
 SearchIndexLoader = function() {
 
 	var 
-		baseContentPath = sofia.config.contentLocation + 'texts/',
+		baseContentPath = sofia.config.baseContentUrl + 'content/' + 'texts/',
 		textInfo = null,
 		searchTerms = [],
 		searchTermsIndex = -1,

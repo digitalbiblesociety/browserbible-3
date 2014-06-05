@@ -40,7 +40,13 @@ sofia.textproviders['fcbh'] = (function() {
 				// hard work to parse!
 
 				$.ajax({
-					url: 'http://dbt.io/library/volume?v=2&key=' + sofia.config.fcbhKey, //  + '&media=text',
+					beforeSend: function(xhr){
+						if (xhr.overrideMimeType){
+							xhr.overrideMimeType("application/javascript");
+						}
+					},				
+					dataType: 'jsonp',
+					url: 'http://dbt.io/library/volume?v=2&reply=jsonp&key=' + sofia.config.fcbhKey, //  + '&media=text',
 					success: function(data) {
 	
 						// first do texts
@@ -132,7 +138,7 @@ sofia.textproviders['fcbh'] = (function() {
 							xhr.overrideMimeType("application/json");
 						}
 					},		
-					url: sofia.config.contentLocation + 'texts/texts_fcbh.json',
+					url: sofia.config.baseContentUrl + 'content/' + 'texts/texts_fcbh.json',
 					dataType: 'json',
 					cache: false,
 					success: function(data) {			
@@ -146,6 +152,19 @@ sofia.textproviders['fcbh'] = (function() {
 							text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
 							
 						}
+						
+						// filter
+						if (sofia.config.fcbhTextExclusions && sofia.config.fcbhTextExclusions.length > 0) {
+							
+							text_data = text_data.filter(function(t) {
+								
+								// keep the ones that aren't in the exclusion list
+								return sofia.config.fcbhTextExclusions.indexOf(t.id) == -1;
+								
+							});
+							
+						}
+						
 										
 						finish();						
 					},
@@ -237,7 +256,13 @@ sofia.textproviders['fcbh'] = (function() {
 	function loadBooks(info, dam_id, callback) {
 
 		$.ajax({
-			url: 'http://dbt.io/library/book?v=2&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id,
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/javascript");
+				}
+			},				
+			dataType: 'jsonp',		
+			url: 'http://dbt.io/library/book?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id,
 			success: function(data) {
 
 				// push data onto info object
@@ -289,11 +314,17 @@ sofia.textproviders['fcbh'] = (function() {
 				sectionIndex = textinfo.sections.indexOf(sectionid),
 				previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
 				nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
-				url = 'http://dbt.io/library/verse?v=2&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
+				url = 'http://dbt.io/library/verse?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
 	
 			//console.log(url);
 	
 			$.ajax({
+				beforeSend: function(xhr){
+					if (xhr.overrideMimeType){
+						xhr.overrideMimeType("application/javascript");
+					}
+				},				
+				dataType: 'jsonp',			
 				url: url,
 				success: function(chapter_data) {
 					var html = [];
@@ -405,7 +436,13 @@ sofia.textproviders['fcbh'] = (function() {
 	function doSearch(dam_id, text, e, callback) {
 			
 		$.ajax({
-			url: 'http://dbt.io/text/search?v=2&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/javascript");
+				}
+			},				
+			dataType: 'jsonp',		
+			url: 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
 			success: function(data) {
 			
 				for (var i=0, il=data[1].length; i<il; i++) {

@@ -121,7 +121,7 @@ var ParallelsWindow = function(id, node, init_data) {
 		}
 		
 		$.ajax({
-			url: parallelsDataFolder + 'parallels.json',
+			url: sofia.config.baseContentUrl + 'content/' + 'parallels/' + 'parallels.json',
 			success: function(data) {
 				
 				parallelsData = data.parallels;
@@ -240,7 +240,7 @@ var ParallelsWindow = function(id, node, init_data) {
 		console.log('parallels', parallelsList.val());
 		
 		$.ajax({
-			url: parallelsDataFolder + parallelsList.val(),
+			url: sofia.config.baseContentUrl + 'content/' + 'parallels/' + parallelsList.val(),
 			success: function(data) {
 				console.log('loaded parallel data', data);
 				currentParallelData = data;

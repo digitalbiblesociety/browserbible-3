@@ -182,7 +182,7 @@ var MediaLibrary = (function(){
 				}
 			},		
 			dataType: 'json',
-			url: sofia.config.contentLocation + 'media/media.json',
+			url: sofia.config.baseContentUrl + 'content/' + 'media/media.json',
 			success: function(data) {
 								
 				mediaLibraries = data.media;
@@ -209,7 +209,7 @@ var MediaLibrary = (function(){
 					}
 				},				
 				dataType: 'json',
-				url: sofia.config.contentLocation + 'media/' + mediaLibrary.folder + '/info.json',
+				url: sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/info.json',
 				success: function(data) {									
 					mediaLibrary.data = data;
 				}, 

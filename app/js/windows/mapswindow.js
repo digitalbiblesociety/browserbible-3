@@ -163,7 +163,7 @@ var MapWindow = function(id, parentNode, data) {
 				}
 			},		
 			dataType: 'json',
-			url: 'content/maps/maps.json',
+			url: sofia.config.baseContentUrl + 'content/' + 'maps/maps.json',
 			success: function(data) {
 			
 				// store data
@@ -291,6 +291,15 @@ var MapWindow = function(id, parentNode, data) {
 	}
 	
 	function getData() {
+		
+		if (map == null) {
+			return {
+				params: {
+					win: 'maps'
+				}
+			};
+		}
+	
 		var center = map.getCenter(),
 			data = {
 				latitude: center.lat(),

@@ -495,17 +495,15 @@ var FontSizeSettings = function(node) {
 	
 	$('<table id="font-size-table"><tr><td><span style="font-size:' + fontSizes[0] + 'px">A</span><td style="width:100%"></td><td><span style="font-size:' + fontSizes[fontSizes.length-1] + 'px">A</span></td></tr></table>')
 		.appendTo(body);
-	
-	$('<div class="font-slider"></div>')
+		
+	// HTML5 range control (IE10+, FF35+)
+	$('<input type="range" min="14" max="28" step="2" value="' + fontSizeSetting.fontSize + '" style="width: 100%;" />')
 		.appendTo(body.find('td:eq(1)') )
-		.slider({
-			value: fontSizeSetting.fontSize,
-			min: fontSizes[0],
-			max: fontSizes[fontSizes.length-1],
-			step: 2,			
-			slide: function( event, ui ) {
-				setFontSize(ui.value);
-			}						
+		.on('change input', function() {
+			
+			console.log( $(this).val() );
+			setFontSize( $(this).val() );
+			
 		});
 		
 	setFontSize(fontSizeSetting.fontSize);

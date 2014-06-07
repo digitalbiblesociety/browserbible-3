@@ -49,7 +49,7 @@ sofia.config = {
 	newCommentaryWindowTextId: 'comm_eng_wesley',
 	
 	// langauge for top
-	pinnedLanguage: '',
+	pinnedLanguage: 'English',
 	
 	// URL to custom CSS
 	customCssUrl: '',

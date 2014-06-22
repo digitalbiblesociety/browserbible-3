@@ -815,19 +815,21 @@ var ConfigUrl = function(node) {
 	}, 1000);
 	
 	
-	ZeroClipboard.config( { moviePath: sofia.config.baseContentUrl + 'build/ZeroClipboard.swf' } );	
-	for (var c in clickables) {
-		var el = clickables[c];
-		
-		var client = new ZeroClipboard(el);	
-		client.on( 'dataRequested', function (client, args) {
+	if (detection.hasFlash) {
+		ZeroClipboard.config( { moviePath: sofia.config.baseContentUrl + 'build/ZeroClipboard.swf' } );	
+		for (var c in clickables) {
+			var el = clickables[c];
 			
-			updateUrl();
-			
-			client.setText( urlInput.val() );
-			
-			urlInput.select();		
-		});		
+			var client = new ZeroClipboard(el);	
+			client.on( 'dataRequested', function (client, args) {
+				
+				updateUrl();
+				
+				client.setText( urlInput.val() );
+				
+				urlInput.select();		
+			});		
+		}
 	}
 
 	

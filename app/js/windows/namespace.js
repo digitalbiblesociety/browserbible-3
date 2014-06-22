@@ -4,6 +4,9 @@ if (typeof console == 'undefined') { window.console = {log:function() {}}; }
 // everthing goes here
 window.sofia = {};
 
+// version
+window.version = '3.1.0';
+
 // allows items to register themselves
 sofia.plugins = [];
 sofia.windowTypes = [];

@@ -67,26 +67,69 @@ var MainLogo = function(node) {
 			if (!isAboutLoaded) {
 				
 				aboutWindow.body.addClass('loading-indicator');
-				
+								
+				// assume a local file first
 				$.ajax({
-					url: sofia.config.baseContentUrl + sofia.config.aboutPagePath,
+					url: sofia.config.aboutPagePath,
 					dataType: 'html',
 					success: function(data) {
 						aboutWindow.body.removeClass('loading-indicator');
 						
 						isAboutLoaded = true;
 												
-						aboutWindow.body.html(data);
+						showAbout(data, sofia.config.aboutPagePath);					
+					}, 
+					error: function() {
 					
-					}
-					
-				});
-				
-			}
-			
+						console.log("No local about.html");
+						
+						// this one will to through the CDN
+						sofia.ajax({
+							url: sofia.config.aboutPagePath,
+							dataType: 'text',
+							success: function(data) {
+								
+								console.log('Success: CDN about.html', data.indexOf('<html'));
+							
+								aboutWindow.body.removeClass('loading-indicator');
+								
+								isAboutLoaded = true;
+																						
+								showAbout(data, sofia.config.baseContentUrl + sofia.config.aboutPagePath);		
+							}, 
+							error: function() {
+							
+								// error
+								console.log("Can't find a about.html");
+								
+							}					
+						});						
+					}					
+				});				
+			}			
 		}	
 	}
-		
+	
+	function showAbout(data, url) {
+	
+		if (data.indexOf('<html') > -1) {
+						
+			aboutWindow.body.html('<iframe style="border: 0;" src="' + url + '"></iframe>');			
+			aboutWindow.body.css({padding: 2});
+			
+			var iframe = aboutWindow.body.find('iframe');
+			
+			iframe.css({
+				width: aboutWindow.body.width(),
+				height: aboutWindow.body.height() - 5
+			});
+			
+		} else {
+			
+			aboutWindow.body.html(data);
+		}		
+	}
+	
 	return logo;
 };
 sofia.menuComponents.push('MainLogo');
@@ -815,7 +858,7 @@ var ConfigUrl = function(node) {
 	}, 1000);
 	
 	
-	if (detection.hasFlash) {
+	if (Detection.hasFlash) {
 		ZeroClipboard.config( { moviePath: sofia.config.baseContentUrl + 'build/ZeroClipboard.swf' } );	
 		for (var c in clickables) {
 			var el = clickables[c];

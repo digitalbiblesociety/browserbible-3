@@ -14,8 +14,9 @@ Change Log
 * CDN setup to load files from other sites
 * Parallel passages
 * Internationalization (i18n)
+* Various fixes/updates
 
 3.0.0 - 2014/04/04
 ----
 
-* First stable release
+* A point where we called it "3.0.0" :)

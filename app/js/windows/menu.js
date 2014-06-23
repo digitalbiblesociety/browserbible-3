@@ -81,29 +81,36 @@ var MainLogo = function(node) {
 					}, 
 					error: function() {
 					
-						console.log("No local about.html");
+						if (sofia.config.baseContentUrl != '') {
 						
-						// this one will to through the CDN
-						sofia.ajax({
-							url: sofia.config.aboutPagePath,
-							dataType: 'text',
-							success: function(data) {
-								
-								console.log('Success: CDN about.html', data.indexOf('<html'));
+							console.log("No local about.html");
 							
-								aboutWindow.body.removeClass('loading-indicator');
+							// this one will to through the CDN
+							sofia.ajax({
+								url: sofia.config.aboutPagePath,
+								dataType: 'text',
+								success: function(data) {
+									
+									console.log('Success: CDN about.html', data.indexOf('<html'));
 								
-								isAboutLoaded = true;
-																						
-								showAbout(data, sofia.config.baseContentUrl + sofia.config.aboutPagePath);		
-							}, 
-							error: function() {
+									aboutWindow.body.removeClass('loading-indicator');
+									
+									isAboutLoaded = true;
+																							
+									showAbout(data, sofia.config.baseContentUrl + sofia.config.aboutPagePath);		
+								}, 
+								error: function() {
+								
+									// error
+									console.log("Can't find a about.html");
+									
+								}					
+							});	
+						} else {
 							
-								// error
-								console.log("Can't find a about.html");
-								
-							}					
-						});						
+							console.log("No local about.html, no CDN to check");
+							
+						}				
 					}					
 				});				
 			}			

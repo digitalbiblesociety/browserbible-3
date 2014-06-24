@@ -361,24 +361,19 @@ SearchTools = {
 	
 			// ASCII characters have predictable word boundaries (space ' ' = \b)
 			SearchTools.isAsciiRegExp.lastIndex = -1;
+
+			// check for quoted search "jesus christ"
+			if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
 			
-			if (SearchTools.isAsciiRegExp.test( searchText )) {
-						
-				// check for quoted search "jesus christ"
-				if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
-					var part = searchText;
-					part = part						
-							.split(' OR ').join('|')
-					
-							// remove the quotes
-							.replace(/"/gi,'')
-					
-							// find punctuation in between the words
-							.replace(/ /gi,'[\\s\\.,"\';:]+');
-			
-					searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );			
-				} else {
+				var withoutQuotes =  searchText.substring(1,searchText.length-1);				
+				withoutQuotes = withoutQuotes.replace(/\s/g,'(\\s?(<(.|\\n)*?>)?\\s?)?');			
+
+				searchTermsRegExp.push( new XRegExp('\\b(' + withoutQuotes + ')\\b', 'gi') );	
+
+			} else {
 				
+				if (SearchTools.isAsciiRegExp.test( searchText )) {
+					
 					// for non-quoted searches, use "AND" search				
 					var andSearchParts = searchText.split(/\s+AND\s+|\s+/gi);
 					
@@ -386,23 +381,20 @@ SearchTools = {
 					
 						var part = andSearchParts[i];
 										
-						searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
+						searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );				
+					}										
 				
-					}			
-				}
-						
+				} else {
+					
+					var words = SearchTools.splitWords(searchText);
+					
+					for (var j=0, jl=words.length; j<jl; j++) {
+					
+						searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
+					
+					}
+				}				
 			}
-			// non-ASCII characters
-			else {	
-	
-				var words = SearchTools.splitWords(searchText);
-				
-				for (var j=0, jl=words.length; j<jl; j++) {
-				
-					searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
-				
-				}		
-			}	
 		}	
 		
 		return searchTermsRegExp;	

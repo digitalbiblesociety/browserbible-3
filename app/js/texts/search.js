@@ -37,7 +37,7 @@ TextSearch = function() {
 		canceled = false,
 		searchText = '',
 		searchTextid = '',
-		isAsciiRegExp = new XRegExp('^[\040-\176]*$', 'gi'),
+		//isAsciiRegExp = new RegExp('^[\040-\176]*$', 'gi'),
 		isLemmaRegExp = /[GgHh]\d{1,6}/g,
 		
 		isLemmaSearch = false,
@@ -250,7 +250,7 @@ TextSearch = function() {
 					// concat verses split over multiple <span class="v"> nodes (paragraphs)
 					fragmentNode.each(function(i,el) {
 						html += $(el).html() + ' ';
-					});					
+					});	
 						
 					if (fragmentNode.length > 0) {
 				
@@ -329,7 +329,8 @@ TextSearch = function() {
 
 	
 	var ext = {
-		start: start
+		start: start,
+		findMatchesInVerse: findMatchesInVerse
 	};
 	ext = $.extend(true, ext, EventEmitter);
 	
@@ -338,7 +339,7 @@ TextSearch = function() {
 
 SearchTools = {
 
-	isAsciiRegExp: new XRegExp('^[\040-\176]*$', 'gi'),
+	isAsciiRegExp: new RegExp('^[\040-\176]*$', 'gi'),
 	
 	isLemmaRegExp: /[GgHh]\d{1,6}/g,
 
@@ -359,9 +360,8 @@ SearchTools = {
 			
 		} else {
 	
-			// ASCII characters have predictable word boundaries (space ' ' = \b)
-			SearchTools.isAsciiRegExp.lastIndex = -1;
-
+			
+			
 			// check for quoted search "jesus christ"
 			if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
 			
@@ -371,17 +371,24 @@ SearchTools = {
 				searchTermsRegExp.push( new XRegExp('\\b(' + withoutQuotes + ')\\b', 'gi') );	
 
 			} else {
+			
+				// ASCII characters have predictable word boundaries (space ' ' = \b)
+				SearchTools.isAsciiRegExp.lastIndex = 0;
 				
 				if (SearchTools.isAsciiRegExp.test( searchText )) {
 					
 					// for non-quoted searches, use "AND" search				
 					var andSearchParts = searchText.split(/\s+AND\s+|\s+/gi);
 					
+					// filter for duplicate words
+					andSearchParts = $.unique(andSearchParts);
+					
 					for (var i=0, il=andSearchParts.length; i<il; i++) {
 					
-						var part = andSearchParts[i];
-										
-						searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );				
+						var part = andSearchParts[i],
+							partRegex = new XRegExp('\\b(' + part + ')\\b', 'gi');
+							
+						searchTermsRegExp.push( partRegex );	
 					}										
 				
 				} else {
@@ -461,6 +468,8 @@ SearchTools = {
 	    }
 	    
 		addWord();
+		
+		words = $.unique(words);
 	
 		return words;
 	},

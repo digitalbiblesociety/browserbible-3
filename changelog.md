@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.1.2 - 2014/06/24
+----
+
+* Search: better handling of quoted searches
+* Search: better handling of multi-word searches
+
 3.1.1 - 2014/06/23
 ----
 

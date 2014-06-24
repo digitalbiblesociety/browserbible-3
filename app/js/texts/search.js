@@ -97,9 +97,9 @@ TextSearch = function() {
 	
 	function startServerSearch(textInfo, searchText, isLemmaSearch) {
 		
-		$.ajax({
+		sofia.ajax({
 			dataType: 'jsonp',
-			url: sofia.config.baseContentUrl + sofia.config.serverSearchPath,
+			url: sofia.config.serverSearchPath,
 			data: {
 				textid: textInfo.id,
 				search: searchText.toLowerCase(),
@@ -325,103 +325,7 @@ TextSearch = function() {
 		return {html: processedHtml, foundMatch: foundMatch};	
 	}
 	
-	function createSearchTerms() {
-		searchTermsRegExp = [];
-		
-		
-		isLemmaRegExp.lastIndex = 0;
-		
-		if (isLemmaRegExp.test(searchText)) {
-			isLemmaSearch = true;
-			
-			//searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
-			
-			// looking for 
-			// <l s="H7259">Rebekah</l>
-			
-			var strongNumbers = searchText.split(' ');
-			
-					
-			for (var i=0, il=strongNumbers.length; i<il; i++) {
-			
-				var part = strongNumbers[i];
-								
-				searchTermsRegExp.push( new RegExp('s="' + '(G|H)?' + part.substr(1) + '"', 'gi') );
-		
-			}	
-			
-			//console.log('SEARCH TERMS LEMMA', searchTermsRegExp);
-			
-			
-		} else {
-	
-			isLemmaSearch = false;
-			
-			// ASCII characters have predictable word boundaries (space ' ' = \b)
-			isAsciiRegExp.lastIndex = -1;
-			if (isAsciiRegExp.test( searchText )) {
-						
-				// check for quoted search "jesus christ"
-				if (searchText.substring(0,1) == '"' && searchText.substring(searchText.length-1) == '"') {
-					var part = searchText;
-					part = part						
-							.split(' OR ').join('|')
-					
-							// remove the quotes
-							.replace(/"/gi,'')
-					
-							// find punctuation in between the words
-							.replace(/ /gi,'[\\s\\.,"\';:]+');
-			
-					searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );			
-				} else {
-				
-					// for non-quoted searches, use "AND" search				
-					var andSearchParts = searchText.split(/\s+AND\s+|\s+/gi);
-					
-					for (var i=0, il=andSearchParts.length; i<il; i++) {
-					
-						var part = andSearchParts[i];
-										
-						searchTermsRegExp.push( new XRegExp('\\b(' + part + ')\\b', 'gi') );
-				
-					}			
-				}
-						
-			}
-			// non-ASCII characters
-			else {	
-	
-				var words = SearchTools.splitWords(searchText);
-				
-				for (var j=0, jl=words.length; j<jl; j++) {
-				
-					searchTermsRegExp.push( new XRegExp(words[j], 'gi') );
-				
-				}
-				
-				/*
-				if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
-					searchTermsRegExp = [];
-					var chText = searchText; // .split(' AND ').join('');
-					
-					for (var j=0, jl=chText.length; j<jl; j++) {
-						var chTerm = chText[j];
-						if (chTerm.trim().length > 0) {
-							searchTermsRegExp.push( new XRegExp(chText[j], 'gi') );
-						}
-					}
-					
-				} else {
-					searchTermsRegExp = [new XRegExp(searchText, 'gi')];				
-				}
-				*/
-				
-				//console.log('non ASCII', searchTermsRegExp);			
-			}	
-		}		
-	}
-		
+
 
 	
 	var ext = {
@@ -663,10 +567,10 @@ SearchIndexLoader = function() {
 			indexUrl = baseContentPath + textInfo.id + '/indexlemma/_' + letter.toUpperCase() + firstNumber + '000' + '.json';
 			
 		} else {
-			key = searchTerm;
+			key = searchTerm.toLowerCase();
 					
 			//var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
-			var hash = SearchTools.hashWord(searchTerm); //base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
+			var hash = SearchTools.hashWord(key); //base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
 
 			
 		

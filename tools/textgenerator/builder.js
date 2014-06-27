@@ -16,8 +16,8 @@ var
 	buildPath = path.join(rootPath, 'build'),
 	inputFilePath = path.join(rootPath, 'index.html'),
 	// change <script> to <scripty> since that means it won't get executed
-	html = fs.readFileSync(inputFilePath, 'utf8').replace(/script/gi,'scripty'),
-	doc = $( html ),
+	html = fs.readFileSync(inputFilePath, 'utf8').replace(/script/gi, 'scripty'),
+	doc = $(html),
 	scriptNodes = doc.find('scripty[src]'),
 	stylesheetNodes = doc.find('link[rel="stylesheet"]'),
 
@@ -45,7 +45,7 @@ scriptNodes.each(function(i, el) {
 	if (build === 'copy') {
 		copyFiles.push(src);
 	} else {
-		scripts.push( src );
+		scripts.push(src);
 	}
 });
 
@@ -76,7 +76,7 @@ stylesheetNodes.each(function(i, el) {
 	if (build === 'copy') {
 		copyFiles.push(href);
 	} else {
-		stylesheets.push( href );
+		stylesheets.push(href);
 	}
 });
 
@@ -96,16 +96,16 @@ stylesheets.forEach(function(url) {
 
 // write out
 fs.writeFileSync(outputCssPath, combinedCss);
-fs.writeFileSync(outputCssPathMinified, minifiedCss);  // TEMP: no compression
+fs.writeFileSync(outputCssPathMinified, minifiedCss); // TEMP: no compression
 
 // COPY
 // copy remaining
 copyFiles.forEach(function(url) {
 	var fileIn = path.join(rootPath, url),
 		baseName = path.basename(url)
-		fileOut = path.join(buildPath, baseName),
+	fileOut = path.join(buildPath, baseName),
 
-		textIn = fs.readFileSync(fileIn, 'utf8');
+	textIn = fs.readFileSync(fileIn, 'utf8');
 
 	fs.writeFileSync(fileOut, textIn);
 });
@@ -116,7 +116,10 @@ var copyFolders = ['css/fonts', 'css/images'];
 
 copyFolders.forEach(function(copyFolder) {
 	var folderIn = path.join(rootPath, copyFolder),
-		folderOut = path.join(buildPath, copyFolder).replace('css','');
+		folderOut = path.join(buildPath, copyFolder).replace('css', '');
+
+	// console.log("\nbuildPath: " + buildPath + "\ncopyFolder: " + copyFolder);
+	// console.log("\nfolderIn: " + folderIn + "\nfolderOut: " + folderOut);
 
 	copyRecursive(folderIn, folderOut);
 });
@@ -133,15 +136,13 @@ function copyRecursive(folderIn, folderOut) {
 
 	subs.forEach(function(data) {
 		var pathIn = path.join(folderIn, data);
-			pathOut = path.join(folderOut, data);
+		pathOut = path.join(folderOut, data);
 
 		if (fs.statSync(pathIn).isFile()) {
-			fs.createReadStream(pathIn).pipe(fs.createWriteStream( pathOut ));
+			fs.createReadStream(pathIn).pipe(fs.createWriteStream(pathOut));
 		} else {
 			copyRecursive(pathIn, pathOut);
 		}
 	});
 
 }
-
-

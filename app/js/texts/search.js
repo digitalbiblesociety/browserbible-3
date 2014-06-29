@@ -354,7 +354,7 @@ SearchTools = {
 			
 				var part = strongNumbers[i];
 								
-				searchTermsRegExp.push( new RegExp('s="' + '(G|H)?' + part.substr(1) + '"', 'gi') );
+				searchTermsRegExp.push( new RegExp('s=("|\')' + '(G|H)?' + part.substr(1) + '("|\')', 'gi') );
 		
 			}			
 			

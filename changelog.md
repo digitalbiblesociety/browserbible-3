@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.1.3 - 2014/06/29
+----
+
+* Search: handling single quoted attributes in Strong's search (for Michael's SQL results)
+* Media Window: now images are justified to show more and look nicer
+
 3.1.2 - 2014/06/24
 ----
 

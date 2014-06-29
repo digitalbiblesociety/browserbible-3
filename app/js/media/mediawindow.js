@@ -106,7 +106,7 @@ var MediaWindow = function(id, parentNode, data) {
 		}
 	
 		timeoutVar = setTimeout(function() {	
-			resizeImages( main.find('.media-library-thumbs'));		
+			startResize();
 		}, 100);
 	});		
 		
@@ -147,6 +147,10 @@ var MediaWindow = function(id, parentNode, data) {
 		
 		return html;
 		
+	}
+	
+	function startResize() {
+		resizeImages( main.find('.media-library-thumbs'));
 	}
 	
 	
@@ -264,6 +268,9 @@ var MediaWindow = function(id, parentNode, data) {
 		// do notheirng?
 		main.outerHeight(height - header.outerHeight())
 			.outerWidth(width);
+			
+			
+		startResize();
 	}	
 	
 	var ext = {

@@ -44,16 +44,17 @@ var MediaWindow = function(id, parentNode, data) {
 		main.html('');
 		main.scrollTop(0);
 		
-		
-		// create verses
-		
-		var node = $('<div class="verse-images">' + 
+
+		// vers images			
+		var node = $('<div class="media-library-verses">' + 
 						'<h2>' + bibleReference.toString() + '</h2>' + 
-						'<ul class="image-library-thumbs"></ul>' + 
-					'</div>'),
-			list = node.find('.image-library-thumbs');
+						'<div class="media-library-thumbs"></div>' + 
+					'</div>').appendTo(main),
+			gallery = node.find('.media-library-thumbs'),
+			html = '';		
 			
 			
+		// create HTML for <img>s
 		contentToProcess.find('.verse, .v').each(function(i,el) {
 			var verse = $(this),
 				verseid = verse.attr('data-id'),
@@ -64,181 +65,194 @@ var MediaWindow = function(id, parentNode, data) {
 			if (verse.hasClass('checked-media')) {
 				return;
 			}
-			
-			
-			for (var i=0, il=mediaLibraries.length; i<il; i++) {
-			
-				var mediaLibrary = mediaLibraries[i],
-					mediaForVerse = mediaLibrary.data ? mediaLibrary.data[verseid] : undefined;
-				
-				// add media
-				if (typeof mediaForVerse != 'undefined') {	
 					
-					switch (mediaLibrary.type) {
-						case 'image':
-						
-							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
-								var mediaInfo = mediaForVerse[j],
-									fullUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder  + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
-									thumbUrl = fullUrl.replace('.jpg', '-thumb.jpg'),
-									li = $('<li class="media-image">' + 
-												'<a href="' + fullUrl + '" target="_blank">' + 
-													'<span>' + reference.toString() + '</span>' + 
-												'</a>' + 
-											'</li>').appendTo(list),
-
-									img = $('<img src="' + thumbUrl + '" />')
-											.prependTo( li.find('a') )
-											
-											// when the image loads we move landscape photos down a bit to center the image
-											.on('load', function() {
-												
-												var image = $(this),
-													height = image.height();
-												
-												if (height < 100) {
-													image.css({marginTop: ((100-height) / 2) + 'px'});		
-												}
-											});			
-							}
-							break;
-						case 'video':
-	
-							var mediaInfo = mediaForVerse[0],
-								videoUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '.' + mediaInfo.exts[0],
-								thumbUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '-thumb.jpg';
-	
-								$('<li class="media-video">' + 
-									'<a href="' + videoUrl + '" title="' + mediaInfo.name + '" target="_blank">' + 
-										'<img src="' +  thumbUrl + '	" />' + 
-										//'<span>Video</span>' + 
-										'<span>' + mediaInfo.name + '</span>' + 
-										'<span class="media-video-play"></span>' +
-									'</a>' + 
-								'</li>').appendTo(list);	
-
-							break;
-
-						case 'jfm':
-	
-							var mediaInfo = mediaForVerse[0],
-								videoUrl = mediaInfo.filename,
-								thumbUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/' + mediaInfo.filename + '-thumb.jpg';
-	
-								$('<li class="media-video-jfm">' + 
-									'<a href="' + videoUrl + '" title="' + mediaInfo.name + '" target="_blank">' + 
-										'<img src="' +  thumbUrl + '	" />' + 
-										//'<span>Video</span>' + 
-										'<span>' + mediaInfo.name + '</span>' + 
-										'<span class="media-video-play"></span>' +
-									'</a>' + 
-								'</li>').appendTo(list);												
-							
-							
-							//$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	
-										
-						
-							break;
-						
-					} 
-				}				
-			}
+			html += renderVerse(verseid, reference, mediaLibraries);	
 			
-			verse.addClass('checked-media');
-			
+			verse.addClass('checked-media');			
 		});	
 		
-		if (list.find('li').length > 0) {
+		console.log(html);
+				
+		gallery.html(html);
+
 		
-			node.appendTo(main);
-			
-		} else {
-			
-			main.html('No media for this chapter');
-			
+		var images = gallery.find('img');
+		
+		// show error message
+		if (images.length == 0) {			
+			gallery.html('No media for this chapter');
+			return;
 		}
-			
-		
-		
-		// TITLE for each VERSE	
-		
-		/*		
-		contentToProcess.find('.verse, .v').each(function(i,el) {
-			var verse = $(this),
-				verseid = verse.attr('data-id'),
-				reference = new bible.Reference(verseid);
 				
-			verse = verse.closest('.chapter').find('.' + verseid + '').first();
+		// determine if all have loaded
+		images.on('load', function() {
+			var img = $(this);
+			img.addClass('loaded');
 					
-			if (verse.hasClass('checked-media')) {
-				return;
-			}
-						
-			var node = $('<div class="verse-images">' + 
-							'<h2 style="clear:both;">' + reference.toString() + '</h2>' + 
-							'<ul class="image-library-thumbs"></ul>' + 
-						'</div>'),
-				list = node.find('.image-library-thumbs');
-							
-			
-			for (var i=0, il=mediaLibraries.length; i<il; i++) {
-			
-				var mediaLibrary = mediaLibraries[i],
-					mediaForVerse = mediaLibrary.data ? mediaLibrary.data[verseid] : undefined;
-				
-				
-				
-				// add media
-				if (typeof mediaForVerse != 'undefined') {	
-					
-					switch (mediaLibrary.type) {
-						case 'image':
-						
-							for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
-								var url = 'content/media/' + mediaLibrary.folder  + '/' + mediaForVerse[j];
-								$('<li class="media-image"><a href="' + url + '" target="_blank"><img src="' + url + '" /></a></li>').appendTo(list);				
-							}
-							break;
-						case 'video':
-
-							var url = 'content/media/' + mediaLibrary.folder + '/' + mediaForVerse;
-
-								$('<li class="media-video"><a href="' + url + '" target="_blank"><img src="css/images/video.svg" style="background-image:url(' +  url.replace('mp4','png') + '); background-size: cover; background-repeat: no-repeat; background-position: center center;" /></a></li>').appendTo(list);				
-							
-							
-							//$('<video src="' + url + '" type="video/mp4" preload="metadata" style="width: 100%; height: auto;" controls ></video>').appendTo(node);	
-										
-						
-							break;
-						
-					} 
-				}				
-			}
-			
-			// only add if we have some content
-			if (node.find('li,video').length > 0) {
-				node.appendTo(main);
-			}
-			
-			
-				
-			
-			verse.addClass('checked-media');
-				
-							
-		});	
-		*/
+			if (images.filter('.loaded').length == images.length) {
+				resizeImages(gallery);			
+			}		
+		});
+	
+	}
+	
 		
+	// handle resizing
+	var timeoutVar = null;
+	$(window).on('resize', function() {		
 		
+		if (timeoutVar != null) {
+			clearTimeout(timeoutVar);
+		}
+	
+		timeoutVar = setTimeout(function() {	
+			resizeImages( main.find('.media-library-thumbs'));		
+		}, 100);
+	});		
+		
+
+	main.on('click', '.media-library-thumbs a.mediatype-image', sofia.globals.mediaImageClick);	
+	main.on('click', '.media-library-thumbs a.mediatype-video', sofia.globals.mediaVideoClick);
+	main.on('click', '.media-library-thumbs a.mediatype-jfm', sofia.globals.mediaVideoJfmClick);	
+
+	
+	function renderVerse(verseid, reference, mediaLibraries) {
+	
+		var html = '';
+	
+		for (var i=0, il=mediaLibraries.length; i<il; i++) {
+		
+			var mediaLibrary = mediaLibraries[i],
+				mediaForVerse = mediaLibrary.data ? mediaLibrary.data[verseid] : undefined;
+			
+			// add media
+			if (typeof mediaForVerse != 'undefined') {	
+			
+				for (var j=0, jl = mediaForVerse.length; j<jl; j++) {
+					var mediaInfo = mediaForVerse[j],
+						baseUrl = sofia.config.baseContentUrl + 'content/' + 'media/' + mediaLibrary.folder + '/', 
+						fullUrl = baseUrl + mediaInfo.filename + '.' + mediaInfo.exts[0],
+						thumbUrl = baseUrl + mediaInfo.filename + '-thumb.jpg';
+						
+					html += '<a href="' + fullUrl + '" class="mediatype-' + mediaLibrary.type + '" target="_blank" ' + (mediaInfo.name ? 'title="' + mediaInfo.name + '"' : '') + ' data-filename="' + mediaInfo.filename + '">' + 
+								'<img src="' + thumbUrl + '" />' +
+								//((mediaLibrary.type != 'image') ? '<span>' + mediaInfo.name + '</span>'  : '') + 
+								((mediaLibrary.type != 'image') ? '<b><i></i></b>'  : '') + 
+								'<span>' + reference.toString() + '</span>' + 
+							'</a>';	
+				}		
+				
+			}				
+		}	
+		
+		return html;
 		
 	}
 	
 	
-	main.on('click', '.image-library-thumbs .media-image a', sofia.globals.mediaImageClick);
+	function resizeImages(gallery) {
+		
+		// once loaded!
+		var TARGET_ROW_HEIGHT = 80,
+			TARGET_GUTTER_WIDTH = 4,
+			container_width = gallery.width(),
+			current_width = 0,
+			currentRow = [];
+		
+		gallery.find('img').each(function() {
+			var img = $(this),
+				a = img.closest('a'),
+				width = img.data('original-width');
+				height = img.data('original-height');
+			
+			// store for resize	
+			if (width == null) {
+				width = img.width();
+				img.data('original-width', width);
+			}
+			if (height == null) {
+				height = img.height();
+				img.data('original-height', height);
+			}			
+				
+			var
+				height_ratio = TARGET_ROW_HEIGHT / height, // (height > TARGET_ROW_HEIGHT) ? TARGET_ROW_HEIGHT / height : 
+				new_width = Math.floor(height_ratio*width);
+				
+			// will this push the last row
+			//if (false && container_width < current_width + new_width ) {
+			if (container_width < current_width + new_width ) {	
+			
+				// resize the previous ones
+				var row_ratio = container_width / current_width,
+					remainder = container_width - current_width,
+					width_per_item = Math.ceil(remainder / currentRow.length);
+				
+				
+				console.log('row', 
+								row_ratio, 
+								container_width, current_width,
+								container_width - current_width);
+				
+				for (var j=0, jl=currentRow.length; j<jl; j++) {
+					var row_a = currentRow[j],
+						row_img = row_a.find('img'),
+						row_width = parseInt(row_a.width(), 10),
+						row_height = parseInt(row_a.height(), 10),
+						//new_row_width = Math.floor(row_width * row_ratio),
+						new_row_width = row_width + width_per_item,
+						new_row_height = Math.floor(row_height * row_ratio);					
+									
+					row_a.width(new_row_width);
+					row_a.height(new_row_height);
+						
+					row_img.width(new_row_width);					
+					row_img.height(new_row_height);
 	
-	main.on('click', '.image-library-thumbs .media-video a', sofia.globals.mediaVideoClick);
-
-	main.on('click', '.image-library-thumbs .media-video-jfm a', sofia.globals.mediaVideoJfmClick);	
+					
+					if (j+1 == jl) {					
+						row_a.css('marginRight',0);
+					}
+					
+					remainder = remainder - width_per_item;
+					
+					if (width_per_item > remainder) {
+						width_per_item = remainder;
+					}
+					
+				}
+				
+				
+				// start over
+				currentRow = [];
+				current_width = 0;
+			}
+				
+			
+			// restart				
+			//console.log(width, height, new_width);
+			
+			a
+				.width(new_width)
+				.height(TARGET_ROW_HEIGHT)
+				.css({
+					"marginRight": TARGET_GUTTER_WIDTH + 'px',
+					"marginBottom": TARGET_GUTTER_WIDTH + 'px'});
+				
+			img
+				.width(new_width)
+				.height(TARGET_ROW_HEIGHT);
+				
+			currentRow.push(a);
+				
+			current_width += new_width + TARGET_GUTTER_WIDTH;				
+			
+			
+	
+		});
+	
+	}		
+	
 	
 	
 	function close() {

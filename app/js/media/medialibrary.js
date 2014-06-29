@@ -114,10 +114,11 @@ sofia.globals.mediaVideoJfmClick = function(e) {
 	e.preventDefault();
 	
 	var link = $(this),
-		segmentNumber = link.attr('href'),
+		//segmentNumber = link.attr('href'),
+		segmentData = link.attr('data-filename'),
 		title = link.attr('title');
 					
-	JesusFilmMediaApi.getPlayer('eng', segmentNumber, function(iframeUrl) {
+	JesusFilmMediaApi.getPlayer('eng', segmentData, function(iframeUrl) {
 		sofia.globals.showIframe(iframeUrl, title);
 	});
 	

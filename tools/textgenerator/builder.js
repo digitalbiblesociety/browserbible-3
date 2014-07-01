@@ -7,7 +7,8 @@ var
 	uglifyjs = require("uglify-js"),
 	uglifycss = require("uglifycss"),
 	jsp = require("uglify-js").parser,
-	pro = require("uglify-js").uglify;
+	pro = require("uglify-js").uglify,
+  mkdirp = require("mkdirp");
 
 // START
 var
@@ -115,7 +116,7 @@ var copyFolders = ['css/fonts', 'css/images'];
 
 copyFolders.forEach(function(copyFolder) {
 	var folderIn = path.join(rootPath, copyFolder),
-		folderOut = path.join(buildPath, copyFolder).replace('css/','');
+		folderOut = path.join(buildPath, copyFolder).replace('css','');
 
 	copyRecursive(folderIn, folderOut);
 });
@@ -124,7 +125,7 @@ function copyRecursive(folderIn, folderOut) {
 
 	// create folder
 	if (!fs.existsSync(folderOut)) {
-		fs.mkdirSync(folderOut);
+    mkdirp.sync(folderOut);
 	}
 
 	// all subfolders and files

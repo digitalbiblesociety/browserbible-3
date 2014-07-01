@@ -20,10 +20,13 @@ To create additional texts
 1. Create a folder under `/tools/textgenerator/input/MyNewVersion/`
 2. Create a `info.json` file in that folder with the id, name, language, information
 3. Put content in the folder (currently USFM files and bibles from http://unbound.biola.edu/)
+4. From `/tools/textgenerator` folder, run `node generate.js -v <foldername>` to generate an additional text
+5. Run `node create_texts_index.js`
 
 ### Build (minify) ###
 
 To create a "build" version, you'll need uglify-js
 
 1. Install uglify-js `npm install uglify-js`
-2. Run `node builder.js`
+2. Rename `app/js/windows/config-custom-example.js` to `config-custom.js` and update configs to your needs
+3. Run `node builder.js`

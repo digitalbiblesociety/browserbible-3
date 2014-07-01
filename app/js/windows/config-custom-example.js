@@ -1,4 +1,3 @@
-
 // change any config values here
 sofia.config = $.extend(sofia.config, {
 

@@ -83,21 +83,28 @@
   font-family: avenir, helvetica;
 }
 
+body:not(.config-font-family-Libertine) [lang=heb],
+body:not(.config-font-family-Libertine) .section[lang=he] .p,
+body:not(.config-font-family-Libertine) .section[lang=heb] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=he] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=heb] .p {
+  font-family: 'SBL Hebrew', EzraSIL!important;
+}
+
 [lang=heb],
 .section[lang=he] .p,
 .section[lang=heb] .p,
 .chapter[lang=he] .p,
 .chapter[lang=heb] .p {
-  font-family: 'SBL Hebrew', EzraSIL!important;
   font-size: 1.5em;
 }
 
-[lang=gre],
-[lang=grc],
-.section[lang=grc] .p,
-.section[lang=gre] .p,
-.chapter[lang=grc] .p,
-.chapter[lang=gre] .p {
+body:not(.config-font-family-Libertine) [lang=gre],
+body:not(.config-font-family-Libertine) [lang=grc],
+body:not(.config-font-family-Libertine) .section[lang=grc] .p,
+body:not(.config-font-family-Libertine) .section[lang=gre] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=grc] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=gre] .p {
   font-family: Gentium, GentiumPlus!important;
 }
 

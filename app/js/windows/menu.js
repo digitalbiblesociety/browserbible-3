@@ -596,7 +596,7 @@ sofia.menuComponents.push('FontSizeSettings');
 var FontFamilySettings = function(node) {
 	var
 		body = $('#config-type .config-body'),
-		fontFamilyNames = ['Cambria','Helvetica', 'Baskerville', 'Georgia', 'Times'],
+		fontFamilyNames = ['Cambria', 'Helvetica', 'Baskerville', 'Georgia', 'Times', 'Libertine'],
 		defaultFont = {"fontName": fontFamilyNames[0]},
 		fontFamilyKey = 'config-font-family',
 		fontFamilySetting = AppSettings.getValue(fontFamilyKey, defaultFont);

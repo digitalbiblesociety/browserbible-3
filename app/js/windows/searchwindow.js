@@ -277,8 +277,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 			strongs = text.split(' ')[0],
 			strongsNumber = strongs.substr(1),
 			strongLang = strongs.substr(0,1),
-			langCode = (strongLang == 'H' ? 'heb' : 'grc'),
-			dir = langCode == 'heb' ? 'ltr' : 'rtl';
+			langCode = (strongLang == 'H' ? 'he' : 'el'),
+			dir = langCode == 'he' ? 'ltr' : 'rtl';
 
 		sofia.ajax({
 			dataType: 'json',

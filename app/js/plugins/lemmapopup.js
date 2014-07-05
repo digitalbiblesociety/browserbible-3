@@ -110,7 +110,7 @@ var LemmaPopupPlugin = function(app) {
 			sectionid = chapter.attr('data-id'),
 			textid = chapter.attr('data-textid'),
 			langPrefix = 'G',
-			langCode = 'gre',
+			langCode = 'el',
 			morphType = 'Greek',
 			dir = 'ltr';
 
@@ -123,7 +123,7 @@ var LemmaPopupPlugin = function(app) {
 		// check for Hebrew
 		if (bible.OT_BOOKS.indexOf(book_id) > -1) {
 			langPrefix = 'H';
-			langCode = 'heb';
+			langCode = 'he';
 			dir = 'rtl';
 			morphType = 'Hebrew';
 		}

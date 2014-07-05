@@ -6,15 +6,15 @@ sofia.resources['tr'] = {
 				"placeholder": "Arama"
 			},
 			"config": {
-				"font": "Yazı",
+				"font": "Stil",
 				"settings": "Ayarlar",
 				"tools": "Araçlar"
 			},
-			"reset": "ayarlamak",
+			"reset": "sıfırla",
 			"themes": {
-				"default": "Normal",
+				"default": "Açık",
 				"sepia": "Sepya",
-				"dark": "Düşük Işık"
+				"dark": "Koyu"
 			}
 		},
 		"plugins": {
@@ -23,34 +23,34 @@ sofia.resources['tr'] = {
 				"title": "Görsel Filtreler",
 				"newfilter": "Yeni Filtre",
 				"strongsnumber": "Strong #",
-				"morphology": "Morfoloji",
+				"morphology": "Biçimbilgisi",
 				"style": "Stil"
 			},
 			"eng2p": {
-				"button": "İngilizce 2 Kişi Çoğul",
+				"button": "İngilizce 2. Kişi Çoğul",
 				"title": "İngilizce İkinci Kişi Çoğul"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Tüm tekrarlamalarını bulmak (yaklaşık __count__)"
+				"findalloccurrences": "Tüm örneği bul (yaklaşık __count__)"
 			}
 		},
 		"windows": {
 			"bible": {
-				"label": "İncil",
+				"label": "Katsal Kitap",
 				"filter": "Filtre ...",
-				"ot": "Eski Ahit",
-				"nt": "Yeni Ahit",
-				"dc": "Deuterocanonical Kitaplar",
+				"ot": "Eski Antlaşma",
+				"nt": "Yeni Antlaşma",
+				"dc": "Apokrif",
 				"more": "Daha fazla",
 				"less": "Daha az",
 				"recentlyused": "Son Kullanılan"
 			},
 			"commentary": {
-				"label": "Yorum"
+				"label": "Açıklamalar"
 			},
 			"map": {
 				"label": "Haritalar",
-				"placeholder": "Arama ..."
+				"placeholder": "Arama..."
 			},
 			"search": {
 				"label": "Arama",
@@ -58,6 +58,12 @@ sofia.resources['tr'] = {
 				"button": "Arama",
 				"results": "Sonuçlar",
 				"verses": "ayetler"
+			},
+			"parallel": {
+				"label": "Paralellik",
+				"loading": "Yükleniyor...",
+				"showall": "Hepsi Göster",
+				"hideall": "Hepsi Gizle"
 			},
 			"media": {
 				"label": "Medya"
@@ -67,10 +73,10 @@ sofia.resources['tr'] = {
 			},
 			"audio": {
 				"options": "Ses Seçenekleri",
-				"synctext": "Sync Metin (beta)",
-				"autoplay": "Autoplay Sonraki",
-				"drama": "Drama",
-				"nondrama": "Non-Dram"
+				"synctext": "Sütün Eşleşme (beta)",
+				"autoplay": "Otomatik Yürüt",
+				"drama": "Dramatize Edilmiş",
+				"nondrama": "Tekil Konuşma"
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Bible reference parser
  *
  * @author John Dyer (http://j.hn/)

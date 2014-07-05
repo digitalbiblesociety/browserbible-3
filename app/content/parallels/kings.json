@@ -30,8 +30,8 @@
 
 	"parallels": [
 		{
-			"sectionTitle": "Saul's Final Days"	
-		},	
+			"sectionTitle": "Saul's Final Days"
+		},
 		{
 			"title": "David Flees to the Philistines",
 			"books": ["S1","R1"],
@@ -55,38 +55,38 @@
 				"31:1-13",
 				"10:1-14"
 			]
-		},	
+		},
 		{
-			"sectionTitle": "David's Reign"	
-		},		
+			"sectionTitle": "David's Reign"
+		},
 		{
 			"title": "David's Coronation",
 			"passages": [
 				"5:1-5",
 				"11:1-3"
 			]
-		},			
+		},
 		{
 			"title": "David Captures Zion",
 			"passages": [
 				"5:6-10",
 				"11:4-9"
 			]
-		},	
+		},
 		{
 			"title": "Cedar from Tyre, Many Wives",
 			"passages": [
 				"5:11-16",
 				"14:1-7"
 			]
-		},			
+		},
 		{
 			"title": "God Guides David to Defeat the Philistines",
 			"passages": [
 				"5:17-25",
 				"14:8-17"
 			]
-		},	
+		},
 		{
 			"title": "Uzzah Touches the Ark and Dies",
 			"passages": [
@@ -107,6 +107,6 @@
 				"7:1-29",
 				"17:1-27"
 			]
-		}	
+		}
 	]
 }

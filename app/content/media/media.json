@@ -9,23 +9,23 @@
 		},
 		{
 			"folder": "jesusfilmmedia",
-			"type": "jfm",			
-			"iconClassName" : "video-icon",			
+			"type": "jfm",
+			"iconClassName" : "video-icon",
 			"name": "Jesus Film Media"
-		},		
+		},
 		{
 			"folder": "images",
-			"type": "image",			
+			"type": "image",
 			"iconClassName" : "image-icon",
 			"name": "Images"
-		}		
+		}
 	],
-	"unused": [	
+	"unused": [
 		{
 			"folder": "video",
-			"type": "video",			
-			"iconClassName" : "video-icon",			
+			"type": "video",
+			"iconClassName" : "video-icon",
 			"name": "Jesus Film (Local)"
 		}
-	]	
+	]
 }

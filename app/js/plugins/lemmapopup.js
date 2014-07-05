@@ -177,7 +177,7 @@ var LemmaPopupPlugin = function(app) {
 						success: function(data) {
 
 							var html = '<div class="lemma-word">' +
-											'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' +
+											'<span lang="' + iso2iana.convert(langCode) + '" dir="' + dir + '">' + data.lemma + '</span>' +
 											'  <span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' +
 										'</div>';
 

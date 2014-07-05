@@ -309,7 +309,7 @@ var ParallelsWindow = function(id, node, init_data) {
 							var books = row.books ? row.books : currentParallelData.books;
 
 							//console.log(currentTextInfo.lang);
-							html.push('<td class="parallel-passage" ' + style + ' lang="' + currentTextInfo.lang + '">' +
+							html.push('<td class="parallel-passage" ' + style + ' lang="' + iso2iana.convert(currentTextInfo.lang) + '">' +
 											bible.BOOK_DATA[books[j]].names[currentTextInfo.lang][0] + ' ' + passage +
 										'</td>');
 						}
@@ -332,7 +332,7 @@ var ParallelsWindow = function(id, node, init_data) {
 							var books = row.books ? row.books : currentParallelData.books;
 
 							html.push('<td data-bookid="' + books[j] + '" ' +
-											'data-passage="' + passage + '" lang="' + currentTextInfo.lang + '">' +
+											'data-passage="' + passage + '" lang="' + iso2iana.convert(currentTextInfo.lang) + '">' +
 											//i18n.t('windows.parallel.loading') +
 										'</td>');
 						}

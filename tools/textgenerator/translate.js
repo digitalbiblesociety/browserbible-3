@@ -16,39 +16,39 @@ var translate_settings = JSON.parse( fs.readFileSync( 'translate-config.js', 'ut
 if (argv['o']) {
 	overwrite = true;
 }
-	
-	
+
+
 if (argv['l']) {
-	langs = argv['l'].split(',');	
+	langs = argv['l'].split(',');
 } else if (argv['a']) {
-	
-	// non 
+
+	// non
 
 } else {
-	console.log('HELP\n' + 
-				'-l lang,lang,lang\n' + 
-				'-a do all\n' + 
+	console.log('HELP\n' +
+				'-l lang,lang,lang\n' +
+				'-a do all\n' +
 				'-o overwrite\n\n');
 	return;
 }
-	
+
 var sofia = {
 	resources: {}
 };
 
-// 
+//
 function readLang(langCode) {
-	
+
 	// read in file
 	var langObj = {},
 		langPath = path.join(baseFolder, langCode + '.js');
-	
+
 	if (fs.existsSync(langPath)) {
 		text = fs.readFileSync(langPath, 'utf-8');
-		
+
 		eval(text);
-	
-		langObj = sofia.resources[langCode];		
+
+		langObj = sofia.resources[langCode];
 	}
 
 	return langObj;
@@ -58,28 +58,28 @@ function langToFlat(langJson) {
 	// parse all into a flat set of strings
 	// {key1: {key2: 'value'}}
 	// key1.key2 = 'value'
-	
+
 	var output = {};
-	
+
 	function parseNode(obj, prefix) {
 		for (var key in obj) {
 			var value = obj[key],
 				fullKey = (prefix != '' ? prefix + '.' : '') + key;
-			
+
 			if (typeof value == 'string') {
 				output[fullKey] = value;
 			} else {
 				parseNode(value, fullKey);
-				
+
 			}
 		}
 	}
-	
+
 	// recursively parse all notes
 	if (typeof langJson.translation != 'undefined') {
 		parseNode(langJson.translation, '');
 	}
-	
+
 	return output;
 }
 
@@ -87,43 +87,43 @@ function langToFlat(langJson) {
 
 function translateKeys(sourceFlatLang, targetFlatLang, targetLang, callback) {
 
-	var 
+	var
 		keys = Object.keys(sourceFlatLang),
 		keyIndex = 0,
 		translatedWords = {};
-		
+
 	function nextKey() {
 		if (keyIndex < keys.length) {
 			var key = keys[keyIndex],
 				srcWord = sourceFlatLang[key],
 				targetWord = targetFlatLang[key];
-				
+
 			if (overwrite || typeof targetWord == 'undefined' ) {
-							
+
 				if (typeof translatedWords[srcWord] != 'undefined') {
-					
+
 					// use existing translation
 					targetFlatLang[key] = translatedWords[srcWord];
-					
+
 					keyIndex++;
-					nextKey();						
-					
+					nextKey();
+
 				} else {
 					translateWord(srcWord, baseLangCode, targetLang, function(translatedWord) {
-						
+
 						console.log(srcWord, '==', targetLang, '==', translatedWord);
-						
+
 						targetFlatLang[key] = translatedWords[key] = translatedWord;
-						
+
 						keyIndex++;
-						nextKey();				
-					});				
+						nextKey();
+					});
 				}
 			} else {
 				keyIndex++;
-				nextKey();								
+				nextKey();
 			}
-			
+
 		} else {
 			callback( targetFlatLang );
 		}
@@ -138,9 +138,9 @@ function translateWord(word, srcLang, targetLang, callback) {
 	//console.log('translateWord', word, srcLang, targetLang, callback);
 
 	var url = 'https://www.googleapis.com/language/translate/v2?key=' + gKey + '&q=' + encodeURIComponent(word) + '&source=' + srcLang + '&target=' + targetLang;
-	
+
 	ajax(url, function(data) {
-        //eval(scriptData); 
+        //eval(scriptData);
 		var result = JSON.parse(data),
 			translatedWord = '';
 
@@ -149,12 +149,12 @@ function translateWord(word, srcLang, targetLang, callback) {
 		} catch (e) {
 			console.log("error:", result);
 		}
-	        
-        callback(translatedWord); 		
-		
+
+        callback(translatedWord);
+
 	});
 
-	
+
 }
 
 function ajax(url, callback) {
@@ -163,25 +163,25 @@ function ajax(url, callback) {
         res.on('data', function (chunk) {
             data+=chunk;
         });
-        res.on('end',function(){            
-            callback(data);                           
+        res.on('end',function(){
+            callback(data);
         });
     });
 }
 
 function langToJson(flatLang) {
-	
+
 	var langObj = {};
 
 	for (var key in flatLang) {
 		var value = flatLang[key],
 			parts = key.split('.'),
 			depthObject = langObj;
-		
+
 		for (var i=0, il=parts.length; i<il; i++ ) {
-			
+
 			var part = parts[i];
-			
+
 			if (typeof depthObject[part] == 'undefined') {
 				depthObject[part] = {};
 			}
@@ -189,20 +189,20 @@ function langToJson(flatLang) {
 			if (i == parts.length-1) {
 				depthObject[part] = value;
 			} else {
-				depthObject = depthObject[part];				
+				depthObject = depthObject[part];
 			}
 		}
 	}
-	
+
 	return langObj;
 }
 
 function saveLang(langJson, lang) {
 	var langPath = path.join(baseFolder, lang + '.js');
 		text = "sofia.resources['" + lang + "'] = " + JSON.stringify({translation: langJson }, null, '\t').replace('__ count__', '__count__');
-	
+
 	//console.log(langPath);
-		
+
 	fs.writeFileSync(langPath, text, 'utf-8');
 }
 
@@ -212,9 +212,9 @@ function saveLang(langJson, lang) {
 
 // LOAD
 
-	
+
 //console.log(baseFlatLangObj);
-	
+
 //var rebuiltLangObj = langToJson(baseFlatLangObj);
 
 //console.log(rebuiltLangObj);
@@ -222,67 +222,67 @@ function saveLang(langJson, lang) {
 
 //saveLang(rebuiltLangObj, 'xy');
 //return;
-	
+
 // TRANSLATE
 var currentIndex = 0;
 
 function translateNextLang() {
-	
+
 	if (currentIndex < langs.length) {
 		var lang = langs[currentIndex],
 			langObj = readLang(lang),
-			flatLangObj = langToFlat(langObj);		
-		
-		// load the language to show it 
+			flatLangObj = langToFlat(langObj);
+
+		// load the language to show it
 		loadLanguageNames(lang, function(langData) {
-		
-			
+
+
 			// do translation
 			translateKeys(baseFlatLangObj, flatLangObj, lang, function(translatedKeys) {
-				
+
 				var translatedObj = langToJson(translatedKeys);
-				
+
 				translatedObj.name = getLanguageName(lang, langData) + ' (' + getLanguageName(lang, baseLangData) + ')';
-				
+
 				// save
 				saveLang(translatedObj, lang);
-				
+
 				// move on!
-				currentIndex++;				
+				currentIndex++;
 				translateNextLang();
 			});
 
-		
+
 		});
-		
+
 
 	} else {
 		console.log("DONE");
-		process.exit();		
+		process.exit();
 	}
 }
 
 function loadLanguageNames(lang, callback) {
 
 	ajax('https://www.googleapis.com/language/translate/v2/languages?target=' + lang + '&key=' + gKey, function(data) {
-		var json = JSON.parse(data); 		
-		
+		var json = JSON.parse(data);
+
 		callback(json);
 	});
-	
+
 }
 
 function getLanguageName(langCode, langData) {
-	
+
 	for (var i=0, il=langData.data.languages.length; i<il; i++) {
 		var langInfo = langData.data.languages[i];
-		
+
 		if (langInfo.language == langCode) {
 			return langInfo.name;
 		}
-		
+
 	}
-	
+
 	return null;
 }
 
@@ -290,35 +290,35 @@ function loadBaseLanguages() {
 
 	loadLanguageNames(baseLangCode, function(data) {
 		baseLangData =  data;
-		
+
 		if (argv["a"]) {
 			langs = [];
-			
+
 			/*
 			var langFiles = fs.readdirSync(baseFolder);
-			
-			for (var i=0, il=baseLangData.data.languages.length; i<il; i++) {
-				var langInfo = baseLangData.data.languages[i];
-				
-				// check for filename
-				if (langInfo.language != baseLangCode && langFiles.indexOf( langInfo.language + '.js' ) == -1) {
-					
-					langs.push(langInfo.language);
-				}
-								
-			}
-			*/	
-			
+
 			for (var i=0, il=baseLangData.data.languages.length; i<il; i++) {
 				var langInfo = baseLangData.data.languages[i];
 
-				langs.push(langInfo.language);								
-			}				
-	
+				// check for filename
+				if (langInfo.language != baseLangCode && langFiles.indexOf( langInfo.language + '.js' ) == -1) {
+
+					langs.push(langInfo.language);
+				}
+
+			}
+			*/
+
+			for (var i=0, il=baseLangData.data.languages.length; i<il; i++) {
+				var langInfo = baseLangData.data.languages[i];
+
+				langs.push(langInfo.language);
+			}
+
 		}
-		
+
 		console.log('langs', langs);
-		
+
 		translateNextLang();
 	});
 }

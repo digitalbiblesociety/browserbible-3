@@ -1,7 +1,7 @@
 // REQUIRE
-var 
+var
 	fs = require('fs'),
-	path = require('path'),	
+	path = require('path'),
 	jsdom = require("jsdom"),
 	$ = require('jquery')(jsdom.jsdom().createWindow()),
 	uglifyjs = require("uglify-js"),
@@ -19,25 +19,25 @@ var
 	doc = $( html ),
 	scriptNodes = doc.find('scripty[src]'),
 	stylesheetNodes = doc.find('link[rel="stylesheet"]'),
-	
+
 	copyFiles = [],
-	scripts = [],	
+	scripts = [],
 	stylesheets = [],
-	
-	combinedCss = '',	
+
+	combinedCss = '',
 	minifiedCss = '',
 	outputCssPath = path.join(buildPath, 'build.css'),
-	outputCssPathMinified = path.join(buildPath, 'build.min.css'),		
+	outputCssPathMinified = path.join(buildPath, 'build.min.css'),
 
-	combinedScript = '',	
+	combinedScript = '',
 	minifiedScript = '',
 	outputJsPath = path.join(buildPath, 'build.js'),
-	outputJsPathMinified = path.join(buildPath, 'build.min.js');	
+	outputJsPathMinified = path.join(buildPath, 'build.min.js');
 
 
 // JAVASCIPT
 // find all script URLs
-scriptNodes.each(function(i, el) {	
+scriptNodes.each(function(i, el) {
 	var src = $(this).attr('src'),
 		build = $(this).attr('data-build');
 
@@ -45,14 +45,14 @@ scriptNodes.each(function(i, el) {
 		copyFiles.push(src);
 	} else {
 		scripts.push( src );
-	}	
+	}
 });
 
 // combine scripts
 scripts.forEach(function(url) {
-	
+
 	var localPath = path.join(rootPath, url);
-	
+
 	try {
 		minifiedScript += uglifyjs.minify(localPath).code;
 	} catch (e) {
@@ -68,7 +68,7 @@ fs.writeFileSync(outputJsPathMinified, minifiedScript);
 
 // CSS
 // find all stylesheet URLs
-stylesheetNodes.each(function(i, el) {	
+stylesheetNodes.each(function(i, el) {
 	var href = $(this).attr('href'),
 		build = $(this).attr('data-build');
 
@@ -76,20 +76,20 @@ stylesheetNodes.each(function(i, el) {
 		copyFiles.push(href);
 	} else {
 		stylesheets.push( href );
-	}	
+	}
 });
 
 
 // combine CSS
 stylesheets.forEach(function(url) {
-	
+
 	var localPath = path.join(rootPath, url);
-	
+
 	try {
 		minifiedCss += uglifycss.processFiles([localPath]);
 	} catch (e) {
 		console.log('error Css minifiy', localPath, e);
-	}	
+	}
 	combinedCss += fs.readFileSync(path.join(rootPath, url), 'utf8');
 });
 
@@ -97,16 +97,16 @@ stylesheets.forEach(function(url) {
 fs.writeFileSync(outputCssPath, combinedCss);
 fs.writeFileSync(outputCssPathMinified, minifiedCss);  // TEMP: no compression
 
-// COPY 
+// COPY
 // copy remaining
 copyFiles.forEach(function(url) {
 	var fileIn = path.join(rootPath, url),
 		baseName = path.basename(url)
 		fileOut = path.join(buildPath, baseName),
-		
+
 		textIn = fs.readFileSync(fileIn, 'utf8');
-		
-	fs.writeFileSync(fileOut, textIn);		
+
+	fs.writeFileSync(fileOut, textIn);
 });
 
 
@@ -116,12 +116,12 @@ var copyFolders = ['css/fonts', 'css/images'];
 copyFolders.forEach(function(copyFolder) {
 	var folderIn = path.join(rootPath, copyFolder),
 		folderOut = path.join(buildPath, copyFolder).replace('css/','');
-		
+
 	copyRecursive(folderIn, folderOut);
 });
 
 function copyRecursive(folderIn, folderOut) {
-	
+
 	// create folder
 	if (!fs.existsSync(folderOut)) {
 		fs.mkdirSync(folderOut);
@@ -129,18 +129,18 @@ function copyRecursive(folderIn, folderOut) {
 
 	// all subfolders and files
 	var subs = fs.readdirSync(folderIn);
-	
+
 	subs.forEach(function(data) {
 		var pathIn = path.join(folderIn, data);
 			pathOut = path.join(folderOut, data);
-		
+
 		if (fs.statSync(pathIn).isFile()) {
-			fs.createReadStream(pathIn).pipe(fs.createWriteStream( pathOut ));			
+			fs.createReadStream(pathIn).pipe(fs.createWriteStream( pathOut ));
 		} else {
 			copyRecursive(pathIn, pathOut);
-		}		
-	});	
-	
+		}
+	});
+
 }
 
 

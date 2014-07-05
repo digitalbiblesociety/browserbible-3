@@ -2,89 +2,89 @@
 $(function() {
 	// hide initial text area
 	$('#startup').hide();
-	
-	
+
+
 	// test for local file support
 	if (window.location.protocol === 'file:') {
-		
-		
+
+
 		$.ajax({
 			dataType: 'text',
-		
+
 			url: 'about.html',
 			success: function() {
-				
+
 				init();
-				
+
 			},
 			error: function() {
 				var modal = new MovableWindow(600,250, 'Local Files Error'),
 					errorMessage = '',
 					ua = navigator.userAgent.toLowerCase();
 				//modal.size(500, 200).center();
-				
+
 				if (ua.indexOf('chrome') > -1) {
 					if (ua.indexOf('mac os') > -1) {
-						errorMessage = 	
+						errorMessage =
 							'<p>Mac, Terminal</p>' +
 							'<code>/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --allow-file-access-from-files</code>';
-					} else 
+					} else
 					if (ua.indexOf('windows') > -1) {
-						errorMessage = 	
+						errorMessage =
 							'<p>Mac, Terminal</p>' +
 							'<code>/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --allow-file-access-from-files</code>';
 					}
-					
+
 				} else {
-					
-					errorMessage = 	
+
+					errorMessage =
 						'<p>Unknown error loading files (cannot load about.html)</p>';
-					
+
 				}
-				
+
 				modal.body.css({background: '#000', color: '#fff' }).html(
-					'<div style="padding: 20px;">' + 
+					'<div style="padding: 20px;">' +
 						errorMessage +
 					'</div>'
 				);
-				modal.show().center();								
+				modal.show().center();
 			}
 		});
-				
+
 	} else {
-		
+
 		init();
-		
+
 	}
 
 	function init() {
 		// load config
 		var params = stringUtility.parseQuerystring(),
 			custom = params["custom"];
-			
+
 		if (typeof custom != 'undefined' && custom != '') {
 			var customizations = sofia.customConfigs[custom];
-			
-			if (typeof customizations != 'undefined' && customizations != null) {		
+
+			if (typeof customizations != 'undefined' && customizations != null) {
 				sofia.config = $.extend(sofia.config, customizations);
-			}			
+			}
 		}
-		
+
 		// load css
 		if (typeof sofia.config.customCssUrl != 'undefined' && sofia.config.customCssUrl != '') {
 			$('<link href="' + sofia.config.customCssUrl + '" rel="stylesheet" />').appendTo( $('head') );
 		}
-		
+
 		// run inits
 		for (var i=0, il=sofia.initMethods.length; i<il; i++) {
 			sofia.initMethods[i]();
 		}
-	
+
 		// create app
 		sofia.app = new App();
 		sofia.app.init();
-		
+
 		$('.i18n').i18n();
-		
+
 	}
 });

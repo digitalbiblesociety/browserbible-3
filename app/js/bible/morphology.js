@@ -1,13 +1,13 @@
 /* language tools */
 if (typeof(window.bible) == 'undefined')
 	window.bible = {};
-	
-	
-bible.morphology = {};	
-	
+
+
+bible.morphology = {};
+
 // http://wiki.logos.com/Morphology_Codes
-// 
-bible.morphology['robinson'] = {	
+//
+bible.morphology['robinson'] = {
 
 	format: function(morph) {
 
@@ -17,7 +17,7 @@ bible.morphology['robinson'] = {
 
 			parsingInfo = (firstDash > -1) ? morph.substring(firstDash+1) : '',
 			formattedParsing = '';
-			
+
 		switch (partOfSpeechKey.toUpperCase()) {
 			case 'T':
 			case 'N':
@@ -29,42 +29,42 @@ bible.morphology['robinson'] = {
 			case 'X':
 			case 'Q':
 			case 'F':
-			case 'S':									
+			case 'S':
 				var c = this.nounCases[parsingInfo.substring(0, 1)];
 				var n = this.wordNumber[parsingInfo.substring(1, 2)];
 				var g = this.wordGender[parsingInfo.substring(2, 3)];
 				formattedParsing = c + ((n) ? ', ' + n + ((g) ? ', ' + g : '') : '');
 				break;
-				
-			case 'P':	 
-				
+
+			case 'P':
+
 				var firstLetter = parsingInfo.substr(0,1);
 				if (firstLetter == '1' || firstLetter == '2') {
-											   
-					var p = this.wordPerson[parsingInfo.substring(0, 1)];				
+
+					var p = this.wordPerson[parsingInfo.substring(0, 1)];
 					var c = this.nounCases[parsingInfo.substring(1, 2)];
-					var n = this.wordNumber[parsingInfo.substring(2, 3)];			
+					var n = this.wordNumber[parsingInfo.substring(2, 3)];
 					formattedParsing = p + ((c) ? ', ' + c + ((n) ? ', ' + n : '') : '');
 				} else {
 					var c = this.nounCases[parsingInfo.substring(0, 1)];
 					var n = this.wordNumber[parsingInfo.substring(1, 2)];
 					var g = this.wordGender[parsingInfo.substring(2, 3)];
-					formattedParsing = c + ((n) ? ', ' + n + ((g) ? ', ' + g : '') : '');					
+					formattedParsing = c + ((n) ? ', ' + n + ((g) ? ', ' + g : '') : '');
 				}
-				
-				break;				
-				
+
+				break;
+
 			case 'A':
 				var c = this.nounCases[parsingInfo.substring(0, 1)];
 				var n = this.wordNumber[parsingInfo.substring(1, 2)];
 				formattedParsing =   c + ', ' + n;
 				break;
-				
+
 			case 'PRT':
-			
+
 				formattedParsing = this.particleTypes[parsingInfo];
 				break;
-				
+
 			case 'V':
 				var t = '';
 				var rem = ''
@@ -80,7 +80,7 @@ bible.morphology['robinson'] = {
 
 				if (rem.length == 2) {
 					formattedParsing = t + ', ' + v + ', ' + m;
-					
+
 				} else if (rem.length == 5) {
 					var p = this.wordPerson[rem.substring(3, 4)];
 					var n = this.wordNumber[rem.substring(4, 5)];
@@ -98,13 +98,13 @@ bible.morphology['robinson'] = {
 				//m = this.verbMoods[parsingInfo.substring(2+offset,3+offset)];
 			default:
 				formattedParsing =  parsingInfo;
-				
+
 		}
-		
+
 		return partOfSpeech + (formattedParsing != '' ? ': ' + formattedParsing: '');
-		
+
 	},
-			
+
 	partsOfSpeech: {
 		N: 'noun',
 		A: 'adjective',
@@ -197,10 +197,10 @@ bible.morphology['robinson'] = {
 		'P': 'participle',
 		'R': 'imperative participle'
 	},
-	
+
 	particleTypes: {
 		'I': 'interogative',
-		'N': 'negative'		
+		'N': 'negative'
 	}
 };
 bible.morphology['Greek'] = bible.morphology['robinson'];
@@ -208,11 +208,11 @@ bible.morphology['Greek'] = bible.morphology['robinson'];
 
 
 // http://openscriptures.github.io/morphhb/parsing/HebrewMorphologyCodes.html
-bible.morphology['OSHB'] = {	
+bible.morphology['OSHB'] = {
 	format: function(morph) {
 		var languageKey = morph.substr(0,1),
 			language = this.languages[languageKey],
-			morphParts = morph.substr(1).split('/'),			
+			morphParts = morph.substr(1).split('/'),
 			formattedOutput = '';
 
 		for (var i=0, il=morphParts.length; i<il; i++) {
@@ -220,83 +220,83 @@ bible.morphology['OSHB'] = {
 				partOfSpeechKey = m.substr(0,1),
 				partOfSpeech = this.partsOfSpeech[partOfSpeechKey],
 				morphCodes = m.length > 0 ? m.substr(1) : '',
-				
+
 				partsList = [],
 				details = [];
-		
+
 			switch (partOfSpeechKey) {
-		
+
 				case 'A':
-					partsList = ['adjectiveTypes', 'gender', 'number', 'state'];					
-					
+					partsList = ['adjectiveTypes', 'gender', 'number', 'state'];
+
 					break;
 				case 'C':
 				case 'D':
-					// nothing					
-					
+					// nothing
+
 					break;
 				case 'N':
 
 					partsList = ['nounTypes', 'gender', 'number', 'state'];
-					
+
 					break;
 				case 'P':
-				
+
 					partsList = ['pronounTypes', 'person', 'gender', 'number'];
-					
+
 					break;
 				case 'R':
 					partsList = ['prepositionTypes'];
-					
+
 					break;
 				case 'S':
-				
-					partsList = ['suffixTypes', 'person', 'gender', 'number'];				
-					
+
+					partsList = ['suffixTypes', 'person', 'gender', 'number'];
+
 					break;
 				case 'T':
-				
+
 					partsList = ['particleTypes'];
-					
+
 					break;
 				case 'V':
-				
+
 					partsList = [language.toLowerCase() + 'VerbStems', 'verbConjugationTypes', 'person', 'gender', 'number', 'state'];
-				
+
 					break;
-				
+
 			}
-			
+
 			for (var j=0, jl=partsList.length; j<jl; j++) {
 				if (morphCodes.length > j) {
 					details.push( this[ partsList[j] ][ morphCodes.substr(j, 1) ] );
 				}
 			}
-			
-			
-				
+
+
+
 			formattedOutput += (i>0 ? '; ' : '') + partOfSpeech + (details.length > 0 ? ': ' + details.join(', ') : '');
-		}	
-		
-		return formattedOutput;	
+		}
+
+		return formattedOutput;
 	},
-	
+
 	partsOfSpeech: {
-		
-		'A':'adjective', 
-		'C':'conjunction', 	 	 	 	 	 	 
-		'D':'adverb', 	 	 	 	 	 	 
-		'N':'noun', 
-		'P':'pronoun', 
-		'R':'preposition', 
-		'S':'suffix', 
-		'T':'particle', 
+
+		'A':'adjective',
+		'C':'conjunction',
+		'D':'adverb',
+		'N':'noun',
+		'P':'pronoun',
+		'R':'preposition',
+		'S':'suffix',
+		'T':'particle',
 		'V':'verb'
-				
+
 	},
-	
-	hebrewVerbStems: {	
-	
+
+	hebrewVerbStems: {
+
 		'q': 'qal',
 		'N': 'niphal',
 		'p': 'piel',
@@ -311,7 +311,7 @@ bible.morphology['OSHB'] = {
 		'M': 'poal',
 		'k': 'palel',
 		'K': 'pulal',
-	
+
 		'Q': 'qal passive',
 		'l': 'pilpel',
 		'L': 'polpal',
@@ -324,11 +324,11 @@ bible.morphology['OSHB'] = {
 		'v': 'hishtaphel',
 		'w': 'nithpalel',
 		'y': 'nithpoel',
-		'z': 'hithpoel'		
+		'z': 'hithpoel'
 	},
-	
+
 	aramaicVerbStems: {
-	
+
 		'q': 'peal',
 		'Q': 'peil',
 		'u': 'hithpeel',
@@ -341,7 +341,7 @@ bible.morphology['OSHB'] = {
 		'e': 'shaphel',
 		'H': 'hophal',
 		'i': 'ithpeel',
-		't': 'hishtaphel',				 
+		't': 'hishtaphel',
 		'v': 'ishtaphel',
 		'w': 'hithaphel',
 		'o': 'polel',
@@ -355,10 +355,10 @@ bible.morphology['OSHB'] = {
 		'L': 'ithpalpel',
 		'O': 'ithpolel',
 		'G': 'ittaphal'
-		
+
 	},
-	
-	verbConjugationTypes: {	
+
+	verbConjugationTypes: {
 		'p': 'perfect (qatal)',
 		'q': 'sequential perfect (weqatal)',
 		'i': 'imperfect (yiqtol)',
@@ -371,20 +371,20 @@ bible.morphology['OSHB'] = {
 		'a': 'infinitive absolute',
 		'c': 'infinitive construct'
 	},
-	
-	adjectiveTypes: {	
+
+	adjectiveTypes: {
 		'a': 'adjective',
 		'c': 'cardinal number',
 		'g': 'gentilic',
 		'o': 'ordinal number'
 	},
-	
-	nounTypes: {	
+
+	nounTypes: {
 		'c': 'common',
 		'g': 'gentilic',
 		'p': 'proper name'
 	},
-	
+
 	pronounTypes: {
 		'd': 'demonstrative',
 		'f': 'indefinite',
@@ -392,19 +392,19 @@ bible.morphology['OSHB'] = {
 		'p': 'personal',
 		'r': 'relative'
 	},
-	
-	prepositionTypes: {	
+
+	prepositionTypes: {
 		'd': 'definite article'
 	},
-	
-	suffixTypes: {	
+
+	suffixTypes: {
 		'd': 'directional he',
 		'h': 'paragogic he',
 		'n': 'paragogic nun',
-		'p': 'pronominal'	
+		'p': 'pronominal'
 	},
-	
-	particleTypes: {	
+
+	particleTypes: {
 		'a': 'affirmation',
 		'd': 'definite article',
 		'e': 'exhortation',
@@ -413,35 +413,35 @@ bible.morphology['OSHB'] = {
 		'm': 'demonstrative',
 		'n': 'negative',
 		'o': 'direct object marker',
-		'r': 'relative'	
+		'r': 'relative'
 	},
-	
-	person: {	
+
+	person: {
 		'1': 'first',
 		'2': 'second',
 		'3': 'third'
 	},
-	
-	gender: {	
+
+	gender: {
 		'b': 'both (noun)',
 		'c': 'common (verb)',
 		'f': 'feminine',
 		'm': 'masculine'
 	},
-	
-	number: {	
+
+	number: {
 		'd': 'dual',
 		'p': 'plural',
-		's': 'singular'	
+		's': 'singular'
 	},
-	
-	state: {	
+
+	state: {
 		'a': 'absolute',
 		'c': 'construct',
 		'd': 'determined'
 	},
-	
-	languages: {	
+
+	languages: {
 		'H': 'Hebrew',
 		'A': 'Aramaic'
 	}

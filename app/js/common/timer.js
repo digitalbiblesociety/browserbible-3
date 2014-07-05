@@ -1,11 +1,11 @@
-	
+
 var Timer = function(callback, seconds) {
-	
+
 	var timeoutValue = null;
 	function start() {
 		if (timeoutValue == null) {
 			clear();
-		
+
 			timeoutValue = setTimeout(function() {
 				callback();
 				clear();
@@ -18,9 +18,9 @@ var Timer = function(callback, seconds) {
 			timeoutValue = null;
 		}
 	}
-	
+
 	return {
 		start: start,
 		clear: clear
-	}	
+	}
 };

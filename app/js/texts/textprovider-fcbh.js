@@ -5,7 +5,7 @@ sofia.textproviders['fcbh'] = (function() {
 	// http://dbt.io/library/volume?v=2&key=111a125057abd2f8931f6d6ad9f2921f&media=text
 	var text_data = [],
 		text_data_is_loaded = false,
-		text_data_is_loading = false,		
+		text_data_is_loading = false,
 		text_data_callbacks = [];
 
 
@@ -23,20 +23,20 @@ sofia.textproviders['fcbh'] = (function() {
 			callback(text_data);
 
 		} else {
-			
+
 			// store callback
 			text_data_callbacks.push(callback);
-		
+
 			// don't continue
 			if (text_data_is_loading) {
 				return;
 			}
-			
+
 			text_data_is_loading = true;
-		
+
 			// loading from FCBH (big file!)
 			if (sofia.config["fcbhLoadVersions"] != 'undefined' && sofia.config["fcbhLoadVersions"] === true) {
-				
+
 				// hard work to parse!
 
 				$.ajax({
@@ -44,11 +44,11 @@ sofia.textproviders['fcbh'] = (function() {
 						if (xhr.overrideMimeType){
 							xhr.overrideMimeType("application/javascript");
 						}
-					},				
+					},
 					dataType: 'jsonp',
 					url: 'http://dbt.io/library/volume?v=2&reply=jsonp&key=' + sofia.config.fcbhKey, //  + '&media=text',
 					success: function(data) {
-	
+
 						// first do texts
 						var fcbh_texts = data.filter(function(v) {
 								return v.media == 'text';
@@ -56,14 +56,14 @@ sofia.textproviders['fcbh'] = (function() {
 							fcbh_audio = data.filter(function(v) {
 								return v.media == 'audio';
 							});
-	
+
 						// find and link up all text values
 						for (var i=0, il=fcbh_texts.length; i<il; i++) {
 							var fcbh_entry = fcbh_texts[i],
 								matches = text_data.filter(function(text_info) {
 									return text_info.abbr == fcbh_entry.version_code;
 								});
-	
+
 							if (matches.length > 0) {
 								if (fcbh_entry.collection_code == "OT") {
 									matches[0].ot_dam_id = fcbh_entry.dam_id;
@@ -87,21 +87,21 @@ sofia.textproviders['fcbh'] = (function() {
 									"nt_dam_id": fcbh_entry.collection_code == "NT" ? fcbh_entry.dam_id : '',
 									"aboutHtml": createAboutHtml(title, fcbh_entry.version_code)
 								};
-	
+
 								text_data.push(new_entry);
-	
+
 							}
 						}
-	
+
 						for (var i=0, il=text_data.length; i<il; i++) {
 							var text_info = text_data[i],
 								audio_matches = fcbh_audio.filter(function(audio_info) {
 									return text_info.abbr == audio_info.version_code;
 								});
-	
+
 							for (var j=0, jl=audio_matches.length; j<jl; j++) {
 								var audio_info = audio_matches[j];
-	
+
 								if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'OT') {
 									text_info.fcbh_drama_ot = audio_info.dam_id;
 								} else if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'NT') {
@@ -112,68 +112,68 @@ sofia.textproviders['fcbh'] = (function() {
 									text_info.fcbh_audio_nt = audio_info.dam_id;
 								}
 							}
-	
+
 						}
-	
+
 						/*
 						var w = new MovableWindow();
 						w.body.html( '<textarea>' +  JSON.stringify(text_data, null, '\t') + '</textarea>' );
 						w.show();
 						*/
-						
+
 						//console.log( JSON.stringify(text_data) );
-	
+
 						//console.log( text_data );
 
 						finish();
 					}
 				});
 			} else {
-				
+
 				// easy load
 
 				sofia.ajax({
 					url: 'content/texts/texts_fcbh.json',
 					dataType: 'json',
 					cache: false,
-					success: function(data) {			
-					
+					success: function(data) {
+
 						text_data = data.textInfoData;
-						
+
 						//console.log('FCBH', data);
-										
+
 						for (var i=0, il=text_data.length; i<il; i++) {
-							
+
 							text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
-							
+
 						}
-						
+
 						// filter
 						if (sofia.config.fcbhTextExclusions && sofia.config.fcbhTextExclusions.length > 0) {
-							
+
 							text_data = text_data.filter(function(t) {
-								
+
 								// keep the ones that aren't in the exclusion list
 								return sofia.config.fcbhTextExclusions.indexOf(t.id) == -1;
-								
+
 							});
-							
+
 						}
-						
-										
-						finish();						
+
+
+						finish();
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
 						text_data = null;
 						finish();
 					}
-				});		
-	
-				
+				});
+
+
 			}
 		}
 	}
-	
+
 	function finish() {
 		text_data_is_loading = false;
 		text_data_is_loaded = true;
@@ -181,7 +181,7 @@ sofia.textproviders['fcbh'] = (function() {
 		while (text_data_callbacks.length > 0) {
 			var cb = text_data_callbacks.pop();
 			cb(text_data);
-		}		
+		}
 	}
 
 	function createAboutHtml(title, version_code) {
@@ -196,12 +196,12 @@ sofia.textproviders['fcbh'] = (function() {
 	}
 
 	function getTextInfo(textid, callback) {
-	
+
 		if (!text_data_is_loaded) {
-			
+
 			getTextManifest (function() {
 				getTextInfo(textid, callback);
-			});			
+			});
 			return;
 		}
 
@@ -255,8 +255,8 @@ sofia.textproviders['fcbh'] = (function() {
 				if (xhr.overrideMimeType){
 					xhr.overrideMimeType("application/javascript");
 				}
-			},				
-			dataType: 'jsonp',		
+			},
+			dataType: 'jsonp',
 			url: 'http://dbt.io/library/book?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id,
 			success: function(data) {
 
@@ -295,11 +295,11 @@ sofia.textproviders['fcbh'] = (function() {
 
 
 	function loadSection(textid, sectionid, callback) {
-	
-		// check for complete textinfo first, since we'll need the .sections data to make this work		
+
+		// check for complete textinfo first, since we'll need the .sections data to make this work
 		getTextInfo(textid, function(textinfo) {
-				
-			var 
+
+			var
 				bookid = sectionid.substring(0,2),
 				chapter = sectionid.substring(2),
 				lang = '',
@@ -310,21 +310,21 @@ sofia.textproviders['fcbh'] = (function() {
 				previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
 				nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
 				url = 'http://dbt.io/library/verse?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
-	
+
 			//console.log(url);
-	
+
 			$.ajax({
 				beforeSend: function(xhr){
 					if (xhr.overrideMimeType){
 						xhr.overrideMimeType("application/javascript");
 					}
-				},				
-				dataType: 'jsonp',			
+				},
+				dataType: 'jsonp',
 				url: url,
 				success: function(chapter_data) {
 					var html = [];
-	
-	
+
+
 					//<div class="section chapter AC AC1 eng_kjv eng" dir="ltr" lang="eng" data-id="AC1" data-nextid="AC2" data-previd="JN21">
 					html.push('<div class="section chapter ' + textid + ' ' + bookid + ' ' + sectionid + ' ' + lang + ' " ' +
 								'data-textid="' + textid + '"' +
@@ -332,75 +332,75 @@ sofia.textproviders['fcbh'] = (function() {
 								'data-nextid="' + nextid + '"' +
 								'data-previd="' + previd + '"' +
 								'>');
-	
+
 					if (chapter == '1') {
 						html.push('<div class="mt">' + textinfo.divisionNames[textinfo.divisions.indexOf(bookid)] + '</div>');
 					}
-	
+
 					html.push('<div class="c">' + chapter + '</div>');
-	
+
 					html.push('<div class="p">');
 					for (var i=0, il=chapter_data.length; i<il; i++ ) {
 						var verse = chapter_data[i],
 							text = verse.verse_text,
 							vnum = verse.verse_id,
 							vid = sectionid + '_' + vnum;
-	
+
 						html.push('<span class="v-num v-' + vnum + '">' + vnum + '&nbsp;</span><span class="v ' + vid + '" data-id="' + vid + '">' + text + '</span>');
-	
+
 					}
-	
+
 					html.push('</div>'); // p
 					html.push('</div>'); // section
-	
-	
-	
+
+
+
 					callback(html.join(''));
 				}
-	
-			});		
-		
-		
+
+			});
+
+
 		});
-	
+
 
 
 	}
-	
+
 	function startSearch(textid, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
-		
+
 		var info = getTextInfoSync(textid);
-		
-		
+
+
 		var e = {
-			type:'complete', 
+			type:'complete',
 			target: this,
-			data: {						
-				results: [], 
+			data: {
+				results: [],
 				searchIndexesData: [], // not needed for SearchWindow
-				searchTermsRegExp: SearchTools.createSearchTerms(text, false), 
+				searchTermsRegExp: SearchTools.createSearchTerms(text, false),
 				isLemmaSearch: false
-			}					
-		};	
-		
-		//console.log('start', e);	
-		
-		
+			}
+		};
+
+		//console.log('start', e);
+
+
 		var dam_id = '';
-		
+
 		if (info.ot_dam_id != '') {
 			dam_id = info.ot_dam_id;
 		} else if (info.nt_dam_id != '') {
 			dam_id = info.nt_dam_id;
 		}
-			
-			
+
+
 		doSearch(dam_id, text, e, function() {
-		
+
 			onSearchComplete(e);
-		
-		});			
-		
+
+		});
+
 		/*
 		if (info.ot_dam_id != '') {
 			doSearch(info.ot_dam_id, text, e, function() {
@@ -425,54 +425,54 @@ sofia.textproviders['fcbh'] = (function() {
 			console.log('FCBH error', 'No NT or OT id', info);
 
 		}
-		*/		
-		
-	}	
+		*/
+
+	}
 	function doSearch(dam_id, text, e, callback) {
-			
+
 		$.ajax({
 			beforeSend: function(xhr){
 				if (xhr.overrideMimeType){
 					xhr.overrideMimeType("application/javascript");
 				}
-			},				
-			dataType: 'jsonp',		
+			},
+			dataType: 'jsonp',
 			url: 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
 			success: function(data) {
-			
+
 				for (var i=0, il=data[1].length; i<il; i++) {
 					var verse = data[1][i],
 						dbsBookCode = bible.DEFAULT_BIBLE[ bible.DEFAULT_BIBLE_OSIS.indexOf(verse.book_id) ],
 						fragmentid = dbsBookCode + verse.chapter_id + '_' + verse.verse_id;
-					
+
 					e.data.results.push({
-						fragmentid: fragmentid, 
+						fragmentid: fragmentid,
 						html: highlightWords(verse.verse_text, e.data.searchTermsRegExp)
 					});
 				}
-								
-				callback(data);				
-			}			
-		});		
+
+				callback(data);
+			}
+		});
 	}
-	
+
 	function highlightWords(text, searchTermsRegExp) {
 
 		var processedHtml = text;
-				
+
 		for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
-			
+
 			searchTermsRegExp[j].lastIndex = 0;
-			
+
 			// surround the word with a highlight
 			processedHtml = processedHtml.replace(searchTermsRegExp[j], function(match) {
 				return '<span class="highlight">' + match + '</span>';
 			});
-		}		
-	
-		return processedHtml;		
+		}
+
+		return processedHtml;
 	}
-	
+
 
 	return {
 		getTextManifest: getTextManifest,

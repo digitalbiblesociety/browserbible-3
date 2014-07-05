@@ -1,11 +1,11 @@
 sofia.config = $.extend(sofia.config, {
-	
+
 	// enables all possible English options (false = just color 'you')
 	"eng2pEnableAll": true
 });
 
 
-	
+
 /**
  * Highlights words based on morphological data
  *
@@ -13,11 +13,11 @@ sofia.config = $.extend(sofia.config, {
  */
 
 
-/* 
+/*
 Add
-,"2p-enableAll": true 
+,"2p-enableAll": true
 to config in order to enable all the options
-*/ 
+*/
 var Eng2pPlugin = function(node) {
 
 	/*
@@ -31,17 +31,17 @@ var Eng2pPlugin = function(node) {
 		pair = querystring[i].split('=');
 		params[d(pair[0])] = d(pair[1]);
 		}
-		
+
 		return params;
 	};
 	var params = {};
 	if (window.location.search.length > 0) {
 		params = parseQuerystring(window.location.search.substring(1));
-	
+
 	}
 	*/
-		
-	
+
+
 	$('<style>\
 .eng2p-original {\
 text-decoration: line-through;\
@@ -83,20 +83,20 @@ background: url(build/images/two-people.svg) left center no-repeat;\
 background-size: 20px 20px;\
 padding:5px 0 5px 25px;\
 }\
-</style>').appendTo( $('head') );	
-	
-		
+</style>').appendTo( $('head') );
+
+
 		//docManager.createOptionToggle('Texanize plurals', 'texan', true);
 
-	var 
+	var
 		engWindow = new MovableWindow(550,290),
-		
+
 		configBlock =
-		$('<div class="config-options" id="config-eng2p">' + 
-			//'<h3>English Second Person Plural</h3>' + 		
-	
+		$('<div class="config-options" id="config-eng2p">' +
+			//'<h3>English Second Person Plural</h3>' +
+
 '<table>' +
-	'<tbody>' +	
+	'<tbody>' +
 		'<tr>' +
 			'<th>' +
 				'<input type="radio" name="eng2p-option" id="eng2p-option-none" value="none" />' +
@@ -116,8 +116,8 @@ padding:5px 0 5px 25px;\
 			'<td><span class="eng2p-highlight-demo">Your</span></td>' +
 			'<td><span class="eng2p-highlight-demo">Yours</span></td>' +
 			'<td><span class="eng2p-highlight-demo">Yourselves</span></td>' +
-		'</tr>' +	
-		
+		'</tr>' +
+
 		(typeof sofia.config["eng2pEnableAll"] != 'undefined' && sofia.config["eng2pEnableAll"] == true ?
 		'<tr>' +
 			'<th>' +
@@ -126,9 +126,9 @@ padding:5px 0 5px 25px;\
 			'</th>' +
 			'<td>You all</td>' +
 			'<td>You all\'s</td>' +
-			'<td>You all\'s</td>' +				
+			'<td>You all\'s</td>' +
 			'<td>You allselves</td>' +
-		'</tr>' +					
+		'</tr>' +
 		'<tr>' +
 			'<th>' +
 				'<input type="radio" name="eng2p-option" id="eng2p-option-yall" value="yall" />' +
@@ -146,8 +146,8 @@ padding:5px 0 5px 25px;\
 			'</th>' +
 			'<td>You guys</td>' +
 			'<td>Your guys\'s</td>' +
-			'<td>Your guys\'s</td>' +			
-			'<td>Your guys selves</td>' +				
+			'<td>Your guys\'s</td>' +
+			'<td>Your guys selves</td>' +
 		'</tr>' +
 		'<tr>' +
 			'<th>' +
@@ -156,7 +156,7 @@ padding:5px 0 5px 25px;\
 			'</th>' +
 			'<td>Youse guys</td>' +
 			'<td>Youse guys\'s</td>' +
-			'<td>Youse guys\'s</td>' +			
+			'<td>Youse guys\'s</td>' +
 			'<td>Youse guys selves</td>' +
 		'</tr>' +
 		'<tr>' +
@@ -167,7 +167,7 @@ padding:5px 0 5px 25px;\
 			'<td>Yinz</td>' +
 			'<td>Yinz\'s</td>' +
 			'<td>Yinz\'s</td>' +
-			'<td>Yinzselves</td>' +				
+			'<td>Yinzselves</td>' +
 		'</tr>' +
 		'<tr>' +
 			'<th>' +
@@ -176,8 +176,8 @@ padding:5px 0 5px 25px;\
 			'</th>' +
 			'<td>You lot</td>' +
 			'<td>You lot\'s</td>' +
-			'<td>You lot\'s</td>' +				
-			'<td>Yourlot\'s</td>' +				
+			'<td>You lot\'s</td>' +
+			'<td>Yourlot\'s</td>' +
 		'</tr>' +
 		'<tr>' +
 			'<th>' +
@@ -187,79 +187,79 @@ padding:5px 0 5px 25px;\
 			'<td>Ye</td>' +
 			'<td>Ye\'s</td>' +
 			'<td>Ye\'s</td>' +
-			'<td>Yeselves</td>' +				
-		'</tr>' 				
-		:'') +		
-	'</tbody>' +	
+			'<td>Yeselves</td>' +
+		'</tr>'
+		:'') +
+	'</tbody>' +
 '</table>' +
 			'</div>')
 			.appendTo( engWindow.body ),
 			button = $('<span class="config-button i18n" data-i18n="[html]plugins.eng2p.title" id="config-eng2p-button"></span>')
-						.appendTo( $('#config-tools .config-body') );	
-						
-						
+						.appendTo( $('#config-tools .config-body') );
+
+
 	//engWindow.title.html('English Second Person Plural');
 	engWindow.title
 				.addClass('i18n')
 				.attr('data-i18n','[html]plugins.eng2p.title')
-						
+
 	button.on('click', function() {
-		
+
 		engWindow.show().center();
-		
+
 		button.closest('.window-overlay').hide();
-		
+
 	});
 
 	// SET DEFAULT
-	
-	// setting from localStorage			
+
+	// setting from localStorage
 	var eng2pSetting = AppSettings.getValue('docs-config-eng2p-setting', {'eng2p': 'none'});
 
 	// overrid with querysring
 	var queryString = window.location.search && window.location.search.length > 0 ? window.location.search.substring(1) : '',
 		params = stringUtility.parseQuerystring( queryString );
-				
-		
+
+
 	// if it's in the querystring, try to use it
 	if (typeof params['eng2p'] != 'undefined') {
 		var tempEng2pSetting = params['eng2p'];
-		
+
 		// see if there is a matching value
 		if ($('#eng2p-option-' + tempEng2pSetting).length > 0) {
 			eng2pSetting.eng2p = tempEng2pSetting;
 		}
 	}
-	
-	// now set the value from either localStorage or querysring	
+
+	// now set the value from either localStorage or querysring
 	$('#eng2p-option-' + eng2pSetting.eng2p).prop('checked',true);
-	getPluralValues();			
-	
+	getPluralValues();
+
 	// create updates
 	$('input[name="eng2p-option"]').on('click',function() {
 		// update the setting value
 		eng2pSetting = {eng2p: $(this).val() };
-		
+
 		// store value
 		AppSettings.setValue('docs-config-eng2p-setting', eng2pSetting);
-		
+
 		// values
 		getPluralValues();
-		
+
 		// re-run
 		$('div.chapter[lang="eng"]').each(function() {
 			var chapter = $(this);
-		
+
 			removePluralTransforms(chapter);
-			runPluralTransforms(chapter);						
+			runPluralTransforms(chapter);
 		});
-	});				
-				
+	});
+
 
 	function getPluralValues() {
-	
+
 		var selectedRow = $('#eng2p-option-' + eng2pSetting.eng2p).closest('tr');
-	
+
 		bible.eng2p.youPluralSubject = selectedRow.find('td:eq(0)').html();
 		bible.eng2p.youPluralPossessiveDeterminer = selectedRow.find('td:eq(1)').html();
 		bible.eng2p.youPluralPossessivePronoun = selectedRow.find('td:eq(2)').html();
@@ -277,43 +277,43 @@ padding:5px 0 5px 25px;\
 
 			if (bible.eng2p.secondPersonPlurals.indexOf(verseid) > -1) {
 				var html = verse.html();
-				
+
 				if (eng2pSetting.eng2p == 'highlight') {
 					html = bible.eng2p.highlightPlurals( html );
 				} else if (eng2pSetting.eng2p != 'none') {
-					html = bible.eng2p.replacePlurals( html );				
+					html = bible.eng2p.replacePlurals( html );
 				}
-				
+
 				verse.html( html );
 
 			};
-		});	
+		});
 	}
 
 	// run transforms
 	var ext = {
 		sendMessage: function() {}
-	};	
+	};
 	ext = $.extend(true, ext, EventEmitter);
-	
-	
+
+
 	ext.on('message', function(e) {
 		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
-			
-	
-			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {	
+
+
+			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {
 				//console.log('Eng2P', e.data.content.attr('data-id'));
-			
+
 				runPluralTransforms(e.data.content);
 			}
-			
+
 
 		}
-			
-	});	
-	
-	
-	return ext;	
+
+	});
+
+
+	return ext;
 }
 
 sofia.plugins.push('Eng2pPlugin');
@@ -322,44 +322,44 @@ sofia.plugins.push('Eng2pPlugin');
 bible.eng2p = {
 
 	youPluralRegExp:  /\b([yY])ou(r|rs|rselves)?\b/g,
-	
+
 	youPluralSubject: "Y'all",
 	youPluralPossessiveDeterminer: "Y'all's",
 	youPluralPossessivePronoun: "Y'all's",
-	youPluralReflexive: "Y'allselves",	
-	
+	youPluralReflexive: "Y'allselves",
+
 	removePluralTransforms: function(node) {
 		// remove the changed words
 		node.find('.eng2p-corrected').remove();
-		
+
 		// remove the surrounding spans
 		node.find('.eng2p-highlight').each(function() {
 			var span = this;
-			
+
 			this.parentNode.replaceChild(document.createTextNode(span.textContent), this);
 		});
-		
-		// remove the surrounding spans		
+
+		// remove the surrounding spans
 		node.find('.eng2p-original').each(function() {
 			var span = this;
-			
+
 			this.parentNode.replaceChild(document.createTextNode(span.textContent), this);
-		});		
+		});
 	},
-	
+
 	highlightPlurals: function(input) {
-		var output = input.replace(bible.eng2p.youPluralRegExp, function(match, $1, $2, offset, originalString) { 			
-		
+		var output = input.replace(bible.eng2p.youPluralRegExp, function(match, $1, $2, offset, originalString) {
+
 			// return the greatness
-			return '<span class="eng2p-highlight">' + match + '</span>';	
-		});	
-			
+			return '<span class="eng2p-highlight">' + match + '</span>';
+		});
+
 		return output;
-	},		
-	
+	},
+
 	replacePlurals: function(input) {
-		
-		var output = input.replace(bible.eng2p.youPluralRegExp, function(match, $1, $2, offset, originalString) { 			
+
+		var output = input.replace(bible.eng2p.youPluralRegExp, function(match, $1, $2, offset, originalString) {
 			var replacement = '';
 
 			// you, your, yours checker
@@ -379,27 +379,27 @@ bible.eng2p = {
 				default:
 					replacement = match; // 'UNKNOWN [' + match + ',' + $1 + ']';
 					break;
-					
+
 			}
-			
+
 			// You vs. you
 			if ($1 === $1.toUpperCase()) {
 				replacement = replacement.substring(0,1).toUpperCase() + replacement.substring(1);
 			} else {
 				replacement = replacement.substring(0,1).toLowerCase() + replacement.substring(1);
 			}
-			
+
 			// replace standard ' with ’
-			replacement = replacement.replace(/'/gi,'&rsquo;');		
-		
-		
+			replacement = replacement.replace(/'/gi,'&rsquo;');
+
+
 			// return the greatness
-			return '<span class="eng2p-original">' + match + '</span><span class="eng2p-corrected">' + replacement + '</span>';	
+			return '<span class="eng2p-original">' + match + '</span><span class="eng2p-corrected">' + replacement + '</span>';
 		});
-	
+
 		return output;
 	},
-		
+
 
 	secondPersonPlurals: [
 // Logos @R?2?P on ESV Reverse Interlinear
@@ -497,5 +497,5 @@ bible.eng2p = {
 "J11_2","J11_3","J11_5","J12_1","J12_7","J12_8","J12_12","J12_13","J12_14","J12_15","J12_18","J12_20","J12_21","J12_24","J12_26","J12_27","J12_28","J12_29","J13_1","J13_5","J13_7","J13_11","J13_13","J13_15","J14_1","J14_2","J14_3","J14_4","J15_13","J15_21",
 "J21_6","J21_8","J21_10","J21_12",
 "JD1_2","JD1_3","JD1_5","JD1_12","JD1_17","JD1_18","JD1_20","JD1_21","JD1_22","JD1_23","JD1_24",
-"RV1_4","RV1_9","RV2_10","RV2_13","RV2_23","RV2_24","RV2_25","RV6_16","RV7_3","RV11_12","RV12_12","RV14_7","RV16_1","RV18_4","RV18_6","RV18_7","RV18_20","RV19_5","RV19_17","RV19_18","RV22_16"	]	
+"RV1_4","RV1_9","RV2_10","RV2_13","RV2_23","RV2_24","RV2_25","RV6_16","RV7_3","RV11_12","RV12_12","RV14_7","RV16_1","RV18_4","RV18_6","RV18_7","RV18_20","RV19_5","RV19_17","RV19_18","RV22_16"	]
 };

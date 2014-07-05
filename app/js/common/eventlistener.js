@@ -17,7 +17,7 @@ var EventEmitter = {
 			}
 		}
 		return false;
-	},	
+	},
 	dispatchEvent: function (eventName) {
 		var i,
 			args,
@@ -30,16 +30,16 @@ var EventEmitter = {
 			}
 		}
 	},
-	
+
 	clearListeners: function() {
 		this.events = [];
 	},
-	
+
 	// jQuery like names
 	on: function(eventName, callback, bubble) {
-		this.addEventListener.call(this, eventName, callback, bubble);	
+		this.addEventListener.call(this, eventName, callback, bubble);
 	},
 	trigger: function(eventName, value) {
-		this.dispatchEvent.call(this, eventName, value);	
+		this.dispatchEvent.call(this, eventName, value);
 	}
 };

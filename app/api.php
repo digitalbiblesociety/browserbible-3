@@ -29,12 +29,12 @@ $fileext = $fileparts[count($fileparts)-1];
 
 
 if ($fileext == 'json') {
-	
+
 	// do nothing
-	
-} else if ($fileext == 'html' || $fileext == 'txt') {	
+
+} else if ($fileext == 'html' || $fileext == 'txt') {
 	$obj = array("text" => $filecontents);
-	
+
 	$jsonformatted = json_encode($obj);
 }
 

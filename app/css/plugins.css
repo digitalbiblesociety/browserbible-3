@@ -93,7 +93,7 @@
 
 .big-image {
 	position: absolute;
-	z-index: 100;	
+	z-index: 100;
 }
 
 /* Video */
@@ -120,7 +120,7 @@
 	background: transparent;
 	width: 20px;
 	height: 20px;
-	background: transparent url(images/video-icon-overlay.svg) center center no-repeat;	
+	background: transparent url(images/video-icon-overlay.svg) center center no-repeat;
 }
 
 
@@ -128,5 +128,5 @@
 /* Eng 2p Texan */
 #config-eng2p th, config-eng2p td {
 	text-align: left;
-	
+
 }

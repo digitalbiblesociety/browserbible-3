@@ -18,7 +18,7 @@ a {
 	background: #333;
 	color: #fff;
 	text-align: center;
-	position: relative;	
+	position: relative;
 	font-family: Avenir, Helvetica;
 }
 
@@ -30,17 +30,17 @@ a {
 	color: #fff;
 }
 
-header .prev, 
+header .prev,
 header .next,
 header .home,
 footer .home,
-footer .prev, 
+footer .prev,
 footer .next,
-.header .prev, 
+.header .prev,
 .header .next,
 .header .home,
 .footer .home,
-.footer .prev, 
+.footer .prev,
 .footer .next {
 	font-family: Arial;
 	position: absolute;
@@ -80,7 +80,7 @@ footer .next,
 	width: 40px;
 	top: 0;
 	right: 5px;
-	padding: 8px;	
+	padding: 8px;
 }
 
 
@@ -140,7 +140,7 @@ header .home {
 .texts-index .name {
 	font-size: 14pt;
 	padding-top: 5px;
-	display: block;	
+	display: block;
 }
 
 
@@ -149,7 +149,7 @@ header .home {
 	border-collapse: collapse;
 }
 .texts-index-list td, .texts-index-list th {
-	padding: 5px;	
+	padding: 5px;
 	vertical-align: top;
 }
 
@@ -176,7 +176,7 @@ header .home {
 .text-index .name {
 	font-size: 14pt;
 	padding-top: 5px;
-	display: block;	
+	display: block;
 }
 
 
@@ -184,45 +184,45 @@ header .home {
 .division-index .name {
 	font-size: 14pt;
 	padding-top: 5px;
-	display: block;	
-	
+	display: block;
+
 }
 
-.division-list li {	
+.division-list li {
 	border-bottom: 1px solid #ddd;
 }
 .division-list li a {
 	display: block;
-	padding: 8px;	
+	padding: 8px;
 }
 .division-list li:hover {
-	background-color: #ccc;	
+	background-color: #ccc;
 }
 .division-list li.division-list-header {
 	background-color: #2a85e8;
 	color: #fff;
 	text-align: center;
-	padding: 5px;	
+	padding: 5px;
 }
 
 /* chapter index */
 
 
-.section-list li {	
+.section-list li {
 	border-bottom: 1px solid #ddd;
 }
 .section-list li a {
 	display: block;
-	padding: 5px;	
+	padding: 5px;
 }
 .section-list li:hover {
-	background-color: #ccc;	
+	background-color: #ccc;
 }
 .section-list li.book-list-header {
 	background-color: #2a85e8;
 	color: #fff;
 	text-align: center;
-	padding: 5px;	
+	padding: 5px;
 }
 
 
@@ -260,9 +260,9 @@ header .home {
 	top: 0.25em;
 	left: 0;
 	width: 10px;
-	font-size: 0.6em;	
+	font-size: 0.6em;
 	display: block;
-	text-align: right;	
+	text-align: right;
 }
 .footnotes .footnote .backref  {
 	color: #2a85e8;
@@ -310,12 +310,12 @@ header .home {
 
 
 /* main bible verse, text formating */
-.section, 
+.section,
 .chapter	{
 	line-height: 1.8;
 }
-.section p, 
-.section div.p, 
+.section p,
+.section div.p,
 .chapter div.p {
 	text-indent:1em;
 }
@@ -326,22 +326,22 @@ header .home {
 .chapter[dir=rtl] .chapter-num                              {float:right;margin:0 0 .5em .5em;}
 .verse-num, .v-num                                          {font-weight:bold;font-size:70%;vertical-align:top;color:#333; font-family: avenir, helvetica;}
 
-[lang=heb], 
-.section[lang=he] .p, 
-.section[lang=heb] .p, 
+[lang=heb],
+.section[lang=he] .p,
+.section[lang=heb] .p,
 .chapter[lang=he] .p
-.chapter[lang=heb] .p { 
-	font-family:'SBL Hebrew', 'Ezra SIL', EzraSILRegular !important; 
+.chapter[lang=heb] .p {
+	font-family:'SBL Hebrew', 'Ezra SIL', EzraSILRegular !important;
 	font-size: 125%;
 }
 
 [lang=gre],
-[lang=grc], 
-.section[lang=grc] .p, 
-.section[lang=gre] .p, 
+[lang=grc],
+.section[lang=grc] .p,
+.section[lang=gre] .p,
 .chapter[lang=grc] .p,
 .chapter[lang=gre] .p {
-	font-family:'Gentium', GentiumPlus !important; 
+	font-family:'Gentium', GentiumPlus !important;
 }
 
 
@@ -366,7 +366,7 @@ header .home {
 
 .bibleref {
 	color:#7491CE;
-	cursor: pointer;	
+	cursor: pointer;
 }
 
 .bibleref:hover {
@@ -386,11 +386,11 @@ header .home {
 /* special display for Psalms */
 span[class^='verse PSA_']                                    {display:block;}
 
-	
+
 
 
 /* most books */
-.section .c, 
+.section .c,
 .section .chapter-num,
 .section .c-num {
 	float: left;
@@ -407,7 +407,7 @@ span[class^='verse PSA_']                                    {display:block;}
 [dir=rtl] .section .c-num {
 	float: right;
 	margin-right: 0em;
-	margin-left: 0.2em;	
+	margin-left: 0.2em;
 }
 
 
@@ -416,7 +416,7 @@ div.c + div.p,
 	text-indent: 0 !important;
 }
 div.c + div.q {
-	clear: both; 
+	clear: both;
 }
 .v-1 {
 	display: none;
@@ -448,25 +448,25 @@ div[lang="heb"] .c {
 div[lang="heb"] {
 	font-family: 'Ezra SIL', 'SBL Hebrew';
 	direction: rtl;
-	text-align: right;	
-	
+	text-align: right;
+
 }
 
 div[lang="heb"] div.p {
 	direction: rtl;
-	text-align: right;	
+	text-align: right;
 }
 
 
-h3.is1, 
-div.s, 
+h3.is1,
+div.s,
 div.is1 {
 	color: #333;
 	font-weight: bold;
 }
 
 .PS .s, .PS .ms {
-	text-align: center;	
+	text-align: center;
 }
 
 .q {
@@ -478,7 +478,7 @@ div.is1 {
 .q2 {
 	padding-left: 4em  !important;
 	text-indent: -1.5em !important;
-	position: relative;	
+	position: relative;
 }
 .q .verse-num,
 .q .v-num {
@@ -492,7 +492,7 @@ div.is1 {
 .qs {
 	text-align: right;
 	font-style: italic;
-	
+
 }
 
 .c + .p,
@@ -515,7 +515,7 @@ div.is1 {
 	font-size: 2.0em;
 	margin-top: 3.0em;
 	margin-bottom: 1.0em;
-	line-height: 1.2;	
+	line-height: 1.2;
 }
 .mt2, .mt3 {
 	display: block;

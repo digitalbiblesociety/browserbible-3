@@ -3,28 +3,28 @@
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 	}
-	
+
 	html, body {
 		margin: 0;
-		padding: 0;		
+		padding: 0;
 		height: 100%;
 		width: 100%;
 	}
-	
+
 	.clear {
 		cleaR: both;
 	}
-	
-	
+
+
 	/* Body */
-	
+
 	#main {
-		padding: 30px 0 0 0;				
+		padding: 30px 0 0 0;
 		overflow: hidden;
 		font-family: Palatino;
 		font-size: 18px;
 	}
-	
+
 	#header {
 		display: hidden;
 		position: fixed;
@@ -32,9 +32,9 @@
 		left: 0;
 		width: 100%;
 		height: 60px;
-		background: rgba(0,0,0,0.7);	
+		background: rgba(0,0,0,0.7);
 	}
-	
+
 	#footer {
 		position: fixed;
 		bottom: 0;
@@ -43,7 +43,7 @@
 		height: 60px;
 		background: rgba(0,0,0,0.7);
 	}
-	
+
 	#info {
 		position: fixed;
 		top: 0;
@@ -58,23 +58,23 @@
 		border-bottom: solid 1px #ccc;
 		padding: 10px 0;
 		font-family: Helvetica;
-		font-size: 10px;				
+		font-size: 10px;
 	}
-	
+
 	#text-nav {
 		min-width: 100px;
 		float: left;
-	}		
+	}
 	#texts-list {
 		min-width: 100px;
 		float: right;
 		text-align: right;
-	}			
-	
-	
-	
+	}
+
+
+
 	/* NAV */
-	
+
 	.text-navigator {
 		position: absolute;
 		top: 0;
@@ -86,13 +86,13 @@
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
 	}
-	
+
 	.text-navigator .text-navigator-header {
 		background: #333;
 		padding: 8px;
 		color: #fff;
 	}
-	
+
 	.text-navigator .text-navigator-division {
 		float: left;
 		width: 40px;
@@ -103,7 +103,7 @@
 		text-align: center;
 		padding: 10px 0 0 0;
 	}
-	
+
 	/* penta */
 	.text-navigator .divisionid-GEN,
 	.text-navigator .divisionid-EXO,
@@ -112,7 +112,7 @@
 	.text-navigator .divisionid-DEU	 {
 		background: #efe;
 	}
-	
+
 	.text-navigator .divisionid-JOSH,
 	.text-navigator .divisionid-JDG,
 	.text-navigator .divisionid-RUT,
@@ -124,10 +124,10 @@
 	.text-navigator .divisionid-CH2,
 	.text-navigator .divisionid-EZR,
 	.text-navigator .divisionid-NEH,
-	.text-navigator .divisionid-EST {	
+	.text-navigator .divisionid-EST {
 		background: #eef;
 	}
-	
+
 	.text-navigator .divisionid-JOB,
 	.text-navigator .divisionid-PSA,
 	.text-navigator .divisionid-PRO,
@@ -135,7 +135,7 @@
 	.text-navigator .divisionid-SNG {
 		background: #fef;
 	}
-	
+
 	.text-navigator .divisionid-ISA,
 	.text-navigator .divisionid-JER,
 	.text-navigator .divisionid-LAM,
@@ -143,7 +143,7 @@
 	.text-navigator .divisionid-DAN {
 		background: #fee;
 	}
-	
+
 	.text-navigator .divisionid-HOS,
 	.text-navigator .divisionid-JOL,
 	.text-navigator .divisionid-AMO,
@@ -158,7 +158,7 @@
 	.text-navigator .divisionid-MAL {
 		background: #ffe;
 	}
-	
+
 
 	/* gospels */
 	.text-navigator .divisionid-MAT,
@@ -166,9 +166,9 @@
 	.text-navigator .divisionid-LUK,
 	.text-navigator .divisionid-JHN {
 		background: #fee;
-	}		
-	
-	
+	}
+
+
 	.text-navigator .divisionid-ROM,
 	.text-navigator .divisionid-CO1,
 	.text-navigator .divisionid-CO2,
@@ -182,10 +182,10 @@
 	.text-navigator .divisionid-TI2,
 	.text-navigator .divisionid-TIT,
 	.text-navigator .divisionid-PHM {
-		background: #eef;	
+		background: #eef;
 	}
-	
-	
+
+
 	.text-navigator .divisionid-HEB,
 	.text-navigator .divisionid-JAM,
 	.text-navigator .divisionid-PE1,
@@ -196,12 +196,12 @@
 	.text-navigator .divisionid-JDE {
 		background: #eff;
 	}
-	
+
 	.text-navigator .divisionid-REV {
 		background: #fef;
 	}
-	
-	
+
+
 	.text-navigator .text-navigator-section {
 		float: left;
 		width: 40px;
@@ -211,8 +211,8 @@
 		color: #333;
 		text-align: center;
 		padding: 10px 0 0 0;
-	}		
-	
+	}
+
 	.text-chooser {
 		position: absolute;
 		top: 0;
@@ -222,22 +222,22 @@
 		padding: 1px 0 0 1px;
 		font-family: Avenir;
 		overflow: auto;
-		-webkit-overflow-scrolling: touch;		
+		-webkit-overflow-scrolling: touch;
 	}
-	
+
 	.text-chooser-row-header {
 		background: #ccc;
 		font-size: bold;
 		height: 2.0em;
-		line-height: 2.0em;		
+		line-height: 2.0em;
 	}
-	
+
 	.text-chooser-row {
 		overflow: hidden;
 		height: 2.0em;
 		line-height: 2.0em;
-	}	
-	
+	}
+
 	.text-chooser-row .text-chooser-abbr {
 
 		font-size: bold;
@@ -245,16 +245,16 @@
 		margin: 0 10px 0;
 		text-align: right;
 		display: inline-block;
-	}	
+	}
 	.text-chooser-row .text-chooser-name {
 		display: inline-block;
-		
+
 	}
-	
 
-	
 
-	
+
+
+
 	.footer-button {
 		width: 50px;
 		height: 40px;
@@ -267,54 +267,54 @@
 	}
 	#move-forward {
 		float: right;
-	}	
-	
+	}
+
 	.chapter+.chapter {
 		margin-top: 1.0em;
 	}
-	
+
 	.chapter .cf, .chapter .note {
 		display: none;
 	}
-	
+
 	.pages {
 		overflow: hidden;
 	}
-	
+
 	/* size of container */
 	.pages-container {
 		overflow: hidden;
-		
-	}	
-	
+
+	}
+
 	/* as wide as all the current content */
 	.pages-wrapper {
 		overflow: hidden;
 		position: relative;
-		
+
 		-webkit-backface-visibility: hidden;
 	}
-	
+
 	.pages-transition {
 	    -webkit-transition:all 0.3s ease-in-out;
 	    -moz-transition:all 0.3s ease-in-out;
 	    -o-transition:all 0.3s ease-in-out;
-	    transition:all 0.3s ease-in-out;	
-	    
-	}			
-	
+	    transition:all 0.3s ease-in-out;
+
+	}
+
 	.page {
 		padding: 20px 20px 10px 20px;
 		text-align: justify;
 		-webkit-backface-visibility: hidden;
 	}
-	
+
 	@media screen and (min-width: 640px) {
-		
+
 		#main {
 			font-size: 16px;
 		}
-		
+
 		#info {
 			position: fixed;
 			top: 0;
@@ -329,42 +329,42 @@
 			border-bottom: solid 1px #ccc;
 			padding: 20px 0;
 			font-family: Helvetica;
-			font-size: 12px;				
-		}		
-	
+			font-size: 12px;
+		}
+
 		.page {
 			column-count:2;
 			-moz-column-count:2; /* Firefox */
-			-webkit-column-count:2; /* Safari and Chrome */		
-			
+			-webkit-column-count:2; /* Safari and Chrome */
+
 			column-gap: 30px;
 			-moz-column-gap: 30px; /* Firefox */
-			-webkit-column-gap: 30px; /* Safari and Chrome */		
-			
+			-webkit-column-gap: 30px; /* Safari and Chrome */
+
 			padding: 30px 30px 15px 30px;
 		}
 	}
-	
+
 	.section p {
 		margin: 0;
 	}
-	
-	
+
+
 	p.split-first {
 		text-indent: 0;
 	}
-	
+
 	p.split-end {
 		text-align-last: justify;
 		-webkit-text-align-last: justify;
 		-moz-text-align-last: justify;
 		padding-bottom: -20px;
-	}	
-	
+	}
+
 	.book-page-number {
 		text-align: center;
 	}
-	
+
 	/* hack for safari/chrome */
 	/*
 	p.split-end:after {
@@ -375,5 +375,5 @@
 		margin: 0;
 		padding: 0;
 	}
-	*/	
-	
+	*/
+

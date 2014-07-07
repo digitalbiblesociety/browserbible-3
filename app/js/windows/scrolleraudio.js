@@ -229,7 +229,7 @@ var AudioController = function(id, container, ui, scroller) {
 			sectionid = newSectionid;
 
 
-			// only do a checks when we need to!
+			// only do checks when we need to!
 			if (loadNewData) {
 
 				var audioOption = optionsDramaticDrama.is(':checked') ? 'drama' : optionsDramaticAudio.is(':checked') ? 'audio' : '';
@@ -253,10 +253,10 @@ var AudioController = function(id, container, ui, scroller) {
 							return;
 						} else {
 
-							// if we got a URL, then show the ear icon again
+							// if we get a URL, then show the ear icon again
 							ui.show();
 
-							// only when the previous data was null, do we re-show the control bar
+							// only when the previous data was null, do we reshow the control bar
 							if (fragmentAudioData == null) {
 								// let's not do it ever
 								//block.show();

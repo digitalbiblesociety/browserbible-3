@@ -14,13 +14,13 @@ sofia.config = {
 	],
 
 	// URL to content
-	// (1) Leave bank to use local content folder.
+	// (1) Leave blank to use local content folder.
 	// (2) Enter URL (http://www.biblesite.com/) for CORS enabled sites
-	// (3) Enter URL (http://www.biblesite.com/) and udpdate
+	// (3) Enter URL (http://www.biblesite.com/) and update
 	baseContentUrl: '',
 
-	// (1) leave blank for local files or for CORS enabled CDN
-	// (2) enter path of script that will convert all files to JSONP (e.g., api.php)
+	// (1) Leave blank for local files or for CORS enabled CDN
+	// (2) Enter path of script that will convert all files to JSONP (e.g., api.php)
 	baseContentApiPath: '',
 
 	// if your are creating a CDN for your content (see above) and want to send a key
@@ -32,8 +32,8 @@ sofia.config = {
 	// URL to about page
 	aboutPagePath: 'about.html',
 
-	// (1) leave blank for JSON search
-	// (2) enter path of script that will return JSON data
+	// (1) Leave blank for JSON search
+	// (2) Enter path of script that will return JSON data
 	serverSearchPath: '',
 
 	// texts shown before the "MORE" button ("eng-NASB1995", "eng-kjv", "eng_net")
@@ -48,7 +48,7 @@ sofia.config = {
 	// new commentary window
 	newCommentaryWindowTextId: 'comm_eng_wesley',
 
-	// langauge for top
+	// language for top
 	pinnedLanguage: 'English',
 
 	// URL to custom CSS

@@ -85,7 +85,7 @@ var MainLogo = function(node) {
 
 							console.log("No local about.html");
 
-							// this one will to through the CDN
+							// this one will go through the CDN
 							sofia.ajax({
 								url: sofia.config.aboutPagePath,
 								dataType: 'text',
@@ -463,7 +463,7 @@ var AddWindowButton = function(node) {
 		// when starting a bible or commentary window, try to match it up with the others
 		if (settings.type == 'BibleWindow' || settings.type == 'CommentaryWindow') {
 
-			// get location from ifrst window
+			// get location from first window
 			var
 				firstBCWindow = (sofia.app.windowManager) ?
 									sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow' || w.className == 'CommentaryWindow'})[0] :
@@ -896,7 +896,7 @@ var ConfigUrl = function(node) {
 
 
 	function updateUrl() {
-			// get settings from al windows
+			// get settings from all windows
 		var windowSettings = sofia.app.windowManager.getSettings(),
 			existingParams = stringUtility.parseQuerystring();
 			newParams = {},

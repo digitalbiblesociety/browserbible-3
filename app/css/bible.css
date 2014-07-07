@@ -22,18 +22,6 @@
 	font-style: normal;
 }
 
-/* book name */
-/*
-.mt {
-	display: block;
-	text-align:center;
-	font-size:2em;
-	margin:1.2em 0;
-}
-*/
-
-
-
 
 /* main bible verse, text formating */
 .section,
@@ -70,16 +58,6 @@
 	font-family:'Gentium', GentiumPlus !important;
 }
 
-
-/*
-.chapter h3, .chapter .c {
-	font-weight: bold;
-	line-height: 1.4;
-	margin: 1.5em 0 0.5em 0;
-}
-*/
-
-
 /* notes and cross references */
 .note,.cf                                                   {display:inline;}
 .note .key,.cf .key                                         {vertical-align:top;font-size:60%;font-weight: normal; font-style: normal; color:#7491CE;cursor:pointer;display:inline; text-decoration: none; }
@@ -112,12 +90,6 @@
 
 .chapter .note .text,.chapter .cf .text,
 #search-results .note,#search-results .cf                   {display:none;}
-
-/* special display for Psalms */
-/* span[class^='v PS_']                                    {display:block;}
-*/
-
-
 
 
 /* most books */

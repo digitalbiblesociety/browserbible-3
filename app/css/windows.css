@@ -66,21 +66,6 @@ input:focus {
 	}
 
 
-
-/*
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),
-	only screen and (min-device-pixel-ratio:1.5) {
-
-	.window .window-header {
-		border:none;
-		box-shadow: inset 0 0 1px #000,
-
-                0 1px 1px -1px rgba(0, 0, 0, .5);
-	}
-
-}
-*/
-
 		.window .window-header .header-input,
 		.window .window-header .header-list {
 			float: left;
@@ -173,11 +158,6 @@ input:focus {
 			display: none;
 		}
 
-		/*
-		.window:hover .window-close-button {
-			display:block;
-		}
-		*/
 		.window .window-close-button:hover {
 			background-color: #d5998b;
 			background-position: 0 -20px;
@@ -213,17 +193,6 @@ input:focus {
 				padding: 6px;
 			}
 
-
-
-			/*
-			.one-window .window .window-header .info-button {
-				float: right;
-				display: none;
-			}
-			.one-window .window .window-header .audio-button {
-				display: none;
-			}
-			*/
 		}
 
 
@@ -1163,10 +1132,6 @@ input:focus {
 
 
 .highlight {
-	/*
-	background: #ffff00;
-	border-bottom: solid 1px #ffcc00;
-	*/
 	background: #ffff99;
 }
 .linked-location {

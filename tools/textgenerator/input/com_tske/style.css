@@ -1,6 +1,6 @@
 .note-word {
-	display: block;
-	margin: 1.0em 0 0.25em 0;
-	color: #333;
-	font-style: italic;
+  display: block;
+  margin: 1em 0 .25em;
+  color: #333;
+  font-style: italic;
 }

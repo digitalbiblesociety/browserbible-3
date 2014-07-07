@@ -1,224 +1,214 @@
-	* {
-		box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-	}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 
-	html, body {
-		margin: 0;
-		padding: 0;
-		height: 100%;
-		width: 100%;
-		overflow: hidden;
-	}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 
-	.clear {
-		clear: both;
-	}
+.clear {
+  clear: both;
+}
 
+/* Body */
+.scroller-container {
+  --padding: 20px;
+}
 
-	/* Body */
-	.scroller-container {
-		--padding: 20px;
-	}
+.scroller-main {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: Palatino;
+  font-size: 18px;
+  padding: 0 30px;
+  background: #fff;
+}
 
-	.scroller-main {
-		overflow: auto;
-		-webkit-overflow-scrolling: touch;
-		font-family: Palatino;
-		font-size: 18px;
-		padding: 0 30px;
-		background: #fff;
-	}
+.scroller-header {
+  margin: 0 30px;
+  height: 50px;
+  padding: 20px 0 0;
+  background: #fff;
+}
 
-	.scroller-header {
-		margin: 0px 30px 0 30px;
-		height: 50px;
-		padding: 20px 0 0 0 ;
-		background: #fff;
-	}
+.scroller-header-inner {
+  height: 30px;
+  -margin: 0 20px;
+  color: #ccc;
+  border-bottom: solid 1px #ccc;
+  padding: 10px 0;
+  font-family: Helvetica;
+  font-size: 10px;
+  box-shadow: 0 0 20px #fff;
+}
 
-	.scroller-header-inner {
-		height: 30px;
-		-margin: 0 20px;
-		color: #ccc;
-		border-bottom: solid 1px #ccc;
-		padding: 10px 0;
-		font-family: Helvetica;
-		font-size: 10px;
-		box-shadow: 0 0 20px #fff;
-	}
+.text-nav {
+  min-width: 120px;
+  float: left;
+  margin-right: 15px;
+}
 
-	.text-nav {
-		min-width: 120px;
-		float: left;
-		margin-right: 15px;
-	}
-	.text-list {
-		-x-min-width: 100px;
-		float: left;
-		text-align: left;
-	}
+.text-list {
+  -x-min-width: 100px;
+  float: left;
+  text-align: left;
+}
 
+.footer-button {
+  width: 50px;
+  height: 40px;
+  display: block;
+  background: #333;
+  margin: 10px;
+}
 
+#move-back {
+  float: left;
+}
 
+#move-forward {
+  float: right;
+}
 
+.chapter+.chapter {
+  margin-top: 1em;
+}
 
-	.footer-button {
-		width: 50px;
-		height: 40px;
-		display: block;
-		background: #333;
-		margin: 10px;
-	}
-	#move-back {
-		float: left;
-	}
-	#move-forward {
-		float: right;
-	}
+.chapter .cf,
+.chapter .note {
+  display: none;
+}
 
-	.chapter+.chapter {
-		margin-top: 1.0em;
-	}
+.pages {
+  overflow: hidden;
+}
 
-	.chapter .cf, .chapter .note {
-		display: none;
-	}
+/* size of container */
+.pages-container {
+  overflow: hidden;
+}
 
-	.pages {
-		overflow: hidden;
-	}
+/* as wide as all the current content */
+.pages-wrapper {
+  overflow: hidden;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+}
 
-	/* size of container */
-	.pages-container {
-		overflow: hidden;
+.pages-transition {
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
 
-	}
+.page {
+  padding: 20px 20px 10px;
+  text-align: justify;
+  -webkit-backface-visibility: hidden;
+}
 
-	/* as wide as all the current content */
-	.pages-wrapper {
-		overflow: hidden;
-		position: relative;
+@media screen and min-width 640px {
+  #main {
+    font-size: 16px;
+    padding: 30px 20px 0;
+  }
 
-		-webkit-backface-visibility: hidden;
-	}
+  #info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+  }
 
-	.pages-transition {
-	    -webkit-transition:all 0.3s ease-in-out;
-	    -moz-transition:all 0.3s ease-in-out;
-	    -o-transition:all 0.3s ease-in-out;
-	    transition:all 0.3s ease-in-out;
+  #info-inner {
+    height: 40px;
+    margin: 0 30px;
+    color: #ccc;
+    border-bottom: solid 1px #ccc;
+    padding: 20px 0;
+    font-family: Helvetica;
+    font-size: 12px;
+  }
+}
 
-	}
+.section p {
+  margin: 0;
+}
 
-	.page {
-		padding: 20px 20px 10px 20px;
-		text-align: justify;
-		-webkit-backface-visibility: hidden;
-	}
+p.split-first {
+  text-indent: 0;
+}
 
-	@media screen and (min-width: 640px) {
+p.split-end {
+  text-align-last: justify;
+  -webkit-text-align-last: justify;
+  -moz-text-align-last: justify;
+  padding-bottom: -20px;
+}
 
-		#main {
-			font-size: 16px;
-			padding: 30px 20px 0 20px;
-		}
+.book-page-number {
+  text-align: center;
+}
 
-		#info {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 40px;
-		}
-		#info-inner {
-			height: 40px;
-			margin: 0 30px;
-			color: #ccc;
-			border-bottom: solid 1px #ccc;
-			padding: 20px 0;
-			font-family: Helvetica;
-			font-size: 12px;
-		}
-	}
+/* hack for safari/chrome */
+/*
+p.split-end: after {
+content: "";
+display: inline-block;
+width: 100%;
+height: 0;
+margin: 0;
+padding: 0;
+}
+ */
+/*
+.windows-main .scroller-container .scroller-header {
+margin: 0;
+padding: 20px;
+background: #EEE;
+border-bottom: solid 1px #ccc;
+height: 70px;
+box-shadow: 0 5px 10px rbga(0,0,0,0.5);
+z-index: 1;
+}
+  */
+.windows-main .scroller-container .scroller-header-inner {
+  font-size: 12px;
+  box-shadow: none;
+  padding: 0;
+  border: 0;
+}
 
-	.section p {
-		margin: 0;
-	}
+.windows-main .scroller-container .scroller-header-inner .text-nav {
+  border: solid 1px #ccc;
+  padding: 5px;
+  color: #999;
+  background: #fff;
+  /*
+  padding: 5px 5px 5px 5px;
+  background: #dedede;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #020202;
+    */
+}
 
-
-	p.split-first {
-		text-indent: 0;
-	}
-
-	p.split-end {
-		text-align-last: justify;
-		-webkit-text-align-last: justify;
-		-moz-text-align-last: justify;
-		padding-bottom: -20px;
-	}
-
-	.book-page-number {
-		text-align: center;
-	}
-
-	/* hack for safari/chrome */
-	/*
-	p.split-end:after {
-		content: "";
-		display: inline-block;
-		width: 100%;
-		height: 0;
-		margin: 0;
-		padding: 0;
-	}
-	*/
-
-
-
-	/*
-	.windows-main .scroller-container .scroller-header {
-		margin: 0;
-		padding: 20px;
-		background: #EEE;
-		border-bottom: solid 1px #ccc;
-		height: 70px;
-		box-shadow: 0 5px 10px rbga(0,0,0,0.5);
-		z-index: 1;
-	}
-	*/
-
-	.windows-main .scroller-container .scroller-header-inner {
-		font-size: 12px;
-		box-shadow: none;
-		padding: 0;
-		border: 0;
-
-	}
-
-	.windows-main .scroller-container .scroller-header-inner .text-nav {
-
-		border: solid 1px #ccc;
-		padding: 5px 5px 5px 5px;
-		color: #999;
-		background : #fff;
-
-		/*
-		padding: 5px 5px 5px 5px;
-		background: #dedede;
-		border-radius: 5px;
-		cursor: pointer;
-		color: #020202;
-		*/
-	}
-	.windows-main .scroller-container .scroller-header-inner .text-list {
-		/*
-		padding: 5px  5px 5px 20px;
-		background: #dedede;
-		border-radius: 5px;
-		cursor: pointer;
-		color: #020202;
-		cursor: pointer;
-		*/
-	}
+.windows-main .scroller-container .scroller-header-inner .text-list {
+  /*
+  padding: 5px  5px 5px 20px;
+  background: #dedede;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #020202;
+  cursor: pointer;
+   */
+}

@@ -97,9 +97,9 @@ TextSearch = function() {
 
 	function startServerSearch(textInfo, searchText, isLemmaSearch) {
 
-		sofia.ajax({
+		$.ajax({
 			dataType: 'jsonp',
-			url: sofia.config.serverSearchPath,
+			url: sofia.config.baseContentUrl + sofia.config.serverSearchPath,
 			data: {
 				textid: textInfo.id,
 				search: searchText.toLowerCase(),

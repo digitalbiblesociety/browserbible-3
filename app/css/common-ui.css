@@ -107,7 +107,7 @@
 		border-bottom-color: #ccc;
 	}
 	.text-navigator .text-navigator-section:hover {
-		border-bottom-color: #ccc;
+		outline: solid 1px #2a85e8;
 	}
 
 	.text-navigator-divisions-full .text-navigator-division{
@@ -119,7 +119,9 @@
 		padding: 5px 0 0 10px;
 
 	}
-
+	.text-navigator-divisions-full[dir=rtl] .text-navigator-division {
+		text-align: right;
+	}
 
 	.text-navigator-fullname {
 		position: absolute;
@@ -251,6 +253,13 @@
 		text-align: center;
 		padding: 10px 0 0 0;
 		cursor: pointer;
+	}
+	.text-navigator .text-navigator-section:hover {
+		outline: solid 1px #2a85e8
+	}
+	
+	.text-navigator-sections[dir=rtl] .text-navigator-section {
+		float: right;
 	}
 
 	.text-chooser {

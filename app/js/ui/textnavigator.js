@@ -108,13 +108,13 @@ var TextNavigator = function(container, target) {
 			case 'bible':
 			case 'commentary':
 				renderDivisions();
-				changer.find('.text-navigator-divisions').show();
+				changer.find('.text-navigator-divisions').show().attr('dir', textInfo.dir).attr('lang', textInfo.lang);
 				changer.find('.text-navigator-sections').hide();
 				break;
 			case 'book':
 				renderSections();
 				changer.find('.text-navigator-divisions').hide();
-				changer.find('.text-navigator-sections').show();
+				changer.find('.text-navigator-sections').show().attr('dir', textInfo.dir).attr('lang', textInfo.lang);
 				break;
 
 		}
@@ -174,9 +174,7 @@ var TextNavigator = function(container, target) {
 				if (textInfo.sections[j].substring(0,2) == divisionid) {
 					num_of_chapters++;
 				}
-
 			}
-
 			// or
 			//num_of_chapters = book.chapters.length;
 
@@ -221,12 +219,13 @@ var TextNavigator = function(container, target) {
 				var selected_division = changer.find('.text-navigator-division.selected'),
 					divisionid = selected_division.attr('data-id'),
 					divisionname = selected_division.attr('data-name'),
-					num_of_chapters = parseInt(selected_division.attr('data-chapters'), 10);
+					num_of_chapters = parseInt(selected_division.attr('data-chapters'), 10),
+					numbers = typeof textInfo.numbers != 'undefined' ? textInfo.numbers : bible.numbers.default;
 
 				title.html( divisionname );
 
 				for (var chapter=1; chapter<=num_of_chapters; chapter++) {
-					html.push('<span class="text-navigator-section" data-id="' + divisionid + chapter + '">' + chapter.toString() + '</span>');
+					html.push('<span class="text-navigator-section" data-id="' + divisionid + chapter + '">' + numbers[chapter].toString() + '</span>');
 				}
 
 				break;
@@ -246,7 +245,11 @@ var TextNavigator = function(container, target) {
 
 
 		changer.find('.text-navigator-divisions').hide();
-		changer.find('.text-navigator-sections').html(html).show();
+		changer.find('.text-navigator-sections')
+				.html(html)
+				.attr('dir', textInfo.dir)
+				.attr('lang', textInfo.lang)
+				.show();
 	}
 
 

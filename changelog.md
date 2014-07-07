@@ -1,6 +1,11 @@
 Change Log
 =======
 
+3.1.5 - in progress
+----
+
+* Localization support for chapter numbers through `"numbers"` array in version/info.json (also RTL support)
+
 3.1.4 - 2014/07/07
 ----
 

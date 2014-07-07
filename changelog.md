@@ -1,10 +1,10 @@
 Change Log
 =======
 
-3.1.4 - WORKING
+3.1.4 - 2014/07/07
 ----
 
-* Fixed CDN searches (johndyer)
+* Bug: Fixed CDN searches (johndyer)
 * Standardize Whitespace/Line Endings (alerque)
 * Fix Turkish (alerque)
 * Updates to generator tools (alerque + runlevelsix)

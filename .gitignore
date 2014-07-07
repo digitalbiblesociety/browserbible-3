@@ -6,6 +6,7 @@ tools/_old/
 content/texts/
 build/
 config-custom.js
+app/content/media/**/*.jpg
 app/content/texts/
 !app/content/texts/README.md
 **/node_modules/

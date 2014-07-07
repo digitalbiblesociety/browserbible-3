@@ -34,11 +34,30 @@
 	text-indent:1em;
 }
 
-.section ins                                                {text-decoration:none;font-style:italic;}
-.chapter-num                                                {float:left;font-size:2em;line-height:1;margin:0 .25em .5em 0;}
-.chapter-num + p                                            {text-indent: 0 ;}
-.chapter[dir=rtl] .chapter-num                              {float:right;margin:0 0 .5em .5em;}
-.verse-num, .v-num                                          {font-weight:bold;font-size:70%;vertical-align:top;color:#333; font-family: avenir, helvetica;}
+.section ins {
+  text-decoration:none;
+  font-style:italic;
+}
+.chapter-num {
+  float:left;
+  font-size:2em;
+  line-height:1;
+  margin:0 .25em .5em 0;
+}
+.chapter-num + p {
+  text-indent: 0 ;
+}
+.chapter[dir=rtl] .chapter-num {
+  float:right;
+  margin:0 0 .5em .5em;
+}
+.verse-num, .v-num {
+  font-weight:bold;
+  font-size:70%;
+  vertical-align:top;
+  color:#333;
+  font-family: avenir, helvetica;
+}
 
 [lang=heb],
 .section[lang=he] .p,
@@ -59,14 +78,35 @@
 }
 
 /* notes and cross references */
-.note,.cf                                                   {display:inline;}
-.note .key,.cf .key                                         {vertical-align:top;font-size:60%;font-weight: normal; font-style: normal; color:#7491CE;cursor:pointer;display:inline; text-decoration: none; }
-.chapter .note .key:hover,.chapter .cf.key:hover            {color:#fff;background:#3333cc;}
-.chapter .note .text,.chapter .cf .text                     {display:none;}
-.document-footer .cf .key,.document-footer .note .key       {display:inline;vertical-align:top;font-size:8px;font-weight:bold;color:#3333cc;}
+.note,.cf {
+  display:inline;
+}
+.note .key,.cf .key {
+  vertical-align:top;
+  font-size:60%;
+  font-weight: normal;
+  font-style: normal;
+  color:#7491CE;
+  cursor:pointer;
+  display:inline;
+  text-decoration: none;
+}
+.chapter .note .key:hover,.chapter .cf.key:hover {
+  color:#fff;
+  background:#3333cc;
+}
+.chapter .note .text,.chapter .cf .text {
+  display:none;
+}
+.document-footer .cf .key,.document-footer .note .key {
+  display:inline;
+  vertical-align:top;
+  font-size:8px;
+  font-weight:bold;
+  color:#3333cc;
+}
 
 .text .notetype { font-weight: bold; font-style: italic;}
-
 
 .bibleref, .xt {
 	color:#7491CE;
@@ -86,7 +126,6 @@
 .yhwh, .nog {
 	font-variant: small-caps;
 }
-
 
 .chapter .note .text,.chapter .cf .text,
 #search-results .note,#search-results .cf                   {display:none;}
@@ -112,7 +151,6 @@
 	margin-right: 0em;
 	margin-left: 0.2em;
 }
-
 
 div.c + div.p,
 .chapter-num + div.p {
@@ -213,7 +251,6 @@ div.is1 {
 }
 
 
-
 /* USFM */
 .mt {
 	display: block;
@@ -233,6 +270,7 @@ div.is1 {
 .mt2 + .mt, .mt3 + .mt, .mt2 + .mt3, .mt2 + .mt2{
 	margin-top: 0em;
 }
+
 
 /* introduction */
 .is {

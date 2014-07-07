@@ -1,14 +1,14 @@
 /* fonts */
 @font-face {
   font-family: GentiumPlus;
-  src: url(fonts/gentiumplus-r-webfont.woff) format(woff);
+  src: local('Gentium Plus'), url(fonts/gentiumplus-r-webfont.woff) format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: EzraSILRegular;
-  src: url(fonts/sileot-webfont.woff) format(woff);
+  font-family: EzraSIL;
+  src: local('Ezra SIL'), url(fonts/sileot-webfont.woff) format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -60,7 +60,7 @@
 .section[lang=heb] .p,
 .chapter[lang=he] .p,
 .chapter[lang=heb] .p {
-  font-family: 'SBL Hebrew', 'Ezra SIL', EzraSILRegular!important;
+  font-family: 'SBL Hebrew', EzraSIL!important;
   font-size: 1.5em;
 }
 
@@ -207,7 +207,7 @@ div[lang=heb] .c {
 }
 
 div[lang=heb] {
-  font-family: 'Ezra SIL', 'SBL Hebrew';
+  font-family: 'SBL Hebrew', EzraSIL;
   direction: rtl;
   text-align: right;
 }

@@ -18,10 +18,6 @@ body {
 }
 
 /* Body */
-.scroller-container {
-  --padding: 20px;
-}
-
 .scroller-main {
   overflow: auto;
   -webkit-overflow-scrolling: touch;

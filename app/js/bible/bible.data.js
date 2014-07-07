@@ -358,10 +358,6 @@ bible.NT_BOOKS = ["MT","MK","LK","JN","AC","RM","C1","C2","GL","EP","PP","CL","H
 /**
  * @description Default order of Apocryphal books
  */
-//bible.AP_BOOKS_USFM =
-//["BEL","SUS","JDT","MAN","SIR","SIP","TOB","WIS","PAZ","LJE","BAR","LJB","BA2","LBA","MAC","MA1","MA2","MA3","MA4","ODE","PSO","PJE","JUB"]
-
-
 bible.AP_BOOKS_OSIS = ["Tob","Jdt","EsthGr","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
 
 bible.AP_BOOKS_USFM =
@@ -370,46 +366,6 @@ bible.AP_BOOKS_USFM =
 bible.AP_BOOKS =
 ["TB","JT","ED","AE","WS","SR","BR","LJ","S3Y","SN","BL","M1","M2","E1"]
 
-/*
-"PM":{"name":"Paul's Letter to Philemon","sortOrder":87,"shortCode":"PM","usfm":"PHM","osis":"Phlm",
-    "chapters":[25],
-    "names":{"eng":["Philemon","Pm","Phile","Phile","Philm","Pm"]}},
-"PX":{"name":"Psalm 151","sortOrder":56,"shortCode":"PX","usfm":"PS2","osis":"AddPs",
-    "chapters":[null],
-    "names":{"eng":["Psalm 151"]}},
-"M3":{"name":"3 Maccabees","sortOrder":57,"shortCode":"M3","usfm":"3MA","osis":"3Macc",
-    "chapters":[],
-    "names":{"eng":["3 Maccabees"]}},
-"E2":{"name":"2 Esdras","sortOrder":58,"shortCode":"E2","usfm":"2ES","osis":"2Esd",
-    "chapters":[],
-    "names":{"eng":["2 Esdras","5 Ezra"]}},
-"M4":{"name":"4 Maccabees","sortOrder":59,"shortCode":"M4","usfm":"4MA","osis":"4Macc",
-    "chapters":[],
-    "names":{"eng":["4 Maccabees"]}},
-"OS":{"name":"Odes of Solomon","sortOrder":60,"shortCode":"OS","usfm":"ODS","osis":"OdesSol",
-    "chapters":[],
-    "names":{"eng":["Odes of Solomon"]}},
-"SP":{"name":"Psalms of Solomon","sortOrder":61,"shortCode":"SP","usfm":"PSS","osis":"PssSol",
-    "chapters":[],
-    "names":{"eng":["Psalms of Solomon"]}},
-"LL":{"name":"Epistle to the Laodiceans","sortOrder":62,"shortCode":"LL","usfm":"EPL","osis":"EpLao",
-    "chapters":[],
-    "names":{"eng":["Epistle to the Laodiceans"]}},
-"N1":{"name":"Ethiopic Apocalypse of Enoch","sortOrder":63,"shortCode":"N1","usfm":"1EN","osis":"1En",
-    "chapters":[],
-    "names":{"eng":["Ethiopic Apocalypse of Enoch"]}},
-"JE":{"name":"Jubilees","sortOrder":64,"shortCode":"JE","usfm":"JUB","osis":"Jub",
-    "chapters":[],
-    "names":{"eng":["Jubilees"]}},
-"AD":{"name":"Additions to Daniel","sortOrder":65,"shortCode":"AD","usfm":"DNT","osis":"AddDan",
-    "chapters":[null,null,null,null,null,null,null,null,null,null,null,null,null,null],
-    "names":{"eng":["Additions to Daniel"]}},
-"DG":{"name":"Daniel (Greek)","sortOrder":66,"shortCode":"DG","usfm":"DAG","osis":"DanGr",
-    "chapters":[null,null,null,null,null,null,null,null,null,null,null,null],
-    "names":{"eng":["Daniel (Greek)"]}},
-*/
-
-//["Tob","Jdt","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
 
 /**
  * @description Default order of Apocryphal books
@@ -424,7 +380,7 @@ bible.APOCRYPHAL_BIBLE = bible.OT_BOOKS.concat(bible.AP_BOOKS, bible.NT_BOOKS);
 
 
 /**
- * @description Adds names in bulk for a language
+ * @description Adds names in bulk for a language (each version contains their own list of book names)
  */
 bible.addNames = function(lang, bookList, namesData) {
 	for (var i in bookList) {
@@ -449,129 +405,6 @@ bible.addNames = function(lang, bookList, namesData) {
 	}
 }
 
-// Burmese
-/*
-bible.addNames("bur",bible.DEFAULT_BIBLE,[
-"ကမၻာဦးက်မ္း  ","ထြက္ေျမာက္ရာက်မ္း  ","ဝတ္ျပဳရာက်မ္း  ","ေတာလည္ရာက်မ္း  ","တရားေဟာရာက်မ္း   ","ေယာရႈမွတ္စာ  ","တရားသူႀကီးမွတ္စာ   ","ရုသဝတၳဳ   ","ဓမၼရာဇဝင္ပဌမေစာင္   ","ဓမၼရာဇဝင္ဒုတိယေစာင္   ","ဓမၼရာဇဝင္တတိယေစာင္ ","ဓမၼရာဇဝင္စတုတၳေစာင္   ","ရာဇဝင္ခ်ဳပ္ပဌမေစာင္   ","ရာဇဝင္ခ်ဳပ္ဒုတိယေစာင္   ","ဧဇရမွတ္စာ  ","ေနဟမိမွတ္စာ   ","ဧသတာဝတၱဳ   ","ေယာဘဝတၱဳ   ","ဆာလံက်မ္း   ","သုတၱံက်မ္း   ","ေဒသနာက်မ္း   ","ေရွာလမုန္သီခ်င္း   ","ေဟရွာယအနာဂတိၱက်မ္း   ","ေယရမိအနာဂတၱိက်မ္း   ","ေယရမိျမည္တမ္းစကား   ","ေယဇေက်လအနာကတၱိက်မ္း   ","ဒံေယလအနာဂတၱိက်မ္း   ","ေဟာေရွအနာဂတၱိက်မ္း   ","ေယာလအနာဂတၱိက်မ္း   ","အာမုတ္အနာဂတၱိက်မ္း   ","ၾသဗဒိဗ်ာဒိတ္ရူပါရုံ   ","ေယာနဝတၳဳ   ","မိကၡာအနာဂတၱိက်မ္း   ","နာဟံုအနာဂတၱိက်မ္း   ","ဟဗကၠဳတ္အနာဂတၱိက်မ္း   ","ေဇဖနိအနာဂတၱိက်မ္း   ","ဟဂၢဲအနာဂတၱိက်မ္း   ","ဇာခရိအနာဂတၱိက်မ္း   ","မာလခိအနာဂတၱိက်မ္း   ","ရွင္မႆဲခရစ္ဝင္   ","ရွင္မာကုခရစ္ဝင္   ","ရွင္လုကာခရစ္ဝင္   ","ရွင္ေယာဟန္ခရစ္ဝင္   ","တမန္ေတာ္ဝတၳဳ   ","ေရာမၾသဝါဒစာ   ","ေကာရိ ႏၱဳ ၾသဝါဒစာပဌမေစာင္  ","ေကာရိ သု ၾသဝါဒစာဒုတိယေစာင္   ","ဂလာတိၾသဝါဒစာ   ","ဧဖက္ၾသဝါဒစာ   ","ဖိလိပၸိၾသဝါဒစာ   ","ေကာေလာသဲၾသဝါဒစာ   ","သက္သာေလာနိတ္ၾသဝါဒစာပဌမေစာင္   ","သက္သာေလာနိတ္ၾသဝါဒစာဒုတိယေစာင္   ","တိေမာေသၾသဝါဒပဌမေစာင္   ","တိေမာေသၾသဝါဒစာဒုတိယေစာင္   ","တိတုၾသဝါဒစာ   ","ဖိေလမုန္ၾသဝါဒစာ   ","ေဟျဗဲၾသဝါဒစာ   ","ရွင္ယာကုပ္ၾသဝါဒစာ   ","ရွင္ေပတရုၾသဝါဒစာပဌမေစာင္   ","ရွင္ေပတရုၾသဝါဒစာဒုတိယေစာင္   ","ရွင္ေယာဟန္ၾသဝါဒစာပဌမေစာင္    ","ရွင္ေယာဟန္ၾသဝါဒစာဒုတိယေစာင္    ","ရွင္ေယာဟန္ၾသဝါဒစာတတိယေစာင္   ","ရွင္ယုဒၾသဝါဒစာ   ","ဗ်ာဒိတ္က်မ္း   "
-]);
-
-// spanish
-bible.addNames("spa", bible.DEFAULT_BIBLE, [
-	"Génesis","Exodo","Levítico","Números","Deuteronomio","Josué","Jueces","Rut","1 Samuel","2 Samuel","1 Reyes","2 Reyes","1 Crónicas","2 Crónicas","Esdras","Nehemías","Ester","Job","Salmos","Proverbios","Eclesiastés","Cantares","Isaías","Jeremías","Lamentaciones","Ezequiel","Daniel","Oseas","Joel","Amós","Abdías","Jonás","Miqueas","Nahúm","Habacuc","Sofonías","Hageo","Zacarías","Malaquías",
-	"Mateo","Marcos","Lucas","Juan","Hechos","Romanos","1 Corintios","2 Corintios","Gálatas","Efesios","Filipenses","Colosenses","1 Tesalonicenses","2 Tesalonicenses","1 Timoteo","2 Timoteo","Tito","Filemón","Hebreos","Santiago","1 Pedro","2 Pedro","1 Juan","2 Juan","3 Juan","Judas","Apocalipsis"
-]);
-
-// French
-bible.addNames("fre",bible.DEFAULT_BIBLE,[
-	"Genèse","Exode","Lévitique","Nombres","Deutéronome","Josué","Juges","Ruth","1 Samuel","2 Samuel","1 Rois","2 Rois","1 Chroniques","2 Chroniques","Esdras","Néhémie","Esther","Job","Psaumes","Proverbes","Ecclésiaste","Cantique","Esaïe","Jérémie","Lamentations","Ezéchiel","Daniel","Osée","Joël","Amos","Abdias","Jonas","Michée","Nahum","Habacuc","Sophonie","Aggée","Zacharie","Malachie",
-	"Matthieu","Marc","Luc","Jean","Actes","Romains","1 Corinthiens","2 Corinthiens","Galates","Ephésiens","Philippiens","Colossiens","1 Thessalonicien","2 Thessalonicien","1 Timothée","2 Timothée","Tite","Philemon","Hébreux","Jacques","1 Pierre","2 Pierre","1 Jean","2 Jean","3 Jean","Jude","Apocalypse"
-]);
-
-// German
-bible.addNames("de",bible.DEFAULT_BIBLE,[
-	"Genesis","Exodus","Levitikus","Numeri","Deuteronomium","Josua","Richter","Rut","1 Samuel","2 Samuel","1 Könige","2 Könige","1 Chronik","2 Chronik","Esra","Nehemia","Ester",["Hiob","Ijob"],"Psalter","Sprichwörter","Kohelet","Hohelied Salmos","Jesaja","Jeremia",["Klagelieder","Jeremias"],["Hesekiel","Ezechiel"],"Daniel","Hosea","Joel","Amos","Obadja","Jona","Micha","Nahum","Habakuk","Zefanja","Haggai","Sacharja","Maleachi",
-	"Matthäus","Markus","Lukas","Johannes","Apostelgeschichte des Lukas","Römer","1 Korinther","2 Korinther","Galater","Epheser","Philipper","Kolosser","1 Thessalonicher","2 Thessalonicher","1 Timotheus","2 Timotheus","Titus","Philemon","Hebräer","Jakobus","1 Petrus","2 Petrus","1 Johannes","2 Johannes","3 Johannes","Judas","Offenbarung des Johannes"
-]);
-
-// Greek
-bible.addNames("gre", bible.DEFAULT_BIBLE, [
-	"ΓΕΝΕΣΙΣ","ΕΞΟΔΟΣ","ΛΕΥΙΤΙΚΟΝ","ΑΡΙΘΜΟΙ","ΔΕΥΤΕΡΟΝΟΜΙΟΝ","ΙΗΣΟΥΣ ΝΑΥΗ","ΚΡΙΤΑΙ","ΡΟΥΘ","ΒΑΣΙΛΕΙΩΝ Α΄","ΒΑΣΙΛΕΙΩΝ B΄","ΒΑΣΙΛΕΙΩΝ Γ΄","ΒΑΣΙΛΕΙΩΝ Δ΄","ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ Α΄","ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ B΄","ΕΣΔΡΑΣ","ΝΕΕΜΙΑΣ","ΕΣΘΗΡ","ΙΩΒ","ΨΑΛΜΟΙ","ΠΑΡΟΙΜΙΑΙ","ΕΚΚΛΗΣΙΑΣΤΗΣ","ΑΣΜΑ ΑΣΜΑΤΩΝ","ΗΣΑΪΑΣ","ΙΕΡΕΜΙΑΣ","ΘΡΗΝΟΙ ΙΕΡΕΜΙΟΥ","ΙΕΖΕΚΙΗΛ ","ΔΑΝΙΗΛ","ΩΣΗΕ","ΙΩΗΛ","ΑΜΩΣ","ΟΒΔΙΟΥ","ΙΩΝΑΣ","ΜΙΧΑΙΑΣ","ΝΑΟΥΜ","ΑΜΒΑΚΟΥΜ","ΣΟΦΟΝΙΑΣ ","ΑΓΓΑΙΟΣ","ΖΑΧΑΡΙΑΣ","ΜΑΛΑΧΙΑΣ",
-	"ΜΑΤΘΑΙΟΝ","ΜΑΡΚΟΝ","ΛΟΥΚΑΝ","ΙΩΑΝΝΗΝ","ΠΡΑΞΕΙΣ","ΡΩΜΑΙΟΥΣ","ΚΟΡΙΝΘΙΟΥΣ Α΄","ΚΟΡΙΝΘΙΟΥΣ Β΄","ΓΑΛΑΤΑΣ","ΕΦΕΣΙΟΥΣ","ΦΙΛΙΠΠΗΣΙΟΥΣ","ΚΟΛΟΣΣΑΕΙΣ","ΘΕΣΣΑΛΟΝΙΚΕΙΣ Α΄","ΘΕΣΣΑΛΟΝΙΚΕΙΣ Β΄","ΤΙΜΟΘΕΟΝ Α΄","ΤΙΜΟΘΕΟΝ Β΄","ΤΙΤΟΝ","ΦΙΛΗΜΟΝΑ","ΕΒΡΑΙΟΥΣ","ΙΑΚΩΒΟΥ","ΠΕΤΡΟΥ Α΄","ΠΕΤΡΟΥ Β΄","ΙΩΑΝΝΟΥ Α΄","ΙΩΑΝΝΟΥ Β΄","ΙΩΑΝΝΟΥ Γ΄","ΙΟΥΔΑ","ΑΠΟΚΑΛΥΨΙΣ"
-]);
-
-// Hebrew
-bible.addNames("heb", bible.OT_BOOKS, [
-	"בראשית","שמות","ויקרא","במדבר","דברים","יהושע","שופטים","רות","שמואל א","שמואל ב","מלכים א","מלכים ב","דברי הימים א","דברי הימים ב","עזרא","נחמיה","אסתר","איוב","תהילים","קהלת","קהלת","שיר השירים","ישעה","ירמיה","איכה","יחזקאל","דניאל","הושע","יואל","עמוס","עבדיה","יונה","מיכה","נחום","חבקוק","צפניה","חגי","זכריה","מלאכי"
-]);
-
-// Russian
-bible.addNames('rus', bible.DEFAULT_BIBLE, [
-	"Бытие","Исход","Левит","Числа","Второзаконие","Иисус Навин","Книга Судей","Руфь","1-я Царств","2-я Царств","3-я Царств","4-я Царств","1-я Паралипоменон","2-я Паралипоменон","Ездра","Неемия","Есфирь","Иов","Псалтирь","Притчи","Екклесиаст","Песни Песней","Исаия","Иеремия","Плач Иеремии","Иезекииль","Даниил","Осия","Иоиль","Амос","Авдия","Иона","Михей","Наум","Аввакум","Софония","Аггей","Захария","Малахия",
-	"От Матфея","От Марка","От Луки","От Иоанна","Деяния","К Римлянам","1-е Коринфянам","2-е Коринфянам","К Галатам","К Ефесянам","К Филиппийцам","К Колоссянам","1-е Фессалоникийцам","2-е Фессалоникийцам","1-е Тимофею","2-е Тимофею","К Титу","К Филимону","К Евреям","Иакова","1-e Петра","2-e Петра","1-e Иоанна","2-e Иоанна","3-e Иоанна","Иуда","Откровение"
-]);
-
-// Chinese (Simplified)
-bible.addNames('chi', bible.DEFAULT_BIBLE, [
-	"創 世 記","出 埃 及 記","利 未 記","民 數 記","申 命 記","約 書 亞 記","士 師 記","路 得 記","撒 母 耳 記 上","撒 母 耳 記 下","列 王 紀 上","列 王 紀 下","歷 代 志 上","歷 代 志 下","以 斯 拉 記","尼 希 米 記","以 斯 帖 記","約 伯 記","詩 篇","箴 言","傳 道 書","雅 歌","以 賽 亞 書","耶 利 米 書","耶 利 米 哀 歌","以 西 結 書","但 以 理 書","何 西 阿 書","約 珥 書","阿 摩 司 書","俄 巴 底 亞 書","約 拿 書","彌 迦 書","那 鴻 書","哈 巴 谷 書","西 番 雅 書","哈 該 書","撒 迦 利 亞","瑪 拉 基 書","馬 太 福 音","馬 可 福 音","路 加 福 音","約 翰 福 音","使 徒 行 傳","羅 馬 書","歌 林 多 前 書","歌 林 多 後 書","加 拉 太 書","以 弗 所 書","腓 立 比 書","歌 羅 西 書","帖 撒 羅 尼 迦 前 書","帖 撒 羅 尼 迦 後 書","提 摩 太 前 書","提 摩 太 後 書","提 多 書","腓 利 門 書","希 伯 來 書","雅 各 書","彼 得 前 書","彼 得 後 書","約 翰 一 書","約 翰 二 書","約 翰 三 書","猶 大 書","启 示 录"
-]);
-
-// Chinese (Traditional)
-bible.addNames('zho', bible.DEFAULT_BIBLE, [
-	"創 世 記","出 埃 及 記","利 未 記","民 數 記","申 命 記","約 書 亞 記","士 師 記","路 得 記","撒 母 耳 記 上","撒 母 耳 記 下","列 王 紀 上","列 王 紀 下","歷 代 志 上","歷 代 志 下","以 斯 拉 記","尼 希 米 記","以 斯 帖 記","約 伯 記","詩 篇","箴 言","傳 道 書","雅 歌","以 賽 亞 書","耶 利 米 書","耶 利 米 哀 歌","以 西 結 書","但 以 理 書","何 西 阿 書","約 珥 書","阿 摩 司 書","俄 巴 底 亞 書","約 拿 書","彌 迦 書","那 鴻 書","哈 巴 谷 書","西 番 雅 書","哈 該 書","撒 迦 利 亞","瑪 拉 基 書","馬 太 福 音","馬 可 福 音","路 加 福 音","約 翰 福 音","使 徒 行 傳","羅 馬 書","歌 林 多 前 書","歌 林 多 後 書","加 拉 太 書","以 弗 所 書","腓 立 比 書","歌 羅 西 書","帖 撒 羅 尼 迦 前 書","帖 撒 羅 尼 迦 後 書","提 摩 太 前 書","提 摩 太 後 書","提 多 書","腓 利 門 書","希 伯 來 書","雅 各 書","彼 得 前 書","彼 得 後 書","約 翰 一 書","約 翰 二 書","約 翰 三 書","猶 大 書","启 示 录"
-]);
-
-// Arabic
-bible.addNames('ara', bible.DEFAULT_BIBLE, [
-	"التكوين","الخروج","اللاويين","العدد","التثنية","يشوع","القضاة","راعوث","صموئيل الأول","صموئيل الثاني","الملوك الأول","الملوك الثاني","أخبار الأيام الأول","أخبار الأيام الثاني","عزرا","نحميا","أستير","أيوب","المزامير","الأمثال","الجامعة","نشيد الأنشاد","أشعياء","أرمياء","مراثي أرمياء","حزقيال","دانيال","هوشع","يوئيل","عاموس","عوبديا","يونان","ميخا","ناحوم","حبقوق","صفنيا","حجي","زكريا","ملاخي","متى","مرقس","لوقا","يوحنا","أعمال الرسل","رومية","1 كورنثوس","2 كورنثوس","غلاطية","أفسس","فيليبي","كولوسي","1 تسالونيكي","2 تسالونيكي","1 تيموثاوس","2 تيموثاوس","تيطس","فيليمون","العبرانيين","يعقوب","1 بطرس","2 بطرس","1 يوحنا","2 يوحنا","3 يوحنا","يهوذا","رؤيا"
-]);
-
-// turkish
-bible.addNames('tur', bible.DEFAULT_BIBLE, [
-["Yaratılış", "Tekvin"],
-["Mısır'dan Çıkıs", "Çıkıs"],
-"Levililer",
-["Çölde Sayım", "Sayılar"],
-"Yasa'nın Tekrarı",
-"Yeşu",
-"Hakimler",
-"Rut",
-"1. Samuel",
-"2. Samuel",
-"1. Krallar",
-"2. Krallar",
-"1. Tarihler",
-"2. Tarihler",
-"Ezra",
-"Nehemya",
-"Ester",
-["Eyüp", "Eyub"],
-"Mezmurlar",
-["Süleyman'ın Özdeyişleri", "Süleyman'ın Meselleri"],
-"Vaiz",
-["Ezgiler Ezgisi", "Nesideler Nesidesi"],
-["Yeşaya", "İsaya"],
-"Yeremya",
-["Ağıtlar", "Yeremya'nın Mersiyeleri"],
-"Hezekiel",
-"Daniel",
-"Hoşea",
-"Yoel",
-"Amos",
-["Ovadya", "Obadya"],
-"Yunus",
-"Mika",
-"Nahum",
-"Habakkuk",
-["Sefanya", "Tsefanya"],
-["Hagay", "Haggay"],
-["Zekeriya", "Zekarya"],
-"Malaki",
-"Matta",
-"Markos",
-"Luka",
-"Yuhanna",
-["Elçilerin İşleri", "Resullerin İşleri"],
-"Romalılar",
-["1. Korintliler", "1. Korintoslular"],
-["2. Korintliler", "2. Korintoslular"],
-"Galatyalılar",
-["Efesliler", "Efesoslular"],
-"Filipililer",
-"Koloseliler",
-"1. Selanikiler",
-"2. Selanikiler",
-"1. Timoteos",
-"2. Timoteos",
-"Titus",
-"Filimon",
-"İbraniler",
-["Yakup", "Yakub"],
-"1 Petrus",
-"2 Petrus",
-"1 Yuhanna",
-"2 Yuhanna",
-"3 Yuhanna",
-"Yahuda",
-"Vahiy"
-]);
-*/
+bible.numbers = {
+	"default":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150"]
+}

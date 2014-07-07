@@ -6,7 +6,6 @@ An update to https://github.com/digitalbiblesociety/browserbible.
 
 ### Building Texts ###
 
-
 1. Install Node.js (http://nodejs.org/download/) for your platform
 2. Navigate to the `/tools/textgenerator` folder
 3. Run `npm install` to install dependencies

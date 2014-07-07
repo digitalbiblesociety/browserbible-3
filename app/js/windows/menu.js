@@ -639,7 +639,7 @@ var FontFamilySettings = function(node) {
 
 	}
 
-	// handle clciks
+	// handle clicks
 	body.on('change', 'input', function() {
 		var radio = $(this),
 			newFontFamilyValue = radio.val();
@@ -673,7 +673,7 @@ var ThemeSetting = function(node) {
 			.appendTo(themesBlock);
 	}
 
-	// handle clciks
+	// handle clicks
 	themesBlock.on('click', '.config-theme-toggle', function() {
 		var span = $(this),
 			selectedTheme = span.attr('data-themename'),
@@ -724,7 +724,7 @@ var LanguageSetting = function(node) {
 			.appendTo(list);
 	}
 
-	// handle clciks
+	// handle clicks
 	list.on('change', function() {
 		var newLang = list.val();
 

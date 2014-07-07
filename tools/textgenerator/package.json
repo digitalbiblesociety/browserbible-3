@@ -7,8 +7,10 @@
     "jquery"   :  "*",
     "uglifyjs" : "*",
     "uglifycss" : "*",
+    "jsdom"    :  "*",
     "progress": "*",
-    "minimist": "*"
+    "minimist": "*",
+    "mkdirp": "*"
   },
   "license": "MIT"
 }

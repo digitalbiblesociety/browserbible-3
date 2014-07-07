@@ -5,3 +5,8 @@ tools/utilities/
 tools/_old/
 content/texts/
 build/
+config-custom.js
+app/content/texts/
+!app/content/texts/README.md
+**/node_modules/
+!**/node_modules/*.js

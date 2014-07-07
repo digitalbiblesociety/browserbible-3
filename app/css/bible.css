@@ -96,7 +96,7 @@ body:not(.config-font-family-Libertine) .chapter[lang=heb] .p {
 .section[lang=heb] .p,
 .chapter[lang=he] .p,
 .chapter[lang=heb] .p {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 body:not(.config-font-family-Libertine) [lang=gre],

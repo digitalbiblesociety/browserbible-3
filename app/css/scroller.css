@@ -3,7 +3,7 @@
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 	}
-	
+
 	html, body {
 		margin: 0;
 		padding: 0;
@@ -11,17 +11,17 @@
 		width: 100%;
 		overflow: hidden;
 	}
-	
+
 	.clear {
 		clear: both;
 	}
-	
-	
+
+
 	/* Body */
 	.scroller-container {
 		--padding: 20px;
 	}
-	
+
 	.scroller-main {
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
@@ -37,7 +37,7 @@
 		padding: 20px 0 0 0 ;
 		background: #fff;
 	}
-	
+
 	.scroller-header-inner {
 		height: 30px;
 		-margin: 0 20px;
@@ -45,25 +45,25 @@
 		border-bottom: solid 1px #ccc;
 		padding: 10px 0;
 		font-family: Helvetica;
-		font-size: 10px;	
-		box-shadow: 0 0 20px #fff;			
+		font-size: 10px;
+		box-shadow: 0 0 20px #fff;
 	}
-	
+
 	.text-nav {
 		min-width: 120px;
 		float: left;
 		margin-right: 15px;
-	}		
+	}
 	.text-list {
 		-x-min-width: 100px;
 		float: left;
 		text-align: left;
-	}			
-	
-	
-	
+	}
 
-	
+
+
+
+
 	.footer-button {
 		width: 50px;
 		height: 40px;
@@ -76,55 +76,55 @@
 	}
 	#move-forward {
 		float: right;
-	}	
-	
+	}
+
 	.chapter+.chapter {
 		margin-top: 1.0em;
 	}
-	
+
 	.chapter .cf, .chapter .note {
 		display: none;
 	}
-	
+
 	.pages {
 		overflow: hidden;
 	}
-	
+
 	/* size of container */
 	.pages-container {
 		overflow: hidden;
-		
-	}	
-	
+
+	}
+
 	/* as wide as all the current content */
 	.pages-wrapper {
 		overflow: hidden;
 		position: relative;
-		
+
 		-webkit-backface-visibility: hidden;
 	}
-	
+
 	.pages-transition {
 	    -webkit-transition:all 0.3s ease-in-out;
 	    -moz-transition:all 0.3s ease-in-out;
 	    -o-transition:all 0.3s ease-in-out;
-	    transition:all 0.3s ease-in-out;	
-	    
-	}			
-	
+	    transition:all 0.3s ease-in-out;
+
+	}
+
 	.page {
 		padding: 20px 20px 10px 20px;
 		text-align: justify;
 		-webkit-backface-visibility: hidden;
 	}
-	
+
 	@media screen and (min-width: 640px) {
-		
+
 		#main {
 			font-size: 16px;
 			padding: 30px 20px 0 20px;
 		}
-		
+
 		#info {
 			position: fixed;
 			top: 0;
@@ -139,30 +139,30 @@
 			border-bottom: solid 1px #ccc;
 			padding: 20px 0;
 			font-family: Helvetica;
-			font-size: 12px;				
+			font-size: 12px;
 		}
 	}
-	
+
 	.section p {
 		margin: 0;
 	}
-	
-	
+
+
 	p.split-first {
 		text-indent: 0;
 	}
-	
+
 	p.split-end {
 		text-align-last: justify;
 		-webkit-text-align-last: justify;
 		-moz-text-align-last: justify;
 		padding-bottom: -20px;
-	}	
-	
+	}
+
 	.book-page-number {
 		text-align: center;
 	}
-	
+
 	/* hack for safari/chrome */
 	/*
 	p.split-end:after {
@@ -173,10 +173,10 @@
 		margin: 0;
 		padding: 0;
 	}
-	*/	
-	
-	
-	
+	*/
+
+
+
 	/*
 	.windows-main .scroller-container .scroller-header {
 		margin: 0;
@@ -188,22 +188,22 @@
 		z-index: 1;
 	}
 	*/
-	
+
 	.windows-main .scroller-container .scroller-header-inner {
 		font-size: 12px;
 		box-shadow: none;
 		padding: 0;
 		border: 0;
-	
+
 	}
-	
+
 	.windows-main .scroller-container .scroller-header-inner .text-nav {
-		
+
 		border: solid 1px #ccc;
 		padding: 5px 5px 5px 5px;
 		color: #999;
 		background : #fff;
-		
+
 		/*
 		padding: 5px 5px 5px 5px;
 		background: #dedede;
@@ -220,5 +220,5 @@
 		cursor: pointer;
 		color: #020202;
 		cursor: pointer;
-		*/	
+		*/
 	}

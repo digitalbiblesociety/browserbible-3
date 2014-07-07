@@ -185,7 +185,7 @@ bible.BOOK_DATA = {
     "names":{"eng":["Psalm 151"]}},
 "PN":{"name":"Prayer of Manasseh","sortOrder":56,"shortCode":"PN","usfm":"MAN","osis":"PrMan",
     "chapters":[null],
-    "names":{"eng":["Prayer of Manasseh"]}},    
+    "names":{"eng":["Prayer of Manasseh"]}},
 "M3":{"name":"3 Maccabees","sortOrder":57,"shortCode":"M3","usfm":"3MA","osis":"3Macc",
     "chapters":[],
     "names":{"eng":["3 Maccabees"]}},
@@ -332,17 +332,17 @@ bible.BOOK_DATA = {
     "names":{"eng":["Topical Index"]}},
 "NX":{"name":"Names Index","sortOrder":109,"shortCode":"NX","usfm":"NDX","osis":"Name",
     "chapters":[null],
-    "names":{"eng":["Names Index"]}}    
-} 
- 
+    "names":{"eng":["Names Index"]}}
+}
+
 /**
  * @description Default order of Old Testament books
  */
 bible.OT_BOOKS_OSIS = ["Gen","Exod","Lev","Num","Deut","Josh","Judg","Ruth","1Sam","2Sam","1Kgs","2Kgs","1Chr","2Chr","Ezra","Neh","Esth","Job","Ps","Prov","Eccl","Song","Isa","Jer","Lam","Ezek","Dan","Hos","Joel","Amos","Obad","Jonah","Mic","Nah","Hab","Zeph","Hag","Zech","Mal"];
- 
+
 bible.OT_BOOKS_USFM = ["GEN","EXO","LEV","NUM","DEU","JOS","JDG","RUT","SA1","SA2","KI1","KI2","CH1","CH2","EZR","NEH","EST","JOB","PSA","PRO","ECC","SNG","ISA","JER","LAM","EZK","DAN","HOS","JOL","AMO","OBA","JNA","MIC","NAH","HAB","ZEP","HAG","ZEC","MAL"];
 
-bible.OT_BOOKS = 
+bible.OT_BOOKS =
 ["GN","EX","LV","NU","DT","JS","JG","RT","S1","S2","K1","K2","R1","R2","ER","NH","ET","JB","PS","PR","EC","SS","IS","JR","LM","EK","DN","HS","JL","AM","OB","JH","MC","NM","HK","ZP","HG","ZC","ML"];
 
 
@@ -358,16 +358,16 @@ bible.NT_BOOKS = ["MT","MK","LK","JN","AC","RM","C1","C2","GL","EP","PP","CL","H
 /**
  * @description Default order of Apocryphal books
  */
-//bible.AP_BOOKS_USFM = 
+//bible.AP_BOOKS_USFM =
 //["BEL","SUS","JDT","MAN","SIR","SIP","TOB","WIS","PAZ","LJE","BAR","LJB","BA2","LBA","MAC","MA1","MA2","MA3","MA4","ODE","PSO","PJE","JUB"]
 
- 
-bible.AP_BOOKS_OSIS = ["Tob","Jdt","EsthGr","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];  
- 
-bible.AP_BOOKS_USFM = 
-["TOB","JDT","ESG","ADE","WIS","SIR","BAR","LJE","PA","SUS","BEL","1MA","2MA","1ES"] 
- 
-bible.AP_BOOKS = 
+
+bible.AP_BOOKS_OSIS = ["Tob","Jdt","EsthGr","AddEsth","Wis","Sir","Bar","EpJer","PrAzar","Sus","Bel","1Macc","2Macc","3Macc","4Macc","1Esd","2Esd","Ps151"];
+
+bible.AP_BOOKS_USFM =
+["TOB","JDT","ESG","ADE","WIS","SIR","BAR","LJE","PA","SUS","BEL","1MA","2MA","1ES"]
+
+bible.AP_BOOKS =
 ["TB","JT","ED","AE","WS","SR","BR","LJ","S3Y","SN","BL","M1","M2","E1"]
 
 /*
@@ -431,20 +431,20 @@ bible.addNames = function(lang, bookList, namesData) {
 		var dbsCode = bookList[i],
 			bookInfo = bible.BOOK_DATA[ dbsCode ],
 			names = namesData[i];
-			
-		if (typeof bookInfo != 'undefined') {	
-			
+
+		if (typeof bookInfo != 'undefined') {
+
 			if (typeof names === 'string') {
 				names = [names];
 			}
-			
+
 			if (!bookInfo.names[lang]) {
-				bookInfo.names[lang] = [];				
+				bookInfo.names[lang] = [];
 			}
-			
+
 			// bookInfo.names[lang] = names;
 			bookInfo.names[lang].splice(bookInfo.names[lang].length-1, 0, names);
-		
+
 		}
 	}
 }
@@ -475,7 +475,7 @@ bible.addNames("de",bible.DEFAULT_BIBLE,[
 
 // Greek
 bible.addNames("gre", bible.DEFAULT_BIBLE, [
-	"ΓΕΝΕΣΙΣ","ΕΞΟΔΟΣ","ΛΕΥΙΤΙΚΟΝ","ΑΡΙΘΜΟΙ","ΔΕΥΤΕΡΟΝΟΜΙΟΝ","ΙΗΣΟΥΣ ΝΑΥΗ","ΚΡΙΤΑΙ","ΡΟΥΘ","ΒΑΣΙΛΕΙΩΝ Α΄","ΒΑΣΙΛΕΙΩΝ B΄","ΒΑΣΙΛΕΙΩΝ Γ΄","ΒΑΣΙΛΕΙΩΝ Δ΄","ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ Α΄","ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ B΄","ΕΣΔΡΑΣ","ΝΕΕΜΙΑΣ","ΕΣΘΗΡ","ΙΩΒ","ΨΑΛΜΟΙ","ΠΑΡΟΙΜΙΑΙ","ΕΚΚΛΗΣΙΑΣΤΗΣ","ΑΣΜΑ ΑΣΜΑΤΩΝ","ΗΣΑΪΑΣ","ΙΕΡΕΜΙΑΣ","ΘΡΗΝΟΙ ΙΕΡΕΜΙΟΥ","ΙΕΖΕΚΙΗΛ ","ΔΑΝΙΗΛ","ΩΣΗΕ","ΙΩΗΛ","ΑΜΩΣ","ΟΒΔΙΟΥ","ΙΩΝΑΣ","ΜΙΧΑΙΑΣ","ΝΑΟΥΜ","ΑΜΒΑΚΟΥΜ","ΣΟΦΟΝΙΑΣ ","ΑΓΓΑΙΟΣ","ΖΑΧΑΡΙΑΣ","ΜΑΛΑΧΙΑΣ",	
+	"ΓΕΝΕΣΙΣ","ΕΞΟΔΟΣ","ΛΕΥΙΤΙΚΟΝ","ΑΡΙΘΜΟΙ","ΔΕΥΤΕΡΟΝΟΜΙΟΝ","ΙΗΣΟΥΣ ΝΑΥΗ","ΚΡΙΤΑΙ","ΡΟΥΘ","ΒΑΣΙΛΕΙΩΝ Α΄","ΒΑΣΙΛΕΙΩΝ B΄","ΒΑΣΙΛΕΙΩΝ Γ΄","ΒΑΣΙΛΕΙΩΝ Δ΄","ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ Α΄","ΠΑΡΑΛΕΙΠΟΜΕΝΩΝ B΄","ΕΣΔΡΑΣ","ΝΕΕΜΙΑΣ","ΕΣΘΗΡ","ΙΩΒ","ΨΑΛΜΟΙ","ΠΑΡΟΙΜΙΑΙ","ΕΚΚΛΗΣΙΑΣΤΗΣ","ΑΣΜΑ ΑΣΜΑΤΩΝ","ΗΣΑΪΑΣ","ΙΕΡΕΜΙΑΣ","ΘΡΗΝΟΙ ΙΕΡΕΜΙΟΥ","ΙΕΖΕΚΙΗΛ ","ΔΑΝΙΗΛ","ΩΣΗΕ","ΙΩΗΛ","ΑΜΩΣ","ΟΒΔΙΟΥ","ΙΩΝΑΣ","ΜΙΧΑΙΑΣ","ΝΑΟΥΜ","ΑΜΒΑΚΟΥΜ","ΣΟΦΟΝΙΑΣ ","ΑΓΓΑΙΟΣ","ΖΑΧΑΡΙΑΣ","ΜΑΛΑΧΙΑΣ",
 	"ΜΑΤΘΑΙΟΝ","ΜΑΡΚΟΝ","ΛΟΥΚΑΝ","ΙΩΑΝΝΗΝ","ΠΡΑΞΕΙΣ","ΡΩΜΑΙΟΥΣ","ΚΟΡΙΝΘΙΟΥΣ Α΄","ΚΟΡΙΝΘΙΟΥΣ Β΄","ΓΑΛΑΤΑΣ","ΕΦΕΣΙΟΥΣ","ΦΙΛΙΠΠΗΣΙΟΥΣ","ΚΟΛΟΣΣΑΕΙΣ","ΘΕΣΣΑΛΟΝΙΚΕΙΣ Α΄","ΘΕΣΣΑΛΟΝΙΚΕΙΣ Β΄","ΤΙΜΟΘΕΟΝ Α΄","ΤΙΜΟΘΕΟΝ Β΄","ΤΙΤΟΝ","ΦΙΛΗΜΟΝΑ","ΕΒΡΑΙΟΥΣ","ΙΑΚΩΒΟΥ","ΠΕΤΡΟΥ Α΄","ΠΕΤΡΟΥ Β΄","ΙΩΑΝΝΟΥ Α΄","ΙΩΑΝΝΟΥ Β΄","ΙΩΑΝΝΟΥ Γ΄","ΙΟΥΔΑ","ΑΠΟΚΑΛΥΨΙΣ"
 ]);
 
@@ -572,7 +572,7 @@ bible.addNames('tur', bible.DEFAULT_BIBLE, [
 "2 Yuhanna",
 "3 Yuhanna",
 "Yahuda",
-"Vahiy"	
-	
+"Vahiy"
+
 ]);
 */

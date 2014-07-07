@@ -1,6 +1,6 @@
 // DATA from API becuase API doesn't support JSONP
 /*
-var JesusFilmData = 
+var JesusFilmData =
 {"languages":[{"language":{"name":"A-HMAO","languageId":"22812","isoCode":"hmd","description":"A-HMAO"}},
 {"language":{"name":"AARI","languageId":"4797","isoCode":"aiw","description":"AARI"}},
 {"language":{"name":"ABAU","languageId":"12296","isoCode":"aau","description":"ABAU"}},
@@ -2305,20 +2305,20 @@ var JesusFilmMediaApi = (function() {
 		// get langauges
 		/*
 		$.ajax({
-			
+
 			url: 'http://api.arclight.org/getLanguages?responseType=json&apiKey=' + sofia.config.jfmKey,
 			success: function(data) {
-				
+
 				jfmLanguages = data;
-				
-				
+
+
 				findPlayers();
 			},
 			error: function(a,b,c,d) {
 				console.log('error', a,b,c,d);
 			}
-			
-			
+
+
 		});
 
 		// process data
@@ -2331,48 +2331,48 @@ var JesusFilmMediaApi = (function() {
 
 		}
 		*/
-		
+
 		// since Jesus Filem doesn't have a JSOSP option, we've saved the data below
 		jfmLanguages = JesusFilmDataCompact;
-		
+
 
 		findPlayers();
 	}
-	
-	
+
+
 	function getPlayer(lang, segmentNumber, callback) {
 
 		getPlayerCallbacks.push({lang: lang, segmentNumber: segmentNumber, callback:callback});
-		
+
 		findPlayers();
-		
+
 	}
-	
+
 	function findPlayers() {
-		
+
 		// wait until the languages are loaded
 		if (jfmLanguages == null) {
 			return;
 		}
-		
+
 		// return all results
 		while(getPlayerCallbacks.length > 0) {
 			var callbackInfo = getPlayerCallbacks.pop();
-			
+
 			findPlayer(callbackInfo.lang, callbackInfo.segmentNumber, callbackInfo.callback);
-		}		
+		}
 	}
-	
+
 	function findPlayer(lang, segmentNumber, callback) {
 
 
 		var languageId = jfmLanguages[lang],
 			iframeUrl = '';
-			
+
 		if (typeof languageId == 'undefined' || languageId == null)	{
 			languageId = 529;
 		}
-			
+
 		iframeUrl = 'http://api.arclight.org/videoPlayerUrl?refId=1_' + languageId + '-jf61' + segmentNumber + '-0-0&amp;apiSessionId=' + sofia.config.jfmKey + '&playerStyle=vanilla';
 
 		callback(iframeUrl);
@@ -2382,49 +2382,49 @@ var JesusFilmMediaApi = (function() {
 		// find language first
 		/*
 		var jfmLanguageNumber = '';
-		
+
 		for (var i=0, il=jfmLanguages.length; i<il; i++) {
 			var jfmLanguageInfo = jfmLanguages[i];
-			
+
 			if (jfmLanguageInfo.language.isoCode == lang) {
 				jfmLanguageNumber = jfmLanguageInfo.languageId;
 				break;
-				
-			}			
-		}	
-		
+
+			}
+		}
+
 		// return null if no match
 		if (jfmLanguageNumber == '') {
 			callback(null);
 		}
-		
-			
+
+
 		// get the player
 		$.ajax({
 			url: 'http://api.arclight.org/getAssetDetails?refId=1_' + jfmLanguageNumber + '-jf61' + segmentNumber + '-0-0&apiKey=' + sofia.config.jfmKey + '&requestPlayer=web',
 			success: functi	on(data) {
 				var embedCode = data.embedCode;
-				
+
 				callback(embedCode);
-				
-			}, 
+
+			},
 			error: function() {
-				callback(null);				
+				callback(null);
 			}
-			
+
 		});
 	*/
-			
-		
+
+
 	}
-	
-	
+
+
 	init();
 	var ext = {
 		getPlayer: getPlayer
-		
+
 	}
-	
+
 	return ext;
 })();
 

@@ -23,8 +23,8 @@ border-bottom: solid 1px #ccc;\
 	if (!Detection.hasTouch) {
 
 		$('.windows-main').on('mouseover','l', function(e) {
-			
-			var l = $(this),	
+
+			var l = $(this),
 				morph = l.attr('m'),
 				strongs = l.attr('s'),
 				main = l.closest('.scroller-main'),
@@ -32,20 +32,20 @@ border-bottom: solid 1px #ccc;\
 				section = l.closest('.section'),
 				lang = section.attr('lang'),
 				morphologyType = lang == 'heb' ? 'Hebrew' : lang == 'grc' || lang == 'gre' ? 'Greek' : ''
-				morphInfo = (typeof morph == 'undefined' || morphologyType == '') ? '' : bible.morphology[morphologyType].format(morph);	
-			
+				morphInfo = (typeof morph == 'undefined' || morphologyType == '') ? '' : bible.morphology[morphologyType].format(morph);
+
 			if (morphInfo != null && morphInfo != '') {
 				lemmaInfo.html( morphInfo );
-				
+
 				lemmaInfo.show();
-				
+
 				lemmaInfo.css({
 							left: mainOffset.left + 15 + 'px',
 							top: (mainOffset.top + main.outerHeight() - lemmaInfo.outerHeight() - 10) + 'px'
 							});
 			}
-			
-			
+
+
 		}).on('mouseout','l', function(e) {
 			lemmaInfo.hide();
 		});

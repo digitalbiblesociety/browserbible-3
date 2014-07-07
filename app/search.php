@@ -31,21 +31,21 @@ function uniord($c) {
 
 function hash_word($word) {
 	$HASHSIZE = 20;
-	
+
 	$hash = 0;
 	$word_length = mb_strlen($word, 'UTF-8');
-	
+
 	//echo 'length ' . $word_length . '<br>';
-	
+
 	for ($i=0; $i<$word_length; $i++) {
-		//echo '-letter: ' . mb_substr($word, $i, 1, 'UTF-8') . ', ' . uniord( mb_substr($word, $i, 1, 'UTF-8') ) . '<br>';	
-	
+		//echo '-letter: ' . mb_substr($word, $i, 1, 'UTF-8') . ', ' . uniord( mb_substr($word, $i, 1, 'UTF-8') ) . '<br>';
+
 		$hash += uniord( mb_substr($word, $i, 1, 'UTF-8') );
-		
-		$hash %= $HASHSIZE ;		
+
+		$hash %= $HASHSIZE ;
 	}
-	
-	return $hash;	
+
+	return $hash;
 }
 
 
@@ -86,30 +86,30 @@ foreach ($words as &$word) {
 	$key = '';
 
 	if ($is_lemma_search) {
-		//$path_to_index .= '/indexlemma/' . $word . '.json';		
-		
+		//$path_to_index .= '/indexlemma/' . $word . '.json';
+
 		$key = strtoupper($word);
-		
+
 		$letter = substr($word,0,1);
 		$thousands = '0';
 		if (strlen($word) == 5) {
 			$thousands = substr($word,1,1);
 		}
-		
-		$path_to_index .= '/indexlemma/' . '_' . strtoupper($letter) . $thousands . '000' . '.json';		
-		
-		
+
+		$path_to_index .= '/indexlemma/' . '_' . strtoupper($letter) . $thousands . '000' . '.json';
+
+
 	} else {
-	
+
 		$key = strtolower($word);
 		$hashed = hash_word($word);
-		
-		// load index			
-		$path_to_index .= '/index/_' . $hashed . '.json';					
+
+		// load index
+		$path_to_index .= '/index/_' . $hashed . '.json';
 		$output['hash'] .= $key . ' = ' . $hashed . '; ';
 	}
-	
-		
+
+
 	if (file_exists($path_to_index)) {
 		$file_contents = file_get_contents($path_to_index);
 		$json_data = json_decode($file_contents);
@@ -137,7 +137,7 @@ if ($index_count == 0) {
 	$output["errorMessage"] = $errors;
 	echo json_encode( $output );
 	return;
-	
+
 }
 
 
@@ -147,135 +147,135 @@ if ($search_type == "AND") {
 	if ($index_count == 1) {
 		$combined_index = $indexes[0];
 	} else {
-	
+
 		$first_index = $indexes[0];
-	
-		// filter down to in all verses	
+
+		// filter down to in all verses
 		$combined_index = array_filter($first_index, function( $val ) {
 			$inOtherArrays = TRUE;
-			
+
 			// get values outside this array's scope
-			global $index_count; 
+			global $index_count;
 			global $indexes;
-			
+
 			// go through other arrays
 			for ($ic = 1; $ic < $index_count; $ic++) {
-				
+
 				// if we can't find the verse in any sub arrays then it's not in all
 				if ( !(array_search($val, $indexes[$ic]) > 0)) {
 					$inOtherArrays = FALSE;
 					break;
 				}
 			}
-			
-			return $inOtherArrays;				
-		});		
+
+			return $inOtherArrays;
+		});
 	}
 }
 
 
 
 if (is_array($combined_index)) {
-	
+
 	// load the data
 	foreach ($combined_index as &$verseid) {
 		//$chapter_code = substr($verseid, 0, 2);;
 		$verse_exploded = explode('_', $verseid);
 		$chapter_code = $verse_exploded[0];
 		$verse_html = '';
-		
+
 		// load chapter
 		$path_to_chapter = './content/texts/' . $textid . '/' . $chapter_code . '.html';
-		
+
 		if (!file_exists($path_to_chapter)) {
 			continue;
 		}
-		
+
 		$file_contents = file_get_contents($path_to_chapter);
-		
+
 		// supress HTML5 errors
 		$doc = new DOMDocument();
-		
+
 		$doc->preserveWhiteSpace = true;
 		$doc->formatOutput       = true;
-			
+
 		libxml_use_internal_errors(true);
 		$doc->loadHTML($file_contents);
 		libxml_clear_errors();
 		$XPath = new DOMXPath($doc);
-		
+
 		$doc->preserveWhiteSpace = true;
 		$doc->formatOutput       = true;
-				
+
 		// remove notes
 		$note_nodes = $XPath->query("//span[contains(@class,'note')]");
 		foreach ($note_nodes as $note_node) {
 			$note_node->parentNode->removeChild($note_node);
 		}
-		
+
 		// remove v-num
 		$verse_num_nodes = $XPath->query("//span[contains(@class,'v-num')]");
 		foreach ($verse_num_nodes as $verse_num_node) {
 			$verse_num_node->parentNode->removeChild($verse_num_node);
-		}	
-			
+		}
+
 		// find matching verses
 		//$xpath_query = "//span[contains(@class,'" . $verseid . "')]";
 		$xpath_query = "//span[contains(@class,'v')]";
 		$verse_nodes = $XPath->query($xpath_query);
-			
+
 		foreach ($verse_nodes as $verse_node) {
-			
+
 			//echo $verse_node->nodeValue;
-			
+
 			// need to double check that it's exact (DN1_1, but not DN1_12)
 			if ( preg_match( '/\\b' . $verseid . '\\b/', $verse_node->attributes->getNamedItem('class')->nodeValue ) == 1) {
-				
-				
-				$outXML = $verse_node->ownerDocument->saveXML($verse_node); 
-				$verse_html .= $outXML;		
+
+
+				$outXML = $verse_node->ownerDocument->saveXML($verse_node);
+				$verse_html .= $outXML;
 
 
 				// I thought this woudl be better, but ... I guess not
 				/*
-				$xml = new DOMDocument(); 
-				$xml->preserveWhiteSpace = false; 
-				$xml->formatOutput = true; 
-				$xml->loadXML($outXML); 
-				$verse_html .= $xml->saveXML(); 
+				$xml = new DOMDocument();
+				$xml->preserveWhiteSpace = false;
+				$xml->formatOutput = true;
+				$xml->loadXML($outXML);
+				$verse_html .= $xml->saveXML();
 				*/
-					
+
 				// unncessary I guess
 				/*
 				foreach($verse_node->childNodes as $child_node) {
 					if (is_object($child_node)) {
-					
+
 						//$verse_html .= $dom->saveHTML($child_node);
-						$verse_html .= $verse_node->ownerDocument->saveHTML($child_node);					
+						$verse_html .= $verse_node->ownerDocument->saveHTML($child_node);
 					}
 					$verse_html .= ' ';
 				}
-				*/			
-				
+				*/
+
 				//$verse_html .= $doc->saveHTML($verse_node);
 				// $verse_html .= $verse_node->nodeValue;
 
-				$verse_html .= ' ';			
+				$verse_html .= ' ';
 			}
-			
-			
-			
+
+
+
 		}
-		
+
 		// strange fix for PHP?
 		$verse_html = str_replace('l><', 'l> <', $verse_html);
 		$verse_html = str_replace('<?xml version="1.0"?>','', $verse_html);
-		
+
 		// TODO: highlight?
-		
+
 		// fix entities
 		$verse_html = html_entity_decode($verse_html);
-		
+
 		if (is_null($verse_html) || $verse_html == null) {
 			$verse_html = '';
 		}
@@ -288,9 +288,9 @@ if (is_array($combined_index)) {
 }
 
 
-echo 
+echo
 	($callback != '' ? $callback . '(' : '' ) .
-	json_encode( $output ) . 
+	json_encode( $output ) .
 	($callback != '' ? ');' : '' );
 
 ?>

@@ -4,7 +4,10 @@ Change Log
 3.1.5 - in progress
 ----
 
-* Localization support for chapter numbers through `"numbers"` array in version/info.json (also RTL support)
+* Localization support for chapter numbers through `"numbers"` array in version/info.json and RTL (johndyer)
+* Fixed spelling errors (Zohma)
+* Added `<meta name="google" value="notranslate" />` to prevent Google translate (Zohma)
+* Cleaned up some CSS code (alerque)
 
 3.1.4 - 2014/07/07
 ----

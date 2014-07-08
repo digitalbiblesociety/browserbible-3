@@ -235,7 +235,7 @@ var Scroller = function(node) {
 			if (wrapper.children().length >= 2) {
 
 				// we're removing the first section, so we need to find the first one and
-				// measure where it's first child should appear
+				// measure where its first child should appear
 				var first_node_of_second_section = wrapper.find('.section:eq(1)').children().first(),
 					first_node_offset_before = first_node_of_second_section.offset().top;
 

@@ -220,7 +220,7 @@ var MapWindow = function(id, parentNode, data) {
 		console.log('process time', after - before);
 
 
-		// SO SLOWWWWW!!!!
+		// SO SLOW!
 
 		// create locationDataByVerse
 

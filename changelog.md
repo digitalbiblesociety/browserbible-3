@@ -14,7 +14,6 @@ Change Log
 * Fix Turkish (alerque)
 * Updates to generator tools (alerque + runlevelsix)
 
-
 3.1.3 - 2014/06/29
 ----
 

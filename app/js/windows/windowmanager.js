@@ -207,7 +207,7 @@ var Window = function(id, parentNode, className, data, manager) {
 	};
 	ext = $.extend(true, ext, EventEmitter);
 
-	// recieve from App, send down to controller
+	// receive from App, send down to controller
 	ext.on('message', function(e) {
 		controller.trigger('message', e);
 	});

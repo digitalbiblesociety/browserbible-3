@@ -1,64 +1,67 @@
 /* fonts */
 @font-face {
-	font-family: 'GentiumPlus';
-    src: url('fonts/gentiumplus-r-webfont.eot');
-    src: url('fonts/gentiumplus-r-webfont.eot?#iefix') format('eot'),
-         url('fonts/gentiumplus-r-webfont.woff') format('woff'),
-         url('fonts/gentiumplus-r-webfont.ttf') format('truetype'),
-         url('fonts/gentiumplus-r-webfont.svg#webfontVIEluHTz') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: GentiumPlus;
+  src: local('Gentium Plus'), url(fonts/gentiumplus-r-webfont.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
-
 
 @font-face {
-	font-family: 'EzraSILRegular';
-    src: url('fonts/sileot-webfont.eot');
-    src: url('fonts/sileot-webfont.eot?#iefix') format('eot'),
-         url('fonts/sileot-webfont.woff') format('woff'),
-         url('fonts/sileot-webfont.ttf') format('truetype'),
-         url('fonts/sileot-webfont.svg#webfontVIEluHTx') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: EzraSIL;
+  src: local('Ezra SIL'), url(fonts/sileot-webfont.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
-
-/* book name */
-/*
-.mt {
-	display: block;
-	text-align:center;
-	font-size:2em;
-	margin:1.2em 0;
-}
-*/
-
-
-
 
 /* main bible verse, text formating */
 .section,
-.chapter	{
-	line-height: 1.8;
+.chapter {
+  line-height: 1.8;
 }
+
 .section p,
 .section div.p,
 .chapter div.p {
-	text-indent:1em;
+  text-indent: 1em;
 }
 
-.section ins                                                {text-decoration:none;font-style:italic;}
-.chapter-num                                                {float:left;font-size:2em;line-height:1;margin:0 .25em .5em 0;}
-.chapter-num + p                                            {text-indent: 0 ;}
-.chapter[dir=rtl] .chapter-num                              {float:right;margin:0 0 .5em .5em;}
-.verse-num, .v-num                                          {font-weight:bold;font-size:70%;vertical-align:top;color:#333; font-family: avenir, helvetica;}
+.section ins {
+  text-decoration: none;
+  font-style: italic;
+}
+
+.chapter-num {
+  float: left;
+  font-size: 2em;
+  line-height: 1;
+  margin: 0 .25em .5em 0;
+}
+
+.chapter-num + p {
+  text-indent: 0;
+}
+
+.chapter[dir=rtl] .chapter-num {
+  float: right;
+  margin: 0 0 .5em .5em;
+}
+
+.verse-num,
+.v-num {
+  font-weight: bold;
+  font-size: 70%;
+  vertical-align: top;
+  color: #333;
+  font-family: avenir, helvetica;
+}
 
 [lang=heb],
 .section[lang=he] .p,
 .section[lang=heb] .p,
 .chapter[lang=he] .p,
 .chapter[lang=heb] .p {
-	font-family:'SBL Hebrew', 'Ezra SIL', EzraSILRegular !important;
-	font-size: 1.5em;
+  font-family: 'SBL Hebrew', EzraSIL!important;
+  font-size: 1.5em;
 }
 
 [lang=gre],
@@ -67,219 +70,249 @@
 .section[lang=gre] .p,
 .chapter[lang=grc] .p,
 .chapter[lang=gre] .p {
-	font-family:'Gentium', GentiumPlus !important;
+  font-family: Gentium, GentiumPlus!important;
 }
-
-
-/*
-.chapter h3, .chapter .c {
-	font-weight: bold;
-	line-height: 1.4;
-	margin: 1.5em 0 0.5em 0;
-}
-*/
-
 
 /* notes and cross references */
-.note,.cf                                                   {display:inline;}
-.note .key,.cf .key                                         {vertical-align:top;font-size:60%;font-weight: normal; font-style: normal; color:#7491CE;cursor:pointer;display:inline; text-decoration: none; }
-.chapter .note .key:hover,.chapter .cf.key:hover            {color:#fff;background:#3333cc;}
-.chapter .note .text,.chapter .cf .text                     {display:none;}
-.document-footer .cf .key,.document-footer .note .key       {display:inline;vertical-align:top;font-size:8px;font-weight:bold;color:#3333cc;}
-
-.text .notetype { font-weight: bold; font-style: italic;}
-
-
-.bibleref, .xt {
-	color:#7491CE;
-	cursor: pointer;
+.note,
+.cf {
+  display: inline;
 }
 
-.bibleref:hover, .xt:hover {
-	text-decoration: underline;
+.note .key,
+.cf .key {
+  vertical-align: top;
+  font-size: 60%;
+  font-weight: normal;
+  font-style: normal;
+  color: #7491CE;
+  cursor: pointer;
+  display: inline;
+  text-decoration: none;
 }
 
+.chapter .note .key: hover,
+.chapter .cf.key: hover {
+  color: #fff;
+  background: #33C;
+}
+
+.chapter .note .text,
+.chapter .cf .text {
+  display: none;
+}
+
+.document-footer .cf .key,
+.document-footer .note .key {
+  display: inline;
+  vertical-align: top;
+  font-size: 8px;
+  font-weight: bold;
+  color: #33C;
+}
+
+.text .notetype {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.bibleref,
+.xt {
+  color: #7491CE;
+  cursor: pointer;
+}
+
+.bibleref: hover,
+.xt: hover {
+  text-decoration: underline;
+}
 
 /* Gospels red letters */
-.woc, .wj {
-	color:#aa0000;
+.woc,
+.wj {
+  color: #A00;
 }
 
-.yhwh, .nog {
-	font-variant: small-caps;
+.yhwh,
+.nog {
+  font-variant: small-caps;
 }
 
-
-.chapter .note .text,.chapter .cf .text,
-#search-results .note,#search-results .cf                   {display:none;}
-
-/* special display for Psalms */
-/* span[class^='v PS_']                                    {display:block;}
-*/
-
-
-
+.chapter .note .text,
+.chapter .cf .text,
+#search-results .note,
+#search-results .cf {
+  display: none;
+}
 
 /* most books */
 .section .c,
 .section .chapter-num,
 .section .c-num {
-	float: left;
-	font-size: 2.0em;
-	line-height: 1;
-	font-weight: bold;
-	margin-top: 0;
-	margin-bottom: 0;
-	margin-right: 0.2em;
-	font-family: avenir, helvetica;
+  float: left;
+  font-size: 2em;
+  line-height: 1;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: .2em;
+  font-family: avenir, helvetica;
 }
+
 [dir=rtl] .c,
 [dir=rtl] .section .chapter-num,
 [dir=rtl] .section .c-num {
-	float: right;
-	margin-right: 0em;
-	margin-left: 0.2em;
+  float: right;
+  margin-right: 0;
+  margin-left: .2em;
 }
-
 
 div.c + div.p,
 .chapter-num + div.p {
-	text-indent: 0 !important;
+  text-indent: 0!important;
 }
+
 div.c + div.q {
-	clear: both;
+  clear: both;
 }
+
 .v-1 {
-	display: none;
+  display: none;
 }
 
 /* Psalms */
 .PS .c {
-	font-size: 1.2em;
-	margin-top: 2.0em;
-	text-align: center;
-	float: none;
+  font-size: 1.2em;
+  margin-top: 2em;
+  text-align: center;
+  float: none;
 }
+
 .PS .v-1 {
-	display: inline;
+  display: inline;
 }
-div.c + div.q .v-1{
-	display: inline;
+
+div.c + div.q .v-1 {
+  display: inline;
 }
+
 .v {
-	padding: 0.30em 0;
+  padding: .3em 0;
 }
 
-
-
-div[lang="heb"] .c {
-	float: right;
-	margin-right: 0;
-	margin-left: 0.2em;
+div[lang=heb] .c {
+  float: right;
+  margin-right: 0;
+  margin-left: .2em;
 }
 
-div[lang="heb"] {
-	font-family: 'Ezra SIL', 'SBL Hebrew';
-	direction: rtl;
-	text-align: right;
-
+div[lang=heb] {
+  font-family: 'SBL Hebrew', EzraSIL;
+  direction: rtl;
+  text-align: right;
 }
 
-div[lang="heb"] div.p {
-	direction: rtl;
-	text-align: right;
+div[lang=heb] div.p {
+  direction: rtl;
+  text-align: right;
 }
-
 
 h3.is1,
 div.s,
 div.is1 {
-	color: #333;
-	font-weight: bold;
-	margin-top: 1em;
+  color: #333;
+  font-weight: bold;
+  margin-top: 1em;
 }
 
-.PS .s, .PS .ms {
-	text-align: center;
+.PS .s,
+.PS .ms {
+  text-align: center;
 }
 
 .q {
-	padding-left: 3em  !important;
-	text-indent: -1.5em !important;
-	position: relative;
+  padding-left: 3em!important;
+  text-indent: -1.5em!important;
+  position: relative;
 }
 
 .q2 {
-	padding-left: 4em  !important;
-	text-indent: -1.5em !important;
-	position: relative;
+  padding-left: 4em!important;
+  text-indent: -1.5em!important;
+  position: relative;
 }
+
 .q .verse-num,
 .q .v-num {
-	position: absolute;
-	display: block;
-	width: 2em;
-	text-align: right;
-	top: 0;
-	left: 0;
+  position: absolute;
+  display: block;
+  width: 2em;
+  text-align: right;
+  top: 0;
+  left: 0;
 }
-.qs {
-	text-align: right;
-	font-style: italic;
 
+.qs {
+  text-align: right;
+  font-style: italic;
 }
 
 .c + .p,
 .c + p {
-	margin-top: 0;
-	text-indent: 0;
+  margin-top: 0;
+  text-indent: 0;
 }
 
 .d {
-	font-size: 0.8em;
-	text-align: center;
+  font-size: .8em;
+  text-align: center;
 }
-
-
 
 /* USFM */
 .mt {
-	display: block;
-	text-align: center;
-	font-size: 2.0em;
-	margin-top: 3.0em;
-	margin-bottom: 1.0em;
-	line-height: 1.2;
+  display: block;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 3em;
+  margin-bottom: 1em;
+  line-height: 1.2;
 }
-.mt2, .mt3 {
-	display: block;
-	text-align: center;
-	font-size: 1.4em;
-	margin-top: 3.0em;
-	line-height: 1.2;
+
+.mt2,
+.mt3 {
+  display: block;
+  text-align: center;
+  font-size: 1.4em;
+  margin-top: 3em;
+  line-height: 1.2;
 }
-.mt2 + .mt, .mt3 + .mt, .mt2 + .mt3, .mt2 + .mt2{
-	margin-top: 0em;
+
+.mt2 + .mt,
+.mt3 + .mt,
+.mt2 + .mt3,
+.mt2 + .mt2 {
+  margin-top: 0;
 }
 
 /* introduction */
 .is {
-	margin-top: 1.0em;
-	text-align: center;
-}
-.ip {
-	line-height: 1.2;
-	font-size: 0.9em;
+  margin-top: 1em;
+  text-align: center;
 }
 
+.ip {
+  line-height: 1.2;
+  font-size: .9em;
+}
 
 /* commentaries */
 .comm-v-num {
-	font-weight: bold;
-	display: block;
-	margin: 3em 0 0 0 ;
+  font-weight: bold;
+  display: block;
+  margin: 3em 0 0;
 }
+
 .commentary {
-	line-height: 1.5;
-	font-size: 0.9em;
+  line-height: 1.5;
+  font-size: .9em;
 }

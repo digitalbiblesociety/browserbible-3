@@ -1330,6 +1330,10 @@ border-left: solid 3px #9bd79b;
   font-size: 18px;
 }
 
+.config-font-size-20 .section {
+  font-size: 20px;
+}
+
 .config-font-size-22 .section {
   font-size: 22px;
 }

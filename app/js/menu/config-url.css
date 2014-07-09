@@ -1,0 +1,39 @@
+
+#config-global-url {
+  margin: 10px 0;
+}
+
+#config-global-url span {
+  background-image: url(images/link.svg);
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-size: 20px 20px;
+  margin: 0 10px 0 0;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#config-global-url input {
+  opacity: 1;
+  width: 210px;
+  display: inline-block;
+  padding: 4px;
+  height: 25px;
+  margin: 0;
+  vertical-align: top;
+}
+
+#config-global-url div {
+  opacity: 1;
+  width: 210px;
+  display: inline-block;
+  padding: 4px;
+  height: 25px;
+  margin: 0;
+  vertical-align: center;
+  border: solid 1px #bbb;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 10px;
+}

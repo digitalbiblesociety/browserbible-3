@@ -1,0 +1,17 @@
+
+
+.main-menu-button {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30px 30px;
+  float: right;
+  margin: 15px 5px;
+}
+
+#main-add-button {
+  background-image: url(images/add-document.svg);
+  right: 100px;
+}

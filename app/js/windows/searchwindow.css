@@ -1,3 +1,9 @@
+
+#add-SearchWindow {
+  background-image: url(build/images/search.svg);
+}
+
+
 /* search */
 .search-main {
   background: #fff;

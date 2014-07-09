@@ -1,3 +1,9 @@
+
+#add-MediaWindow {
+  background-image: url(build/images/pictures.svg);
+}
+
+
 .media-library-thumbs a {
   display: block;
   float: left;

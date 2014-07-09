@@ -1,3 +1,8 @@
+
+#add-MapWindow {
+  background-image: url(build/images/map.svg);
+}
+
 .MapWindow .window-close-button {
   background-color: #e5bfb7;
 }

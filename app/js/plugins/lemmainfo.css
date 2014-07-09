@@ -1,0 +1,12 @@
+.lemma-info {
+	position: absolute;
+	padding: 5px;
+	background: #eee;
+	z-index: 100;
+	top: 100px;
+	left: 100px;
+	font-size: 12px;
+	color: #111;
+	font-family: Avenir, Helvetica;
+	border-bottom: solid 1px #ccc;
+}

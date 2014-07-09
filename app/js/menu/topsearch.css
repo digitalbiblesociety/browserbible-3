@@ -1,0 +1,41 @@
+
+#main-search-box {
+  position: absolute;
+  top: 18px;
+  left: 100px;
+  width: 250px;
+  height: 26px;
+  font-size: 15px;
+  padding: 0;
+}
+
+#main-search-input {
+  width: 200px;
+  height: 26px;
+  font-size: 13px;
+  padding: 0;
+  border: solid 1px #ccc;
+  vertical-align: middle;
+  -webkit-appearance: none;
+}
+
+#main-search-input: focus {
+  outline: none;
+}
+
+#main-search-button {
+  width: 30px;
+  cursor: pointer;
+  height: 26px;
+  border: solid 1px #ccc;
+  vertical-align: middle;
+  border-width: 1px 1px 1px 0;
+  border: 0;
+  background: #2a85e8 url(build/images/search-button.svg) center center no-repeat;
+}
+
+@media only screen and max-width 460px {
+  #main-search-box {
+    display: none;
+  }
+}

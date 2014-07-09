@@ -1,4 +1,9 @@
 
+#add-ParallelsWindow {
+  background-image: url(build/images/parallel.svg);
+}
+
+
 /* Parallels */
 .parallels-main {
   padding: 15px;

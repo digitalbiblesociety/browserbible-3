@@ -1,23 +1,6 @@
 
 var LemmaInfoPlugin = function(app) {
 
-	$(
-'<style>\
-.lemma-info {\
-position: absolute;\
-padding: 5px;\
-background: #eee;\
-z-index: 100;\
-top: 100px;\
-left: 100px;\
-font-size: 12px;\
-color: #111;\
-font-family: Avenir, Helvetica;\
--xbox-shadow: 0 0 5px rgba(50,50,50,0.5);\
-border-bottom: solid 1px #ccc;\
-}\
-</style>').appendTo( $('head') );
-
 	var lemmaInfo = $('<div class="lemma-info"></div>').appendTo( $(document.body) ).hide();
 
 	if (!Detection.hasTouch) {

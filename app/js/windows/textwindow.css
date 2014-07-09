@@ -1,0 +1,131 @@
+
+#add-BibleWindow {
+  background-image: url(build/images/bible1.svg);
+}
+
+#add-CommentaryWindow {
+  background-image: url(build/images/commentary.svg);
+}
+
+/*
+<div class="scroller-container">
+<div class="scroller-flipper">
+<div class="scroller-info">
+</div>
+<div class="scroller-main">
+</div>
+</div>
+</div> */
+.window .scroller-container.supports-3d {
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -ms-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+}
+
+.supports-3d .scroller-flipper {
+  -webkit-transition: 0 1s;
+  -moz-transition: 0 1s;
+  -ms-transition: 0 1s;
+  -o-transition: 0 1s;
+  transition: transform 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.scroller-flipper.showinfo .scroller-main {
+  display: none;
+}
+
+.supports-3d .scroller-flipper.showinfo .scroller-main {
+  display: block;
+}
+
+/* add "showinfo" to flip */
+/*
+.supports-3d .scroller-flipper.showinfo {
+-webkit-transform: rotateY( 180deg );
+-moz-transform: rotateY( 180deg );
+-ms-transform: rotateY( 180deg );
+-o-transform: rotateY( 180deg );
+transform: rotateY( 180deg );
+}
+  */
+.supports-3d .showinfo .scroller-main {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.supports-3d .showinfo .scroller-info {
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+  -ms-transform: rotateY(0);
+  -o-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+.window .supports-3d .scroller-info,
+.window .supports-3d .scroller-main {
+  -webkit-transition: 0 1s;
+  -moz-transition: 0 1s;
+  -o-transition: 0 1s;
+  transition: transform 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.window .scroller-main {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  font-size: 18px;
+  padding: 0 30px;
+  background: #fff;
+  font-family: Cambria;
+  z-index: 2;
+}
+
+.supports-3d .scroller-main {
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+  -o-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+.window .scroller-info {
+  position: absolute;
+  -x-background: #e6f5fd;
+  background: #efefef;
+  overflow: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px #ddd inset;
+  -z-index: 1;
+}
+
+.supports-3d .scroller-info {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.scroller-text-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}

@@ -1,0 +1,10 @@
+#app-logo {
+  background-image: url(build/images/dbs-logo-blue.png);
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 54px;
+  height: 30px;
+  background-size: 54px 30px;
+}

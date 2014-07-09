@@ -1,0 +1,9 @@
+.MapWindow .window-close-button {
+  background-color: #e5bfb7;
+}
+
+.linked-location {
+  cursor: pointer;
+  background: #B7DBB4;
+  border-bottom: solid 1px #6BA865;
+}

@@ -151,7 +151,7 @@ input: focus {
   height: 20px;
   border-radius: 10px;
   text-align: center;
-  background: url(build/images/close-button.svg) top center no-repeat;
+  background: url(images/close-button.svg) top center no-repeat;
   background-position: 0 0;
 }
 

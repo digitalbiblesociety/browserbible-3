@@ -128,7 +128,7 @@ var App = function() {
 
 
 	function resize() {
-		//console.log('app resize');
+		console.log('app resize');
 
 		PlaceKeeper.storePlace();
 

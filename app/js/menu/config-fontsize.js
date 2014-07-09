@@ -1,16 +1,33 @@
+sofia.config = $.extend(sofia.config, {
+
+	fontSizeMin: 14,
+	fontSizeMax: 28,
+	fontSizeStep: 2,
+	fontSizeDefault: 18
+		
+});
+
+
 var FontSizeSettings = function(node) {
+
+	// generate font sizes
+	var styleCode = '';
+	for (var size = sofia.config.fontSizeMin; size <= sofia.config.fontSizeMax; size += sofia.config.fontSizeStep) {
+		styleCode += '.config-font-size-' + size.toString() + ' .section { font-size: ' + size.toString() + 'px; }'; 		
+	}
+	$('<style>' + styleCode + '</style>').appendTo( $('head') );
+
 	var
 		body = $('#config-type .config-body'),
-		fontSizes = [14,16,18,20,22,24,26,28],
-		defaultFontSize = {"fontSize": 18},
 		fontSizeKey = 'config-font-size',
-		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSize);
+		defaultFontSizeSetting = {"fontSize": sofia.config.fontSizeDefault},
+		fontSizeSetting = AppSettings.getValue(fontSizeKey, defaultFontSizeSetting);
 
-	$('<table id="font-size-table"><tr><td><span style="font-size:' + fontSizes[0] + 'px">A</span><td style="width:100%"></td><td><span style="font-size:' + fontSizes[fontSizes.length-1] + 'px">A</span></td></tr></table>')
+	$('<table id="font-size-table"><tr><td><span style="font-size:' + sofia.config.fontSizeMin + 'px">A</span><td style="width:100%"></td><td><span style="font-size:' + sofia.config.fontSizeMax + 'px">A</span></td></tr></table>')
 		.appendTo(body);
 
 	// HTML5 range control (IE10+, FF35+)
-	$('<input type="range" min="14" max="28" step="2" value="' + fontSizeSetting.fontSize + '" style="width: 100%;" />')
+	$('<input type="range" min="' + sofia.config.fontSizeMin + '" max="' + sofia.config.fontSizeMax + '" step="' + sofia.config.fontSizeStep + '" value="' + fontSizeSetting.fontSize + '" style="width: 100%;" />')
 		.appendTo(body.find('td:eq(1)') )
 		.on('change input', function() {
 
@@ -29,9 +46,9 @@ var FontSizeSettings = function(node) {
 		PlaceKeeper.storePlace();
 
 		// remove all others
-		for(var i=0, il=fontSizes.length; i<il; i++) {
-			var fontSize = fontSizes[i],
-				className = 'config-font-size-' + fontSize;
+		for (var size = sofia.config.fontSizeMin; size <= sofia.config.fontSizeMax; size += sofia.config.fontSizeStep) {
+		
+			var className = 'config-font-size-' + size;
 
 			body.removeClass(className);
 		}

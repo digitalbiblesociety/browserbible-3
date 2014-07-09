@@ -5,19 +5,11 @@ sofia.config = $.extend(sofia.config, {
 });
 
 
-
 /**
  * Highlights words based on morphological data
  *
  * @author John Dyer (http://j.hn/)
  */
-
-
-/*
-Add
-,"2p-enableAll": true
-to config in order to enable all the options
-*/
 var Eng2pPlugin = function(node) {
 
 		//docManager.createOptionToggle('Texanize plurals', 'texan', true);

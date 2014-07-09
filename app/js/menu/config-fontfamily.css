@@ -1,33 +1,7 @@
 
-/* font names */
-#config-font-family-Helvetica,
-.config-font-family-Helvetica .section,
-.config-font-family-Helvetica #font-size-table {
-  font-family: Helvetica;
-}
-
-#config-font-family-Georgia,
-.config-font-family-Georgia .section,
-.config-font-family-Georgia #font-size-table {
-  font-family: Georgia;
-}
-
-#config-font-family-Baskerville,
-.config-font-family-Baskerville .section,
-.config-font-family-Baskerville #font-size-table {
-  font-family: Baskerville;
-}
-
-#config-font-family-Times,
-.config-font-family-Times .section,
-.config-font-family-Times #font-size-table {
-  font-family: 'Times New Roman';
-}
-
-#config-font-family-Cambria,
-.config-font-family-Cambria .section,
-.config-font-family-Cambria #font-size-table {
-  font-family: Cambria;
+.config-font-family {
+  display: inline-block;
+  margin-right: 10px;
 }
 
 /* Don't set the Libertine font on the config menu item as in all the other
@@ -51,7 +25,3 @@
   font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
 }
 
-.config-font-family {
-  display: inline-block;
-  margin-right: 10px;
-}

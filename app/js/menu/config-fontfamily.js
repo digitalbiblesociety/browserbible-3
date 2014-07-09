@@ -1,42 +1,74 @@
+sofia.config = $.extend(sofia.config, {
+
+	fontFamilyStacks: {
+		'Cambria': 'Cambria, Georgia, serif',	
+		'Palatino': 'Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif',
+		//'Georgia': 'Georgia, Times, "Times New Roman", serif',
+		'Libertine': '"Libertine", Libertine',
+		'Helvetica': '"Helvetica Neue", Helvetica, Arial, sans-serif',
+		'Trebuchet': '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif'	
+	}
+		
+});
+
+
+
 var FontFamilySettings = function(node) {
 	var
 		body = $('#config-type .config-body'),
-		fontFamilyNames = ['Cambria', 'Helvetica', 'Baskerville', 'Times', 'Libertine'],
-		defaultFont = {"fontName": fontFamilyNames[0]},
+		fontFamilyStackNames = Object.keys(sofia.config.fontFamilyStacks), // ['Cambria', 'Helvetica', 'Baskerville', 'Times', 'Libertine'],
+		defaultFontSetting = {"fontName": fontFamilyStackNames[0]},
 		fontFamilyKey = 'config-font-family',
-		fontFamilySetting = AppSettings.getValue(fontFamilyKey, defaultFont);
+		fontFamilySetting = AppSettings.getValue(fontFamilyKey, defaultFontSetting),
+		
+		fontSettingHtml = '',
+		fontFamilyStyle = '';
 
 
-	for(var i=0, il=fontFamilyNames.length; i<il; i++) {
-		var fontName = fontFamilyNames[i];
+	//
+	for(var i=0, il=fontFamilyStackNames.length; i<il; i++) {
+		var fontStackName = fontFamilyStackNames[i],
+			fontStackValue = sofia.config.fontFamilyStacks[fontStackName];
 
-		$('<label id="config-font-family-' + fontName + '" class="config-font-family">' +
-				'<input type="radio" id="config-font-family-' + fontName + '-value" name="config-font-family" value="' + fontName + '" />' +
-				/* fontName */ 'Aa' +
-			'</label>')
-			.appendTo(body);
+		fontSettingHtml += 
+			'<label id="config-font-family-' + fontStackName + '" class="config-font-family">' +
+				'<input type="radio" id="config-font-family-' + fontStackName + '-value" name="config-font-family" value="' + fontStackName + '" />' +
+				'Aa' +
+			'</label>';
+		
+		fontFamilyStyle += 
+				'#config-font-family-' + fontStackName + ', ' + 
+				'.config-font-family-' + fontStackName + ' .section,' + 
+				'.config-font-family-' + fontStackName + ' #font-size-table {' + 
+				'  font-family: ' + fontStackValue + ';' + 
+				'}';	
+			
 	}
 
-	function setFontFamily(newFontName) {
+	$('<style>' + fontFamilyStyle + '</style>').appendTo( $('head') );		
+	$(fontSettingHtml).appendTo(body);
+	
+
+	function setFontFamily(newFontStackName) {
 
 		var body = $('body');
 
 		PlaceKeeper.storePlace();
 
 		// remove all others
-		for(var i=0, il=fontFamilyNames.length; i<il; i++) {
-			var fontName = fontFamilyNames[i],
-				className = 'config-font-family-' + fontName;
+		for(var i=0, il=fontFamilyStackNames.length; i<il; i++) {
+			var fontStackName = fontFamilyStackNames[i],
+				className = 'config-font-family-' + fontStackName;
 
 			body.removeClass(className);
 		}
 
-		$(body).addClass('config-font-family-' + newFontName);
+		$(body).addClass('config-font-family-' + newFontStackName);
 
-		AppSettings.setValue(fontFamilyKey, {fontName: newFontName});
+		AppSettings.setValue(fontFamilyKey, {fontName: newFontStackName});
 
 		if (sofia.analytics) {
-			sofia.analytics.record('setting', 'fontfamily', newFontName);
+			sofia.analytics.record('setting', 'fontfamily', newFontStackName);
 		}
 
 		PlaceKeeper.restorePlace();

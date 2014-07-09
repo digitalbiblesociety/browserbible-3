@@ -247,7 +247,7 @@ padding:5px 0 5px 25px;\
 		getPluralValues();
 
 		// re-run
-		$('div.chapter[lang="eng"]').each(function() {
+		$('div.chapter[lang="en"]').each(function() {
 			var chapter = $(this);
 
 			removePluralTransforms(chapter);
@@ -301,7 +301,7 @@ padding:5px 0 5px 25px;\
 		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
 
 
-			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {
+			if (e.data.content.attr('lang') == 'en' && eng2pSetting.eng2p != 'none') {
 				//console.log('Eng2P', e.data.content.attr('data-id'));
 
 				runPluralTransforms(e.data.content);

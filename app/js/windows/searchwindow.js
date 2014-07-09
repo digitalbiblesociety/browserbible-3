@@ -245,7 +245,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 					label = result.fragmentid;
 				}
 
-				html += '<tr data-fragmentid="' + result.fragmentid + '" class="divisionid-' + result.fragmentid.substr(0,2) + '"><th>' + label + '</th><td lang="' + textInfo.lang + '">' + result.html + '</td></tr>';
+				html += '<tr data-fragmentid="' + result.fragmentid + '" class="divisionid-' + result.fragmentid.substr(0,2) + '"><th>' + label + '</th><td lang="' + iso2iana.convert(textInfo.lang) + '">' + result.html + '</td></tr>';
 			}
 			html += '</table>';
 
@@ -277,8 +277,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 			strongs = text.split(' ')[0],
 			strongsNumber = strongs.substr(1),
 			strongLang = strongs.substr(0,1),
-			langCode = (strongLang == 'H' ? 'heb' : 'grc'),
-			dir = langCode == 'heb' ? 'ltr' : 'rtl';
+			langCode = (strongLang == 'H' ? 'he' : 'el'),
+			dir = langCode == 'he' ? 'ltr' : 'rtl';
 
 		sofia.ajax({
 			dataType: 'json',
@@ -286,7 +286,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 			success: function(data) {
 
 				var html = '<div class="lemma-word">' +
-								'<span lang="' + langCode + '" dir="' + dir + '">' + data.lemma + '</span>' +
+								'<span lang="' + iso2iana.convert(langCode) + '" dir="' + dir + '">' + data.lemma + '</span>' +
 								'  <span class="lemma-strongs" dir="ltr"> [strongs:' + strongsNumber + ']</span>' +
 							'</div>';
 

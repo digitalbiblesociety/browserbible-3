@@ -1,4 +1,4 @@
-/* fonts */
+/*[> fonts <]*/
 @font-face {
   font-family: GentiumPlus;
   src: local('Gentium Plus'), url(fonts/gentiumplus-r-webfont.woff) format('woff');
@@ -55,22 +55,17 @@
   font-family: avenir, helvetica;
 }
 
-[lang=heb],
+[lang=he],
 .section[lang=he] .p,
-.section[lang=heb] .p,
-.chapter[lang=he] .p,
-.chapter[lang=heb] .p {
-  font-family: 'SBL Hebrew', EzraSIL!important;
-  font-size: 1.5em;
+.chapter[lang=he] .p {
+	font-family: 'SBL Hebrew',EzraSIL!important;
+	font-size: 1.5em;
 }
 
-[lang=gre],
-[lang=grc],
-.section[lang=grc] .p,
-.section[lang=gre] .p,
-.chapter[lang=grc] .p,
-.chapter[lang=gre] .p {
-  font-family: Gentium, GentiumPlus!important;
+[lang=el],
+.section[lang=el] .p,
+.chapter[lang=el] .p {
+	font-family: Gentium, GentiumPlus!important;
 }
 
 /* notes and cross references */
@@ -200,21 +195,21 @@ div.c + div.q .v-1 {
   padding: .3em 0;
 }
 
-div[lang=heb] .c {
-  float: right;
-  margin-right: 0;
-  margin-left: .2em;
+div[lang="he"] .c {
+	float: right;
+	margin-right: 0;
+	margin-left: .2em;
 }
 
-div[lang=heb] {
-  font-family: 'SBL Hebrew', EzraSIL;
-  direction: rtl;
-  text-align: right;
+div[lang="he"] {
+	font-family: 'SBL Hebrew', EzraSIL;
+	direction: rtl;
+	text-align: right;
 }
 
-div[lang=heb] div.p {
-  direction: rtl;
-  text-align: right;
+div[lang="he"] div.p {
+	direction: rtl;
+	text-align: right;
 }
 
 h3.is1,

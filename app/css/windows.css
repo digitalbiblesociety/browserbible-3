@@ -1415,6 +1415,27 @@ border-left: solid 3px #9bd79b;
   display: block;
 }
 
+/* JUSTIFY */
+/* Justification really only makes sense if you can also do decent hyphenation.
+ * Chrome does not yet (as of v35) support hyphenation, but FF, Safari, and IE
+ * all have for some time. The html lang= attribute must be correctly set. */
+#config-toggle-justify label {
+  background-image: url(images/toggles/justify.svg);
+}
+
+.toggle-justify-on .section {
+  text-align: justify;
+  -webkit-text-align-last: start;
+  -moz-text-align-last: start;
+  -o-text-align-last: start;
+  text-align-last: start;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
+
 /* TITLES */
 #config-toggle-titles label {
   background-image: url(images/toggles/titles.svg);

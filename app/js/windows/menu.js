@@ -739,7 +739,7 @@ sofia.menuComponents.push('LanguageSetting');
 
 var ConfigToggles = function(node) {
 	var body = $('#config-toggles .config-body'),
-		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ', 'Media'],
+		toggleNames = ['Chapters', 'Verses', 'Titles', 'Justify', 'Notes', 'Words of Christ', 'Media'],
 		prefix = 'config-toggle-';
 
 

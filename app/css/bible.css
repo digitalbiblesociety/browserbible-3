@@ -76,8 +76,8 @@ body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
   text-decoration: none;
 }
 
-.chapter .note .key: hover,
-.chapter .cf.key: hover {
+.chapter .note .key:hover,
+.chapter .cf.key:hover {
   color: #fff;
   background: #33C;
 }
@@ -107,8 +107,8 @@ body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
   cursor: pointer;
 }
 
-.bibleref: hover,
-.xt: hover {
+.bibleref:hover,
+.xt:hover {
   text-decoration: underline;
 }
 

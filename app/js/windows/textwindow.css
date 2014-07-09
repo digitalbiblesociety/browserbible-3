@@ -97,7 +97,6 @@ transform: rotateY( 180deg );
   font-size: 18px;
   padding: 0 30px;
   background: #fff;
-  font-family: Cambria;
   z-index: 2;
 }
 
@@ -110,12 +109,10 @@ transform: rotateY( 180deg );
 
 .window .scroller-info {
   position: absolute;
-  -x-background: #e6f5fd;
   background: #efefef;
   overflow: auto;
   padding: 20px;
   box-shadow: 0 0 10px #ddd inset;
-  -z-index: 1;
 }
 
 .supports-3d .scroller-info {

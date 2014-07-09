@@ -1,6 +1,6 @@
 sofia.resources['ceb'] = {
 	"translation": {
-		"name": "Cebuano (Cebuano)",
+		"name": "Cebuano",
 		"menu": {
 			"search": {
 				"placeholder": "Search"

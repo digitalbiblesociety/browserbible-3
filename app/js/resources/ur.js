@@ -1,6 +1,6 @@
 sofia.resources['ur'] = {
 	"translation": {
-		"name": "اردو (Urdu)",
+		"name": "اردو",
 		"menu": {
 			"search": {
 				"placeholder": "تلاش"

@@ -1,6 +1,6 @@
 sofia.resources['mr'] = {
 	"translation": {
-		"name": "मराठी (Marathi)",
+		"name": "मराठी",
 		"menu": {
 			"search": {
 				"placeholder": "शोध"

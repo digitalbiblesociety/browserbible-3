@@ -1,6 +1,6 @@
 sofia.resources['zh-TW'] = {
 	"translation": {
-		"name": "中文(繁體) (Chinese (Traditional))",
+		"name": "中文(繁體)",
 		"menu": {
 			"search": {
 				"placeholder": "搜索"

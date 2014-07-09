@@ -1,6 +1,6 @@
 sofia.resources['ko'] = {
 	"translation": {
-		"name": "한국어 (Korean)",
+		"name": "한국어",
 		"menu": {
 			"search": {
 				"placeholder": "수색"

@@ -1,6 +1,6 @@
 sofia.resources['cy'] = {
 	"translation": {
-		"name": "Cymraeg (Welsh)",
+		"name": "Cymraeg",
 		"menu": {
 			"search": {
 				"placeholder": "Chwilio"

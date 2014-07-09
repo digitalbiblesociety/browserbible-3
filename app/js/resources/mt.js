@@ -1,6 +1,6 @@
 sofia.resources['mt'] = {
 	"translation": {
-		"name": "Malti (Maltese)",
+		"name": "Malti",
 		"menu": {
 			"search": {
 				"placeholder": "Fittex"

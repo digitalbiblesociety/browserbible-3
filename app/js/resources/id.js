@@ -1,6 +1,6 @@
 sofia.resources['id'] = {
 	"translation": {
-		"name": "Bahasa Indonesia (Indonesian)",
+		"name": "Bahasa Indonesia",
 		"menu": {
 			"search": {
 				"placeholder": "Pencarian"

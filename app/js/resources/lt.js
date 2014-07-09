@@ -1,6 +1,6 @@
 sofia.resources['lt'] = {
 	"translation": {
-		"name": "lietuvių (Lithuanian)",
+		"name": "lietuvių",
 		"menu": {
 			"search": {
 				"placeholder": "Paieška"

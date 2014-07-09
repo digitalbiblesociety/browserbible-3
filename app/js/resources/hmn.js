@@ -1,6 +1,6 @@
 sofia.resources['hmn'] = {
 	"translation": {
-		"name": "Hmong (Hmong)",
+		"name": "Hmong",
 		"menu": {
 			"search": {
 				"placeholder": "Nrhiav"

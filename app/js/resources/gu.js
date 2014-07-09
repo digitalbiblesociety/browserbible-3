@@ -1,6 +1,6 @@
 sofia.resources['gu'] = {
 	"translation": {
-		"name": "ગુજરાતી (Gujarati)",
+		"name": "ગુજરાતી",
 		"menu": {
 			"search": {
 				"placeholder": "શોધ"

@@ -1,6 +1,6 @@
 sofia.resources['sq'] = {
 	"translation": {
-		"name": "Shqip (Albanian)",
+		"name": "Shqip",
 		"menu": {
 			"search": {
 				"placeholder": "Kërkim"

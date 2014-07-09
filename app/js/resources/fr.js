@@ -1,6 +1,6 @@
 sofia.resources['fr'] = {
 	"translation": {
-		"name": "Français (French)",
+		"name": "Français",
 		"menu": {
 			"search": {
 				"placeholder": "Recherche"

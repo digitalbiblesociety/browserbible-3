@@ -2,7 +2,7 @@
 
 sofia.resources["zh-CN"] = {
 	translation: {
-		name: '中文 (Chinese - Simplified)',
+		name: '中文',
 
 		menu: {
 			search: {

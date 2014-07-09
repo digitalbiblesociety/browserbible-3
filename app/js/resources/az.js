@@ -1,6 +1,6 @@
 sofia.resources['az'] = {
 	"translation": {
-		"name": "Azərbaycanca (Azerbaijani)",
+		"name": "Azərbaycanca",
 		"menu": {
 			"search": {
 				"placeholder": "Axtarış"

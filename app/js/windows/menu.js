@@ -739,26 +739,21 @@ sofia.menuComponents.push('LanguageSetting');
 
 var ConfigToggles = function(node) {
 	var body = $('#config-toggles .config-body'),
-		toggleNames = ['Chapters', 'Verses', 'Titles', 'Justify', 'Notes', 'Words of Christ', 'Media'],
+		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ', 'Media', 'Justify'],
+		toggleDefaults = [true, true, true, true, true, true, false],
 		prefix = 'config-toggle-';
 
-
-
-	sofia.globals.createToggle = function(toggleName) {
-
-
+	sofia.globals.createToggle = function(toggleName, defaultValue) {
 
 		var
 			toggleId = toggleName.replace(/\s/gi, '').toLowerCase(),
-			toggleDefaultSetting = {checked: true},
+			toggleDefaultSetting = {checked: defaultValue},
 			toggleSetting = AppSettings.getValue(toggleId, toggleDefaultSetting),
 			toggle = $('<div id="config-toggle-' + toggleId + '" class="config-toggle">' +
 						'<input id="config-toggle-' + toggleId + '-input" type="checkbox" value="' + toggleId + '" />' +
 						'<label for="config-toggle-' + toggleId + '-input" title="' + toggleName + '">' + toggleName + '</label>' +
 					'</div>')
 						.appendTo(body);
-
-		//console.log('createToggle', toggleSetting);
 
 		toggle
 			.find('input')
@@ -767,7 +762,7 @@ var ConfigToggles = function(node) {
 						checked = cb.is(':checked'),
 						value = cb.val();
 
-					setToggle(value, checked); // .toString().toLowerCase() );
+					setToggle(value, checked); 
 
 				});
 
@@ -776,8 +771,6 @@ var ConfigToggles = function(node) {
 	}
 
 	function setToggle(toggleId, checked) {
-
-		//console.log('setToggle', toggleId, checked);
 
 		PlaceKeeper.storePlace();
 
@@ -816,7 +809,7 @@ var ConfigToggles = function(node) {
 
 	for(var i=0, il=toggleNames.length; i<il; i++) {
 		var toggleName = toggleNames[i]
-		sofia.globals.createToggle(toggleName);
+		sofia.globals.createToggle(toggleName, toggleDefaults[i]);
 	}
 
 };

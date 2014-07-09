@@ -13,6 +13,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: Libertine;
+  src: local('Linux Libertine'), url(fonts/LinLibertine_R.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Libertine;
+  src: local('Linux Libertine Italic'), url(fonts/LinLibertine_RI.woff) format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Libertine;
+  src: local('Linux Libertine Bold'), url(fonts/LinLibertine_RB.woff) format('woff');
+  font-weight: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Libertine;
+  src: local('Linux Libertine Bold Italic'), url(fonts/LinLibertine_RBI.woff) format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
 /* main bible verse, text formating */
 .section,
 .chapter {
@@ -55,17 +83,22 @@
   font-family: avenir, helvetica;
 }
 
+body:not(.config-font-family-Libertine) [lang=he],
+body:not(.config-font-family-Libertine) .section[lang=he] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=he] .p {
+  font-family: 'SBL Hebrew', EzraSIL!important;
+}
+
 [lang=he],
 .section[lang=he] .p,
 .chapter[lang=he] .p {
-	font-family: 'SBL Hebrew',EzraSIL!important;
-	font-size: 1.5em;
+  font-size: 1.2em;
 }
 
-[lang=el],
-.section[lang=el] .p,
-.chapter[lang=el] .p {
-	font-family: Gentium, GentiumPlus!important;
+body:not(.config-font-family-Libertine) [lang=el],
+body:not(.config-font-family-Libertine) .section[lang=el] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
+  font-family: Gentium, GentiumPlus!important;
 }
 
 /* notes and cross references */

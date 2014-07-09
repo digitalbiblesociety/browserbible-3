@@ -47,7 +47,7 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
-  background-image: url(images/close-button.svg);
+  background-image: url(../../css/images/close-button.svg);
   background-size: 20px 40px;
 }
 
@@ -120,14 +120,14 @@ margin-left: 20px;
 .audio-controller .audio-play {
   width: 40px;
   height: 40px;
-  background-image: url(images/audio/play-icon.svg);
+  background-image: url(../../css/images/audio/play-icon.svg);
   background-size: 25px 25px;
   top: 15px;
   margin-left: -20px;
 }
 
 .audio-controller .audio-play.playing {
-  background-image: url(images/audio/pause-icon.svg);
+  background-image: url(../../css/images/audio/pause-icon.svg);
 }
 
 .audio-controller .audio-prev,
@@ -140,12 +140,12 @@ margin-left: 20px;
 }
 
 .audio-controller .audio-prev {
-  background-image: url(images/audio/previous-icon.svg);
+  background-image: url(../../css/images/audio/previous-icon.svg);
   margin-left: -52px;
 }
 
 .audio-controller .audio-next {
-  background-image: url(images/audio/next-icon.svg);
+  background-image: url(../../css/images/audio/next-icon.svg);
   margin-left: 24px;
 }
 
@@ -188,7 +188,7 @@ left: 35px;
   left: 8px;
   width: 20px;
   height: 20px;
-  background-image: url(images/gear.svg);
+  background-image: url(../../css/images/gear.svg);
   background-size: 20px 20px;
   border: none;
   box-shadow: none;

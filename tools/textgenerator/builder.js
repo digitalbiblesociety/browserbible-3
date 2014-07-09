@@ -8,7 +8,7 @@ var
 	uglifycss = require("uglifycss"),
 	jsp = require("uglify-js").parser,
 	pro = require("uglify-js").uglify,
-  mkdirp = require("mkdirp");
+	mkdirp = require("mkdirp");
 
 // START
 var
@@ -92,22 +92,30 @@ stylesheets.forEach(function(url) {
 		console.log('error Css minifiy', localPath, e);
 	}
 	combinedCss += fs.readFileSync(path.join(rootPath, url), 'utf8');
+	
 });
+
+// fix references to files
+var imagePathRe = /url\(\.\.\/\.\.\/css\/images\//gi;
+minifiedCss = minifiedCss.replace(imagePathRe, 'url(images/');
+combinedCss = combinedCss.replace(imagePathRe, 'url(images/');
 
 // write out
 fs.writeFileSync(outputCssPath, combinedCss);
-fs.writeFileSync(outputCssPathMinified, minifiedCss); // TEMP: no compression
+fs.writeFileSync(outputCssPathMinified, minifiedCss);
 
 // COPY
 // copy remaining
 copyFiles.forEach(function(url) {
 	var fileIn = path.join(rootPath, url),
 		baseName = path.basename(url)
-	fileOut = path.join(buildPath, baseName),
+		fileOut = path.join(buildPath, baseName);
 
-	textIn = fs.readFileSync(fileIn, 'utf8');
+	if (fs.existsSync(fileIn)) {
+		textIn = fs.readFileSync(fileIn, 'utf8');
 
-	fs.writeFileSync(fileOut, textIn);
+		fs.writeFileSync(fileOut, textIn);
+	}
 });
 
 

@@ -4,7 +4,7 @@
 }
 
 #config-global-url span {
-  background-image: url(images/link.svg);
+  background-image: url(../../css/images/link.svg);
   width: 20px;
   height: 20px;
   display: inline-block;

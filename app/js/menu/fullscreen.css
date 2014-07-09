@@ -1,4 +1,4 @@
 #main-fullscreen-button {
-  background-image: url(build/images/fullscreen.svg);
+  background-image: url(../../css/images/fullscreen.svg);
   right: 20px;
 }

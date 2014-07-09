@@ -31,7 +31,7 @@
 	font-size: 85%;
 }
 #config-eng2p-button {
-	background: url(build/images/two-people.svg) left center no-repeat;
+	background: url(../../css/images/two-people.svg) left center no-repeat;
 	background-size: 20px 20px;
 	padding:5px 0 5px 25px;
 }

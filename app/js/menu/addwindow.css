@@ -1,4 +1,9 @@
 
+#main-add-button {
+  background-image: url(../../css/images/add-document.svg);
+  right: 100px;
+}
+
 .window-add {
   cursor: pointer;
   width: 70px;
@@ -28,7 +33,7 @@
   padding: 0 0 0 24px;
   height: 20px;
   line-height: 20px;
-  background: transparent url(build/images/restore.svg) left center no-repeat;
+  background: transparent url(../../css/images/restore.svg) left center no-repeat;
   background-size: 20px 20px;
 }
 

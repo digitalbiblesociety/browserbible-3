@@ -31,7 +31,7 @@
   vertical-align: middle;
   border-width: 1px 1px 1px 0;
   border: 0;
-  background: #2a85e8 url(build/images/search-button.svg) center center no-repeat;
+  background: #2a85e8 url(../../css/images/search-button.svg) center center no-repeat;
 }
 
 @media only screen and max-width 460px {

@@ -1,10 +1,10 @@
 
 #add-BibleWindow {
-  background-image: url(build/images/bible1.svg);
+  background-image: url(../../css/images/bible1.svg);
 }
 
 #add-CommentaryWindow {
-  background-image: url(build/images/commentary.svg);
+  background-image: url(../../css/images/commentary.svg);
 }
 
 /*

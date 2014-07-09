@@ -1,6 +1,6 @@
 
 #add-SearchWindow {
-  background-image: url(build/images/search.svg);
+  background-image: url(../../css/build/images/search.svg);
 }
 
 
@@ -12,7 +12,7 @@
 
 .search-main-loading {
   min-height: 50px;
-  background: transparent url(images/loading.gif) top center no-repeat;
+  background: transparent url(../../css/images/loading.gif) top center no-repeat;
 }
 
 .search-wrapper {

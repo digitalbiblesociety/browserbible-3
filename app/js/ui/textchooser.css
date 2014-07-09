@@ -52,7 +52,7 @@ padding: 10px;
   display: none;
   /* default */
   background-color: #88c0d7;
-  background-image: url(images/more.svg);
+  background-image: url(../../css/images/more.svg);
   background-repeat: no-repeat;
   background-size: 20px 20px;
 }
@@ -62,7 +62,7 @@ padding: 10px;
 }
 
 .text-chooser .show-all {
-  background-image: url(images/less.svg);
+  background-image: url(../../css/images/less.svg);
   background-position-y: 4px;
 }
 
@@ -88,7 +88,7 @@ padding: 10px;
   width: 20px;
   height: 20px;
   border-radius: 20px;
-  background: url(images/close-button.svg);
+  background: url(../../css/images/close-button.svg);
   background-size: 15px 30px;
   background-position: 2px 2px;
   background-repeat: no-repeat;

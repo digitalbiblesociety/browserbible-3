@@ -111,18 +111,18 @@ input: focus {
 }
 
 .info-button {
-  background-image: url(build/images/info.svg);
+  background-image: url(images/info.svg);
 }
 
 .audio-button {
-  background-image: url(build/images/audio-ear.svg);
+  background-image: url(images/audio-ear.svg);
 }
 
 .window .window-header .header-list {
   padding-right: 20px;
   cursor: pointer;
   border-radius: 0;
-  background-image: url(build/images/down-arrow.svg);
+  background-image: url(images/down-arrow.svg);
   background-position: right center;
   background-repeat: no-repeat;
 }

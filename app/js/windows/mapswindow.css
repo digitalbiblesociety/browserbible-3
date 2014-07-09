@@ -1,6 +1,6 @@
 
 #add-MapWindow {
-  background-image: url(build/images/map.svg);
+  background-image: url(../../css/images/map.svg);
 }
 
 .MapWindow .window-close-button {

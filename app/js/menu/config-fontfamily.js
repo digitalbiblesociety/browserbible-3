@@ -76,7 +76,7 @@ var FontFamilySettings = function(node) {
 	}
 
 	// handle clicks
-	body.on('change', 'input', function() {
+	body.on('change', 'input[name=config-font-family]', function() {
 		var radio = $(this),
 			newFontFamilyValue = radio.val();
 

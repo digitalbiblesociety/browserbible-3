@@ -165,7 +165,7 @@ input:focus {
   color: #fff;
 }
 
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width:460px) {
   .windows-main .window {
     display: none;
   }

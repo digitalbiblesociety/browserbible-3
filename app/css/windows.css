@@ -248,7 +248,7 @@ input:focus {
 
 .loading-indicator {
   min-height: 70px;
-  background-image: url(build/images/loading.gif);
+  background-image: url(../../css/images/loading.gif);
   background-position: center center;
   background-repeat: no-repeat;
 }

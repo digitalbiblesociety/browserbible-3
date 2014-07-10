@@ -29,7 +29,7 @@
   height: 20px;
   border-radius: 10px;
   text-align: center;
-  background: url(images/close-button.svg) top center no-repeat;
+  background: url(../../css/images/close-button.svg) top center no-repeat;
 }
 
 .info-window .close-button:hover {

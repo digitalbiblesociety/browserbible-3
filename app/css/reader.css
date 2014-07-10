@@ -357,7 +357,7 @@ p.split-end {
 
 /* hack for safari/chrome */
 /*
-p.split-end: after {
+p.split-end:after {
 content: "";
 display: inline-block;
 width: 100%;

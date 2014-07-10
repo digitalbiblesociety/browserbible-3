@@ -19,7 +19,7 @@ body {
   clear: both;
 }
 
-input: focus {
+input:focus {
   outline: none;
 }
 
@@ -170,7 +170,7 @@ input: focus {
     display: none;
   }
 
-  .windows-main .window: first-child {
+  .windows-main .window:first-child {
     display: block;
   }
 

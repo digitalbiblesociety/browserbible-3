@@ -57,7 +57,7 @@ padding: 10px;
   background-size: 20px 20px;
 }
 
-.text-chooser .text-chooser-more-toggle: hover {
+.text-chooser .text-chooser-more-toggle:hover {
   background-color: #2a85e8;
 }
 
@@ -96,7 +96,7 @@ padding: 10px;
   border: solid 1px transparent;
 }
 
-.text-chooser .text-chooser-close: hover {
+.text-chooser .text-chooser-close:hover {
   border: solid 1px #aaa;
 }
 
@@ -131,7 +131,7 @@ padding: 10px;
   background: #ecf4f8;
 }
 
-.text-chooser-row: hover {
+.text-chooser-row:hover {
   background: #d9e8ef;
 }
 

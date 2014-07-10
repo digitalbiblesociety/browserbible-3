@@ -172,7 +172,7 @@ display: none;
 .texts-index-list tr td {
 }
 
-.texts-index-list tr: hover {
+.texts-index-list tr:hover {
   background-color: #ccc;
 }
 
@@ -205,7 +205,7 @@ display: none;
   padding: 8px;
 }
 
-.division-list li: hover {
+.division-list li:hover {
   background-color: #ccc;
 }
 
@@ -226,7 +226,7 @@ display: none;
   padding: 5px;
 }
 
-.section-list li: hover {
+.section-list li:hover {
   background-color: #ccc;
 }
 
@@ -389,7 +389,7 @@ margin: 1.5em 0 0.5em 0;
 }
 
 .chapter .note .key: hover,
-.chapter .cf.key: hover {
+.chapter .cf.key:hover {
   color: #fff;
   background: #33C;
 }
@@ -418,7 +418,7 @@ margin: 1.5em 0 0.5em 0;
   cursor: pointer;
 }
 
-.bibleref: hover {
+.bibleref:hover {
   text-decoration: underline;
 }
 

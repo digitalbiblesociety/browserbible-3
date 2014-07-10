@@ -57,11 +57,11 @@
   position: relative;
 }
 
-.image-library-thumbs li a: hover {
+.image-library-thumbs li a:hover {
   color: #2a85e8;
 }
 
-.image-library-thumbs li a: hover img {
+.image-library-thumbs li a:hover img {
   border: solid 2px #2a85e8;
 }
 

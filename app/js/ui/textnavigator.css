@@ -127,11 +127,11 @@
   cursor: pointer;
 }
 
-.text-navigator .text-navigator-division: hover {
+.text-navigator .text-navigator-division:hover {
   border-bottom-color: #ccc;
 }
 
-.text-navigator .text-navigator-section: hover {
+.text-navigator .text-navigator-section:hover {
   outline: solid 1px #2a85e8;
 }
 
@@ -269,7 +269,7 @@
   cursor: pointer;
 }
 
-.text-navigator .text-navigator-section: hover {
+.text-navigator .text-navigator-section:hover {
   outline: solid 1px #2a85e8;
 }
 

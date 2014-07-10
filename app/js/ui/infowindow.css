@@ -32,7 +32,7 @@
   background: url(images/close-button.svg) top center no-repeat;
 }
 
-.info-window .close-button: hover {
+.info-window .close-button:hover {
   background-color: #d5998b;
   background-position: 0 -20px;
   color: #fff;

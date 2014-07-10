@@ -19,7 +19,7 @@
   -webkit-appearance: none;
 }
 
-#main-search-input: focus {
+#main-search-input:focus {
   outline: none;
 }
 

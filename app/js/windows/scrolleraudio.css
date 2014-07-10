@@ -66,7 +66,7 @@
 
 .audio-controller .audio-play: hover,
 .audio-controller .audio-prev: hover,
-.audio-controller .audio-next: hover {
+.audio-controller .audio-next:hover {
   background-color: #eee;
   cursor: pointer;
 }

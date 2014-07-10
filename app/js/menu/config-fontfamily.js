@@ -30,8 +30,8 @@ var FontFamilySettings = function(node) {
 		var fontStackName = fontFamilyStackNames[i],
 			fontStackValue = sofia.config.fontFamilyStacks[fontStackName];
 
-		fontSettingHtml += 
-			'<label id="config-font-family-' + fontStackName + '" class="config-font-family">' +
+		fontSettingHtml +=
+			'<label id="config-font-family-' + fontStackName + '" class="config-font-family" title="' + fontStackName + '" >' +
 				'<input type="radio" id="config-font-family-' + fontStackName + '-value" name="config-font-family" value="' + fontStackName + '" />' +
 				'Aa' +
 			'</label>';

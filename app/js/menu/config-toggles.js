@@ -23,7 +23,7 @@ var ConfigToggles = function(node) {
 						checked = cb.is(':checked'),
 						value = cb.val();
 
-					setToggle(value, checked); 
+					setToggle(value, checked);
 
 				});
 

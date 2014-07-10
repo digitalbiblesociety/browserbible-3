@@ -1,14 +1,14 @@
 sofia.config = $.extend(sofia.config, {
 
 	fontFamilyStacks: {
-		'Cambria': 'Cambria, Georgia, serif',	
+		'Cambria': 'Cambria, Georgia, serif',
 		'Palatino': 'Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif',
 		//'Georgia': 'Georgia, Times, "Times New Roman", serif',
-		'Libertine': '"Libertine", Libertine',
+		'Libertine': 'Libertine', // Serif family but does not need fallback because we're loding it as a webfont if not present on system
 		'Helvetica': '"Helvetica Neue", Helvetica, Arial, sans-serif',
-		'Trebuchet': '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif'	
+		'Trebuchet': '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif'
 	}
-		
+
 });
 
 
@@ -20,7 +20,7 @@ var FontFamilySettings = function(node) {
 		defaultFontSetting = {"fontName": fontFamilyStackNames[0]},
 		fontFamilyKey = 'config-font-family',
 		fontFamilySetting = AppSettings.getValue(fontFamilyKey, defaultFontSetting),
-		
+
 		fontSettingHtml = '',
 		fontFamilyStyle = '';
 
@@ -35,19 +35,19 @@ var FontFamilySettings = function(node) {
 				'<input type="radio" id="config-font-family-' + fontStackName + '-value" name="config-font-family" value="' + fontStackName + '" />' +
 				'Aa' +
 			'</label>';
-		
-		fontFamilyStyle += 
-				'#config-font-family-' + fontStackName + ', ' + 
-				'.config-font-family-' + fontStackName + ' .section,' + 
-				'.config-font-family-' + fontStackName + ' #font-size-table {' + 
-				'  font-family: ' + fontStackValue + ';' + 
-				'}';	
-			
+
+		fontFamilyStyle +=
+				'#config-font-family-' + fontStackName + ', ' +
+				'.config-font-family-' + fontStackName + ' .section,' +
+				'.config-font-family-' + fontStackName + ' #font-size-table {' +
+				'  font-family: ' + fontStackValue + ';' +
+				'}';
+
 	}
 
-	$('<style>' + fontFamilyStyle + '</style>').appendTo( $('head') );		
+	$('<style>' + fontFamilyStyle + '</style>').appendTo( $('head') );
 	$(fontSettingHtml).appendTo(body);
-	
+
 
 	function setFontFamily(newFontStackName) {
 

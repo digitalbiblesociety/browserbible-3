@@ -193,7 +193,7 @@ if (is_array($combined_index)) {
 
 		$file_contents = file_get_contents($path_to_chapter);
 
-		// supress HTML5 errors
+		// suppress HTML5 errors
 		$doc = new DOMDocument();
 
 		$doc->preserveWhiteSpace = true;
@@ -236,7 +236,7 @@ if (is_array($combined_index)) {
 				$verse_html .= $outXML;
 
 
-				// I thought this woudl be better, but ... I guess not
+				// I thought this would be better, but ... I guess not
 				/*
 				$xml = new DOMDocument();
 				$xml->preserveWhiteSpace = false;
@@ -245,7 +245,7 @@ if (is_array($combined_index)) {
 				$verse_html .= $xml->saveXML();
 				*/
 
-				// unncessary I guess
+				// unnecessary I guess
 				/*
 				foreach($verse_node->childNodes as $child_node) {
 					if (is_object($child_node)) {

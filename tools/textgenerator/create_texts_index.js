@@ -110,7 +110,7 @@ for (var index in languages) {
 		langHtml = [];
 
 
-	// make langauge header
+	// make language header
 	indexHtml.push('<tr class="texts-index-header"><th colspan="2">' + breakChar +
 				textsInLang[0].langName +
 					( textsInLang[0].langName != textsInLang[0].langNameEnglish ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +

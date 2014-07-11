@@ -142,7 +142,7 @@ var Eng2pPlugin = function(node) {
 	// setting from localStorage
 	var eng2pSetting = AppSettings.getValue('docs-config-eng2p-setting', {'eng2p': 'none'});
 
-	// overrid with querysring
+	// override with querysring
 	var queryString = window.location.search && window.location.search.length > 0 ? window.location.search.substring(1) : '',
 		params = stringUtility.parseQuerystring( queryString );
 

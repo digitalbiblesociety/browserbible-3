@@ -19,7 +19,7 @@ var AudioDataManager = function() {
 
 			//console.log('-AudioSource.receiveData', textInfo.id);
 
-			// send data back up
+			// send data backup
 			if (audioInfo != null) {
 				//console.log('found: ', data);
 
@@ -142,7 +142,7 @@ var LocalAudio = (function() {
 	}
 
 	function findFragmentData(audioInfo, fragmentid) {
-		// split through all the file
+		// split through all the files
 		var verseParts = fragmentid.split('_'),
 			sectionid = verseParts[0],
 			verseNumber = parseInt(verseParts[1], 10),

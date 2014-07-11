@@ -21,7 +21,7 @@ var MediaLibraryPlugin = function(app) {
 		// handle clicks
 		$('.windows-main').on('click', '.mediathumb', function(e) {
 
-			// determin what kind of media this is
+			// determine what kind of media this is
 			var
 				icon = $(this),
 				mediaFolder = icon.attr('data-mediafolder'),
@@ -141,7 +141,7 @@ var MediaLibraryPlugin = function(app) {
 						// add media
 						if (typeof mediaForVerse != 'undefined') {
 
-							// check if it's alrady been added
+							// check if it's already been added
 							//if (verse.closest('.chapter').find('.' + verseid).find('.' + iconClassName).length == 0) {
 
 								var icon = $('<span class="inline-icon ' + iconClassName + ' mediathumb" data-mediafolder="' + mediaLibrary.folder + '"></span>'),
@@ -154,7 +154,7 @@ var MediaLibraryPlugin = function(app) {
 								}
 							//}
 						}
-					} // libries loop
+					} // libraries loop
 
 
 					verse.closest('.section').find('.' + verseid).addClass('has-media');

@@ -284,7 +284,7 @@ display: none;
 @font-face {
   font-family: GentiumPlus;
   src: url(fonts/gentiumplus-r-webfont.eot);
-  src: url(fonts/gentiumplus-r-webfont.eot?#iefix) format(eot), url(fonts/gentiumplus-r-webfont.woff) format(woff), url(fonts/gentiumplus-r-webfont.ttf) format(truetype), url(fonts/gentiumplus-r-webfont.svg#webfontVIEluHTz) format(svg);
+  src: url(fonts/gentiumplus-r-webfont.eot?#iefix) format('eot'), url(fonts/gentiumplus-r-webfont.woff) format('woff'), url(fonts/gentiumplus-r-webfont.ttf) format('truetype'), url(fonts/gentiumplus-r-webfont.svg#webfontVIEluHTz) format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -292,7 +292,7 @@ display: none;
 @font-face {
   font-family: EzraSILRegular;
   src: url(fonts/sileot-webfont.eot);
-  src: url(fonts/sileot-webfont.eot?#iefix) format(eot), url(fonts/sileot-webfont.woff) format(woff), url(fonts/sileot-webfont.ttf) format(truetype), url(fonts/sileot-webfont.svg#webfontVIEluHTx) format(svg);
+  src: url(fonts/sileot-webfont.eot?#iefix) format('eot'), url(fonts/sileot-webfont.woff) format('woff'), url(fonts/sileot-webfont.ttf) format('truetype'), url(fonts/sileot-webfont.svg#webfontVIEluHTx) format('svg');
   font-weight: normal;
   font-style: normal;
 }

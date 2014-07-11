@@ -13,7 +13,7 @@ body {
 }
 
 .clear {
-  cleaR: both;
+  clear: both;
 }
 
 /* Body */
@@ -322,16 +322,12 @@ body {
   }
 
   .page {
-    column-count: 2;
-    -moz-column-count: 2;
-    /* Firefox */
     -webkit-column-count: 2;
-    /* Safari and Chrome */
-    column-gap: 30px;
-    -moz-column-gap: 30px;
-    /* Firefox */
+    -moz-column-count: 2;
+    column-count: 2;
     -webkit-column-gap: 30px;
-    /* Safari and Chrome */
+    -moz-column-gap: 30px;
+    column-gap: 30px;
     padding: 30px 30px 15px;
   }
 }

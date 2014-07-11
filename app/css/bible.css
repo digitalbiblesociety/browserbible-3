@@ -185,21 +185,21 @@ div.c + div.q .v-1 {
   padding: .3em 0;
 }
 
-div[lang="he"] .c {
-	float: right;
-	margin-right: 0;
-	margin-left: .2em;
+div[lang=he] .c {
+  float: right;
+  margin-right: 0;
+  margin-left: .2em;
 }
 
-div[lang="he"] {
-	font-family: 'SBL Hebrew', EzraSIL;
-	direction: rtl;
-	text-align: right;
+div[lang=he] {
+  font-family: 'SBL Hebrew', EzraSIL;
+  direction: rtl;
+  text-align: right;
 }
 
-div[lang="he"] div.p {
-	direction: rtl;
-	text-align: right;
+div[lang=he] div.p {
+  direction: rtl;
+  text-align: right;
 }
 
 h3.is1,

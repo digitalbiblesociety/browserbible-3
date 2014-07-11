@@ -112,12 +112,12 @@
 }
 
 .image-library-thumbs li span.media-video-play {
-	position: absolute;
-	display: block;
-	top: 20px;
-	left: 40px;
-	background: transparent;
-	width: 20px;
-	height: 20px;
-	background: transparent url(build/images/video-icon-overlay.svg) center center no-repeat;
+  position: absolute;
+  display: block;
+  top: 20px;
+  left: 40px;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  background: transparent url(build/images/video-icon-overlay.svg) center center no-repeat;
 }

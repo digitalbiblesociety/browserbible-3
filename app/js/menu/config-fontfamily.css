@@ -1,0 +1,27 @@
+
+.config-font-family {
+  display: inline-block;
+  margin-right: 7px;
+}
+
+/* Don't set the Libertine font on the config menu item as in all the other
+ * options because that would cause the WOFF font files to load. For now this
+ * will allow those external resources to lazy-load only if required. Instead
+ * set just the local system font name in the off-chance they happen to have
+ * it installed */
+#config-font-family-Libertine {
+  font-family: "Linux Libertine";
+}
+
+.config-font-family-Libertine .section,
+.config-font-family-Libertine #font-size-table {
+  font-family: Libertine;
+  font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+  -moz-font-feature-settings: "onum=1, zero=1, liga=1, dlig=1, clig=1, salt=1, ss02=1";
+  -moz-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
+  -ms-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
+  -o-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
+  -webkit-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
+  font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
+}
+

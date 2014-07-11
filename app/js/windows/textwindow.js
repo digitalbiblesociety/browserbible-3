@@ -423,7 +423,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 
 	function size(width, height) {
 
-		//console.log('newsize',width,height);
+		console.log('winsize',id,width,height);
 
 		container
 			.outerWidth(width)

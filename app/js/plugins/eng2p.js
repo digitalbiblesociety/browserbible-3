@@ -5,86 +5,12 @@ sofia.config = $.extend(sofia.config, {
 });
 
 
-
 /**
  * Highlights words based on morphological data
  *
  * @author John Dyer (http://j.hn/)
  */
-
-
-/*
-Add
-,"2p-enableAll": true
-to config in order to enable all the options
-*/
 var Eng2pPlugin = function(node) {
-
-	/*
-	// get from URL
-	function parseQuerystring(querystring) {
-		// remove any preceding url and split
-		querystring = querystring.substring(querystring.indexOf('?')+1).split('&');
-		var params = {}, pair, d = decodeURIComponent;
-		// march and parse
-		for (var i = querystring.length - 1; i >= 0; i--) {
-		pair = querystring[i].split('=');
-		params[d(pair[0])] = d(pair[1]);
-		}
-
-		return params;
-	};
-	var params = {};
-	if (window.location.search.length > 0) {
-		params = parseQuerystring(window.location.search.substring(1));
-
-	}
-	*/
-
-
-	$('<style>\
-.eng2p-original {\
-text-decoration: line-through;\
-color: #444;\
-display:none;\
-}\
-.eng2p-corrected {\
-color:#393;\
-}\
-.eng2p-highlight,.eng2p-highlight-demo {\
-color:#393;\
-}\
-.config-eng2p-off .eng2p-original {\
-text-decoration: inherit;\
-color: inherit;\
-display: inherit;\
-}\
-.config-eng2p-off .eng2p-corrected {\
-display: none;\
-}\
-label[for="config-texan"] {\
-background-image:url(build/images/texan.svg);\
-}\
-#config-eng2p table {\
-border-collapse: collapse;\
-margin: 30px auto;\
-}\
-#config-eng2p th {\
-white-space:nowrap;\
-}\
-#config-eng2p td,#config-eng2p th {\
-border: solid 1px #ddd;\
-padding: 2px;\
-text-align:left;\
-font-size: 85%;\
-}\
-#config-eng2p-button {\
-background: url(build/images/two-people.svg) left center no-repeat;\
-background-size: 20px 20px;\
-padding:5px 0 5px 25px;\
-}\
-</style>').appendTo( $('head') );
-
 
 		//docManager.createOptionToggle('Texanize plurals', 'texan', true);
 
@@ -247,7 +173,7 @@ padding:5px 0 5px 25px;\
 		getPluralValues();
 
 		// re-run
-		$('div.chapter[lang="eng"]').each(function() {
+		$('div.chapter[lang="en"]').each(function() {
 			var chapter = $(this);
 
 			removePluralTransforms(chapter);
@@ -301,7 +227,7 @@ padding:5px 0 5px 25px;\
 		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
 
 
-			if (e.data.content.attr('lang') == 'eng' && eng2pSetting.eng2p != 'none') {
+			if (e.data.content.attr('lang') == 'en' && eng2pSetting.eng2p != 'none') {
 				//console.log('Eng2P', e.data.content.attr('data-id'));
 
 				runPluralTransforms(e.data.content);

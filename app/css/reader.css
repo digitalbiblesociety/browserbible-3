@@ -298,7 +298,7 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-@media screen and min-width 640px {
+@media screen and (min-width:640px) {
   #main {
     font-size: 16px;
   }
@@ -357,7 +357,7 @@ p.split-end {
 
 /* hack for safari/chrome */
 /*
-p.split-end: after {
+p.split-end:after {
 content: "";
 display: inline-block;
 width: 100%;

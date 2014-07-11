@@ -1,18 +1,3 @@
-/* fonts */
-@font-face {
-  font-family: GentiumPlus;
-  src: local('Gentium Plus'), url(fonts/gentiumplus-r-webfont.woff) format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: EzraSIL;
-  src: local('Ezra SIL'), url(fonts/sileot-webfont.woff) format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* main bible verse, text formating */
 .section,
 .chapter {
@@ -52,24 +37,24 @@
   font-size: 70%;
   vertical-align: top;
   color: #333;
-  font-family: avenir, helvetica;
+  font-family: Avenir, helvetica;
 }
 
-[lang=heb],
-.section[lang=he] .p,
-.section[lang=heb] .p,
-.chapter[lang=he] .p,
-.chapter[lang=heb] .p {
+body:not(.config-font-family-Libertine) [lang=he],
+body:not(.config-font-family-Libertine) .section[lang=he] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=he] .p {
   font-family: 'SBL Hebrew', EzraSIL!important;
-  font-size: 1.5em;
 }
 
-[lang=gre],
-[lang=grc],
-.section[lang=grc] .p,
-.section[lang=gre] .p,
-.chapter[lang=grc] .p,
-.chapter[lang=gre] .p {
+[lang=he],
+.section[lang=he] .p,
+.chapter[lang=he] .p {
+  font-size: 1.2em;
+}
+
+body:not(.config-font-family-Libertine) [lang=el],
+body:not(.config-font-family-Libertine) .section[lang=el] .p,
+body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
   font-family: Gentium, GentiumPlus!important;
 }
 
@@ -91,8 +76,8 @@
   text-decoration: none;
 }
 
-.chapter .note .key: hover,
-.chapter .cf.key: hover {
+.chapter .note .key:hover,
+.chapter .cf.key:hover {
   color: #fff;
   background: #33C;
 }
@@ -122,8 +107,8 @@
   cursor: pointer;
 }
 
-.bibleref: hover,
-.xt: hover {
+.bibleref:hover,
+.xt:hover {
   text-decoration: underline;
 }
 
@@ -200,21 +185,21 @@ div.c + div.q .v-1 {
   padding: .3em 0;
 }
 
-div[lang=heb] .c {
-  float: right;
-  margin-right: 0;
-  margin-left: .2em;
+div[lang="he"] .c {
+	float: right;
+	margin-right: 0;
+	margin-left: .2em;
 }
 
-div[lang=heb] {
-  font-family: 'SBL Hebrew', EzraSIL;
-  direction: rtl;
-  text-align: right;
+div[lang="he"] {
+	font-family: 'SBL Hebrew', EzraSIL;
+	direction: rtl;
+	text-align: right;
 }
 
-div[lang=heb] div.p {
-  direction: rtl;
-  text-align: right;
+div[lang="he"] div.p {
+	direction: rtl;
+	text-align: right;
 }
 
 h3.is1,

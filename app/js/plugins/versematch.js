@@ -1,14 +1,4 @@
-
 var VerseMatchPlugin = function(app) {
-
-	$(
-'<style>' +
-'.selected-verse {'+
-'background: #d9e8ef;'+
-'-x-webkit-transition: all 1s ease-in-out;' +
-'}' +
-'</style>').appendTo( $('head') );
-
 
 	if (!Detection.hasTouch) {
 
@@ -29,5 +19,3 @@ var VerseMatchPlugin = function(app) {
 };
 
 sofia.plugins.push('VerseMatchPlugin');
-
-

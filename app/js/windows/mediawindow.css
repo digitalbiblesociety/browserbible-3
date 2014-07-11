@@ -1,3 +1,9 @@
+
+#add-MediaWindow {
+  background-image: url(../../css/images/pictures.svg);
+}
+
+
 .media-library-thumbs a {
   display: block;
   float: left;
@@ -5,7 +11,7 @@
   -overflow: hidden;
 }
 
-.media-library-thumbs a: hover {
+.media-library-thumbs a:hover {
   outline: solid 1px rgba(43,134,232,1);
 }
 
@@ -17,6 +23,7 @@
   font-family: arial;
   font-size: 10px;
   text-shadow: 0 0 1px #000;
+  text-align: right;
 }
 
 .media-library-thumbs b {
@@ -32,7 +39,7 @@
   background: rgba(0,0,0,0.7);
 }
 
-.media-library-thumbs a: hover b {
+.media-library-thumbs a:hover b {
   background: rgba(43,134,232,0.51);
 }
 

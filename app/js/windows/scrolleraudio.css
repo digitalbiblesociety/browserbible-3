@@ -7,7 +7,6 @@
   border-top: solid 1px #d9d9d9;
   padding: 5px;
   height: 60px;
-  -x-box-shadow: 0 0 10px rgba(0,0,0,0.5);
   font-family: Avenir, Helvetica, Arial;
   font-size: 12px;
 }
@@ -63,59 +62,14 @@
   left: 50%;
 }
 
-.audio-controller .audio-play: hover,
-.audio-controller .audio-prev: hover,
+.audio-controller .audio-play:hover,
+.audio-controller .audio-prev:hover,
 .audio-controller .audio-next:hover {
   background-color: #eee;
   cursor: pointer;
 }
 
-/* fixed/ floating */
-/*
-.audio-controller .audio-play {
-width: 40px;
-height: 40px;
-margin-left: 5px;
-background-image: url(images/audio/play-icon.svg);
-background-size: 25px 25px;
-background-position: center center;
-background-repeat: no-repeat;
-text-indent: -9999px;
-}
-.audio-controller .audio-play.playing {
-background-image: url(images/audio/pause-icon.svg);
-}
 
-.audio-controller .audio-prev,
-.audio-controller .audio-next  {
-width: 30px;
-height: 30px;
-margin-left: 5px;
-background-size: 15px 15px;
-background-position: center center;
-background-repeat: no-repeat;
-text-indent: -9999px;
-}
-
-.audio-controller .audio-prev {
-background-image: url(images/audio/previous-icon.svg);
-}
-.audio-controller .audio-next  {
-background-image: url(images/audio/next-icon.svg);
-}
-
-.audio-controller .audio-currenttime,
-.audio-controller .audio-duration {
-display: inline-block;
-margin-left: 5px;
-
-}
-
-.audio-controller .audio-title {
-display: inline-block;
-margin-left: 20px;
-}
-  */
 .audio-controller .audio-play {
   width: 40px;
   height: 40px;

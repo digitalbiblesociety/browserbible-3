@@ -4,7 +4,7 @@ sofia.config = $.extend(sofia.config, {
 	fontSizeMax: 28,
 	fontSizeStep: 2,
 	fontSizeDefault: 18
-		
+
 });
 
 
@@ -13,7 +13,7 @@ var FontSizeSettings = function(node) {
 	// generate font sizes
 	var styleCode = '';
 	for (var size = sofia.config.fontSizeMin; size <= sofia.config.fontSizeMax; size += sofia.config.fontSizeStep) {
-		styleCode += '.config-font-size-' + size.toString() + ' .section { font-size: ' + size.toString() + 'px; }'; 		
+		styleCode += '.config-font-size-' + size.toString() + ' .section { font-size: ' + size.toString() + 'px; }';
 	}
 	$('<style>' + styleCode + '</style>').appendTo( $('head') );
 
@@ -47,7 +47,7 @@ var FontSizeSettings = function(node) {
 
 		// remove all others
 		for (var size = sofia.config.fontSizeMin; size <= sofia.config.fontSizeMax; size += sofia.config.fontSizeStep) {
-		
+
 			var className = 'config-font-size-' + size;
 
 			body.removeClass(className);

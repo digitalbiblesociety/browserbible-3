@@ -1,3 +1,9 @@
+/** 
+* Uploads a version to a location specified in ftp-config.js
+* See options for details
+*
+*/
+
 var ftp = require('ftp'),
 	ProgressBar = require('progress'),
 	fs = require('fs'),

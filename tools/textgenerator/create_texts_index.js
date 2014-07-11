@@ -1,6 +1,9 @@
-/*
-Reads all the info.json files from the content/texts/ folders and combines them into a useable
-texts.json file
+/** 
+* Reads all the info.json files from the content/texts/ folders and combines them 
+* into an index located at 
+* content/texts/texts.json
+
+* Example: 
 
 {
 	"textIds": [

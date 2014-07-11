@@ -1,3 +1,8 @@
+/**
+* Generates build.css and build.js (and minified versions) for use in production environments 
+* with the index-build.html or index-cdn.html
+**/
+
 // REQUIRE
 var
 	fs = require('fs'),

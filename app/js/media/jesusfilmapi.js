@@ -2302,7 +2302,7 @@ var JesusFilmMediaApi = (function() {
 
 
 	function init() {
-		// get langauges
+		// get languages
 		/*
 		$.ajax({
 
@@ -2332,7 +2332,7 @@ var JesusFilmMediaApi = (function() {
 		}
 		*/
 
-		// since Jesus Filem doesn't have a JSOSP option, we've saved the data below
+		// since Jesus Film doesn't have a JSOSP option, we've saved the data below
 		jfmLanguages = JesusFilmDataCompact;
 
 

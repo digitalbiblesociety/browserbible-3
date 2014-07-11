@@ -9,7 +9,7 @@
 // truth OR love
 // 1. load indexes
 // 2. merge lists of verses into canonical order
-// 3. reduce to chaptesr
+// 3. reduce to chapters
 // 4. load chapters
 // 5. extract verses
 
@@ -17,7 +17,7 @@
 // "in truth"
 // 1. load indexes
 // 2. ...
-// 3. reduce to chaptesr
+// 3. reduce to chapters
 // 4. load chapters
 // 5. extract verses
 
@@ -121,7 +121,7 @@ TextSearch = function() {
 							searchFinalResults.push({fragmentid: fragmentid, html: result.html});
 						}
 
-						// add to reults
+						// add to results
 						//searchFinalResults.push({fragmentid: fragmentid, html: html});
 					}
 
@@ -460,7 +460,7 @@ SearchTools = {
 				word += letter;
 
 			} else {
-				// it was puntuation!
+				// it was punctuation!
 				addWord();
 			}
 

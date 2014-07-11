@@ -205,7 +205,7 @@ var TextNavigator = function(container, target) {
 	});
 
 
-	// secions = bible chapters
+	// sections = bible chapters
 	function renderSections() {
 
 		console.log('renderSections', textInfo.type);

@@ -1185,7 +1185,7 @@ var MorphologySelector = function(parent) {
 			.siblings()
 			.remove();
 
-		// find whatever is selcted
+		// find whatever is selected
 		var selectedSpan = morphSelectorPOS.find('.selected'),
 			selectedValue = selectedSpan.attr('data-value');
 

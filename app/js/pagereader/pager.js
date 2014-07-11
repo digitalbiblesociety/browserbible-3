@@ -441,7 +441,7 @@ var Pager = function(parent_node, paginate_callback) {
 
 
 
-				// ust add the node
+				// just add the node
 				newNode[0].appendChild(text_node);
 
 				var page_height = newNode.closest('.page').outerHeight(true);

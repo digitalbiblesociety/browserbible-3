@@ -7,7 +7,7 @@ var alphabet = '0123456789abcdefghjkmnpqrtuvwxyz'
 var alias = { o:0, i:1, l:1, s:5 }
 
 /**
- * Build a lookup table and memoize it
+ * Build a lookup table and memorize it
  *
  * Return an object that maps a character to its
  * byte value.
@@ -128,7 +128,7 @@ function Decoder() {
         byte |= val >>> skip
         skip += 5
         if (skip >= 8) {
-            // we have enough to preduce output
+            // we have enough to produce output
             this.output += String.fromCharCode(byte)
             skip -= 8
             if (skip > 0) byte = (val << (5 - skip)) & 255

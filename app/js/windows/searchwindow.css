@@ -110,12 +110,18 @@
   background: #8c8cca;
 }
 
-.search-result-book-bar span.divisionid-JB,.search-result-book-bar span.divisionid-PS,.search-result-book-bar span.divisionid-PR,.search-result-book-bar span.divisionid-EC,.search-result-book-bar span.divisionid-SS,/* out of order in English! */
+.search-result-book-bar span.divisionid-JB,
+.search-result-book-bar span.divisionid-PS,
+.search-result-book-bar span.divisionid-PR,
+.search-result-book-bar span.divisionid-EC,
+.search-result-book-bar span.divisionid-SS,/* out of order in English! */
 .search-result-book-bar span.divisionid-LM {
   background: #c580c5;
 }
 
-.search-result-book-bar span.divisionid-IS,.search-result-book-bar span.divisionid-JR,/.search-result-book-bar span.divisionid-LM,*/
+.search-result-book-bar span.divisionid-IS,
+.search-result-book-bar span.divisionid-JR,
+/*.search-result-book-bar span.divisionid-LM, */
 .search-result-book-bar span.divisionid-EK,
 .search-result-book-bar span.divisionid-DN {
   background: #d38c8c;

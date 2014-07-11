@@ -212,9 +212,6 @@ input:focus {
 }
 
 /* header */
-
-
-
 .window-overlay {
   position: absolute;
   top: 50px;
@@ -229,10 +226,6 @@ input:focus {
   z-index: 50;
   overflow: auto;
 }
-
-
-
-
 
 #about {
 }

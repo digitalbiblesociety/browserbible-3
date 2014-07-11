@@ -1,8 +1,6 @@
-
 #add-SearchWindow {
   background-image: url(../../css/build/images/search.svg);
 }
-
 
 /* search */
 .search-main {
@@ -286,7 +284,6 @@ border-left: solid 3px #9bd79b;
 .highlight {
   background: #FF9;
 }
-
 
 .search-progress-bar {
   border: solid 1px #ccc;

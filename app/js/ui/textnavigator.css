@@ -24,12 +24,9 @@
   border-left: 10px solid transparent;
 }
 
-
-
-
 /* NAV */
 .text-navigator {
-  /*position: absolute;
+/*position: absolute;
   top: 0;
   left: 0;
   z-index: 100;
@@ -81,7 +78,7 @@
 }
 
 .text-navigator .text-navigator-header {
-  /*background: #333;
+/*background: #333;
   padding: 8px;
   color: #fff;
   position: relative;

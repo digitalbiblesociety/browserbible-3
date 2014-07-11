@@ -9,7 +9,7 @@ Main blue:              #2a85e8
 Light blue background:  #d9e8ef
 - Verse match
 
-Medium blue:            #7491CE
+Medium blue:            #7491ce
 - Link text (cf)
 - Footnote (A)
 
@@ -21,16 +21,17 @@ Pale Red:               #d5998b
 - close buttons
 
 
-Search matches:
-Location matches:       
+Search matches:         #ffff99
 
+Green location matches: #b7dbb4
+Green location border:  #6ba865
 
 
 UI
-Gray background:       #f8f8f8
-Border:                #cccccc
-Button (audio):        #dddddd
-button hover:          #eeeeee
+Gray background:        #f8f8f8
+Border:                 #cccccc
+Button (audio):         #dddddd
+button hover:           #eeeeee
 
 
 */

@@ -15,13 +15,12 @@
 
 .config-toggle label {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   text-indent: -9999px;
   cursor: pointer;
-  border-radius: 3px;
   opacity: .5;
-  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  border: solid 1px #eee;
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -30,6 +29,11 @@
 
 .toggle-on label {
   opacity: 1;
+  border-color: #bbb;
+}
+
+.config-toggle label:hover {
+  border-color: #7491CE;
 }
 
 /* VERSES */

@@ -1,5 +1,5 @@
 /**
-* Generates build.css and build.js (and minified versions) for use in production environments 
+* Generates build.css and build.js (and minified versions) for use in production environments
 * with the index-build.html or index-cdn.html
 **/
 
@@ -97,7 +97,7 @@ stylesheets.forEach(function(url) {
 		console.log('error Css minifiy', localPath, e);
 	}
 	combinedCss += fs.readFileSync(path.join(rootPath, url), 'utf8');
-	
+
 });
 
 // fix references to files

@@ -1,4 +1,4 @@
-/** 
+/**
 * Uploads a version to a location specified in ftp-config.js
 * See options for details
 *

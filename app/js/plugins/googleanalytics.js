@@ -103,5 +103,3 @@ var GoogleAnalyticsPlugin = function(app) {
 };
 
 sofia.plugins.push('GoogleAnalyticsPlugin');
-
-

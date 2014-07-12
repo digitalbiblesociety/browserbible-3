@@ -2427,5 +2427,3 @@ var JesusFilmMediaApi = (function() {
 
 	return ext;
 })();
-
-

@@ -11,7 +11,7 @@ sofia.textproviders['fcbh'] = (function() {
 
 	function getTextManifest (callback) {
 
-		// check for oofline use
+		// check for offline use
 		if (!sofia.config.enableOnlineSources || typeof sofia.config.fcbhKey == 'undefined' || sofia.config.fcbhKey == '') {
 			callback(null);
 			return;

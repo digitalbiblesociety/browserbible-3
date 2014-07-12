@@ -172,4 +172,3 @@ var LemmaPopupPlugin = function(app) {
 };
 
 sofia.plugins.push('LemmaPopupPlugin');
-

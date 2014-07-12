@@ -666,4 +666,3 @@ sofia.initMethods.push(function() {
 	});
 
 });
-

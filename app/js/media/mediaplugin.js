@@ -201,4 +201,3 @@ var MediaLibraryPlugin = function(app) {
 }
 
 sofia.plugins.push('MediaLibraryPlugin');
-

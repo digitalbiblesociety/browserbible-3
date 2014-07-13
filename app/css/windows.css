@@ -73,6 +73,7 @@ input:focus {
   margin: 0 5px 0 0;
   color: #919191;
   -webkit-appearance: none;
+  -moz-appearance:none;
   height: 30px;
 }
 

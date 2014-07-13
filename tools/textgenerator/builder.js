@@ -64,7 +64,13 @@ scripts.forEach(function(url) {
 	} catch (e) {
 		console.log('error minifiy', localPath);
 	}
-	combinedScript += fs.readFileSync(path.join(rootPath, url), 'utf8') + '\n\n';
+	combinedScript += 
+		'\n' + 
+		'/*********\n' + 
+		'* ' + path.join(rootPath, url) + '\n' + 
+		'**********/\n' + 
+		fs.readFileSync(path.join(rootPath, url), 'utf8') + 
+		'\n\n';
 });
 
 // write out
@@ -96,7 +102,13 @@ stylesheets.forEach(function(url) {
 	} catch (e) {
 		console.log('error Css minifiy', localPath, e);
 	}
-	combinedCss += fs.readFileSync(path.join(rootPath, url), 'utf8');
+	combinedCss += 
+		'\n' + 
+		'/*--------------------------------------\n' + 
+		' * ' + path.join(rootPath, url) + '\n' + 
+		' *------------------------------------*/\n' + 	
+		fs.readFileSync(path.join(rootPath, url), 'utf8') + 
+		'\n\n';
 	
 });
 

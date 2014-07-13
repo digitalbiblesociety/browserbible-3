@@ -1,7 +1,21 @@
 Change Log
 =======
 
-3.1.5 - in progress
+3.2.0 - 2014/07/13
+----
+
+* Rearranged CSS into modularized files (johndyer)
+* Updated remaining config items to a flat style (johndyer)
+* Added `enableXxxYYY` config options for plugins and user options (johndyer)
+* Moved font face/size to config options
+* Changed to using two-letter language codes for `<div lang="en">` (alerque)
+* Added tooltips to fonts (alerque)
+* Fixed font face/size selector problems (alerque)
+* Added justification/hyphenation toggle (alerque)
+* Added Libertine as a font option (alerque)
+* Whitesace adjustments (Zohma)
+
+3.1.5 - 2014/07/08
 ----
 
 * Localization support for chapter numbers through `"numbers"` array in version/info.json and RTL (johndyer)

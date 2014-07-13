@@ -12,7 +12,7 @@
   border: solid 1px #ddd;
   color: #919191;
   -webkit-appearance: none;
-
+  -moz-appearance:none;
 }
 
 #config-language:hover {

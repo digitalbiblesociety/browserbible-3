@@ -74,7 +74,7 @@ var WindowManager = function(node) {
 			height = node.height();
 		}
 
-		console.log('manage resize', windows.length);
+		//console.log('manage resize', windows.length);
 
 		if (windows.length > 0) {
 

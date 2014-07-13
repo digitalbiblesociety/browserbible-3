@@ -1,7 +1,13 @@
+sofia.config = $.extend(sofia.config, {
+
+	enableUrlCopier: true
+
+});
+
 
 var ConfigUrl = function(node) {
 
-	if (location.protocol == 'file:') {
+	if (!sofia.config.enableUrlCopier || location.protocol == 'file:') {
 		return;
 	}
 

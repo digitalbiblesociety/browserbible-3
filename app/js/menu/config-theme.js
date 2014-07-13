@@ -1,4 +1,15 @@
+sofia.config = $.extend(sofia.config, {
+
+	enableThemeSelector: true
+
+});
+
 var ThemeSetting = function(node) {
+
+	if (!sofia.config.enableThemeSelector) {
+		return;
+	}
+
 	var
 		body = $('#config-type .config-body'),
 		themesBlock = $('<div id="config-themes"></div>')

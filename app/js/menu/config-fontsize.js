@@ -1,5 +1,7 @@
 sofia.config = $.extend(sofia.config, {
 
+	enableFontSizeSelector: true,
+
 	fontSizeMin: 14,
 	fontSizeMax: 28,
 	fontSizeStep: 2,
@@ -16,6 +18,14 @@ var FontSizeSettings = function(node) {
 		styleCode += '.config-font-size-' + size.toString() + ' .section { font-size: ' + size.toString() + 'px; }';
 	}
 	$('<style>' + styleCode + '</style>').appendTo( $('head') );
+
+
+	if (!sofia.config.enableFontSizeSelector) {
+		
+		setFontSize(sofia.config.fontSizeDefault);
+		
+		return;
+	}
 
 	var
 		body = $('#config-type .config-body'),

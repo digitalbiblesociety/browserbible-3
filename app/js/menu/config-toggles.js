@@ -1,8 +1,27 @@
+sofia.config = $.extend(sofia.config, {
+
+	enableSettingToggles: true,
+	settingToggleNames: ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ', 'Media', 'Justify'],
+	settingToggleDefaults: [true, true, true, true, true, true, false]
+	
+});
+
+
 var ConfigToggles = function(node) {
+
 	var body = $('#config-toggles .config-body'),
-		toggleNames = ['Chapters', 'Verses', 'Titles', 'Notes', 'Words of Christ', 'Media', 'Justify'],
-		toggleDefaults = [true, true, true, true, true, true, false],
+		toggleNames = sofia.config.settingToggleNames,
+		toggleDefaults = sofia.config.settingToggleDefaults,
 		prefix = 'config-toggle-';
+		
+	if (!sofia.config.enableSettingToggles) {
+		for(var i=0, il=toggleNames.length; i<il; i++) {
+			var toggleName = toggleNames[i]
+			setToggle(toggleName, toggleDefaults[i]);
+		}	
+	
+		return;
+	}		
 
 	sofia.globals.createToggle = function(toggleName, defaultValue) {
 

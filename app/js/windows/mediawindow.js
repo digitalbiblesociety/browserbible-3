@@ -334,6 +334,7 @@ sofia.initMethods.push(function() {
 	sofia.windowTypes.push( {
 				className:'MediaWindow',
 				param: 'media',
+				paramKeys: {},
 				init: {
 					'latitude': 31.7833,
 					'longitude': 35.2167

@@ -8,6 +8,7 @@ var App = function() {
 		header = $('<div class="windows-header"></div>').appendTo(container),
 		main = $('<div class="windows-main"></div>').appendTo(container),
 		footer = $('<div class="windows-footer"></div>').appendTo(container),
+		settingsKey = 'app-windows',
 		ext = {};
 
 
@@ -56,37 +57,6 @@ var App = function() {
 
 			//console.log('create window', setting, windowClassName);
 			windowManager.add(windowClassName, setting.data);
-
-
-			/*
-			if (!setting.windowType) {
-
-				switch (setting.type) {
-					case 'bible':
-						windowType = 'BibleWindow';
-						break;
-					case 'commentary':
-						windowType = 'CommentaryWindow';
-						break;
-					case 'map':
-						windowType = 'MapsWindow';
-						break;
-					case 'search':
-						windowType = 'SearchWindow';
-						break;
-					case 'media':
-						windowType = 'MediaWindow';
-						break;
-					default:
-						windowType = setting.type;
-
-				}
-			}
-			*/
-
-			// create window
-			//console.log('create',i, windowType, setting.data);
-			//windowManager.add(windowClassName, setting.data);
 		}
 
 		// get first window
@@ -124,9 +94,7 @@ var App = function() {
 			}
 		}
 	}
-
-
-
+	
 	function resize() {
 		console.log('app resize');
 
@@ -154,12 +122,8 @@ var App = function() {
 		// pass new size down to area
 		ext.windowManager.size(areaWidth, areaHeight);
 
-
 		PlaceKeeper.restorePlace();
 	}
-
-
-	var settingsKey = 'app-windows';
 
 	function getWindowSettings() {
 
@@ -173,26 +137,35 @@ var App = function() {
 
 		// (3) overwrite with QueryString when present
 		var queryData = stringUtility.parseQuerystring();
-		if (queryData["win1"]) {
+		if (queryData["w1"]) {
 
 			var tempSettings = [];
 
 			for (var i=1; i<=4; i++) {
-				var winType = queryData["win" + i.toString()],
+				var winTypeName = queryData["w" + i.toString()],
+					winTypeInfo = sofia.windowTypes.filter(function(winType) { return winType.param == winTypeName; })[0],
+					winTypeParamKeys = typeof winTypeInfo != 'undefined' ? Object.keys(winTypeInfo.paramKeys) : [],
 					setting = {
-						type: winType,
+						type: winTypeName,
 						data: {}
 					};
-
-				if (typeof winType != 'undefined') {
+					
+				if (typeof winTypeName != 'undefined') {
 					// go though all querystring values, and anything that ends with '1' goes with this data
 					for (var q in queryData) {
 						var key = q.substring(0, q.length-1),
 							number = q.substring(q.length-1),
 							value = queryData[q];
 
-						if (key != 'win' && number == i.toString()) {
-							setting.data[key] = value;
+						if (key != 'w' && number == i.toString()) {
+						
+							// convert short querystring key to longer one if needed
+							var longParamKey = winTypeParamKeys.filter(function(lpk) { 
+								console.log(key, lpk, winTypeInfo.paramKeys[lpk]);
+								return key == winTypeInfo.paramKeys[lpk] || key == lpk;
+							})[0];
+							
+							setting.data[longParamKey] = value;
 						}
 					}
 

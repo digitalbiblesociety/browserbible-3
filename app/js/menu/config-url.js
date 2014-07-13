@@ -78,19 +78,30 @@ var ConfigUrl = function(node) {
 			mergedArray = [];
 
 		for (var i=0, il=windowSettings.length; i<il; i++) {
+			// get window settings
 			var winSettings = windowSettings[i];
 
 			if (winSettings.data == null || typeof winSettings.data.params == 'undefined') {
 				continue;
 			}
 
+			// get window type info
+			var winTypeName = winSettings.data.params.win,
+				winTypeInfo = sofia.windowTypes.filter(function(winType) { return winType.param == winTypeName; })[0];
+
+			if (typeof winTypeInfo == 'undefined') {
+				console.log('Cannot find', winTypeName, winTypeInfo, winSettings.data.params, winSettings.data.params.win);
+				continue;
+			}
+
 			// go through the params object
 			// params: {'win': 'bible', 'fragmentid': 'JN1_1'}
-			//for (var j=0,jl=winSettings.data.params.length; j<jl; j++) {
+			// shorten with paramKeys
 			for (var paramName in winSettings.data.params) {
-				var paramData = winSettings.data.params[paramName];
-				newParams[ paramName + (i+1) ] = paramData;
+				var paramData = winSettings.data.params[paramName],
+					paramShort = paramName == 'win' ? 'w' : winTypeInfo.paramKeys[paramName];
 
+				newParams[ paramShort + (i+1) ] = paramData;
 				//console.log(paramName, paramData);
 			}
 
@@ -119,7 +130,7 @@ var ConfigUrl = function(node) {
 		urlInput.val(url);
 		urlDiv.html(url);
 
-		//console.log('URL', windowSettings, parts);
+		console.log('URL', url);
 	}
 
 

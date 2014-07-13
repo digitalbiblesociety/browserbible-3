@@ -563,12 +563,16 @@ var BibleWindow = function(id, node, init_data) {
 sofia.initMethods.push(function() {
 
 	sofia.windowTypes.push( {
-				className:'BibleWindow',
-				param: 'bible',
-				init: {
-					'textid':sofia.config.newBibleWindowVersion,
-					'fragmentid':sofia.config.newBibleWindowVerse
-				}
+		className:'BibleWindow',
+		param: 'bible',
+		paramKeys: {
+			'textid': 't',
+			'fragmentid':'v'
+		},				
+		init: {
+			'textid':sofia.config.newBibleWindowVersion,
+			'fragmentid':sofia.config.newBibleWindowVerse
+		}
 	});
 
 });
@@ -584,13 +588,17 @@ sofia.initMethods.push(function() {
 
 	if (typeof sofia.config.newCommentaryWindowTextId != 'undefined') {
 
-		sofia.windowTypes.push( {
-					className:'CommentaryWindow',
-					param: 'commentary',
-					init: {
-						'textid':sofia.config.newCommentaryWindowTextId,
-						'fragmentid':''
-					}
+		sofia.windowTypes.push({
+			className:'CommentaryWindow',
+			param: 'commentary',
+			paramKeys: {
+				'textid': 't',
+				'fragmentid':'v'
+			},
+			init: {
+				'textid':sofia.config.newCommentaryWindowTextId,
+				'fragmentid':''
+			}
 		});
 	}
 });

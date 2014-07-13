@@ -610,7 +610,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 			return {
 				searchtext: input.val(),
 				textid: (selectedText != null) ? selectedText.id : null,
-
 				params: {
 					'win': 'search',
 					'textid': (selectedText != null) ? selectedText.id : null,
@@ -644,10 +643,14 @@ sofia.initMethods.push(function() {
 	if (sofia.config.enableOnlineSources) {
 
 		sofia.windowTypes.push( {
-					className:'SearchWindow',
-					param: 'search',
-					init: {
-					}
+			className:'SearchWindow',
+			param: 'search',
+			paramKeys: {
+				'textid': 't',
+				'searchtext': 's'
+			},					
+			init: {
+			}
 		});
 	}
 });

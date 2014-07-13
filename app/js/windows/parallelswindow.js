@@ -658,11 +658,15 @@ var ParallelsWindow = function(id, node, init_data) {
 sofia.initMethods.push(function() {
 
 	sofia.windowTypes.push( {
-				className:'ParallelsWindow',
-				param: 'parallel',
-				init: {
-					'textid': sofia.config.newBibleWindowVersion
-				}
+		className:'ParallelsWindow',
+		param: 'parallel',
+		paramKeys: {
+			'textid': 't',
+			'parallelid': 'p'
+		},				
+		init: {
+			'textid': sofia.config.newBibleWindowVersion
+		}
 	});
 
 });

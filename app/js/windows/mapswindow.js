@@ -290,7 +290,7 @@ var MapWindow = function(id, parentNode, data) {
 		if (map == null) {
 			return {
 				params: {
-					win: 'maps'
+					win: 'map'
 				}
 			};
 		}
@@ -298,9 +298,9 @@ var MapWindow = function(id, parentNode, data) {
 		var center = map.getCenter(),
 			data = {
 				latitude: center.lat(),
-				longitude: center.lng(),
+				longitude: center.lng(),			
 				params: {
-					'win': 'maps',
+					'win': 'map',
 					'latitude': center.lat(),
 					'longitude': center.lng()
 				}
@@ -416,10 +416,7 @@ var MapWindow = function(id, parentNode, data) {
 				// do this one
 				highlightLocations(e.data.content);
 			}
-
-
 		}
-
 	});
 
 	return ext;
@@ -436,6 +433,10 @@ sofia.initMethods.push(function() {
 		sofia.windowTypes.push( {
 					className:'MapWindow',
 					param: 'map',
+					paramKeys: {
+						'latitude': 'la',
+						'longitude': 'ln',					
+					},				
 					init: {
 						'latitude': 31.7833,
 						'longitude': 35.2167

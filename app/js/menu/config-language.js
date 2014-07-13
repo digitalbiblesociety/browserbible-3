@@ -1,4 +1,17 @@
+sofia.config = $.extend(sofia.config, {
+
+	enableLanguageSelector: true
+
+});
+
+
 var LanguageSetting = function(node) {
+
+	if (!sofia.config.enableLanguageSelector) {		
+		return;
+	}
+
+
 	var
 		body = $('#config-toggles .config-body'),
 		list = $('<select id="config-language"></select>')

@@ -1,5 +1,14 @@
+sofia.config = $.extend(sofia.config, {
+	
+	enableLemmaInfoPlugin: true
+
+});
 
 var LemmaInfoPlugin = function(app) {
+
+	if (!sofia.config.enableLemmaInfoPlugin) {
+		return;
+	}
 
 	var lemmaInfo = $('<div class="lemma-info"></div>').appendTo( $(document.body) ).hide();
 
@@ -14,7 +23,7 @@ var LemmaInfoPlugin = function(app) {
 				mainOffset = main.offset(),
 				section = l.closest('.section'),
 				lang = section.attr('lang'),
-				morphologyType = lang == 'heb' ? 'Hebrew' : lang == 'grc' || lang == 'gre' ? 'Greek' : ''
+				morphologyType = lang == 'heb' || lang == 'he' ? 'Hebrew' : lang == 'el' || lang == 'grc' || lang == 'gre' ? 'Greek' : ''
 				morphInfo = (typeof morph == 'undefined' || morphologyType == '') ? '' : bible.morphology[morphologyType].format(morph);
 
 			if (morphInfo != null && morphInfo != '') {

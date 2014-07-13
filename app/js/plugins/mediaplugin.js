@@ -1,12 +1,20 @@
+sofia.config = $.extend(sofia.config, {
+
+	enableMediaLibraryPlugin: true
+
+});
 
 var MediaLibraryPlugin = function(app) {
+
+	if (!sofia.config.enableMediaLibraryPlugin) {
+		return;		
+	}
 
 	var mediaLibraries = null,
 		mediaPopup = new InfoWindow(),
 		contentToProcess = [];
 
-
-		//console.log('MediaLibraryPlugin startup');
+	console.log('MediaLibraryPlugin startup', MediaLibrary.getMediaLibraries);
 
 	MediaLibrary.getMediaLibraries(function(data) {
 		mediaLibraries = data;
@@ -107,6 +115,8 @@ var MediaLibraryPlugin = function(app) {
 
 	// process chapters, add image icon to verses
 	function addMedia() {
+	
+		console.log('addMedia',mediaLibraries);
 
 		if (mediaLibraries == null) {
 			return;
@@ -170,17 +180,6 @@ var MediaLibraryPlugin = function(app) {
 		} // while
 
 	}
-
-	/*
-	mediaPopup.body.on('click', '.inline-image-library-thumbs a', function() {
-		var link = $(this);
-
-		if (link.parent().siblings().length == 0) {
-			mediaPopup.hide();
-		}
-
-	});
-	*/
 
 	mediaPopup.body.on('click', '.inline-image-library-thumbs a', sofia.globals.mediaImageClick);
 	mediaPopup.body.on('click', '.inline-video-library-thumbs a', sofia.globals.mediaVideoClick);

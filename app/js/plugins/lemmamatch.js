@@ -1,12 +1,14 @@
+sofia.config = $.extend(sofia.config, {
+	
+	enableLemmaMatchPlugin: true
+
+});
+
 var LemmaMatchPlugin = function(app) {
 
-	$(
-'<style>' +
-'.lemma-highlight {'+
-'background: #2a85e8;'+
-'color: #fff;'+
-'}' +
-'</style>').appendTo( $('head') );
+	if (!sofia.config.enableLemmaMatchPlugin) {
+		return;
+	}
 
 	if (!Detection.hasTouch) {
 

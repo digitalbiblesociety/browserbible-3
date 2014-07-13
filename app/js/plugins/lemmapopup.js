@@ -1,6 +1,15 @@
+sofia.config = $.extend(sofia.config, {
+	
+	enableLemmaPopupPlugin: true
+
+});
 
 
 var LemmaPopupPlugin = function(app) {
+	
+	if (!sofia.config.enableLemmaPopupPlugin) {
+		return;
+	}
 
 	var lemmaPopup = new InfoWindow(),
 		timer = new Timer(hidePopup, 500);

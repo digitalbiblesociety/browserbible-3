@@ -1,5 +1,10 @@
 
+
 var CrossReferencePopupPlugin = function(app) {
+
+	if (!sofia.config.enableNotesPopupPlugin) {
+		return;
+	}
 
 	var referencePopup = new InfoWindow('CrossReferencePopup');
 

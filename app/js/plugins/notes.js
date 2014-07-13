@@ -1,6 +1,15 @@
+sofia.config = $.extend(sofia.config, {
+	
+	enableNotesPopupPlugin: true
+
+});
 
 var NotesPopupPlugin = function(app) {
-
+	
+	if (!sofia.config.enableNotesPopupPlugin) {
+		return;
+	}
+	
 	var notesPopup = new InfoWindow('NotesPopup');
 
 	notesPopup.body.on('click', '.bibleref, .xt', function(e) {

@@ -1,4 +1,15 @@
+sofia.config = $.extend(sofia.config, {
+	
+	enableVerseMatchPlugin: true
+
+});
+
 var VerseMatchPlugin = function(app) {
+
+	if (!sofia.config.enableVerseMatchPlugin) {
+		return;
+	}
+
 
 	if (!Detection.hasTouch) {
 

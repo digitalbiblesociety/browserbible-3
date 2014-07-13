@@ -1,7 +1,9 @@
 sofia.config = $.extend(sofia.config, {
+	
+	enableEng2pPlugin: true,
 
 	// enables all possible English options (false = just color 'you')
-	"eng2pEnableAll": true
+	eng2pEnableAll: true
 });
 
 
@@ -12,7 +14,10 @@ sofia.config = $.extend(sofia.config, {
  */
 var Eng2pPlugin = function(node) {
 
-		//docManager.createOptionToggle('Texanize plurals', 'texan', true);
+
+	if (!sofia.config.enableEng2pPlugin) {
+		return;
+	}
 
 	var
 		engWindow = new MovableWindow(550,290),

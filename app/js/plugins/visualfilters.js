@@ -6,6 +6,12 @@ x hebrew morphology
 - TYPE: [Any Text, Greek, Hebrew]
 */
 
+sofia.config = $.extend(sofia.config, {
+	
+	enableVisualFilters: true
+
+});
+
 
 
 /**
@@ -15,6 +21,11 @@ x hebrew morphology
  */
 
 var VisualFilters = function(node) {
+	
+	if (!sofia.config.enableVisualFilters) {
+		return;
+	}
+
 
 	var
 		settingsKey = 'docs-config-visualfilters',

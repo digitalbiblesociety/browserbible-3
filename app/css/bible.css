@@ -1,303 +1,303 @@
 /* main bible verse, text formatting */
 .section,
 .chapter {
-  line-height: 1.8;
+	line-height: 1.8;
 }
 
 .section p,
 .section div.p,
 .chapter div.p {
-  text-indent: 1em;
+	text-indent: 1em;
 }
 
 .section ins {
-  text-decoration: none;
-  font-style: italic;
+	text-decoration: none;
+	font-style: italic;
 }
 
 .chapter-num {
-  float: left;
-  font-size: 2em;
-  line-height: 1;
-  margin: 0 .25em .5em 0;
+	float: left;
+	font-size: 2em;
+	line-height: 1;
+	margin: 0 .25em .5em 0;
 }
 
 .chapter-num + p {
-  text-indent: 0;
+	text-indent: 0;
 }
 
 .chapter[dir=rtl] .chapter-num {
-  float: right;
-  margin: 0 0 .5em .5em;
+	float: right;
+	margin: 0 0 .5em .5em;
 }
 
 .verse-num,
 .v-num {
-  font-weight: bold;
-  font-size: 70%;
-  vertical-align: top;
-  color: #333;
-  font-family: Avenir, helvetica;
+	font-weight: bold;
+	font-size: 70%;
+	vertical-align: top;
+	color: #333;
+	font-family: Avenir, helvetica;
 }
 
 body:not(.config-font-family-Libertine) [lang=he],
 body:not(.config-font-family-Libertine) .section[lang=he] .p,
 body:not(.config-font-family-Libertine) .chapter[lang=he] .p {
-  font-family: 'SBL Hebrew', EzraSIL!important;
+	font-family: 'SBL Hebrew', EzraSIL!important;
 }
 
 [lang=he],
 .section[lang=he] .p,
 .chapter[lang=he] .p {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 body:not(.config-font-family-Libertine) [lang=el],
 body:not(.config-font-family-Libertine) .section[lang=el] .p,
 body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
-  font-family: Gentium, GentiumPlus!important;
+	font-family: Gentium, GentiumPlus!important;
 }
 
 /* notes and cross references */
 .note,
 .cf {
-  display: inline;
+	display: inline;
 }
 
 .note .key,
 .cf .key {
-  vertical-align: top;
-  font-size: 60%;
-  font-weight: normal;
-  font-style: normal;
-  color: #7491CE;
-  cursor: pointer;
-  display: inline;
-  text-decoration: none;
+	vertical-align: top;
+	font-size: 60%;
+	font-weight: normal;
+	font-style: normal;
+	color: #7491CE;
+	cursor: pointer;
+	display: inline;
+	text-decoration: none;
 }
 
 .chapter .note .key:hover,
 .chapter .cf.key:hover {
-  color: #fff;
-  background: #33C;
+	color: #fff;
+	background: #33C;
 }
 
 .chapter .note .text,
 .chapter .cf .text {
-  display: none;
+	display: none;
 }
 
 .document-footer .cf .key,
 .document-footer .note .key {
-  display: inline;
-  vertical-align: top;
-  font-size: 8px;
-  font-weight: bold;
-  color: #33C;
+	display: inline;
+	vertical-align: top;
+	font-size: 8px;
+	font-weight: bold;
+	color: #33C;
 }
 
 .text .notetype {
-  font-weight: bold;
-  font-style: italic;
+	font-weight: bold;
+	font-style: italic;
 }
 
 .bibleref,
 .xt {
-  color: #7491CE;
-  cursor: pointer;
+	color: #7491CE;
+	cursor: pointer;
 }
 
 .bibleref:hover,
 .xt:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* Gospels red letters */
 .woc,
 .wj {
-  color: #A00;
+	color: #A00;
 }
 
 .yhwh,
 .nog {
-  font-variant: small-caps;
+	font-variant: small-caps;
 }
 
 .chapter .note .text,
 .chapter .cf .text,
 #search-results .note,
 #search-results .cf {
-  display: none;
+	display: none;
 }
 
 /* most books */
 .section .c,
 .section .chapter-num,
 .section .c-num {
-  float: left;
-  font-size: 2em;
-  line-height: 1;
-  font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: .2em;
-  font-family: avenir, helvetica;
+	float: left;
+	font-size: 2em;
+	line-height: 1;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: .2em;
+	font-family: avenir, helvetica;
 }
 
 [dir=rtl] .c,
 [dir=rtl] .section .chapter-num,
 [dir=rtl] .section .c-num {
-  float: right;
-  margin-right: 0;
-  margin-left: .2em;
+	float: right;
+	margin-right: 0;
+	margin-left: .2em;
 }
 
 div.c + div.p,
 .chapter-num + div.p {
-  text-indent: 0!important;
+	text-indent: 0!important;
 }
 
 div.c + div.q {
-  clear: both;
+	clear: both;
 }
 
 .v-1 {
-  display: none;
+	display: none;
 }
 
 /* Psalms */
 .PS .c {
-  font-size: 1.2em;
-  margin-top: 2em;
-  text-align: center;
-  float: none;
+	font-size: 1.2em;
+	margin-top: 2em;
+	text-align: center;
+	float: none;
 }
 
 .PS .v-1 {
-  display: inline;
+	display: inline;
 }
 
 div.c + div.q .v-1 {
-  display: inline;
+	display: inline;
 }
 
 .v {
-  padding: .3em 0;
+	padding: .3em 0;
 }
 
 div[lang=he] .c {
-  float: right;
-  margin-right: 0;
-  margin-left: .2em;
+	float: right;
+	margin-right: 0;
+	margin-left: .2em;
 }
 
 div[lang=he] {
-  font-family: 'SBL Hebrew', EzraSIL;
-  direction: rtl;
-  text-align: right;
+	font-family: 'SBL Hebrew', EzraSIL;
+	direction: rtl;
+	text-align: right;
 }
 
 div[lang=he] div.p {
-  direction: rtl;
-  text-align: right;
+	direction: rtl;
+	text-align: right;
 }
 
 h3.is1,
 div.s,
 div.is1 {
-  color: #333;
-  font-weight: bold;
-  margin-top: 1em;
+	color: #333;
+	font-weight: bold;
+	margin-top: 1em;
 }
 
 .PS .s,
 .PS .ms {
-  text-align: center;
+	text-align: center;
 }
 
 .q {
-  padding-left: 3em!important;
-  text-indent: -1.5em!important;
-  position: relative;
+	padding-left: 3em!important;
+	text-indent: -1.5em!important;
+	position: relative;
 }
 
 .q2 {
-  padding-left: 4em!important;
-  text-indent: -1.5em!important;
-  position: relative;
+	padding-left: 4em!important;
+	text-indent: -1.5em!important;
+	position: relative;
 }
 
 .q .verse-num,
 .q .v-num {
-  position: absolute;
-  display: block;
-  width: 2em;
-  text-align: right;
-  top: 0;
-  left: 0;
+	position: absolute;
+	display: block;
+	width: 2em;
+	text-align: right;
+	top: 0;
+	left: 0;
 }
 
 .qs {
-  text-align: right;
-  font-style: italic;
+	text-align: right;
+	font-style: italic;
 }
 
 .c + .p,
 .c + p {
-  margin-top: 0;
-  text-indent: 0;
+	margin-top: 0;
+	text-indent: 0;
 }
 
 .d {
-  font-size: .8em;
-  text-align: center;
+	font-size: .8em;
+	text-align: center;
 }
 
 /* USFM */
 .mt {
-  display: block;
-  text-align: center;
-  font-size: 2em;
-  margin-top: 3em;
-  margin-bottom: 1em;
-  line-height: 1.2;
+	display: block;
+	text-align: center;
+	font-size: 2em;
+	margin-top: 3em;
+	margin-bottom: 1em;
+	line-height: 1.2;
 }
 
 .mt2,
 .mt3 {
-  display: block;
-  text-align: center;
-  font-size: 1.4em;
-  margin-top: 3em;
-  line-height: 1.2;
+	display: block;
+	text-align: center;
+	font-size: 1.4em;
+	margin-top: 3em;
+	line-height: 1.2;
 }
 
 .mt2 + .mt,
 .mt3 + .mt,
 .mt2 + .mt3,
 .mt2 + .mt2 {
-  margin-top: 0;
+	margin-top: 0;
 }
 
 /* introduction */
 .is {
-  margin-top: 1em;
-  text-align: center;
+	margin-top: 1em;
+	text-align: center;
 }
 
 .ip {
-  line-height: 1.2;
-  font-size: .9em;
+	line-height: 1.2;
+	font-size: .9em;
 }
 
 /* commentaries */
 .comm-v-num {
-  font-weight: bold;
-  display: block;
-  margin: 3em 0 0;
+	font-weight: bold;
+	display: block;
+	margin: 3em 0 0;
 }
 
 .commentary {
-  line-height: 1.5;
-  font-size: .9em;
+	line-height: 1.5;
+	font-size: .9em;
 }

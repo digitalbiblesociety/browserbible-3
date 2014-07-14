@@ -1,89 +1,89 @@
 #add-SearchWindow {
-  background-image: url(../../css/images/search.svg);
+	background-image: url(../../css/images/search.svg);
 }
 
 /* search */
 .search-main {
-  background: #fff;
-  overflow: auto;
+	background: #fff;
+	overflow: auto;
 }
 
 .search-main-loading {
-  min-height: 50px;
-  background: transparent url(../../css/images/loading.gif) top center no-repeat;
+	min-height: 50px;
+	background: transparent url(../../css/images/loading.gif) top center no-repeat;
 }
 
 .search-wrapper {
-  padding: 10px;
+	padding: 10px;
 }
 
 .search-wrapper table {
-  border-spacing: 0;
-  border-collapse: collapse;
+	border-spacing: 0;
+	border-collapse: collapse;
 }
 
 .search-wrapper table td,
 .search-wrapper table th {
-  padding: 3px;
+	padding: 3px;
 }
 
 .search-wrapper table th {
-  text-align: left;
-  vertical-align: top;
-  white-space: nowrap;
-  font-size: .8em;
+	text-align: left;
+	vertical-align: top;
+	white-space: nowrap;
+	font-size: .8em;
 }
 
 .search-wrapper table td .note,
 .search-wrapper table td .cf {
-  display: none;
+	display: none;
 }
 
 .search-wrapper table tr:hover {
-  cursor: pointer;
-  background-color: #dbe9fa;
+	cursor: pointer;
+	background-color: #dbe9fa;
 }
 
 /* visual */
 .search-usage {
-  margin: 0 0 20px;
-  font-size: 12px;
+	margin: 0 0 20px;
+	font-size: 12px;
 }
 
 .search-lemma-info .lemma-word {
-  margin: 0;
+	margin: 0;
 }
 
 .search-visual {
-  height: 42px;
-  border-bottom: solid 1px #999;
-  padding: 0 5px;
-  margin-bottom: 25px;
-  margin-top: 20px;
+	height: 42px;
+	border-bottom: solid 1px #999;
+	padding: 0 5px;
+	margin-bottom: 25px;
+	margin-top: 20px;
 }
 
 .search-visual-label {
-  position: absolute;
-  font-size: 10px;
-  display: block;
-  z-index: 1000;
-  min-width: 50px;
-  height: 20px;
-  display: none;
-  white-space: nowrap;
+	position: absolute;
+	font-size: 10px;
+	display: block;
+	z-index: 1000;
+	min-width: 50px;
+	height: 20px;
+	display: none;
+	white-space: nowrap;
 }
 
 .search-result-book-bar {
-  height: 40px;
-  display: block;
-  float: left;
+	height: 40px;
+	display: block;
+	float: left;
 }
 
 .search-result-book-bar span {
-  height: 40px;
-  display: block;
-  background: #ccc;
-  border-right: solid 1px #fff;
+	height: 40px;
+	display: block;
+	background: #ccc;
+	border-right: solid 1px #fff;
 }
 
 /* penta */
@@ -92,7 +92,7 @@
 .search-result-book-bar span.divisionid-LV,
 .search-result-book-bar span.divisionid-NU,
 .search-result-book-bar span.divisionid-DT {
-  background: #9bd79b;
+	background: #9bd79b;
 }
 
 .search-result-book-bar span.divisionid-JS,
@@ -107,7 +107,7 @@
 .search-result-book-bar span.divisionid-ER,
 .search-result-book-bar span.divisionid-NH,
 .search-result-book-bar span.divisionid-ET {
-  background: #8c8cca;
+	background: #8c8cca;
 }
 
 .search-result-book-bar span.divisionid-JB,
@@ -116,7 +116,7 @@
 .search-result-book-bar span.divisionid-EC,
 .search-result-book-bar span.divisionid-SS,/* out of order in English! */
 .search-result-book-bar span.divisionid-LM {
-  background: #c580c5;
+	background: #c580c5;
 }
 
 .search-result-book-bar span.divisionid-IS,
@@ -124,7 +124,7 @@
 /*.search-result-book-bar span.divisionid-LM, */
 .search-result-book-bar span.divisionid-EK,
 .search-result-book-bar span.divisionid-DN {
-  background: #d38c8c;
+	background: #d38c8c;
 }
 
 .search-result-book-bar span.divisionid-HS,
@@ -139,7 +139,7 @@
 .search-result-book-bar span.divisionid-HG,
 .search-result-book-bar span.divisionid-ZC,
 .search-result-book-bar span.divisionid-ML {
-  background: #d1d16a;
+	background: #d1d16a;
 }
 
 /* gospels */
@@ -147,11 +147,11 @@
 .search-result-book-bar span.divisionid-MK,
 .search-result-book-bar span.divisionid-LK,
 .search-result-book-bar span.divisionid-JN {
-  background: #ffa2a2;
+	background: #ffa2a2;
 }
 
 .search-result-book-bar span.divisionid-AC {
-  background: #c476aa;
+	background: #c476aa;
 }
 
 .search-result-book-bar span.divisionid-RM,
@@ -167,7 +167,7 @@
 .search-result-book-bar span.divisionid-T2,
 .search-result-book-bar span.divisionid-TT,
 .search-result-book-bar span.divisionid-PM {
-  background: #9c9ce1;
+	background: #9c9ce1;
 }
 
 .search-result-book-bar span.divisionid-HB,
@@ -178,11 +178,11 @@
 .search-result-book-bar span.divisionid-J2,
 .search-result-book-bar span.divisionid-J3,
 .search-result-book-bar span.divisionid-JD {
-  background: #8cc9c9;
+	background: #8cc9c9;
 }
 
 .search-result-book-bar span.divisionid-RV {
-  background: #9575a1;
+	background: #9575a1;
 }
 
 /*
@@ -206,7 +206,7 @@ border-left: solid 3px #9bd79b;
 .search-results table .divisionid-ER,
 .search-results table .divisionid-NH,
 .search-results table .divisionid-ET {
-  border-left: solid 3px #8c8cca;
+	border-left: solid 3px #8c8cca;
 }
 
 .search-results table .divisionid-JB,
@@ -216,7 +216,7 @@ border-left: solid 3px #9bd79b;
 .search-results table .divisionid-SS,
 
 .search-results table .divisionid-LM {
-  border-left: solid 3px #c580c5;
+	border-left: solid 3px #c580c5;
 }
 
 .search-results table .divisionid-IS,
@@ -224,7 +224,7 @@ border-left: solid 3px #9bd79b;
 
 .search-results table .divisionid-EK,
 .search-results table .divisionid-DN {
-  border-left: solid 3px #d38c8c;
+	border-left: solid 3px #d38c8c;
 }
 
 .search-results table .divisionid-HS,
@@ -239,7 +239,7 @@ border-left: solid 3px #9bd79b;
 .search-results table .divisionid-HG,
 .search-results table .divisionid-ZC,
 .search-results table .divisionid-ML {
-  border-left: solid 3px #d1d16a;
+	border-left: solid 3px #d1d16a;
 }
 
 
@@ -248,11 +248,11 @@ border-left: solid 3px #9bd79b;
 .search-results table .divisionid-MK,
 .search-results table .divisionid-LK,
 .search-results table .divisionid-JN {
-  border-left: solid 3px #ffa2a2;
+	border-left: solid 3px #ffa2a2;
 }
 
 .search-results table .divisionid-AC {
-  border-left: solid 3px #c476aa;
+	border-left: solid 3px #c476aa;
 }
 
 
@@ -269,7 +269,7 @@ border-left: solid 3px #9bd79b;
 .search-results table .divisionid-T2,
 .search-results table .divisionid-TT,
 .search-results table .divisionid-PM {
-  border-left: solid 3px #9c9ce1;
+	border-left: solid 3px #9c9ce1;
 }
 
 
@@ -281,42 +281,42 @@ border-left: solid 3px #9bd79b;
 .search-results table .divisionid-J2,
 .search-results table .divisionid-J3,
 .search-results table .divisionid-JD {
-  border-left: solid 3px #8cc9c9;
+	border-left: solid 3px #8cc9c9;
 }
 .search-results table .divisionid-RV {
-  border-left: solid 3px #9575a1;
+	border-left: solid 3px #9575a1;
 }
 */
 .highlight {
-  background: #FF9;
+	background: #FF9;
 }
 
 .search-progress-bar {
-  border: solid 1px #ccc;
-  height: 1.5em;
-  width: 100%;
-  position: relative;
-  margin: 0 0 2em;
+	border: solid 1px #ccc;
+	height: 1.5em;
+	width: 100%;
+	position: relative;
+	margin: 0 0 2em;
 }
 
 .search-progress-bar-inner {
-  width: 0;
-  background: #2a85e8;
-  height: 100%;
+	width: 0;
+	background: #2a85e8;
+	height: 100%;
 }
 
 .search-progress-bar-label {
-  display: block;
-  position: absolute;
-  height: 1.5em;
-  line-height: 1.5em;
-  font-size: .7em;
-  top: 0;
-  padding: 3px;
-  color: #fff;
-  text-align: right;
+	display: block;
+	position: absolute;
+	height: 1.5em;
+	line-height: 1.5em;
+	font-size: .7em;
+	top: 0;
+	padding: 3px;
+	color: #fff;
+	text-align: right;
 }
 
 .search-progress-bar-label-outside {
-  color: #333;
+	color: #333;
 }

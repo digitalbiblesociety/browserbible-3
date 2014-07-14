@@ -1,40 +1,40 @@
 .movable-window {
-  position: absolute;
-  z-index: 1000;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	position: absolute;
+	z-index: 1000;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .movable-header {
-  background: #f8f8f8;
-  height: 30px;
-  padding: 5px;
+	background: #f8f8f8;
+	height: 30px;
+	padding: 5px;
 }
 
 .movable-body {
-  overflow: auto;
-  background: #fff;
+	overflow: auto;
+	background: #fff;
 }
 
 .movable-window .close-button {
-  -x-display: none;
-  font-family: arial;
-  font-size: 15px;
-  position: absolute;
-  z-index: 10;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  color: #666;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  text-align: center;
-  background: url(../../css/images/close-button.svg) top center no-repeat;
-  background-position: 0 0;
+	-x-display: none;
+	font-family: arial;
+	font-size: 15px;
+	position: absolute;
+	z-index: 10;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	color: #666;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	text-align: center;
+	background: url(../../css/images/close-button.svg) top center no-repeat;
+	background-position: 0 0;
 }
 
 .movable-window .close-button:hover {
-  background-color: #d5998b;
-  background-position: 0 -20px;
-  color: #fff;
+	background-color: #d5998b;
+	background-position: 0 -20px;
+	color: #fff;
 }

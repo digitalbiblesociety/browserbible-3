@@ -34,7 +34,7 @@ var App = function() {
 		if (windowWidth < 768 && settings.windows.length >= 3) {
 			settings.windows = settings.windows.slice(0,2);
 		}
-		if (windowWidth < 480 && settings.windows.length >= 2) {
+		if (windowWidth < 460 && settings.windows.length >= 2) {
 			settings.windows = settings.windows.slice(0,1);
 		}
 

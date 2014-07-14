@@ -78,7 +78,7 @@ var WindowManager = function(node) {
 
 		if (windows.length > 0) {
 
-			if (width < 480) {
+			if (width < 460) {
 
 				windows[0].size(width, height);
 

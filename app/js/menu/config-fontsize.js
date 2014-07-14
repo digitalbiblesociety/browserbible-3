@@ -21,9 +21,9 @@ var FontSizeSettings = function(node) {
 
 
 	if (!sofia.config.enableFontSizeSelector) {
-		
+
 		setFontSize(sofia.config.fontSizeDefault);
-		
+
 		return;
 	}
 

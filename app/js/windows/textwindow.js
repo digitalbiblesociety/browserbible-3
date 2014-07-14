@@ -568,7 +568,7 @@ sofia.initMethods.push(function() {
 		paramKeys: {
 			'textid': 't',
 			'fragmentid':'v'
-		},				
+		},
 		init: {
 			'textid':sofia.config.newBibleWindowVersion,
 			'fragmentid':sofia.config.newBibleWindowVerse

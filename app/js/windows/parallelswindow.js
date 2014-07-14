@@ -663,11 +663,10 @@ sofia.initMethods.push(function() {
 		paramKeys: {
 			'textid': 't',
 			'parallelid': 'p'
-		},				
+		},
 		init: {
 			'textid': sofia.config.newBibleWindowVersion
 		}
 	});
 
 });
-

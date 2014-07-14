@@ -7,7 +7,7 @@ sofia.config = $.extend(sofia.config, {
 
 var LanguageSetting = function(node) {
 
-	if (!sofia.config.enableLanguageSelector) {		
+	if (!sofia.config.enableLanguageSelector) {
 		return;
 	}
 

@@ -1,12 +1,12 @@
 sofia.config = $.extend(sofia.config, {
-	
+
 	enableLemmaPopupPlugin: true
 
 });
 
 
 var LemmaPopupPlugin = function(app) {
-	
+
 	if (!sofia.config.enableLemmaPopupPlugin) {
 		return;
 	}
@@ -181,4 +181,3 @@ var LemmaPopupPlugin = function(app) {
 };
 
 sofia.plugins.push('LemmaPopupPlugin');
-

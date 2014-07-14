@@ -108,7 +108,7 @@ var App = function() {
 			areaHeight = height - header.outerHeight() + footer.outerHeight(),
 			areaWidth = width - parseInt(main.css('margin-left'), 10) - parseInt(main.css('margin-right'), 10);
 
-		if (width < 410) {
+		if (width < 460) {
 			header.hide();
 			areaHeight = height;
 		} else {

@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.2.1 - 2014/07/14
+----
+
+* Fix mobile config option accidentally removed
+* Converted spaces back to tabs in CSS
+
 3.2.0 - 2014/07/13
 ----
 

@@ -453,7 +453,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 
 		var winWidth = $(window).width();
 
-		if (winWidth < 480 && iconsAreNormal) {
+		if (winWidth < 460 && iconsAreNormal) {
 
 			var tcNode = textChooser.node(),
 				tcHeader = tcNode.find('.text-chooser-header');
@@ -466,7 +466,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 			iconsAreNormal = false;
 		}
 
-		if (winWidth >= 480 && !iconsAreNormal) {
+		if (winWidth >= 460 && !iconsAreNormal) {
 
 			var
 				headerInner = container.find('.scroller-header-inner'),

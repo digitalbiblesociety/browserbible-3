@@ -73,4 +73,3 @@ var AppSettings = (function() {
 	}
 
 })();
-

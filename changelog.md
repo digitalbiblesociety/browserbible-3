@@ -19,7 +19,7 @@ Change Log
 * Fixed font face/size selector problems (alerque)
 * Added justification/hyphenation toggle (alerque)
 * Added Libertine as a font option (alerque)
-* Whitesace adjustments (Zohma)
+* Whitespace adjustments (zohma)
 
 3.1.5 - 2014/07/08
 ----

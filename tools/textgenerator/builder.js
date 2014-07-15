@@ -1,5 +1,5 @@
 /**
-* Generates build.css and build.js (and minified versions) for use in production environments 
+* Generates build.css and build.js (and minified versions) for use in production environments
 * with the index-build.html or index-cdn.html
 **/
 
@@ -64,12 +64,12 @@ scripts.forEach(function(url) {
 	} catch (e) {
 		console.log('error minifiy', localPath);
 	}
-	combinedScript += 
-		'\n' + 
-		'/*********\n' + 
-		'* ' + path.join(rootPath, url) + '\n' + 
-		'**********/\n' + 
-		fs.readFileSync(path.join(rootPath, url), 'utf8') + 
+	combinedScript +=
+		'\n' +
+		'/*********\n' +
+		'* ' + path.join(rootPath, url) + '\n' +
+		'**********/\n' +
+		fs.readFileSync(path.join(rootPath, url), 'utf8') +
 		'\n\n';
 });
 
@@ -102,14 +102,14 @@ stylesheets.forEach(function(url) {
 	} catch (e) {
 		console.log('error Css minifiy', localPath, e);
 	}
-	combinedCss += 
-		'\n' + 
-		'/*--------------------------------------\n' + 
-		' * ' + path.join(rootPath, url) + '\n' + 
-		' *------------------------------------*/\n' + 	
-		fs.readFileSync(path.join(rootPath, url), 'utf8') + 
+	combinedCss +=
+		'\n' +
+		'/*--------------------------------------\n' +
+		' * ' + path.join(rootPath, url) + '\n' +
+		' *------------------------------------*/\n' +
+		fs.readFileSync(path.join(rootPath, url), 'utf8') +
 		'\n\n';
-	
+
 });
 
 // fix references to files

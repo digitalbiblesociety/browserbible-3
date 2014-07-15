@@ -1,5 +1,5 @@
 sofia.config = $.extend(sofia.config, {
-	
+
 	enableEng2pPlugin: true,
 
 	// enables all possible English options (false = just color 'you')

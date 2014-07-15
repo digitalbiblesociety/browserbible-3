@@ -1,5 +1,5 @@
 sofia.config = $.extend(sofia.config, {
-	
+
 	enableVerseMatchPlugin: true
 
 });

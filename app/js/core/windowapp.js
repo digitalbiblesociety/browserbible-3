@@ -94,7 +94,7 @@ var App = function() {
 			}
 		}
 	}
-	
+
 	function resize() {
 		console.log('app resize');
 
@@ -149,7 +149,7 @@ var App = function() {
 						type: winTypeName,
 						data: {}
 					};
-					
+
 				if (typeof winTypeName != 'undefined') {
 					// go though all querystring values, and anything that ends with '1' goes with this data
 					for (var q in queryData) {
@@ -158,13 +158,13 @@ var App = function() {
 							value = queryData[q];
 
 						if (key != 'w' && number == i.toString()) {
-						
+
 							// convert short querystring key to longer one if needed
-							var longParamKey = winTypeParamKeys.filter(function(lpk) { 
+							var longParamKey = winTypeParamKeys.filter(function(lpk) {
 								console.log(key, lpk, winTypeInfo.paramKeys[lpk]);
 								return key == winTypeInfo.paramKeys[lpk] || key == lpk;
 							})[0];
-							
+
 							setting.data[longParamKey] = value;
 						}
 					}
@@ -185,7 +185,7 @@ var App = function() {
 
 	function storeSettings() {
 
-			// get settings from al windows
+			// get settings from all windows
 		var windowSettings = ext.windowManager.getSettings(),
 			// later we'll need these
 			headerSettings = {},

@@ -1,7 +1,7 @@
 sofia.config = $.extend(sofia.config, {
 
 	enableFontFamilySelector: true,
-	
+
 	fontFamilyStacks: {
 		'Cambria': 'Cambria, Georgia, serif',
 		'Palatino': 'Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif',
@@ -47,13 +47,13 @@ var FontFamilySettings = function(node) {
 	}
 
 	$('<style>' + fontFamilyStyle + '</style>').appendTo( $('head') );
-	
+
 	if (!sofia.config.enableFontFamilySelector) {
-		setFontFamily(defaultFontSetting.fontName);		
+		setFontFamily(defaultFontSetting.fontName);
 		return;
-	}	
-	
-	
+	}
+
+
 	$(fontSettingHtml).appendTo(body);
 
 

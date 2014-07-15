@@ -7,7 +7,7 @@ x hebrew morphology
 */
 
 sofia.config = $.extend(sofia.config, {
-	
+
 	enableVisualFilters: true
 
 });
@@ -21,7 +21,7 @@ sofia.config = $.extend(sofia.config, {
  */
 
 var VisualFilters = function(node) {
-	
+
 	if (!sofia.config.enableVisualFilters) {
 		return;
 	}

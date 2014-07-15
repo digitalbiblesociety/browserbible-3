@@ -174,7 +174,7 @@ var MediaLibrary = (function(){
 		dataIsLoaded = false;
 
 	function init() {
-		
+
 		// load main info
 		sofia.ajax({
 			dataType: 'json',
@@ -183,7 +183,7 @@ var MediaLibrary = (function(){
 
 				mediaLibraries = data.media;
 
-				
+
 			}, complete: function() {
 				loadNextMediaLibrary();
 			}

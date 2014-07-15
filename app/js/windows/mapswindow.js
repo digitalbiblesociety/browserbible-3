@@ -298,7 +298,7 @@ var MapWindow = function(id, parentNode, data) {
 		var center = map.getCenter(),
 			data = {
 				latitude: center.lat(),
-				longitude: center.lng(),			
+				longitude: center.lng(),
 				params: {
 					'win': 'map',
 					'latitude': center.lat(),
@@ -435,8 +435,8 @@ sofia.initMethods.push(function() {
 					param: 'map',
 					paramKeys: {
 						'latitude': 'la',
-						'longitude': 'ln',					
-					},				
+						'longitude': 'ln',
+					},
 					init: {
 						'latitude': 31.7833,
 						'longitude': 35.2167

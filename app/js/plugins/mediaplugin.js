@@ -7,7 +7,7 @@ sofia.config = $.extend(sofia.config, {
 var MediaLibraryPlugin = function(app) {
 
 	if (!sofia.config.enableMediaLibraryPlugin) {
-		return;		
+		return;
 	}
 
 	var mediaLibraries = null,
@@ -115,7 +115,7 @@ var MediaLibraryPlugin = function(app) {
 
 	// process chapters, add image icon to verses
 	function addMedia() {
-	
+
 		console.log('addMedia',mediaLibraries);
 
 		if (mediaLibraries == null) {
@@ -200,4 +200,3 @@ var MediaLibraryPlugin = function(app) {
 }
 
 sofia.plugins.push('MediaLibraryPlugin');
-

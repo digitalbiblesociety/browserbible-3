@@ -1,5 +1,5 @@
 sofia.config = $.extend(sofia.config, {
-	
+
 	enableLemmaInfoPlugin: true
 
 });
@@ -45,5 +45,3 @@ var LemmaInfoPlugin = function(app) {
 };
 
 sofia.plugins.push('LemmaInfoPlugin');
-
-

@@ -648,7 +648,7 @@ sofia.initMethods.push(function() {
 			paramKeys: {
 				'textid': 't',
 				'searchtext': 's'
-			},					
+			},
 			init: {
 			}
 		});

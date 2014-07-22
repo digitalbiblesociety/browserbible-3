@@ -69,7 +69,7 @@ scriptNodes.each(function(i, el) {
 	
 try {
 	var result = uglifyjs.minify(combinedScript, {fromString: true, outSourceMap: 'build.min.js.map'});
-	minifiedScript = result.code;
+	minifiedScript = result.code + '\n//# sourceMappingURL=build.min.js.map';
 	sourceMap = result.map;	
 } catch (e) {
 	console.log('error minifiy', localPath);

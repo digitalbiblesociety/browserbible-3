@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.2.2 - 2014/07/22
+----
+
+* Minification now embeds images as base64
+
+
 3.2.1 - 2014/07/14
 ----
 

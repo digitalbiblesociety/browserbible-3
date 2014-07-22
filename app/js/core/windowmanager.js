@@ -139,7 +139,7 @@ var Window = function(id, parentNode, className, data, manager) {
 
 	var node = $('<div class="window ' + className + '"></div>')
 					.appendTo(parentNode),
-		closeBtn = $('<span class="window-close-button"></span>')
+		closeBtn = $('<span class="close-button"></span>')
 					.appendTo(node)
 					.on('click', function() {
 						console.log(id, 'remove', manager);

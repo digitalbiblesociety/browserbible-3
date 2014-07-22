@@ -8,9 +8,8 @@
 	overflow: auto;
 }
 
-.search-main-loading {
+.search-main .loading-indicator {
 	min-height: 50px;
-	background: transparent url(../../css/images/loading.gif) top center no-repeat;
 }
 
 .search-wrapper {

@@ -20,8 +20,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 				'<div class="window-header scroller-header">'+
 					'<div class="scroller-header-inner">'+
 						//(Detection.hasTouch ? '<span class="header-input text-nav" ></span>' : '<input type="text" class="header-input text-nav" />') +
-						'<input type="text" class="header-input text-nav" />' +
-						'<div class="header-list text-list"></div>'+
+						'<input type="text" class="app-input text-nav" />' +
+						'<div class="app-list text-list"></div>'+
 						'<span class="header-icon info-button"></span>'+
 						'<span class="header-icon audio-button"></span>'+
 					'</div>'+

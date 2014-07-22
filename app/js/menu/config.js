@@ -1,10 +1,10 @@
 
 var ConfigButton = function(node) {
-	var configButton = $('<div id="main-config-button" class="main-menu-button" style=""></div>')
+	var configButton = $('<div id="main-config-button" class="main-menu-button image-config" style=""></div>')
 					.appendTo(node)
 					.on('click', buttonClick),
 
-		mobileConfigButton = $('<div id="mobile-config-button" class="mobile-menu-button" style=""></div>')
+		mobileConfigButton = $('<div id="mobile-config-button" class="mobile-menu-button image-logo" style=""></div>')
 					.appendTo( $('body'))
 					.on('click', buttonClick),
 

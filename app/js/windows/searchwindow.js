@@ -197,7 +197,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		searchProgressBarInner.css({'width': '100%'  });
 		setFinalResultsCount(e.data.results ? e.data.results.length : 0);
-		resultsBlock.removeClass('search-main-loading');
+		resultsBlock.removeClass('loading-indicator');
 
 		if (results && results.length > 0) {
 
@@ -474,7 +474,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		searchProgressBarLabel.html('');
 		searchProgressBarInner.width(0);
 
-		resultsBlock.addClass('search-main-loading');
+		resultsBlock.addClass('loading-indicator');
 
 		TextLoader.startSearch(textid, text, searchLoadHandler, searchIndexCompleteHandler, searchCompleteHandler);
 

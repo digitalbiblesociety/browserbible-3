@@ -16,14 +16,14 @@ var AudioController = function(id, container, ui, scroller) {
 					'<span class="audio-duration">00:00</span>' +
 					'<span class="audio-title"></span>' +
 					'<span class="audio-subtitle"></span>' +
-					'<input type="button" class="audio-options-button" />' +
+					'<input type="button" class="audio-options-button image-config" />' +
 				'</div>'
 				).appendTo(container),
 		optionsButton = block.find('.audio-options-button'),
 
 		options = $(
 				'<div class="audio-options">' +
-					'<span class="audio-options-close"></span>' +
+					'<span class="close-button"></span>' +
 					'<strong class="i18n" data-i18n="[html]windows.audio.options"></strong>' +
 					'<label><input type="checkbox" class="audio-scroll" checked /><span class="i18n" data-i18n="[html]windows.audio.synctext" /></label>' +
 					'<label><input type="checkbox" class="audio-autoplay" checked /><span class="i18n" data-i18n="[html]windows.audio.autoplay" /></label>' +
@@ -36,7 +36,7 @@ var AudioController = function(id, container, ui, scroller) {
 				).appendTo(container),
 		scrollCheckbox = options.find('.audio-scroll').prop('checked', true),
 		autoplayCheckbox = options.find('.audio-autoplay').prop('checked', true),
-		optionsCloseButton = options.find('.audio-options-close'),
+		optionsCloseButton = options.find('.close-button'),
 
 		optionsDramaticBox = options.find('.audio-dramatic-option'),
 		optionsDramaticDrama = options.find('.audio-dramatic-drama'),

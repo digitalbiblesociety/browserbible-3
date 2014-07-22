@@ -23,6 +23,30 @@ input:focus {
 	outline: none;
 }
 
+/* reused images */
+.close-button {
+	font-family: arial;
+	font-size: 15px;
+	position: absolute;
+	z-index: 10;
+	top: 15px;
+	right: 10px;
+	cursor: pointer;
+	color: #666;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	text-align: center;
+	background: url(images/close-button.svg) top center no-repeat;
+	background-position: 0 0;
+}
+.close-button:hover {
+	background-color: #d5998b;
+	background-position: 0 -20px;
+	color: #fff;
+}
+
+
 /* MAIN APP */
 .windows-header {
 	background-color: #333;
@@ -64,8 +88,8 @@ input:focus {
 	margin: 5px 0 5px 10px;
 }
 
-.window .window-header .header-input,
-.window .window-header .header-list {
+.app-input,
+.app-list {
 	float: left;
 	border: solid 1px #ddd;
 	padding: 7px 6px 6px 10px;
@@ -73,21 +97,27 @@ input:focus {
 	margin: 0 5px 0 0;
 	color: #919191;
 	-webkit-appearance: none;
-	-moz-appearance:none;
+	-moz-appearance: none;
 	height: 30px;
 }
 
-.window .window-header .header-input {
-	padding-top: 5px;
-}
-
-.window .window-header .header-input:hover,
-.window .window-header .header-list:hover {
+.app-input:hover,
+.app-list:hover {
 	border-color: #ccc;
 }
 
-.window .window-header .header-input {
-	min-width: 140px;
+.app-input {
+	padding-top: 5px;
+	min-width: 140px;	
+}
+
+.app-list {
+	padding-right: 20px;
+	cursor: pointer;
+	border-radius: 0;
+	background-image: url(images/down-arrow.svg);
+	background-position: right center;
+	background-repeat: no-repeat;
 }
 
 .header-icon {
@@ -119,14 +149,6 @@ input:focus {
 	background-image: url(images/audio-ear.svg);
 }
 
-.window .window-header .header-list {
-	padding-right: 20px;
-	cursor: pointer;
-	border-radius: 0;
-	background-image: url(images/down-arrow.svg);
-	background-position: right center;
-	background-repeat: no-repeat;
-}
 
 .window .window-header .header-button {
 	padding: 5px;
@@ -138,32 +160,14 @@ input:focus {
 	font-size: 12px;
 }
 
-.window .window-close-button {
-	-x-display: none;
-	font-family: arial;
-	font-size: 15px;
-	position: absolute;
-	z-index: 10;
-	top: 15px;
-	right: 10px;
-	cursor: pointer;
-	color: #666;
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
-	text-align: center;
-	background: url(images/close-button.svg) top center no-repeat;
-	background-position: 0 0;
+.window .close-button {
 }
 
-.one-window .window .window-close-button {
+.one-window .window .close-button {
 	display: none;
 }
 
-.window .window-close-button:hover {
-	background-color: #d5998b;
-	background-position: 0 -20px;
-	color: #fff;
+.window .close-button:hover {
 }
 
 @media only screen and (max-width:460px) {
@@ -175,14 +179,14 @@ input:focus {
 		display: block;
 	}
 
-	.one-window .window .window-header .header-input {
+	.one-window .window .window-header .app-input {
 		width: 120px;
 		min-width: 120px;
 		border: 0;
 		background: none;
 	}
 
-	.one-window .window .window-header .header-list {
+	.one-window .window .window-header .app-list {
 		float: right;
 		border: 0;
 		background-color: transparent;

@@ -16,25 +16,9 @@
 }
 
 .movable-window .close-button {
-	-x-display: none;
-	font-family: arial;
-	font-size: 15px;
-	position: absolute;
-	z-index: 10;
 	top: 5px;
 	right: 5px;
-	cursor: pointer;
-	color: #666;
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
-	text-align: center;
-	background: url(../../css/images/close-button.svg) top center no-repeat;
-	background-position: 0 0;
 }
 
 .movable-window .close-button:hover {
-	background-color: #d5998b;
-	background-position: 0 -20px;
-	color: #fff;
 }

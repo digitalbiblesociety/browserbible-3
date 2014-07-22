@@ -11,8 +11,6 @@ var
 	$ = require('jquery')(jsdom.jsdom().createWindow()),
 	uglifyjs = require("uglify-js"),
 	uglifycss = require("uglifycss"),
-	jsp = require("uglify-js").parser,
-	pro = require("uglify-js").uglify,
 	mkdirp = require("mkdirp");
 
 // START
@@ -38,8 +36,13 @@ var
 	combinedScript = '',
 	minifiedScript = '',
 	outputJsPath = path.join(buildPath, 'build.js'),
-	outputJsPathMinified = path.join(buildPath, 'build.min.js');
+	outputJsPathMinified = path.join(buildPath, 'build.min.js'),
+	
+	sourceMap = ''
+	sourceMapPath = path.join(buildPath, 'build.min.js.map');
 
+
+console.time('Javascript: combine and minify');
 
 // JAVASCIPT
 // find all script URLs
@@ -50,34 +53,38 @@ scriptNodes.each(function(i, el) {
 	if (build === 'copy') {
 		copyFiles.push(src);
 	} else {
-		scripts.push(src);
+		
+		var localPath = path.join(rootPath, src);
+		
+		combinedScript +=
+			'\n' +
+			'/*********\n' +
+			'* ' + localPath + '\n' +
+			'**********/\n' +
+			fs.readFileSync(localPath, 'utf8') +
+			'\n\n';		
 	}
 });
 
-// combine scripts
-scripts.forEach(function(url) {
+	
+try {
+	var result = uglifyjs.minify(combinedScript, {fromString: true, outSourceMap: 'build.min.js.map'});
+	minifiedScript = result.code;
+	sourceMap = result.map;	
+} catch (e) {
+	console.log('error minifiy', localPath);
+}
 
-	var localPath = path.join(rootPath, url);
-
-	try {
-		minifiedScript += uglifyjs.minify(localPath).code;
-	} catch (e) {
-		console.log('error minifiy', localPath);
-	}
-	combinedScript +=
-		'\n' +
-		'/*********\n' +
-		'* ' + path.join(rootPath, url) + '\n' +
-		'**********/\n' +
-		fs.readFileSync(path.join(rootPath, url), 'utf8') +
-		'\n\n';
-});
 
 // write out
 fs.writeFileSync(outputJsPath, combinedScript);
 fs.writeFileSync(outputJsPathMinified, minifiedScript);
+fs.writeFileSync(sourceMapPath, sourceMap);
+
+console.timeEnd('Javascript: combine and minify');
 
 
+console.time('CSS: combine and minify');
 // CSS
 // find all stylesheet URLs
 stylesheetNodes.each(function(i, el) {
@@ -87,39 +94,87 @@ stylesheetNodes.each(function(i, el) {
 	if (build === 'copy') {
 		copyFiles.push(href);
 	} else {
-		stylesheets.push(href);
+	
+		var localPath = path.join(rootPath, href);
+	
+		combinedCss +=
+			'\n' +
+			'/*--------------------------------------\n' +
+			' * ' + localPath + '\n' +
+			' *------------------------------------*/\n' +
+			fs.readFileSync(localPath, 'utf8') +
+			'\n\n';		
 	}
 });
 
 
-// combine CSS
-stylesheets.forEach(function(url) {
+function updateCssUrls(inputCss) {
+	var imagePathRe = /url\(\.\.\/\.\.\/css\/images\//gi;
+	return inputCss.replace(imagePathRe, 'url(images/');
+	
+}
 
-	var localPath = path.join(rootPath, url);
+var inliner = {
+	files: {},
+	inlineImages: function(inputCss, basePath) {
 
-	try {
-		minifiedCss += uglifycss.processFiles([localPath]);
-	} catch (e) {
-		console.log('error Css minifiy', localPath, e);
-	}
-	combinedCss +=
-		'\n' +
-		'/*--------------------------------------\n' +
-		' * ' + path.join(rootPath, url) + '\n' +
-		' *------------------------------------*/\n' +
-		fs.readFileSync(path.join(rootPath, url), 'utf8') +
-		'\n\n';
+		var outputCss = inputCss.replace(/url\(["']?(\S*)\.(png|jpg|jpeg|gif|svg)["']?\)/g, function(match, file, type) {
+			
+			var fileName = file + '.' + type,
+				filePath = path.join(basePath, fileName),
+				size = fs.statSync(filePath).size;
+				
+			if (size > 5120) {
+				console.log('Skipping ' + filePath + ' (' + (Math.round(size/1024*100)/100) + 'k)');
+				return match;
+			} else {
+				var base64 = '';
+				
+				
+				if (type == 'svg') {
+					var content = fs.readFileSync(filePath).toString();
+					//content = content.replace(/\/\*.+?\*\/|\/\/.*(?=[\n\r])/g, '');
+					//content = content.replace(/\>[\n\t\s]+\</g,'');
+					content = content.replace(/\t+/g,' ');
+					
+					base64 = new Buffer(content).toString('base64');
+				} else {
+					base64 = fs.readFileSync(filePath).toString('base64');
+				}
+				
+				if (typeof(inliner.files[fileName]) !== 'undefined') {
+					console.log('Warning: ' + filePath + ' has already been base64 encoded in the css: ' + size);
+				}
+				inliner.files[fileName] = true;
+				return 'url("data:image/' + (type === 'jpg' ? 'jpeg' : type === 'svg' ? 'svg+xml' : type) + ';base64,' + base64 + '")';
+			}
+		});
+		
+		return outputCss;
+	}	
+}
 
-});
+
 
 // fix references to files
-var imagePathRe = /url\(\.\.\/\.\.\/css\/images\//gi;
-minifiedCss = minifiedCss.replace(imagePathRe, 'url(images/');
-combinedCss = combinedCss.replace(imagePathRe, 'url(images/');
+combinedCss = updateCssUrls(combinedCss); // normalizes to refer to /css/images/
+
+// MINIFY
+minifiedCss = uglifycss.processString(combinedCss);
+
+// write out
+fs.writeFileSync(outputCssPath.replace('.css', '.css.urls'), combinedCss);
+fs.writeFileSync(outputCssPathMinified.replace('.css', '.css.urls'), minifiedCss);
+
+
+// inlined
+combinedCss = inliner.inlineImages(combinedCss, '../../app/css/');
+minifiedCss = uglifycss.processString(combinedCss);
 
 // write out
 fs.writeFileSync(outputCssPath, combinedCss);
 fs.writeFileSync(outputCssPathMinified, minifiedCss);
+
 
 // COPY
 // copy remaining
@@ -134,6 +189,8 @@ copyFiles.forEach(function(url) {
 		fs.writeFileSync(fileOut, textIn);
 	}
 });
+
+console.timeEnd('CSS: combine and minify');
 
 
 // copy fonts and images folders

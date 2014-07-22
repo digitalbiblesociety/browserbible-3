@@ -298,7 +298,7 @@ var VisualFilters = function(node) {
 					'<span>Choose...</span>' +
 				'</td>' +
 				'<td class="visualfilters-remove">' +
-					'<span class="visualfilters-close-button"></span>' +
+					'<span class="close-button"></span>' +
 				'</td>' +
 			 '</tr>');
 	}

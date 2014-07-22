@@ -41,20 +41,13 @@ visualfilters-remove {
 	width: 30px;
 }
 
-.visualfilters-close-button {
+#visualfilters-config .close-button {
 	margin: 0 0 0 20px;
 	display: block;
-	cursor: pointer;
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
-	text-align: center;
-	background: url(build/images/close-button.svg) top center no-repeat;
+	position: inherit;
 }
 
-.visualfilters-close-button:hover {
-	background-color: #d5998b;
-	background-position: 0 -20px;
+#visualfilters-config .close-button:hover {
 }
 
 #visualfilters-styles {

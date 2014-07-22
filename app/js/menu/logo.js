@@ -4,7 +4,7 @@ var MainLogo = function(node) {
 		container = $('.windows-container'),
 		body = $(document.body),
 		win = $(window),
-		logo = $('<div id="app-logo"></div>')
+		logo = $('<div id="app-logo" class="image-logo"></div>')
 					.appendTo(node)
 					.on('click', logoClick),
 

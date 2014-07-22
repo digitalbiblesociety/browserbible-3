@@ -80,22 +80,14 @@ padding: 10px;
 }
 
 .text-chooser .text-chooser-close {
-	cursor: pointer;
-	position: absolute;
 	top: 8px;
 	right: 8px;
-	width: 20px;
-	height: 20px;
-	border-radius: 20px;
-	background: url(../../css/images/close-button.svg);
-	background-size: 15px 30px;
-	background-position: 2px 2px;
-	background-repeat: no-repeat;
-	text-indent: -9999px;
+	background-color: none;
 	border: solid 1px transparent;
 }
 
 .text-chooser .text-chooser-close:hover {
+	background-color: none;
 	border: solid 1px #aaa;
 }
 

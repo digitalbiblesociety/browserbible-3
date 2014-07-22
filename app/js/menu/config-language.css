@@ -5,12 +5,6 @@
 	padding: 6px 5px 5px 10px;
 	cursor: pointer;
 	border-radius: 0;
-	background-color: #fff;	
-	background-image: url(../../css/images/down-arrow.svg);
-	background-position: right center;
-	background-repeat: no-repeat;	
-	border: solid 1px #ddd;
-	color: #919191;
 	-webkit-appearance: none;
 	-moz-appearance:none;
 }

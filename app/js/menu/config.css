@@ -1,5 +1,4 @@
 #main-config-button {
-	background-image: url(../../css/images/gear.svg);
 	right: 60px;
 }
 
@@ -7,7 +6,6 @@
 	display:none;
 
 	cursor: pointer;
-	background-image: url(../../css/images/dbs-logo-blue.png);
 	width: 30px;
 	height: 30px;
 	background-repeat: no-repeat;

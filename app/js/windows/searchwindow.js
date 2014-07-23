@@ -5,9 +5,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	var header = $('<div class="window-header search-header" >' +
 
-						'<input type="text" class="search-text header-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' +
+						'<input type="text" class="search-text app-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' +
 						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
-						'<div class="text-list header-list" style="">&nbsp;</div>' +
+						'<div class="text-list app-list" style="">&nbsp;</div>' +
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' +
 					'</div>').appendTo(parentNode),
 		main = $('<div class="search-main"><div class="search-wrapper">' +

@@ -1,6 +1,6 @@
 sofia.resources['tl'] = {
 	"translation": {
-		"name": "Filipino (Filipino)",
+		"name": "Filipino",
 		"menu": {
 			"search": {
 				"placeholder": "Paghahanap"

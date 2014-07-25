@@ -1,6 +1,6 @@
 sofia.resources['lo'] = {
 	"translation": {
-		"name": "ພາສາລາວ (Lao)",
+		"name": "ພາສາລາວ",
 		"menu": {
 			"search": {
 				"placeholder": "ຊອກ​ຫາ"

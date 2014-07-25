@@ -1,6 +1,6 @@
 sofia.resources['ga'] = {
 	"translation": {
-		"name": "Gaeilge (Irish)",
+		"name": "Gaeilge",
 		"menu": {
 			"search": {
 				"placeholder": "Cuardaigh"

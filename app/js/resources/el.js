@@ -1,6 +1,6 @@
 sofia.resources['el'] = {
 	"translation": {
-		"name": "Ελληνικά (Greek)",
+		"name": "Ελληνικά",
 		"menu": {
 			"search": {
 				"placeholder": "Έρευνα"

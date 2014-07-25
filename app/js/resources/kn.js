@@ -1,6 +1,6 @@
 sofia.resources['kn'] = {
 	"translation": {
-		"name": "ಕನ್ನಡ (Kannada)",
+		"name": "ಕನ್ನಡ",
 		"menu": {
 			"search": {
 				"placeholder": "ಹುಡುಕು"

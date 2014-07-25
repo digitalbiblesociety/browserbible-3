@@ -1,6 +1,6 @@
 sofia.resources['ta'] = {
 	"translation": {
-		"name": "தமிழ் (Tamil)",
+		"name": "தமிழ்",
 		"menu": {
 			"search": {
 				"placeholder": "தேடுதல்"

@@ -1,6 +1,6 @@
 sofia.resources['ms'] = {
 	"translation": {
-		"name": "Bahasa Melayu (Malay)",
+		"name": "Bahasa Melayu",
 		"menu": {
 			"search": {
 				"placeholder": "Carian"

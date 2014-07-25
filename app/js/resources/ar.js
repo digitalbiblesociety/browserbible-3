@@ -1,6 +1,6 @@
 sofia.resources['ar'] = {
 	"translation": {
-		"name": "العربية (Arabic)",
+		"name": "العربية",
 		"menu": {
 			"search": {
 				"placeholder": "بحث"

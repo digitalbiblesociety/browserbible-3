@@ -1,6 +1,6 @@
 sofia.resources['hi'] = {
 	"translation": {
-		"name": "हिन्दी (Hindi)",
+		"name": "हिन्दी",
 		"menu": {
 			"search": {
 				"placeholder": "खोज"

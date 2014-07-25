@@ -1,6 +1,6 @@
 sofia.resources['bn'] = {
 	"translation": {
-		"name": "বাংলা (Bengali)",
+		"name": "বাংলা",
 		"menu": {
 			"search": {
 				"placeholder": "অনুসন্ধান"

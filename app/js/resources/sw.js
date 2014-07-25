@@ -1,6 +1,6 @@
 sofia.resources['sw'] = {
 	"translation": {
-		"name": "Kiswahili (Swahili)",
+		"name": "Kiswahili",
 		"menu": {
 			"search": {
 				"placeholder": "Search"

@@ -1,6 +1,6 @@
 sofia.resources['hu'] = {
 	"translation": {
-		"name": "magyar (Hungarian)",
+		"name": "magyar",
 		"menu": {
 			"search": {
 				"placeholder": "Keresés"

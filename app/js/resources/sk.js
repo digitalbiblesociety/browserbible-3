@@ -1,6 +1,6 @@
 sofia.resources['sk'] = {
 	"translation": {
-		"name": "slovenčina (Slovak)",
+		"name": "slovenčina",
 		"menu": {
 			"search": {
 				"placeholder": "Hľadanie"

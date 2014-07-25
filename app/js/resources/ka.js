@@ -1,6 +1,6 @@
 sofia.resources['ka'] = {
 	"translation": {
-		"name": "ქართული (Georgian)",
+		"name": "ქართული",
 		"menu": {
 			"search": {
 				"placeholder": "ძიება"

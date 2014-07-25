@@ -1,6 +1,6 @@
 sofia.resources['et'] = {
 	"translation": {
-		"name": "eesti (Estonian)",
+		"name": "eesti",
 		"menu": {
 			"search": {
 				"placeholder": "Otsing"

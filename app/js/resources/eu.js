@@ -1,6 +1,6 @@
 sofia.resources['eu'] = {
 	"translation": {
-		"name": "euskara (Basque)",
+		"name": "euskara",
 		"menu": {
 			"search": {
 				"placeholder": "Search"

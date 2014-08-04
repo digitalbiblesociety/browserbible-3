@@ -50,6 +50,9 @@ sofia.config = {
 
 	// language for top
 	pinnedLanguage: 'English',
+	
+	// Override the browser and user's choice for UI language
+	defaultLanguage: '',
 
 	// URL to custom CSS
 	customCssUrl: '',

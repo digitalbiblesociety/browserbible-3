@@ -226,8 +226,18 @@ var App = function() {
 
 	ext.init = init;
 	ext.handleGlobalMessage = handleGlobalMessage;
-
-	i18n.init({fallbackLng: 'en', resStore: sofia.resources});
+	
+	// internationalization: i18n
+	
+	// if this is the first visit, we need a way to set the language
+	var lngSetting = '',	
+		i18nCookieValue = AppSettings.getCookieValue('i18next');
+		
+	if (i18nCookieValue == '' || i18nCookieValue == null && sofia.config.defaultLanguage != '') {
+		lngSetting = sofia.config.defaultLanguage;
+	}
+	
+	i18n.init({fallbackLng: 'en', lng: lngSetting, resStore: sofia.resources});
 
 	setTimeout(function() {
 
@@ -240,7 +250,7 @@ var App = function() {
 			langSelector.val(  lang.split('-')[0] );
 		}
 
-	},50);
+	}, 50);
 
 	return ext;
 };

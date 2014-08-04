@@ -28,7 +28,8 @@ sofia.resources['en'] = {
 			},
 			"eng2p": {
 				"button": "English 2nd Person Plural",
-				"title": "English Second Person Plural"
+				"title": "English Second Person Plural",
+				"description": "Modern English does not distinguish between <em>you singular</em> and <em>you plural</em>, so this plugin uses regional English equivalents to represent the Hebrew and Greek forms."
 			},
 			"lemmapopup": {
 				"findalloccurrences": "Find all occurrences (approximately __count__)"

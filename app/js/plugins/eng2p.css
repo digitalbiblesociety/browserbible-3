@@ -25,7 +25,12 @@
 
 #config-eng2p table {
 	border-collapse: collapse;
-	margin: 30px auto;
+	margin: 10px auto;
+	width: 490px;
+}
+
+#config-eng2p {
+	font-size: 13px;
 }
 
 #config-eng2p th {
@@ -37,11 +42,14 @@
 	border: solid 1px #ddd;
 	padding: 2px;
 	text-align: left;
-	font-size: 85%;
 }
 
 #config-eng2p-button {
 	background: url(../../css/images/two-people.svg) left center no-repeat;
 	background-size: 20px 20px;
 	padding: 5px 0 5px 25px;
+}
+
+#config-eng2p p {
+	margin: 10px 30px 0 ;
 }

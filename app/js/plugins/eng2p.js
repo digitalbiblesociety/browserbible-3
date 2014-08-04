@@ -25,7 +25,7 @@ var Eng2pPlugin = function(node) {
 		configBlock =
 		$('<div class="config-options" id="config-eng2p">' +
 			//'<h3>English Second Person Plural</h3>' +
-
+'<p class="i18n" data-i18n="[html]plugins.eng2p.description"></p>' +
 '<table>' +
 	'<tbody>' +
 		'<tr>' +
@@ -159,7 +159,13 @@ var Eng2pPlugin = function(node) {
 		// see if there is a matching value
 		if ($('#eng2p-option-' + tempEng2pSetting).length > 0) {
 			eng2pSetting.eng2p = tempEng2pSetting;
+		
 		}
+	}
+	
+	if (typeof params['eng2pshow'] != 'undefined') {
+		engWindow.show();
+		engWindow.container.css({left: $(window).width() - engWindow.container.outerWidth(true) - 10});
 	}
 
 	// now set the value from either localStorage or querysring
@@ -178,7 +184,7 @@ var Eng2pPlugin = function(node) {
 		getPluralValues();
 
 		// re-run
-		$('div.chapter[lang="en"]').each(function() {
+		$('div.chapter[lang="en"],div.chapter[lang="eng"]').each(function() {
 			var chapter = $(this);
 
 			removePluralTransforms(chapter);
@@ -232,7 +238,7 @@ var Eng2pPlugin = function(node) {
 		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
 
 
-			if (e.data.content.attr('lang') == 'en' && eng2pSetting.eng2p != 'none') {
+			if ((e.data.content.attr('lang') == 'en' || e.data.content.attr('lang') == 'eng') && eng2pSetting.eng2p != 'none') {
 				//console.log('Eng2P', e.data.content.attr('data-id'));
 
 				runPluralTransforms(e.data.content);

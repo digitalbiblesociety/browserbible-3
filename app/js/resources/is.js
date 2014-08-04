@@ -1,6 +1,6 @@
 sofia.resources['is'] = {
 	"translation": {
-		"name": "íslenska (Icelandic)",
+		"name": "íslenska",
 		"menu": {
 			"search": {
 				"placeholder": "Leita"
@@ -72,6 +72,9 @@ sofia.resources['is'] = {
 				"drama": "Leiklist",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Icelandic"
 		}
 	}
 }

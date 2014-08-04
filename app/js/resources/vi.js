@@ -1,6 +1,6 @@
 sofia.resources['vi'] = {
 	"translation": {
-		"name": "Tiếng Việt (Vietnamese)",
+		"name": "Tiếng Việt",
 		"menu": {
 			"search": {
 				"placeholder": "Tìm kiếm"
@@ -72,6 +72,9 @@ sofia.resources['vi'] = {
 				"drama": "Phim",
 				"nondrama": "Không Drama"
 			}
+		},
+		"names": {
+			"en": "Vietnamese"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 sofia.resources['km'] = {
 	"translation": {
-		"name": "ភាសាខ្មែរ (Khmer)",
+		"name": "ភាសាខ្មែរ",
 		"menu": {
 			"search": {
 				"placeholder": "ស្វែងរក"
@@ -72,6 +72,9 @@ sofia.resources['km'] = {
 				"drama": "រឿង​មនោសញ្ចេតនា",
 				"nondrama": "មិន​មែន​សម្ដែង"
 			}
+		},
+		"names": {
+			"en": "Khmer"
 		}
 	}
 }

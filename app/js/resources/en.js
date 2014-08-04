@@ -1,6 +1,6 @@
 sofia.resources['en'] = {
 	"translation": {
-		"name": "English (English)",
+		"name": "English",
 		"menu": {
 			"search": {
 				"placeholder": "Search"
@@ -79,6 +79,14 @@ sofia.resources['en'] = {
 				"drama": "Dramatized",
 				"nondrama": "Spoken"
 			}
+		},
+		"names": {
+			"en": "English",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

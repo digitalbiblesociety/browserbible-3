@@ -1,6 +1,6 @@
 sofia.resources['de'] = {
 	"translation": {
-		"name": "Deutsch (German)",
+		"name": "Deutsch",
 		"menu": {
 			"search": {
 				"placeholder": "Suche"
@@ -72,6 +72,9 @@ sofia.resources['de'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama-"
 			}
+		},
+		"names": {
+			"en": "German"
 		}
 	}
 }

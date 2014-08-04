@@ -1,6 +1,6 @@
 sofia.resources['ro'] = {
 	"translation": {
-		"name": "Română (Romanian)",
+		"name": "Română",
 		"menu": {
 			"search": {
 				"placeholder": "Căutare"
@@ -72,6 +72,9 @@ sofia.resources['ro'] = {
 				"drama": "Dramă",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Romanian"
 		}
 	}
 }

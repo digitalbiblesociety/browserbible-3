@@ -1,6 +1,6 @@
 sofia.resources['ja'] = {
 	"translation": {
-		"name": "日本語 (Japanese)",
+		"name": "日本語",
 		"menu": {
 			"search": {
 				"placeholder": "検索"
@@ -72,6 +72,9 @@ sofia.resources['ja'] = {
 				"drama": "ドラマ",
 				"nondrama": "非ドラマ"
 			}
+		},
+		"names": {
+			"en": "Japanese"
 		}
 	}
 }

@@ -249,6 +249,10 @@ var App = function() {
 		if (lang != langSelector.val() ) {
 			langSelector.val(  lang.split('-')[0] );
 		}
+		
+		if (langSelector[0] && langSelector[0].localizeLanguages) {
+			langSelector[0].localizeLanguages();
+		}
 
 	}, 50);
 

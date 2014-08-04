@@ -1,6 +1,6 @@
 sofia.resources['be'] = {
 	"translation": {
-		"name": "Беларуская (Belarusian)",
+		"name": "Беларуская",
 		"menu": {
 			"search": {
 				"placeholder": "Пошук"
@@ -72,6 +72,9 @@ sofia.resources['be'] = {
 				"drama": "Драма",
 				"nondrama": "Нумары для Драма"
 			}
+		},
+		"names": {
+			"en": "Belarusian"
 		}
 	}
 }

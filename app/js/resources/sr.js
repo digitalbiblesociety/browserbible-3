@@ -1,6 +1,6 @@
 sofia.resources['sr'] = {
 	"translation": {
-		"name": "српски (Serbian)",
+		"name": "српски",
 		"menu": {
 			"search": {
 				"placeholder": "Претраживање"
@@ -72,6 +72,9 @@ sofia.resources['sr'] = {
 				"drama": "Драма",
 				"nondrama": "Не-драма"
 			}
+		},
+		"names": {
+			"en": "Serbian"
 		}
 	}
 }

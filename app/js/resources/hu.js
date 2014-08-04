@@ -1,6 +1,6 @@
 sofia.resources['hu'] = {
 	"translation": {
-		"name": "magyar (Hungarian)",
+		"name": "magyar",
 		"menu": {
 			"search": {
 				"placeholder": "Keresés"
@@ -72,6 +72,9 @@ sofia.resources['hu'] = {
 				"drama": "Dráma",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Hungarian"
 		}
 	}
 }

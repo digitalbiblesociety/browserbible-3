@@ -1,6 +1,6 @@
 sofia.resources['gu'] = {
 	"translation": {
-		"name": "ગુજરાતી (Gujarati)",
+		"name": "ગુજરાતી",
 		"menu": {
 			"search": {
 				"placeholder": "શોધ"
@@ -72,6 +72,9 @@ sofia.resources['gu'] = {
 				"drama": "ડ્રામા",
 				"nondrama": "બિન ડ્રામા"
 			}
+		},
+		"names": {
+			"en": "Gujarati"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 sofia.resources['bg'] = {
 	"translation": {
-		"name": "български (Bulgarian)",
+		"name": "български",
 		"menu": {
 			"search": {
 				"placeholder": "Търсене"
@@ -72,6 +72,9 @@ sofia.resources['bg'] = {
 				"drama": "Драма",
 				"nondrama": "Non-Драма"
 			}
+		},
+		"names": {
+			"en": "Bulgarian"
 		}
 	}
 }

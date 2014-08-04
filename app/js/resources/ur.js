@@ -1,6 +1,6 @@
 sofia.resources['ur'] = {
 	"translation": {
-		"name": "اردو (Urdu)",
+		"name": "اردو",
 		"menu": {
 			"search": {
 				"placeholder": "تلاش"
@@ -72,6 +72,9 @@ sofia.resources['ur'] = {
 				"drama": "ڈرامہ",
 				"nondrama": "غیر ڈرامہ"
 			}
+		},
+		"names": {
+			"en": "Urdu"
 		}
 	}
 }

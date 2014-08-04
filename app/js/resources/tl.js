@@ -1,6 +1,6 @@
 sofia.resources['tl'] = {
 	"translation": {
-		"name": "Filipino (Filipino)",
+		"name": "Filipino",
 		"menu": {
 			"search": {
 				"placeholder": "Paghahanap"
@@ -72,6 +72,9 @@ sofia.resources['tl'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Filipino"
 		}
 	}
 }

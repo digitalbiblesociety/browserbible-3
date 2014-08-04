@@ -1,6 +1,6 @@
 sofia.resources['jw'] = {
 	"translation": {
-		"name": "Javanese (Javanese)",
+		"name": "Javanese",
 		"menu": {
 			"search": {
 				"placeholder": "Panelusuran"
@@ -72,6 +72,9 @@ sofia.resources['jw'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Javanese"
 		}
 	}
 }

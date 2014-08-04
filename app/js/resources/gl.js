@@ -1,6 +1,6 @@
 sofia.resources['gl'] = {
 	"translation": {
-		"name": "galego (Galician)",
+		"name": "galego",
 		"menu": {
 			"search": {
 				"placeholder": "Buscar"
@@ -72,6 +72,9 @@ sofia.resources['gl'] = {
 				"drama": "Drama",
 				"nondrama": "Non Drama"
 			}
+		},
+		"names": {
+			"en": "Galician"
 		}
 	}
 }

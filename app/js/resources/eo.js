@@ -1,6 +1,6 @@
 sofia.resources['eo'] = {
 	"translation": {
-		"name": "Esperanto (Esperanto)",
+		"name": "Esperanto",
 		"menu": {
 			"search": {
 				"placeholder": "Serĉu"
@@ -72,6 +72,9 @@ sofia.resources['eo'] = {
 				"drama": "Dramo",
 				"nondrama": "Non-Dramo"
 			}
+		},
+		"names": {
+			"en": "Esperanto"
 		}
 	}
 }

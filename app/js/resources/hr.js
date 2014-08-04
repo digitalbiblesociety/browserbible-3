@@ -1,6 +1,6 @@
 sofia.resources['hr'] = {
 	"translation": {
-		"name": "hrvatski (Croatian)",
+		"name": "hrvatski",
 		"menu": {
 			"search": {
 				"placeholder": "Pretraživanje"
@@ -72,6 +72,9 @@ sofia.resources['hr'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Croatian"
 		}
 	}
 }

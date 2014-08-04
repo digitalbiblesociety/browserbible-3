@@ -1,6 +1,6 @@
 sofia.resources['zh-TW'] = {
 	"translation": {
-		"name": "中文(繁體) (Chinese (Traditional))",
+		"name": "中文(繁體)",
 		"menu": {
 			"search": {
 				"placeholder": "搜索"
@@ -72,6 +72,9 @@ sofia.resources['zh-TW'] = {
 				"drama": "戲劇",
 				"nondrama": "非戲劇"
 			}
+		},
+		"names": {
+			"en": "Chinese - Traditional"
 		}
 	}
 }

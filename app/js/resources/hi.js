@@ -1,6 +1,6 @@
 sofia.resources['hi'] = {
 	"translation": {
-		"name": "हिन्दी (Hindi)",
+		"name": "हिन्दी",
 		"menu": {
 			"search": {
 				"placeholder": "खोज"
@@ -76,6 +76,9 @@ sofia.resources['hi'] = {
 				"drama": "ड्रामा",
 				"nondrama": "गैर ड्रामा"
 			}
+		},
+		"names": {
+			"en": "Hindi"
 		}
 	}
 }

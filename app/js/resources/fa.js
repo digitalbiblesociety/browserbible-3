@@ -1,6 +1,6 @@
 sofia.resources['fa'] = {
 	"translation": {
-		"name": "فارسی (Persian)",
+		"name": "فارسی",
 		"menu": {
 			"search": {
 				"placeholder": "جستجو"
@@ -72,6 +72,9 @@ sofia.resources['fa'] = {
 				"drama": "درام",
 				"nondrama": "غیر درام"
 			}
+		},
+		"names": {
+			"en": "Persian"
 		}
 	}
 }

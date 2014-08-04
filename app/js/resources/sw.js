@@ -1,6 +1,6 @@
 sofia.resources['sw'] = {
 	"translation": {
-		"name": "Kiswahili (Swahili)",
+		"name": "Kiswahili",
 		"menu": {
 			"search": {
 				"placeholder": "Search"
@@ -72,6 +72,9 @@ sofia.resources['sw'] = {
 				"drama": "Mchezo wa kuigiza",
 				"nondrama": "Mashirika yasiyo ya Drama"
 			}
+		},
+		"names": {
+			"en": "Swahili"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 sofia.resources['da'] = {
 	"translation": {
-		"name": "Dansk (Danish)",
+		"name": "Dansk",
 		"menu": {
 			"search": {
 				"placeholder": "Søg"
@@ -72,6 +72,9 @@ sofia.resources['da'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Danish"
 		}
 	}
 }

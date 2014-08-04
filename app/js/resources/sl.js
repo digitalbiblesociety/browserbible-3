@@ -1,6 +1,6 @@
 sofia.resources['sl'] = {
 	"translation": {
-		"name": "slovenščina (Slovenian)",
+		"name": "slovenščina",
 		"menu": {
 			"search": {
 				"placeholder": "Iskanje"
@@ -72,6 +72,9 @@ sofia.resources['sl'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Slovenian"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 sofia.resources['ht'] = {
 	"translation": {
-		"name": "Kreyòl Ayisyen (Haitian Creole)",
+		"name": "Kreyòl Ayisyen",
 		"menu": {
 			"search": {
 				"placeholder": "Search"
@@ -72,6 +72,9 @@ sofia.resources['ht'] = {
 				"drama": "Dram",
 				"nondrama": "Ki pa Peye-Dram"
 			}
+		},
+		"names": {
+			"en": "Haitian Creole"
 		}
 	}
 }

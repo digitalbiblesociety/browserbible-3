@@ -1,6 +1,6 @@
 sofia.resources['mr'] = {
 	"translation": {
-		"name": "मराठी (Marathi)",
+		"name": "मराठी",
 		"menu": {
 			"search": {
 				"placeholder": "शोध"
@@ -72,6 +72,9 @@ sofia.resources['mr'] = {
 				"drama": "नाटक",
 				"nondrama": "बिगर नाटक"
 			}
+		},
+		"names": {
+			"en": "Marathi"
 		}
 	}
 }

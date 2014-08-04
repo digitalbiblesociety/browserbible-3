@@ -1,6 +1,6 @@
 sofia.resources['af'] = {
 	"translation": {
-		"name": "Afrikaans (Afrikaans)",
+		"name": "Afrikaans",
 		"menu": {
 			"search": {
 				"placeholder": "Soek"
@@ -72,6 +72,9 @@ sofia.resources['af'] = {
 				"drama": "Drama",
 				"nondrama": "Nie-Drama"
 			}
+		},
+		"names": {
+			"en": "Afrikaans"
 		}
 	}
 }

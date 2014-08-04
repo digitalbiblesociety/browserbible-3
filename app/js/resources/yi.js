@@ -1,6 +1,6 @@
 sofia.resources['yi'] = {
 	"translation": {
-		"name": "אידיש (Yiddish)",
+		"name": "אידיש",
 		"menu": {
 			"search": {
 				"placeholder": "זוכן"
@@ -72,6 +72,9 @@ sofia.resources['yi'] = {
 				"drama": "דראַמע",
 				"nondrama": "ניט-דראַמע"
 			}
+		},
+		"names": {
+			"en": "Yiddish"
 		}
 	}
 }

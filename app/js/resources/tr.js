@@ -1,6 +1,6 @@
 sofia.resources['tr'] = {
 	"translation": {
-		"name": "Türkçe (Turkish)",
+		"name": "Türkçe",
 		"menu": {
 			"search": {
 				"placeholder": "Arama"
@@ -78,6 +78,9 @@ sofia.resources['tr'] = {
 				"drama": "Dramatize Edilmiş",
 				"nondrama": "Tekil Konuşma"
 			}
+		},
+		"names": {
+			"en": "Turkish"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 sofia.resources['bs'] = {
 	"translation": {
-		"name": "bosanski (Bosnian)",
+		"name": "bosanski",
 		"menu": {
 			"search": {
 				"placeholder": "Pretraživanje"
@@ -72,6 +72,9 @@ sofia.resources['bs'] = {
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Bosnian"
 		}
 	}
 }

@@ -1,6 +1,6 @@
 sofia.resources['kn'] = {
 	"translation": {
-		"name": "ಕನ್ನಡ (Kannada)",
+		"name": "ಕನ್ನಡ",
 		"menu": {
 			"search": {
 				"placeholder": "ಹುಡುಕು"
@@ -72,6 +72,9 @@ sofia.resources['kn'] = {
 				"drama": "ನಾಟಕ",
 				"nondrama": "ಅಲ್ಲದ ನಾಟಕ"
 			}
+		},
+		"names": {
+			"en": "Kannada"
 		}
 	}
 }

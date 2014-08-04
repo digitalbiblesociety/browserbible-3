@@ -1,6 +1,6 @@
 sofia.resources['iw'] = {
 	"translation": {
-		"name": "עברית (Hebrew)",
+		"name": "עברית",
 		"menu": {
 			"search": {
 				"placeholder": "לחפש"
@@ -72,6 +72,9 @@ sofia.resources['iw'] = {
 				"drama": "דרמה",
 				"nondrama": "ללא דרמה"
 			}
+		},
+		"names": {
+			"en": "Hebrew"
 		}
 	}
 }

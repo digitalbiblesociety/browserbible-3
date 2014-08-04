@@ -1,6 +1,6 @@
 sofia.resources['mk'] = {
 	"translation": {
-		"name": "македонски (Macedonian)",
+		"name": "македонски",
 		"menu": {
 			"search": {
 				"placeholder": "Барај"
@@ -72,6 +72,9 @@ sofia.resources['mk'] = {
 				"drama": "Драма",
 				"nondrama": "Не Драма"
 			}
+		},
+		"names": {
+			"en": "Macedonian"
 		}
 	}
 }

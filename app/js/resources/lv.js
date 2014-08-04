@@ -1,6 +1,6 @@
 sofia.resources['lv'] = {
 	"translation": {
-		"name": "latviešu (Latvian)",
+		"name": "latviešu",
 		"menu": {
 			"search": {
 				"placeholder": "Meklēšana"
@@ -72,6 +72,9 @@ sofia.resources['lv'] = {
 				"drama": "Drāma",
 				"nondrama": "Non-Drama"
 			}
+		},
+		"names": {
+			"en": "Latvian"
 		}
 	}
 }

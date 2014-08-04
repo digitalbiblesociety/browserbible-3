@@ -1,6 +1,6 @@
 sofia.resources['hmn'] = {
 	"translation": {
-		"name": "Hmong (Hmong)",
+		"name": "Hmong",
 		"menu": {
 			"search": {
 				"placeholder": "Nrhiav"
@@ -72,6 +72,9 @@ sofia.resources['hmn'] = {
 				"drama": "Yeeb yam",
 				"nondrama": "Uas tsis yog-Drama"
 			}
+		},
+		"names": {
+			"en": "Hmong"
 		}
 	}
 }

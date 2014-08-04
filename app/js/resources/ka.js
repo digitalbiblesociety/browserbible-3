@@ -1,6 +1,6 @@
 sofia.resources['ka'] = {
 	"translation": {
-		"name": "ქართული (Georgian)",
+		"name": "ქართული",
 		"menu": {
 			"search": {
 				"placeholder": "ძიება"
@@ -72,6 +72,9 @@ sofia.resources['ka'] = {
 				"drama": "დრამა",
 				"nondrama": "არასამთავრობო დრამა"
 			}
+		},
+		"names": {
+			"en": "Georgian"
 		}
 	}
 }

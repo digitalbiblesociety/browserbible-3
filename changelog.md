@@ -1,11 +1,18 @@
 Change Log
 =======
 
+3.2.3 - in progress
+----
+
+* Fix to English 2p plugin for eng/en, added description
+* Adds `defaultLanguage` option in settings to set a start language instead of using the browser's language
+* Language selector dropdownlist can now localize the language names and use a fallback
+* Audio options now close when user clicks off the panel
+
 3.2.2 - 2014/07/22
 ----
 
 * Minification now embeds images as base64
-
 
 3.2.1 - 2014/07/14
 ----

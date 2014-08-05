@@ -79,17 +79,57 @@ var AudioController = function(id, container, ui, scroller) {
 	options.hide();
 
 
+
+
+
 	// OPTIONS
 	optionsButton.on('click', function() {
 		if (options.is(':visible')) {
 			options.hide();
+
+			$(document).off('click', doc_click);
 		} else {
 			options.show();
+
+			setTimeout(function() {
+				$(document).on('click', doc_click);
+			});
 		}
 	});
 	optionsCloseButton.on('click', function() {
 		options.hide();
+		$(document).off('click', doc_click);
 	});
+
+
+	// click off functionality
+	function doc_click(e) {
+
+		var target = $(e.target),
+			clickedOnOptions = false;
+
+		// go through all nested clicked elements
+		while (target != null && target.length > 0) {
+
+			if (target[0] == options[0]) {
+				clickedOnOptions = true;
+				break;
+			}
+
+			target = target.parent();
+		}
+
+		//return;
+		if (!clickedOnOptions) {
+			e.preventDefault();
+
+			options.hide();
+			$(document).off('click', doc_click);
+
+			return false;
+		}
+	}
+
 
 	optionsDramaticAudio.on('change', updateDramatic);
 	optionsDramaticDrama.on('change', updateDramatic);

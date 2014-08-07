@@ -43,7 +43,9 @@ sofia.resources['iw'] = {
 				"dc": "ספרי Deuterocanonical",
 				"more": "יותר",
 				"less": "פחות",
-				"recentlyused": "היה בשימוש לאחרונה"
+				"recentlyused": "היה בשימוש לאחרונה",
+				"languages": "שפות",
+				"countries": "מדינות"
 			},
 			"commentary": {
 				"label": "פרשנות"

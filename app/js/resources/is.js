@@ -43,7 +43,9 @@ sofia.resources['is'] = {
 				"dc": "Deuterocanonical Bækur",
 				"more": "Meira",
 				"less": "Minna",
-				"recentlyused": "Nýlega Notað"
+				"recentlyused": "Nýlega Notað",
+				"languages": "Tungumál",
+				"countries": "Lönd"
 			},
 			"commentary": {
 				"label": "Skýring"

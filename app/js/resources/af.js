@@ -43,7 +43,9 @@ sofia.resources['af'] = {
 				"dc": "Deuterokanonieke Boeke",
 				"more": "Meer",
 				"less": "Minder",
-				"recentlyused": "Onlangs gebruik"
+				"recentlyused": "Onlangs gebruik",
+				"languages": "Tale",
+				"countries": "Lande"
 			},
 			"commentary": {
 				"label": "Kommentaar"

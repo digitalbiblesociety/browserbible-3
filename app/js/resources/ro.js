@@ -43,7 +43,9 @@ sofia.resources['ro'] = {
 				"dc": "Deuterocanonice Cărți",
 				"more": "Mai mult",
 				"less": "Mai puțin",
-				"recentlyused": "Folosit recent"
+				"recentlyused": "Folosit recent",
+				"languages": "Limbi",
+				"countries": "Țări"
 			},
 			"commentary": {
 				"label": "Comentariu"

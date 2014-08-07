@@ -4,11 +4,9 @@
 	left: 0;
 	z-index: 100;
 	background: #fff;
-	-x-padding: 1px 0 0 1px;
 	font-family: Avenir, Helvetica, Arial;
 	width: 320px;
 	font-size: 14px;
-	-x-border: solid 1px #ccc;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;
 }
 
@@ -111,10 +109,8 @@ padding: 10px;
 }
 
 .text-chooser-row {
-	-x-overflow: hidden;
 	height: 2em;
 	line-height: 2em;
-	-x-width: 320px;
 	cursor: pointer;
 }
 
@@ -133,9 +129,7 @@ padding: 10px;
 
 .text-chooser-row .text-chooser-abbr {
 	font-weight: bold;
-	-x-width: 80px;
 	text-align: right;
-	-x-display: inline-block;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	height: 2em;
@@ -148,16 +142,72 @@ padding: 10px;
 .text-chooser-row .text-chooser-name {
 	padding: 0;
 	height: 2em;
+	width: 80%;
 }
 
 .text-chooser-row .text-chooser-name span {
 	display: block;
-	-x-width: 240px;
 	line-height: 1.2;
 	padding: 8px 10px;
-/*
+}
+
+/* countries */
+.text-chooser-row-header.country td {
+	position: relative;
+	background-image: url(../../css/images/down-arrow.svg);
+	background-position: right center;
+	background-repeat: no-repeat;
+}
+
+.text-chooser-row-header.country img {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+}
+.text-chooser-row-header.country span.name {
+	padding-left: 25px;
+}
+
+/* collapse */
+table.collapsible .text-chooser-row-header {
+	cursor: pointer;
+}
+table.collapsible .text-chooser-row-header.collapsed td {
+	background-image: url(../../css/images/right-arrow.svg);
+}
+
+
+table.collapsible .text-chooser-row.collapsed {
+	display: none;
+}
+
+
+/* language : country switcher */
+.text-chooser-selector {
+	padding: 0 0 5px;
+	color: #fff;
 	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	 */
+	text-align: center;
+	
+}
+
+.text-chooser-selector span {
+	width: 152px;
+	border: solid 1px #999;
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+	padding: 3px 0;
+	font-size: 0.8em;
+}
+.text-chooser-selector span.text-chooser-languages {
+	border-right-width: 0;
+	border-radius: 4px 0 0 4px;
+}
+.text-chooser-selector span.text-chooser-countries {
+	border-radius: 0 4px 4px 0;
+}
+.text-chooser-selector span.selected {
+	background: #fff;
+	color: #999;
 }

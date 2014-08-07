@@ -43,7 +43,9 @@ sofia.resources['id'] = {
 				"dc": "Deuterokanonika Books",
 				"more": "Lebih",
 				"less": "Kurang",
-				"recentlyused": "Baru Digunakan"
+				"recentlyused": "Baru Digunakan",
+				"languages": "Bahasa",
+				"countries": "Negara"
 			},
 			"commentary": {
 				"label": "Komentar"

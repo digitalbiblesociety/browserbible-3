@@ -43,7 +43,9 @@ sofia.resources['mt'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "Aktar",
 				"less": "Inqas",
-				"recentlyused": "Riċentement Użati"
+				"recentlyused": "Riċentement Użati",
+				"languages": "Lingwi",
+				"countries": "Pajjiżi"
 			},
 			"commentary": {
 				"label": "Kummentarju"

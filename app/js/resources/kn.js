@@ -43,7 +43,9 @@ sofia.resources['kn'] = {
 				"dc": "Deuterocanonical ಪುಸ್ತಕಗಳು",
 				"more": "ಇನ್ನಷ್ಟು",
 				"less": "ಕಡಿಮೆ",
-				"recentlyused": "ಇತ್ತೀಚೆಗೆ ಉಪಯೋಗಿಸಿದ"
+				"recentlyused": "ಇತ್ತೀಚೆಗೆ ಉಪಯೋಗಿಸಿದ",
+				"languages": "ಭಾಷೆಗಳು",
+				"countries": "ದೇಶಗಳು"
 			},
 			"commentary": {
 				"label": "ಕಾಮೆಂಟರಿ"

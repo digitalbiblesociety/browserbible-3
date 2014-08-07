@@ -43,7 +43,9 @@ sofia.resources['ka'] = {
 				"dc": "Deuterocanonical წიგნები",
 				"more": "More",
 				"less": "ნაკლებია,",
-				"recentlyused": "ცოტა მეორადი"
+				"recentlyused": "ცოტა მეორადი",
+				"languages": "ენა",
+				"countries": "ქვეყნები"
 			},
 			"commentary": {
 				"label": "კომენტარი"

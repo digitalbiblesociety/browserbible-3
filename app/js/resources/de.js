@@ -43,7 +43,9 @@ sofia.resources['de'] = {
 				"dc": "Deuterokanonische Bücher",
 				"more": "Mehr",
 				"less": "Weniger",
-				"recentlyused": "Zuletzt verwendete"
+				"recentlyused": "Zuletzt verwendete",
+				"languages": "Sprachen",
+				"countries": "Länder"
 			},
 			"commentary": {
 				"label": "Kommentar"

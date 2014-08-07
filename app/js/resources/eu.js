@@ -43,7 +43,9 @@ sofia.resources['eu'] = {
 				"dc": "Deuterocanonical Liburuak",
 				"more": "Gehiago",
 				"less": "Gutxiago",
-				"recentlyused": "Duela gutxi erabilia"
+				"recentlyused": "Duela gutxi erabilia",
+				"languages": "Hizkuntzak",
+				"countries": "Herrialdeak"
 			},
 			"commentary": {
 				"label": "Comentario"

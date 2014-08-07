@@ -43,7 +43,9 @@ sofia.resources['et'] = {
 				"dc": "Deuterocanonical Raamatud",
 				"more": "Rohkem",
 				"less": "Vähem",
-				"recentlyused": "Viimati kasutatud"
+				"recentlyused": "Viimati kasutatud",
+				"languages": "Keeled",
+				"countries": "Maad"
 			},
 			"commentary": {
 				"label": "Kommentaar"

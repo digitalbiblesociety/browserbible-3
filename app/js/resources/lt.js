@@ -43,7 +43,9 @@ sofia.resources['lt'] = {
 				"dc": "Deuterocanonical Knygos",
 				"more": "Daugiau",
 				"less": "Mažiau",
-				"recentlyused": "Neseniai naudotas"
+				"recentlyused": "Neseniai naudotas",
+				"languages": "Kalbos",
+				"countries": "Šalys"
 			},
 			"commentary": {
 				"label": "Komentaras"

@@ -43,7 +43,9 @@ sofia.resources['th'] = {
 				"dc": "deuterocanonical หนังสือ",
 				"more": "ขึ้น",
 				"less": "น้อยลง",
-				"recentlyused": "ที่ใช้ล่าสุด"
+				"recentlyused": "ที่ใช้ล่าสุด",
+				"languages": "ภาษา",
+				"countries": "ประเทศ"
 			},
 			"commentary": {
 				"label": "ความเห็น"

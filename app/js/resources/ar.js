@@ -43,7 +43,9 @@ sofia.resources['ar'] = {
 				"dc": "الأسفار القانونية",
 				"more": "أكثر",
 				"less": "أقل",
-				"recentlyused": "المستخدمة مؤخرا"
+				"recentlyused": "المستخدمة مؤخرا",
+				"languages": "اللغات",
+				"countries": "الدول"
 			},
 			"commentary": {
 				"label": "تفاسير"

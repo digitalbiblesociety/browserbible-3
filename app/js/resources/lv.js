@@ -43,7 +43,9 @@ sofia.resources['lv'] = {
 				"dc": "Deuterocanonical Grāmatas",
 				"more": "Vairāk",
 				"less": "Mazāk",
-				"recentlyused": "Nesen lietotas"
+				"recentlyused": "Nesen lietotas",
+				"languages": "Valodas",
+				"countries": "Valstis"
 			},
 			"commentary": {
 				"label": "Komentārs"

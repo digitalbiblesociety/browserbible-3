@@ -43,7 +43,9 @@ sofia.resources['ur'] = {
 				"dc": "Deuterocanonical کتب",
 				"more": "مزید",
 				"less": "کم",
-				"recentlyused": "حال ہی میں استعمال کیا جاتا ہے"
+				"recentlyused": "حال ہی میں استعمال کیا جاتا ہے",
+				"languages": "زبانیں",
+				"countries": "ممالک"
 			},
 			"commentary": {
 				"label": "تفسیر"

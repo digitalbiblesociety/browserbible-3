@@ -43,7 +43,9 @@ sofia.resources['ta'] = {
 				"dc": "டியூட்டரோகனானிக்கல் புத்தகங்கள்",
 				"more": "அதிக",
 				"less": "குறைவான",
-				"recentlyused": "சமீபத்தில் பயன்படுத்திய"
+				"recentlyused": "சமீபத்தில் பயன்படுத்திய",
+				"languages": "மொழிகள்",
+				"countries": "நாடுகள்"
 			},
 			"commentary": {
 				"label": "வர்ணனை"

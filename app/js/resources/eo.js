@@ -43,7 +43,9 @@ sofia.resources['eo'] = {
 				"dc": "Duakanonaj libroj",
 				"more": "Pli",
 				"less": "Malpli",
-				"recentlyused": "Ĵus Uzita"
+				"recentlyused": "Ĵus Uzita",
+				"languages": "Lingvoj",
+				"countries": "Landoj"
 			},
 			"commentary": {
 				"label": "Komento"

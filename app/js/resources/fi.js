@@ -43,7 +43,9 @@ sofia.resources['fi'] = {
 				"dc": "Deuterocanonical Kirjat",
 				"more": "Lisää",
 				"less": "Vähemmän",
-				"recentlyused": "Viimeksi käytetyt"
+				"recentlyused": "Viimeksi käytetyt",
+				"languages": "Kielet",
+				"countries": "Maat"
 			},
 			"commentary": {
 				"label": "Selostus"

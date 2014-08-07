@@ -43,7 +43,9 @@ sofia.resources['zh-TW'] = {
 				"dc": "經書",
 				"more": "更多",
 				"less": "少",
-				"recentlyused": "最近使用"
+				"recentlyused": "最近使用",
+				"languages": "語言",
+				"countries": "國家"
 			},
 			"commentary": {
 				"label": "評論"

@@ -43,7 +43,9 @@ sofia.resources['vi'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "Hơn",
 				"less": "Ít",
-				"recentlyused": "Gần đây sử dụng"
+				"recentlyused": "Gần đây sử dụng",
+				"languages": "Ngôn ngữ",
+				"countries": "Nước"
 			},
 			"commentary": {
 				"label": "Bình luận"

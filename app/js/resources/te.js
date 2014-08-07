@@ -43,7 +43,9 @@ sofia.resources['te'] = {
 				"dc": "Deuterocanonical పుస్తకాలు",
 				"more": "మరిన్ని",
 				"less": "తక్కువ",
-				"recentlyused": "ఇటీవల వాడిన"
+				"recentlyused": "ఇటీవల వాడిన",
+				"languages": "భాషలు",
+				"countries": "దేశాలు"
 			},
 			"commentary": {
 				"label": "భాష్యం"

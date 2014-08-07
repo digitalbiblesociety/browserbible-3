@@ -43,7 +43,9 @@ sofia.resources['cy'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "Mwy",
 				"less": "Llai",
-				"recentlyused": "Used yn ddiweddar"
+				"recentlyused": "Used yn ddiweddar",
+				"languages": "Ieithoedd",
+				"countries": "Gwledydd"
 			},
 			"commentary": {
 				"label": "Sylwadau"

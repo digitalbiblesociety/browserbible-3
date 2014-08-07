@@ -43,7 +43,9 @@ sofia.resources['bg'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "Още",
 				"less": "По-малко",
-				"recentlyused": "Неотдавна Използван"
+				"recentlyused": "Неотдавна Използван",
+				"languages": "Езици",
+				"countries": "Държави"
 			},
 			"commentary": {
 				"label": "Коментар"

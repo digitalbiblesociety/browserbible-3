@@ -43,7 +43,9 @@ sofia.resources['tr'] = {
 				"dc": "Apokrif",
 				"more": "Daha fazla",
 				"less": "Daha az",
-				"recentlyused": "Son Kullanılan"
+				"recentlyused": "Son Kullanılan",
+				"languages": "Diller",
+				"countries": "Ülkeler"
 			},
 			"commentary": {
 				"label": "Açıklamalar"

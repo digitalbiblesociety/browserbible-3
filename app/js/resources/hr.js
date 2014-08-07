@@ -43,7 +43,9 @@ sofia.resources['hr'] = {
 				"dc": "Deuterokanonske Books",
 				"more": "Više",
 				"less": "Manje",
-				"recentlyused": "Nedavno Koristi"
+				"recentlyused": "Nedavno Koristi",
+				"languages": "Jezici",
+				"countries": "Zemlje"
 			},
 			"commentary": {
 				"label": "Komentar"

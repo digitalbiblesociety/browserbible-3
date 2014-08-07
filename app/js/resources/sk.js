@@ -43,7 +43,9 @@ sofia.resources['sk'] = {
 				"dc": "Deuterokanonické knihy",
 				"more": "Viac",
 				"less": "Menej",
-				"recentlyused": "Naposledy použité"
+				"recentlyused": "Naposledy použité",
+				"languages": "Jazyky",
+				"countries": "Krajiny"
 			},
 			"commentary": {
 				"label": "Komentár"

@@ -47,7 +47,9 @@ sofia.resources['hi'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "अधिक",
 				"less": "कम",
-				"recentlyused": "हाल ही में प्रयुक्त"
+				"recentlyused": "हाल ही में प्रयुक्त",
+				"languages": "भाषाएँ",
+				"countries": "देश"
 			},
 			"commentary": {
 				"label": "टीका"

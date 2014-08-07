@@ -1,6 +1,6 @@
 sofia.resources['be'] = {
 	"translation": {
-		"name": "Беларуская",
+		"name": "беларуская",
 		"menu": {
 			"search": {
 				"placeholder": "Пошук"
@@ -43,7 +43,9 @@ sofia.resources['be'] = {
 				"dc": "Второканонические кнігі",
 				"more": "Больш за",
 				"less": "Менш",
-				"recentlyused": "Нядаўна выкарыстаныя"
+				"recentlyused": "Нядаўна выкарыстаныя",
+				"languages": "Мовы",
+				"countries": "Краіны"
 			},
 			"commentary": {
 				"label": "Каментар"

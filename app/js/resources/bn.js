@@ -43,7 +43,9 @@ sofia.resources['bn'] = {
 				"dc": "Deuterocanonical বই",
 				"more": "অধিক",
 				"less": "কম",
-				"recentlyused": "সম্প্রতি ব্যবহৃত"
+				"recentlyused": "সম্প্রতি ব্যবহৃত",
+				"languages": "ভাষা",
+				"countries": "দেশ সমূহ"
 			},
 			"commentary": {
 				"label": "ভাষ্য"

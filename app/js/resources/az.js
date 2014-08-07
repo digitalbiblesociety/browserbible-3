@@ -43,7 +43,9 @@ sofia.resources['az'] = {
 				"dc": "Deuterocanonical Kitablar",
 				"more": "Daha",
 				"less": "Less",
-				"recentlyused": "Son İstifadə"
+				"recentlyused": "Son İstifadə",
+				"languages": "Dillər",
+				"countries": "Ölkələr"
 			},
 			"commentary": {
 				"label": "Şərh"

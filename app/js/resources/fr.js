@@ -43,7 +43,9 @@ sofia.resources['fr'] = {
 				"dc": "Deutérocanoniques",
 				"more": "Plus",
 				"less": "Moins",
-				"recentlyused": "Récemment utilisés"
+				"recentlyused": "Récemment utilisés",
+				"languages": "Langues",
+				"countries": "Pays"
 			},
 			"commentary": {
 				"label": "Commentaire"
@@ -75,6 +77,11 @@ sofia.resources['fr'] = {
 		},
 		"names": {
 			"en": "French"
+		},
+		"window": {
+			"bible": {
+				"languages": "indéfini"
+			}
 		}
 	}
 }

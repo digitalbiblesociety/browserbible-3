@@ -43,7 +43,9 @@ sofia.resources['gl'] = {
 				"dc": "Libros deuterocanônicos",
 				"more": "Máis",
 				"less": "Menos",
-				"recentlyused": "Recently Used"
+				"recentlyused": "Recently Used",
+				"languages": "Idiomas",
+				"countries": "Países"
 			},
 			"commentary": {
 				"label": "Comentario"

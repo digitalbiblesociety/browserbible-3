@@ -43,7 +43,9 @@ sofia.resources['ru'] = {
 				"dc": "Второканонические книги",
 				"more": "Более",
 				"less": "Меньше",
-				"recentlyused": "Недавно использованные"
+				"recentlyused": "Недавно использованные",
+				"languages": "Языки",
+				"countries": "Страны"
 			},
 			"commentary": {
 				"label": "Комментарий"

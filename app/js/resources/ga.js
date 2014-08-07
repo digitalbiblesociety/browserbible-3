@@ -43,7 +43,9 @@ sofia.resources['ga'] = {
 				"dc": "Leabhair Deuterocanonical",
 				"more": "Níos mó",
 				"less": "Lúide",
-				"recentlyused": "Le déanaí Úsáidte"
+				"recentlyused": "Le déanaí Úsáidte",
+				"languages": "Teangacha",
+				"countries": "Tíortha"
 			},
 			"commentary": {
 				"label": "Tráchtaireacht"

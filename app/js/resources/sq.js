@@ -43,7 +43,9 @@ sofia.resources['sq'] = {
 				"dc": "Deuterocanonical Libra",
 				"more": "Më shumë",
 				"less": "Më pak",
-				"recentlyused": "Përdoret Kohët e fundit"
+				"recentlyused": "Përdoret Kohët e fundit",
+				"languages": "Gjuhë të huaja",
+				"countries": "Vendet"
 			},
 			"commentary": {
 				"label": "Koment"

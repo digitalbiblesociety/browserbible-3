@@ -43,7 +43,9 @@ sofia.resources['ceb'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "More",
 				"less": "Dili kaayo",
-				"recentlyused": "Bag-ohay lang Used"
+				"recentlyused": "Bag-ohay lang Used",
+				"languages": "Pinulongan",
+				"countries": "Mga nasud"
 			},
 			"commentary": {
 				"label": "Commentary"

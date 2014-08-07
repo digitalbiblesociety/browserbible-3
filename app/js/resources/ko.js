@@ -43,7 +43,9 @@ sofia.resources['ko'] = {
 				"dc": "Deuterocanonical 책",
 				"more": "더",
 				"less": "적게",
-				"recentlyused": "최근 사용"
+				"recentlyused": "최근 사용",
+				"languages": "언어",
+				"countries": "국가"
 			},
 			"commentary": {
 				"label": "해설"

@@ -43,7 +43,9 @@ sofia.resources['el'] = {
 				"dc": "Δευτεροκανονικά Βιβλία",
 				"more": "Περισσότερο",
 				"less": "Μείον",
-				"recentlyused": "Πρόσφατα Μεταχειρισμένα"
+				"recentlyused": "Πρόσφατα Μεταχειρισμένα",
+				"languages": "Γλώσσες",
+				"countries": "Χώρες"
 			},
 			"commentary": {
 				"label": "Σχόλια"

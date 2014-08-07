@@ -43,7 +43,9 @@ sofia.resources['mr'] = {
 				"dc": "Deuterocanonical पुस्तके",
 				"more": "अधिक",
 				"less": "कमी",
-				"recentlyused": "अलीकडे वापरलेले"
+				"recentlyused": "अलीकडे वापरलेले",
+				"languages": "भाषा",
+				"countries": "देश"
 			},
 			"commentary": {
 				"label": "समालोचन"

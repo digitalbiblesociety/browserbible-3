@@ -43,7 +43,9 @@ sofia.resources['jw'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "More",
 				"less": "Kurang",
-				"recentlyused": "Bubar digunakake"
+				"recentlyused": "Bubar digunakake",
+				"languages": "Basa",
+				"countries": "Negara"
 			},
 			"commentary": {
 				"label": "Katrangan"

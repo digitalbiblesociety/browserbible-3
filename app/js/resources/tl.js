@@ -43,7 +43,9 @@ sofia.resources['tl'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "Mas",
 				"less": "Kulang",
-				"recentlyused": "Kamakailang Ginamit"
+				"recentlyused": "Kamakailang Ginamit",
+				"languages": "Mga Wika",
+				"countries": "Mga Bansa"
 			},
 			"commentary": {
 				"label": "Komentaryo"

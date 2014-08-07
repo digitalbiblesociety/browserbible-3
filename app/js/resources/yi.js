@@ -43,7 +43,9 @@ sofia.resources['yi'] = {
 				"dc": "דעוטעראָקאַנאָניקאַל ספר",
 				"more": "מער",
 				"less": "ווייניקער",
-				"recentlyused": "לעצטנס געוויינט"
+				"recentlyused": "לעצטנס געוויינט",
+				"languages": "שפּראַכן",
+				"countries": "לענדער"
 			},
 			"commentary": {
 				"label": "קאָמענטאַר"

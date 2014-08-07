@@ -43,7 +43,9 @@ sofia.resources['la'] = {
 				"dc": "Deuterocanonicis",
 				"more": "More",
 				"less": "Minus",
-				"recentlyused": "Quae nuper"
+				"recentlyused": "Quae nuper",
+				"languages": "Linguis",
+				"countries": "Regiones"
 			},
 			"commentary": {
 				"label": "Latin"

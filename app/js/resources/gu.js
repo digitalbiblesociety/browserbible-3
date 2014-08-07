@@ -43,7 +43,9 @@ sofia.resources['gu'] = {
 				"dc": "ડેઉટેરોકાનોનીકલ પુસ્તકો",
 				"more": "વધુ",
 				"less": "ઓછી",
-				"recentlyused": "તાજેતરમાં વપરાયેલ"
+				"recentlyused": "તાજેતરમાં વપરાયેલ",
+				"languages": "ભાષા",
+				"countries": "દેશો"
 			},
 			"commentary": {
 				"label": "કોમેન્ટરી"

@@ -43,7 +43,9 @@ sofia.resources['ht'] = {
 				"dc": "Deuterocanonical Liv",
 				"more": "Plis",
 				"less": "Mwens",
-				"recentlyused": "Dènyèman te itilize"
+				"recentlyused": "Dènyèman te itilize",
+				"languages": "Lang",
+				"countries": "Peyi"
 			},
 			"commentary": {
 				"label": "Ladann"

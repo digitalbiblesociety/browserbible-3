@@ -43,7 +43,9 @@ sofia.resources['nl'] = {
 				"dc": "Apocriefe boeken",
 				"more": "Meer",
 				"less": "Minder",
-				"recentlyused": "Onlangs gebruikte"
+				"recentlyused": "Onlangs gebruikte",
+				"languages": "Talen",
+				"countries": "Landen"
 			},
 			"commentary": {
 				"label": "Commentaar"

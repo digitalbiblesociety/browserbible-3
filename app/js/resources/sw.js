@@ -43,7 +43,9 @@ sofia.resources['sw'] = {
 				"dc": "Deuterocanonical vitabu",
 				"more": "Zaidi",
 				"less": "Chini ya",
-				"recentlyused": "Kutumika hivi karibuni"
+				"recentlyused": "Kutumika hivi karibuni",
+				"languages": "Lugha",
+				"countries": "Nchi"
 			},
 			"commentary": {
 				"label": "Ufafanuzi"

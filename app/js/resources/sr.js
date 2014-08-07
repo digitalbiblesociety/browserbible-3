@@ -43,7 +43,9 @@ sofia.resources['sr'] = {
 				"dc": "Деутероцаноницал Књиге",
 				"more": "Више",
 				"less": "Мање",
-				"recentlyused": "Недавно Половни"
+				"recentlyused": "Недавно Половни",
+				"languages": "Језици",
+				"countries": "Земље"
 			},
 			"commentary": {
 				"label": "Коментар"

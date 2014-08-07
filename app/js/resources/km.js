@@ -43,7 +43,9 @@ sofia.resources['km'] = {
 				"dc": "Deuterocanonical សៀវភៅ",
 				"more": "ច្រើន​ទៀត",
 				"less": "តិច",
-				"recentlyused": "ប្រើ​ពេល​ថ្មី​នេះ"
+				"recentlyused": "ប្រើ​ពេល​ថ្មី​នេះ",
+				"languages": "ភាសា",
+				"countries": "ប​ណ្តា​ប្រទេស"
 			},
 			"commentary": {
 				"label": "អត្ថា​ធិ​ប្បា​យ"

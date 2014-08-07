@@ -1,3 +1,9 @@
+sofia.config = $.extend(sofia.config, {
+
+	enableCountrySelector: true
+
+});
+
 
 
 /******************
@@ -8,23 +14,30 @@ var TextChooser = function(container, target, text_type) {
 	// create me
 	var
 		isFull = false,
-		showHeaders = true,
 		textsHaveRendered = false,
 		selectedTextInfo = null,
 		textSelector = $('<div class="text-chooser nav-drop-list">' +
 							'<span class="up-arrow"></span>' +
 							'<span class="up-arrow-border"></span>' +
-							'<div class="text-chooser-header">' +
+							'<div class="text-chooser-header">' +								
+								'<div class="text-chooser-selector">' + 
+									'<span class="text-chooser-languages selected i18n" data-mode="languages" data-i18n="[html]windows.bible.languages"></span>' +
+									'<span class="text-chooser-countries i18n" data-mode="countries" data-i18n="[html]windows.bible.countries"></span>' +								
+								'</div>' +							
 								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +
 								'<span class="text-chooser-more-toggle i18n" data-i18n="[html]windows.bible.more"></span>' +
 								'<span class="close-button">Close</span>' +
 							'</div>' +
 							'<div class="text-chooser-main"></div>' +
+							
 						'</div>')
 						.appendTo( $('body') )
 						.hide(),
 		header = textSelector.find('.text-chooser-header'),
 		main = textSelector.find('.text-chooser-main'),
+		listselector = textSelector.find('.text-chooser-selector'),
+		languagesSelector = textSelector.find('.text-chooser-languages'),
+		countriesSelector = textSelector.find('.text-chooser-countries'),				
 		filter = textSelector.find('.text-chooser-filter-text'),
 		title = textSelector.find('.text-chooser-title'),
 		closeBtn = textSelector.find('.close-button').hide(),
@@ -32,13 +45,30 @@ var TextChooser = function(container, target, text_type) {
 		allTextsVisible = false,
 		hasTopTexts = false,
 		recentlyUsedKey = 'text-recently-used',
-		recentlyUsed = AppSettings.getValue(recentlyUsedKey, {"recent":[]} );
+		recentlyUsed = AppSettings.getValue(recentlyUsedKey, {"recent":[]} ),
+		list_data = null;
 
 	textSelector.find('.i18n').i18n();
 
 	title.html("Texts");
 
 	closeBtn.on('click', hide);
+	
+	if (sofia.config.enableCountrySelector) {
+		
+		listselector.on('click', 'span', function() {
+			$(this)
+				.addClass('selected')
+				.siblings()
+					.removeClass('selected');
+					
+			renderTexts(list_data);			
+		});
+		
+	
+	} else {
+		listselector.hide();
+	}
 
 
 	filter.on('keyup keypress', filterVersions);
@@ -64,48 +94,73 @@ var TextChooser = function(container, target, text_type) {
 			}
 		}
 
-
-		var text = filter.val();
+		var text = filter.val().toLowerCase();
 
 		if (text == '') {
 
 			// remove all filtering
-			main.find('.text-chooser-row-header, .text-chooser-row')
+			main.find('.text-chooser-row')
 					.removeClass('filtered')
+					
+			main.find('.text-chooser-row-header')
 					.show();
+					
+			updateRecentlyUsed();
 
 			//runTopTextsSelector();
 		} else {
+		
+			var mode = getMode();
+			
+			if (mode == 'languages') {
 
-			text = text.toLowerCase();
-
-			// hide the headers
-			main.find('.text-chooser-row-header').hide();
-
-			main.find('.text-chooser-row').each(function() {
-				var row = $(this),
-					abbr = row.find('.text-chooser-abbr'),
-					name = row.find('.text-chooser-name');
-
-				if (
-					row.attr('data-lang-name').toLowerCase().indexOf(text) > -1 ||
-					row.attr('data-lang-name-english').toLowerCase().indexOf(text) > -1 ||
-					name.text().toLowerCase().indexOf(text) > -1 ||
-					abbr.text().toLowerCase().indexOf(text) > -1) {
-
-					row.show().addClass('filtered');
-
-				} else {
-
-					row.hide().removeClass('filtered');
-
-				}
-
-			});
-
-			// remove the recently used so there are no duplicates
-			main.find('.text-chooser-recently-used').hide().addClass('filtered');
-
+				// hide the headers
+				main.find('.text-chooser-row-header').hide();
+	
+				main.find('.text-chooser-row').each(function() {
+					var row = $(this),
+						abbr = row.find('.text-chooser-abbr'),
+						name = row.find('.text-chooser-name');
+	
+					if (
+						row.attr('data-lang-name').toLowerCase().indexOf(text) > -1 ||
+						row.attr('data-lang-name-english').toLowerCase().indexOf(text) > -1 ||
+						name.text().toLowerCase().indexOf(text) > -1 ||
+						abbr.text().toLowerCase().indexOf(text) > -1) {
+	
+						row.show().addClass('filtered');
+	
+					} else {
+	
+						row.hide().removeClass('filtered');
+	
+					}
+	
+				});
+	
+				// remove the recently used so there are no duplicates
+				main.find('.text-chooser-recently-used').hide().addClass('filtered');
+			
+			} else if (mode == 'countries') {
+								
+				main.find('.text-chooser-row-header').each(function() {
+					var row = $(this),
+						name = row.find('.name');
+	
+					if (name.text().toLowerCase().indexOf(text) > -1) {
+	
+						row.show().addClass('filtered');
+	
+					} else {
+	
+						row.hide().removeClass('filtered');
+	
+					}
+	
+				});
+				
+				
+			}
 
 		}
 
@@ -169,15 +224,12 @@ var TextChooser = function(container, target, text_type) {
 
 	function updateRecentlyUsed() {
 
-		if (text_type != 'bible') {
+		if (text_type != 'bible' || getMode() != 'languages') {
 			main.find('.text-chooser-recently-used').remove();
 			return;
 		}
 
-
 		// RECENTly Used
-		//console.log('updateRecentlyUsed',recentlyUsed.recent.length);
-
 		if (recentlyUsed.recent.length > 0) {
 
 			var isTopText = false;
@@ -187,27 +239,23 @@ var TextChooser = function(container, target, text_type) {
 				isTopText = true;
 			}
 
-
 			var recentlyUsedHtml =
-				'<tr class="text-chooser-recently-used text-chooser-row-header ' + (isTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
-					i18n.t('windows.bible.recentlyused') +
-				'</td></tr>';
+					createHeaderRow(			
+						'',
+						i18n.t('windows.bible.recentlyused'),
+						'',
+						'',
+						'text-chooser-recently-used' + (isTopText ? ' is-top-text' : '')
+					);
 
 			for (var i=0, il=recentlyUsed.recent.length; i<il; i++) {
 				var textInfo = recentlyUsed.recent[i];
 
-				recentlyUsedHtml +=
-							'<tr class="text-chooser-recently-used text-chooser-row ' + (isTopText ? ' is-top-text' : '') + '" data-id="' + textInfo.id + '" data-lang-name="' + textInfo.langName + '" data-lang-name-english="' + textInfo.langNameEnglish + '">' +
-								'<td class="text-chooser-abbr">' + textInfo.abbr + '</td>' +
-								'<td class="text-chooser-name"><span>' + textInfo.name + '</span></td>' +
-							'</tr>';
 
+				recentlyUsedHtml +=
+					createTextRow(textInfo.id, textInfo.langName, textInfo.langNameEnglish, textInfo.abbr, textInfo.name, isTopText, 'text-chooser-recently-used' );
 
 			}
-
-
-
-
 
 			// remove existing
 			main.find('.text-chooser-recently-used').remove();
@@ -218,26 +266,6 @@ var TextChooser = function(container, target, text_type) {
 		}
 
 	}
-
-	/*
-	textSelector.on('click', '.text-chooser-more', function(e) {
-
-		var moreButton = $(this);
-
-		if (moreButton.hasClass('show-all')) {
-			allTextsVisible = false;
-			moreButton.html('More');
-			moreButton.removeClass('show-all');
-		} else {
-			allTextsVisible = true;
-			moreButton.html('Less');
-			moreButton.addClass('show-all');
-		}
-
-		runTopTextsSelector();
-
-	});
-	*/
 
 	moreToggle.on('click', function() {
 
@@ -257,7 +285,6 @@ var TextChooser = function(container, target, text_type) {
 		runTopTextsSelector();
 
 	});
-
 
 	function runTopTextsSelector() {
 
@@ -294,27 +321,29 @@ var TextChooser = function(container, target, text_type) {
 		return isTopText;
 
 	}
-
+	
+	function getMode() {
+		var mode = listselector.find('.selected').data('mode');
+		return mode;
+	}
 
 	function renderTexts(data) {
 
 		// render all the rows
 		var html = [],
-			arrayOfTexts = data;
-
-		// turn object into array
-		//for (var key in texts.Texts.textData) {
-		//	arrayOfTexts.push(texts.Texts.textData[key]);
-		//}
-
-		// filter by type
-		arrayOfTexts = arrayOfTexts.filter(function(t) {
-			var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
-
-			return thisTextType == text_type;
-		});
-
-		if (showHeaders) {
+			arrayOfTexts = data,
+			mode = getMode();
+			
+			
+		if (mode == 'languages') {
+	
+			// filter by type
+			arrayOfTexts = arrayOfTexts.filter(function(t) {
+				var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
+	
+				return thisTextType == text_type;
+			});
+	
 			// find languages
 			var languages = [];
 			for (var index in arrayOfTexts) {
@@ -367,100 +396,149 @@ var TextChooser = function(container, target, text_type) {
 					var text = textsInLang[textIndex],
 						isTopText = checkIsTopText(text.id);
 
-
-					langHtml.push('<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
-									'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
-									'<td class="text-chooser-name"><span>' + text.name + '</span></td>' + // + (text.nameEnglish && text.name != text.nameEnglish ? ' (' + text.nameEnglish + ')' : '') + '</span></td>' +
-								'</tr>'
+					langHtml.push(
+						createTextRow(text.id, text.langName, text.langNameEnglish, text.abbr, text.name, isTopText, '')
 					);
-
+			
 					if (!hasTopText && isTopText) {
 						hasTopText = true;
 					}
 				}
 
 
-				html.push('<tr class="text-chooser-row-header' + (hasTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
+				html.push(
+					createHeaderRow(
+						'',
+						textsInLang[0].langName +
+								( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : ''),
+						'',
+						'',
+						(hasTopText ? ' is-top-text' : '')					
+					)
+				
+				/*'<tr class="text-chooser-row-header' + (hasTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
 							textsInLang[0].langName +
 								( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
 							'</td></tr>'
+							*/
 				);
 				html.push(langHtml.join(''));
 
 			}
-
-		} else {
-
-			// sort by name
-			arrayOfTexts.sort(function(a, b) {
-
-				if (a.abbr > b.abbr)
-					return 1;
-				if (a.abbr < b.abbr)
-					return -1;
-				// a must be equal to b
-				return 0;
-
-			});
-
-			for (var index in arrayOfTexts) {
-
-				var text = arrayOfTexts[index],
-						isTopText = checkIsTopText(text.id);
-
-				html.push('<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + '" data-id="' + text.id + '">' +
-								'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
-								'<td class="text-chooser-name"><span>' + text.name + '</span></td>' +
-							'</tr>'
-				);
+	
+	
+			main.html('<table cellspacing="0">' + html.join('') + '</table>');
+	
+			updateRecentlyUsed();
+	
+			hasTopTexts = main.find('.is-top-text').length > 0;
+	
+			if (hasTopTexts) {
+	
+				//main.append( $('<div class="text-chooser-more">More</div>'));
+				textSelector.addClass('show-more');
+	
+				runTopTextsSelector();
+			} else {
+				allTextsVisible = true;
 			}
+	
+	
+			// find the selected text
+			if (selectedTextInfo != null) {
+				textSelector
+						.find('[data-id="' + selectedTextInfo.id + '"]')
+						.addClass('selected');
+			}
+
+		} else if (mode == "countries") {
+			
+		
+			for (var i=0, il=sofia.countries.length; i<il; i++) {
+				
+				var countryInfo = sofia.countries[i],
+					textsInCountry = arrayOfTexts.filter(function(t) {
+						return typeof t.countries != 'undefined' && t.countries.indexOf(countryInfo["alpha-3"]) > -1;					
+					});
+				
+				
+				if (textsInCountry.length > 0) {
+					html.push(
+						createHeaderRow(countryInfo["alpha-3"], 
+							countryInfo.name, 
+							'', 
+							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-2"] + '.png" height="15" width="25" alt="' + countryInfo["alpha-3"] + '" />',
+							'country collapsed')
+					
+						/*
+						'<tr class="text-chooser-row-header collapsed"><td colspan="2">' +
+								'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-2"] + '.png" height="15" width="25" alt="' + countryInfo["alpha-3"] + '" />' + 
+								countryInfo.name +
+								'</td></tr>'
+						*/
+					);
+						
+					for (var textIndex in textsInCountry) {
+						var text = textsInCountry[textIndex];
+	
+						html.push(
+							createTextRow(text.id, text.langName, text.langNameEnglish, text.abbr, text.name, isTopText, 'collapsed')
+						);
+						
+					}
+					
+				}				
+				
+			}
+			
+			main.html('<table cellspacing="0" class="collapsible">' + html.join('') + '</table>');
+			
 		}
-
-
-
-
-		main.html('<table cellspacing="0">' + html.join('') + '</table>');
-
-		updateRecentlyUsed();
-
-		// wait just a second to adjust the size
-		/*
-		setTimeout(function() {
-			var widthOfAbbr = main.find('td.text-chooser-abbr:first').outerWidth(true),
-				widthOfArea = textSelector.width(),
-				widthOfFullnames = widthOfArea - widthOfAbbr;
-
-			console.log(widthOfAbbr, widthOfArea, widthOfFullnames);
-
-			main.find('td.text-chooser-name span').width(widthOfFullnames);
-		});
-		*/
-
-
-		hasTopTexts = main.find('.is-top-text').length > 0;
-
-		if (hasTopTexts) {
-
-			//main.append( $('<div class="text-chooser-more">More</div>'));
-			textSelector.addClass('show-more');
-
-			runTopTextsSelector();
-		} else {
-			allTextsVisible = true;
-		}
-
-
-		// find the selected text
-		if (selectedTextInfo != null) {
-			textSelector
-					.find('[data-id="' + selectedTextInfo.id + '"]')
-					.addClass('selected');
-		}
-
-		textsHaveRendered = true;
+		
+		textsHaveRendered = true;		
 
 		//ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 	}
+	
+	main.on('click', '.collapsible .text-chooser-row-header', function() {
+		
+		var header = $(this),
+			children = header.nextUntil('.text-chooser-row-header');
+		
+		if (header.hasClass('collapsed')) {
+			
+			header.removeClass('collapsed');
+			children.removeClass('collapsed');
+			
+		} else {
+
+			header.addClass('collapsed');			
+			children.addClass('collapsed');			
+			
+		}
+		
+		
+	});
+	
+	
+	function createTextRow(id, langName, langNameEnglish, abbr, name, isTopText, className) {
+		var html = '<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + id + '" data-lang-name="' + langName + '" data-lang-name-english="' + langNameEnglish + '">' +
+					'<td class="text-chooser-abbr">' + abbr + '</td>' +
+					'<td class="text-chooser-name"><span>' + name + '</span></td>' +
+				'</tr>';
+				
+		return html;		
+	}
+	
+	function createHeaderRow(id, name, englishName, additionalHtml, className) {
+		var html = '<tr class="text-chooser-row-header' + (className != '' ? ' ' + className : '') + '" data-id="' + id + '"><td colspan="2">' +
+					'<span class="name">' + name + '</span>' + 
+					additionalHtml + 
+					'</td></tr>';
+
+				
+		return html;		
+	}	
 
 	function toggle() {
 
@@ -478,14 +556,16 @@ var TextChooser = function(container, target, text_type) {
 		size();
 
 		if (!textsHaveRendered) {
-			main.html('Loading');
+			main.addClass('loading').html('Loading');
 
 			TextLoader.loadTexts(function(data) {
-				renderTexts(data);
+				list_data = data;
+				renderTexts(list_data);
 				updateRecentlyUsed();
 			});
 		} else {
-			updateRecentlyUsed();
+			main.removeClass('loading')
+			//updateRecentlyUsed();
 		}
 
 		textSelector.show();
@@ -496,9 +576,11 @@ var TextChooser = function(container, target, text_type) {
 		}
 		filterVersions();
 
-		runTopTextsSelector();
-
-		updateRecentlyUsed();
+		if (getMode() == 'languages') {
+			runTopTextsSelector();
+	
+			updateRecentlyUsed();
+		}
 	}
 
 	function hide() {
@@ -534,7 +616,7 @@ var TextChooser = function(container, target, text_type) {
 
 			main
 				.width(width)
-				.height(height - header.outerHeight())
+				.height(height - header.outerHeight());
 
 		} else {
 			// reasonable size!
@@ -562,7 +644,7 @@ var TextChooser = function(container, target, text_type) {
 				.css({top: top,left: left});
 
 			main
-				.outerHeight(maxHeight - header.outerHeight())
+				.outerHeight(maxHeight - header.outerHeight());
 
 
 			// UP ARROW

@@ -43,7 +43,9 @@ sofia.resources['lo'] = {
 				"dc": "Deuterocanonical ປຶ້ມ",
 				"more": "ອ່ານ​ຕໍ່",
 				"less": "ຫນ້ອຍ",
-				"recentlyused": "ການ​ນໍາ​ໃຊ້​ບໍ່​ດົນ​ມາ​ນີ້"
+				"recentlyused": "ການ​ນໍາ​ໃຊ້​ບໍ່​ດົນ​ມາ​ນີ້",
+				"languages": "ພາ​ສາ",
+				"countries": "ປະ​ເທດ"
 			},
 			"commentary": {
 				"label": "ຄໍາ​ເຫັນ"

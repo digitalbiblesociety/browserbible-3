@@ -43,7 +43,9 @@ sofia.resources['ja'] = {
 				"dc": "第二正典",
 				"more": "もっと",
 				"less": "レス",
-				"recentlyused": "最近使用された"
+				"recentlyused": "最近使用された",
+				"languages": "言語",
+				"countries": "国"
 			},
 			"commentary": {
 				"label": "解説"

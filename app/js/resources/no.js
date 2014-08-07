@@ -43,7 +43,9 @@ sofia.resources['no'] = {
 				"dc": "Deuterokanoniske bøker",
 				"more": "Mer",
 				"less": "Mindre",
-				"recentlyused": "Nylig brukte"
+				"recentlyused": "Nylig brukte",
+				"languages": "Språk",
+				"countries": "Land"
 			},
 			"commentary": {
 				"label": "Commentary"

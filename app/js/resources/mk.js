@@ -43,7 +43,9 @@ sofia.resources['mk'] = {
 				"dc": "Девтероканонските книги",
 				"more": "Повеќе",
 				"less": "Помалку",
-				"recentlyused": "Неодамна се користи"
+				"recentlyused": "Неодамна се користи",
+				"languages": "Јазици",
+				"countries": "Земји"
 			},
 			"commentary": {
 				"label": "Коментари"

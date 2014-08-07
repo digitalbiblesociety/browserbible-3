@@ -11,10 +11,16 @@ var translate_settings = JSON.parse( fs.readFileSync( 'translate-config.js', 'ut
 	baseLangCode = 'en',
 	baseLangData = null,
 	overwrite = false,
-	langs = [];
+	langs = [],
+	globalKeys = [];
 
 if (argv['o']) {
 	overwrite = true;
+}
+
+
+if (argv['k']) {
+	globalKeys = argv['k'].split(',');
 }
 
 
@@ -27,6 +33,7 @@ if (argv['l']) {
 } else {
 	console.log('HELP\n' +
 				'-l lang,lang,lang\n' +
+				'-k key,key,key\n',
 				'-a do all\n' +
 				'-o overwrite\n\n');
 	return;
@@ -88,7 +95,7 @@ function langToFlat(langJson) {
 function translateKeys(sourceFlatLang, targetFlatLang, targetLang, callback) {
 
 	var
-		keys = Object.keys(sourceFlatLang),
+		keys = globalKeys.length > 0 ? globalKeys : Object.keys(sourceFlatLang),
 		keyIndex = 0,
 		translatedWords = {};
 
@@ -98,7 +105,7 @@ function translateKeys(sourceFlatLang, targetFlatLang, targetLang, callback) {
 				srcWord = sourceFlatLang[key],
 				targetWord = targetFlatLang[key];
 
-			if (overwrite || typeof targetWord == 'undefined' ) {
+			if (overwrite || typeof targetWord == 'undefined' || typeof srcWord == 'undefined' ) {
 
 				if (typeof translatedWords[srcWord] != 'undefined') {
 
@@ -242,7 +249,7 @@ function translateNextLang() {
 
 				var translatedObj = langToJson(translatedKeys);
 
-				translatedObj.name = getLanguageName(lang, langData) + ' (' + getLanguageName(lang, baseLangData) + ')';
+				translatedObj.name = getLanguageName(lang, langData); // + ' (' + getLanguageName(lang, baseLangData) + ')';
 
 				// save
 				saveLang(translatedObj, lang);
@@ -317,7 +324,7 @@ function loadBaseLanguages() {
 
 		}
 
-		console.log('langs', langs);
+		//console.log('langs', langs);
 
 		translateNextLang();
 	});

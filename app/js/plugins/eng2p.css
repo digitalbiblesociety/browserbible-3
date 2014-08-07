@@ -7,6 +7,9 @@
 .eng2p-corrected {
 	color: #393;
 }
+.lemma-highlight .eng2p-corrected {
+	color: #02d602;
+}
 
 .eng2p-highlight,
 .eng2p-highlight-demo {

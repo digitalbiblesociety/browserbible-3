@@ -1,7 +1,13 @@
 Change Log
 =======
 
-3.2.3 - in progress
+3.2.4 - in progress
+----
+
+* Removed requirement for provider name (i.e. 'fcbh:') in ids of texts
+
+
+3.2.3 - 2014/08/05
 ----
 
 * Fix to English 2p plugin for eng/en, added description

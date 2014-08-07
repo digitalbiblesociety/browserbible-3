@@ -272,13 +272,15 @@ var TextChooser = function(container, target, text_type) {
 
 	function checkIsTopText(id) {
 
-		var isTopText = false;
+		var isTopText = false,
+			parts = id.split(':'),
+			textid = parts.length > 1 ? parts[1] : parts[0];
 
 		// find if this should be a priority text shown at the beginning
 		if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
 
 			for (var t=0, tl=sofia.config.topTexts.length; t<tl; t++) {
-				if (id == sofia.config.topTexts[t]) {
+				if (textid == sofia.config.topTexts[t]) {
 					isTopText = true;
 					break;
 				}

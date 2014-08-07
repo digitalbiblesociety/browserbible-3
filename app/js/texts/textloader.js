@@ -58,6 +58,16 @@ TextLoader = (function() {
 		});
 	}
 
+
+	function getTextid(textid) {
+
+		var parts = textid.split(':'),
+			simpleTextid = (parts.length > 1) ? parts[1] : parts[0];
+
+		return simpleTextid;
+
+	}
+
 	function getProviderName(textid) {
 
 		// if not loaded, get it from provider
@@ -94,7 +104,8 @@ TextLoader = (function() {
 			return textinfo;
 		}
 
-		var providerName = getProviderName(textid);
+		var providerName = getProviderName(textid),
+			textid = getTextid(textid);
 
 
 		sofia.textproviders[providerName].getTextInfo(textid, function(data) {
@@ -149,6 +160,9 @@ TextLoader = (function() {
 					if (data && data != null) {
 						// add provider name to each one
 						for (var i=0, il=data.length; i<il; i++) {
+							if (data[i].id.split(':').length === 1) {
+								data[i].id = providerName + ':' + data[i].id;
+							}
 							data[i].provider = providerName;
 						}
 

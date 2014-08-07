@@ -6,7 +6,8 @@ sofia.textproviders['fcbh'] = (function() {
 	var text_data = [],
 		text_data_is_loaded = false,
 		text_data_is_loading = false,
-		text_data_callbacks = [];
+		text_data_callbacks = [],
+		providerName = 'fcbh';
 
 
 	function getTextManifest (callback) {
@@ -194,6 +195,13 @@ sofia.textproviders['fcbh'] = (function() {
 					'<dd><a href="https://www.digitalbibleplatform.com/eula/">End User License Agreement</a> for API</dd>' +
 				'</dl>';
 	}
+	
+	function getFullTextid(textid) {
+		var parts = textid.split(':'),
+			fullid = providerName + ':' + (parts.length > 1 ? parts[1] : parts[0]);
+			
+		return fullid;
+	}
 
 	function getTextInfo(textid, callback) {
 
@@ -204,15 +212,17 @@ sofia.textproviders['fcbh'] = (function() {
 			});
 			return;
 		}
+		
+		var fulltextid = getFullTextid(textid);		
 
 		// get initial data
 		var info = text_data.filter(function(text) {
-			return text.id == textid;
+			return text.id == fulltextid;
 		})[0];
 
 		if (typeof info.divisions == 'undefined' || info.divisions.length == 0) {
 
-			info.provider = 'fcbh';
+			info.provider = providerName;
 			info.divisions = [];
 			info.divisionNames = [];
 			info.sections = [];
@@ -285,9 +295,11 @@ sofia.textproviders['fcbh'] = (function() {
 
 	function getTextInfoSync(textid) {
 
+		var fulltextid = getFullTextid(textid);
+
 		// get initial data
 		var info = text_data.filter(function(text) {
-			return text.id == textid;
+			return text.id == fulltextid;
 		})[0];
 
 		return info;

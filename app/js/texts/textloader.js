@@ -222,6 +222,19 @@ TextLoader = (function() {
 		
 		text.providerName = providerName;
 		text.providerid = providerName + ':' + text.id;
+				
+		// TEMP for DBS
+		if (typeof text.country != 'undefined' && typeof text.countries == 'undefined' && text.country != text.langName && text.country != text.langNameEnglish) {
+			text.countries = [];
+			
+			var possibleCountryMatches = sofia.countries.filter(function(c) {
+				return c.name.indexOf(text.country) == 0;				
+			});
+			
+			if (possibleCountryMatches.length > 0) {
+				text.countries.push( possibleCountryMatches[0]['alpha-3'] );
+			}
+		}		
 	}
 
 	function startSearch(textid, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete) {

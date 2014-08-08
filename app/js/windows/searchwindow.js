@@ -609,10 +609,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 			return {
 				searchtext: input.val(),
-				textid: (selectedText != null) ? selectedText.id : null,
+				textid: (selectedText != null) ? selectedText.providerid : null,
 				params: {
 					'win': 'search',
-					'textid': (selectedText != null) ? selectedText.id : null,
+					'textid': (selectedText != null) ? selectedText.providerid : null,
 					'searchtext': input.val()
 				}
 			}

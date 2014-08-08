@@ -622,13 +622,13 @@ var ParallelsWindow = function(id, node, init_data) {
 
 		var data = {
 			// textinfo
-			textid: currentTextInfo.id,
+			textid: currentTextInfo.providerid,
 			parallelid: parallelsList.find('option:selected').attr('data-id'),
 			label: 'Parallel',
 			labelLong: 'Parallel',
 			params: {
 				'win': 'parallel',
-				'textid': currentTextInfo.id,
+				'textid': currentTextInfo.providerid,
 				'parallelid': parallelsList.find('option:selected').attr('data-id')
 			}
 		};

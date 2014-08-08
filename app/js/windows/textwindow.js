@@ -344,6 +344,10 @@ var TextWindow = function(id, node, init_data, text_type) {
 		if (init_data == null) {
 			return;
 		}
+		
+		if (typeof init_data.textid == 'undefined' || init_data.textid == '') {
+			init_data.textid = sofia.config.newBibleWindowVersion;
+		}
 
 		// load the text specified by the init data
 		TextLoader.getText(init_data.textid,
@@ -501,7 +505,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 
 		var data = {
 			// textinfo
-			textid: currentTextInfo.id,
+			textid: currentTextInfo.providerid,
 			abbr: currentTextInfo.abbr,
 
 			// location info
@@ -512,7 +516,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 			hasFocus: hasFocus,
 			params: {
 				'win': text_type,
-				'textid': currentTextInfo.id,
+				'textid': currentTextInfo.providerid,
 				'fragmentid': currentLocationInfo.fragmentid
 			}
 		};

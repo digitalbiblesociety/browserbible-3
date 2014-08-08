@@ -1,6 +1,7 @@
 
 sofia.textproviders['local'] = (function() {
 
+	var providerName = 'local';
 
 	function getTextManifest(callback) {
 		var textsUrl = 'content/texts/' + sofia.config.textsIndexPath;
@@ -12,6 +13,8 @@ sofia.textproviders['local'] = (function() {
 			success: function(data) {
 
 				var textInfoData = data.textInfoData;
+
+				text_data = TextLoader.processTexts(textInfoData, providerName);
 
 				callback(textInfoData);
 			},

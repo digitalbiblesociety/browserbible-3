@@ -210,13 +210,7 @@ TextLoader = (function() {
 			
 			var text = text_array[i];
 					
-			// remove any provider info from the id
-			if (text.id.split(':').length > 1) {
-				text.id = text.id.split(':')[1];
-			}
-			
-			text.providerName = providerName;
-			text.providerid = providerName + ':' + text.id;
+			processText(text, providerName);
 		}		
 	}
 	

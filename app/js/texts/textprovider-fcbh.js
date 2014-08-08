@@ -1,14 +1,11 @@
 
 sofia.textproviders['fcbh'] = (function() {
 
-	// all
-	// http://dbt.io/library/volume?v=2&key=111a125057abd2f8931f6d6ad9f2921f&media=text
 	var text_data = [],
 		text_data_is_loaded = false,
 		text_data_is_loading = false,
 		text_data_callbacks = [],
 		providerName = 'fcbh';
-
 
 	function getTextManifest (callback) {
 
@@ -35,143 +32,41 @@ sofia.textproviders['fcbh'] = (function() {
 
 			text_data_is_loading = true;
 
-			// loading from FCBH (big file!)
-			if (sofia.config["fcbhLoadVersions"] != 'undefined' && sofia.config["fcbhLoadVersions"] === true) {
 
-				// hard work to parse!
+			sofia.ajax({
+				url: 'content/texts/texts_fcbh.json',
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
 
-				$.ajax({
-					beforeSend: function(xhr){
-						if (xhr.overrideMimeType){
-							xhr.overrideMimeType("application/javascript");
-						}
-					},
-					dataType: 'jsonp',
-					url: 'http://dbt.io/library/volume?v=2&reply=jsonp&key=' + sofia.config.fcbhKey, //  + '&media=text',
-					success: function(data) {
+					text_data = data.textInfoData;
 
-						// first do texts
-						var fcbh_texts = data.filter(function(v) {
-								return v.media == 'text';
-							}),
-							fcbh_audio = data.filter(function(v) {
-								return v.media == 'audio';
-							});
+					TextLoader.processTexts(text_data, providerName);
 
-						// find and link up all text values
-						for (var i=0, il=fcbh_texts.length; i<il; i++) {
-							var fcbh_entry = fcbh_texts[i],
-								matches = text_data.filter(function(text_info) {
-									return text_info.abbr == fcbh_entry.version_code;
-								});
-
-							if (matches.length > 0) {
-								if (fcbh_entry.collection_code == "OT") {
-									matches[0].ot_dam_id = fcbh_entry.dam_id;
-								} else if (fcbh_entry.collection_code == "NT") {
-									matches[0].nt_dam_id = fcbh_entry.dam_id;
-								}
-							} else {
-								var
-									title = fcbh_entry.version_name != '' ? fcbh_entry.version_name : fcbh_entry.language_name + ' ' + fcbh_entry.volume_name,
-									new_entry = matches.length > 0 ? matches[0] : {
-									"id": "fcbh_" + fcbh_entry.version_code.toLowerCase(),
-									"name": title + ' [DBP]',
-									"nameEnglish": fcbh_entry.version_english,
-									"abbr": fcbh_entry.version_code,
-									"lang": fcbh_entry.language_iso,
-									"langName": fcbh_entry.language_iso_name,
-									"langNameEnglish": fcbh_entry.language_family_english,
-									"dir": "ltl",
-									"type": "bible",
-									"ot_dam_id": fcbh_entry.collection_code == "OT" ? fcbh_entry.dam_id : '',
-									"nt_dam_id": fcbh_entry.collection_code == "NT" ? fcbh_entry.dam_id : '',
-									"aboutHtml": createAboutHtml(title, fcbh_entry.version_code)
-								};
-
-								text_data.push(new_entry);
-
-							}
-						}
-
-						for (var i=0, il=text_data.length; i<il; i++) {
-							var text_info = text_data[i],
-								audio_matches = fcbh_audio.filter(function(audio_info) {
-									return text_info.abbr == audio_info.version_code;
-								});
-
-							for (var j=0, jl=audio_matches.length; j<jl; j++) {
-								var audio_info = audio_matches[j];
-
-								if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'OT') {
-									text_info.fcbh_drama_ot = audio_info.dam_id;
-								} else if (audio_info.media_type == 'Drama' && audio_info.collection_code == 'NT') {
-									text_info.fcbh_drama_nt = audio_info.dam_id;
-								} else if (audio_info.media_type == 'Non-Drama' && audio_info.collection_code == 'OT') {
-									text_info.fcbh_audio_ot = audio_info.dam_id;
-								} else if (audio_info.media_type == 'Non-Drama' && audio_info.collection_code == 'NT') {
-									text_info.fcbh_audio_nt = audio_info.dam_id;
-								}
-							}
-
-						}
-
-						/*
-						var w = new MovableWindow();
-						w.body.html( '<textarea>' +  JSON.stringify(text_data, null, '\t') + '</textarea>' );
-						w.show();
-						*/
-
-						//console.log( JSON.stringify(text_data) );
-
-						//console.log( text_data );
-
-						finish();
+					for (var i=0, il=text_data.length; i<il; i++) {
+						text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
 					}
-				});
-			} else {
 
-				// easy load
+					// filter
+					if (sofia.config.fcbhTextExclusions && sofia.config.fcbhTextExclusions.length > 0) {
 
-				sofia.ajax({
-					url: 'content/texts/texts_fcbh.json',
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
+						text_data = text_data.filter(function(t) {
 
-						text_data = data.textInfoData;
+							// keep the ones that aren't in the exclusion list
+							return sofia.config.fcbhTextExclusions.indexOf(t.id) == -1;
 
-						//console.log('FCBH', data);
+						});
 
-						for (var i=0, il=text_data.length; i<il; i++) {
-
-							text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
-
-						}
-
-						// filter
-						if (sofia.config.fcbhTextExclusions && sofia.config.fcbhTextExclusions.length > 0) {
-
-							text_data = text_data.filter(function(t) {
-
-								// keep the ones that aren't in the exclusion list
-								return sofia.config.fcbhTextExclusions.indexOf(t.id) == -1;
-
-							});
-
-						}
-
-
-						finish();
-					},
-					error: function(jqXHR, textStatus, errorThrown) {
-						text_data = null;
-						finish();
 					}
-				});
 
 
-			}
+					finish();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					text_data = null;
+					finish();
+				}
+			});
 		}
 	}
 
@@ -196,7 +91,7 @@ sofia.textproviders['fcbh'] = (function() {
 				'</dl>';
 	}
 	
-	function getFullTextid(textid) {
+	function getProviderid(textid) {
 		var parts = textid.split(':'),
 			fullid = providerName + ':' + (parts.length > 1 ? parts[1] : parts[0]);
 			
@@ -213,16 +108,16 @@ sofia.textproviders['fcbh'] = (function() {
 			return;
 		}
 		
-		var fulltextid = getFullTextid(textid);		
+		var providerid = getProviderid(textid);		
 
 		// get initial data
 		var info = text_data.filter(function(text) {
-			return text.id == fulltextid;
+			return text.providerid == providerid;
 		})[0];
 
 		if (typeof info.divisions == 'undefined' || info.divisions.length == 0) {
 
-			info.provider = providerName;
+			info.providerName = providerName;
 			info.divisions = [];
 			info.divisionNames = [];
 			info.sections = [];
@@ -295,11 +190,11 @@ sofia.textproviders['fcbh'] = (function() {
 
 	function getTextInfoSync(textid) {
 
-		var fulltextid = getFullTextid(textid);
+		var providerid = getProviderid(textid);
 
 		// get initial data
 		var info = text_data.filter(function(text) {
-			return text.id == fulltextid;
+			return text.providerid == providerid;
 		})[0];
 
 		return info;
@@ -383,7 +278,6 @@ sofia.textproviders['fcbh'] = (function() {
 
 		var info = getTextInfoSync(textid);
 
-
 		var e = {
 			type:'complete',
 			target: this,
@@ -394,9 +288,6 @@ sofia.textproviders['fcbh'] = (function() {
 				isLemmaSearch: false
 			}
 		};
-
-		//console.log('start', e);
-
 
 		var dam_id = '';
 
@@ -412,33 +303,6 @@ sofia.textproviders['fcbh'] = (function() {
 			onSearchComplete(e);
 
 		});
-
-		/*
-		if (info.ot_dam_id != '') {
-			doSearch(info.ot_dam_id, text, e, function() {
-
-				if (info.nt_dam_id != '') {
-					doSearch(info.nt_dam_id, text, e, function() {
-
-						onSearchComplete(e);
-
-					});
-				}
-
-			});
-		} else 	if (info.nt_dam_id != '') {
-			doSearch(info.nt_dam_id, text, e, function() {
-
-				onSearchComplete(e);
-
-			});
-		} else {
-
-			console.log('FCBH error', 'No NT or OT id', info);
-
-		}
-		*/
-
 	}
 	function doSearch(dam_id, text, e, callback) {
 

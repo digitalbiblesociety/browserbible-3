@@ -48,7 +48,7 @@ TextLoader = (function() {
 
 
 		// load from provider
-		sofia.textproviders[textInfo.provider].loadSection(textid, sectionid, function(html) {
+		sofia.textproviders[textInfo.providerName].loadSection(textid, sectionid, function(html) {
 
 			// store
 			cachedTexts[textid][sectionid] = html;
@@ -59,36 +59,53 @@ TextLoader = (function() {
 	}
 
 
-	function getTextid(textid) {
+	function getTextid(input) {
 
-		var parts = textid.split(':'),
-			simpleTextid = (parts.length > 1) ? parts[1] : parts[0];
+		var parts = input.split(':'),
+			textid = (parts.length > 1) ? parts[1] : parts[0];
 
-		return simpleTextid;
+		return textid;
 
 	}
 
-	function getProviderName(textid) {
+	function getProviderName(input) {
 
 		// if not loaded, get it from provider
-		var providerName = '',
-
-			textInfo = textInfoData.filter(function(info) {
-				return info.id == textid;
-			})[0];
-
-		if (textInfo) {
-			providerName = textInfo.provider;
-		} else if (textid.indexOf(':') > -1) {
-			providerName = textid.split(':')[0];
-		} else {
-			providerName = 'local'; // ???
+		var 		
+			parts = input.split(':'),			
+			textid = parts.length > 1 ? parts[1] : parts[0],
+			providerName = parts.length > 1 ? parts[0] : '';
+			
+		if (providerName == '') {
+			var textInfo = textInfoData.filter(function(info) {
+					return info.id == textid;
+				})[0];
+	
+			if (textInfo) {
+				providerName = textInfo.providerName;
+			} else {
+				providerName = 'local'; // ???
+			}			
 		}
 
-
 		return providerName;
-
 	}
+	
+	function getProviderId(input) {
+		
+		// assume we have the full providerid
+		if (input.indexOf(':') > -1) {
+			return input;
+		} else {		
+			// assume we only have the textid
+			var textid = input,
+				textInfo = textInfoData.filter(function(info) {
+					return info.id == textid;
+				})[0];				
+				
+			return textInfo.providerid;
+		}
+	}	
 
 
 	function getText(textid, callback, errorCallback) {
@@ -110,7 +127,8 @@ TextLoader = (function() {
 
 		sofia.textproviders[providerName].getTextInfo(textid, function(data) {
 
-			data.provider = providerName;
+			processText(data, providerName)
+			//data.providerName = providerName;						
 
 			// store
 			textData[data.id] = data;
@@ -158,13 +176,6 @@ TextLoader = (function() {
 				sofia.textproviders[providerName].getTextManifest(function(data) {
 
 					if (data && data != null) {
-						// add provider name to each one
-						for (var i=0, il=data.length; i<il; i++) {
-							if (data[i].id.split(':').length === 1) {
-								data[i].id = providerName + ':' + data[i].id;
-							}
-							data[i].provider = providerName;
-						}
 
 						// append to array from previous provider
 						textInfoData = textInfoData.concat(data);
@@ -193,6 +204,32 @@ TextLoader = (function() {
 
 	}
 
+	function processTexts(text_array, providerName) {
+		// add providerName, providerid, and id to each one
+		for (var i=0, il=text_array.length; i<il; i++) {
+			
+			var text = text_array[i];
+					
+			// remove any provider info from the id
+			if (text.id.split(':').length > 1) {
+				text.id = text.id.split(':')[1];
+			}
+			
+			text.providerName = providerName;
+			text.providerid = providerName + ':' + text.id;
+		}		
+	}
+	
+	function processText(text, providerName) {
+		// remove any provider info from the id
+		if (text.id.split(':').length > 1) {
+			text.id = text.id.split(':')[1];
+		}
+		
+		text.providerName = providerName;
+		text.providerid = providerName + ':' + text.id;
+	}
+
 	function startSearch(textid, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
 		var providerName = getProviderName(textid);
@@ -211,7 +248,9 @@ TextLoader = (function() {
 		loadTexts: loadTexts,
 		textData: textData,
 		loadSection: loadSection,
-		startSearch: startSearch
+		startSearch: startSearch,
+		processTexts: processTexts,
+		processText: processText
 	}
 
 	return ext;

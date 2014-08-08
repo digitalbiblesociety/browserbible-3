@@ -287,12 +287,16 @@ var TextChooser = function(container, target, text_type) {
 	});
 
 	function runTopTextsSelector() {
-
-		if (allTextsVisible) {
-			main.find('tr').show();
-		} else {
-			main.find('tr:not(.is-top-text)').hide();
-			main.find('.selected').show();
+	
+		var mode = getMode();
+		
+		if (mode == 'languages') {
+			if (allTextsVisible) {
+				main.find('tr').show();
+			} else {
+				main.find('tr:not(.is-top-text)').hide();
+				main.find('.selected').show();
+			}
 		}
 
 	}
@@ -453,6 +457,7 @@ var TextChooser = function(container, target, text_type) {
 
 		} else if (mode == "countries") {
 			
+			textSelector.removeClass('show-more');
 		
 			for (var i=0, il=sofia.countries.length; i<il; i++) {
 				
@@ -467,7 +472,7 @@ var TextChooser = function(container, target, text_type) {
 						createHeaderRow(countryInfo["alpha-3"], 
 							countryInfo.name, 
 							'', 
-							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-2"] + '.png" height="15" width="25" alt="' + countryInfo["alpha-3"] + '" />',
+							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-3"].toLowerCase() + '.png" height="15" width="25" alt="' + countryInfo["alpha-3"] + '" />',
 							'country collapsed')
 					
 						/*

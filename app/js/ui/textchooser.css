@@ -172,6 +172,9 @@ padding: 10px;
 table.collapsible .text-chooser-row-header {
 	cursor: pointer;
 }
+table.collapsible .text-chooser-row-header:hover {
+	background-color: #dae4e7;
+}
 table.collapsible .text-chooser-row-header.collapsed td {
 	background-image: url(../../css/images/right-arrow.svg);
 }

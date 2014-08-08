@@ -163,6 +163,8 @@ padding: 10px;
 	position: absolute;
 	top: 6px;
 	left: 6px;
+	width: 25px;	
+	height: 15px;
 }
 .text-chooser-row-header.country span.name {
 	padding-left: 25px;

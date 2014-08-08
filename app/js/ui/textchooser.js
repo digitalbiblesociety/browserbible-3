@@ -472,7 +472,7 @@ var TextChooser = function(container, target, text_type) {
 						createHeaderRow(countryInfo["alpha-3"], 
 							countryInfo.name, 
 							'', 
-							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-3"].toLowerCase() + '.png" height="15" width="25" alt="' + countryInfo["alpha-3"] + '" />',
+							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-3"].toLowerCase() + '.png" alt="' + countryInfo["alpha-3"] + '" />',
 							'country collapsed')
 					
 						/*

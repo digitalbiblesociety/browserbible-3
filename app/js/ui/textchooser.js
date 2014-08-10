@@ -462,7 +462,7 @@ var TextChooser = function(container, target, text_type) {
 				
 				var countryInfo = sofia.countries[i],
 					textsInCountry = arrayOfTexts.filter(function(t) {
-						return typeof t.countries != 'undefined' && t.countries.indexOf(countryInfo["alpha-3"]) > -1;					
+						return typeof t.countries != 'undefined' && t.countries.indexOf(countryInfo["alpha-2"]) > -1;					
 					});
 				
 				

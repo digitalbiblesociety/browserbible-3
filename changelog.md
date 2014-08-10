@@ -1,7 +1,13 @@
 Change Log
 =======
 
-3.2.4 - in progress
+
+3.2.4 - 2015/08/10
+----
+
+* Bible Picker now has an option to display countries using `"countries":["FR"]`
+
+3.2.4 - 2014/08/07
 ----
 
 * Removed requirement for provider name (i.e. 'fcbh:') in ids of texts

@@ -558,6 +558,15 @@ var TextChooser = function(container, target, text_type) {
 
 			TextLoader.loadTexts(function(data) {
 				list_data = data;
+				
+				// check for countries
+				if (sofia.config.enableCountrySelector) {
+					var hasCountries = list_data.filter(function(c) { return typeof c.countries != 'undefined' && c.countries.length > 0; }).length > 0;
+					if (!hasCountries) {
+						listselector.hide();
+					}
+				}				
+				
 				renderTexts(list_data);
 				updateRecentlyUsed();
 			});

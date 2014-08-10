@@ -14,7 +14,7 @@ var LemmaInfoPlugin = function(app) {
 
 	if (!Detection.hasTouch) {
 
-		$('.windows-main').on('mouseover','l', function(e) {
+		$('.windows-main').on('mouseover','.BibleWindow l', function(e) {
 
 			var l = $(this),
 				morph = l.attr('m'),

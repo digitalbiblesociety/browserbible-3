@@ -17,7 +17,7 @@ var LemmaMatchPlugin = function(app) {
 			//console.log('over');
 
 			var l = $(this),
-				l.attr('s');
+				s = l.attr('s');
 
 			if (!s) {
 				return;

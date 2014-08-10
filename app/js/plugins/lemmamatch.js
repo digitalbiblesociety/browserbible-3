@@ -12,16 +12,12 @@ var LemmaMatchPlugin = function(app) {
 
 	if (!Detection.hasTouch) {
 
-		$('.windows-main').on('mouseover','l', function(e) {
+		$('.windows-main').on('mouseover','.BibleWindow l', function(e) {
 
 			//console.log('over');
 
-			var l = $(this);
-
-			if (l.closest('.search-wrapper').length > 0)
-				return;
-
-			var s = l.attr('s');
+			var l = $(this),
+				l.attr('s');
 
 			if (!s) {
 				return;

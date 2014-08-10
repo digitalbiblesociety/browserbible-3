@@ -179,23 +179,27 @@ input:focus {
 		display: block;
 	}
 
-	.one-window .window .window-header .app-input {
+	/* .one-window */ .window .window-header .app-input {
 		width: 120px;
 		min-width: 120px;
 		border: 0;
 		background: none;
 	}
 
-	.one-window .window .window-header .app-list {
+	/* .one-window */  .window .window-header .app-list {
 		float: right;
 		border: 0;
 		background-color: transparent;
 	}
 
-	.one-window .window .window-header {
+	/* .one-window */ .window .window-header {
 		height: 40px;
 		padding: 6px;
 	}
+	
+	 .window .close-button {
+	 	display: none;
+	 }
 }
 
 .window .window-main {

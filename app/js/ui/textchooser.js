@@ -55,7 +55,7 @@ var TextChooser = function(container, target, text_type) {
 	closeBtn.on('click', hide);
 	
 	if (sofia.config.enableCountrySelector) {
-		
+	
 		listselector.on('click', 'span', function() {
 			$(this)
 				.addClass('selected')
@@ -336,8 +336,7 @@ var TextChooser = function(container, target, text_type) {
 		// render all the rows
 		var html = [],
 			arrayOfTexts = data,
-			mode = getMode();
-			
+			mode = getMode();			
 			
 		if (mode == 'languages') {
 	
@@ -472,15 +471,9 @@ var TextChooser = function(container, target, text_type) {
 						createHeaderRow(countryInfo["alpha-3"], 
 							countryInfo.name, 
 							'', 
-							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-3"].toLowerCase() + '.png" alt="' + countryInfo["alpha-3"] + '" />',
+							'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-2"].toLowerCase() + '.png" alt="' + countryInfo["alpha-2"] + '" />',
 							'country collapsed')
 					
-						/*
-						'<tr class="text-chooser-row-header collapsed"><td colspan="2">' +
-								'<img src="' + sofia.config.baseContentUrl + 'content/countries/' + countryInfo["alpha-2"] + '.png" height="15" width="25" alt="' + countryInfo["alpha-3"] + '" />' + 
-								countryInfo.name +
-								'</td></tr>'
-						*/
 					);
 						
 					for (var textIndex in textsInCountry) {

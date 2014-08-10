@@ -232,7 +232,7 @@ TextLoader = (function() {
 			});
 			
 			if (possibleCountryMatches.length > 0) {
-				text.countries.push( possibleCountryMatches[0]['alpha-3'] );
+				text.countries.push( possibleCountryMatches[0]['alpha-2'] );
 			}
 		}		
 	}

@@ -62,7 +62,19 @@ scriptNodes.each(function(i, el) {
 			'* ' + localPath + '\n' +
 			'**********/\n' +
 			fs.readFileSync(localPath, 'utf8') +
-			'\n\n';		
+			'\n\n';	
+			
+			
+		// test for errors
+		/*			
+		try {
+			var result = uglifyjs.minify(localPath);
+		} catch (e) {
+			console.log('error minifiy', e, localPath);
+			return;
+		}
+		*/
+				
 	}
 });
 
@@ -72,7 +84,8 @@ try {
 	minifiedScript = result.code + '\n//# sourceMappingURL=build.min.js.map';
 	sourceMap = result.map;	
 } catch (e) {
-	console.log('error minifiy', localPath);
+	console.log('error minifiy', e);
+	return;
 }
 
 

@@ -98,16 +98,17 @@ var TextChooser = function(container, target, text_type) {
 
 		if (text == '') {
 
-			// remove all filtering
+			// remove all filtering from bibles
 			main.find('.text-chooser-row')
 					.removeClass('filtered')
 					
+			// remove filters from headers
 			main.find('.text-chooser-row-header')
 					.show();
 					
 			updateRecentlyUsed();
 
-			//runTopTextsSelector();
+			runTopTextsSelector();
 		} else {
 		
 			var mode = getMode();

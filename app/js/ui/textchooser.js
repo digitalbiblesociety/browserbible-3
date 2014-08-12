@@ -553,9 +553,11 @@ var TextChooser = function(container, target, text_type) {
 		//$('.nav-drop-list').hide();
 
 		size();
+		
+		
 
 		if (!textsHaveRendered) {
-			main.addClass('loading').html('Loading');
+			main.addClass('loading-indicator');//.html('Loading');
 
 			TextLoader.loadTexts(function(data) {
 				list_data = data;
@@ -568,11 +570,12 @@ var TextChooser = function(container, target, text_type) {
 					}
 				}				
 				
+				main.removeClass('loading-indicator');
 				renderTexts(list_data);
 				updateRecentlyUsed();
 			});
 		} else {
-			main.removeClass('loading')
+			main.removeClass('loading-indicator');
 			//updateRecentlyUsed();
 		}
 

@@ -13,15 +13,15 @@ var AudioDataManager = function() {
 			var audioSource = sofia.audioSources[index];
 			audioSource.getAudioInfo(textInfo, recieveData);
 
-			//console.log('-AudioSource', index, textInfo.id);
+			////console.log('-AudioSource', index, textInfo.id);
 		}
 		function recieveData(audioInfo) {
 
-			//console.log('-AudioSource.receiveData', textInfo.id);
+			////console.log('-AudioSource.receiveData', textInfo.id);
 
 			// send data backup
 			if (audioInfo != null) {
-				//console.log('found: ', data);
+				////console.log('found: ', data);
 
 				audioInfo.audioSourceIndex = index;
 
@@ -74,7 +74,7 @@ var AudioDataManager = function() {
 var LocalAudio = (function() {
 
 	function getAudioInfo(textInfo, callback) {
-		//console.log('LocalAudio', textInfo.id);
+		////console.log('LocalAudio', textInfo.id);
 
 		var checkDirectory = textInfo.id;
 
@@ -108,13 +108,13 @@ var LocalAudio = (function() {
 					audioInfo.title = 'Local';
 				}
 
-				//console.log('--LocalAudio success', textInfo.id);
+				////console.log('--LocalAudio success', textInfo.id);
 
 				callback(audioInfo);
 			},
 			error: function(e) {
 
-				//console.log('--LocalAudio error', textInfo.id);
+				////console.log('--LocalAudio error', textInfo.id);
 
 				callback(null);
 			}
@@ -270,7 +270,7 @@ var FaithComesByHearingAudio = (function() {
 			success: function(data) {
 				fcbhList = data;
 
-				//console.log('FCBH', fcbhLocation, fcbhList);
+				////console.log('FCBH', fcbhLocation, fcbhList);
 
 			},
 			complete: function() {
@@ -508,7 +508,7 @@ var FaithComesByHearingAudio = (function() {
 			}
 		}
 
-		console.log('audio preference', audioOption, dam_id);
+		//console.log('audio preference', audioOption, dam_id);
 
 		var collectionInfo = getFbchCollectionById(dam_id);
 		if (collectionInfo != null) {
@@ -548,7 +548,7 @@ var FaithComesByHearingAudio = (function() {
 			},
 			error: function(a,b,c,d) {
 
-				console.log('FCBH location error', a,b,c,d);
+				//console.log('FCBH location error', a,b,c,d);
 
 				if (callback) {
 					callback(null);

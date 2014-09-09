@@ -136,7 +136,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 	function updateDramatic() {
 
-		console.log('change dramatic');
+		//console.log('change dramatic');
 
 		var storedFragmentid = fragmentid;
 
@@ -183,7 +183,7 @@ var AudioController = function(id, container, ui, scroller) {
 		audioDataManager.getPrevFragment(textInfo, audioInfo, fragmentid, function(prevFragmentid) {
 
 
-			// console.log('prev', fragmentid, prevFragmentid);
+			// //console.log('prev', fragmentid, prevFragmentid);
 
 			if (prevFragmentid == null) {
 				return;
@@ -205,7 +205,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(nextFragmentid) {
 
-			// console.log('next', fragmentid, nextFragmentid);
+			// //console.log('next', fragmentid, nextFragmentid);
 
 			if (nextFragmentid == null) {
 				return;
@@ -234,7 +234,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 		var newLocationInfo = e.data;
 
-		//// console.log('AUDIO:locationchange', e, newLocationInfo);
+		//// //console.log('AUDIO:locationchange', e, newLocationInfo);
 
 		// found a fragment
 		if (newLocationInfo != null) {
@@ -257,7 +257,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 		if (fragmentid != newFragmentid) {
 
-			//// console.log('AUDIO loading',newFragmentid,textInfo, hasAudio);
+			//// //console.log('AUDIO loading',newFragmentid,textInfo, hasAudio);
 
 			fragmentid = newFragmentid;
 
@@ -329,7 +329,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 
 	function playWhenLoaded(){
-		//// console.log('playWhenLoaded');
+		//// //console.log('playWhenLoaded');
 		audio.play();
 		$(audio).off('loadeddata', playWhenLoaded);
 	}
@@ -423,7 +423,7 @@ var AudioController = function(id, container, ui, scroller) {
 							- sectionNode.find('.v:first').height()
 							- (sectionNode.find('.v:last').height()*fraction);
 
-			//// console.log(fraction, sectionHeight, offset);
+			//// //console.log(fraction, sectionHeight, offset);
 
 			if (offset <= 0) {
 				offset = 0;
@@ -442,7 +442,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 
 	function documentMouseUp(e) {
-		// console.log('mouseup');
+		// //console.log('mouseup');
 
 		isDraggingSliderHandle = false;
 		$(document).off('mousemove', documentMouseMove);
@@ -467,7 +467,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 	audioSlider.on('click', function(e) {
 
-		// console.log('slider:click');
+		// //console.log('slider:click');
 
 		var
 			width = audioSlider.width(),
@@ -510,7 +510,7 @@ var AudioController = function(id, container, ui, scroller) {
 					if (newAudioInfo != null) {
 						audioInfo = newAudioInfo;
 
-						console.log('AUDIO: YES', textInfo.id, textInfo.lang, audioInfo.type);
+						//console.log('AUDIO: YES', textInfo.id, textInfo.lang, audioInfo.type);
 
 						hasAudio = true;
 
@@ -529,7 +529,7 @@ var AudioController = function(id, container, ui, scroller) {
 										(typeof audioInfo.fcbh_drama_nt != 'undefined' && audioInfo.fcbh_drama_nt != '') ||
 										(typeof audioInfo.fcbh_drama_ot != 'undefined' && audioInfo.fcbh_drama_ot != '');
 
-							console.log(audioInfo, 'drama', hasDrama, 'audio', hasNonDrama);
+							//console.log(audioInfo, 'drama', hasDrama, 'audio', hasNonDrama);
 
 							// show hide
 							if (hasNonDrama && hasDrama) {
@@ -564,19 +564,19 @@ var AudioController = function(id, container, ui, scroller) {
 						}
 						*/
 
-						console.log("after dramatic switch");
+						//console.log("after dramatic switch");
 
 						if (fragmentid != '') {
 							var newFragmentid = fragmentid;
 
 							fragmentid = '';
-							// console.log('AUDIO, new from old ', newFragmentid);
+							// //console.log('AUDIO, new from old ', newFragmentid);
 							loadAudio(newFragmentid);
 						} else {
 
 							locationInfo = scroller.getLocationInfo();
 
-							// console.log('AUDIO, new from new ', locationInfo);
+							// //console.log('AUDIO, new from new ', locationInfo);
 							if (locationInfo != null) {
 								loadAudio(locationInfo.fragmentid);
 							}
@@ -592,7 +592,7 @@ var AudioController = function(id, container, ui, scroller) {
 					} else {
 						hasAudio = false;
 
-						// console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
+						// //console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
 
 						block.hide();
 						ui.hide();

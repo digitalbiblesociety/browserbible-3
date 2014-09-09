@@ -136,7 +136,7 @@ var ConfigUrl = function(node) {
 		urlInput.val(url);
 		urlDiv.html(url);
 
-		console.log('URL', url);
+		//console.log('URL', url);
 	}
 
 

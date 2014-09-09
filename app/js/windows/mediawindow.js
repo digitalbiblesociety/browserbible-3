@@ -71,7 +71,7 @@ var MediaWindow = function(id, parentNode, data) {
 			verse.addClass('checked-media');
 		});
 
-		console.log(html);
+		//console.log(html);
 
 		gallery.html(html);
 
@@ -193,10 +193,12 @@ var MediaWindow = function(id, parentNode, data) {
 					width_per_item = Math.ceil(remainder / currentRow.length);
 
 
+				/*
 				console.log('row',
 								row_ratio,
 								container_width, current_width,
 								container_width - current_width);
+				*/
 
 				for (var j=0, jl=currentRow.length; j<jl; j++) {
 					var row_a = currentRow[j],
@@ -306,11 +308,12 @@ var MediaWindow = function(id, parentNode, data) {
 	setTimeout(function() {
 		var firstWindowSettings = sofia.app.windowManager.getSettings()[0],
 			firstWin = $('.window:first'),
-			selectedChapter = firstWin.find('.section[data-id="' + firstWindowSettings.data.sectionid + '"]').first();
+			selectedChapter = (firstWindowSettings && firstWindowSettings.data) ? firstWin.find('.section[data-id="' + firstWindowSettings.data.sectionid + '"]').first() : null;
 
-		contentToProcess = selectedChapter;
-
-		processContent();
+		if (selectedChapter != null) {
+			contentToProcess = selectedChapter;	
+			processContent();
+		}
 
 	}, 500);
 

@@ -1,7 +1,8 @@
 
 sofia.textproviders['local'] = (function() {
 
-	var providerName = 'local';
+	var providerName = 'local',
+		textData = {};
 
 	function getTextManifest(callback) {
 		var textsUrl = 'content/texts/' + sofia.config.textsIndexPath;
@@ -40,6 +41,10 @@ sofia.textproviders['local'] = (function() {
 
 	function getTextInfo(textid, callback, errorCallback) {
 
+		if (typeof textData[textid] != 'undefined') {
+			callback(textData[textid]);
+		}
+
 		// load it!
 		var infoUrl = 'content/texts/' + textid + '/info.json';
 
@@ -47,6 +52,7 @@ sofia.textproviders['local'] = (function() {
 			url: infoUrl,
 			dataType: 'json',
 			success: function(data) {
+				textData[textid] = data;
 				callback(data);
 			},
 			error: function(error) {
@@ -62,49 +68,53 @@ sofia.textproviders['local'] = (function() {
 
 	function loadSection(textid, sectionid, callback, errorCallback) {
 
-		var url = 'content/texts/' + textid + '/' + sectionid + '.html';
+		getTextInfo(textid, function(textInfo) {
 
-		sofia.ajax({
-			dataType: 'text',
-			url: url,
-			success: function(data) {
-
-				// text to treat this like JSON or text/html
-				var text = data,
-					// split at the closing head tag to prevent problems with loading head material
-					main = $( text.indexOf('</head>') > -1 ? text.split('</head>')[1] : text ),
-					content = main.filter('.section'),
-					footnotes = main.filter('.footnotes'),
-					notes = footnotes.find('.footnote');
-
-				// move notes into place
-				if (notes.length > 0) {
-					notes.each(function() {
-						var footnote = $(this),
-							noteid = footnote.find('a').attr('href'),
-							footnotetext = footnote.find('.text'),
-							noteintext = content.find(noteid);
-
-						//console.log(noteid, noteintext);
-
-						noteintext.append(footnotetext);
-
-					});
+			var url = 'content/texts/' + textid + '/' + sectionid + '.html';
+	
+			sofia.ajax({
+				dataType: 'text',
+				url: url,
+				success: function(data) {
+	
+					// text to treat this like JSON or text/html
+					var text = data,
+						// split at the closing head tag to prevent problems with loading head material
+						main = $( text.indexOf('</head>') > -1 ? text.split('</head>')[1] : text ),
+						content = main.filter('.section'),
+						footnotes = main.filter('.footnotes'),
+						notes = footnotes.find('.footnote');
+	
+					// move notes into place
+					if (notes.length > 0) {
+						notes.each(function() {
+							var footnote = $(this),
+								noteid = footnote.find('a').attr('href'),
+								footnotetext = footnote.find('.text'),
+								noteintext = content.find(noteid);
+	
+							//console.log(noteid, noteintext);
+	
+							noteintext.append(footnotetext);
+	
+						});
+					}
+	
+					content.attr('data-textid', textid);
+					content.attr('data-lang3', textInfo.lang);
+	
+					var html = content.wrapAll('<div></div>').parent().html();
+	
+					callback(html);
+	
+				}, error: function(jqXHR, textStatus, errorThrown) {
+					if (errorCallback) {
+						errorCallback(textid, sectionid);
+					}
+	
+					//console.log('error', textStatus, errorThrown, jqXHR );
 				}
-
-				content.attr('data-textid', textid);
-
-				var html = content.wrapAll('<div></div>').parent().html();
-
-				callback(html);
-
-			}, error: function(jqXHR, textStatus, errorThrown) {
-				if (errorCallback) {
-					errorCallback(textid, sectionid);
-				}
-
-				//console.log('error', textStatus, errorThrown, jqXHR );
-			}
+			});
 		});
 
 	}

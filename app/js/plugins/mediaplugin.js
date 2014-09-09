@@ -14,7 +14,7 @@ var MediaLibraryPlugin = function(app) {
 		mediaPopup = new InfoWindow(),
 		contentToProcess = [];
 
-	console.log('MediaLibraryPlugin startup', MediaLibrary.getMediaLibraries);
+	//console.log('MediaLibraryPlugin startup', MediaLibrary.getMediaLibraries);
 
 	MediaLibrary.getMediaLibraries(function(data) {
 		mediaLibraries = data;
@@ -50,7 +50,7 @@ var MediaLibraryPlugin = function(app) {
 
 			}
 
-			//console.log('media click', mediaLibrary);
+			////console.log('media click', mediaLibrary);
 
 
 			mediaForVerse = mediaLibrary.data[verseid];
@@ -94,18 +94,14 @@ var MediaLibraryPlugin = function(app) {
 
 				case 'jfm':
 
-					var lang = icon.closest('.section').attr('lang'),
+					var lang = icon.closest('.section').attr('data-lang3'),
 						mediaInfo = mediaForVerse[0],
 						videoUrl = JesusFilmMediaApi.getPlayer(lang, mediaInfo.filename, function(iframeUrl) {
 
 							sofia.globals.showIframe(iframeUrl, mediaInfo.name);
 
 						});
-
-
-
-
-
+					
 					break;
 
 			}
@@ -116,7 +112,7 @@ var MediaLibraryPlugin = function(app) {
 	// process chapters, add image icon to verses
 	function addMedia() {
 
-		console.log('addMedia',mediaLibraries);
+		//console.log('addMedia',mediaLibraries);
 
 		if (mediaLibraries == null) {
 			return;
@@ -138,7 +134,7 @@ var MediaLibraryPlugin = function(app) {
 				verse = verse.closest('.section').find('.' + verseid).first();
 
 				if (verseid == 'LK1_1') {
-					//console.log('check');
+					// //console.log('check');
 				}
 
 				if (!verse.hasClass('has-media')) {

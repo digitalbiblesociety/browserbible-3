@@ -239,6 +239,7 @@ sofia.textproviders['fcbh'] = (function() {
 								'data-nextid="' + nextid + '"' +
 								'data-previd="' + previd + '"' +
 								'lang="' + iso2iana.convert(lang) + '"' +
+								'data-lang3="' + lang + '"' +
 								'>');
 
 					if (chapter == '1') {

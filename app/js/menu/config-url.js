@@ -126,7 +126,7 @@ var ConfigUrl = function(node) {
 
 		for (var param in mergedParams) {
 			if (param != '' ) {
-				mergedArray.push( param + '=' + mergedParams[param] );
+				mergedArray.push( param + '=' + encodeURIComponent( mergedParams[param] ) );
 			}
 		}
 		//mergedArray.reverse();

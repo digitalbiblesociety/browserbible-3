@@ -2,7 +2,15 @@ Change Log
 =======
 
 
-3.2.4 - 2015/08/10
+3.2.6 - 2014/09/XX
+----
+
+* Escaping URL parameters (searches with spaces)
+* Added lang="" attr to FCBH texts
+* Converted settings in Eng2p to options
+* Fixing Jesus Film Media links
+
+3.2.5 - 2014/08/10
 ----
 
 * Bible Picker now has an option to display countries using `"countries":["FR"]`

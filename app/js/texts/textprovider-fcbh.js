@@ -209,7 +209,7 @@ sofia.textproviders['fcbh'] = (function() {
 			var
 				bookid = sectionid.substring(0,2),
 				chapter = sectionid.substring(2),
-				lang = '',
+				lang = textinfo.lang,
 				//usfmbook = bible.BOOK_DATA[bookid].usfm.substr(0,1).toUpperCase() + bible.BOOK_DATA[bookid].usfm.substr(1).toLowerCase(),
 				usfmbook = bible.BOOK_DATA[bookid].osis,
 				dam_id = bible.OT_BOOKS.indexOf(bookid) > -1 ? textinfo.ot_dam_id : textinfo.nt_dam_id,
@@ -238,6 +238,7 @@ sofia.textproviders['fcbh'] = (function() {
 								'data-id="' + sectionid + '"' +
 								'data-nextid="' + nextid + '"' +
 								'data-previd="' + previd + '"' +
+								'lang="' + iso2iana.convert(lang) + '"' +
 								'>');
 
 					if (chapter == '1') {

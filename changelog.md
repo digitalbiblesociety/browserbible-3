@@ -1,8 +1,13 @@
 Change Log
 =======
 
+3.2.7 - 2014/09/20
+----
 
-3.2.6 - 2014/09/XX
+* Adjust Bible picker to limit names to two lines
+* Fix Lemma search when more than one Strong's number was present
+
+3.2.6 - 2014/09/08
 ----
 
 * Escaping URL parameters (searches with spaces)

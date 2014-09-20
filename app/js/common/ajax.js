@@ -44,7 +44,7 @@ sofia.ajax = function(params) {
 	$params.error = function() {
 
 		if (params.error) {
-			params.error.apply(arguments);
+			params.error.apply(null, arguments);
 		}
 
 	};

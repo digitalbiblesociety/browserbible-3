@@ -176,8 +176,8 @@ combinedCss = updateCssUrls(combinedCss); // normalizes to refer to /css/images/
 minifiedCss = uglifycss.processString(combinedCss);
 
 // write out
-fs.writeFileSync(outputCssPath.replace('.css', '.css.urls'), combinedCss);
-fs.writeFileSync(outputCssPathMinified.replace('.css', '.css.urls'), minifiedCss);
+//fs.writeFileSync(outputCssPath.replace('.css', '.css.urls'), combinedCss);
+//fs.writeFileSync(outputCssPathMinified.replace('.css', '.css.urls'), minifiedCss);
 
 
 // inlined

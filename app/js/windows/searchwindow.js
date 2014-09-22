@@ -7,8 +7,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 						'<input type="text" class="search-text app-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' +
 						'<div class="text-list app-list" style="">&nbsp;</div>' +
-						
-						'<div class="division-list app-list" style="">' + i18n.t('windows.search.all') + '</div>' +
+											
+						'<div class="search-options-button header-icon" style=""></div>' +
 						
 						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
 						
@@ -47,8 +47,12 @@ var SearchWindow = function(id, parentNode, init_data) {
 		textui = header.find('.text-list'),
 		textChooser = new TextChooser(parentNode, textui, 'bible'),
 		
-		divisionui = header.find('.division-list'),
-		divisionChooser = $('<div class="search-division-chooser"></div>').appendTo($('body')),
+		searchOptionsButton = header.find('.search-options-button'),
+		
+		divisionChooser = $('<div class="search-division-chooser">' + 
+								'<div class="search-division-header">' + i18n.t('windows.search.options') + '</div>' + 
+								'<div class="search-division-main"></div>' + 
+							'</div>').appendTo($('body')),
 		
 		selectedTextInfo = null,
 		
@@ -98,12 +102,17 @@ var SearchWindow = function(id, parentNode, init_data) {
 			textChooser.hide();
 		} else {
 			textChooser.show();
+			
+			setTimeout(function() {
+				activeClickOffNodes = [textChooser.node()[0], textui[0]];
+				$(document).on('click', docClick);
+			}, 10);
 		}
 
-		$(document).on('click', docClick);
+		
 	});
 	
-	divisionui.on('click', function(e) {
+	searchOptionsButton.on('click', function(e) {
 		
 		console.log('search divisions');
 	
@@ -111,22 +120,28 @@ var SearchWindow = function(id, parentNode, init_data) {
 			divisionChooser.hide();
 		} else {
 			divisionChooser.show();
+
 			
-			var uiPos = divisionui.offset(),
-				top = uiPos.top + divisionui.outerHeight(true),
+			var uiPos = searchOptionsButton.offset(),
+				top = uiPos.top + searchOptionsButton.outerHeight(true) + 10,
 				left = uiPos.left,
 				divWidth = divisionChooser.outerWidth(true),
 				winWidth = $(window).width();
 				
 			if (left + divWidth > winWidth) {
-				left = winWidth - divWidth;				
+				left = winWidth - divWidth - 10;				
 			}				
 						
 			divisionChooser.css({
 				top: top,
 				left: left
 			});
-			
+
+			setTimeout(function() {
+				activeClickOffNodes = [divisionChooser[0], searchOptionsButton[0]];			
+				$(document).on('click', docClick);				
+			},10);
+
 		}
 
 		// $(document).on('click', docClick);
@@ -180,7 +195,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'</div>' +
 					'</div>';		
 		
-		divisionChooser.html(completeHtml);		
+		divisionChooser.find('.search-division-main').html(completeHtml);		
 		
 		// TODO: check for items then hide
 		var hasOtBooks = divisionChooser.find('.division-list-ot .division-list-items input').length > 0,
@@ -217,17 +232,19 @@ var SearchWindow = function(id, parentNode, init_data) {
 		checkbox.closest('.division-list').find('.division-header input').prop('checked', allChecked);		
 	});	
 
+	var activeClickOffNodes = [];
 
 	function docClick(e) {
 		////console.log('doc click');
 
 		var target = $(e.target),
-			clickedOnChooser = false;
+			clickedOnActiveNode = false;
 
 		while (target != null && target.length > 0) {
 
-			if (target[0] == textChooser.node()[0] || target[0] == textui[0] ) {
-				clickedOnChooser = true;
+			//if (target[0] == activeClickOffNode[0] || target[0] == textui[0] ) {
+			if (activeClickOffNodes.indexOf(target[0]) > -1) {
+				clickedOnActiveNode = true;
 				break;
 			}
 
@@ -235,10 +252,12 @@ var SearchWindow = function(id, parentNode, init_data) {
 		}
 
 		//return;
-		if (!clickedOnChooser) {
+		if (!clickedOnActiveNode) {
 			e.preventDefault();
 
-			textChooser.hide();
+			$(activeClickOffNodes[0]).hide();
+			//textChooser.hide();
+			
 			$(document).off('click', docClick);
 
 			return false;

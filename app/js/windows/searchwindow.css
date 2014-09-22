@@ -90,17 +90,29 @@
 	border-right: solid 1px #fff;
 }
 
+.search-options-button {
+	background-image: url(../../css/images/gear.svg);
+}
+
 .search-division-chooser {
 	position: absolute;
 	display: none;
-	border: solid 1px #333;
-	background: #fff;
+	background: #fff;	
+	font-size: 80%;
+	width: 320px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;	
+}
+.search-division-chooser .search-division-header {
+	color: #fff;
+	background: #444;
+	padding: 8px;
+	font-weight: bold;
+	
+}
+.search-division-chooser .search-division-main {
 	padding: 10px;
-	width: 300px;
 	max-height: 250px;
 	overflow: auto;
-	
-	font-size: 80%;
 }
 
 .search-division-chooser .division-list {
@@ -116,6 +128,7 @@
 
 .search-division-chooser .division-name {
 	display: block;	
+	white-space: nowrap;
 }
 
 .search-division-chooser .division-list-items {

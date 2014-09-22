@@ -61,10 +61,7 @@ sofia.resources['en'] = {
 				"button": "Search",
 				"results": "Results",
 				"verses": "verses",
-				"all": "All",
-				"nt": "NT",
-				"ot": "OT",
-				"custom": "Custom"								
+				"options": "Search Options"							
 			},
 			"parallel": {
 				"label": "Parallels",

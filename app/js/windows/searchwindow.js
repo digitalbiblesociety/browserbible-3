@@ -6,8 +6,12 @@ var SearchWindow = function(id, parentNode, init_data) {
 	var header = $('<div class="window-header search-header" >' +
 
 						'<input type="text" class="search-text app-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' +
-						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
 						'<div class="text-list app-list" style="">&nbsp;</div>' +
+						
+						'<div class="books-list app-list" style="">' + i18n.t('windows.search.all') + '</div>' +
+						
+						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
+						
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' +
 					'</div>').appendTo(parentNode),
 		main = $('<div class="search-main"><div class="search-wrapper">' +
@@ -39,10 +43,12 @@ var SearchWindow = function(id, parentNode, init_data) {
 		resultsBlock = main.find('.search-results'),
 		input = header.find('.search-text'),
 		button = header.find('.search-button'),
-		//list = header.find('.search-list'),
+		
 		textui = header.find('.text-list'),
 		textChooser = new TextChooser(parentNode, textui, 'bible'),
-		//encoder = new base32.Encoder(),
+		
+		divisionChooser = $('<div class="division-chooser"></div>').appendTo($('body')),
+		
 		selectedText = null,
 
 
@@ -77,11 +83,19 @@ var SearchWindow = function(id, parentNode, init_data) {
 	});
 
 	textChooser.on('change', function(e) {
-		selectedText = e.data;
-		textui.html( e.data.abbr );
+		setTextInfo(e.data, false);
+		
+		// reset UI
+		
+		clearResults();
+		
 	});
 	textui.on('click', function(e) {
-		textChooser.show();
+		if (textChooser.node().is(':visible')) {
+			textChooser.hide();
+		} else {
+			textChooser.show();
+		}
 
 		$(document).on('click', docClick);
 	});
@@ -448,6 +462,21 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	}
 
+	function clearResults() {
+		footer.html('');
+		topBlockTitle.html('');
+		resultsBlock.html('');
+		topVisual.html('').hide();
+		topLemmaInfo.html('').hide();
+		topUsage.html('').hide();
+		searchProgressBarLabel.html('');
+		searchProgressBarInner.width(0);
+	}
+	
+	function setText(abbr, textInfo) {
+		
+		
+	}
 
 	// ACTIONS
 	function doSearch()	{
@@ -458,25 +487,21 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		var text = input.val(),
 			//textid = list.val(),
-			textid = textInfo.id;
+			textid = textInfo.id,
+			
+			divisions = ['MT'];
 
 
 		console.log('search', textid, text, textInfo);
 
 
 		// clear results
-		footer.html('');
+		clearResults();		
 		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');
-		resultsBlock.html('');
-		topVisual.html('').hide();
-		topLemmaInfo.html('').hide();
-		topUsage.html('').hide();
-		searchProgressBarLabel.html('');
-		searchProgressBarInner.width(0);
 
 		resultsBlock.addClass('loading-indicator');
 
-		TextLoader.startSearch(textid, text, searchLoadHandler, searchIndexCompleteHandler, searchCompleteHandler);
+		TextLoader.startSearch(textid, divisions, text, searchLoadHandler, searchIndexCompleteHandler, searchCompleteHandler);
 
 		removeHighlights();
 
@@ -501,6 +526,19 @@ var SearchWindow = function(id, parentNode, init_data) {
 		main.outerWidth(width)
 			.outerHeight(height - header.outerHeight() - footer.outerHeight());
 	}
+	
+	function setTextInfo(textInfo, sendToChooser) {
+		selectedText = textInfo;
+	
+		textui.html(textInfo.abbr);	
+		
+		// draw books
+		
+		
+		if (sendToChooser) {
+			textChooser.setTextInfo(textInfo);
+		}
+	}
 
 	// init
 	function init() {
@@ -509,13 +547,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 		if (init_data.textid) {
 			TextLoader.getText(init_data.textid, function(data) {
 
-				selectedText = data;
-
-				//console.log('search', init_data.textid, data);
-
-				textChooser.setTextInfo(selectedText);
-				textui.html(selectedText.abbr);
-
+				setTextInfo(data, true);
+					
 				if (init_data.searchtext && init_data.searchtext != '') {
 					input.val(init_data.searchtext);
 					doSearch();
@@ -526,9 +559,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 			console.log('SEARCH: no init textid');
 
 			for (var index in TextLoader.textData) {
-				var textInfo = TextLoader.textData[index];
-				textChooser.setTextInfo(textInfo);
-				textui.html(textInfo.abbr);
+			
+				setTextInfo(TextLoader.textData[index], true);
 				break;
 			}
 		}
@@ -598,6 +630,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	function close() {
 		removeHighlights();
+		
+		divisionChooser.remove();
+		textChooser.close();
 
 		ext.clearListeners();
 		ext = null;

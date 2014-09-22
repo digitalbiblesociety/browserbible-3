@@ -12,6 +12,11 @@
 	min-height: 50px;
 }
 
+.search-header .search-text {
+	width: 100px;
+	min-width: inherit;	
+}
+
 .search-wrapper {
 	padding: 10px;
 }

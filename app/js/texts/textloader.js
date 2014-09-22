@@ -237,11 +237,11 @@ TextLoader = (function() {
 		}		
 	}
 
-	function startSearch(textid, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+	function startSearch(textid, divisions, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
 		var providerName = getProviderName(textid);
 
-		sofia.textproviders[providerName].startSearch(textid, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete);
+		sofia.textproviders[providerName].startSearch(textid, divisions, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete);
 
 	}
 

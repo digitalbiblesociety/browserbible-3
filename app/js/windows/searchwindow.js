@@ -78,6 +78,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 			}
 		}
 	});
+	
 	button.on('click', function() {
 
 		// record
@@ -97,6 +98,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		clearResults();
 		
 	});
+	
 	textui.on('click', function(e) {
 		if (textChooser.node().is(':visible')) {
 			textChooser.hide();
@@ -107,20 +109,16 @@ var SearchWindow = function(id, parentNode, init_data) {
 				activeClickOffNodes = [textChooser.node()[0], textui[0]];
 				$(document).on('click', docClick);
 			}, 10);
-		}
-
-		
+		}		
 	});
 	
 	searchOptionsButton.on('click', function(e) {
 		
-		console.log('search divisions');
-	
 		if (divisionChooser.is(':visible')) {
 			divisionChooser.hide();
+			
 		} else {
 			divisionChooser.show();
-
 			
 			var uiPos = searchOptionsButton.offset(),
 				top = uiPos.top + searchOptionsButton.outerHeight(true) + 10,
@@ -208,6 +206,45 @@ var SearchWindow = function(id, parentNode, init_data) {
 			divisionChooser.find('.division-list-nt').hide();
 		}		
 	}
+	
+	function setDivisions(divisions) {
+	
+		console.log('init divisions', divisions);
+		if (typeof divisions == 'string') {
+			divisions = divisions.split(',');
+		}
+		
+		
+		if (divisions && divisions.length > 0) {
+			divisionChooser.find('.division-list input').prop('checked', false);
+			
+			for (var i=0, il = divisions.length; i<il; i++) {				
+				divisionChooser
+					.find('.division-list input[value="' + divisions[i] + '"]')
+					.prop('checked',true);
+			}		
+		}
+		
+		// check headers
+		checkDivisionHeader( divisionChooser.find('.division-list-ot') );
+		checkDivisionHeader( divisionChooser.find('.division-list-nt') );		
+		
+	}
+	
+	function checkDivisionHeader(divisionList) {
+		var items = divisionList.find('.division-list-items input'),
+			allChecked = true;
+			
+		items.each(function(i,el) {
+		
+			if (!$(el).is(':checked')) {
+				allChecked = false;
+				return false;	
+			}			
+		});		
+		
+		divisionList.find('.division-header input').prop('checked', allChecked);		
+	}
 
 	divisionChooser.on('click', '.division-header input', function() {
 		var checkbox = $(this),
@@ -217,19 +254,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 	});
 	
 	divisionChooser.on('click', '.division-list-items input', function() {
-		var checkbox = $(this),
-			siblings = checkbox.closest('.division-list-items').find('input'),
-			allChecked = true;
-			
-		siblings.each(function(i,el) {
+		var checkbox = $(this);
 		
-			if (!$(el).is(':checked')) {
-				allChecked = false;
-				return false;	
-			}			
-		});
-		
-		checkbox.closest('.division-list').find('.division-header input').prop('checked', allChecked);		
+		checkDivisionHeader( checkbox.closest('.division-list') );		
 	});	
 
 	var activeClickOffNodes = [];
@@ -606,6 +633,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		topVisual.html('').hide();
 		topLemmaInfo.html('').hide();
 		topUsage.html('').hide();
+		searchProgressBar.hide();
 		searchProgressBarLabel.html('');
 		searchProgressBarInner.width(0);
 	}
@@ -621,29 +649,34 @@ var SearchWindow = function(id, parentNode, init_data) {
 			//textid = list.val(),
 			textid = textInfo.id,
 			
-			divisions = [],
+			divisions = getSelectedDivisions();
+
+
+		//console.log('search', textid, text, divisions); // , textInfo);
+		
+		clearResults();		
+		
+		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');
+		
+		removeHighlights();	
+
+		resultsBlock.addClass('loading-indicator');
+
+		enable();
+		
+		TextLoader.startSearch(textid, divisions, text, searchLoadHandler, searchIndexCompleteHandler, searchCompleteHandler);		
+	}
+	
+	function getSelectedDivisions() {
 			
+		var divisions = [],
 			selectedBooks = divisionChooser.find('.division-list-items input:checked');
 			
 		selectedBooks.each(function() {
 			divisions.push( $(this).val() );			
-		});
-
-
-		console.log('search', textid, text, divisions); // , textInfo);
-
-
-		// clear results
-		clearResults();		
-		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');
-
-		resultsBlock.addClass('loading-indicator');
-
-		TextLoader.startSearch(textid, divisions, text, searchLoadHandler, searchIndexCompleteHandler, searchCompleteHandler);
-
-		removeHighlights();
-
-		enable();
+		});	
+		
+		return divisions;	
 	}
 
 	function disable() {
@@ -687,14 +720,18 @@ var SearchWindow = function(id, parentNode, init_data) {
 	// init
 	function init() {
 
-
 		if (init_data.textid) {
 			TextLoader.getText(init_data.textid, function(data) {
 
 				setTextInfo(data, true);
+				
+				if (init_data.divisions) {
+					setDivisions(init_data.divisions);
+				}
 					
 				if (init_data.searchtext && init_data.searchtext != '') {
 					input.val(init_data.searchtext);
+					
 					doSearch();
 				}
 
@@ -785,14 +822,20 @@ var SearchWindow = function(id, parentNode, init_data) {
 	var ext = {
 		size: size,
 		getData: function() {
+		
+			var divisions = divisionChooser.find('.division-list-ot .division-header input').is(':checked') &&
+							divisionChooser.find('.division-list-nt .division-header input').is(':checked') ? 
+								[] : getSelectedDivisions();
 
 			return {
 				searchtext: input.val(),
 				textid: (selectedTextInfo != null) ? selectedTextInfo.providerid : null,
+				divisions: divisions,
 				params: {
 					'win': 'search',
 					'textid': (selectedTextInfo != null) ? selectedTextInfo.providerid : null,
-					'searchtext': input.val()
+					'searchtext': input.val(),
+					'divisions': divisions
 				}
 			}
 		},
@@ -813,9 +856,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 	return ext;
 
 };
-//sofia.windowTypes.push('SearchWindow');
-
-
 
 sofia.initMethods.push(function() {
 
@@ -826,7 +866,8 @@ sofia.initMethods.push(function() {
 			param: 'search',
 			paramKeys: {
 				'textid': 't',
-				'searchtext': 's'
+				'searchtext': 's',
+				'divisions': 'd'
 			},
 			init: {
 			}

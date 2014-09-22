@@ -8,7 +8,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<input type="text" class="search-text app-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' +
 						'<div class="text-list app-list" style="">&nbsp;</div>' +
 						
-						'<div class="books-list app-list" style="">' + i18n.t('windows.search.all') + '</div>' +
+						'<div class="division-list app-list" style="">' + i18n.t('windows.search.all') + '</div>' +
 						
 						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
 						
@@ -47,10 +47,13 @@ var SearchWindow = function(id, parentNode, init_data) {
 		textui = header.find('.text-list'),
 		textChooser = new TextChooser(parentNode, textui, 'bible'),
 		
-		divisionChooser = $('<div class="division-chooser"></div>').appendTo($('body')),
+		divisionui = header.find('.division-list'),
+		divisionChooser = $('<div class="search-division-chooser"></div>').appendTo($('body')),
 		
-		selectedText = null,
-
+		selectedTextInfo = null,
+		
+		// used for redrawing divisions
+		previousTextInfo = null,
 
 		currentResults = null,
 		searchIndexesData = null,
@@ -99,6 +102,121 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		$(document).on('click', docClick);
 	});
+	
+	divisionui.on('click', function(e) {
+		
+		console.log('search divisions');
+	
+		if (divisionChooser.is(':visible')) {
+			divisionChooser.hide();
+		} else {
+			divisionChooser.show();
+			
+			var uiPos = divisionui.offset(),
+				top = uiPos.top + divisionui.outerHeight(true),
+				left = uiPos.left,
+				divWidth = divisionChooser.outerWidth(true),
+				winWidth = $(window).width();
+				
+			if (left + divWidth > winWidth) {
+				left = winWidth - divWidth;				
+			}				
+						
+			divisionChooser.css({
+				top: top,
+				left: left
+			});
+			
+		}
+
+		// $(document).on('click', docClick);
+	});
+
+	function drawDivisions() {
+		
+		if (previousTextInfo != null ) {
+			// TODO: is the langauge and list of books the same?
+			
+		}
+		
+		// TODO: store the selected ones from this book to reselect on this one (unless it's a shorter one)
+		
+		var otListHtml = '',
+			ntListHtml = '';
+			
+		for (var i=0, il=selectedTextInfo.divisions.length; i<il; i++) {
+			
+			var dbsBookCode = selectedTextInfo.divisions[i],
+				bookName = selectedTextInfo.divisionNames[i],
+				checkedStatus = ' checked',
+				html = '<label class="division-name"><input type="checkbox" value="' + dbsBookCode + '"' + checkedStatus + ' />' + bookName + '</label>';
+				
+			if (bible.EXTRA_MATTER.indexOf(dbsBookCode) > -1 ) {
+				continue;
+			}
+			
+			if (bible.NT_BOOKS.indexOf(dbsBookCode) > -1 ) {				
+				ntListHtml += html;
+			} else {
+				otListHtml += html;
+			}			
+		}
+		
+		var completeHtml = 
+					'<div class="division-list division-list-ot">' +
+						'<label class="division-header">' + 
+							'<input type="checkbox" value="list-ot" checked />' + i18n.t('windows.bible.ot') + '</label>' + 
+						'</label>' + 
+						'<div class="division-list-items">' + 
+							otListHtml + 
+						'</div>' +
+					'</div>' + 
+					'<div class="division-list division-list-nt">' +
+						'<label class="division-header">' + 
+							'<input type="checkbox" value="list-nt" checked />' + i18n.t('windows.bible.nt') + '</label>' + 
+						'</label>' + 
+						'<div class="division-list-items">' + 
+							ntListHtml + 
+						'</div>' +
+					'</div>';		
+		
+		divisionChooser.html(completeHtml);		
+		
+		// TODO: check for items then hide
+		var hasOtBooks = divisionChooser.find('.division-list-ot .division-list-items input').length > 0,
+			hasNtBooks = divisionChooser.find('.division-list-nt .division-list-items input').length > 0;
+		
+		if (!hasOtBooks) {
+			divisionChooser.find('.division-list-ot').hide();
+		}
+		if (!hasNtBooks) {
+			divisionChooser.find('.division-list-nt').hide();
+		}		
+	}
+
+	divisionChooser.on('click', '.division-header input', function() {
+		var checkbox = $(this),
+			setChildrenTo = checkbox.is(':checked');
+		
+		checkbox.closest('.division-list').find('.division-list-items input').prop('checked', setChildrenTo);		
+	});
+	
+	divisionChooser.on('click', '.division-list-items input', function() {
+		var checkbox = $(this),
+			siblings = checkbox.closest('.division-list-items').find('input'),
+			allChecked = true;
+			
+		siblings.each(function(i,el) {
+		
+			if (!$(el).is(':checked')) {
+				allChecked = false;
+				return false;	
+			}			
+		});
+		
+		checkbox.closest('.division-list').find('.division-header input').prop('checked', allChecked);		
+	});	
+
 
 	function docClick(e) {
 		////console.log('doc click');
@@ -472,11 +590,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 		searchProgressBarLabel.html('');
 		searchProgressBarInner.width(0);
 	}
-	
-	function setText(abbr, textInfo) {
-		
-		
-	}
 
 	// ACTIONS
 	function doSearch()	{
@@ -489,10 +602,16 @@ var SearchWindow = function(id, parentNode, init_data) {
 			//textid = list.val(),
 			textid = textInfo.id,
 			
-			divisions = ['MT'];
+			divisions = [],
+			
+			selectedBooks = divisionChooser.find('.division-list-items input:checked');
+			
+		selectedBooks.each(function() {
+			divisions.push( $(this).val() );			
+		});
 
 
-		console.log('search', textid, text, textInfo);
+		console.log('search', textid, text, divisions); // , textInfo);
 
 
 		// clear results
@@ -528,11 +647,17 @@ var SearchWindow = function(id, parentNode, init_data) {
 	}
 	
 	function setTextInfo(textInfo, sendToChooser) {
-		selectedText = textInfo;
+	
+		// keep old one
+		previousTextInfo = selectedTextInfo;
+	
+		// store new one
+		selectedTextInfo = textInfo;
 	
 		textui.html(textInfo.abbr);	
 		
 		// draw books
+		drawDivisions();
 		
 		
 		if (sendToChooser) {
@@ -644,10 +769,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 			return {
 				searchtext: input.val(),
-				textid: (selectedText != null) ? selectedText.providerid : null,
+				textid: (selectedTextInfo != null) ? selectedTextInfo.providerid : null,
 				params: {
 					'win': 'search',
-					'textid': (selectedText != null) ? selectedText.providerid : null,
+					'textid': (selectedTextInfo != null) ? selectedTextInfo.providerid : null,
 					'searchtext': input.val()
 				}
 			}

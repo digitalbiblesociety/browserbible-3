@@ -90,6 +90,40 @@
 	border-right: solid 1px #fff;
 }
 
+.search-division-chooser {
+	position: absolute;
+	display: none;
+	border: solid 1px #333;
+	background: #fff;
+	padding: 10px;
+	width: 300px;
+	max-height: 250px;
+	overflow: auto;
+	
+	font-size: 80%;
+}
+
+.search-division-chooser .division-list {
+	float: left;
+	width: 50%;
+}
+
+.search-division-chooser .division-header {
+	display: block;	
+	font-weight: bold;
+}
+
+
+.search-division-chooser .division-name {
+	display: block;	
+}
+
+.search-division-chooser .division-list-items {
+	padding: 0 0 0 5px;
+}
+
+
+
 /* penta */
 .search-result-book-bar span.divisionid-GN,
 .search-result-book-bar span.divisionid-EX,

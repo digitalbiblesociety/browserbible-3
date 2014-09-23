@@ -147,11 +147,6 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 	function drawDivisions() {
 		
-		if (previousTextInfo != null ) {
-			// TODO: is the langauge and list of books the same?
-			
-		}
-		
 		// TODO: store the selected ones from this book to reselect on this one (unless it's a shorter one)
 		
 		var otListHtml = '',
@@ -193,6 +188,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'</div>' +
 					'</div>';		
 		
+		divisionChooser.attr('dir', selectedTextInfo.dir);
 		divisionChooser.find('.search-division-main').html(completeHtml);		
 		
 		// TODO: check for items then hide

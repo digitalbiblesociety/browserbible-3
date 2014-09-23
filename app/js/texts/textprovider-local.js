@@ -119,7 +119,7 @@ sofia.textproviders['local'] = (function() {
 
 	}
 
-	function startSearch(textid, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+	function startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
 		var textSearch = new TextSearch();
 
@@ -127,7 +127,7 @@ sofia.textproviders['local'] = (function() {
 		textSearch.on('indexcomplete', onSearchIndexComplete);
 		textSearch.on('complete', onSearchComplete);
 
-		textSearch.start(text, textid);
+		textSearch.start(textid, divisions, text);
 
 	}
 

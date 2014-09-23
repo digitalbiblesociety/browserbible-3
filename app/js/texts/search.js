@@ -37,6 +37,7 @@ TextSearch = function() {
 		canceled = false,
 		searchText = '',
 		searchTextid = '',
+		searchDivisions = [],
 		//isAsciiRegExp = new RegExp('^[\040-\176]*$', 'gi'),
 		isLemmaRegExp = /[GgHh]\d{1,6}/g,
 
@@ -55,7 +56,7 @@ TextSearch = function() {
 
 	searchIndexLoader.on('complete', indexesLoaded);
 
-	function start(text, textid) {
+	function start(textid, divisions, text) {
 
 		//console.log('TextSearch.start', text, textid);
 
@@ -68,6 +69,7 @@ TextSearch = function() {
 		// store variables
 		searchText = text;
 		searchTextid = textid;
+		searchDivisions = divisions;
 		textInfo = TextLoader.getText(searchTextid);
 
 
@@ -86,16 +88,16 @@ TextSearch = function() {
 
 		if (sofia.config.serverSearchPath != '' && (window.location.protocol != 'file:' || sofia.config.baseContentUrl != '')) {
 
-			startServerSearch(textInfo, searchText, isLemmaSearch);
+			startServerSearch(textInfo, searchDivisions, searchText, isLemmaSearch);
 		} else {
 			// load indexes
-			searchIndexLoader.loadIndexes(textInfo, searchText, isLemmaSearch);
+			searchIndexLoader.loadIndexes(textInfo, searchDivisions, searchText, isLemmaSearch);
 		}
 
 		return true;
 	}
 
-	function startServerSearch(textInfo, searchText, isLemmaSearch) {
+	function startServerSearch(textInfo, searchDivisions, searchText, isLemmaSearch) {
 
 		$.ajax({
 			dataType: 'jsonp',
@@ -103,6 +105,7 @@ TextSearch = function() {
 			data: {
 				textid: textInfo.id,
 				search: searchText.toLowerCase(),
+				divisions: searchDivisions.join(','),
 				date: (new Date()).toString()
 			},
 			success: function(data) {
@@ -494,6 +497,7 @@ SearchIndexLoader = function() {
 		searchTerms = [],
 		searchTermsIndex = -1,
 		isLemmaSearch = false,
+		searchDivisions = [],
 		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
 		loadedIndexes = [],
 		// final: [{sectionid:'GN1', fragmentids: ['GN1_2', 'GN1_3']}, {sectionid:'GN2', fragmentids: ['GN2_4']} }
@@ -501,25 +505,12 @@ SearchIndexLoader = function() {
 		searchType = 'AND'; // OR
 
 	// START
-	function loadIndexes(newTextInfo, searchText, isLemma) {
+	function loadIndexes(newTextInfo, divisions, searchText, isLemma) {
 
 		isLemmaSearch = isLemma;
 		textInfo = newTextInfo;
+		searchDivisions = divisions;
 
-		// split up search into words for indexing
-		/*
-		if (texts.singleWordLanguages.indexOf(textInfo.lang) > -1) {
-			searchTerms = [];
-			for (var i=0,il=searchText.length; i<il; i++) {
-				var text = searchText[i];
-				if (text.replace(/\s/gi, '').length > 0) {
-					searchTerms.push( text );
-				}
-			}
-		} else {
-			searchTerms = searchText.replace(/\sAND\s/gi,' ').replace(/\sOR\s/gi,' ').replace(/"/g,'').split(/\s+/g);
-		}
-		*/
 		searchTerms = SearchTools.splitWords(searchText);
 
 		searchTermsIndex = -1;
@@ -527,8 +518,6 @@ SearchIndexLoader = function() {
 		loadedResults = [];
 
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
-
-		//console.log('SearchIndexLoader:loadIndexes', searchText, searchType, searchTerms, isLemmaSearch);
 
 		// start it up
 		loadNextIndex();
@@ -694,21 +683,23 @@ SearchIndexLoader = function() {
 
 
 						var	sectionid = fragmentid.split('_')[0],
-
+							dbsBookCode = sectionid.substring(0,2);
+							
+						if (searchDivisions.length == 0 || searchDivisions.indexOf(dbsBookCode) > -1) {
+												
 							// see if we already created data for this section id
-							sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });
-
-						// create new data
-						if (sectionidInfo.length == 0) {
-							loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
-						}
-						// add to this sectionid
-						else {
-							sectionidInfo[0].fragmentids.push(fragmentid);
+							var sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });
+	
+							// create new data
+							if (sectionidInfo.length == 0) {
+								loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
+							}
+							// add to this sectionid
+							else {
+								sectionidInfo[0].fragmentids.push(fragmentid);
+							}
 						}
 					}
-
-
 				}
 			}
 		}

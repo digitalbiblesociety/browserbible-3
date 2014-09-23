@@ -276,7 +276,7 @@ sofia.textproviders['fcbh'] = (function() {
 
 	}
 
-	function startSearch(textid, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+	function startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
 		var info = getTextInfoSync(textid);
 
@@ -300,13 +300,13 @@ sofia.textproviders['fcbh'] = (function() {
 		}
 
 
-		doSearch(dam_id, text, e, function() {
+		doSearch(dam_id, divisions, text, e, function() {
 
 			onSearchComplete(e);
 
 		});
 	}
-	function doSearch(dam_id, text, e, callback) {
+	function doSearch(dam_id, divisions, text, e, callback) {
 
 		$.ajax({
 			beforeSend: function(xhr){
@@ -315,18 +315,23 @@ sofia.textproviders['fcbh'] = (function() {
 				}
 			},
 			dataType: 'jsonp',
+			
+			// One giant call seems faster, than doing all the books individually?
 			url: 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
 			success: function(data) {
 
 				for (var i=0, il=data[1].length; i<il; i++) {
 					var verse = data[1][i],
 						dbsBookCode = bible.DEFAULT_BIBLE[ bible.DEFAULT_BIBLE_OSIS.indexOf(verse.book_id) ],
-						fragmentid = dbsBookCode + verse.chapter_id + '_' + verse.verse_id;
+						fragmentid = dbsBookCode + verse.chapter_id + '_' + verse.verse_id,
+						hasMatch = e.data.searchTermsRegExp[0].test(verse.verse_text);
 
-					e.data.results.push({
-						fragmentid: fragmentid,
-						html: highlightWords(verse.verse_text, e.data.searchTermsRegExp)
-					});
+					if (hasMatch && (divisions.length == 0 || divisions.indexOf(dbsBookCode) > -1)) {
+						e.data.results.push({
+							fragmentid: fragmentid,
+							html: highlightWords(verse.verse_text, e.data.searchTermsRegExp)
+						});
+					}
 				}
 
 				callback(data);

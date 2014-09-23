@@ -12,6 +12,11 @@
 	min-height: 50px;
 }
 
+.search-header .search-text {
+	width: 100px;
+	min-width: inherit;	
+}
+
 .search-wrapper {
 	padding: 10px;
 }
@@ -76,6 +81,7 @@
 	height: 40px;
 	display: block;
 	float: left;
+	cursor: pointer;
 }
 
 .search-result-book-bar span {
@@ -84,6 +90,55 @@
 	background: #ccc;
 	border-right: solid 1px #fff;
 }
+
+.search-options-button {
+	background-image: url(../../css/images/gear.svg);
+}
+
+.search-division-chooser {
+	position: absolute;
+	display: none;
+	background: #fff;	
+	font-size: 80%;
+	width: 320px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;	
+}
+.search-division-chooser .search-division-header {
+	color: #fff;
+	background: #444;
+	padding: 8px;
+	font-weight: bold;
+	
+}
+.search-division-chooser .search-division-main {
+	padding: 10px;
+	max-height: 250px;
+	overflow: auto;
+}
+
+.search-division-chooser .division-list {
+	float: left;
+	width: 50%;
+}
+
+.search-division-chooser .division-header {
+	display: block;	
+	font-weight: bold;
+}
+
+
+.search-division-chooser .division-name {
+	display: block;	
+	white-space: nowrap;
+}
+
+.search-division-chooser .division-list-items {
+	padding: 0 0 0 5px;
+}
+.search-division-chooser[dir=rtl] .division-list-items {
+	padding: 0 5px 0 0;
+}
+
 
 /* penta */
 .search-result-book-bar span.divisionid-GN,

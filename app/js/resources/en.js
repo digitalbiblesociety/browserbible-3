@@ -60,7 +60,8 @@ sofia.resources['en'] = {
 				"placeholder": "Search",
 				"button": "Search",
 				"results": "Results",
-				"verses": "verses"
+				"verses": "verses",
+				"options": "Search Options"							
 			},
 			"parallel": {
 				"label": "Parallels",

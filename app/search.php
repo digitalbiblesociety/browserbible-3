@@ -57,11 +57,18 @@ $isLemmaRegExp = '/[GgHh]\\d{1,6}/';
 //// START UP
 $textid = $_GET['textid'];
 $search = $_GET['search'];
+$divisions = $_GET['divisions'];
+if ($divisions == null) {
+	$divisions = [];
+} else {
+	$divisions = split(",", $divisions);
+}
 $callback = $_GET['callback'];
 $output = array(
 	"results" => array(),
 	"textid" => $textid,
 	"search" => $search,
+	"divisions" => $divisions,
 	"base32" => "",
 	"success" => TRUE,
 	"hash" => ""
@@ -182,6 +189,14 @@ if (is_array($combined_index)) {
 		//$chapter_code = substr($verseid, 0, 2);;
 		$verse_exploded = explode('_', $verseid);
 		$chapter_code = $verse_exploded[0];
+		$book_code = mb_substr($chapter_code, 0, 2);
+		
+		if (sizeof($divisions) > 0) {			
+			if (!in_array($book_code, $divisions)) {
+				continue;
+			}			
+		}
+		
 		$verse_html = '';
 
 		// load chapter

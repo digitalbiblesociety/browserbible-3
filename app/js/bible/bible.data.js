@@ -335,6 +335,8 @@ bible.BOOK_DATA = {
     "names":{"eng":["Names Index"]}}
 }
 
+bible.EXTRA_MATTER = ["FR","IN","BK","OH","XA","XB","XC","XD","XE","XF","XG","GS","CN","TX","NX"];
+
 /**
  * @description Default order of Old Testament books
  */

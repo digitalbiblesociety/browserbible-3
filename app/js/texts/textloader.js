@@ -26,13 +26,13 @@ TextLoader = (function() {
 
 		var textid = '';
 
-		if (typeof textInfo == 'string') {
+		if (textInfo != null && typeof textInfo == 'string') {
 			textid = textInfo;
 		} else {
 			textid = textInfo.id;
 
 			// sometimes the sections aren't yet known, so we'll check for them and hope for the best :)
-			if (textInfo.sections.length > 0 && textInfo.sections.indexOf(sectionid) == -1) {
+			if (textInfo.sections && textInfo.sections.length > 0 && textInfo.sections.indexOf(sectionid) == -1) {
 				sectionid = textInfo.sections[0];
 			}
 		}

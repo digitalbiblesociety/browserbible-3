@@ -4,7 +4,9 @@ sofia.config = $.extend(sofia.config, {
 	
 	absUrl: 'abs.php',
 	
-	absUseLocalTextIndex: false
+	absForceLoadVersions: false,
+	
+	absExclusions: []
 	
 });
 
@@ -56,9 +58,15 @@ sofia.textproviders['abs'] = (function() {
 				},
 				cache: false,
 				data: {
-					action: 'list'
+					action: 'list',
+					force: sofia.config.absForceLoadVersions
 				},
 				success: function(data) {
+				
+					if (data == null || data.textInfoData == null) {
+						finish();
+						return;
+					}
 				
 					text_data = data.textInfoData;
 
@@ -174,7 +182,12 @@ sofia.textproviders['abs'] = (function() {
 
 	function loadSection(textid, sectionid, callback) {
 
-		var textinfo = getTextInfoSync(textid)
+		var textinfo = getTextInfoSync(textid),
+			
+			lang3 = textinfo.lang,
+			lang = iso2iana.convert(lang3),			
+			dir = (textinfo.dir && (textinfo.dir == 'ltr' || textinfo.dir == 'rtl')) ? textinfo.dir : data.language.isRTL(lang) ? 'rtl' : 'ltr',
+			
 			dbsBookCode = sectionid.substring(0,2),
 			osisBookCode = bible.BOOK_DATA[dbsBookCode].osis,
 			chapterNum = sectionid.substring(2),
@@ -195,8 +208,9 @@ sofia.textproviders['abs'] = (function() {
 			data: {
 				action: 'chapter',
 				version: textinfo.id,
-				lang3: textinfo.lang,
-				lang: iso2iana.convert(textinfo.lang),
+				lang3: lang3,
+				lang: lang,
+				dir: dir,
 				sectionid: sectionid,
 				osis: osisBookCode,
 				chapter: chapterNum,
@@ -265,20 +279,51 @@ sofia.textproviders['abs'] = (function() {
 			
 				//e.data.results = data.results;
 				
+				function padLeft(s, n) {
+					
+				}
+				
 				for (var i=0, il=data.results.length; i<il; i++) {
 					var result = data.results[i],
 						fragmentid = Object.keys(result)[0],
-						html = result[fragmentid];
-
+						html = result[fragmentid],
+						
+						dbsBookCode = fragmentid.substring(0,2),
+						bookData = bible.BOOK_DATA[dbsBookCode],
+						bookIndex = (bookData) ? bookData.sortOrder : '0',
+						chapterNum = fragmentid.split('_')[1].substring(2),
+						verseNum = fragmentid.split('_')[0],
+						pad = '000',
+						canonicalOrder = 
+									(pad + bookIndex.toString()).slice(-pad.length) +
+									(pad + chapterNum.toString()).slice(-pad.length) +
+									(pad + verseNum.toString()).slice(-pad.length);
+						
+					
+					if (html.indexOf('class="highlight"') == -1) {
+						html = highlightWords(html, e.data.searchTermsRegExp);
+					}
+					
+					// fix canonical order
 					e.data.results.push({
 						fragmentid: fragmentid,
-						html: html
+						html: html,
+						canonicalOrder: canonicalOrder
 					});
-			
-				}				
+								
+				}	
 				
-				console.log('search complete');
-				console.log(e);
+				// sort restuls
+				e.data.results.sort(function(a,b) {
+					if  (a.canonicalOrder > b.canonicalOrder) {
+						return 1;
+					} else if  (a.canonicalOrder < b.canonicalOrder) {
+						return -1;
+					} else {
+						return 0;
+					}
+				});
+							
 				
 				onSearchComplete(e);				
 				
@@ -305,37 +350,6 @@ sofia.textproviders['abs'] = (function() {
 			
 		});
 
-		/*
-		$.ajax({
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/javascript");
-				}
-			},
-			dataType: 'jsonp',
-			
-			// One giant call seems faster, than doing all the books individually?
-			url: 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
-			success: function(data) {
-
-				for (var i=0, il=data[1].length; i<il; i++) {
-					var verse = data[1][i],
-						dbsBookCode = bible.DEFAULT_BIBLE[ bible.DEFAULT_BIBLE_OSIS.indexOf(verse.book_id) ],
-						fragmentid = dbsBookCode + verse.chapter_id + '_' + verse.verse_id,
-						hasMatch = e.data.searchTermsRegExp[0].test(verse.verse_text);
-
-					if (hasMatch && (divisions.length == 0 || divisions.indexOf(dbsBookCode) > -1)) {
-						e.data.results.push({
-							fragmentid: fragmentid,
-							html: highlightWords(verse.verse_text, e.data.searchTermsRegExp)
-						});
-					}
-				}
-
-				callback(data);
-			}
-		});
-		*/
 	}
 
 	function highlightWords(text, searchTermsRegExp) {

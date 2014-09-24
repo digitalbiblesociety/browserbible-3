@@ -9,7 +9,8 @@ ob_start('mb_output_handler');
 header('Content-type: application/javascript');
 
 //// START UP
-$token = '1r4fbUsQxqYudLVqmljz0BVD19zbRCeUVvmnF4ZQ';
+$token = '';
+
 
 $action = $_GET['action'];
 $output = $_GET['output'];
@@ -17,7 +18,6 @@ $callback = $_GET['callback'];
 $key = $_GET['key']; // TODO:STORE Access by key for analytics?
 
 $results = null;
-
 
 
 $dbs_book_codes = array(
@@ -38,7 +38,7 @@ $osis_book_codes = array("Gen", "Exod", "Lev", "Num", "Deut", "Josh", "Judg", "R
 switch ($action) {
 	case 'list':
 		
-		$results = get_list();
+		$results = get_list( $_GET['force'] );
 		
 		break;
 		
@@ -50,7 +50,7 @@ switch ($action) {
 		
 	case 'chapter':
 		
-		$results = get_chapter( $_GET['version'], $_GET['sectionid'], $_GET['osis'], $_GET['chapter'], $_GET['lang'], $_GET['lang3'], $_GET['previd'], $_GET['nextid'], $_GET['bookname'] );
+		$results = get_chapter( $_GET['version'], $_GET['sectionid'], $_GET['osis'], $_GET['chapter'], $_GET['dir'], $_GET['lang'], $_GET['lang3'], $_GET['previd'], $_GET['nextid'], $_GET['bookname'] );
 		
 		break;
 		
@@ -101,7 +101,10 @@ function get_search($version, $text, $divisions) {
 
 	$abs_url = 'https://bibles.org/v2/verses.js?limit=500&sort_order=canonical&keyword=' . $text . '&version=' . $version . '&book=' . join(',',$osis_books);
 	$abs_data = get_abs_data($abs_url);
-
+	
+	if ($abs_data == null) {
+		return null;
+	}
 	
 	$abs_verses = $abs_data->response->search->result->verses;
 	
@@ -125,7 +128,9 @@ function get_search($version, $text, $divisions) {
 		
 		// remove verse numbers
 		$text = preg_replace('/<sup([^>]+)?>\d+<\/sup>/', '', $text);
+		$text = preg_replace('/<a.*<\/a>/', '', $text);		
 		$text = preg_replace('/<\/?p([^>]+)?>/', '', $text);
+		$text = preg_replace('/<h([^>]+)?>([^<]+)<\/h3>/', '', $text);		
 		$text = preg_replace('/class="nd"/', 'class="nog"', $text);		
 		$text = preg_replace('/<em>([^<]+)<\/em>/', '<span class="highlight">$1</span>', $text);				
 		
@@ -144,7 +149,7 @@ function get_search($version, $text, $divisions) {
 
 
 
-function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, $previd, $nextid, $bookname) {
+function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $lang3, $previd, $nextid, $bookname) {
 	
 	global $dbs_book_codes;
 	global $osis_book_codes;
@@ -157,6 +162,11 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, 
 	$regexp_h = '/<h3 class="s\d?">([^<]+)<\/h3>/';
 	
 	$abs_data = get_abs_data('https://bibles.org/v2/chapters/' . $version . ':' . $osis_book . '.' . $chapter . '/verses.js');
+	
+	if ($abs_data == null) {
+		return null;
+	}	
+	
 	$abs_verses = $abs_data->response->verses;
 	
 	$html = '<div class="section chapter ' . $version . ' ' . $dbs_book . ' ' . $sectionid . ' ' . $lang . '" ' .
@@ -166,6 +176,7 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, 
 								' data-previd="' . $previd . '"' .
 								' lang="' . $lang . '"' .
 								' data-lang3="' . $lang3 . '"' .
+								' dir="' . $dir . '"' .
 								'>';
 
 	if ($chapter == '1') {
@@ -229,6 +240,10 @@ function get_books($version) {
 
 	$abs_data = get_abs_data('https://bibles.org/v2/versions/' . $version . '/books.js');
 	
+	if ($abs_data == null) {
+		return null;
+	}	
+	
 	$abs_books = $abs_data->response->books;
 	
 	$divisions = array();
@@ -239,9 +254,7 @@ function get_books($version) {
 	
 	foreach ($abs_books as &$abs_book) {
 		
-		$osis_index = array_search($abs_book->abbr, $osis_book_codes);
-		$dbs_book_code = $dbs_book_codes[ $osis_index ];
-		
+		$dbs_book_code = osis_code_to_dbs($abs_book->abbr);
 		
 		if ($dbs_book_code != null) {			
 			array_push($divisions, $dbs_book_code);
@@ -273,67 +286,83 @@ function get_books($version) {
 }
 
 
-function get_list() {
-	
-	// try local file first since this is super expensive!
-	$local_abs_file = 'content/texts/texts_abs.json';	
-	if (file_exists($local_abs_file)) {
-		return json_decode( file_get_contents($local_abs_file) );
-	}
+function get_list($force) {
 
-	// load remote data
-	$abs_data = get_abs_data('https://bibles.org/v2/versions.js');
-	$abs_versions = $abs_data->response->versions; 
-		
-	$dbs_versions = array();
+	if ($force != 'true') {
+
+		global $token;
 	
-	foreach ($abs_versions as &$version) {
+		if ($token == '') {
+			return null;
+		}
+	
+		// try local file
+		$local_abs_file = 'content/texts/texts_abs.json';	
+		if (file_exists($local_abs_file)) {
+			return json_decode( file_get_contents($local_abs_file) );
+		} else {		
+			return null;
+		}
+			
+	} else {
+
+		// load remote data
+		$abs_data = get_abs_data('https://bibles.org/v2/versions.js');
+		$abs_versions = $abs_data->response->versions; 
+			
+		$dbs_versions = array();
 		
-		$version_parts = explode('-', $version->id);
-		$abbr = '';
-		
-		$lang_parts = explode('-', $version->lang);
-		$lang = $version_parts[0];
-		
-		
-		if (sizeof($version_parts) == 2) {
-			$abbr = $version_parts[1];
-		} else {
-			$abbr = $version_parts[0];
+		foreach ($abs_versions as &$version) {
+			
+			$version_parts = explode('-', $version->id);
+			$abbr = '';
+			
+			$lang_parts = explode('-', $version->lang);
+			$lang = $version_parts[0];
+			
+			
+			if (sizeof($version_parts) == 2) {
+				$abbr = $version_parts[1];
+			} else {
+				$abbr = $version_parts[0];
+			}
+			
+			// special case for English which we currently combine
+			$lang_name = $version->lang_name_eng;
+			$lang_name = str_replace(' (UK)', '', $lang_name);
+			$lang_name = str_replace(' (US)', '', $lang_name);		
+				
+			$dbs_version = array(
+				"id" => $version->id,
+				"name" => $version->name . ' [ABS]',
+				"nameEnglish" => '',
+				"abbr" => $abbr ,
+				"lang" => $lang,
+				"langName" => $lang_name,
+				"langNameEnglish" => $version->lang_name_eng,
+				"dir" => "ltr", // TODO: ?
+				"type" => "bible",
+				"absid" => $version->id,			
+				"absAudio" => $version->audio
+			);
+			
+			array_push($dbs_versions, $dbs_version);
 		}
 		
-		// special case for English which we currently combine
-		$lang_name = $version->lang_name_eng;
-		$lang_name = str_replace(' (UK)', '', $lang_name);
-		$lang_name = str_replace(' (US)', '', $lang_name);		
-			
-		$dbs_version = array(
-			"id" => $version->id,
-			"name" => $version->name . ' [ABS]',
-			"nameEnglish" => '',
-			"abbr" => $abbr ,
-			"lang" => $lang,
-			"langName" => $lang_name,
-			"langNameEnglish" => $version->lang_name_eng,
-			"dir" => "ltr", // TODO: ?
-			"type" => "bible",
-			"absid" => $version->id,			
-			"absAudio" => $version->audio
-		);
 		
-		array_push($dbs_versions, $dbs_version);
+		return array(
+			"textInfoData" => $dbs_versions
+		);
 	}
-	
-	
-	return array(
-		"textInfoData" => $dbs_versions
-	);
-	
 }
 
 function get_abs_data($url) {
 
 	global $token;
+
+	if ($token == '') {
+		return null;
+	}
 
 	$secure_url = str_replace('https://','https://' . $token . ':X@', $url ); 
 

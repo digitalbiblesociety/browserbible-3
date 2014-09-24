@@ -2,7 +2,9 @@ sofia.config = $.extend(sofia.config, {
 
 	enableAmericanBibleSociety: true,
 	
-	absUrl: 'abs.php'
+	absUrl: 'abs.php',
+	
+	absUseLocalTextIndex: false
 	
 });
 
@@ -104,8 +106,6 @@ sofia.textproviders['abs'] = (function() {
 
 	function getTextInfo(textid, callback) {
 	
-		callback(null);
-
 		if (!text_data_is_loaded) {
 
 			getTextManifest (function() {
@@ -122,35 +122,31 @@ sofia.textproviders['abs'] = (function() {
 		})[0];
 
 		if (typeof info.divisions == 'undefined' || info.divisions.length == 0) {
-
-			info.providerName = providerName;
-			info.divisions = [];
-			info.divisionNames = [];
-			info.sections = [];
-
-			if (info.ot_dam_id != '') {
-				loadBooks(info, info.ot_dam_id, function() {
-
-					if (info.nt_dam_id != '') {
-						loadBooks(info, info.nt_dam_id, function() {
-
-							callback(info);
-
-						});
+				
+			$.ajax({
+				url: sofia.config.baseContentUrl + sofia.config.absUrl,
+				dataType: 'jsonp',
+				beforeSend:  function(xhr){
+					if (xhr.overrideMimeType) {
+						xhr.overrideMimeType('application/javascript');
 					}
-
-				});
-			} else 	if (info.nt_dam_id != '') {
-				loadBooks(info, info.nt_dam_id, function() {
-
+				},
+				cache: false,
+				data: {
+					action: 'books',
+					version: info.absid
+				},
+				success: function(data) {
+					
+					$.extend(info, data);
 					callback(info);
-
-				});
-			} else {
-
-				console.log('FCBH error', 'No NT or OT id', info);
-
-			}
+					
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					callback(null);
+				}				
+				
+			});
 
 		} else {
 
@@ -174,7 +170,49 @@ sofia.textproviders['abs'] = (function() {
 
 
 	function loadSection(textid, sectionid, callback) {
-		return null;
+
+		var textinfo = getTextInfoSync(textid)
+			dbsBookCode = sectionid.substring(0,2),
+			osisBookCode = bible.BOOK_DATA[dbsBookCode].osis,
+			chapterNum = sectionid.substring(2),
+			
+			sectionIndex = textinfo.sections.indexOf(sectionid),
+			previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
+			nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
+
+		$.ajax({
+			url: sofia.config.baseContentUrl + sofia.config.absUrl,
+			dataType: 'jsonp',
+			beforeSend:  function(xhr){
+				if (xhr.overrideMimeType) {
+					xhr.overrideMimeType('application/javascript');
+				}
+			},
+			cache: false,
+			data: {
+				action: 'chapter',
+				version: textinfo.id,
+				lang3: textinfo.lang,
+				lang: iso2iana.convert(textinfo.lang),
+				sectionid: sectionid,
+				osis: osisBookCode,
+				chapter: chapterNum,
+				previd: previd,
+				nextid: nextid,
+				bookname: textinfo.divisionNames[textinfo.divisions.indexOf(dbsBookCode)]			
+			},
+			success: function(data) {
+				
+				// add all the stuff the script doesn't know about
+				var chapter = $(data.html);
+			
+				callback(data.html);				
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				callback(null);
+			}				
+			
+		});
 	}
 
 	function startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {

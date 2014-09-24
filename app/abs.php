@@ -12,10 +12,28 @@ header('Content-type: application/javascript');
 $token = '';
 
 $action = $_GET['action'];
+$output = $_GET['output'];
 $callback = $_GET['callback'];
 $key = $_GET['key']; // TODO:STORE Access by key for analytics?
 
 $results = null;
+
+
+
+$dbs_book_codes = array(
+"GN", "EX", "LV", "NU", "DT", "JS", "JG", "RT", "S1", "S2", "K1", "K2", "R1", "R2", "ER", "NH", "ET", "JB", "PS", "PR", "EC", "SS", "IS", "JR", "LM", "EK", "DN", "HS", "JL", "AM", "OB", "JH", "MC", "NM", "HK", "ZP", "HG", "ZC", "ML", 
+
+"TB", "JT", "ED", "AE", "WS", "SR", "BR", "LJ", "S3Y", "SN", "BL", "M1", "M2", "E1", 
+
+"MT", "MK", "LK", "JN", "AC", "RM", "C1", "C2", "GL", "EP", "PP", "CL", "H1", "H2", "T1", "T2", "TT", "PM", "HB", "JM", "P1", "P2", "J1", "J2", "J3", "JD", "RV");
+
+$osis_book_codes = array("Gen", "Exod", "Lev", "Num", "Deut", "Josh", "Judg", "Ruth", "1Sam", "2Sam", "1Kgs", "2Kgs", "1Chr", "2Chr", "Ezra", "Neh", "Esth", "Job", "Ps", "Prov", "Eccl", "Song", "Isa", "Jer", "Lam", "Ezek", "Dan", "Hos", "Joel", "Amos", "Obad", "Jonah", "Mic", "Nah", "Hab", "Zeph", "Hag", "Zech", "Mal",
+
+"Tob", "Jdt", "EsthGr", "AddEsth", "Wis", "Sir", "Bar", "EpJer", "PrAzar", "Sus", "Bel", "1Macc", "2Macc", "3Macc", "4Macc", "1Esd", "2Esd", "Ps151",
+
+"Matt", "Mark", "Luke", "John", "Acts", "Rom", "1Cor", "2Cor", "Gal", "Eph", "Phil", "Col", "1Thess", "2Thess", "1Tim", "2Tim", "Titus", "Phlm", "Heb", "Jas", "1Pet", "2Pet", "1John", "2John", "3John", "Jude", "Rev"
+);
+
 
 switch ($action) {
 	case 'list':
@@ -23,48 +41,161 @@ switch ($action) {
 		$results = get_list();
 		
 		break;
+		
+	case 'books':
+		
+		$results = get_books( $_GET['version'] );
+		
+		break;	
+		
+	case 'chapter':
+		
+		$results = get_chapter( $_GET['version'], $_GET['sectionid'], $_GET['osis'], $_GET['chapter'], $_GET['lang'], $_GET['lang3'], $_GET['previd'], $_GET['nextid'], $_GET['bookname'] );
+		
+		break;					
+}
+
+function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, $previd, $nextid, $bookname) {
+	
+	global $dbs_book_codes;
+	global $osis_book_codes;
+	
+	$dbs_book = substr($sectionid, 0, 2);
+	
+	// regex for text changing
+	$regexp_verse_num = '/<sup.+<\/sup>/';
+	$regexp_p = '/<\/?p([^>]+)?>/';
+	$regexp_h = '/<h3 class="s1">([^<]+)<\/h3>/';
+	
+	$abs_data = get_abs_data('https://bibles.org/v2/chapters/' . $version . ':' . $osis_book . '.' . $chapter . '/verses.js');
+	$abs_verses = $abs_data->response->verses;
+	
+	$html = '<div class="section chapter ' . $version . ' ' . $dbs_book . ' ' . $sectionid . ' ' . $lang . '" ' .
+								' data-textid="' . $version . '"' .
+								' data-id="' . $sectionid . '"' .
+								' data-nextid="' . $nextid . '"' .
+								' data-previd="' . $previd . '"' .
+								' lang="' . $lang . '"' .
+								' data-lang3="' . $lang3 . '"' .
+								'>';
+
+	if ($chapter == '1') {
+		$html .= '<div class="mt">' . $bookname . '</div>';
+	}
 	
 	
+		
+	foreach ($abs_verses as &$abs_verse) {
+		$text = $abs_verse->text;
+		$vnum = $abs_verse->verse;
+		$vid = $sectionid . '_' . $vnum;
+		
+		// check for title
+		if (preg_match($regexp_h, $text, $heading_matches)) {
+			if ($vnum > 1) {
+				$html .= '</div>'; // close paragraph
+			}
+			
+			$html .= '<div class="s">' . $heading_matches[0] . '</div>'; 
+			
+			if ($vnum > 1) {
+				$html .= '<div class="p">'; // reopen paragraph
+			}			
+		}
+
+		if ($vnum == 1) {
+			$html .= '<div class="c">' . $chapter . '</div>';
+		
+			$html .= '<div class="p">';				
+		}
+		
+		
+		
+		//echo $text;
+		
+		// "fix" text
+		$text = preg_replace($regexp_verse_num, '', $text);
+		$text = preg_replace($regexp_p, '', $text);		
+		$text = preg_replace($regexp_h, '', $text);		
+
+		$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span><span class="v ' . $vid . '" data-id="' . $vid . '">' . $text . '</span>';
+
+	}
+
+	$html .= '</div>'; // p
+	$html .= '</div>'; // section;
 	
+	return array(
+		fums_tid => 		$abs_data->response->meta->fums_tid,
+		fums_js_include => 	$abs_data->response->meta->fums_js_include,
+		fums_js => 			$abs_data->response->meta->fums_js,				
+		html => $html
+	);	
+}
+
+function get_books($version) {
+	
+	global $dbs_book_codes;
+	global $osis_book_codes;
+
+	$abs_data = get_abs_data('https://bibles.org/v2/versions/' . $version . '/books.js');
+	
+	$abs_books = $abs_data->response->books;
+	
+	$divisions = array();
+	$divisionNames = array();
+	$divisionAbbreviations = array();
+	$sections = array();
+
+	
+	foreach ($abs_books as &$abs_book) {
+		
+		$osis_index = array_search($abs_book->abbr, $osis_book_codes);
+		$dbs_book_code = $dbs_book_codes[ $osis_index ];
+		
+		
+		if ($dbs_book_code != null) {			
+			array_push($divisions, $dbs_book_code);
+			array_push($divisionNames, $abs_book->name);
+			array_push($divisionAbbreviations, $abs_book->abbr);	
+						
+			// find the last chapter
+			$osis_end = $abs_book->osis_end; // "eng-AMP:Gen.50.26
+			$osis_end_parts = explode('.', $osis_end);
+			$last_chapter = $osis_end_parts[2];
+			
+			//array_push($sections, $osis_end); // sizeof($osis_end_parts)); //  $dbs_book_code . strval($last_chapter));
+			
+			// create sections
+			for ($c=1; $c<=$last_chapter; $c++) {
+				array_push($sections, $dbs_book_code . strval($c));
+			}
+		}			
+	}
+	
+	$dbs_books = array(
+		divisions => $divisions,
+		divisionNames => $divisionNames,
+		divisionAbbreviations => $divisionAbbreviations,
+		sections => $sections
+	);	
+
+	return $dbs_books;	
 }
 
 
 function get_list() {
 	
+	// try local file first since this is super expensive!
+	$local_abs_file = 'content/texts/texts_abs.json';	
+	if (file_exists($local_abs_file)) {
+		return json_decode( file_get_contents($local_abs_file) );
+	}
+
+	// load remote data
 	$abs_data = get_abs_data('https://bibles.org/v2/versions.js');
-
-	
-	$abs_versions = $abs_data->response->versions; // ['response']['versions']; // 
-	
-	
-/*
-{
-	"id": "ara_svd",
-	"name": "Smith & Van Dyke (1895)",
-	"nameEnglish": "",
-	"abbr": "SVD",
-	"lang": "ara",
-	"langName": "العربية",
-	"langNameEnglish": "Arabic",
-	"dir": "rtl",
-	"type": "bible"
-},
-{
-	id: "aai-AAINT",
-	name: "Tur gewasin o baibasit boubun",
-	lang: "aai",
-	lang_code: "ISO 639-3",
-	contact_url: "http://www.wycliffe.org",
-	audio: "NONE",
-	copyright: "© 2009, Wycliffe Bible Translators, Inc. All rights reserved.",
-	info: "<h2>Copyright Information</h2> <p>&#169; 2009, Wycliffe Bible Translators, Inc. All rights reserved.</p> <p>This translation text is made available to you under the terms of the Creative Commons License: Attribution-Noncommercial-No Derivative Works. (<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>) In addition, you have permission to port the text to different file formats, as long as you do not change any of the text or punctuation of the Bible.</p> <p>You may share, copy, distribute, transmit, and extract portions or quotations from this work, provided that you include the above copyright information:</p> <ul> <li>You must give Attribution to the work.</li> <li>You do not sell this work for a profit.</li> <li>You do not make any derivative works that change any of the actual words or punctuation of the Scriptures.</li> </ul> <p>Permissions beyond the scope of this license may be available if you <a href="mailto:ScriptureCopyrightPermissions_Intl@Wycliffe.org">contact us</a> with your request.</p> <p> <b>The New Testament</b> <br /> in Arifama-Miniafia</p>",
-	lang_name: "Arifama-Miniafia",
-	lang_name_eng: "Arifama-Miniafia",
-	abbreviation: "AAINT",
-	updated_at: "2014-06-20T12:22:59-05:00"
-},
-
-*/	
+	$abs_versions = $abs_data->response->versions; 
+		
 	$dbs_versions = array();
 	
 	foreach ($abs_versions as &$version) {
@@ -82,11 +213,11 @@ function get_list() {
 			$abbr = $version_parts[0];
 		}
 		
+		// special case for English which we currently combine
 		$lang_name = $version->lang_name_eng;
 		$lang_name = str_replace(' (UK)', '', $lang_name);
 		$lang_name = str_replace(' (US)', '', $lang_name);		
-		
-		
+			
 		$dbs_version = array(
 			"id" => $version->id,
 			"name" => $version->name . ' [ABS]',
@@ -97,6 +228,7 @@ function get_list() {
 			"langNameEnglish" => $version->lang_name_eng,
 			"dir" => "ltr", // TODO: ?
 			"type" => "bible",
+			"absid" => $version->id,			
 			"absAudio" => $version->audio
 		);
 		
@@ -114,50 +246,23 @@ function get_abs_data($url) {
 
 	global $token;
 
-	$secure_url = str_replace('https://bibles.org','https://' . $token . ':X@bibles.org', $url ); 
+	$secure_url = str_replace('https://','https://' . $token . ':X@', $url ); 
 	$response = file_get_contents( $secure_url );
 	
 	$json = json_decode($response);
 	
 	return $json;
-	
-	/*
-	
-	$ch = curl_init();
-	
-	curl_setopt($ch, CURLOPT_URL, $url);
-	// don't verify SSL certificate
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	// Return the contents of the response as a string
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	// Follow redirects
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	// Set up authentication
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch, CURLOPT_USERPWD, $token . ':X');
-	
-	// Do the request
-	$response = curl_exec($ch);
-	curl_close($ch);	
-	
-	return $response; // 'asdfas';
-	*/
-	
 }
 
 
+if ($callback != '') {
+	echo $callback . '(';	
+}
 
-echo $callback . '(' . json_encode($results) . ')';
+echo json_encode($results);
 
-
-
-
-
-
-
-
-
-
-//echo json_encode( $output );
+if ($callback != '') {
+	echo ')';	
+}
 
 ?>

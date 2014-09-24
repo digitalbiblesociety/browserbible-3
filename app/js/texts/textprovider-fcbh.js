@@ -234,12 +234,12 @@ sofia.textproviders['fcbh'] = (function() {
 
 					//<div class="section chapter AC AC1 eng_kjv eng" dir="ltr" lang="en" data-id="AC1" data-nextid="AC2" data-previd="JN21">
 					html.push('<div class="section chapter ' + textid + ' ' + bookid + ' ' + sectionid + ' ' + iso2iana.convert(lang) + ' " ' +
-								'data-textid="' + textid + '"' +
-								'data-id="' + sectionid + '"' +
-								'data-nextid="' + nextid + '"' +
-								'data-previd="' + previd + '"' +
-								'lang="' + iso2iana.convert(lang) + '"' +
-								'data-lang3="' + lang + '"' +
+								' data-textid="' + textid + '"' +
+								' data-id="' + sectionid + '"' +
+								' data-nextid="' + nextid + '"' +
+								' data-previd="' + previd + '"' +
+								' lang="' + iso2iana.convert(lang) + '"' +
+								' data-lang3="' + lang + '"' +
 								'>');
 
 					if (chapter == '1') {

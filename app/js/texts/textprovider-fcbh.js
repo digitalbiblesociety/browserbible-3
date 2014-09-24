@@ -203,6 +203,7 @@ sofia.textproviders['fcbh'] = (function() {
 
 	function loadSection(textid, sectionid, callback) {
 
+
 		// check for complete textinfo first, since we'll need the .sections data to make this work
 		getTextInfo(textid, function(textinfo) {
 
@@ -210,6 +211,7 @@ sofia.textproviders['fcbh'] = (function() {
 				bookid = sectionid.substring(0,2),
 				chapter = sectionid.substring(2),
 				lang = textinfo.lang,
+				dir = (textinfo.dir && (textinfo.dir == 'ltr' || textinfo.dir == 'rtl')) ? textinfo.dir : data.language.isRTL(lang) ? 'rtl' : 'ltr',
 				//usfmbook = bible.BOOK_DATA[bookid].usfm.substr(0,1).toUpperCase() + bible.BOOK_DATA[bookid].usfm.substr(1).toLowerCase(),
 				usfmbook = bible.BOOK_DATA[bookid].osis,
 				dam_id = bible.OT_BOOKS.indexOf(bookid) > -1 ? textinfo.ot_dam_id : textinfo.nt_dam_id,
@@ -240,6 +242,7 @@ sofia.textproviders['fcbh'] = (function() {
 								' data-previd="' + previd + '"' +
 								' lang="' + iso2iana.convert(lang) + '"' +
 								' data-lang3="' + lang + '"' +
+								' dir="' + dir + '"' +
 								'>');
 
 					if (chapter == '1') {

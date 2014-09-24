@@ -4,6 +4,7 @@ var iso2iana = {
   // are used in Bible modules and other data we process.
   data: {
     "afr": "af",
+    "arz": "ar",
     "bul": "bg",
     "cat": "ca",
     "cym": "cy",

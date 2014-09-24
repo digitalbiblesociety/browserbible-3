@@ -645,11 +645,15 @@ var SearchWindow = function(id, parentNode, init_data) {
 			//textid = list.val(),
 			textid = textInfo.id,
 			
-			divisions = getSelectedDivisions();
+			divisions = getSelectedDivisions(),
+			
+			allDivisions = divisionChooser.find('.division-list-items input');
 
-
-		//console.log('search', textid, text, divisions); // , textInfo);
-		
+		// don't send the list if it's all books
+		if (allDivisions.length == divisions.length) {
+			divisions = [];
+		}
+				
 		clearResults();		
 		
 		topBlockTitle.html('[' + text + '] in [' + textInfo.name + ']');

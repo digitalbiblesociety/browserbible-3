@@ -16,6 +16,9 @@ sofia.textproviders['abs'] = (function() {
 		text_data_is_loaded = false,
 		text_data_is_loading = false,
 		text_data_callbacks = [],
+		
+		fums_loaded = false,
+		
 		providerName = 'abs';
 
 	function getTextManifest (callback) {
@@ -202,11 +205,25 @@ sofia.textproviders['abs'] = (function() {
 				bookname: textinfo.divisionNames[textinfo.divisions.indexOf(dbsBookCode)]			
 			},
 			success: function(data) {
-				
-				// add all the stuff the script doesn't know about
-				var chapter = $(data.html);
 			
-				callback(data.html);				
+				callback(data.html);	
+				
+				
+				if (!fums_loaded) {
+					
+					$.getScript('//' + data.fums_js_include, function() {
+						fums_loaded = true;
+						
+						eval(data.fums_js);
+											
+					});
+					
+				} else {
+				
+					eval(data.fums_js);
+					
+				}
+							
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				callback(null);
@@ -217,7 +234,78 @@ sofia.textproviders['abs'] = (function() {
 
 	function startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
+		var textinfo = getTextInfoSync(textid),
+			e = {
+				type:'complete',
+				target: this,
+				data: {
+					results: [],
+					searchIndexesData: [], // not needed for SearchWindow
+					searchTermsRegExp: SearchTools.createSearchTerms(text, false),
+					isLemmaSearch: false
+				}
+			};		
 
+		$.ajax({
+			url: sofia.config.baseContentUrl + sofia.config.absUrl,
+			dataType: 'jsonp',
+			beforeSend:  function(xhr){
+				if (xhr.overrideMimeType) {
+					xhr.overrideMimeType('application/javascript');
+				}
+			},
+			cache: false,
+			data: {
+				action: 'search',
+				version: textinfo.id,
+				text: text,
+				divisions: divisions
+			},
+			success: function(data) {
+			
+				//e.data.results = data.results;
+				
+				for (var i=0, il=data.results.length; i<il; i++) {
+					var result = data.results[i],
+						fragmentid = Object.keys(result)[0],
+						html = result[fragmentid];
+
+					e.data.results.push({
+						fragmentid: fragmentid,
+						html: html
+					});
+			
+				}				
+				
+				console.log('search complete');
+				console.log(e);
+				
+				onSearchComplete(e);				
+				
+				if (!fums_loaded) {
+					
+					$.getScript('//' + data.fums_js_include, function() {
+						fums_loaded = true;
+						
+						eval(data.fums_js);
+											
+					});
+					
+				} else {
+				
+					eval(data.fums_js);
+					
+				}
+							
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log('search error', textStatus, errorThrown);
+				onSearchComplete(null);
+			}				
+			
+		});
+
+		/*
 		$.ajax({
 			beforeSend: function(xhr){
 				if (xhr.overrideMimeType){
@@ -247,6 +335,7 @@ sofia.textproviders['abs'] = (function() {
 				callback(data);
 			}
 		});
+		*/
 	}
 
 	function highlightWords(text, searchTermsRegExp) {

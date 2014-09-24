@@ -9,7 +9,7 @@ ob_start('mb_output_handler');
 header('Content-type: application/javascript');
 
 //// START UP
-$token = '';
+$token = '1r4fbUsQxqYudLVqmljz0BVD19zbRCeUVvmnF4ZQ';
 
 $action = $_GET['action'];
 $output = $_GET['output'];
@@ -52,8 +52,97 @@ switch ($action) {
 		
 		$results = get_chapter( $_GET['version'], $_GET['sectionid'], $_GET['osis'], $_GET['chapter'], $_GET['lang'], $_GET['lang3'], $_GET['previd'], $_GET['nextid'], $_GET['bookname'] );
 		
-		break;					
+		break;
+		
+	case 'search':
+		
+		$results = get_search( $_GET['version'], $_GET['text'], $_GET['divisions'] );
+		
+		break;							
 }
+
+function dbs_code_to_osis($dbs_book_code) {
+	global $dbs_book_codes;
+	global $osis_book_codes;
+		
+	$dbs_index = array_search($dbs_book_code, $dbs_book_codes);
+	$osis_book_code = $osis_book_codes[ $dbs_index ];		
+	
+	return $osis_book_code;
+}
+
+function osis_code_to_dbs($osis_book_code) {
+	global $dbs_book_codes;
+	global $osis_book_codes;
+		
+	$osis_index = array_search($osis_book_code, $osis_book_codes);
+	$dbs_book_code = $dbs_book_codes[ $osis_index ];		
+	
+	return $dbs_book_code;
+}
+
+function get_search($version, $text, $divisions) {
+	
+	global $dbs_book_codes;
+	global $osis_book_codes;
+	
+	if ($divisions == null) {
+		$divisions = array();
+	} else  {
+		//$divisions = explode(',',$divisions);
+	}
+	
+
+	// convert DBS books to OSIS
+	$osis_books = array();
+	foreach ($divisions as &$dbs_book) {
+		array_push($osis_books, dbs_code_to_osis($dbs_book) );
+	}
+
+	$abs_url = 'https://bibles.org/v2/verses.js?limit=500&sort_order=canonical&keyword=' . $text . '&version=' . $version . '&book=' . join(',',$osis_books);
+	$abs_data = get_abs_data($abs_url);
+
+	
+	$abs_verses = $abs_data->response->search->result->verses;
+	
+	//echo json_encode($abs_data->response->search->result->verses);
+	//return null;
+	
+	$results = array();
+	
+	foreach ($abs_verses as &$abs_verse) {
+		
+		$abs_verseid = $abs_verse->id;
+		$osis_id = explode(':',$abs_verseid)[1];
+		$osis_parts = explode('.',$osis_id);
+		$osis_book_code = $osis_parts[0];
+		$dbs_book_code = osis_code_to_dbs($osis_book_code);
+		$chapter_num = $osis_parts[1];				
+		$verse_num = $osis_parts[2];		
+		$dbs_verseid = $dbs_book_code . $chapter_num . '_' . $verse_num;
+		
+		$text = $abs_verse->text;
+		
+		// remove verse numbers
+		$text = preg_replace('/<sup([^>]+)?>\d+<\/sup>/', '', $text);
+		$text = preg_replace('/<\/?p([^>]+)?>/', '', $text);
+		$text = preg_replace('/class="nd"/', 'class="nog"', $text);		
+		$text = preg_replace('/<em>([^<]+)<\/em>/', '<span class="highlight">$1</span>', $text);				
+		
+		
+		$results[] = array($dbs_verseid => $text);	
+	}
+	
+	return array(
+		abs_url => $abs_url,
+		//fums_tid => 		$abs_data->response->meta->fums_tid,
+		fums_js_include => 	$abs_data->response->meta->fums_js_include,
+		fums_js => 			$abs_data->response->meta->fums_js,				
+		results => $results
+	);	
+}
+
+
 
 function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, $previd, $nextid, $bookname) {
 	
@@ -65,7 +154,7 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, 
 	// regex for text changing
 	$regexp_verse_num = '/<sup.+<\/sup>/';
 	$regexp_p = '/<\/?p([^>]+)?>/';
-	$regexp_h = '/<h3 class="s1">([^<]+)<\/h3>/';
+	$regexp_h = '/<h3 class="s\d?">([^<]+)<\/h3>/';
 	
 	$abs_data = get_abs_data('https://bibles.org/v2/chapters/' . $version . ':' . $osis_book . '.' . $chapter . '/verses.js');
 	$abs_verses = $abs_data->response->verses;
@@ -96,7 +185,7 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, 
 				$html .= '</div>'; // close paragraph
 			}
 			
-			$html .= '<div class="s">' . $heading_matches[0] . '</div>'; 
+			$html .= '<div class="s">' . $heading_matches[1] . '</div>'; 
 			
 			if ($vnum > 1) {
 				$html .= '<div class="p">'; // reopen paragraph
@@ -126,7 +215,7 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $lang, $lang3, 
 	$html .= '</div>'; // section;
 	
 	return array(
-		fums_tid => 		$abs_data->response->meta->fums_tid,
+		//fums_tid => 		$abs_data->response->meta->fums_tid,
 		fums_js_include => 	$abs_data->response->meta->fums_js_include,
 		fums_js => 			$abs_data->response->meta->fums_js,				
 		html => $html
@@ -247,6 +336,7 @@ function get_abs_data($url) {
 	global $token;
 
 	$secure_url = str_replace('https://','https://' . $token . ':X@', $url ); 
+
 	$response = file_get_contents( $secure_url );
 	
 	$json = json_decode($response);

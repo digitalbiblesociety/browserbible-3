@@ -552,9 +552,7 @@ var TextChooser = function(container, target, text_type) {
 	function show() {
 		//$('.nav-drop-list').hide();
 
-		size();
-		
-		
+		size();		
 
 		if (!textsHaveRendered) {
 			main.addClass('loading-indicator');//.html('Loading');

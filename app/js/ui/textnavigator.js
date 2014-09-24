@@ -163,10 +163,12 @@ var TextNavigator = function(container, target) {
 				html.push('<div class="text-navigator-division-header">' + i18n.t('windows.bible.nt') + '</div>');
 				hasPrintedNt = true;
 			}
+			/*
 			if (bible.AP_BOOKS.indexOf(divisionid) > -1 && !hasPrintedAp) {
 				html.push('<div class="text-navigator-division-header">' + i18n.t('windows.bible.dc') + '</div>');
 				hasPrintedAp = true;
 			}
+			*/
 
 
 			var num_of_chapters = 0;

@@ -69,6 +69,13 @@ sofia.textproviders['abs'] = (function() {
 					}
 				
 					text_data = data.textInfoData;
+										
+					// remove versions you don't want
+					if (sofia.config.absExclusions && sofia.config.absExclusions.length > 0) {
+						text_data = text_data.filter(function(text) {
+							return sofia.config.absExclusions.indexOf(text.id) == -1;
+						});
+					}
 
 					TextLoader.processTexts(text_data, providerName);
 

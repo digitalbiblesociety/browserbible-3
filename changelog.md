@@ -1,6 +1,14 @@
 Change Log
 =======
 
+3.3.0 - 2014/09/24
+----
+
+* Implemented American Bible Society API (PHP only)
+* Fixed RTL languages in FCBH/DBP
+* Search window can be limited by book now
+
+
 3.2.7 - 2014/09/20
 ----
 

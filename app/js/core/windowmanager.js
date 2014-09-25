@@ -181,8 +181,6 @@ var Window = function(id, parentNode, className, data, manager) {
 
 	function close() {
 
-		console.log('window.close', controller.close);
-
 		if (typeof controller.close != 'undefined') {
 			controller.close();
 		}

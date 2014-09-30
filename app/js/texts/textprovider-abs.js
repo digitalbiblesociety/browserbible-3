@@ -79,10 +79,6 @@ sofia.textproviders['abs'] = (function() {
 
 					TextLoader.processTexts(text_data, providerName);
 
-					for (var i=0, il=text_data.length; i<il; i++) {
-						text_data[i].aboutHtml = createAboutHtml(text_data[i].name, text_data[i].abbr);
-					}
-
 					finish();
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
@@ -102,17 +98,6 @@ sofia.textproviders['abs'] = (function() {
 			var cb = text_data_callbacks.pop();
 			cb(text_data);
 		}
-	}
-
-	function createAboutHtml(title, version_code) {
-		return '<h1>' + title + ' (' + version_code + ')' + '</h1>' +
-				'<dl>' +
-					'<dt>Source</dt>' +
-					'<dd>This text comes from the <a href="https://bibles.org/pages/api/">BIBLESEARCH API</a> provided by <a href="http://www.americanbible.org/">American Bible Society</a></dd>' +
-
-					'<dt>API EULA</dt>' +
-					'<dd><a href="https://bibles.org/pages/legal#terms">End User License Agreement</a> for API</dd>' +
-				'</dl>';
 	}
 	
 	function getProviderid(textid) {

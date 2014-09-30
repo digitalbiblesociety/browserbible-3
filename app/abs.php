@@ -1,4 +1,12 @@
 <?php
+/* Issues
+x adding full copyright info
+x wrong number of chapters (Rev 21, 1 John 20+)
+x h3 in the middle of a verse is wrong (PRov 31:10)
+- poetry (q1, q2) in proverbs 31, etc.
+*/
+
+
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
 mb_http_input('UTF-8');
@@ -159,7 +167,7 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $l
 	// regex for text changing
 	$regexp_verse_num = '/<sup.+<\/sup>/';
 	$regexp_p = '/<\/?p([^>]+)?>/';
-	$regexp_h = '/<h3 class="s\d?">([^<]+)<\/h3>/';
+	$regexp_h = '/<h3 class="s\d?">(.*)<\/h3>/im';
 	
 	$abs_data = get_abs_data('https://bibles.org/v2/chapters/' . $version . ':' . $osis_book . '.' . $chapter . '/verses.js');
 	
@@ -189,9 +197,15 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $l
 		$text = $abs_verse->text;
 		$vnum = $abs_verse->verse;
 		$vid = $sectionid . '_' . $vnum;
+		$heading_matches = null;
+		
+		
+		// remove line breaks
+		$text = preg_replace("/[\n\r]/","",$text);
 		
 		// check for title
 		if (preg_match($regexp_h, $text, $heading_matches)) {
+					
 			if ($vnum > 1) {
 				$html .= '</div>'; // close paragraph
 			}
@@ -200,7 +214,7 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $l
 			
 			if ($vnum > 1) {
 				$html .= '<div class="p">'; // reopen paragraph
-			}			
+			}
 		}
 
 		if ($vnum == 1) {
@@ -218,12 +232,14 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $l
 		$text = preg_replace($regexp_p, '', $text);		
 		$text = preg_replace($regexp_h, '', $text);		
 
-		$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span><span class="v ' . $vid . '" data-id="' . $vid . '">' . $text . '</span>';
+		$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span><span class="v ' . $vid . '" data-id="' . $vid . '">' . $text . '</span> ';
 
 	}
 
 	$html .= '</div>'; // p
 	$html .= '</div>'; // section;
+	
+	//return;
 	
 	return array(
 		//fums_tid => 		$abs_data->response->meta->fums_tid,
@@ -238,6 +254,25 @@ function get_books($version) {
 	global $dbs_book_codes;
 	global $osis_book_codes;
 
+	
+	/* copyright info */
+	
+	$abs_version_data = get_abs_data('https://bibles.org/v2/versions/' . $version . '.js');
+	$abs_version = $abs_version_data->response->versions[0];
+	
+	$aboutHtml = '<h1>' . $abs_version->name . ' (' . $abs_version->abbreviation . ')' . '</h1>' .	
+					'<dl>' .
+					'<dt>Copyright</dt>' .
+					'<dd>' . $abs_version->copyright . '</dd>' .
+					'<dt>Info</dt>' .
+					'<dd>' . $text = preg_replace('/<h\d>(.*)<\/h\d>/', '', $abs_version->info)	 . '</dd>' .
+					'<dt>Source</dt>' .
+					'<dd>This text comes from the <a href="https://bibles.org/pages/api/">BIBLESEARCH API</a> provided by <a href="http://www.americanbible.org/">American Bible Society</a></dd>' .
+
+					'<dt>API EULA</dt>' .
+					'<dd><a href="https://bibles.org/pages/legal#terms">End User License Agreement</a> for API</dd>' .
+				'</dl>';
+				
 	$abs_data = get_abs_data('https://bibles.org/v2/versions/' . $version . '/books.js');
 	
 	if ($abs_data == null) {
@@ -250,6 +285,7 @@ function get_books($version) {
 	$divisionNames = array();
 	$divisionAbbreviations = array();
 	$sections = array();
+	//$chapters = array();
 
 	
 	foreach ($abs_books as &$abs_book) {
@@ -264,7 +300,9 @@ function get_books($version) {
 			// find the last chapter
 			$osis_end = $abs_book->osis_end; // "eng-AMP:Gen.50.26
 			$osis_end_parts = explode('.', $osis_end);
-			$last_chapter = $osis_end_parts[2];
+			$last_chapter = $osis_end_parts[1];
+			
+			//array_push($chapters, $last_chapter);
 			
 			//array_push($sections, $osis_end); // sizeof($osis_end_parts)); //  $dbs_book_code . strval($last_chapter));
 			
@@ -276,10 +314,12 @@ function get_books($version) {
 	}
 	
 	$dbs_books = array(
+		aboutHtml => $aboutHtml,
 		divisions => $divisions,
 		divisionNames => $divisionNames,
 		divisionAbbreviations => $divisionAbbreviations,
-		sections => $sections
+		sections => $sections 
+		//chapters => $chapters
 	);	
 
 	return $dbs_books;	

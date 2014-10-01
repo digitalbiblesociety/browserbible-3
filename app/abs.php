@@ -1,12 +1,4 @@
 <?php
-/* Issues
-x adding full copyright info
-x wrong number of chapters (Rev 21, 1 John 20+)
-x h3 in the middle of a verse is wrong (PRov 31:10)
-- poetry (q1, q2) in proverbs 31, etc.
-*/
-
-
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
 mb_http_input('UTF-8');
@@ -192,6 +184,8 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $l
 	}
 	
 	
+	$paragraph_is_open = false;
+	
 		
 	foreach ($abs_verses as &$abs_verse) {
 		$text = $abs_verse->text;
@@ -201,45 +195,91 @@ function get_chapter($version, $sectionid, $osis_book, $chapter, $dir, $lang, $l
 		
 		
 		// remove line breaks
-		$text = preg_replace("/[\n\r]/","",$text);
+		$text = preg_replace("/[\n\r]/"," ",$text);
 		
 		// check for title
 		if (preg_match($regexp_h, $text, $heading_matches)) {
 					
-			if ($vnum > 1) {
+			if ($paragraph_is_open) {
 				$html .= '</div>'; // close paragraph
+				
+				$paragraph_is_open = false;
 			}
 			
-			$html .= '<div class="s">' . $heading_matches[1] . '</div>'; 
-			
-			if ($vnum > 1) {
-				$html .= '<div class="p">'; // reopen paragraph
-			}
+			$html .= '<div class="s">' . $heading_matches[1] . '</div>'; 		
 		}
 
 		if ($vnum == 1) {
 			$html .= '<div class="c">' . $chapter . '</div>';
-		
-			$html .= '<div class="p">';				
 		}
-		
-		
-		
-		//echo $text;
-		
+
 		// "fix" text
 		$text = preg_replace($regexp_verse_num, '', $text);
-		$text = preg_replace($regexp_p, '', $text);		
-		$text = preg_replace($regexp_h, '', $text);		
+		$text = preg_replace($regexp_h, '', $text);
+		$text = preg_replace('/<p class="b"><\/p>/im', '', $text);			
+		
 
-		$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span><span class="v ' . $vid . '" data-id="' . $vid . '">' . $text . '</span> ';
-
+		if (preg_match_all('/<p class="([a-z0-9]+)">(.*?)<\/p>/i', $text, $paragraph_matches)) {
+		
+			$has_printed_verse = false;	
+			
+			for ($x=0; $x<sizeof($paragraph_matches[0]); $x++) {
+				
+			
+				$p_type = $paragraph_matches[1][$x];
+				$p_text = $paragraph_matches[2][$x];
+				
+									
+				if ($p_type == 'p') {
+					
+					if (!$paragraph_is_open) {
+						$html .= '<div class="p">';	
+						$paragraph_is_open = true;			
+					}					
+					
+					if (!$has_printed_verse) {
+						$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span>';
+						$has_printed_verse = true;
+					}					
+					
+					
+					$html .= '<span class="v ' . $vid . '" data-id="' . $vid . '">' . $p_text . '</span> ';
+					
+				} else {
+					
+					if ($paragraph_is_open) {
+						$html .= '</div>';	
+						$paragraph_is_open = false;			
+					}
+					
+					$html .= '<div class="' . $p_type . '">';
+						
+					if (!$has_printed_verse) {
+						$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span>';
+						$has_printed_verse = true;
+					}
+					
+					$html .= '<span class="v ' . $vid . '" data-id="' . $vid . '">' . $p_text . '</span> ';
+					$html .= '</div>';					
+				}				
+			}			
+		
+		} else {
+		
+			if (!$paragraph_is_open) {
+				$html .= '<div class="p nomatch">';	
+				$paragraph_is_open = true;			
+			}					
+			
+			$html .= '<span class="v-num v-' . $vnum . '">' . $vnum . '&nbsp;</span><span class="v ' . $vid . '" data-id="' . $vid . '">' . $text . '</span> ';
+			
+		}
 	}
 
-	$html .= '</div>'; // p
+	if ($paragraph_is_open) {
+		$html .= '</div>'; // p
+	}
 	$html .= '</div>'; // section;
-	
-	//return;
 	
 	return array(
 		//fums_tid => 		$abs_data->response->meta->fums_tid,

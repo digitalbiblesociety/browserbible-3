@@ -1,6 +1,11 @@
 Change Log
 =======
 
+3.3.1 - 2014/09/24
+----
+
+* Minor ABS fixes for paragraph styles and copyright
+
 3.3.0 - 2014/09/24
 ----
 

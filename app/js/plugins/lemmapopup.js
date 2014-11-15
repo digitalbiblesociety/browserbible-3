@@ -87,15 +87,33 @@ var LemmaPopupPlugin = function(app) {
 		}
 
 
-		// check for Hebrew
-		if (bible.OT_BOOKS.indexOf(book_id) > -1) {
-			langPrefix = 'H';
-			langCode = 'he';
-			dir = 'rtl';
-			morphType = 'Hebrew';
+		// check for language (greek or hebrew, noting LXX is greek)
+		var sectionLang = l.closest('.section').attr('lang');
+		
+		if (sectionLang == 'el' || 
+			sectionLang == 'gr' || 
+			sectionLang == 'grc' || 
+			sectionLang == 'grk' || 
+			sectionLang == 'el' || 
+			bible.NT_BOOKS.indexOf(book_id) > -1 ||
+			bible.AP_BOOKS.indexOf(book_id) > -1
+			) {
+				langPrefix = 'G';
+				langCode = 'el';
+				dir = 'ltr';
+				morphType = 'Greek';				
+				
+		} else if (
+			sectionLang == 'he' || 
+			sectionLang == 'heb' || 			
+			bible.OT_BOOKS.indexOf(book_id) > -1){
+				langPrefix = 'H';
+				langCode = 'he';
+				dir = 'rtl';
+				morphType = 'Hebrew';			
+			
 		}
-
-
+		
 		// remove G3588 and H853 (the) when there is more than two
 		if (strongs.length > 0) {
 			var articleIndex = -1;
@@ -145,7 +163,8 @@ var LemmaPopupPlugin = function(app) {
 
 							var html = '<div class="lemma-word">' +
 											'<span lang="' + iso2iana.convert(langCode) + '" dir="' + dir + '">' + data.lemma + '</span>' +
-											'  <span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' +
+											' ' + 
+											'<span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' +
 										'</div>';
 
 

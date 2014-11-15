@@ -67,7 +67,7 @@ TextSearch = function() {
 		isSearching = true;
 
 		// store variables
-		searchText = text;
+		searchText = text.trim();
 		searchTextid = textid;
 		searchDivisions = divisions;
 		textInfo = TextLoader.getText(searchTextid);

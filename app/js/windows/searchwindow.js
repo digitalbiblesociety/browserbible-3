@@ -641,7 +641,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		textInfo = textChooser.getTextInfo();
 
-		var text = input.val(),
+		var text = input.val().trim(),
 			//textid = list.val(),
 			textid = textInfo.id,
 			
@@ -828,7 +828,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 								[] : getSelectedDivisions();
 
 			return {
-				searchtext: input.val(),
+				searchtext: input.val().trim(),
 				textid: (selectedTextInfo != null) ? selectedTextInfo.providerid : null,
 				divisions: divisions,
 				params: {

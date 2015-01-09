@@ -1,6 +1,18 @@
 Change Log
 =======
 
+3.3.3 - 2015/01/08
+----
+
+* Fixed audio controller not visible on Android Chrome
+
+
+3.3.2 - 2014/10/01
+----
+
+* Some LXX work
+
+
 3.3.1 - 2014/09/24
 ----
 

@@ -1,9 +1,11 @@
 
-var TextComparisonWindow = function(id, parentNode, data) {
+var TextComparisonWindow = function(id, parentNode, init_data) {
+	
+	console.log('text comparisino', init_data );
 
 
 	var header = $('<div class="window-header" >' +						
-						'<input type="text" class="app-input comparison-fragmentid" value="John 1:1-8" />' +  
+						'<input type="text" class="app-input comparison-fragmentid" value="" />' +  
 						'<input type="text" class="app-input comparison-texts" value="NASB, NET, WEB" />' +  
 						'<input type="button" value="GO" data-i18n="[value]windows.comparison.button" class="comparison-button header-button i18n" />' +
 					'</div>').appendTo(parentNode),
@@ -17,20 +19,29 @@ var TextComparisonWindow = function(id, parentNode, data) {
 		goButton = header.find('.comparison-button');				
 				
 
-	inputFragment.on('keydown', function(e) {
-		if (e.which == 13) {
-			doComparison();
-		}	
-	})
-			
+	inputFragment.on('keydown', handleEnter);
+	inputTexts.on('keydown', handleEnter);
 
 	goButton.on('click', function() {
 		console.log('clicked');
 		doComparison();
 	});
+
+
+	function init() {
+		
+		inputFragment.val( init_data.fragmentid );
+		inputTexts.val( init_data.textids );	
+		
+		doComparison();	
+		
+	}
 	
-	
-	
+	function handleEnter(e) {
+		if (e.which == 13) {
+			doComparison();
+		}	
+	}	
 
 	function doComparison() {
 		var reference = new bible.Reference(inputFragment.val());
@@ -41,10 +52,11 @@ var TextComparisonWindow = function(id, parentNode, data) {
 		
 		inputFragment.val( reference.toString() );
 		
-		var	sectionid = reference.toSection().split('_')[0]; // 'JN1';		
-		var textAbbrs = inputTexts.val().split(',');
-		var textids = [];
-		
+		var	sectionid = reference.toSection().split('_')[0], // 'JN1';		
+			textAbbrs = inputTexts.val().split(','),
+			textids = [],
+			textIndex = -1,
+			textData = [];		
 		
 		for (var i=0, il=textAbbrs.length; i<il; i++ ) {
 			var abbr = textAbbrs[i].trim().toLowerCase();
@@ -55,27 +67,14 @@ var TextComparisonWindow = function(id, parentNode, data) {
 					
 					return t.id.toLowerCase().indexOf(abbr) > -1;
 				});
-				
-				console.log(abbr, possibleTexts);
-				
+			
 				if (possibleTexts.length > 0) {
 					textids.push(possibleTexts[0].id);
 				}	
 			}		
 		}
 		
-		console.log(textids);
-		
-		
-		
 		//var textids = ['eng-NASB1995', 'eng_net', 'eng_web']; // , 'esv'];
-		
-		var
-			//textids = ['cht_cuv','cht_ncv'],
-			textIndex = -1,
-			textData = [];
-			
-				
 			
 		function getNextText() {			
 			
@@ -112,7 +111,7 @@ var TextComparisonWindow = function(id, parentNode, data) {
 		
 		function processData() {
 		
-			var html = '<table class="comparison-table">';
+			var html = '<table class="comparison-table section">'; // using 'section' to get fonts and such
 
 			// heading
 			html += '<thead>';
@@ -125,7 +124,7 @@ var TextComparisonWindow = function(id, parentNode, data) {
 			html += '<tbody>';						
 			
 			var startVerse = reference.verse1 > 0 ? reference.verse1 : 1,
-				endVerse = reference.verse2 > 0 ? reference.verse2 : startVerse;
+				endVerse = reference.verse2 > 0 ? reference.verse2 : bible.BOOK_DATA[ reference.bookid ].chapters.length;
 			
 			for (var verse=startVerse; verse<=endVerse; verse++) {
 				
@@ -144,10 +143,12 @@ var TextComparisonWindow = function(id, parentNode, data) {
 					var comparisonText = getPlainText(textData[i].content, verseid);
 					
 					html += '<td style="width:' + (100/textData.length) + '%">' + 
-								diffString(
-									baseText.replace(/([\.,;])/gi,' $1')
-									, 
-									comparisonText.replace(/([\.,;])/gi,' $1')
+								rejoinPunctuation(
+									diffString(
+										separatePunctuation(baseText)
+										, 
+										separatePunctuation(comparisonText)
+									)
 								) +
 							'</td>';
 						
@@ -166,6 +167,28 @@ var TextComparisonWindow = function(id, parentNode, data) {
 			
 			main.html(html);
 			
+			// trigger settings change
+			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
+		}
+		
+		function separatePunctuation(input) {
+			
+			return input.replace(/([\.,;])/gi,' $1'); // “”
+		}
+
+		function rejoinPunctuation(input) {
+
+			// fix HTML
+			input = input.replace(/\s+<\/([^>]+)>/gi,'</$1> ');		
+			
+			// connect
+			input = input.replace(/<\/ins>\s+<ins>/gi,' ');
+			input = input.replace(/<\/del>\s+<del>/gi,' ');		
+			
+			// fix punctuation
+			input = input.replace(/\s+([\.,;])/gi,'$1'); 	// “”				
+			
+			return input;
 		}
 		
 		
@@ -208,8 +231,8 @@ var TextComparisonWindow = function(id, parentNode, data) {
 			data = {
 				params: {
 					win: 'comparison',
-					textids: [],
-					fragmentid: ''
+					textids: inputTexts.val(),
+					fragmentid: inputFragment.val()
 				}
 			};
 
@@ -235,6 +258,8 @@ var TextComparisonWindow = function(id, parentNode, data) {
 	ext.on('message', function(e) {
 		// nothing for now
 	});
+	
+	init();
 
 	return ext;
 };
@@ -245,10 +270,12 @@ sofia.initMethods.push(function() {
 		className:'TextComparisonWindow',
 		param: 'comparison',
 		paramKeys: {
+			'textids': 't',
+			'fragmentid': 'f'			
 		},
 		init: {
-			textids: [],
-			fragmentid: ''			
+			textids: 'WEB, ASV', 
+			fragmentid: 'John 1:1-8'			
 		}
 	});
 });

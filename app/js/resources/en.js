@@ -81,6 +81,9 @@ sofia.resources['en'] = {
 				"autoplay": "Autoplay Next",
 				"drama": "Dramatized",
 				"nondrama": "Spoken"
+			},
+			"comparison": {
+				"label": "Comparison"				
 			}
 		},
 		"names": {

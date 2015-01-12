@@ -28,6 +28,12 @@ TextLoader = (function() {
 
 		if (textInfo != null && typeof textInfo == 'string') {
 			textid = textInfo;
+			
+			getText(textid, function(textInfo) {				
+				loadSection(textInfo, sectionid, successCallback, errorCallback);				
+			});
+			return;
+			
 		} else {
 			textid = textInfo.id;
 
@@ -244,6 +250,10 @@ TextLoader = (function() {
 		sofia.textproviders[providerName].startSearch(textid, divisions, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete);
 
 	}
+	
+	function getTextInfoData() {
+		return textInfoData;
+	}
 
 	// when the document is ready, start loading texts from providers
 	$(function() {
@@ -254,6 +264,7 @@ TextLoader = (function() {
 		getText: getText,
 		loadTexts: loadTexts,
 		textData: textData,
+		getTextInfoData: getTextInfoData,
 		loadSection: loadSection,
 		startSearch: startSearch,
 		processTexts: processTexts,

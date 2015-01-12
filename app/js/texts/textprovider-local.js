@@ -43,6 +43,7 @@ sofia.textproviders['local'] = (function() {
 
 		if (typeof textData[textid] != 'undefined') {
 			callback(textData[textid]);
+			return;
 		}
 
 		// load it!

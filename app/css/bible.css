@@ -13,6 +13,7 @@
 .section div.p,
 .chapter div.p {
 	text-indent: 1em;
+	margin: 0;
 }
 
 .section ins {

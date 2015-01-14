@@ -99,6 +99,7 @@ input:focus {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	height: 30px;
+	border-radius: 0;
 }
 
 .app-input:hover,

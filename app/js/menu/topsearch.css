@@ -16,6 +16,7 @@
 	border: solid 1px #ccc;
 	vertical-align: middle;
 	-webkit-appearance: none;
+	border-radius: 0;
 }
 
 #main-search-input:focus {
@@ -31,6 +32,8 @@
 	border-width: 1px 1px 1px 0;
 	border: 0;
 	background: #2a85e8 url(../../css/images/search-button.svg) center center no-repeat;
+	-webkit-appearance: none;
+	border-radius: 0;
 }
 
 @media only screen and (max-width:460px) {

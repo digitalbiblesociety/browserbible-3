@@ -3,7 +3,12 @@
 .chapter {
 	line-height: 1.8;
 }
-
+@media (max-width: 480px) {
+	.section,
+	.chapter {
+		line-height: 1.5;
+	}	
+}
 .section p,
 .section div.p,
 .chapter div.p {

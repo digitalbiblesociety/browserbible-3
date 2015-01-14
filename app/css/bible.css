@@ -59,6 +59,23 @@
 	text-decoration: none;
 }
 
+.note  +.note,
+.note + .cf,
+.cf + .note,
+.cf + .cf {
+	padding-left: 0.20em;
+}
+@media (max-width: 480px) {
+
+	.note  +.note,
+	.note + .cf,
+	.cf + .note,
+	.cf + .cf {
+		padding-left: 0.50em;
+	}	
+	
+}
+
 .chapter .note .key:hover,
 .chapter .cf.key:hover {
 	color: #fff;

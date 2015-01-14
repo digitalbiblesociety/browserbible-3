@@ -11,9 +11,9 @@ var ParallelsWindow = function(id, node, init_data) {
 				'<div class="window-header parallels-header">'+
 					'<div class="scroller-header-inner">'+
 						'<div class="parallel-list">' +
-							'<select class="header-list"></select>' +
+							'<select class="header-list app-list"></select>' +
 						'</div>' +
-						'<div class="header-list text-list"></div>'+
+						'<div class="header-list app-list text-list"></div>'+
 						//'<div class="header-list parallels-list"></div>'+
 					'</div>'+
 				'</div>'+

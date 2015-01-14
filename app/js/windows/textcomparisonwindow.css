@@ -1,3 +1,7 @@
+#add-TextComparisonWindow {
+	background-image: url(../../css/images/comparison.svg);
+}
+
 .comparison-main {
 	overflow: auto;
 }

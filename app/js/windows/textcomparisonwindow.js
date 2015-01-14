@@ -44,6 +44,11 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 	}	
 
 	function doComparison() {
+		
+		main.html();
+		main.addClass('loading-indicator');
+		
+		
 		var reference = new bible.Reference(inputFragment.val());
 		
 		if (typeof reference.toSection == 'undefined') {
@@ -110,6 +115,15 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 		getNextText();	
 		
 		function processData() {
+			
+			if (textData.length <= 1) {
+				
+				main.removeClass('loading-indicator');
+				
+				return;
+				
+			}
+			
 		
 			var html = '<table class="comparison-table section">'; // using 'section' to get fonts and such
 
@@ -124,7 +138,7 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 			html += '<tbody>';						
 			
 			var startVerse = reference.verse1 > 0 ? reference.verse1 : 1,
-				endVerse = reference.verse2 > 0 ? reference.verse2 : bible.BOOK_DATA[ reference.bookid ].chapters.length;
+				endVerse = reference.verse2 > 0 ? reference.verse2 : bible.BOOK_DATA[ reference.bookid ].chapters[reference.chapter];
 			
 			for (var verse=startVerse; verse<=endVerse; verse++) {
 				
@@ -167,13 +181,15 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 			
 			main.html(html);
 			
+			main.removeClass('loading-indicator');			
+			
 			// trigger settings change
 			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
 		}
 		
 		function separatePunctuation(input) {
 			
-			return input.replace(/([\.,;])/gi,' $1'); // “”
+			return input.replace(/([\.,;])/gi,' $1'); // “”‘’
 		}
 
 		function rejoinPunctuation(input) {

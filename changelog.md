@@ -1,6 +1,14 @@
 Change Log
 =======
 
+
+3.3.4 - 2015/01/XXX
+----
+
+* Added space between footnotes when two are next to one another
+* Fix: Firefox hiding config window when clicking on copy URL to clipboard (Flash)
+
+
 3.3.3 - 2015/01/08
 ----
 

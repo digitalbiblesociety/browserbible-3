@@ -42,6 +42,11 @@ TextLoader = (function() {
 				sectionid = textInfo.sections[0];
 			}
 		}
+		
+		// send analytics for loading
+		if (sofia.analytics && sofia.analytics.record) {
+			sofia.analytics.record('load', textInfo.id, sectionid);
+		}
 
 		// use stored text if present
 		if (typeof cachedTexts[textid] == 'undefined') {

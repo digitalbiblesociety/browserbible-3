@@ -32,7 +32,9 @@ var ConfigButton = function(node) {
 
 	function docClick(e) {
 
-		if ($(e.target).closest('#main-config-box').length == 0) {
+		// check for user clicking off, or 
+		// for user clicking FLASH (copy/paste)
+		if ($(e.target).closest('#main-config-box').length == 0 && e.target.nodeName != 'EMBED') {
 			configMenu.hide();
 			$(document).off('click', docClick);
 		}

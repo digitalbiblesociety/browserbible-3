@@ -71,6 +71,37 @@ input:focus {
 	border-right: solid 1px #eee;
 }
 
+.window-tab {
+	
+	display: none;
+	
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	width: 60px;
+	height: 20px;
+	background: transparent;
+	border-style: solid;
+	border-color: transparent transparent #ccc transparent;
+	border-width: 0 10px 20px 10px;
+	z-index: 1;	
+}
+.window-tab.active { 
+	border-color: transparent transparent #f8f8f8 transparent;
+	z-index: 2;
+}
+.window-tab-label {
+	position: absolute;
+	display: block;
+	background-size: 18px 18px;
+	background-repeat: no-repeat;
+	
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 50px;
+}
+
 .window .window-header {
 	margin: 0;
 	padding: 10px;
@@ -172,35 +203,73 @@ input:focus {
 }
 
 @media only screen and (max-width:460px) {
-	.windows-main .window {
-		display: none;
-	}
-
-	.windows-main .window:first-child {
+	.window-tab {
 		display: block;
 	}
-
-	/* .one-window */ .window .window-header .app-input {
+	
+	
+	.windows-main .window {
+		float: none;		
+		display: block;
+		z-index: 1;	
+		position: absolute;
+		top: 40px;			
+	}
+	.windows-main .window.active {
+		z-index: 2;
+	}	
+	.window .window-header .app-input {
 		width: 120px;
 		min-width: 120px;
-		border: 0;
-		background: none;
+		padding: 5px;
+		height: 25px;
+
 	}
 
-	/* .one-window */  .window .window-header .app-list {
-		float: right;
-		border: 0;
-		background-color: transparent;
+	.window .window-header .app-list {
+		padding: 5px  20px 5px 5px;
+		height: 25px;
 	}
 
-	/* .one-window */ .window .window-header {
+	.window .window-header {
 		height: 40px;
-		padding: 6px;
+		padding: 7px;
 	}
-	
-	 .window .close-button {
-	 	display: none;
+	.window .close-button {
+		top: 10px; 	
+	}
+	 
+	 /*		 
+	 .window .window-header {
+		 padding-left: 50px;
 	 }
+	 */
+	 
+	 .windows-header {
+		 height: 40px;
+	 }
+	 
+	 .header-icon {
+		 margin-top: 1px;
+	 }
+	 
+	 
+	/* for single app, no need for tabs */
+	 .one-window .window-tab {
+		 display: none;
+	 } 
+	 .one-window .windows-header { 
+		 height: 0;
+     }
+	 .one-window .window-header {
+		 padding-left: 50px;		 
+	 }
+	 .one-window .windows-main .window {
+		top: 0;	 
+     }
+     .one-window .window .close-button {
+		display: none; 	
+	}
 }
 
 .window .window-main {

@@ -1,8 +1,8 @@
 #main-search-box {
 	position: absolute;
 	top: 18px;
-	left: 100px;
-	width: 250px;
+	right: 20px;
+	
 	height: 26px;
 	font-size: 15px;
 	padding: 0;

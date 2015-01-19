@@ -1,5 +1,5 @@
 
-var WindowManager = function(node) {
+var WindowManager = function(node, app) {
 
 	var windows = [];
 
@@ -19,6 +19,8 @@ var WindowManager = function(node) {
 		// create window and add to array
 		var win = new Window(id, node, className, data, ext);
 		windows.push(win);
+		
+		win.tab.css({left: (windows.length * 50) +'px'});
 
 		// when a window reports a settings change
 		win.on('settingschange', function(e) {
@@ -29,7 +31,10 @@ var WindowManager = function(node) {
 
 		win.on('globalmessage', sofia.app.handleGlobalMessage);
 
-		size();
+		//size();
+		setTimeout(function() {
+			app.resize();		
+		},10);
 	}
 	function removeWindow(id) {
 
@@ -55,11 +60,23 @@ var WindowManager = function(node) {
 		// remove from DOM, run delete functions
 		windowToClose.close();
 		windowToClose = null;
-
+	
 		// resize and reset
-		size();
+		//size();
 		PlaceKeeper.restorePlace();
-
+		
+		for (var i=0,il=windows.length; i<il; i++) {
+			windows[i].tab.css({left: ((i+1) * 50) +'px'});
+		}
+		
+		windows[0].tab.addClass('active');
+		windows[0].node.addClass('active');		
+		
+		setTimeout(function() {
+			app.resize();		
+		},10);
+		
+		
 		// trigger save
 		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
 	}
@@ -79,11 +96,20 @@ var WindowManager = function(node) {
 		if (windows.length > 0) {
 
 			if (width < 460) {
-
-				windows[0].size(width, height);
+				
+				$('body').addClass('small-mode');
+								
+				// resize all windows to the same
+				for (var i=0, il=windows.length; i<il; i++) {
+					windows[i].size(width, height);					
+				}
 
 			} else {
 
+				$('body').removeClass('small-mode');
+
+				// all windows to a percent of the width
+				
 				var windowWidth = Math.floor(width/windows.length),
 					firstMarginLeft = parseInt(windows[0].node.css('margin-left'), 10),
 					firstMarginRight =parseInt(windows[0].node.css('margin-right'), 10);
@@ -100,12 +126,6 @@ var WindowManager = function(node) {
 					windows[i].size(windowWidth, height);
 				}
 			}
-		}
-
-		if (windows.length == 1) {
-			$('body').addClass('one-window')
-		} else {
-			$('body').removeClass('one-window')
 		}
 	}
 
@@ -137,7 +157,7 @@ var WindowManager = function(node) {
 
 var Window = function(id, parentNode, className, data, manager) {
 
-	var node = $('<div class="window ' + className + '"></div>')
+	var node = $('<div class="window ' + className + ' active"></div>')
 					.appendTo(parentNode),
 		closeBtn = $('<span class="close-button"></span>')
 					.appendTo(node)
@@ -146,7 +166,13 @@ var Window = function(id, parentNode, className, data, manager) {
 
 
 						manager.remove(id);
-					});
+					}),
+		tab = $('<div class="window-tab ' + className + ' active"><span class="window-tab-label ' + className + '-tab"></span></div>')
+					.appendTo( $('body') );
+					
+	// make sure this one is selected
+	node.siblings('.window').removeClass('active');
+	tab.siblings('.window-tab').removeClass('active');	
 
 	var controller = new window[className](id, node, data);
 
@@ -167,6 +193,15 @@ var Window = function(id, parentNode, className, data, manager) {
 	node.on('mouseleave', function(e) {
 		controller.trigger('blur', {});
 	});
+	
+	tab.on('click', function(e) {
+		// dectivate all other tabs and windows
+		$('.window, .window-tab').removeClass('active');
+
+		tab.addClass('active');
+		node.addClass('active');		
+	});	
+	
 
 	function size(width, height) {
 		node.outerWidth(width)
@@ -188,6 +223,7 @@ var Window = function(id, parentNode, className, data, manager) {
 
 		ext.clearListeners();
 
+		tab.remove();
 		node.remove();
 	}
 
@@ -201,6 +237,7 @@ var Window = function(id, parentNode, className, data, manager) {
 		},
 		controller: controller,
 		node: node,
+		tab: tab,
 		close: close
 	};
 	ext = $.extend(true, ext, EventEmitter);

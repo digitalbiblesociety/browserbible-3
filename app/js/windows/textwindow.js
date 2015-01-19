@@ -454,7 +454,10 @@ var TextWindow = function(id, node, init_data, text_type) {
 
 	var iconsAreNormal = true;
 	function moveIcons() {
-
+		
+		// 2014-01-14 - maybe no longer do this
+		return;
+		
 		var winWidth = $(window).width();
 
 		if (winWidth < 460 && iconsAreNormal) {

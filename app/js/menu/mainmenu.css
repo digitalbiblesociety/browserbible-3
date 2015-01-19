@@ -1,10 +1,75 @@
-.main-menu-button {
+#main-menu-button {
 	cursor: pointer;
-	width: 30px;
-	height: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60px;
+	height: 60px;
+	background-size: 40px 22px;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-size: 30px 30px;
-	float: right;
-	margin: 15px 5px;
+	z-index: 51;
+	border: solid 1px transparent;
+	-x-border-width: 1px 1px 0 1px;
+}
+#main-menu-button.active {
+	background-color: #666;
+	-x-border-color: #ccc;
+}
+
+#main-menu-dropdown {
+	width: 300px;
+	height: 350px;
+	position: absolute;
+	z-index: 50;
+	background: #fff;	
+	top: 59px;
+	left: 0px;
+	-x-border: solid 1px #ccc;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);	
+}
+
+.main-menu-heading {
+	padding: 5px;
+	background: #666;
+	color: #fff;
+	font-size: 0.8em;
+	border-bottom: 1px solid #666;
+}
+
+.main-menu-list {
+	overflow: hidden;
+}
+
+
+.main-menu-item {
+	cursor: pointer;
+	margin: 0;
+	padding: 8px 5px 8px 35px;
+	text-align: left;
+	background-size: 25px 25px;
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	font-family: Avenir, Helvetica, Arial;
+	font-size: 12px;
+	float: left;
+	width: 150px;
+}
+
+.main-menu-item:hover {
+	-x-color: #0071ff;
+	background-color: #ddd;
+}
+
+
+@media (max-width: 480px) {
+	#main-menu-button {
+		height: 40px;
+		width: 40px;
+		background-size: 35px 18px;	
+	}
+	
+	#main-menu-dropdown {
+		top: 40px;
+	}
 }

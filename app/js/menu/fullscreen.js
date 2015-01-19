@@ -2,8 +2,8 @@ var FullScreenButton = function(node) {
 
 	var
 		el = document.body,
-		fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-button"></div>')
-			.appendTo(node)
+		fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-item">Fullscreen</div>')
+			.appendTo( $('#main-menu-features') )
 			.on('click', toggleFullscreen),
 
 		isFullscreen = false;

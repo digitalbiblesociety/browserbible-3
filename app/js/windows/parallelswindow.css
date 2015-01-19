@@ -6,6 +6,7 @@
 .parallels-main {
 	padding: 15px;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 .parallels-main table {

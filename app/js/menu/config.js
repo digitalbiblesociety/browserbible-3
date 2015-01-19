@@ -1,11 +1,7 @@
 
 var ConfigButton = function(node) {
-	var configButton = $('<div id="main-config-button" class="main-menu-button image-config" style=""></div>')
-					.appendTo(node)
-					.on('click', buttonClick),
-
-		mobileConfigButton = $('<div id="mobile-config-button" class="mobile-menu-button image-logo" style=""></div>')
-					.appendTo( $('body'))
+	var configButton = $('<div class="main-menu-item image-config" style="">Settings</div>')
+					.appendTo( $('#main-menu-features') )
 					.on('click', buttonClick),
 
 		configMenu = $('<div id="main-config-box" class="window-overlay">' +
@@ -51,8 +47,12 @@ var ConfigButton = function(node) {
 		} else {
 
 			$('.window-overlay').hide();
-
+			
+			$('#main-menu-dropdown').hide();
+			
 			configMenu.show();
+			
+			configMenu.css({left: $(window).width()/2 - configMenu.width()/2});
 
 			$(document).on('click', docClick);
 		}

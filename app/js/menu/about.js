@@ -1,12 +1,13 @@
 
-var MainLogo = function(node) {
+var AboutScreen = function(node) {
 	var
 		container = $('.windows-container'),
 		body = $(document.body),
 		win = $(window),
-		logo = $('<div id="app-logo" class="image-logo"></div>')
-					.appendTo(node)
-					.on('click', logoClick),
+		
+		aboutButton = $('<div class="main-menu-item about-logo">About</div>')
+					.appendTo( $('#main-menu-features') )
+					.on('click', aboutClick),
 
 		modalOverlay = $('<div class="modal-overlay"></div>')
 							.appendTo( body )
@@ -23,17 +24,19 @@ var MainLogo = function(node) {
 		container.removeClass('blur');
 	});
 
-	function logoClick() {
+	function aboutClick() {
 		if (aboutWindow.container.is(':visible')) {
 			aboutWindow.hide();
 			modalOverlay.hide();
 			container.removeClass('blur');
 		} else {
 
+			$('#main-menu-dropdown').hide();
+
 			var winWidth = win.width(),
 				winHeight = win.height();
 
-
+			
 			container.addClass('blur');
 
 			aboutWindow
@@ -120,6 +123,6 @@ var MainLogo = function(node) {
 		}
 	}
 
-	return logo;
+	return aboutButton;
 };
-sofia.menuComponents.push('MainLogo');
+sofia.menuComponents.push('AboutScreen');

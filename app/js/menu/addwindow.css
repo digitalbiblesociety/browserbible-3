@@ -1,26 +1,4 @@
-#main-add-button {
-	background-image: url(../../css/images/add-document.svg);
-	right: 100px;
-}
 
-.window-add {
-	cursor: pointer;
-	width: 70px;
-	height: 70px;
-	margin: 0 10px 10px 0;
-	padding: 50px 0 0;
-	float: left;
-	text-align: center;
-	background-size: 45px 45px;
-	background-position: center top;
-	background-repeat: no-repeat;
-	font-family: Avenir, Helvetica, Arial;
-	font-size: 12px;
-}
-
-.window-add:hover {
-	color: #0071ff;
-}
 
 .window-reset {
 	position: absolute;

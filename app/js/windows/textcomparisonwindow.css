@@ -4,6 +4,8 @@
 
 .comparison-main {
 	overflow: auto;
+	background: #fff;
+	-webkit-overflow-scrolling: touch;
 }
 
 .comparison-table {

@@ -1,4 +1,4 @@
-#add-SearchWindow {
+#add-SearchWindow, .SearchWindow-tab {
 	background-image: url(../../css/images/search.svg);
 }
 
@@ -6,6 +6,7 @@
 .search-main {
 	background: #fff;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 .search-main .loading-indicator {

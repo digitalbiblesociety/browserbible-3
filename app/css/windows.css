@@ -76,15 +76,17 @@ input:focus {
 	display: none;
 	
 	position: absolute;
-	top: 20px;
-	left: 50px;
-	width: 60px;
+	top: 10px;
+	-x-left: 50px;
+	right: 0;
+	width: 80px;
 	height: 20px;
 	background: transparent;
 	border-style: solid;
 	border-color: transparent transparent #ccc transparent;
 	border-width: 0 10px 20px 10px;
 	z-index: 1;	
+	cursor: pointer;
 }
 .window-tab.active { 
 	border-color: transparent transparent #f8f8f8 transparent;
@@ -93,13 +95,17 @@ input:focus {
 .window-tab-label {
 	position: absolute;
 	display: block;
-	background-size: 18px 18px;
-	background-repeat: no-repeat;
-	
-	top: 0;
+	background-size: 15px 15px;
+	background-repeat: no-repeat;	
+	top: 2px;
 	left: 0;
 	height: 20px;
 	width: 50px;
+	padding-left: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 12px;
 }
 
 .window .window-header {
@@ -213,13 +219,13 @@ input:focus {
 		display: block;
 		z-index: 1;	
 		position: absolute;
-		top: 40px;			
+		top: 30px;			
 	}
 	.windows-main .window.active {
 		z-index: 2;
 	}	
 	.window .window-header .app-input {
-		width: 120px;
+		width: 100px;
 		min-width: 120px;
 		padding: 5px;
 		height: 25px;
@@ -234,6 +240,7 @@ input:focus {
 	.window .window-header {
 		height: 40px;
 		padding: 7px;
+		padding-left: 50px;
 	}
 	.window .close-button {
 		top: 10px; 	
@@ -246,16 +253,18 @@ input:focus {
 	 */
 	 
 	 .windows-header {
-		 height: 40px;
+		 height: 30px;
 	 }
 	 
 	 .header-icon {
 		 margin-top: 1px;
 	 }
 	 
+ 
 	 
 	/* for single app, no need for tabs */
-	 .one-window .window-tab {
+	/*
+		 .one-window .window-tab {
 		 display: none;
 	 } 
 	 .one-window .windows-header { 
@@ -270,6 +279,7 @@ input:focus {
      .one-window .window .close-button {
 		display: none; 	
 	}
+	*/
 }
 
 .window .window-main {

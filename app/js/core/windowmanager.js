@@ -20,7 +20,9 @@ var WindowManager = function(node, app) {
 		var win = new Window(id, node, className, data, ext);
 		windows.push(win);
 		
-		win.tab.css({left: (windows.length * 50) +'px'});
+		var tabWidth = win.tab.outerWidth();
+		
+		//win.tab.css({right: '0px'});
 
 		// when a window reports a settings change
 		win.on('settingschange', function(e) {
@@ -65,8 +67,10 @@ var WindowManager = function(node, app) {
 		//size();
 		PlaceKeeper.restorePlace();
 		
+		
+		var tabWidth = windows[0].tab.outerWidth() - 10;
 		for (var i=0,il=windows.length; i<il; i++) {
-			windows[i].tab.css({left: ((i+1) * 50) +'px'});
+			windows[i].tab.css({right: ((il-i) * tabWidth) +'px'});
 		}
 		
 		windows[0].tab.addClass('active');
@@ -99,9 +103,13 @@ var WindowManager = function(node, app) {
 				
 				$('body').addClass('small-mode');
 								
+								
+				var tabWidth = windows[0].tab.outerWidth()-10;				
+								
 				// resize all windows to the same
 				for (var i=0, il=windows.length; i<il; i++) {
-					windows[i].size(width, height);					
+					windows[i].size(width, height);	
+					windows[i].tab.css({right: ((il-i-1) * tabWidth) +'px'});						
 				}
 
 			} else {
@@ -167,7 +175,7 @@ var Window = function(id, parentNode, className, data, manager) {
 
 						manager.remove(id);
 					}),
-		tab = $('<div class="window-tab ' + className + ' active"><span class="window-tab-label ' + className + '-tab"></span></div>')
+		tab = $('<div class="window-tab ' + className + ' active"><span class="window-tab-label ' + className + '-tab">' + className + '</span></div>')
 					.appendTo( $('body') );
 					
 	// make sure this one is selected
@@ -245,6 +253,12 @@ var Window = function(id, parentNode, className, data, manager) {
 	// receive from App, send down to controller
 	ext.on('message', function(e) {
 		controller.trigger('message', e);
+		
+		console.log('message', e);
+		
+		if (e.data.labelTab) {
+			tab.find('span').html( e.data.labelTab );
+		}
 	});
 
 	return ext;

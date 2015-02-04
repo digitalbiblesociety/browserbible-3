@@ -52,7 +52,7 @@ var ConfigButton = function(node) {
 			
 			configMenu.show();
 			
-			configMenu.css({left: $(window).width()/2 - configMenu.width()/2});
+			configMenu.css({left: $(window).width()/2 - configMenu.outerWidth(true)/2});
 
 			$(document).on('click', docClick);
 		}

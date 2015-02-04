@@ -515,6 +515,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 			sectionid: currentLocationInfo.sectionid,
 			fragmentid: currentLocationInfo.fragmentid,
 			label: currentLocationInfo.label,
+			labelTab: currentTextInfo.abbr,
 			labelLong: currentLocationInfo.labelLong,
 			hasFocus: hasFocus,
 			params: {

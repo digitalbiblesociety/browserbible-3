@@ -56,6 +56,17 @@
 	width: 150px;
 }
 
+
+#main-menu-windows-list .main-menu-item {
+	width: 70px;
+	margin: 6px 2px;
+	padding: 30px 0 0 0;
+	background-size: 25px 25px;
+	background-position: center top;
+	text-align: center;
+	
+}
+
 .main-menu-item:hover {
 	-x-color: #0071ff;
 	background-color: #ddd;
@@ -66,10 +77,11 @@
 	#main-menu-button {
 		height: 40px;
 		width: 40px;
-		background-size: 35px 18px;	
+		background-size: 30px 16px;
+		top: 30px;	
 	}
 	
 	#main-menu-dropdown {
-		top: 40px;
+		top: 70px;
 	}
 }

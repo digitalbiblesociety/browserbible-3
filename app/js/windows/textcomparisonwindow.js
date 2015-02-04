@@ -30,8 +30,8 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 
 	function init() {
 		
-		inputFragment.val( init_data.fragmentid );
-		inputTexts.val( init_data.textids );	
+		inputFragment.val( init_data.params.fragmentid );
+		inputTexts.val( init_data.params.textids );	
 		
 		doComparison();	
 		
@@ -43,194 +43,213 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 		}	
 	}	
 
+	var	sectionid = '',
+		reference = '',
+		textAbbrs = '',
+		textids = [],
+		textIndex = -1,
+		textData = [],
+		textInfoData = null;
+
 	function doComparison() {
 		
 		main.html();
 		main.addClass('loading-indicator');
 		
 		
-		var reference = new bible.Reference(inputFragment.val());
+		reference = new bible.Reference(inputFragment.val());
 		
 		if (typeof reference.toSection == 'undefined') {
 			return;
 		}
-		
 		inputFragment.val( reference.toString() );
+		sectionid = reference.toSection().split('_')[0]; // 'JN1';		
+		textAbbrs = inputTexts.val().split(',');
+		textids = [];
+		textIndex = -1;
+		textData = [];			
 		
-		var	sectionid = reference.toSection().split('_')[0], // 'JN1';		
-			textAbbrs = inputTexts.val().split(','),
-			textids = [],
-			textIndex = -1,
-			textData = [];		
 		
-		for (var i=0, il=textAbbrs.length; i<il; i++ ) {
-			var abbr = textAbbrs[i].trim().toLowerCase();
+		TextLoader.loadTexts(function(tid) {
+			textInfoData = tid;
 			
-			if (abbr != '') {
-			
-				var possibleTexts = TextLoader.getTextInfoData().filter(function(t) {
-					
-					return t.id.toLowerCase().indexOf(abbr) > -1;
-				});
-			
-				if (possibleTexts.length > 0) {
-					textids.push(possibleTexts[0].id);
-				}	
-			}		
-		}
-		
-		//var textids = ['eng-NASB1995', 'eng_net', 'eng_web']; // , 'esv'];
-			
-		function getNextText() {			
-			
-			textIndex++;
+	
+			for (var i=0, il=textAbbrs.length; i<il; i++ ) {
+				var abbr = textAbbrs[i].trim().toLowerCase();
+				
+				if (abbr != '') {
+				
+					var possibleTexts = textInfoData.filter(function(t) {
 						
-			if (textIndex < textids.length) {
-				
-				var textid = textids[textIndex];
-				
-				TextLoader.getText(textid, function(textInfo) {
-					
-					
-					TextLoader.loadSection( textInfo, sectionid, function(content) {
-					//TextLoader.loadSection( textid, sectionid, function(content) {
-					
-						textData.push({textInfo: textInfo,
-										content: content});
-					
-						getNextText();
-					
+						return t.id.toLowerCase().indexOf(abbr) > -1;
 					});
+				
+					if (possibleTexts.length > 0) {
+						textids.push(possibleTexts[0].id);
+					}	
+				}		
+			}
+			
+			getNextText();			
+			
+		});
+				
+	
+
+	}
+		
+	//var textids = ['eng-NASB1995', 'eng_net', 'eng_web']; // , 'esv'];
+		
+	function getNextText() {			
+		
+		textIndex++;
+					
+		if (textIndex < textids.length) {
+			
+			var textid = textids[textIndex];
+			
+			TextLoader.getText(textid, function(textInfo) {
+				
+				
+				TextLoader.loadSection( textInfo, sectionid, function(content) {
+				//TextLoader.loadSection( textid, sectionid, function(content) {
+				
+					textData.push({textInfo: textInfo,
+									content: content});
+				
+					getNextText();
+				
 				});
-								
-			//} else if (textIndex == textids.length+1){
-			} else {
-				
-				// complete!
-				processData();
-			}
+			});
+							
+		//} else if (textIndex == textids.length+1){
+		} else {
 			
-		}
-		
-		getNextText();	
-		
-		function processData() {
-			
-			if (textData.length <= 1) {
-				
-				main.removeClass('loading-indicator');
-				
-				return;
-				
-			}
-			
-		
-			var html = '<table class="comparison-table section">'; // using 'section' to get fonts and such
-
-			// heading
-			html += '<thead>';
-			html += '<th></th>';
-			for (var i=0, il = textData.length; i<il; i++) {
-				html += '<th>' + textData[i].textInfo.abbr + '</th>';				
-			}
-			html += '</thead>';			
-						
-			html += '<tbody>';						
-			
-			var startVerse = reference.verse1 > 0 ? reference.verse1 : 1,
-				endVerse = reference.verse2 > 0 ? reference.verse2 : bible.BOOK_DATA[ reference.bookid ].chapters[reference.chapter];
-			
-			for (var verse=startVerse; verse<=endVerse; verse++) {
-				
-				var verseid = sectionid + '_' + verse.toString(),
-					baseText = getPlainText(textData[0].content, verseid);
-					
-				html += '<tr>';
-
-				html += '<th>' + verse + '</th>';
-				
-				html += '<td class="reading-text" style="width:' + (100/textData.length) + '%">' + baseText + '</td>';
-				
-				
-				// comparison
-				for (var i=1, il = textData.length; i<il; i++) {
-					var comparisonText = getPlainText(textData[i].content, verseid);
-					
-					html += '<td class="reading-text" style="width:' + (100/textData.length) + '%">' + 
-								rejoinPunctuation(
-									diffString(
-										separatePunctuation(baseText)
-										, 
-										separatePunctuation(comparisonText)
-									)
-								) +
-							'</td>';
-						
-				}
-				
-				
-				html += '<tr>';				
-			}
-			
-			
-			
-			html += '</tbody>';			
-			
-			
-			html += '</table>';
-			
-			main.html(html);
-			
-			main.removeClass('loading-indicator');			
-			
-			// trigger settings change
-			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
-		}
-		
-		function separatePunctuation(input) {
-			
-			return input.replace(/([\.,;])/gi,' $1'); // “”‘’
-		}
-
-		function rejoinPunctuation(input) {
-
-			// fix HTML
-			input = input.replace(/\s+<\/([^>]+)>/gi,'</$1> ');		
-			
-			// connect
-			input = input.replace(/<\/ins>\s+<ins>/gi,' ');
-			input = input.replace(/<\/del>\s+<del>/gi,' ');		
-			
-			// fix punctuation
-			input = input.replace(/\s+([\.,;])/gi,'$1'); 	// “”				
-			
-			return input;
-		}
-		
-		
-		function getPlainText(content, verseid) {
-			
-			var verseNodes = content.find('.' + verseid),
-				plainText = '';
-				
-			for (var i=0, il=verseNodes.length; i<il; i++) {
-				
-				var verseNode = $(verseNodes[i]);
-				
-				verseNode.find('.note, .cf, .v-num, .verse-num').remove();	
-				
-				var text = verseNode.html();	
-				
-				text = text.replace(/<[^>]+>/gi,'');
-				
-				plainText += text + ' ';
-			}
-			
-			return plainText;
-			
+			// complete!
+			processData();
 		}
 		
 	}
+	
+		
+	
+	function processData() {
+		
+		if (textData.length <= 1) {
+			
+			main.removeClass('loading-indicator');
+			
+			return;
+			
+		}
+		
+	
+		var html = '<table class="comparison-table section">'; // using 'section' to get fonts and such
+
+		// heading
+		html += '<thead>';
+		html += '<th></th>';
+		for (var i=0, il = textData.length; i<il; i++) {
+			html += '<th>' + textData[i].textInfo.abbr + '</th>';				
+		}
+		html += '</thead>';			
+					
+		html += '<tbody>';						
+		
+		var startVerse = reference.verse1 > 0 ? reference.verse1 : 1,
+			endVerse = reference.verse2 > 0 ? reference.verse2 : bible.BOOK_DATA[ reference.bookid ].chapters[reference.chapter];
+		
+		for (var verse=startVerse; verse<=endVerse; verse++) {
+			
+			var verseid = sectionid + '_' + verse.toString(),
+				baseText = getPlainText(textData[0].content, verseid);
+				
+			html += '<tr>';
+
+			html += '<th>' + verse + '</th>';
+			
+			html += '<td class="reading-text" style="width:' + (100/textData.length) + '%">' + baseText + '</td>';
+			
+			
+			// comparison
+			for (var i=1, il = textData.length; i<il; i++) {
+				var comparisonText = getPlainText(textData[i].content, verseid);
+				
+				html += '<td class="reading-text" style="width:' + (100/textData.length) + '%">' + 
+							rejoinPunctuation(
+								diffString(
+									separatePunctuation(baseText)
+									, 
+									separatePunctuation(comparisonText)
+								)
+							) +
+						'</td>';
+					
+			}
+			
+			
+			html += '<tr>';				
+		}
+		
+		
+		
+		html += '</tbody>';			
+		
+		
+		html += '</table>';
+		
+		main.html(html);
+		
+		main.removeClass('loading-indicator');			
+		
+		// trigger settings change
+		ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
+	}
+	
+	function separatePunctuation(input) {
+		
+		return input.replace(/([\.,;])/gi,' $1'); // “”‘’
+	}
+
+	function rejoinPunctuation(input) {
+
+		// fix HTML
+		input = input.replace(/\s+<\/([^>]+)>/gi,'</$1> ');		
+		
+		// connect
+		input = input.replace(/<\/ins>\s+<ins>/gi,' ');
+		input = input.replace(/<\/del>\s+<del>/gi,' ');		
+		
+		// fix punctuation
+		input = input.replace(/\s+([\.,;])/gi,'$1'); 	// “”				
+		
+		return input;
+	}
+	
+	
+	function getPlainText(content, verseid) {
+		
+		var verseNodes = content.find('.' + verseid),
+			plainText = '';
+			
+		for (var i=0, il=verseNodes.length; i<il; i++) {
+			
+			var verseNode = $(verseNodes[i]);
+			
+			verseNode.find('.note, .cf, .v-num, .verse-num').remove();	
+			
+			var text = verseNode.html();	
+			
+			text = text.replace(/<[^>]+>/gi,'');
+			
+			plainText += text + ' ';
+		}
+		
+		return plainText;
+		
+	}
+		
+	
 			
 	
 

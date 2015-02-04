@@ -15,7 +15,7 @@ var FontSizeSettings = function(node) {
 	// generate font sizes
 	var styleCode = '';
 	for (var size = sofia.config.fontSizeMin; size <= sofia.config.fontSizeMax; size += sofia.config.fontSizeStep) {
-		styleCode += '.config-font-size-' + size.toString() + ' .section { font-size: ' + size.toString() + 'px; }';
+		styleCode += '.config-font-size-' + size.toString() + ' .reading-text { font-size: ' + size.toString() + 'px; }';
 	}
 	$('<style>' + styleCode + '</style>').appendTo( $('head') );
 

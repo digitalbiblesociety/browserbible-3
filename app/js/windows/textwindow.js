@@ -28,7 +28,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 				'</div>'+
 				'<div class="scroller-flipper">' +
 					'<div class="scroller-main">' +
-						'<div class="scroller-text-wrapper"><div class="loading-indicator" style="height:' + node.height() + 'px;"></div></div>' +
+						'<div class="scroller-text-wrapper reading-text"><div class="loading-indicator" style="height:' + node.height() + 'px;"></div></div>' +
 					'</div>'+
 					'<div class="scroller-info">Text info</div>' +
 				'</div>' +

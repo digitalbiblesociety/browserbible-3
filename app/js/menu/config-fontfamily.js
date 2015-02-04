@@ -39,7 +39,7 @@ var FontFamilySettings = function(node) {
 
 		fontFamilyStyle +=
 				'#config-font-family-' + fontStackName + ', ' +
-				'.config-font-family-' + fontStackName + ' .section,' +
+				'.config-font-family-' + fontStackName + ' .reading-text,' +
 				'.config-font-family-' + fontStackName + ' #font-size-table {' +
 				'  font-family: ' + fontStackValue + ';' +
 				'}';

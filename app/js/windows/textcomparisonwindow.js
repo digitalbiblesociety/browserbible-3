@@ -149,14 +149,14 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 
 				html += '<th>' + verse + '</th>';
 				
-				html += '<td style="width:' + (100/textData.length) + '%">' + baseText + '</td>';
+				html += '<td class="reading-text" style="width:' + (100/textData.length) + '%">' + baseText + '</td>';
 				
 				
 				// comparison
 				for (var i=1, il = textData.length; i<il; i++) {
 					var comparisonText = getPlainText(textData[i].content, verseid);
 					
-					html += '<td style="width:' + (100/textData.length) + '%">' + 
+					html += '<td class="reading-text" style="width:' + (100/textData.length) + '%">' + 
 								rejoinPunctuation(
 									diffString(
 										separatePunctuation(baseText)

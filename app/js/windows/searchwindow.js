@@ -26,7 +26,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<div class="search-lemma-info"></div>' +
 						'<div class="search-usage"></div>' +
 					'</div>' +
-					'<div class="search-results"></div>' +
+					'<div class="search-results reading-text"></div>' +
 				'</div></div>').appendTo(parentNode),
 		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
 

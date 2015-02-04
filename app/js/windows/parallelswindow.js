@@ -331,7 +331,7 @@ var ParallelsWindow = function(id, node, init_data) {
 
 							var books = row.books ? row.books : currentParallelData.books;
 
-							html.push('<td data-bookid="' + books[j] + '" ' +
+							html.push('<td class="reading-text" data-bookid="' + books[j] + '" ' +
 											'data-passage="' + passage + '" lang="' + iso2iana.convert(currentTextInfo.lang) + '">' +
 											//i18n.t('windows.parallel.loading') +
 										'</td>');

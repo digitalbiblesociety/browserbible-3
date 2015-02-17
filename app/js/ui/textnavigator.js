@@ -283,15 +283,70 @@ var TextNavigator = function(container, target) {
 				.height(height)
 				.css({top: container.offset().top,left: container.offset().left});
 		} else {
+			
+			// reasonable size!
+			/*
+			var targetOffset = target.offset(),
+				targetOuterHeight = target.outerHeight(),
+				win = $(window),
+				selectorWidth = textSelector.outerWidth(),
 
-			var top = target.offset().top + target.outerHeight() + 10,
-				left = target.offset().left,
-				windowHeight = $(window).height(),
-				maxHeight = windowHeight - top - 40;
+				top = targetOffset.top + targetOuterHeight + 10,
+				left = targetOffset.left,
+				winHeight = win.height() - 40,
+				winWidth = win.width(),
+				maxHeight = winHeight - top;
+
+			if (winWidth < left + selectorWidth) {
+				left = winWidth - selectorWidth;
+				if (left < 0) {
+					left = 0;
+				}
+			}
+
+
+			textSelector
+				.outerHeight(maxHeight)
+				.css({top: top,left: left});
+
+			main
+				.outerHeight(maxHeight - header.outerHeight());
+
+
+			// UP ARROW
+			var upArrowLeft = targetOffset.left - left + 20;
+
+			textSelector.find('.up-arrow, .up-arrow-border')
+				.css({left: upArrowLeft});			
+			*/
+			
+
+			var 
+				targetOffset = target.offset(),
+				targetOuterHeight = target.outerHeight(),
+				top = targetOffset.top + targetOuterHeight + 10,
+				left = targetOffset.left,
+				win = $(window),
+				changerWidth = changer.outerWidth(),
+				winHeight = win.height() - 40,
+				winWidth = win.width(),
+				maxHeight = winHeight - top;
+				
+			if (winWidth < left + changerWidth) {
+				left = winWidth - changerWidth;
+				if (left < 0) {
+					left = 0;
+				}
+			}				
 
 			changer
 				.outerHeight(maxHeight)
 				.css({top: top, left: left});
+				
+			var upArrowLeft = targetOffset.left - left + 20;
+
+			changer.find('.up-arrow, .up-arrow-border')
+				.css({left: upArrowLeft});					
 
 			changer.find('.text-navigator-divisions, .text-navigator-sections')
 				.outerHeight(maxHeight - header.outerHeight());

@@ -1,5 +1,5 @@
 
-var ParallelsWindow = function(id, node, init_data) {
+var ParallelsWindow = function(id, parent, init_data) {
 
 
 
@@ -19,7 +19,7 @@ var ParallelsWindow = function(id, node, init_data) {
 				'</div>'+
 				'<div class="parallels-main">' +
 				'</div>' +
-			'</div>').appendTo(node),
+			'</div>').appendTo(parent.node),
 
 		// dom nodes
 		header = container.find('.parallels-header'),

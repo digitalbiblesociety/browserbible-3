@@ -1,5 +1,5 @@
 
-var TextWindow = function(id, node, init_data, text_type) {
+var TextWindow = function(id, parent, init_data, text_type) {
 
 
 	// detect backflip
@@ -28,11 +28,11 @@ var TextWindow = function(id, node, init_data, text_type) {
 				'</div>'+
 				'<div class="scroller-flipper">' +
 					'<div class="scroller-main">' +
-						'<div class="scroller-text-wrapper reading-text"><div class="loading-indicator" style="height:' + node.height() + 'px;"></div></div>' +
+						'<div class="scroller-text-wrapper reading-text"><div class="loading-indicator" style="height:' + parent.node.height() + 'px;"></div></div>' +
 					'</div>'+
 					'<div class="scroller-info">Text info</div>' +
 				'</div>' +
-			'</div>').appendTo(node),
+			'</div>').appendTo(parent.node),
 
 		// dom nodes
 		flipper = container.find('.scroller-flipper'),
@@ -276,6 +276,8 @@ var TextWindow = function(id, node, init_data, text_type) {
 		// ALWAYS UPDATE: for first load
 		// update version name
 		textlistui.html( newTextInfo.abbr );
+		
+		parent.tab.find('span').html( newTextInfo.abbr );
 
 		// update the navigator with the latest header
 		textNavigator.setTextInfo(newTextInfo);
@@ -410,6 +412,7 @@ var TextWindow = function(id, node, init_data, text_type) {
 		// send to objects
 		textChooser.setTextInfo(currentTextInfo);
 		textlistui.html(currentTextInfo.abbr);
+		parent.tab.find('span').html( currentTextInfo.abbr );
 		textNavigator.setTextInfo(currentTextInfo);
 		audioController.setTextInfo(currentTextInfo);
 

@@ -70,6 +70,9 @@ var App = function() {
 			//console.log('create window', setting, windowClassName);
 			windowManager.add(windowClassName, setting.data);
 		}
+		// make sure first is active
+		$('.window, .window-tab').removeClass('active');
+		$('.window:first, .window-tab:first').addClass('active');
 
 		// get first window
 		var bibleWindows = settings.windows.filter(function(s) { return s.windowType == 'BibleWindow'; }),

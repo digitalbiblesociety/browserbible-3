@@ -165,7 +165,8 @@ var WindowManager = function(node, app) {
 
 var Window = function(id, parentNode, className, data, manager) {
 
-	var node = $('<div class="window ' + className + ' active"></div>')
+	var ext = {},
+		node = $('<div class="window ' + className + ' active"></div>')
 					.appendTo(parentNode),
 		closeBtn = $('<span class="close-button"></span>')
 					.appendTo(node)
@@ -175,14 +176,24 @@ var Window = function(id, parentNode, className, data, manager) {
 
 						manager.remove(id);
 					}),
-		tab = $('<div class="window-tab ' + className + ' active"><span class="window-tab-label ' + className + '-tab">' + className + '</span></div>')
+		tab = $('<div class="window-tab ' + className + ' active">' + 
+					'<div class="window-tab-inner">' + 
+						'<span class="window-tab-label ' + className + '-tab">' + className + '</span>' + 
+					'</div>' + 
+				'</div>')
 					.appendTo( $('body') );
 					
 	// make sure this one is selected
 	node.siblings('.window').removeClass('active');
 	tab.siblings('.window-tab').removeClass('active');	
+	
+	ext.id = id;
+	ext.className = className;	
+	ext.node = node;
+	ext.tab = tab;	
 
-	var controller = new window[className](id, node, data);
+	var controller = new window[className](id, ext, data);
+	ext.controller = controller;
 
 	// send settings up to the manager, up to the app
 	controller.on('settingschange', function(e) {
@@ -235,26 +246,19 @@ var Window = function(id, parentNode, className, data, manager) {
 		node.remove();
 	}
 
-	var ext = {
-		size: size,
-		quit: quit,
-		id: id,
-		className: className,
-		getData: function() {
+	
+	ext.size = size;
+	ext.quit = quit;
+	ext.getData =  function() {
 			return controller.getData();
-		},
-		controller: controller,
-		node: node,
-		tab: tab,
-		close: close
 	};
+	ext.close =  close;
+	
 	ext = $.extend(true, ext, EventEmitter);
 
 	// receive from App, send down to controller
 	ext.on('message', function(e) {
 		controller.trigger('message', e);
-		
-		console.log('message', e);
 		
 		if (e.data.labelTab) {
 			tab.find('span').html( e.data.labelTab );

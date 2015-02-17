@@ -1,5 +1,5 @@
 
-var TextComparisonWindow = function(id, parentNode, init_data) {
+var TextComparisonWindow = function(id, parent, init_data) {
 	
 	console.log('text comparisino', init_data );
 
@@ -8,11 +8,11 @@ var TextComparisonWindow = function(id, parentNode, init_data) {
 						'<input type="text" class="app-input comparison-fragmentid" value="" />' +  
 						'<input type="text" class="app-input comparison-texts" value="NASB, NET, WEB" />' +  
 						'<input type="button" value="GO" data-i18n="[value]windows.comparison.button" class="comparison-button header-button i18n" />' +
-					'</div>').appendTo(parentNode),
+					'</div>').appendTo(parent.node),
 		main = $('<div class="comparison-main">' + 
-				'</div>').appendTo(parentNode),
+				'</div>').appendTo(parent.node),
 		footer = $('<div class="comparison-footer">' + 
-				'</div>').appendTo(parentNode)
+				'</div>').appendTo(parent.node)
 				
 		inputFragment = header.find('.comparison-fragmentid'),
 		inputTexts = header.find('.comparison-texts'),

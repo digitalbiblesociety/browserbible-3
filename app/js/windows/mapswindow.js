@@ -1,5 +1,5 @@
 
-var MapWindow = function(id, parentNode, data) {
+var MapWindow = function(id, parent, data) {
 
 	//parentNode.css({position: 'relative'});
 

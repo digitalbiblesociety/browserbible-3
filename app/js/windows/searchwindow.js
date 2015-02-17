@@ -1,7 +1,7 @@
 
 
 // test/sample types
-var SearchWindow = function(id, parentNode, init_data) {
+var SearchWindow = function(id, parent, init_data) {
 
 	var header = $('<div class="window-header search-header" >' +
 
@@ -13,7 +13,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
 						
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' +
-					'</div>').appendTo(parentNode),
+					'</div>').appendTo(parent.node),
 		main = $('<div class="search-main"><div class="search-wrapper">' +
 					'<div class="search-top">' +
 						//'<h2></h2>' +
@@ -27,8 +27,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<div class="search-usage"></div>' +
 					'</div>' +
 					'<div class="search-results reading-text"></div>' +
-				'</div></div>').appendTo(parentNode),
-		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
+				'</div></div>').appendTo(parent.node),
+		footer = $('<div class="search-footer window-footer"></div>').appendTo(parent.node),
 
 		topLemmaInfo = main.find('.search-lemma-info').hide(),
 		topVisual = main.find('.search-visual').hide(),
@@ -45,7 +45,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 		button = header.find('.search-button'),
 		
 		textui = header.find('.text-list'),
-		textChooser = new TextChooser(parentNode, textui, 'bible'),
+		textChooser = new TextChooser(parent.node, textui, 'bible'),
 		
 		searchOptionsButton = header.find('.search-options-button'),
 		
@@ -648,6 +648,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 			divisions = getSelectedDivisions(),
 			
 			allDivisions = divisionChooser.find('.division-list-items input');
+		
+		parent.tab.find('span').html(text);
 
 		// don't send the list if it's all books
 		if (allDivisions.length == divisions.length) {
@@ -757,8 +759,8 @@ var SearchWindow = function(id, parentNode, init_data) {
 			} else {
 				// if it's just <span class="highlight">, replace it with text
 				var textFragment = document.createTextNode(el.textContent);
-				el.parentNode.insertBefore(textFragment, el);
-				el.parentNode.removeChild(el);
+				el.parent.node.insertBefore(textFragment, el);
+				el.parent.node.removeChild(el);
 			}
 
 		});

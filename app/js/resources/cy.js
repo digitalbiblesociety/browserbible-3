@@ -15,6 +15,23 @@ sofia.resources['cy'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Golau Isel"
+			},
+			"labels": {
+				"about": "Ynglŷn",
+				"addwindow": "Ychwanegu Ffenestr",
+				"settings": "Gosodiadau",
+				"feedback": "Adborth",
+				"options": "Dewisiadau"
+			},
+			"feedback": {
+				"name": "Enw",
+				"email": "E-bost",
+				"comments": "Eich Sylwadau",
+				"feature": "Awgrym Nodwedd",
+				"bug": "Adroddiad Bug",
+				"other": "Arall",
+				"send": "Anfon",
+				"thankyou": "Diolch i chi am eich adborth"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['cy'] = {
 				"placeholder": "Chwilio",
 				"button": "Chwilio",
 				"results": "Canlyniadau",
-				"verses": "penillion"
+				"verses": "penillion",
+				"options": "Dewisiadau Chwilio"
 			},
 			"media": {
 				"label": "Cyfryngau"
@@ -73,10 +91,24 @@ sofia.resources['cy'] = {
 				"autoplay": "Autoplay Nesaf",
 				"drama": "Drama",
 				"nondrama": "Di-Drama"
+			},
+			"parallel": {
+				"label": "Tebygrwydd",
+				"loading": "Llwytho ...",
+				"showall": "Dangos holl",
+				"hideall": "Cuddio Pob"
+			},
+			"comparison": {
+				"label": "Cymharu"
 			}
 		},
 		"names": {
-			"en": "Welsh"
+			"en": "Welsh",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Ingles",
+			"fr": "anglais"
 		}
 	}
 }

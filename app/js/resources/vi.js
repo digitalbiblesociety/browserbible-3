@@ -15,6 +15,23 @@ sofia.resources['vi'] = {
 				"default": "Bình thường",
 				"sepia": "Loại cá mực",
 				"dark": "Ánh sáng thấp"
+			},
+			"labels": {
+				"about": "Về",
+				"addwindow": "Thêm Window",
+				"settings": "Cài đặt",
+				"feedback": "Phản hồi",
+				"options": "Tùy chọn"
+			},
+			"feedback": {
+				"name": "Tên",
+				"email": "Email",
+				"comments": "Ý kiến ​​của bạn",
+				"feature": "Tính năng Góp ý",
+				"bug": "Báo cáo lỗi",
+				"other": "Khác",
+				"send": "Gởi",
+				"thankyou": "Cám ơn bạn đã phản hồi của bạn"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['vi'] = {
 				"placeholder": "Tìm kiếm",
 				"button": "Tìm kiếm",
 				"results": "Kết quả",
-				"verses": "câu"
+				"verses": "câu",
+				"options": "Tùy chọn tìm kiếm"
 			},
 			"media": {
 				"label": "Phương tiện truyền thông"
@@ -73,10 +91,24 @@ sofia.resources['vi'] = {
 				"autoplay": "Autoplay Tiếp theo",
 				"drama": "Phim",
 				"nondrama": "Không Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Đang tải ...",
+				"showall": "Hiển thị tất cả",
+				"hideall": "Ẩn tất cả"
+			},
+			"comparison": {
+				"label": "Sự so sánh"
 			}
 		},
 		"names": {
-			"en": "Vietnamese"
+			"en": "Vietnamese",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

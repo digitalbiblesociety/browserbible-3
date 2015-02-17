@@ -15,6 +15,23 @@ sofia.resources['sr'] = {
 				"default": "Нормалан",
 				"sepia": "Сепија",
 				"dark": "Лов Лигхт"
+			},
+			"labels": {
+				"about": "Око",
+				"addwindow": "Додај Виндов",
+				"settings": "Подешавања",
+				"feedback": "Феедбацк",
+				"options": "Опције"
+			},
+			"feedback": {
+				"name": "Име",
+				"email": "Емаил",
+				"comments": "Ваши Коментари",
+				"feature": "Феатуре Предлог",
+				"bug": "Буг Репорт",
+				"other": "Други",
+				"send": "Послати",
+				"thankyou": "Хвала на повратним информацијама"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['sr'] = {
 				"placeholder": "Претраживање",
 				"button": "Претраживање",
 				"results": "Резултати",
-				"verses": "стихови"
+				"verses": "стихови",
+				"options": "Сеарцх Оптионс"
 			},
 			"media": {
 				"label": "Медиј"
@@ -73,10 +91,24 @@ sofia.resources['sr'] = {
 				"autoplay": "Аутоплаи Следећа",
 				"drama": "Драма",
 				"nondrama": "Не-драма"
+			},
+			"parallel": {
+				"label": "Паралеле",
+				"loading": "Лоадинг ...",
+				"showall": "Прикажи све",
+				"hideall": "Хиде Све"
+			},
+			"comparison": {
+				"label": "Поређење"
 			}
 		},
 		"names": {
-			"en": "Serbian"
+			"en": "Serbian",
+			"de": "Сербисцх",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Инглес",
+			"fr": "енглески"
 		}
 	}
 }

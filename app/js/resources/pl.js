@@ -15,6 +15,23 @@ sofia.resources['pl'] = {
 				"default": "Normalny",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "O",
+				"addwindow": "Dodaj okno",
+				"settings": "Ustawienia",
+				"feedback": "Sprzężenie zwrotne",
+				"options": "Opcje"
+			},
+			"feedback": {
+				"name": "Nazwa",
+				"email": "E-mail",
+				"comments": "Twój komentarz",
+				"feature": "Sugestia funkcja",
+				"bug": "Zgłoś błąd na stronie",
+				"other": "Inny",
+				"send": "Wysłać",
+				"thankyou": "Dziękujemy za opinię"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['pl'] = {
 				"placeholder": "Poszukiwanie",
 				"button": "Poszukiwanie",
 				"results": "Wyniki",
-				"verses": "wersety"
+				"verses": "wersety",
+				"options": "Opcje wyszukiwania"
 			},
 			"media": {
 				"label": "Mediów"
@@ -73,10 +91,24 @@ sofia.resources['pl'] = {
 				"autoplay": "Autoplay Następny",
 				"drama": "Dramat",
 				"nondrama": "Dramat nie-"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Ładowanie ...",
+				"showall": "Pokaż wszystkie",
+				"hideall": "Ukryj wszystko"
+			},
+			"comparison": {
+				"label": "Porównanie"
 			}
 		},
 		"names": {
-			"en": "Polish"
+			"en": "Polish",
+			"de": "Polnisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "polonais"
 		}
 	}
 }

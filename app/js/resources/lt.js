@@ -15,6 +15,23 @@ sofia.resources['lt'] = {
 				"default": "Normalus",
 				"sepia": "Sepija",
 				"dark": "Žemas šviesos"
+			},
+			"labels": {
+				"about": "Apie",
+				"addwindow": "Pridėti langą",
+				"settings": "Nustatymai",
+				"feedback": "Grįžtamasis ryšys",
+				"options": "Nustatymai"
+			},
+			"feedback": {
+				"name": "Pavadinimas",
+				"email": "Paštas",
+				"comments": "Jūsų komentarai",
+				"feature": "Žanras pasiūlymas",
+				"bug": "Re ataskaita",
+				"other": "Kitas",
+				"send": "Siųsti",
+				"thankyou": "Dėkojame už jūsų atsiliepimus"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['lt'] = {
 				"placeholder": "Paieška",
 				"button": "Paieška",
 				"results": "Rezultatai",
-				"verses": "eilutės"
+				"verses": "eilutės",
+				"options": "Paieškos parametrai"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['lt'] = {
 				"autoplay": "&quot;Autoplay Kitas",
 				"drama": "Drama",
 				"nondrama": "Ne dramos"
+			},
+			"parallel": {
+				"label": "Paralelės",
+				"loading": "Įkeliama ...",
+				"showall": "Rodyti viską",
+				"hideall": "Slėpti visus"
+			},
+			"comparison": {
+				"label": "Palyginimas"
 			}
 		},
 		"names": {
-			"en": "Lithuanian"
+			"en": "Lithuanian",
+			"de": "Litauisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Anglų",
+			"fr": "anglais"
 		}
 	}
 }

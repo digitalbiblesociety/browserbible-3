@@ -15,6 +15,23 @@ sofia.resources['no'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Omtrent",
+				"addwindow": "Legg Window",
+				"settings": "Innstillinger",
+				"feedback": "Tilbakemelding",
+				"options": "Opsjoner"
+			},
+			"feedback": {
+				"name": "Navn",
+				"email": "E-post",
+				"comments": "Dine kommentarer",
+				"feature": "Funksjonen Forslag",
+				"bug": "Bug Rapporter",
+				"other": "Andre",
+				"send": "Sende",
+				"thankyou": "Takk for tilbakemeldingen"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['no'] = {
 				"placeholder": "Søk",
 				"button": "Søk",
 				"results": "Resultater",
-				"verses": "versene"
+				"verses": "versene",
+				"options": "Søkealternativer"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['no'] = {
 				"autoplay": "Autoplay Neste",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Laster inn ...",
+				"showall": "Vis alle",
+				"hideall": "Skjul alle"
+			},
+			"comparison": {
+				"label": "Sammenligning"
 			}
 		},
 		"names": {
-			"en": "Norwegian"
+			"en": "Norwegian",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

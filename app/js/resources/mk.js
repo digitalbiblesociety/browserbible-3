@@ -15,6 +15,23 @@ sofia.resources['mk'] = {
 				"default": "Нормално",
 				"sepia": "Sepia",
 				"dark": "Недоволна осветленост"
+			},
+			"labels": {
+				"about": "За",
+				"addwindow": "Додади го прозорецот",
+				"settings": "Подесувања",
+				"feedback": "Повратна информација",
+				"options": "Опции"
+			},
+			"feedback": {
+				"name": "Име",
+				"email": "Е-пошта",
+				"comments": "Вашиот Коментари",
+				"feature": "Тема предлози",
+				"bug": "Сериозност",
+				"other": "Останати",
+				"send": "Испрати",
+				"thankyou": "Ви благодариме за вашиот коментар"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['mk'] = {
 				"placeholder": "Барај",
 				"button": "Барај",
 				"results": "Резултати",
-				"verses": "стиховите"
+				"verses": "стиховите",
+				"options": "Опции за пребарување"
 			},
 			"media": {
 				"label": "Медиумите"
@@ -73,10 +91,24 @@ sofia.resources['mk'] = {
 				"autoplay": "Autoplay Следна",
 				"drama": "Драма",
 				"nondrama": "Не Драма"
+			},
+			"parallel": {
+				"label": "Паралели",
+				"loading": "Се вчитува ...",
+				"showall": "Прикажи ги сите",
+				"hideall": "Сокриј ги сите"
+			},
+			"comparison": {
+				"label": "Споредба"
 			}
 		},
 		"names": {
-			"en": "Macedonian"
+			"en": "Macedonian",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Ingles",
+			"fr": "anglais"
 		}
 	}
 }

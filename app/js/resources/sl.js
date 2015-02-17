@@ -15,6 +15,23 @@ sofia.resources['sl'] = {
 				"default": "Normalno",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "O",
+				"addwindow": "Dodaj Window",
+				"settings": "Nastavitve",
+				"feedback": "Povratne informacije",
+				"options": "Možnosti"
+			},
+			"feedback": {
+				"name": "Name",
+				"email": "Email",
+				"comments": "Vaši komentarji",
+				"feature": "Funkcija Nasvet",
+				"bug": "Bug Poročilo",
+				"other": "Drugi",
+				"send": "Pošlji",
+				"thankyou": "Zahvaljujemo se vam za povratne informacije"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['sl'] = {
 				"placeholder": "Iskanje",
 				"button": "Iskanje",
 				"results": "Rezultati",
-				"verses": "verzi"
+				"verses": "verzi",
+				"options": "Možnosti iskanja"
 			},
 			"media": {
 				"label": "Mediji"
@@ -73,10 +91,24 @@ sofia.resources['sl'] = {
 				"autoplay": "Autoplay Naslednja",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Nalaganje ...",
+				"showall": "Prikaži vse",
+				"hideall": "Skrij vse"
+			},
+			"comparison": {
+				"label": "Primerjava"
 			}
 		},
 		"names": {
-			"en": "Slovenian"
+			"en": "Slovenian",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "angleški rog"
 		}
 	}
 }

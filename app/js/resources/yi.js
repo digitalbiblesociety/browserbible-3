@@ -15,6 +15,23 @@ sofia.resources['yi'] = {
 				"default": "נאָרמאַל",
 				"sepia": "סיפּיאַ",
 				"dark": "נידעריק ליכט"
+			},
+			"labels": {
+				"about": "וועגן",
+				"addwindow": "לייג ווינדאָו",
+				"settings": "סעטטינגס",
+				"feedback": "באַמערקונגען",
+				"options": "אָפּציעס"
+			},
+			"feedback": {
+				"name": "נאָמען",
+				"email": "Email",
+				"comments": "דיין באַמערקונגען",
+				"feature": "שטריך סוגגעסטיאָן",
+				"bug": "באַג באריכט",
+				"other": "אַנדערער",
+				"send": "שיקן",
+				"thankyou": "דאנק איר פֿאַר אייער באַמערקונגען"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['yi'] = {
 				"placeholder": "זוכן",
 				"button": "זוכן",
 				"results": "רעזולטאַטן",
-				"verses": "פערזן"
+				"verses": "פערזן",
+				"options": "זוכן אָפּציעס"
 			},
 			"media": {
 				"label": "מידיאַ"
@@ -73,10 +91,24 @@ sofia.resources['yi'] = {
 				"autoplay": "אַוטאָפּלייַ ווייַטער",
 				"drama": "דראַמע",
 				"nondrama": "ניט-דראַמע"
+			},
+			"parallel": {
+				"label": "פּאַראַללעלס",
+				"loading": "לאָודינג ...",
+				"showall": "ווייַז אַלע",
+				"hideall": "באַהאַלטן אַלע"
+			},
+			"comparison": {
+				"label": "פאַרגלייַך"
 			}
 		},
 		"names": {
-			"en": "Yiddish"
+			"en": "Yiddish",
+			"de": "ענגליסטש",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "ענגליש",
+			"fr": "ענגליש"
 		}
 	}
 }

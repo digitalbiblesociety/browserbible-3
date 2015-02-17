@@ -15,6 +15,23 @@ sofia.resources['mr'] = {
 				"default": "सामान्य",
 				"sepia": "दाट तपकिरी रंग",
 				"dark": "किमान हलका"
+			},
+			"labels": {
+				"about": "बद्दल",
+				"addwindow": "विंडो जोडा",
+				"settings": "सेटिंग्ज",
+				"feedback": "अभिप्राय",
+				"options": "पर्याय"
+			},
+			"feedback": {
+				"name": "नाव",
+				"email": "ईमेल",
+				"comments": "आपल्या टिप्पण्या",
+				"feature": "वैशिष्ट्य सूचना",
+				"bug": "बग अहवाल",
+				"other": "इतर",
+				"send": "पाठवा",
+				"thankyou": "आपल्या अभिप्रायाबद्दल धन्यवाद"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['mr'] = {
 				"placeholder": "शोध",
 				"button": "शोध",
 				"results": "परिणाम",
-				"verses": "अध्याय"
+				"verses": "अध्याय",
+				"options": "शोध पर्याय"
 			},
 			"media": {
 				"label": "मीडिया"
@@ -73,10 +91,24 @@ sofia.resources['mr'] = {
 				"autoplay": "ऑटोप्ले पुढील",
 				"drama": "नाटक",
 				"nondrama": "बिगर नाटक"
+			},
+			"parallel": {
+				"label": "समांतर",
+				"loading": "लोड करीत आहे ...",
+				"showall": "सर्व दर्शवा",
+				"hideall": "सर्व लपवा"
+			},
+			"comparison": {
+				"label": "तुलना"
 			}
 		},
 		"names": {
-			"en": "Marathi"
+			"en": "Marathi",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

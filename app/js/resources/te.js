@@ -15,6 +15,23 @@ sofia.resources['te'] = {
 				"default": "సాధారణ",
 				"sepia": "సేపియా",
 				"dark": "తక్కువ లైట్"
+			},
+			"labels": {
+				"about": "గురించి",
+				"addwindow": "విండో జోడించండి",
+				"settings": "సెట్టింగులు",
+				"feedback": "అభిప్రాయం",
+				"options": "ఐచ్ఛికాలు"
+			},
+			"feedback": {
+				"name": "పేరు",
+				"email": "ఇమెయిల్",
+				"comments": "మీ వ్యాఖ్యలు",
+				"feature": "ఫీచర్ సూచన",
+				"bug": "బగ్ను నివేదించండి",
+				"other": "ఇతర",
+				"send": "పంపు",
+				"thankyou": "మీ ఫీడ్బ్యాక్కు ధన్యవాదాలు"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['te'] = {
 				"placeholder": "శోధన",
 				"button": "శోధన",
 				"results": "ఫలితాలు",
-				"verses": "పద్యాలు"
+				"verses": "పద్యాలు",
+				"options": "శోధన ఎంపికలు"
 			},
 			"media": {
 				"label": "మీడియా"
@@ -73,10 +91,24 @@ sofia.resources['te'] = {
 				"autoplay": "స్వీయ తదుపరి",
 				"drama": "నాటకము",
 				"nondrama": "కాని డ్రామా"
+			},
+			"parallel": {
+				"label": "సమాంతరాలను",
+				"loading": "లోడ్ అవుతోంది ...",
+				"showall": "అన్నీ చూపించు",
+				"hideall": "అన్ని దాచు"
+			},
+			"comparison": {
+				"label": "పోలిక"
 			}
 		},
 		"names": {
-			"en": "Telugu"
+			"en": "Telugu",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "యాంగ్లస్పై"
 		}
 	}
 }

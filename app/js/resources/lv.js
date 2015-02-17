@@ -15,6 +15,23 @@ sofia.resources['lv'] = {
 				"default": "Normāls",
 				"sepia": "Sepia",
 				"dark": "Vājā apgaismojumā"
+			},
+			"labels": {
+				"about": "Par",
+				"addwindow": "Pievienot Window",
+				"settings": "Settings",
+				"feedback": "Atsauksmes",
+				"options": "Opcijas"
+			},
+			"feedback": {
+				"name": "Nosaukums",
+				"email": "E-pasts",
+				"comments": "Jūsu komentāri",
+				"feature": "Iezīme ierosinājums",
+				"bug": "Bug ziņojums",
+				"other": "Cits",
+				"send": "Sūtīt",
+				"thankyou": "Paldies par jūsu atsauksmēm"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['lv'] = {
 				"placeholder": "Meklēšana",
 				"button": "Meklēšana",
 				"results": "Rezultāti",
-				"verses": "vārsmas"
+				"verses": "vārsmas",
+				"options": "Meklēšanas opcijas"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['lv'] = {
 				"autoplay": "Autoplay Nākamais",
 				"drama": "Drāma",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Paralēles",
+				"loading": "Loading ...",
+				"showall": "Parādīt visu",
+				"hideall": "Slēpt All"
+			},
+			"comparison": {
+				"label": "Salīdzinājums"
 			}
 		},
 		"names": {
-			"en": "Latvian"
+			"en": "Latvian",
+			"de": "Lettisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "Anglais"
 		}
 	}
 }

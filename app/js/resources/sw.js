@@ -15,6 +15,23 @@ sofia.resources['sw'] = {
 				"default": "Kawaida",
 				"sepia": "Sepia",
 				"dark": "Low Mwanga"
+			},
+			"labels": {
+				"about": "Kuhusu",
+				"addwindow": "Kuongeza Window",
+				"settings": "Mipangilio",
+				"feedback": "Maoni",
+				"options": "Options"
+			},
+			"feedback": {
+				"name": "Jina",
+				"email": "Email",
+				"comments": "Maoni yako",
+				"feature": "Feature Maoni",
+				"bug": "Bug Ripoti",
+				"other": "Nyingine",
+				"send": "Kutuma",
+				"thankyou": "Asante sana kwa maoni yako"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['sw'] = {
 				"placeholder": "Search",
 				"button": "Search",
 				"results": "Matokeo",
-				"verses": "mistari"
+				"verses": "mistari",
+				"options": "Search Options"
 			},
 			"media": {
 				"label": "Vyombo vya habari"
@@ -73,10 +91,24 @@ sofia.resources['sw'] = {
 				"autoplay": "Autoplay Ifwatayo",
 				"drama": "Mchezo wa kuigiza",
 				"nondrama": "Mashirika yasiyo ya Drama"
+			},
+			"parallel": {
+				"label": "Sambamba",
+				"loading": "Loading ...",
+				"showall": "Kuonyesha wote",
+				"hideall": "Ficha All"
+			},
+			"comparison": {
+				"label": "Kulinganisha"
 			}
 		},
 		"names": {
-			"en": "Swahili"
+			"en": "Swahili",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

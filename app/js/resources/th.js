@@ -15,6 +15,23 @@ sofia.resources['th'] = {
 				"default": "ปกติ",
 				"sepia": "หมึกในตัวปลาหมึก",
 				"dark": "แสงต่ำ"
+			},
+			"labels": {
+				"about": "เกี่ยวกับ",
+				"addwindow": "เพิ่มหน้าต่าง",
+				"settings": "การตั้งค่า",
+				"feedback": "ข้อเสนอแนะ",
+				"options": "ตัวเลือก"
+			},
+			"feedback": {
+				"name": "ชื่อ",
+				"email": "อีเมล์",
+				"comments": "ความคิดเห็นของคุณ",
+				"feature": "คุณสมบัติข้อเสนอแนะ",
+				"bug": "รายงานข้อบกพร่อง",
+				"other": "อื่น ๆ",
+				"send": "ส่ง",
+				"thankyou": "ขอบคุณสำหรับความคิดเห็นของคุณ"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['th'] = {
 				"placeholder": "ค้นหา",
 				"button": "ค้นหา",
 				"results": "ผล",
-				"verses": "โองการ"
+				"verses": "โองการ",
+				"options": "ตัวเลือกการค้นหา"
 			},
 			"media": {
 				"label": "สื่อ"
@@ -73,10 +91,24 @@ sofia.resources['th'] = {
 				"autoplay": "ถัดไปอัตโนมัติ",
 				"drama": "ละคร",
 				"nondrama": "ไม่ใช่ละคร"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "กำลังโหลด ...",
+				"showall": "แสดงทั้งหมด",
+				"hideall": "ซ่อนทั้งหมด"
+			},
+			"comparison": {
+				"label": "การเปรียบเทียบ"
 			}
 		},
 		"names": {
-			"en": "Thai"
+			"en": "Thai",
+			"de": "อังกฤษ",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "ภาษาอังกฤษ",
+			"fr": "Anglais"
 		}
 	}
 }

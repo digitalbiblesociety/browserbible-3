@@ -15,6 +15,23 @@ sofia.resources['tr'] = {
 				"default": "Açık",
 				"sepia": "Sepya",
 				"dark": "Koyu"
+			},
+			"labels": {
+				"about": "Hakkında",
+				"addwindow": "Pencere ekle",
+				"settings": "Ayarlar",
+				"feedback": "Geribesleme",
+				"options": "Seçenekler"
+			},
+			"feedback": {
+				"name": "Isim",
+				"email": "E-posta",
+				"comments": "Yorumlarınız",
+				"feature": "Özellik Öneri",
+				"bug": "Hata Raporu",
+				"other": "Diğer",
+				"send": "Göndermek",
+				"thankyou": "Görüşleriniz için teşekkür ederiz"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['tr'] = {
 				"placeholder": "Arama",
 				"button": "Arama",
 				"results": "Sonuçlar",
-				"verses": "ayetler"
+				"verses": "ayetler",
+				"options": "Arama Seçenekleri"
 			},
 			"parallel": {
 				"label": "Paralellik",
@@ -79,10 +97,18 @@ sofia.resources['tr'] = {
 				"autoplay": "Otomatik Yürüt",
 				"drama": "Dramatize Edilmiş",
 				"nondrama": "Tekil Konuşma"
+			},
+			"comparison": {
+				"label": "Karşılaştırma"
 			}
 		},
 		"names": {
-			"en": "Turkish"
+			"en": "Turkish",
+			"de": "Türkisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Turco",
+			"fr": "turc"
 		}
 	}
 }

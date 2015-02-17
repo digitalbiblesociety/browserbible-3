@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="225" height="130">
+<g>
+<g id="pr">
+	<path d="M 131.5 42 q -10.5 -15 -35 -23.5 q 23 34 -8.25 64.5 q 30 -10 43.25 -41" stroke="none" stroke-width=".25" fill="#d1eaf1" opacity="1" />
+	<path d="M 148.5 53 q -10 -20 -27.5 -31 q 0 44 -32.75 61 q  39 -2.5 60.25 -30" stroke="none" stroke-width=".25" fill="#a5cbe2" opacity=".75" />
+	<path d="M 157 59 q -4 -14 -15 -29 q -8.5 47 -53.75 53 q 52 -2 68.75 -24" stroke="none" stroke-width=".25" fill="#3f87c1" opacity=".85" />
+	<path d="M 160 78 q 0 -5.75 -1.5 -10.5 q -22 15 -70.25 15.5 q 30 0.5 71.75 -5" stroke="none" stroke-width=".25" fill="#2468b9" />
+</g>
+<g id="pl">
+	<path d="M 10 79 q 0 -5 1.5 -12 q 19 15.5 64.5 16 q -25 1 -66 -4" stroke="none" stroke-width=".25" fill="#7aa4d6" />
+	<path d="M 13 59 q 0 -2 4 -15 q 17 35 59 39 q -45 -1 -63 -24" stroke="none" stroke-width=".25" fill="#9bc0dd" />
+</g>
+<g id="Bible">
+	<rect width="69" height="3.25" x="10" y="84" fill="#6c6c6c" opacity="1" />
+	<rect width="69" height="3.25" x="91" y="84" fill="#6c6c6c" opacity="1" />
+	<rect width="125" height="4.75" x="23" y="86.5" fill="#6c6c6c" opacity="1" />
+	<ellipse cx="150.5" cy="87" rx="9.5" ry="3" style="fill:#6c6c6c" />
+	<ellipse cx="19.5" cy="87" rx="9.5" ry="3" style="fill:#6c6c6c" />
+	<rect x="73" y="84" rx="20" ry="20" width="12" height="7" fill="#6c6c6c" opacity="1" />
+	<rect x="85" y="84" rx="20" ry="20" width="12" height="7" fill="#6c6c6c"  opacity="1" />
+	<circle width="2.5" height="2" cx="144.75" cy="87.5" r="1.5" fill="#a1a1a1"  opacity="1" />
+	<rect width="19.5" height="2" x="120.75" y="86.75" fill="#a1a1a1" opacity="1" />
+	<path id="lineAB" d="M 147.25 90.5 l 5 -5" stroke="#6c6c6c" stroke-width="2" opacity="1" />
+	<path id="lineBC" d="M 18.75 85.5 l 5 5" stroke="#6c6c6c" stroke-width="2" opacity="1" />
+</g>
+<!-- <g id="text">
+	<text style="font-family:'Century Gothic'; font-size:12.75px; kerning:-.5; " x="21" y="105" fill="#6c6c6c">DIGITAL</text>
+	<text style="font-family:'Century Gothic'; font-size:12.75px; kerning:-.5; " x="69" y="105" fill="#2468b9">BIBLE</text>
+	<text style="font-family:'Century Gothic'; font-size:12.75px; kerning:-.5; " x="101" y="105" fill="#6c6c6c">SOCIETY</text>
+</g> -->
+</g>
+</svg>

@@ -1,70 +1,9 @@
 <?xml version="1.0"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300">
-    <desc iVinci="yes" version="4.5" gridStep="20" showGrid="yes" snapToGrid="yes" codePlatform="0"/>
-    <g id="Layer1" opacity="1">
-        <g id="Shape1">
-            <desc shapeID="1" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,40.5,60.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath1" d="M20.5,40.5 L60.5,40.5 L60.5,80.5 L20.5,80.5 L20.5,40.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape2">
-            <desc shapeID="2" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,40.5,120.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath2" d="M20.5,100.5 L60.5,100.5 L60.5,140.5 L20.5,140.5 L20.5,100.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape3">
-            <desc shapeID="3" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,40.5,180.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath3" d="M20.5,160.5 L60.5,160.5 L60.5,200.5 L20.5,200.5 L20.5,160.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape4">
-            <desc shapeID="4" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,40.5,240.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath4" d="M20.5,220.5 L60.5,220.5 L60.5,260.5 L20.5,260.5 L20.5,220.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape5">
-            <desc shapeID="5" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,100.5,60.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath5" d="M80.5,40.5 L120.5,40.5 L120.5,80.5 L80.5,80.5 L80.5,40.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape6">
-            <desc shapeID="6" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,100.5,120.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath6" d="M80.5,100.5 L120.5,100.5 L120.5,140.5 L80.5,140.5 L80.5,100.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape7">
-            <desc shapeID="7" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,100.5,240.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath7" d="M80.5,220.5 L120.5,220.5 L120.5,260.5 L80.5,260.5 L80.5,220.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape8">
-            <desc shapeID="8" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,180.5,60.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath8" d="M160.5,40.5 L200.5,40.5 L200.5,80.5 L160.5,80.5 L160.5,40.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape9">
-            <desc shapeID="9" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,180.5,120.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath9" d="M160.5,100.5 L200.5,100.5 L200.5,140.5 L160.5,140.5 L160.5,100.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape10">
-            <desc shapeID="10" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,180.5,240.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath10" d="M160.5,220.5 L200.5,220.5 L200.5,260.5 L160.5,260.5 L160.5,220.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape11">
-            <desc shapeID="11" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,240.5,60.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath11" d="M220.5,40.5 L260.5,40.5 L260.5,80.5 L220.5,80.5 L220.5,40.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape12">
-            <desc shapeID="12" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,240.5,180.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath12" d="M220.5,160.5 L260.5,160.5 L260.5,200.5 L220.5,200.5 L220.5,160.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape13">
-            <desc shapeID="13" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-20,-22,40,44)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,0.909091,100.5,180.5)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath13" d="M80.5,160.5 L120.5,160.5 L120.5,200.5 L80.5,200.5 L80.5,160.5 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape14">
-            <desc shapeID="14" type="0" basicInfo-basicType="4" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-19.5,-19.5,39,39)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,180,180)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath14" d="M160.5,180 C160.5,169.23 169.23,160.5 180,160.5 C190.77,160.5 199.5,169.23 199.5,180 C199.5,190.77 190.77,199.5 180,199.5 C169.23,199.5 160.5,190.77 160.5,180 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape15">
-            <desc shapeID="15" type="0" basicInfo-basicType="4" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-19.5,-19.5,39,39)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,240,120)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath15" d="M220.5,120 C220.5,109.23 229.23,100.5 240,100.5 C250.77,100.5 259.5,109.23 259.5,120 C259.5,130.77 250.77,139.5 240,139.5 C229.23,139.5 220.5,130.77 220.5,120 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-        <g id="Shape16">
-            <desc shapeID="16" type="0" basicInfo-basicType="4" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-19.5,-19.5,39,39)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,240,240)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
-            <path id="shapePath16" d="M220.5,240 C220.5,229.23 229.23,220.5 240,220.5 C250.77,220.5 259.5,229.23 259.5,240 C259.5,250.77 250.77,259.5 240,259.5 C229.23,259.5 220.5,250.77 220.5,240 Z" style="stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;"/>
-        </g>
-    </g>
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <path stroke="#000000" transform="rotate(90 259.00000000000006,154.98941040039065) " stroke-opacity="0" id="svg_1" d="m170,154.516006l89.001007,-196.914207l88.998993,196.914207l-44.5,0l0,197.861008l-88.998993,0l0,-197.861008l-44.501007,0z" stroke-width="0" fill="#000000"/>
+  <path transform="rotate(-90 239.00000000000003,355.4999694824219) " id="svg_2" stroke="#000000" stroke-opacity="0" d="m150,355.027069l89.00061,-196.914688l88.99939,196.914688l-44.499695,0l0,197.860504l-88.999252,0l0,-197.860504l-44.501053,0z" stroke-width="0" fill="#000000"/>
+ </g>
 </svg>

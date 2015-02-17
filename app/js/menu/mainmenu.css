@@ -5,12 +5,13 @@
 	left: 0;
 	width: 60px;
 	height: 60px;
-	background-size: 40px 22px;
+	background-size: 26px 26px;
 	background-repeat: no-repeat;
 	background-position: center center;
-	z-index: 51;
+	z-index: 9;
 	border: solid 1px transparent;
 	-x-border-width: 1px 1px 0 1px;
+	background-image: url(../../css/images/menu-gray.svg);
 }
 #main-menu-button.active {
 	background-color: #666;
@@ -19,9 +20,9 @@
 
 #main-menu-dropdown {
 	width: 300px;
-	height: 350px;
+	-x-height: 280px;
 	position: absolute;
-	z-index: 50;
+	z-index: 8;
 	background: #fff;	
 	top: 59px;
 	left: 0px;
@@ -41,14 +42,14 @@
 	overflow: hidden;
 }
 
-
+/*
 .main-menu-item {
 	cursor: pointer;
 	margin: 0;
-	padding: 8px 5px 8px 35px;
+	padding: 8px 5px 8px 55px;
 	text-align: left;
 	background-size: 25px 25px;
-	background-position: 5px center;
+	background-position: 25px center;
 	background-repeat: no-repeat;
 	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
@@ -58,14 +59,33 @@
 
 
 #main-menu-windows-list .main-menu-item {
-	width: 70px;
-	margin: 6px 2px;
-	padding: 30px 0 0 0;
+	width: 75px;
+	margin: 0;
+	padding: 35px 0 10px 0;
 	background-size: 25px 25px;
-	background-position: center top;
+	background-position: center 8px;
 	text-align: center;
 	
 }
+*/
+
+
+.main-menu-item {
+	cursor: pointer;
+	width: 75px;
+	margin: 0;
+	padding: 35px 0 10px 0;
+	background-size: 25px 25px;
+	background-position: center 8px;
+		background-repeat: no-repeat;
+	text-align: center;
+	font-family: Avenir, Helvetica, Arial;
+	font-size: 12px;
+	float: left;
+	
+	
+}
+
 
 .main-menu-item:hover {
 	-x-color: #0071ff;

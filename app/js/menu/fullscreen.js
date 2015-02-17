@@ -1,9 +1,18 @@
 var FullScreenButton = function(node) {
 
+
+	if (!fullScreenApi.supportsFullScreen) {
+		return null;
+	}
+	
+	$('html').addClass('supports-fullscreen');
+
 	var
 		el = document.body,
-		fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-item">Fullscreen</div>')
-			.appendTo( $('#main-menu-features') )
+		//fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-item">Fullscreen</div>')
+		//	.appendTo( $('#main-menu-features') )
+		fullscreenButton = $('<div id="main-fullscreen-button"></div>')
+			.appendTo( $('.windows-header') )
 			.on('click', toggleFullscreen),
 
 		isFullscreen = false;
@@ -27,9 +36,6 @@ var FullScreenButton = function(node) {
 
 	//console.log(fullScreenApi);
 
-	if (!fullScreenApi.supportsFullScreen) {
-		fullscreenButton.hide();
-	}
 
 	return fullscreenButton;
 };

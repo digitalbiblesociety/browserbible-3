@@ -4,7 +4,8 @@
 
 
 #main-config-box {
-	height: 420px;
+	height: 390px;
+	z-index: 10;
 }
 
 .config-section {

@@ -1,3 +1,21 @@
+/*
+for in menu
 #main-fullscreen-button {
 	background-image: url(../../css/images/fullscreen.svg);
+}
+*/
+
+#main-fullscreen-button {
+	background-image: url(../../css/images/fullscreen.svg);
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	background-size: 32px 32px;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+}
+
+.supports-fullscreen #main-search-box {
+	right: 60px;
 }

@@ -21,13 +21,14 @@ var MainMenuButton = function(node) {
 		win = $(window),
 			
 		container = $('.windows-container'),
-		mainMenuButton = $('<div id="main-menu-button" class="image-logo"></div>')
+		mainMenuLogo = $('<div id="app-logo" class="image-logo"></div>'),
+		mainMenuButton = $('<div id="main-menu-button"></div>')
 					.appendTo(node)
 					.on('click', mainMenuClick),
 		mainMenuDropDown = $('<div id="main-menu-dropdown">' + 
-								'<div class="main-menu-heading">Add Window</div>' +
+								'<div class="main-menu-heading i18n" data-i18n="[html]menu.labels.addwindow">Add Window</div>' +
 								'<div id="main-menu-windows-list" class="main-menu-list"></div>' +
-								'<div class="main-menu-heading">Settings</div>' +
+								'<div class="main-menu-heading i18n" data-i18n="[html]menu.labels.options"></div>' +
 								'<div id="main-menu-features" class="main-menu-list"></div>' +								
 							'</div>')
 							.appendTo( body )

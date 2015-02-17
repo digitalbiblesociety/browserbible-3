@@ -1,6 +1,6 @@
 
 var ConfigButton = function(node) {
-	var configButton = $('<div class="main-menu-item image-config" style="">Settings</div>')
+	var configButton = $('<div class="main-menu-item image-config i18n" data-i18n="[html]menu.labels.settings"></div>')
 					.appendTo( $('#main-menu-features') )
 					.on('click', buttonClick),
 
@@ -11,11 +11,13 @@ var ConfigButton = function(node) {
 							'<div class="config-body"></div>' +
 							'<div class="clear"></div>' +
 						'</div>' +
+						/*
 						'<div class="config-section" id="config-toggles">' +
 							'<span class="config-header i18n" data-i18n="[html]menu.config.settings"></span>' +
 							'<div class="config-body"></div>' +
 							'<div class="clear"></div>' +
 						'</div>' +
+						*/
 						'<div class="config-section" id="config-tools">' +
 							'<span class="config-header i18n" data-i18n="[html]menu.config.tools"></span>' +
 							'<div class="config-body"></div>' +
@@ -49,6 +51,7 @@ var ConfigButton = function(node) {
 			$('.window-overlay').hide();
 			
 			$('#main-menu-dropdown').hide();
+			$('#main-menu-button').removeClass('active');
 			
 			configMenu.show();
 			

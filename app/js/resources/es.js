@@ -11,10 +11,27 @@ sofia.resources['es'] = {
 				"tools": "Instrumentos"
 			},
 			"reset": "reajustar",
+			"labels": {
+				"about": "Acerca de",
+				"addwindow": "Añadir Ventana",
+				"settings": "Ajustes",
+				"feedback": "Realimentación",
+				"options": "Opciones"
+			},
+			"feedback": {
+				"name": "Nombre",
+				"email": "Correo electrónico",
+				"comments": "Sus comentarios",
+				"feature": "Característica Sugerencia",
+				"bug": "Informar de un error",
+				"other": "Otro",
+				"send": "Enviar",
+				"thankyou": "Gracias por su colaboración"
+			},
 			"themes": {
 				"default": "Normal",
 				"sepia": "Sepia",
-				"dark": "Low Light"
+				"dark": "Luz baja"
 			}
 		},
 		"plugins": {
@@ -28,7 +45,8 @@ sofia.resources['es'] = {
 			},
 			"eng2p": {
 				"button": "Inglés segunda persona del plural",
-				"title": "Inglés Segunda Persona del Plural"
+				"title": "Inglés Segunda Persona del Plural",
+				"description": "Inglés Moderno no distingue entre <em>singular</em> y <em>que usted plural,</em> por lo que este plugin utiliza equivalentes regionales inglés para representar el hebreo y el griego formas."
 			},
 			"lemmapopup": {
 				"findalloccurrences": "Buscar todas las ocurrencias (aproximadamente __count__)"
@@ -59,7 +77,8 @@ sofia.resources['es'] = {
 				"placeholder": "Búsqueda",
 				"button": "Búsqueda",
 				"results": "Resultados",
-				"verses": "versos"
+				"verses": "versos",
+				"options": "Opciones de Búsqueda"
 			},
 			"media": {
 				"label": "Medios de comunicación"
@@ -73,10 +92,24 @@ sofia.resources['es'] = {
 				"autoplay": "Reproducción automática Siguiente",
 				"drama": "Drama",
 				"nondrama": "No drama"
+			},
+			"parallel": {
+				"label": "Paralelas",
+				"loading": "Cargando ...",
+				"showall": "Mostrar todo",
+				"hideall": "Ocultar todo"
+			},
+			"comparison": {
+				"label": "Comparación"
 			}
 		},
 		"names": {
-			"en": "Spanish"
+			"en": "Spanish",
+			"de": "Spanisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "espagnol"
 		}
 	}
 }

@@ -2,6 +2,23 @@ sofia.resources['en'] = {
 	"translation": {
 		"name": "English",
 		"menu": {
+			"labels": {
+				"about": "About",
+				"addwindow": "Add Window",
+				"settings": "Settings",
+				"feedback": "Feedback",
+				"options": "Options"
+			},
+			"feedback": {
+				"name": "Name",
+				"email": "Email",
+				"comments": "Your Comments",
+				"feature": "Feature Suggestion",
+				"bug": "Bug Report",
+				"other": "Other",
+				"send": "Send",
+				"thankyou": "Thank you for your feedback"
+			},
 			"search": {
 				"placeholder": "Search"
 			},
@@ -28,8 +45,7 @@ sofia.resources['en'] = {
 			},
 			"eng2p": {
 				"button": "English 2nd Person Plural",
-				"title": "English Second Person Plural",
-				"description": "Modern English does not distinguish between <em>you singular</em> and <em>you plural</em>, so this plugin uses regional English equivalents to represent the Hebrew and Greek forms."
+				"title": "English Second Person Plural"
 			},
 			"lemmapopup": {
 				"findalloccurrences": "Find all occurrences (approximately __count__)"
@@ -61,7 +77,7 @@ sofia.resources['en'] = {
 				"button": "Search",
 				"results": "Results",
 				"verses": "verses",
-				"options": "Search Options"							
+				"options": "Search Options"
 			},
 			"parallel": {
 				"label": "Parallels",
@@ -83,7 +99,7 @@ sofia.resources['en'] = {
 				"nondrama": "Spoken"
 			},
 			"comparison": {
-				"label": "Comparison"				
+				"label": "Comparison"
 			}
 		},
 		"names": {

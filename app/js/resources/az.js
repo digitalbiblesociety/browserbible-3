@@ -15,6 +15,23 @@ sofia.resources['az'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Haqqında",
+				"addwindow": "Window əlavə et",
+				"settings": "Parametrlər",
+				"feedback": "Əlaqə",
+				"options": "Seçimlər"
+			},
+			"feedback": {
+				"name": "Ad",
+				"email": "E-poçt",
+				"comments": "Sizin Şərhlər",
+				"feature": "Bədii Təklif",
+				"bug": "Bug Report",
+				"other": "Digər",
+				"send": "Göndərmək",
+				"thankyou": "Geribildiriminiz üçün təşəkkür edirik"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['az'] = {
 				"placeholder": "Axtarış",
 				"button": "Axtarış",
 				"results": "Nəticələri",
-				"verses": "ayələri"
+				"verses": "ayələri",
+				"options": "Axtarış növü"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['az'] = {
 				"autoplay": "Autoplay Next",
 				"drama": "Drama",
 				"nondrama": "Qeyri-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Bütün göstər",
+				"hideall": "Bütün gizlət"
+			},
+			"comparison": {
+				"label": "Müqayisə"
 			}
 		},
 		"names": {
-			"en": "Azerbaijani"
+			"en": "Azerbaijani",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "İngilis dili",
+			"fr": "anglais"
 		}
 	}
 }

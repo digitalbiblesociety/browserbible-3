@@ -15,6 +15,23 @@ sofia.resources['bg'] = {
 				"default": "Нормален",
 				"sepia": "Сепия",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Около",
+				"addwindow": "Добави Window",
+				"settings": "Settings",
+				"feedback": "Обратна връзка",
+				"options": "Опции"
+			},
+			"feedback": {
+				"name": "Име",
+				"email": "Email",
+				"comments": "Вашите коментари",
+				"feature": "Feature Предложения",
+				"bug": "Bug Доклад",
+				"other": "Друг",
+				"send": "Изпращам",
+				"thankyou": "Благодарим Ви за обратната връзка"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['bg'] = {
 				"placeholder": "Търсене",
 				"button": "Търсене",
 				"results": "Резултати",
-				"verses": "стихове"
+				"verses": "стихове",
+				"options": "Настройки на търсенето"
 			},
 			"media": {
 				"label": "Средства"
@@ -73,10 +91,24 @@ sofia.resources['bg'] = {
 				"autoplay": "Autoplay Следваща",
 				"drama": "Драма",
 				"nondrama": "Non-Драма"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Зарежда се ...",
+				"showall": "Покажи всички",
+				"hideall": "Скрий всички"
+			},
+			"comparison": {
+				"label": "Сравнение"
 			}
 		},
 		"names": {
-			"en": "Bulgarian"
+			"en": "Bulgarian",
+			"de": "Английски",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "Англе"
 		}
 	}
 }

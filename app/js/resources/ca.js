@@ -15,6 +15,23 @@ sofia.resources['ca'] = {
 				"default": "Normal",
 				"sepia": "Sèpia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Sobre",
+				"addwindow": "Afegir Finestra",
+				"settings": "Ajustos",
+				"feedback": "Realimentació",
+				"options": "Opcions"
+			},
+			"feedback": {
+				"name": "Nom",
+				"email": "Correu electrònic",
+				"comments": "Els seus comentaris",
+				"feature": "Característica Suggeriment",
+				"bug": "Informar d&#39;un error",
+				"other": "Un altre",
+				"send": "Enviar",
+				"thankyou": "Gràcies per la seva col·laboració"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ca'] = {
 				"placeholder": "Cerca",
 				"button": "Cerca",
 				"results": "Resultats",
-				"verses": "versos"
+				"verses": "versos",
+				"options": "Opcions de Cerca"
 			},
 			"media": {
 				"label": "Mitjans de comunicació"
@@ -73,10 +91,24 @@ sofia.resources['ca'] = {
 				"autoplay": "Reproducció automàtica Següent",
 				"drama": "Drama",
 				"nondrama": "No drama"
+			},
+			"parallel": {
+				"label": "Paral·leles",
+				"loading": "Carregant ...",
+				"showall": "Mostrar tot",
+				"hideall": "Amaga tots"
+			},
+			"comparison": {
+				"label": "Comparació"
 			}
 		},
 		"names": {
-			"en": "Catalan"
+			"en": "Catalan",
+			"de": "Spanisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Anglès",
+			"fr": "espagnol"
 		}
 	}
 }

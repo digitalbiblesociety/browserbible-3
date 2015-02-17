@@ -1,6 +1,6 @@
 sofia.resources['it'] = {
 	"translation": {
-		"name": "italiano",
+		"name": "Italiano",
 		"menu": {
 			"search": {
 				"placeholder": "Ricerca"
@@ -15,6 +15,23 @@ sofia.resources['it'] = {
 				"default": "Normale",
 				"sepia": "Nero di seppia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Su",
+				"addwindow": "Aggiungi Window",
+				"settings": "Impostazioni",
+				"feedback": "Retroazione",
+				"options": "Opzioni"
+			},
+			"feedback": {
+				"name": "Nome",
+				"email": "Email",
+				"comments": "I vostri commenti",
+				"feature": "Caratteristica Suggerimento",
+				"bug": "Bug Report",
+				"other": "Altro",
+				"send": "Inviare",
+				"thankyou": "Grazie per i tuoi commenti"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['it'] = {
 				"placeholder": "Ricerca",
 				"button": "Ricerca",
 				"results": "Risultati",
-				"verses": "versi"
+				"verses": "versi",
+				"options": "Opzioni di ricerca"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['it'] = {
 				"autoplay": "Autoplay Successivo",
 				"drama": "Dramma",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Mostra tutto",
+				"hideall": "Nascondi tutto"
+			},
+			"comparison": {
+				"label": "Confronto"
 			}
 		},
 		"names": {
-			"en": "Italian"
+			"en": "Italian",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

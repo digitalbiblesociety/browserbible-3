@@ -15,6 +15,23 @@ sofia.resources['sq'] = {
 				"default": "Normal",
 				"sepia": "Bojë e zezë supje",
 				"dark": "Drita e ulët"
+			},
+			"labels": {
+				"about": "Për",
+				"addwindow": "Shto Window",
+				"settings": "Cilësimet",
+				"feedback": "Reagim",
+				"options": "Options"
+			},
+			"feedback": {
+				"name": "Emër",
+				"email": "Email",
+				"comments": "Komentet tuaja",
+				"feature": "Feature Suggestion",
+				"bug": "Bug Report",
+				"other": "Tjetër",
+				"send": "Dërgoj",
+				"thankyou": "Faleminderit për komentin tuaj"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['sq'] = {
 				"placeholder": "Kërkim",
 				"button": "Kërkim",
 				"results": "Rezultatet",
-				"verses": "Vargjet"
+				"verses": "Vargjet",
+				"options": "Mënyrat e Kërkimit"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['sq'] = {
 				"autoplay": "Autoplay Next",
 				"drama": "Dramë",
 				"nondrama": "Jo-Drama"
+			},
+			"parallel": {
+				"label": "Paralele",
+				"loading": "Duke u ngarkuar ...",
+				"showall": "Trego te gjitha",
+				"hideall": "Fshih gjitha"
+			},
+			"comparison": {
+				"label": "Krahasim"
 			}
 		},
 		"names": {
-			"en": "Albanian"
+			"en": "Albanian",
+			"de": "Albanisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "albanais"
 		}
 	}
 }

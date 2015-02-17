@@ -15,6 +15,23 @@ sofia.resources['gu'] = {
 				"default": "સામાન્ય",
 				"sepia": "સેપિયા",
 				"dark": "નીચા લાઇટ"
+			},
+			"labels": {
+				"about": "વિશે",
+				"addwindow": "વિન્ડો ઉમેરો",
+				"settings": "સેટિંગ્સ",
+				"feedback": "પ્રતિસાદ",
+				"options": "વિકલ્પો"
+			},
+			"feedback": {
+				"name": "નામ",
+				"email": "ઇમેઇલ",
+				"comments": "તમારા ટિપ્પણીઓ",
+				"feature": "લક્ષણ સૂચન",
+				"bug": "ભૂલ રિપોર્ટ",
+				"other": "અન્ય",
+				"send": "મોકલો",
+				"thankyou": "તમારા પ્રતિભાવ બદલ આભાર"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['gu'] = {
 				"placeholder": "શોધ",
 				"button": "શોધ",
 				"results": "પરિણામો",
-				"verses": "છંદો"
+				"verses": "છંદો",
+				"options": "શોધ વિકલ્પો"
 			},
 			"media": {
 				"label": "મીડિયા"
@@ -73,10 +91,24 @@ sofia.resources['gu'] = {
 				"autoplay": "ઑટોપ્લે આગળ",
 				"drama": "ડ્રામા",
 				"nondrama": "બિન ડ્રામા"
+			},
+			"parallel": {
+				"label": "સમાંતર",
+				"loading": "લોડ કરી રહ્યું છે ...",
+				"showall": "બધા બતાવવા",
+				"hideall": "બધા છુપાવવા"
+			},
+			"comparison": {
+				"label": "સરખામણી"
 			}
 		},
 		"names": {
-			"en": "Gujarati"
+			"en": "Gujarati",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "ઇંગલિશ",
+			"fr": "anglais"
 		}
 	}
 }

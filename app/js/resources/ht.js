@@ -15,6 +15,23 @@ sofia.resources['ht'] = {
 				"default": "Nòmal",
 				"sepia": "Sépia",
 				"dark": "Ba limyè"
+			},
+			"labels": {
+				"about": "Sou",
+				"addwindow": "Ajoute Fenèt",
+				"settings": "Anviwònman",
+				"feedback": "Feedback",
+				"options": "Opsyon"
+			},
+			"feedback": {
+				"name": "Non",
+				"email": "Imèl",
+				"comments": "Kòmantè ou",
+				"feature": "Feature Sijesyon",
+				"bug": "Rapò Bug",
+				"other": "Lòt",
+				"send": "Voye",
+				"thankyou": "Mèsi pou fidbak ou"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ht'] = {
 				"placeholder": "Search",
 				"button": "Search",
 				"results": "Rezilta",
-				"verses": "vèsè"
+				"verses": "vèsè",
+				"options": "Search Opsyon"
 			},
 			"media": {
 				"label": "Medya"
@@ -73,10 +91,24 @@ sofia.resources['ht'] = {
 				"autoplay": "Otople Next",
 				"drama": "Dram",
 				"nondrama": "Ki pa Peye-Dram"
+			},
+			"parallel": {
+				"label": "Paralèl",
+				"loading": "Loading ...",
+				"showall": "Montre tout",
+				"hideall": "Kache tout"
+			},
+			"comparison": {
+				"label": "Konparezon"
 			}
 		},
 		"names": {
-			"en": "Haitian Creole"
+			"en": "Haitian Creole",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

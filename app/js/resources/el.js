@@ -15,6 +15,23 @@ sofia.resources['el'] = {
 				"default": "Κανονικός",
 				"sepia": "Καστανόχρους",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Περίπου",
+				"addwindow": "Προσθήκη Παράθυρο",
+				"settings": "Ρυθμίσεις",
+				"feedback": "Ανατροφοδότηση",
+				"options": "Επιλογές"
+			},
+			"feedback": {
+				"name": "Όνομα",
+				"email": "Email",
+				"comments": "Τα σχόλια σας",
+				"feature": "Χαρακτηριστικό Εισήγηση",
+				"bug": "Αναφοράσφάλματος",
+				"other": "Άλλος",
+				"send": "Αποστολή",
+				"thankyou": "Σας ευχαριστούμε για τα σχόλιά σας"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['el'] = {
 				"placeholder": "Έρευνα",
 				"button": "Έρευνα",
 				"results": "Αποτελέσματα",
-				"verses": "στίχους"
+				"verses": "στίχους",
+				"options": "Επιλογές Αναζήτησης"
 			},
 			"media": {
 				"label": "Μέσα ενημέρωσης"
@@ -73,10 +91,24 @@ sofia.resources['el'] = {
 				"autoplay": "Αυτόματο παιχνίδι Επόμενη",
 				"drama": "Δράμα",
 				"nondrama": "Μη-Δράμα"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Φόρτωση ...",
+				"showall": "Εμφάνιση Όλων",
+				"hideall": "Απόκρυψη όλων"
+			},
+			"comparison": {
+				"label": "Σύγκριση"
 			}
 		},
 		"names": {
-			"en": "Greek"
+			"en": "Greek",
+			"de": "Αγγλικά",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "Anglais"
 		}
 	}
 }

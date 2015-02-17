@@ -15,6 +15,23 @@ sofia.resources['is'] = {
 				"default": "Eðlilegt",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Um",
+				"addwindow": "Bæta glugga",
+				"settings": "Stillingar",
+				"feedback": "Feedback",
+				"options": "Valkostir"
+			},
+			"feedback": {
+				"name": "Name",
+				"email": "Email",
+				"comments": "Comments þín",
+				"feature": "Feature Uppástunga",
+				"bug": "Bug Report",
+				"other": "Annað",
+				"send": "Senda",
+				"thankyou": "Þakka þér fyrir athugasemdina"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['is'] = {
 				"placeholder": "Leita",
 				"button": "Leita",
 				"results": "Niðurstöður",
-				"verses": "vísur"
+				"verses": "vísur",
+				"options": "Leita Options"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['is'] = {
 				"autoplay": "Sjálfstýring Næsta",
 				"drama": "Leiklist",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Hliðstæður",
+				"loading": "Loading ...",
+				"showall": "Sýna All",
+				"hideall": "Fela All"
+			},
+			"comparison": {
+				"label": "Samanburður"
 			}
 		},
 		"names": {
-			"en": "Icelandic"
+			"en": "Icelandic",
+			"de": "Isländisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "Anglais"
 		}
 	}
 }

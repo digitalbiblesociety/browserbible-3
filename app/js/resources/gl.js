@@ -15,6 +15,23 @@ sofia.resources['gl'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Sobre",
+				"addwindow": "Engadir Xanela",
+				"settings": "Axustes",
+				"feedback": "Cualificacións",
+				"options": "Opcións"
+			},
+			"feedback": {
+				"name": "Nome",
+				"email": "Email",
+				"comments": "Os seus comentarios",
+				"feature": "Suxestión recurso",
+				"bug": "Informe de bug",
+				"other": "Outro",
+				"send": "Enviar",
+				"thankyou": "Grazas polo seu feedback"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['gl'] = {
 				"placeholder": "Buscar",
 				"button": "Buscar",
 				"results": "Resultados",
-				"verses": "versos"
+				"verses": "versos",
+				"options": "Opcións de Investigación"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['gl'] = {
 				"autoplay": "Autoplay Seguinte",
 				"drama": "Drama",
 				"nondrama": "Non Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Cargando ...",
+				"showall": "Mostrar todo",
+				"hideall": "Ocultar todo"
+			},
+			"comparison": {
+				"label": "Comparación"
 			}
 		},
 		"names": {
-			"en": "Galician"
+			"en": "Galician",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "espagnol"
 		}
 	}
 }

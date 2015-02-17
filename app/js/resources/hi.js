@@ -19,6 +19,23 @@ sofia.resources['hi'] = {
 				"default": "साधारण",
 				"sepia": "एक प्रकार की मछली",
 				"dark": "कम रोशनी"
+			},
+			"labels": {
+				"about": "तकरीबन",
+				"addwindow": "खिड़की जोड़ें",
+				"settings": "सेटिंग्स",
+				"feedback": "प्रतिक्रिया",
+				"options": "विकल्प"
+			},
+			"feedback": {
+				"name": "नाम",
+				"email": "ईमेल",
+				"comments": "आपकी टिप्पणी",
+				"feature": "सुविधा सुझाव",
+				"bug": "बग रिपोर्ट",
+				"other": "अन्य",
+				"send": "भेजो",
+				"thankyou": "आपकी प्रतिक्रिया के लिए धन्यवाद"
 			}
 		},
 		"plugins": {
@@ -63,7 +80,8 @@ sofia.resources['hi'] = {
 				"placeholder": "खोज",
 				"button": "खोज",
 				"results": "परिणाम",
-				"verses": "छंद"
+				"verses": "छंद",
+				"options": "खोज विकल्प"
 			},
 			"media": {
 				"label": "मीडिया"
@@ -77,10 +95,24 @@ sofia.resources['hi'] = {
 				"autoplay": "ऑटोप्ले अगला",
 				"drama": "ड्रामा",
 				"nondrama": "गैर ड्रामा"
+			},
+			"parallel": {
+				"label": "समानताएं",
+				"loading": "लोडिंग ...",
+				"showall": "सब दिखाएं",
+				"hideall": "सभी छुपाएं"
+			},
+			"comparison": {
+				"label": "तुलना"
 			}
 		},
 		"names": {
-			"en": "Hindi"
+			"en": "Hindi",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "Anglais"
 		}
 	}
 }

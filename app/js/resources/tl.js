@@ -15,6 +15,23 @@ sofia.resources['tl'] = {
 				"default": "Normal",
 				"sepia": "Sepya",
 				"dark": "Mababang Banayad"
+			},
+			"labels": {
+				"about": "Tungkol sa",
+				"addwindow": "Magdagdag ng Window",
+				"settings": "Mga Setting",
+				"feedback": "Feedback",
+				"options": "Mga Pagpipilian"
+			},
+			"feedback": {
+				"name": "Pangalan",
+				"email": "Email",
+				"comments": "Ang iyong mga Komento",
+				"feature": "Suhestiyon sa Tampok",
+				"bug": "Bug Ulat",
+				"other": "Iba",
+				"send": "Magpadala",
+				"thankyou": "Salamat para sa iyong feedback"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['tl'] = {
 				"placeholder": "Paghahanap",
 				"button": "Paghahanap",
 				"results": "Mga Resulta",
-				"verses": "verses"
+				"verses": "verses",
+				"options": "Mga Pagpipilian sa Paghahanap"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['tl'] = {
 				"autoplay": "Autoplay Susunod",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallel",
+				"loading": "Naglo-load ...",
+				"showall": "Ipakita ang Lahat",
+				"hideall": "Itago ang lahat ng"
+			},
+			"comparison": {
+				"label": "Paghahambing"
 			}
 		},
 		"names": {
-			"en": "Filipino"
+			"en": "Filipino",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "Anglais"
 		}
 	}
 }

@@ -15,6 +15,23 @@ sofia.resources['ceb'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Ubos Kahayag"
+			},
+			"labels": {
+				"about": "About",
+				"addwindow": "Add Window",
+				"settings": "Settings",
+				"feedback": "Feedback",
+				"options": "Mga kapilian"
+			},
+			"feedback": {
+				"name": "Ngalan",
+				"email": "Email",
+				"comments": "Ang imong mga Comments",
+				"feature": "Feature Sugyot",
+				"bug": "Bug Report",
+				"other": "Ang ubang mga",
+				"send": "Send",
+				"thankyou": "Salamat sa inyong ikasulti"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ceb'] = {
 				"placeholder": "Search",
 				"button": "Search",
 				"results": "Results",
-				"verses": "mga bersikulo"
+				"verses": "mga bersikulo",
+				"options": "Opsyon sa Pagpangita"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['ceb'] = {
 				"autoplay": "PAUSE Next",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Pagkaparehas",
+				"loading": "Loading ...",
+				"showall": "Ipakita ang tanan nga",
+				"hideall": "Tagoa ang tanan nga"
+			},
+			"comparison": {
+				"label": "Pagtandi"
 			}
 		},
 		"names": {
-			"en": "Cebuano"
+			"en": "Cebuano",
+			"de": "Cebuano",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

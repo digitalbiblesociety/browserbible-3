@@ -15,6 +15,23 @@ sofia.resources['la'] = {
 				"default": "Normal",
 				"sepia": "Sepiam",
 				"dark": "Minimum Lumen,"
+			},
+			"labels": {
+				"about": "About",
+				"addwindow": "Add Window",
+				"settings": "Occasus",
+				"feedback": "Feedback",
+				"options": "Options"
+			},
+			"feedback": {
+				"name": "Name",
+				"email": "Email",
+				"comments": "Your Comments",
+				"feature": "Feature Suggestion",
+				"bug": "Bug Report",
+				"other": "Other",
+				"send": "Mitte",
+				"thankyou": "Tibi gratias ago pro tui feedback"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['la'] = {
 				"placeholder": "Lorem ipsum",
 				"button": "Lorem ipsum",
 				"results": "Results",
-				"verses": "Vers"
+				"verses": "Vers",
+				"options": "Search Options"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['la'] = {
 				"autoplay": "Next Autoplay",
 				"drama": "Drama",
 				"nondrama": "Non ca-"
+			},
+			"parallel": {
+				"label": "Parallelis",
+				"loading": "Loading ...",
+				"showall": "Show",
+				"hideall": "Omnes absconde"
+			},
+			"comparison": {
+				"label": "Comparison"
 			}
 		},
 		"names": {
-			"en": "Latin"
+			"en": "Latin",
+			"de": "Latein",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "LIBER PRIMUS"
 		}
 	}
 }

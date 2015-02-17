@@ -15,6 +15,23 @@ sofia.resources['jw'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Kurang cahya"
+			},
+			"labels": {
+				"about": "About",
+				"addwindow": "Tambah Window",
+				"settings": "Setelan",
+				"feedback": "Komentar",
+				"options": "Pilihan"
+			},
+			"feedback": {
+				"name": "Jeneng",
+				"email": "Email",
+				"comments": "Komentar Panjenengan",
+				"feature": "Fitur Suggestion",
+				"bug": "Bug Report",
+				"other": "Liyane",
+				"send": "Kirimi",
+				"thankyou": "Matur nuwun kanggo saran"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['jw'] = {
 				"placeholder": "Panelusuran",
 				"button": "Panelusuran",
 				"results": "Asil",
-				"verses": "ayat"
+				"verses": "ayat",
+				"options": "Search Pilihan"
 			},
 			"media": {
 				"label": "Media"
@@ -73,10 +91,24 @@ sofia.resources['jw'] = {
 				"autoplay": "Autoplay Sabanjure",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Paralel",
+				"loading": "Loading ...",
+				"showall": "Tampilake Kabeh",
+				"hideall": "Singidaken Kabeh"
+			},
+			"comparison": {
+				"label": "Comparison"
 			}
 		},
 		"names": {
-			"en": "Javanese"
+			"en": "Javanese",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "anglais"
 		}
 	}
 }

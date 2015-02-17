@@ -15,6 +15,23 @@ sofia.resources['kn'] = {
 				"default": "ಸಾಧಾರಣ",
 				"sepia": "ಸೆಪಿಯಾ",
 				"dark": "ಕಡಿಮೆ ಬೆಳಕಿನ"
+			},
+			"labels": {
+				"about": "ಬಗ್ಗೆ",
+				"addwindow": "ವಿಂಡೋ ಸೇರಿಸಿ",
+				"settings": "ಸೆಟ್ಟಿಂಗ್ಗಳು",
+				"feedback": "ಪ್ರತಿಕ್ರಿಯೆ",
+				"options": "ಆಯ್ಕೆಗಳು"
+			},
+			"feedback": {
+				"name": "ಹೆಸರು",
+				"email": "ಇಮೇಲ್",
+				"comments": "ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಗಳು",
+				"feature": "ವೈಶಿಷ್ಟ್ಯ ಸಲಹೆ",
+				"bug": "ಬಗ್ ವರದಿ",
+				"other": "ಇತರೆ",
+				"send": "ಕಳುಹಿಸಿ",
+				"thankyou": "ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಗೆ ಧನ್ಯವಾದಗಳು"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['kn'] = {
 				"placeholder": "ಹುಡುಕು",
 				"button": "ಹುಡುಕು",
 				"results": "ಫಲಿತಾಂಶಗಳು",
-				"verses": "ಪದ್ಯಗಳನ್ನು"
+				"verses": "ಪದ್ಯಗಳನ್ನು",
+				"options": "ಹುಡುಕಾಟ ಆಯ್ಕೆಗಳು"
 			},
 			"media": {
 				"label": "ಮಾಧ್ಯಮ"
@@ -73,10 +91,24 @@ sofia.resources['kn'] = {
 				"autoplay": "ಸ್ವಯಂಪ್ಲೇ ಮುಂದೆ",
 				"drama": "ನಾಟಕ",
 				"nondrama": "ಅಲ್ಲದ ನಾಟಕ"
+			},
+			"parallel": {
+				"label": "ಸಮಾಂತರ",
+				"loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ ...",
+				"showall": "ಎಲ್ಲಾ ತೋರಿಸಿ",
+				"hideall": "ಎಲ್ಲಾ ಮರೆಮಾಡಿ"
+			},
+			"comparison": {
+				"label": "ಹೋಲಿಕೆ"
 			}
 		},
 		"names": {
-			"en": "Kannada"
+			"en": "Kannada",
+			"de": "Englisch",
+			"zh-TW": "英語",
+			"zh-CN": "英语",
+			"es": "Inglés",
+			"fr": "ಎಂಗ್ಲೈಸ್ ಎಂದೇ"
 		}
 	}
 }

@@ -1,8 +1,13 @@
 Change Log
 =======
 
+3.4.0 - 2015/02/16
 
-3.3.4 - 2015/01/XXX
+* Major reorganization of menus
+* Text comparison tool
+* Feedback tool
+
+3.3.4 - 2015/01/12
 ----
 
 * Added space between footnotes when two are next to one another

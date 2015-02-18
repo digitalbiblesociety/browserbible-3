@@ -1,10 +1,3 @@
-/*
-for in menu
-#main-fullscreen-button {
-	background-image: url(../../css/images/fullscreen.svg);
-}
-*/
-
 #main-fullscreen-button {
 	background-image: url(../../css/images/fullscreen.svg);
 	position: absolute;

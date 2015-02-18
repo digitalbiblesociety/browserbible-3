@@ -21,7 +21,7 @@ var MainMenuButton = function(node) {
 		win = $(window),
 			
 		container = $('.windows-container'),
-		mainMenuLogo = $('<div id="app-logo" class="image-logo"></div>')
+		mainMenuLogo = $('<div id="app-logo"></div>')
 					.appendTo(node),
 		mainMenuButton = $('<div id="main-menu-button"></div>')
 					.appendTo(node)

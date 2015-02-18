@@ -333,13 +333,27 @@ var Scroller = function(node) {
 						first_item = node.find('.section').children().first();
 						first_item_offset_top_before = first_item.offset().top;
 
+					// add to top and measure
 					wrapper.prepend(content);
-
+					
 					var first_item_offset_top_after = first_item.offset().top,
 						offest_difference = first_item_offset_top_after - first_item_offset_top_before,
 						new_scrolltop = node_scrolltop_before + offest_difference;
 
 					node.scrollTop( Math.abs(new_scrolltop));
+					
+					// add to bottom, then move down
+					/*
+					var wrapper_height_before = wrapper.height();
+					wrapper.append(content);
+					var wrapper_height_after = wrapper.height();					
+					wrapper.prepent(content);
+					
+					var height_difference = wrapper_height_after - wrapper_height_before,
+						new_scrolltop = node_scrolltop_before + height_difference;
+					
+					node.scrollTop( Math.abs(new_scrolltop ));
+					*/
 
 					break;
 

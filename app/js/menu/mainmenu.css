@@ -1,3 +1,10 @@
+#app-logo {
+	position: absolute;
+	top: 0;
+	left: 60px;
+	height: 60px;	
+}
+
 #main-menu-button {
 	cursor: pointer;
 	position: absolute;
@@ -94,6 +101,10 @@
 
 
 @media (max-width: 480px) {
+	#app-logo {
+		display: none;	
+	}
+	
 	#main-menu-button {
 		height: 40px;
 		width: 40px;

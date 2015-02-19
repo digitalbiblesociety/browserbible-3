@@ -103,12 +103,7 @@ sofia.resources['th'] = {
 			}
 		},
 		"names": {
-			"en": "Thai",
-			"de": "อังกฤษ",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "ภาษาอังกฤษ",
-			"fr": "Anglais"
+			"en": "Thai"
 		}
 	}
 }

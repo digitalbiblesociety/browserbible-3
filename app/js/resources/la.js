@@ -103,12 +103,7 @@ sofia.resources['la'] = {
 			}
 		},
 		"names": {
-			"en": "Latin",
-			"de": "Latein",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "LIBER PRIMUS"
+			"en": "Latin"
 		}
 	}
 }

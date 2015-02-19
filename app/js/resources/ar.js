@@ -103,12 +103,7 @@ sofia.resources['ar'] = {
 			}
 		},
 		"names": {
-			"en": "Arabic",
-			"de": "انجليش",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "انجليزية",
-			"fr": "أنغليس"
+			"en": "Arabic"
 		}
 	}
 }

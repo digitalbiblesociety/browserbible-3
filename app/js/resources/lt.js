@@ -103,12 +103,7 @@ sofia.resources['lt'] = {
 			}
 		},
 		"names": {
-			"en": "Lithuanian",
-			"de": "Litauisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Anglų",
-			"fr": "anglais"
+			"en": "Lithuanian"
 		}
 	}
 }

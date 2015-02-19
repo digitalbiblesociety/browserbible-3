@@ -103,12 +103,7 @@ sofia.resources['ko'] = {
 			}
 		},
 		"names": {
-			"en": "Korean",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés는",
-			"fr": "영문"
+			"en": "Korean"
 		}
 	}
 }

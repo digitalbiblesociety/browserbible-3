@@ -103,12 +103,7 @@ sofia.resources['ca'] = {
 			}
 		},
 		"names": {
-			"en": "Catalan",
-			"de": "Spanisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Anglès",
-			"fr": "espagnol"
+			"en": "Catalan"
 		}
 	}
 }

@@ -103,12 +103,7 @@ sofia.resources['kn'] = {
 			}
 		},
 		"names": {
-			"en": "Kannada",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "ಎಂಗ್ಲೈಸ್ ಎಂದೇ"
+			"en": "Kannada"
 		}
 	}
 }

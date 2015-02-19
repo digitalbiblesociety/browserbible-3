@@ -103,12 +103,7 @@ sofia.resources['bn'] = {
 			}
 		},
 		"names": {
-			"en": "Bengali",
-			"de": "অনুবাদের",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "বুলগেরিয়"
+			"en": "Bengali"
 		}
 	}
 }

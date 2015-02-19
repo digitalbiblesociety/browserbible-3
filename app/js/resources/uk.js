@@ -103,12 +103,6 @@ sofia.resources['uk'] = {
 			}
 		},
 		"names": {
-			"en": "Ukrainian",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Інглес",
-			"fr": "Англійський ріжок"
-		}
+			"en": "Ukrainian"		}
 	}
 }

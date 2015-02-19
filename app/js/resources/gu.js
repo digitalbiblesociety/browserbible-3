@@ -103,12 +103,7 @@ sofia.resources['gu'] = {
 			}
 		},
 		"names": {
-			"en": "Gujarati",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "ઇંગલિશ",
-			"fr": "anglais"
+			"en": "Gujarati"
 		}
 	}
 }

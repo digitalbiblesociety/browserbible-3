@@ -103,12 +103,7 @@ sofia.resources['sr'] = {
 			}
 		},
 		"names": {
-			"en": "Serbian",
-			"de": "Сербисцх",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Инглес",
-			"fr": "енглески"
+			"en": "Serbian"
 		}
 	}
 }

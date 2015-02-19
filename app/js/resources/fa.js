@@ -103,12 +103,7 @@ sofia.resources['fa'] = {
 			}
 		},
 		"names": {
-			"en": "Persian",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "صفت عام"
+			"en": "Persian"
 		}
 	}
 }

@@ -103,12 +103,7 @@ sofia.resources['cy'] = {
 			}
 		},
 		"names": {
-			"en": "Welsh",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Ingles",
-			"fr": "anglais"
+			"en": "Welsh"
 		}
 	}
 }

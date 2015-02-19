@@ -103,12 +103,7 @@ sofia.resources['ru'] = {
 			}
 		},
 		"names": {
-			"en": "Russian",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Инглес",
-			"fr": "Английский рожок"
+			"en": "Russian"
 		}
 	}
 }

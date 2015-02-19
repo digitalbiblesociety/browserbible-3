@@ -103,12 +103,7 @@ sofia.resources['jw'] = {
 			}
 		},
 		"names": {
-			"en": "Javanese",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "anglais"
+			"en": "Javanese"
 		}
 	}
 }

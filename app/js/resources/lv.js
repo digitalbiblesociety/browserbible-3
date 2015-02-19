@@ -103,12 +103,7 @@ sofia.resources['lv'] = {
 			}
 		},
 		"names": {
-			"en": "Latvian",
-			"de": "Lettisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "Anglais"
+			"en": "Latvian"
 		}
 	}
 }

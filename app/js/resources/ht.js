@@ -103,12 +103,7 @@ sofia.resources['ht'] = {
 			}
 		},
 		"names": {
-			"en": "Haitian Creole",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "anglais"
+			"en": "Haitian Creole"
 		}
 	}
 }

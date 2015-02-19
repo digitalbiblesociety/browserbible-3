@@ -103,12 +103,7 @@ sofia.resources['hr'] = {
 			}
 		},
 		"names": {
-			"en": "Croatian",
-			"de": "Kroatisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Croata",
-			"fr": "Croate"
+			"en": "Croatian"
 		}
 	}
 }

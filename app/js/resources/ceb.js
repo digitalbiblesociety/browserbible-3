@@ -103,12 +103,7 @@ sofia.resources['ceb'] = {
 			}
 		},
 		"names": {
-			"en": "Cebuano",
-			"de": "Cebuano",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "anglais"
+			"en": "Cebuano"
 		}
 	}
 }

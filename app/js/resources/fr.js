@@ -103,17 +103,7 @@ sofia.resources['fr'] = {
 			}
 		},
 		"names": {
-			"en": "French",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "anglais"
-		},
-		"window": {
-			"bible": {
-				"languages": "indéfini"
-			}
+			"en": "French"
 		}
 	}
 }

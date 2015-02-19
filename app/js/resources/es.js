@@ -104,12 +104,7 @@ sofia.resources['es'] = {
 			}
 		},
 		"names": {
-			"en": "Spanish",
-			"de": "Spanisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "espagnol"
+			"en": "Spanish"
 		}
 	}
 }

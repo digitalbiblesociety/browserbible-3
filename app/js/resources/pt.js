@@ -103,12 +103,7 @@ sofia.resources['pt'] = {
 			}
 		},
 		"names": {
-			"en": "Portuguese",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "portugais"
+			"en": "Portuguese"
 		}
 	}
 }

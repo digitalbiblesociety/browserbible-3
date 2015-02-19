@@ -103,12 +103,7 @@ sofia.resources['et'] = {
 			}
 		},
 		"names": {
-			"en": "Estonian",
-			"de": "Estnisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "Anglais"
+			"en": "Estonian"
 		}
 	}
 }

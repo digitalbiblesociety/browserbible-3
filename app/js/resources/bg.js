@@ -103,12 +103,7 @@ sofia.resources['bg'] = {
 			}
 		},
 		"names": {
-			"en": "Bulgarian",
-			"de": "Английски",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "Англе"
+			"en": "Bulgarian"
 		}
 	}
 }

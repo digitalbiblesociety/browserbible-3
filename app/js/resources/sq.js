@@ -103,12 +103,7 @@ sofia.resources['sq'] = {
 			}
 		},
 		"names": {
-			"en": "Albanian",
-			"de": "Albanisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "albanais"
+			"en": "Albanian"
 		}
 	}
 }

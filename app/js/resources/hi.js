@@ -107,12 +107,7 @@ sofia.resources['hi'] = {
 			}
 		},
 		"names": {
-			"en": "Hindi",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "Anglais"
+			"en": "Hindi"
 		}
 	}
 }

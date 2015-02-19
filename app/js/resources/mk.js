@@ -103,12 +103,7 @@ sofia.resources['mk'] = {
 			}
 		},
 		"names": {
-			"en": "Macedonian",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Ingles",
-			"fr": "anglais"
+			"en": "Macedonian"
 		}
 	}
 }

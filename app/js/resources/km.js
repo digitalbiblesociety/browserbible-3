@@ -103,12 +103,7 @@ sofia.resources['km'] = {
 			}
 		},
 		"names": {
-			"en": "Khmer",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "សហប្រតិបត្តិការ​អន្តរជាតិ"
+			"en": "Khmer"
 		}
 	}
 }

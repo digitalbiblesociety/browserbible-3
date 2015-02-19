@@ -104,11 +104,20 @@ sofia.resources['en'] = {
 		},
 		"names": {
 			"en": "English",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
+			"fr": "anglais",
 			"es": "Inglés",
-			"fr": "anglais"
+			"de": "Englisch",
+			"ru": "английский",
+			"hi": "अंग्रेजी",
+			"ar": "الإنجليزية",
+			"af": "Engels",
+			"bn": "ইংরেজি",
+			"id": "Bahasa Inggris",
+			"sw": "Kiingereza",
+			"tr": "ingilizce",
+			"ja": "英語",
+			"zh-TW": "英語",
+			"zh-CN": "英语"
 		}
 	}
 }

@@ -103,12 +103,7 @@ sofia.resources['ur'] = {
 			}
 		},
 		"names": {
-			"en": "Urdu",
-			"de": "انگریزی",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "انگریزی",
-			"fr": "انگریزی"
+			"en": "Urdu"
 		}
 	}
 }

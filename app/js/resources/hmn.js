@@ -103,12 +103,7 @@ sofia.resources['hmn'] = {
 			}
 		},
 		"names": {
-			"en": "Hmong",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "anglais"
+			"en": "Hmong"
 		}
 	}
 }

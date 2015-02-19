@@ -103,12 +103,7 @@ sofia.resources['ka'] = {
 			}
 		},
 		"names": {
-			"en": "Georgian",
-			"de": "ინგლისური",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "anglais"
+			"en": "Georgian"
 		}
 	}
 }

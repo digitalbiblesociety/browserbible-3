@@ -103,12 +103,7 @@ sofia.resources['ta'] = {
 			}
 		},
 		"names": {
-			"en": "Tamil",
-			"de": "இலக்கணப்",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "மர்மமாக",
-			"fr": "உக்ரைனியன்"
+			"en": "Tamil"
 		}
 	}
 }

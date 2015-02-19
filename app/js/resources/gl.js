@@ -103,12 +103,7 @@ sofia.resources['gl'] = {
 			}
 		},
 		"names": {
-			"en": "Galician",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "espagnol"
+			"en": "Galician"
 		}
 	}
 }

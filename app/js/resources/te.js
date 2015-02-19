@@ -103,12 +103,7 @@ sofia.resources['te'] = {
 			}
 		},
 		"names": {
-			"en": "Telugu",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "యాంగ్లస్పై"
+			"en": "Telugu"
 		}
 	}
 }

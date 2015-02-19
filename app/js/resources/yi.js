@@ -103,12 +103,7 @@ sofia.resources['yi'] = {
 			}
 		},
 		"names": {
-			"en": "Yiddish",
-			"de": "ענגליסטש",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "ענגליש",
-			"fr": "ענגליש"
+			"en": "Yiddish"
 		}
 	}
 }

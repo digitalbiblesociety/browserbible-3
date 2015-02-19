@@ -103,12 +103,7 @@ sofia.resources['az'] = {
 			}
 		},
 		"names": {
-			"en": "Azerbaijani",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "İngilis dili",
-			"fr": "anglais"
+			"en": "Azerbaijani"
 		}
 	}
 }

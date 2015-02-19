@@ -103,12 +103,7 @@ sofia.resources['zh-TW'] = {
 			}
 		},
 		"names": {
-			"en": "Chinese - Traditional",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英語",
-			"es": "Inglés的",
-			"fr": "英語"
+			"en": "Chinese - Traditional"
 		}
 	}
 }

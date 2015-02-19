@@ -103,12 +103,7 @@ sofia.resources['ro'] = {
 			}
 		},
 		"names": {
-			"en": "Romanian",
-			"de": "Rumänisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Rumano",
-			"fr": "anglais"
+			"en": "Romanian"
 		}
 	}
 }

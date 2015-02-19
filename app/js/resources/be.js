@@ -103,12 +103,7 @@ sofia.resources['be'] = {
 			}
 		},
 		"names": {
-			"en": "Belarusian",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Инглес",
-			"fr": "Англійская ражок"
+			"en": "Belarusian"
 		}
 	}
 }

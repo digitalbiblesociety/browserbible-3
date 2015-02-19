@@ -103,12 +103,7 @@ sofia.resources['hu'] = {
 			}
 		},
 		"names": {
-			"en": "Hungarian",
-			"de": "Angol",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "Inglés",
-			"fr": "Anglais"
+			"en": "Hungarian"
 		}
 	}
 }

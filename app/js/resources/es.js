@@ -45,8 +45,7 @@ sofia.resources['es'] = {
 			},
 			"eng2p": {
 				"button": "Inglés segunda persona del plural",
-				"title": "Inglés Segunda Persona del Plural",
-				"description": "Inglés Moderno no distingue entre <em>singular</em> y <em>que usted plural,</em> por lo que este plugin utiliza equivalentes regionales inglés para representar el hebreo y el griego formas."
+				"title": "Inglés Segunda Persona del Plural"
 			},
 			"lemmapopup": {
 				"findalloccurrences": "Buscar todas las ocurrencias (aproximadamente __count__)"

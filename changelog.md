@@ -1,6 +1,13 @@
 Change Log
 =======
 
+3.4.1 - 2015/02/18
+
+* Fixed positioning of main logo
+* Fixed Tischedorf rendering
+* Fixed errors in Map and TextComparison
+* Fixed wrong translation of language names
+
 3.4.0 - 2015/02/16
 
 * Major reorganization of menus

@@ -30,8 +30,8 @@ var TextComparisonWindow = function(id, parent, init_data) {
 
 	function init() {
 		
-		inputFragment.val( init_data.params.fragmentid );
-		inputTexts.val( init_data.params.textids );	
+		inputFragment.val( init_data.fragmentid ? init_data.fragmentid : init_data.params.fragmentid ? init_data.params.fragmentid : '');
+		inputTexts.val( init_data.textids ? init_data.textids : init_data.params.textids ? init_data.params.textids : '' );	
 		
 		doComparison();	
 		

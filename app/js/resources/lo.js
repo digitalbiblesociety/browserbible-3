@@ -103,12 +103,7 @@ sofia.resources['lo'] = {
 			}
 		},
 		"names": {
-			"en": "Lao",
-			"de": "ພາ​ສາ​ອັງ​ກິດ",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
-			"es": "ພາ​ສາ​ອັງ​ກິດ",
-			"fr": "anglais"
+			"en": "Lao"
 		}
 	}
 }

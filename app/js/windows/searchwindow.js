@@ -424,7 +424,9 @@ var SearchWindow = function(id, parent, init_data) {
 			html += '</table>';
 
 
-			resultsBlock.html( html );
+			resultsBlock
+				.html( html )
+				.find('.v-num').remove();
 
 			// render book list
 			renderResultsVisual(divisionCount, bookList);
@@ -759,8 +761,10 @@ var SearchWindow = function(id, parent, init_data) {
 			} else {
 				// if it's just <span class="highlight">, replace it with text
 				var textFragment = document.createTextNode(el.textContent);
-				el.parent.node.insertBefore(textFragment, el);
-				el.parent.node.removeChild(el);
+				if (el && el.parent && el.parent.node) { 
+					el.parent.node.insertBefore(textFragment, el);
+					el.parent.node.removeChild(el);
+				}
 			}
 
 		});

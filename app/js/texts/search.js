@@ -112,6 +112,22 @@ TextSearch = function() {
 
 				// create results
 				if (data && data.results) {
+					
+					// STEMs?
+					if (typeof data.stem_words != 'undefinded' ) {
+												
+						searchType = 'OR';
+						// redo search terms
+						searchTermsRegExp = [];
+						
+						for (var i=0, il=data.stem_words.length; i<il; i++) {
+							searchTermsRegExp.push( new XRegExp('\\b(' + data.stem_words[i] + ')\\b', 'gi') );							
+						}
+						
+					}
+ 					
+					
+					
 					for (var i=0, il=data.results.length; i<il; i++) {
 						var result = data.results[i],
 							fragmentid = Object.keys(result)[0],
@@ -122,6 +138,8 @@ TextSearch = function() {
 
 						if (result.foundMatch) {
 							searchFinalResults.push({fragmentid: fragmentid, html: result.html});
+						} else {
+							console.log('no match', html);
 						}
 
 						// add to results

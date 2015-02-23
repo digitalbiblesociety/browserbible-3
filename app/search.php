@@ -51,8 +51,8 @@ function hash_word($word) {
 
 
 /// DATAT
-$dbsBookCodes = array("GN","EX","");
 $isLemmaRegExp = '/[GgHh]\\d{1,6}/';
+$is_stem_enabled = true;
 
 //// START UP
 $textid = $_GET['textid'];
@@ -68,12 +68,25 @@ $output = array(
 	"results" => array(),
 	"textid" => $textid,
 	"search" => $search,
+	"stems" => array(),
+	"stem_words" => array(),	
 	"divisions" => $divisions,
 	"base32" => "",
 	"success" => TRUE,
 	"hash" => ""
 );
 
+$index_base_path = './content/texts/' . $textid;
+
+
+$word_to_stem = null;
+$word_to_stem_path = $index_base_path . '/index/stems.json';
+
+
+if ($is_stem_enabled && file_exists($word_to_stem_path)) {
+	$word_to_stem_contents = file_get_contents($word_to_stem_path);
+	$word_to_stem = json_decode($word_to_stem_contents, true);	
+}
 
 // SEARCH TYPE
 $search_type = "AND";
@@ -89,9 +102,10 @@ $path_to_index = '';
 $errors = '';
 foreach ($words as &$word) {
 
-	$path_to_index = './content/texts/' . $textid;
+	$path_to_index = $index_base_path;
 	$key = '';
-
+	$stem = '';
+	
 	if ($is_lemma_search) {
 		//$path_to_index .= '/indexlemma/' . $word . '.json';
 
@@ -107,13 +121,29 @@ foreach ($words as &$word) {
 
 
 	} else {
+		
+		if ($is_stem_enabled && $word_to_stem != null) {
+			$stem = $word_to_stem[$word];
+			
+			$key = strtolower($stem);
+			$hashed = hash_word($stem);	
+			
+			$path_to_index .= '/index/_stems_' . $hashed . '.json';
+			$output['hash'] .= $key . ' = ' . $hashed . '; ';					
+			
+			$output['stems'][] = $stem;
+		} else {
+			
+			$key = strtolower($word);
+			$hashed = hash_word($word);
+			
+			// load index
+			$path_to_index .= '/index/_' . $hashed . '.json';
+			$output['hash'] .= $key . ' = ' . $hashed . '; ';			
+		}
 
-		$key = strtolower($word);
-		$hashed = hash_word($word);
 
-		// load index
-		$path_to_index .= '/index/_' . $hashed . '.json';
-		$output['hash'] .= $key . ' = ' . $hashed . '; ';
+
 	}
 
 
@@ -123,7 +153,15 @@ foreach ($words as &$word) {
 
 		// store this index along with other words to be combined later
 		if (property_exists($json_data, $key)) {
-			$indexes[] = $json_data->{$key};
+			
+			if ($word_to_stem != null) {
+				
+				$indexes[] = $json_data->{$key}->{"occurrences"};
+				$output["stem_words"] = array_merge($output["stem_words"],  $json_data->{$key}->{"words"});
+
+			} else {
+				$indexes[] = $json_data->{$key};			
+			}
 		} else {
 			$errors .= "Can't find key: " . $key . ' in "' . $path_to_index + '"\n';
 		}
@@ -132,7 +170,9 @@ foreach ($words as &$word) {
 	}
 }
 
-
+//echo 'index';
+//echo var_dump($indexes);
+//return;
 
 // Combined index
 $combined_index = array();

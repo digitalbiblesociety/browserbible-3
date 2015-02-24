@@ -394,7 +394,7 @@ SearchTools = {
 
 				var part = strongNumbers[i];
 
-				searchTermsRegExp.push( new RegExp('s=("|\')(\\w\\d{1,4}\\s)?' + '(G|H)?' + part.substr(1) + '(\\s\\w\\d{1,4})?("|\')', 'gi') );
+				searchTermsRegExp.push( new RegExp('s=("|\')(\\w\\d{1,4}[a-z]?\\s)?' + '(G|H)?' + part.substr(1) + '[a-z]?(\\s\\w\\d{1,4}[a-z]?)?("|\')', 'gi') );
 
 			}
 
@@ -557,10 +557,11 @@ SearchIndexLoader = function() {
 		loadedIndexes = [];
 		loadedResults = [];
 		stemInfo = {};
+		stemmingData = isLemmaSearch ? null : {};
 
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
 
-		if (isStemEnabled) {
+		if (isStemEnabled && !isLemmaSearch) {
 			loadStemmingData();
 		} else {
 			loadNextIndex();
@@ -792,7 +793,7 @@ SearchIndexLoader = function() {
 				}
 			}
 		}
-
+	
 		// send up the chain
 		ext.trigger('complete', {type:'complete', target: this, data: {
 																	loadedIndexes: loadedIndexes,

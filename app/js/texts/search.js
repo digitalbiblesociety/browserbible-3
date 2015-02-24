@@ -114,7 +114,7 @@ TextSearch = function() {
 				if (data && data.results) {
 
 					// STEMs?
-					if (typeof data.stem_words != 'undefinded' ) {
+					if (typeof data.stem_words != 'undefinded' && data.stem_words.length > 0) {
 
 						searchType = 'OR';
 						// redo search terms
@@ -210,9 +210,9 @@ TextSearch = function() {
 
 			// begin loading
 
-			if (e.data.stemInfo != null && e.data.stemInfo) {
+			if (e.data.stemInfo && e.data.stemInfo.length > 0) {
 
-				if (typeof data.stem_words != 'undefinded' ) {
+				//if (typeof data.stem_words != 'undefinded' ) {
 
 					searchType = 'OR';
 					// redo search terms
@@ -226,7 +226,7 @@ TextSearch = function() {
 						}
 
 					}
-				}
+				//}
 			}
 
 
@@ -589,6 +589,9 @@ SearchIndexLoader = function() {
 				loadNextIndex();
 			},
 			error: function() {
+				// set it to null in order to check later
+				stemmingData = null;
+				
 				console.log('No stem data for', textInfo.id);
 				loadNextIndex();
 			}

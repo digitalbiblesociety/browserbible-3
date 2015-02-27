@@ -218,8 +218,8 @@ TextSearch = function() {
 					// redo search terms
 					searchTermsRegExp = [];
 
-					for (var stem in e.data.stemInfo) {
-						var stemWords = e.data.stemInfo[stem];
+					for (var si=0, sil=e.data.stemInfo.length; si <sil; si++) {
+						var stemWords = e.data.stemInfo[si].words;
 
 						for (var i=0, il=stemWords.length; i<il; i++) {
 							searchTermsRegExp.push( new XRegExp('\\b(' + stemWords[i] + ')\\b', 'gi') );
@@ -536,7 +536,7 @@ SearchIndexLoader = function() {
 		isLemmaSearch = false,
 		isStemEnabled = true,
 		stemmingData = {},
-		stemInfo = {},
+		stemInfo = [],
 		searchDivisions = [],
 		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
 		loadedIndexes = [],
@@ -556,7 +556,7 @@ SearchIndexLoader = function() {
 		searchTermsIndex = -1;
 		loadedIndexes = [];
 		loadedResults = [];
-		stemInfo = {};
+		stemInfo = [];
 		stemmingData = isLemmaSearch ? null : {};
 
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
@@ -672,8 +672,11 @@ SearchIndexLoader = function() {
 
 				if (isStemEnabled && stemmingData != null) {
 					fragments = data[stem].occurrences;
-					stemInfo[key] = data[stem].words;
-
+					stemInfo.push({
+						word: key,
+						stem: stem,
+						words: data[stem].words
+					});
 				} else {
 					fragments = data[key];
 				}

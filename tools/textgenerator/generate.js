@@ -178,6 +178,15 @@ function convertFolder(inputPath) {
 			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData, 'strongs');
 
 			console.timeEnd('createLemma');
+			
+			/*
+			console.time('createStemIndex');
+
+			verseIndexer.createHashedIndexFiles(info.lang, indexOutputPath, data.indexData, 'words');
+
+			console.timeEnd('createStemIndex');			
+			*/
+			
 		}
 
 		// save info

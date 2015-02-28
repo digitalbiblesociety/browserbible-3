@@ -7,9 +7,22 @@ var fs = require('fs'),
 
 var content_path = '../../app/content/texts/';
 
-var stemmers = {'eng': '', 'esp': 'Es'};
+var stemmers = {
+		'eng': '', 
+		'esp': 'Es', 
+		'spa': 'Es',
+	
+		'fas': 'Fa',		
+		'fra': 'Fr',		
+		'ita': 'It',		
+		'jpn': 'Ja',		
+		'nor': 'No',		
+		'pol': 'Pl',
+		'rus': 'Ru'
+		
+};
 
-
+/*
 function create_stems(version) {
 	var version_path = path.join(content_path, version),
 		version_info_path = path.join(version_path, 'info.json'),
@@ -95,17 +108,24 @@ function create_stems(version) {
 	fs.writeFileSync(version_stem_path, JSON.stringify(sorted_stem_data, null, '\t'));		
 	
 }
+*/
 
-
-function create_stems_index(version) {
+function create_stems_index_from_version(version) {
 	var version_path = path.join(content_path, version),
 		version_info_path = path.join(version_path, 'info.json'),
-		version_index_path = path.join(version_path, 'index'),
+		info = JSON.parse(fs.readFileSync(version_info_path, 'utf8'));
+		
+	create_stems_index(version, info, version_path);		
+}
+
+
+function create_stems_index(version, info, version_path) {
+	var version_index_path = path.join(version_path, 'index'),
 		version_stem_path = path.join(version_index_path, 'stems.json');
 		stemmer = null;
 		
-	// load info
-	var info = JSON.parse(fs.readFileSync(version_info_path, 'utf8'));
+	console.log('Stemming: ', info.name, info.abbr);	
+	console.time('startStem');
 	
 	// get language stemmer
 	if (typeof stemmers[info.lang] != 'undefined') {
@@ -113,14 +133,24 @@ function create_stems_index(version) {
 		stemmer = natural['PorterStemmer' + stemmers[info.lang]];
 	} else {
 		
-		console.log('No Stemmer for lang: ' + info.lang);		
+		console.log(' == No Stemmer for lang: ' + info.lang);		
 		
 		return;
 	}
 	
 	
-	var index_files = fs.readdirSync(version_index_path),
-		stem_data = {
+	var index_files = null;
+	
+	try {
+		index_files = fs.readdirSync(version_index_path);
+	} catch (ex) {
+		console.log(' Cannot open index: ' + version_index_path);		
+		
+		return;		
+	}
+
+	
+	var stem_data = {
 			stemmed_index: {},
 			words_to_stem: {}				
 		};
@@ -147,13 +177,13 @@ function create_stems_index(version) {
 			if (typeof stem_index_data == 'undefined') {
 				stem_data.stemmed_index[stemmed_word] = {
 					words: [],
-					occurrences: []
+					fragmentids: []
 				};
 				
 			}			
 			stem_data.stemmed_index[stemmed_word].words.push( key );
-			stem_data.stemmed_index[stemmed_word].occurrences = 
-						stem_data.stemmed_index[stemmed_word].occurrences.concat( word_data );
+			stem_data.stemmed_index[stemmed_word].fragmentids = 
+						stem_data.stemmed_index[stemmed_word].fragmentids.concat( word_data );
 			
 			// loving => love :: stems.js	
 			stem_data.words_to_stem[key] = stemmed_word;
@@ -176,7 +206,7 @@ function create_stems_index(version) {
 	// sort occurences
 	for (var stem_key in stem_data.stemmed_index) {
 
-		stem_data.stemmed_index[stem_key].occurrences.sort(compare_dbs_verse);
+		stem_data.stemmed_index[stem_key].fragmentids.sort(compare_dbs_verse);
 	}	
 	
 	
@@ -204,7 +234,7 @@ function create_stems_index(version) {
 	}
 	
 		
-	
+	console.timeEnd('startStem');
 	
 }
 
@@ -290,7 +320,48 @@ function compare_dbs_verse(ref1, ref2) {
 	}	
 }
 
-create_stems_index('eng_asv');
+
+function stem_all_available_languages() {
+	var overwrite_all = true;
+
+
+	var text_folders = fs.readdirSync(content_path),
+		langs = Object.keys(stemmers);
+	
+	for (var i=0, il=text_folders.length; i<il; i++) {
+		var version_path = path.join(content_path, text_folders[i]);
+		
+		if (fs.lstatSync(version_path).isDirectory()) {
+			
+			
+			
+			var info_path = path.join(version_path, 'info.json');			
+				version_info_path = path.join(version_path, 'info.json');
+			
+			if (fs.existsSync(version_info_path)) {
+				
+				var info = JSON.parse(fs.readFileSync(version_info_path, 'utf8')),
+					has_stemmer = langs.indexOf(info.lang) > -1;
+					
+				if (has_stemmer && info.type == 'bible') {
+					try {
+						create_stems_index(info.id, info, version_path);		
+					} catch (ex) {
+						console.log('error', ex);
+					}
+				}
+				//console.log(info.name, );	
+			
+				
+			}			
+		}
+	}
+}
+
+
+stem_all_available_languages();
+
+//create_stems_index_from_version('spa_rv1909');
 
 /*
 var verse_array = ['GN1','GN2','IS1','RV12_2','K11','RV12_1'];

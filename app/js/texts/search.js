@@ -671,7 +671,7 @@ SearchIndexLoader = function() {
 				//console.log(key, stem, data, data[stem]);
 
 				if (isStemEnabled && stemmingData != null) {
-					fragments = data[stem].occurrences;
+					fragments = data[stem].fragmentids;
 					stemInfo.push({
 						word: key,
 						stem: stem,

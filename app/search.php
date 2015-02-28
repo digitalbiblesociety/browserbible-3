@@ -154,9 +154,9 @@ foreach ($words as &$word) {
 		// store this index along with other words to be combined later
 		if (property_exists($json_data, $key)) {
 			
-			if ($word_to_stem != null) {
+			if (!$is_lemma_search && $is_stem_enabled && $word_to_stem != null) {
 				
-				$indexes[] = $json_data->{$key}->{"occurrences"};
+				$indexes[] = $json_data->{$key}->{"fragmentids"};
 				$output["stem_words"] = array_merge($output["stem_words"],  $json_data->{$key}->{"words"});
 
 			} else {

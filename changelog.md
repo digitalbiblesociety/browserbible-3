@@ -1,6 +1,10 @@
 Change Log
 =======
 
+3.4.2 - 2015/02/27
+
+* Stemming search functionality
+
 3.4.1 - 2015/02/18
 
 * Fixed positioning of main logo

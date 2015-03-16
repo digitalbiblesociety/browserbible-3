@@ -16,11 +16,11 @@
 .config-font-family-Libertine #font-size-table {
 	font-family: Libertine;
 	font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
-	-moz-font-feature-settings: "onum=1, zero=1, liga=1, dlig=1, clig=1, salt=1, ss02=1";
-	-moz-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
-	-ms-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
-	-o-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
-	-webkit-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
-	font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 1, "ss02" 1;
+	-moz-font-feature-settings: "onum=1, zero=1, liga=1, dlig=1, clig=1, salt=0, ss02=0";
+	-moz-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 0, "ss02" 0;
+	-ms-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 0, "ss02" 0;
+	-o-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 0, "ss02" 0;
+	-webkit-font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 0, "ss02" 0;
+	font-feature-settings: "onum" 1, "zero" 1, "liga" 1, "dlig" 1, "clig" 1, "salt" 0, "ss02" 0;
 }
 

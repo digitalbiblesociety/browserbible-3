@@ -107,14 +107,14 @@
 	font-style: italic;
 }
 
-.bibleref,
-.xt {
+.bibleref
+/*, .xt */{
 	color: #7491CE;
 	cursor: pointer;
 }
 
-.bibleref:hover,
-.xt:hover {
+.bibleref:hover
+/* ,.xt:hover */ {
 	text-decoration: underline;
 }
 

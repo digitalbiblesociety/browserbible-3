@@ -74,6 +74,10 @@ $(function() {
 		if (typeof sofia.config.customCssUrl != 'undefined' && sofia.config.customCssUrl != '') {
 			$('<link href="' + sofia.config.customCssUrl + '" rel="stylesheet" />').appendTo( $('head') );
 		}
+		
+		if (window.navigator.standalone === true) {
+			$('body').addClass('app-mobile-fullscreen');
+		}
 
 		// run inits
 		for (var i=0, il=sofia.initMethods.length; i<il; i++) {

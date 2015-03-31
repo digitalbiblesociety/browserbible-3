@@ -12,3 +12,10 @@
 .supports-fullscreen #main-search-box {
 	right: 60px;
 }
+
+@media (max-width: 480px) {
+	#main-fullscreen-button {
+		display: none;
+	}
+	
+}

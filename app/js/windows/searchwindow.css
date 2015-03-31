@@ -2,6 +2,12 @@
 	background-image: url(../../css/images/search.svg);
 }
 
+@media (max-width: 480px) {
+	.SearchWindow .search-text {
+		width: 100px;
+	}
+}
+
 /* search */
 .search-main {
 	background: #fff;

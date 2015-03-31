@@ -49,9 +49,16 @@ var TextComparisonWindow = function(id, parent, init_data) {
 		textids = [],
 		textIndex = -1,
 		textData = [],
-		textInfoData = null;
+		textInfoData = null,
+		isComparing = false;
 
 	function doComparison() {
+		
+		if (isComparing) {
+			return;
+		}
+		
+		isComparing = true;
 		
 		main.html();
 		main.addClass('loading-indicator');
@@ -81,7 +88,7 @@ var TextComparisonWindow = function(id, parent, init_data) {
 				
 					var possibleTexts = textInfoData.filter(function(t) {
 						
-						return t.id.toLowerCase().indexOf(abbr) > -1;
+						return t.abbr.toLowerCase().indexOf(abbr) > -1;
 					});
 				
 					if (possibleTexts.length > 0) {
@@ -203,7 +210,9 @@ var TextComparisonWindow = function(id, parent, init_data) {
 		main.removeClass('loading-indicator');			
 		
 		// trigger settings change
-		ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });			
+		ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });
+		
+		isComparing = false;			
 	}
 	
 	function separatePunctuation(input) {

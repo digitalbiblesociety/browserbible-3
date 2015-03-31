@@ -85,6 +85,7 @@ input:focus {
 	z-index: 1;
 	cursor: pointer;
 }
+
 .window-tab-inner {
 	width: 80px;
 	height: 20px;	
@@ -102,6 +103,16 @@ input:focus {
 }
 .window-tab.active .window-tab-inner { 
 	border-color: transparent transparent #f8f8f8 transparent;
+}
+
+.theme-dark .window-tab-label {	
+	color: #fff;
+}
+.theme-dark .window-tab-inner {
+	border-color: transparent transparent #444 transparent;
+}
+.theme-dark .window-tab.active .window-tab-inner {
+	border-color-bottom: transparent transparent #222 transparent;
 }
 
 .window-tab-label {
@@ -239,7 +250,7 @@ input:focus {
 	}	
 	.window .window-header .app-input {
 		width: 90px;
-		min-width: 120px;
+		-x-min-width: 120px;
 		padding: 5px;
 		height: 25px;
 
@@ -268,12 +279,31 @@ input:focus {
 	 .windows-header {
 		 height: 30px;
 	 }
-	 
+		 
 	 .header-icon {
 		 margin-top: 1px;
 	 }
 	 
- 
+	 .app-mobile-fullscreen .windows-header {
+		 height: 50px;		 
+	 }
+	 
+	.app-mobile-fullscreen  .windows-main .window {
+		top: 50px;	 
+	}
+	 
+	 .app-mobile-fullscreen .window-tab {
+		top: 29px;	 
+	}
+	
+	.app-mobile-fullscreen #main-menu-button {
+		top: 50px;
+	}
+	
+	.app-mobile-fullscreen #main-menu-dropdown {
+		top: 90px;
+	}
+	 
 	 
 	/* for single app, no need for tabs */
 	/*

@@ -1,0 +1,19 @@
+
+
+.window-reset {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	display: block;
+	cursor: pointer;
+	font-size: 10px;
+	padding: 0 0 0 24px;
+	height: 20px;
+	line-height: 20px;
+	background: transparent url(../../css/images/restore.svg) left center no-repeat;
+	background-size: 20px 20px;
+}
+
+.window-reset:hover {
+	color: #0071ff;
+}

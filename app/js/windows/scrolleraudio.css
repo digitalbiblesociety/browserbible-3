@@ -12,6 +12,16 @@
 	z-index: 3; /* above the text pane which is 1 and 2 */
 }
 
+.audio-window-container .audio-controller { 
+	position: relative;
+	bottom: inherit;
+	left: inherit;	
+	margin: 10px;
+	width: auto;
+	background: transparent;
+	height: 200px;
+}
+
 .audio-options {
 	background: #f8f8f8;
 	position: absolute;
@@ -72,6 +82,15 @@
 	background-size: 25px 25px;
 	top: 15px;
 	margin-left: -20px;
+	background-position-x: 8px;
+}
+
+.audio-window-container .audio-controller .audio-play {
+	width: 100px;
+	height: 100px;
+	background-size: 70px; 70px;
+	margin-left: -50px;
+	background-position-x: 20px;
 }
 
 .audio-controller .audio-play.playing {
@@ -95,6 +114,21 @@
 .audio-controller .audio-next {
 	background-image: url(../../css/images/audio/next-icon.svg);
 	margin-left: 24px;
+}
+
+.audio-window-container .audio-controller .audio-prev,
+.audio-window-container .audio-controller .audio-next {
+	width: 60px;
+	height: 60px;	
+	background-size: 30px 30px;	
+	margin-top: 20px;
+}
+.audio-window-container .audio-controller .audio-prev {
+	margin-left: -114px;
+}
+
+.audio-window-container .audio-controller .audio-next {
+	margin-left: 54px;	
 }
 
 .audio-controller .audio-currenttime,
@@ -157,6 +191,10 @@ left: 35px;
 	left: 0;
 	height: 10px;
 	width: 100%;
+}
+.audio-window-container .audio-slider { 
+	top: inherit;
+	bottom: 0;
 }
 
 .audio-controller .audio-slider .audio-slider-current {

@@ -74,8 +74,11 @@ var AudioController = function(id, container, ui, scroller) {
 
 	options.find('.i18n').i18n();
 
-	block.hide();
-	ui.hide();
+
+	if (ui != null) {
+		ui.hide();
+		block.hide();
+	}
 	options.hide();
 
 
@@ -157,13 +160,15 @@ var AudioController = function(id, container, ui, scroller) {
 
 
 	// MAIN
-	ui.on('click', function() {
-		if (block.is(':visible')) {
-			block.hide();
-		} else {
-			block.show();
-		}
-	});
+	if (ui != null) {
+		ui.on('click', function() {
+			if (block.is(':visible')) {
+				block.hide();
+			} else {
+				block.show();
+			}
+		});
+	}
 
 	playButton.on('click', function() {
 
@@ -227,24 +232,26 @@ var AudioController = function(id, container, ui, scroller) {
 
 	});
 
-	scroller.on('locationchange', updateLocation);
-	//scroller.on('load', loadAudio);
-
-	function updateLocation(e) {
-
-		var newLocationInfo = e.data;
-
-		//// //console.log('AUDIO:locationchange', e, newLocationInfo);
-
-		// found a fragment
-		if (newLocationInfo != null) {
-
-			locationInfo = newLocationInfo;
-
-			loadAudio(locationInfo.fragmentid);
+	if (scroller != null) {
+		scroller.on('locationchange', updateLocation);
+		//scroller.on('load', loadAudio);
+	
+		function updateLocation(e) {
+	
+			var newLocationInfo = e.data;
+	
+			//// //console.log('AUDIO:locationchange', e, newLocationInfo);
+	
+			// found a fragment
+			if (newLocationInfo != null) {
+	
+				locationInfo = newLocationInfo;
+	
+				loadAudio(locationInfo.fragmentid);
+			}
 		}
 	}
-
+	
 	function loadAudio(newFragmentid) {
 
 		if (!hasAudio) {

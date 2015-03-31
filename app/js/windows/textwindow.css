@@ -99,12 +99,12 @@ transform: rotateY( 180deg );
 	z-index: 2;
 }
 
-@media (max-width: 480px) {
-	.window .scroller-main {
+
+	.compact-ui .window .scroller-main {
 		padding: 0 15px;		
 		
 	}
-}
+
 
 .supports-3d .scroller-main {
 	-webkit-transform: rotateY(0);

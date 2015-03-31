@@ -96,12 +96,21 @@ var WindowManager = function(node, app) {
 		}
 
 		//console.log('manage resize', windows.length);
+		
+		var sizeThreshold = 560;
+		
+		if (width < sizeThreshold) {			
+			$('body').addClass('compact-ui');	
+		} else {
+			$('body').removeClass('compact-ui');
+		}
+		
 
 		if (windows.length > 0) {
 
-			if (width < 460) {
+			if (width < sizeThreshold) {
 				
-				$('body').addClass('small-mode');
+				//$('body').addClass('compact-ui');
 								
 								
 				var tabWidth = windows[0].tab.outerWidth()-10;				
@@ -114,7 +123,7 @@ var WindowManager = function(node, app) {
 
 			} else {
 
-				$('body').removeClass('small-mode');
+				//$('body').removeClass('compact-ui');
 
 				// all windows to a percent of the width
 				

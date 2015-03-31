@@ -3,12 +3,12 @@
 .chapter {
 	line-height: 1.8;
 }
-@media (max-width: 480px) {
-	.section,
-	.chapter {
+
+	.compact-ui .section,
+	.compact-ui .chapter {
 		line-height: 1.5;
 	}	
-}
+
 .section p,
 .section div.p,
 .chapter div.p {
@@ -71,16 +71,15 @@
 .cf + .cf {
 	padding-left: 0.20em;
 }
-@media (max-width: 480px) {
 
-	.note  +.note,
-	.note + .cf,
-	.cf + .note,
-	.cf + .cf {
+
+	.compact-ui .note  +.note,
+	.compact-ui .note + .cf,
+	.compact-ui .cf + .note,
+	.compact-ui .cf + .cf {
 		padding-left: 0.50em;
 	}	
-	
-}
+
 
 .chapter .note .key:hover,
 .chapter .cf.key:hover {

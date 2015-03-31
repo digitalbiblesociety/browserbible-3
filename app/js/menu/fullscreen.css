@@ -13,9 +13,8 @@
 	right: 60px;
 }
 
-@media (max-width: 480px) {
-	#main-fullscreen-button {
+
+	.compact-ui #main-fullscreen-button {
 		display: none;
 	}
 	
-}

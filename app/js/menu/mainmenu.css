@@ -100,19 +100,18 @@
 }
 
 
-@media (max-width: 480px) {
-	#app-logo {
+
+	.compact-ui #app-logo {
 		display: none;	
 	}
 	
-	#main-menu-button {
+	.compact-ui #main-menu-button {
 		height: 40px;
 		width: 40px;
 		background-size: 30px 16px;
 		top: 30px;	
 	}
 	
-	#main-menu-dropdown {
+	.compact-ui #main-menu-dropdown {
 		top: 70px;
 	}
-}

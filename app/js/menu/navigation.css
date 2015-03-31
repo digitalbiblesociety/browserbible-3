@@ -30,10 +30,8 @@
 	cursor: inherit;
 }
 
-@media (max-width: 480px) {
-	#main-back-button,
-	#main-forward-button {
+
+	.compact-ui #main-back-button,
+	.compact-ui #main-forward-button {
 		display: none;
 	}
-	
-}

@@ -36,8 +36,7 @@
 	border-radius: 0;
 }
 
-@media only screen and (max-width:460px) {
-	#main-search-box {
+
+	.compact-ui #main-search-box {
 		display: none;
 	}
-}

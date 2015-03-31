@@ -2,11 +2,11 @@
 	background-image: url(../../css/images/search.svg);
 }
 
-@media (max-width: 480px) {
-	.SearchWindow .search-text {
+
+	.compact-ui .SearchWindow .search-text {
 		width: 100px;
 	}
-}
+
 
 /* search */
 .search-main {

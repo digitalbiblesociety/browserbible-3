@@ -141,6 +141,8 @@ input:focus {
 	z-index: 1;
 	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
+	white-space: nowrap;	
+	vertical-align: middle;
 }
 
 .window-title {
@@ -151,7 +153,6 @@ input:focus {
 
 .app-input,
 .app-list {
-	float: left;
 	border: solid 1px #ddd;
 	padding: 7px 6px 6px 10px;
 	background: #fff;
@@ -161,6 +162,8 @@ input:focus {
 	-moz-appearance: none;
 	height: 30px;
 	border-radius: 0;
+	display: inline-block;	
+	vertical-align: top;
 }
 
 .app-input:hover,
@@ -190,12 +193,12 @@ input:focus {
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	display: block;
+	display: inline-block;
 }
 
 .window .header-icon,
 .text-chooser-header .header-icon {
-	float: left;
+	-x-float: left;
 }
 
 .header-icon:hover {
@@ -220,6 +223,7 @@ input:focus {
 	color: #0071ff;
 	border: 0;
 	font-size: 12px;
+	display: inline-block;
 }
 
 .window .close-button {
@@ -232,23 +236,23 @@ input:focus {
 .window .close-button:hover {
 }
 
-@media only screen and (max-width:460px) {
-	.window-tab {
+
+	.compact-ui .window-tab {
 		display: block;
 	}
 	
 	
-	.windows-main .window {
+	.compact-ui .windows-main .window {
 		float: none;		
 		display: block;
 		z-index: 1;	
 		position: absolute;
 		top: 30px;			
 	}
-	.windows-main .window.active {
+	.compact-ui .windows-main .window.active {
 		z-index: 2;
 	}	
-	.window .window-header .app-input {
+	.compact-ui .window .window-header .app-input {
 		width: 90px;
 		-x-min-width: 120px;
 		padding: 5px;
@@ -256,17 +260,17 @@ input:focus {
 
 	}
 
-	.window .window-header .app-list {
+	.compact-ui .window .window-header .app-list {
 		padding: 5px  20px 5px 5px;
 		height: 25px;
 	}
 
-	.window .window-header {
+	.compact-ui .window .window-header {
 		height: 40px;
 		padding: 7px;
 		padding-left: 40px;
 	}
-	.window .close-button {
+	.compact-ui .window .close-button {
 		top: 10px; 	
 	}
 	 
@@ -276,31 +280,31 @@ input:focus {
 	 }
 	 */
 	 
-	 .windows-header {
+	 .compact-ui .windows-header {
 		 height: 30px;
 	 }
 		 
-	 .header-icon {
+	 .compact-ui .header-icon {
 		 margin-top: 1px;
 	 }
 	 
-	 .app-mobile-fullscreen .windows-header {
+	 .compact-ui .app-mobile-fullscreen .windows-header {
 		 height: 50px;		 
 	 }
 	 
-	.app-mobile-fullscreen  .windows-main .window {
+	.compact-ui .app-mobile-fullscreen  .windows-main .window {
 		top: 50px;	 
 	}
 	 
-	 .app-mobile-fullscreen .window-tab {
+	.compact-ui  .app-mobile-fullscreen .window-tab {
 		top: 29px;	 
 	}
 	
-	.app-mobile-fullscreen #main-menu-button {
+	.compact-ui .app-mobile-fullscreen #main-menu-button {
 		top: 50px;
 	}
 	
-	.app-mobile-fullscreen #main-menu-dropdown {
+	.compact-ui .app-mobile-fullscreen #main-menu-dropdown {
 		top: 90px;
 	}
 	 

@@ -177,8 +177,9 @@ var Window = function(id, parentNode, className, data, manager) {
 	var ext = {},
 		node = $('<div class="window ' + className + ' active"></div>')
 					.appendTo(parentNode),
-		closeBtn = $('<span class="close-button"></span>')
+		closeBtn = $('<div class="close-container"><span class="close-button"></span></div>')
 					.appendTo(node)
+					.find('.close-button')
 					.on('click', function() {
 						console.log(id, 'remove', manager);
 

@@ -17,8 +17,8 @@ $(function() {
 				init();
 
 			},
-			error: function() {
-				var modal = new MovableWindow(600,250, 'Local Files Error'),
+			error: function(e) {
+				var modal = new MovableWindow( Math.min(500, $(window).width()) ,250, 'Local Files Error'),
 					errorMessage = '',
 					ua = navigator.userAgent.toLowerCase();
 				//modal.size(500, 200).center();
@@ -38,7 +38,7 @@ $(function() {
 				} else {
 
 					errorMessage =
-						'<p>Unknown error loading files (cannot load about.html)</p>';
+						'<p>Unknown error loading files (cannot load about.html)' + e + '</p>';
 
 				}
 
@@ -75,7 +75,10 @@ $(function() {
 			$('<link href="' + sofia.config.customCssUrl + '" rel="stylesheet" />').appendTo( $('head') );
 		}
 		
-		if (window.navigator.standalone === true) {
+		
+		var isiOSApp = (navigator.userAgent.toLowerCase().indexOf('ipad') > -1 || navigator.userAgent.toLowerCase().indexOf('iphone') > -1) && window.location.protocol === 'file:';
+		
+		if (window.navigator.standalone === true || isiOSApp) {
 			$('body').addClass('app-mobile-fullscreen');
 		}
 

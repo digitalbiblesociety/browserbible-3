@@ -18,16 +18,22 @@ var NavigationButtons = function(node) {
 			.on('click', forward),
 		backButton = $('<div id="main-back-button" class="inactive"></div>')
 			.appendTo( $('.windows-header') )
-			.on('click', back),			
+			.on('click', back),	
+		
+		compactBackButton = $('<div id="compact-back-button"><span id="compact-back-button-label"></span></div>')
+			.appendTo( $('body') )
+			.on('click', back),		
 
 		isFullscreen = false;
 
 	function back() {
-		window.history.go(-1);
+		TextNavigation.back();
+		//window.history.go(-1);
 	}
 
 	function forward() {
-		window.history.go(1);
+		TextNavigation.forward();		
+		//window.history.go(1);
 	}
 	
 	/*
@@ -39,7 +45,7 @@ var NavigationButtons = function(node) {
 	
 	TextNavigation.on('locationchange', function(e) {
 		console.log('fwrd/back locationchange', e);	
-		updateButtonStates();			
+		updateButtonStates();	
 	});
 	
 	function updateButtonStates() {
@@ -50,8 +56,28 @@ var NavigationButtons = function(node) {
 		// BACK	
 		if (locationIndex > 0) {
 			backButton.removeClass('inactive');			
+				
+			
+			// setup mobile/compact button		
+			var lastRef = new bible.Reference(locations[locations.length-2]);			
+			compactBackButton.find('#compact-back-button-label').html( lastRef.toString() );
+			
+			compactBackButton
+				.addClass('active')
+				.css({'display':''});
+			
+			
+			if ($('body').hasClass('compact-ui')) {
+				
+				startCompactTimer();
+				
+			}
+
+					
 		} else {
-			backButton.addClass('inactive');			
+			backButton.addClass('inactive');
+			
+			compactBackButton.removeClass('active');			
 		}
 
 		// FORWARD	
@@ -61,6 +87,27 @@ var NavigationButtons = function(node) {
 			forwardButton.addClass('inactive');			
 		}		
 	}
+	
+	var compactTimer = null;
+	function startCompactTimer() {
+		clearCompactTimer();
+		
+		compactTimer = setTimeout(hideCompactTimer, 5000);		
+	}
+	
+	function clearCompactTimer() {
+		if (compactTimer != null) {			
+			clearTimeout(compactTimer);
+		}		
+	}
+	
+	function hideCompactTimer() {
+		if (compactBackButton.is(':visible')) {
+			compactBackButton.fadeOut();
+		}		
+	}
+	
+	
 	
 	updateButtonStates();
 	

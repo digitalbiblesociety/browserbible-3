@@ -63,6 +63,7 @@ sofia.resources['en'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "More",
 				"less": "Less",
+				"default": "Default",
 				"languages": "Languages",
 				"countries": "Countries"
 			},
@@ -94,6 +95,7 @@ sofia.resources['en'] = {
 				"label": "Notes"
 			},
 			"audio": {
+				"label":"Audio",
 				"options": "Audio Options",
 				"synctext": "Sync Text (beta)",
 				"autoplay": "Autoplay Next",

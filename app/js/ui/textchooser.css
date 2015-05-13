@@ -155,9 +155,10 @@ padding: 10px;
 }
 
 /* countries */
-.text-chooser-row-header.country td {
+.text-chooser-row-header.country td,
+.text-chooser-row-header.collapsible-language td {
 	position: relative;
-	background-image: url(../../css/images/down-arrow.svg);
+	background-image: url(../../css/images/arrow-down.svg);
 	background-position: right center;
 	background-repeat: no-repeat;
 }
@@ -181,7 +182,7 @@ table.collapsible .text-chooser-row-header:hover {
 	background-color: #dae4e7;
 }
 table.collapsible .text-chooser-row-header.collapsed td {
-	background-image: url(../../css/images/right-arrow.svg);
+	background-image: url(../../css/images/arrow-right.svg);
 }
 
 
@@ -200,7 +201,7 @@ table.collapsible .text-chooser-row.collapsed {
 }
 
 .text-chooser-selector span {
-	width: 152px;
+	width: 33%;
 	border: solid 1px #999;
 	display: inline-block;
 	cursor: pointer;
@@ -208,9 +209,12 @@ table.collapsible .text-chooser-row.collapsed {
 	padding: 3px 0;
 	font-size: 0.8em;
 }
-.text-chooser-selector span.text-chooser-languages {
+.text-chooser-selector span.text-chooser-default {
 	border-right-width: 0;
 	border-radius: 4px 0 0 4px;
+}
+.text-chooser-selector span.text-chooser-languages {
+	border-right-width: 0;
 }
 .text-chooser-selector span.text-chooser-countries {
 	border-radius: 0 4px 4px 0;

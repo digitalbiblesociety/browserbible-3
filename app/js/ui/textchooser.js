@@ -1,6 +1,7 @@
 sofia.config = $.extend(sofia.config, {
 
-	enableCountrySelector: true
+	enableBibleSelectorTabs: true,
+	bibleSelectorDefaultList: ['eng-NASB']
 
 });
 
@@ -21,11 +22,11 @@ var TextChooser = function(container, target, text_type) {
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +								
 								'<div class="text-chooser-selector">' + 
-									'<span class="text-chooser-languages selected i18n" data-mode="languages" data-i18n="[html]windows.bible.languages"></span>' +
-									'<span class="text-chooser-countries i18n" data-mode="countries" data-i18n="[html]windows.bible.countries"></span>' +								
+									'<span class="text-chooser-default selected i18n" data-mode="default" data-i18n="[html]windows.bible.default"></span>' +
+									'<span class="text-chooser-languages i18n" data-mode="languages" data-i18n="[html]windows.bible.languages"></span>' +
+									'<span class="text-chooser-countries i18n" data-mode="countries" data-i18n="[html]windows.bible.countries"></span>' +
 								'</div>' +							
-								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +
-								'<span class="text-chooser-more-toggle i18n" data-i18n="[html]windows.bible.more"></span>' +
+								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +						
 								'<span class="close-button">Close</span>' +
 							'</div>' +
 							'<div class="text-chooser-main"></div>' +
@@ -36,14 +37,14 @@ var TextChooser = function(container, target, text_type) {
 		header = textSelector.find('.text-chooser-header'),
 		main = textSelector.find('.text-chooser-main'),
 		listselector = textSelector.find('.text-chooser-selector'),
+		defaultSelector = textSelector.find('.text-chooser-default'),
 		languagesSelector = textSelector.find('.text-chooser-languages'),
 		countriesSelector = textSelector.find('.text-chooser-countries'),				
 		filter = textSelector.find('.text-chooser-filter-text'),
 		title = textSelector.find('.text-chooser-title'),
 		closeBtn = textSelector.find('.close-button').hide(),
-		moreToggle = textSelector.find('.text-chooser-more-toggle'),
 		allTextsVisible = false,
-		hasTopTexts = false,
+		hasDefaultTexts = false,
 		recentlyUsedKey = 'text-recently-used',
 		recentlyUsed = AppSettings.getValue(recentlyUsedKey, {"recent":[]} ),
 		list_data = null;
@@ -54,13 +55,15 @@ var TextChooser = function(container, target, text_type) {
 
 	closeBtn.on('click', hide);
 	
-	if (sofia.config.enableCountrySelector) {
+	if (sofia.config.enableBibleSelectorTabs) {
 	
 		listselector.on('click', 'span', function() {
 			$(this)
 				.addClass('selected')
 				.siblings()
 					.removeClass('selected');
+					
+			filter.val('');
 					
 			renderTexts(list_data);			
 		});
@@ -96,6 +99,49 @@ var TextChooser = function(container, target, text_type) {
 
 		var text = filter.val().toLowerCase();
 
+		
+		
+		if (text == '') {
+			renderTexts(list_data);
+			updateRecentlyUsed();
+		} else {
+
+			// filter by type
+			var arrayOfTexts = list_data;
+			
+			arrayOfTexts = arrayOfTexts.filter(function(t) {
+				var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;	
+				return thisTextType == text_type;
+			});
+			
+			var html = [];
+			
+			for (var i=0, il=arrayOfTexts.length; i<il; i++) {
+				var textInfo = arrayOfTexts[i],
+					hasMatch = 	textInfo.name.toLowerCase().indexOf(text) > -1 ||
+								textInfo.abbr.toLowerCase().indexOf(text) > -1 ||
+								textInfo.langName.toLowerCase().indexOf(text) > -1 ||
+								textInfo.langNameEnglish.toLowerCase().indexOf(text) > -1;
+								
+												
+				if (hasMatch) {
+					html.push (
+						createTextRow(textInfo, false, '')
+					);
+				}
+				
+			}
+			
+			
+			main.html('<table cellspacing="0">' + html.join('') + '</table>');		
+			
+		}
+		
+		
+		
+		
+		return;
+
 		if (text == '') {
 
 			// remove all filtering from bibles
@@ -108,12 +154,11 @@ var TextChooser = function(container, target, text_type) {
 					
 			updateRecentlyUsed();
 
-			runTopTextsSelector();
 		} else {
 		
 			var mode = getMode();
 			
-			if (mode == 'languages') {
+			if (mode == 'languages' || mode == 'default' || mode == 'none') {
 
 				// hide the headers
 				main.find('.text-chooser-row-header').hide();
@@ -159,7 +204,6 @@ var TextChooser = function(container, target, text_type) {
 					}
 	
 				});
-				
 				
 			}
 
@@ -225,7 +269,7 @@ var TextChooser = function(container, target, text_type) {
 
 	function updateRecentlyUsed() {
 
-		if (text_type != 'bible' || getMode() != 'languages') {
+		if (text_type != 'bible' || getMode() != 'default') {
 			main.find('.text-chooser-recently-used').remove();
 			return;
 		}
@@ -233,11 +277,11 @@ var TextChooser = function(container, target, text_type) {
 		// RECENTly Used
 		if (recentlyUsed.recent.length > 0) {
 
-			var isTopText = false;
+			var isDefaultText = false;
 
 			// find if this should be a priority text shown at the beginning
 			if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
-				isTopText = true;
+				isDefaultText = true;
 			}
 
 			var recentlyUsedHtml =
@@ -246,7 +290,7 @@ var TextChooser = function(container, target, text_type) {
 						i18n.t('windows.bible.recentlyused'),
 						'',
 						'',
-						'text-chooser-recently-used' + (isTopText ? ' is-top-text' : '')
+						'text-chooser-recently-used' + (isDefaultText ? ' is-default-text' : '')
 					);
 
 			for (var i=0, il=recentlyUsed.recent.length; i<il; i++) {
@@ -254,7 +298,7 @@ var TextChooser = function(container, target, text_type) {
 
 
 				recentlyUsedHtml +=
-					createTextRow(textInfo.id, textInfo.langName, textInfo.langNameEnglish, textInfo.abbr, textInfo.name, isTopText, 'text-chooser-recently-used' );
+					createTextRow(textInfo, isDefaultText, 'text-chooser-recently-used' );
 
 			}
 
@@ -268,68 +312,39 @@ var TextChooser = function(container, target, text_type) {
 
 	}
 
-	moreToggle.on('click', function() {
 
-		// remove so that it isn't reset
-		moreToggle.attr('data-i18n','');
+	function checkIsDefaultText(id) {
 
-		if (moreToggle.hasClass('show-all')) {
-			allTextsVisible = false;
-			moreToggle.html( i18n.t('windows.bible.more') );
-			moreToggle.removeClass('show-all');
-		} else {
-			allTextsVisible = true;
-			moreToggle.html( i18n.t('windows.bible.less')  );
-			moreToggle.addClass('show-all');
-		}
-
-		runTopTextsSelector();
-
-	});
-
-	function runTopTextsSelector() {
-	
-		var mode = getMode();
-		
-		if (mode == 'languages') {
-			if (allTextsVisible) {
-				main.find('tr').show();
-			} else {
-				main.find('tr:not(.is-top-text)').hide();
-				main.find('.selected').show();
-			}
-		}
-
-	}
-
-	function checkIsTopText(id) {
-
-		var isTopText = false,
+		var isDefaultText = false,
 			parts = id.split(':'),
 			textid = parts.length > 1 ? parts[1] : parts[0];
 
 		// find if this should be a priority text shown at the beginning
-		if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
+		if (sofia.config.bibleSelectorDefaultList && sofia.config.bibleSelectorDefaultList.length > 0) {
 
-			for (var t=0, tl=sofia.config.topTexts.length; t<tl; t++) {
-				if (textid == sofia.config.topTexts[t]) {
-					isTopText = true;
+			for (var t=0, tl=sofia.config.bibleSelectorDefaultList.length; t<tl; t++) {
+				if (textid == sofia.config.bibleSelectorDefaultList[t]) {
+					isDefaultText = true;
 					break;
 				}
 			}
 
 		} else {
-			isTopText = false;
+			isDefaultText = false;
 		}
 
 
-		return isTopText;
+		return isDefaultText;
 
 	}
 	
 	function getMode() {
-		var mode = listselector.find('.selected').data('mode');
-		return mode;
+		if (sofia.config.enableBibleSelectorTabs) { 
+			var mode = listselector.find('.selected').data('mode');
+			return mode;
+		} else {
+			return 'none';
+		}
 	}
 
 	function renderTexts(data) {
@@ -337,9 +352,9 @@ var TextChooser = function(container, target, text_type) {
 		// render all the rows
 		var html = [],
 			arrayOfTexts = data,
-			mode = getMode();			
+			mode = getMode();
 			
-		if (mode == 'languages') {
+		if (mode == 'languages' || mode == 'default' || mode == 'none') {
 	
 			// filter by type
 			arrayOfTexts = arrayOfTexts.filter(function(t) {
@@ -379,12 +394,13 @@ var TextChooser = function(container, target, text_type) {
 
 			for (var index in languages) {
 
-				// get all the ones with this langu
+				// get all the ones with this language
 				var langName = languages[index],
 					textsInLang = arrayOfTexts.filter(function(t) { if (t.langName == langName) { return t; } }),
-					hasTopText = false,
+					hasDefaultText = false,
 					langHtml = [];
 
+				// sort the texts by name
 				textsInLang = textsInLang.sort(function(a,b) {
 					if (a.name == b.name) {
 						return 0;
@@ -395,58 +411,47 @@ var TextChooser = function(container, target, text_type) {
 					}
 				});
 
-
+				// create HTML for the texts
 				for (var textIndex in textsInLang) {
 					var text = textsInLang[textIndex],
-						isTopText = checkIsTopText(text.id);
+						isDefaultText = checkIsDefaultText(text.id);
 
-					langHtml.push(
-						createTextRow(text.id, text.langName, text.langNameEnglish, text.abbr, text.name, isTopText, '')
-					);
+					if (mode == 'none' || mode == 'languages' || (isDefaultText && mode == 'default')) {
+						langHtml.push(
+							createTextRow(
+									text, 
+									isDefaultText, 
+									mode == 'languages' ? 'collapsed' : ''
+							)
+						);
+					}
 			
-					if (!hasTopText && isTopText) {
-						hasTopText = true;
+					if (!hasDefaultText && isDefaultText) {
+						hasDefaultText = true;
 					}
 				}
 
-
-				html.push(
-					createHeaderRow(
-						'',
-						textsInLang[0].langName +
-								( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : ''),
-						'',
-						'',
-						(hasTopText ? ' is-top-text' : '')					
-					)
-				
-				/*'<tr class="text-chooser-row-header' + (hasTopText ? ' is-top-text' : '') + '"><td colspan="2">' +
+				if (mode == 'none' || mode == 'languages' || (hasDefaultText && mode == 'default')) {
+					html.push(
+						createHeaderRow(
+							'',
 							textsInLang[0].langName +
-								( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : '') +
-							'</td></tr>'
-							*/
-				);
+									( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : ''),
+							'',
+							'',
+							mode == 'languages' ? 'collapsible-language collapsed' : ''
+						)
+					);
+				}
+				
 				html.push(langHtml.join(''));
 
 			}
 	
 	
-			main.html('<table cellspacing="0">' + html.join('') + '</table>');
+			main.html('<table cellspacing="0" class="' + (mode == 'languages' ? 'collapsible' : '') + '">' + html.join('') + '</table>');
 	
 			updateRecentlyUsed();
-	
-			hasTopTexts = main.find('.is-top-text').length > 0;
-	
-			if (hasTopTexts) {
-	
-				//main.append( $('<div class="text-chooser-more">More</div>'));
-				textSelector.addClass('show-more');
-	
-				runTopTextsSelector();
-			} else {
-				allTextsVisible = true;
-			}
-	
 	
 			// find the selected text
 			if (selectedTextInfo != null) {
@@ -481,7 +486,7 @@ var TextChooser = function(container, target, text_type) {
 						var text = textsInCountry[textIndex];
 	
 						html.push(
-							createTextRow(text.id, text.langName, text.langNameEnglish, text.abbr, text.name, isTopText, 'collapsed')
+							createTextRow(text, isDefaultText, 'collapsed')
 						);
 						
 					}
@@ -520,11 +525,17 @@ var TextChooser = function(container, target, text_type) {
 	});
 	
 	
-	function createTextRow(id, langName, langNameEnglish, abbr, name, isTopText, className) {
-		var html = '<tr class="text-chooser-row' + (isTopText ? ' is-top-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + id + '" data-lang-name="' + langName + '" data-lang-name-english="' + langNameEnglish + '">' +
-					'<td class="text-chooser-abbr">' + abbr + '</td>' +
-					'<td class="text-chooser-name"><span>' + name + '</span></td>' +
+	function createTextRow(text, isDefaultText, className) {
+		var html = '<tr class="text-chooser-row' + (isDefaultText ? ' is-default-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
+					'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
+					'<td class="text-chooser-name">' +
+						'<span>' + text.name + '</span>' +
+						(text.hasLemma === true ? '<span class="text-chooser-option-lemma" alt="Lemma Data"></span>' : '') +
+						(text.hasAudio === true ? '<span class="text-chooser-option-audio" alt="Lemma Data"></span>' : '') +					
+					'</td>' +
 				'</tr>';
+				
+		console.log(text.name, text.hasLemma, text.hasAudio);
 				
 		return html;		
 	}
@@ -586,8 +597,6 @@ var TextChooser = function(container, target, text_type) {
 		filterVersions();
 
 		if (getMode() == 'languages') {
-			runTopTextsSelector();
-	
 			updateRecentlyUsed();
 		}
 	}

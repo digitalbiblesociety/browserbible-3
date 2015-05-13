@@ -24,6 +24,19 @@ input:focus {
 }
 
 /* reused images */
+.close-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	background: #f8f8f8;
+	z-index: 10;
+}
+.compact-ui .close-container {
+	height: 39px;	
+}
+
 .close-button {
 	font-family: arial;
 	font-size: 15px;
@@ -45,6 +58,43 @@ input:focus {
 	background-position: 0 -20px;
 	color: #fff;
 }
+
+
+/*
+.close-button {
+	font-family: arial;
+	font-size: 15px;
+	position: absolute;
+	z-index: 10;
+	top: 5px;
+	right: 10px;
+	cursor: pointer;
+	color: #666;
+	width: 30px;
+	height: 40px;
+	border-radius: 10px;
+	text-align: center;
+	center center no-repeat;
+	background-color: #ccc;
+	background-position: center center;
+	border-radius: 0;
+}
+
+.close-button:after {
+	background: url(images/close-button.svg);
+	border-radius: 0;
+	color: #666;
+	width: 20px;
+	height: 20px;
+	display: block;
+	border-radius: 10px;
+	content:'';
+}
+
+.close-button:hover:after {
+	background-color: #d5998b;
+}
+*/
 
 
 /* MAIN APP */
@@ -180,7 +230,7 @@ input:focus {
 	padding-right: 20px;
 	cursor: pointer;
 	border-radius: 0;
-	background-image: url(images/down-arrow.svg);
+	background-image: url(images/arrow-down.svg);
 	background-position: right center;
 	background-repeat: no-repeat;
 }
@@ -194,6 +244,7 @@ input:focus {
 	background-repeat: no-repeat;
 	cursor: pointer;
 	display: inline-block;
+	vertical-align: top;
 }
 
 .window .header-icon,
@@ -216,7 +267,7 @@ input:focus {
 
 
 .window .window-header .header-button {
-	padding: 5px;
+	padding: 8px 4px 6px 4px;
 	background: transparent;
 	border-radius: 5px;
 	cursor: pointer;
@@ -288,23 +339,23 @@ input:focus {
 		 margin-top: 1px;
 	 }
 	 
-	 .compact-ui .app-mobile-fullscreen .windows-header {
+	 .compact-ui.app-mobile-fullscreen .windows-header {
 		 height: 50px;		 
 	 }
 	 
-	.compact-ui .app-mobile-fullscreen  .windows-main .window {
+	.compact-ui.app-mobile-fullscreen  .windows-main .window {
 		top: 50px;	 
 	}
 	 
-	.compact-ui  .app-mobile-fullscreen .window-tab {
+	.compact-ui.app-mobile-fullscreen .window-tab {
 		top: 29px;	 
 	}
 	
-	.compact-ui .app-mobile-fullscreen #main-menu-button {
+	.compact-ui.app-mobile-fullscreen #main-menu-button {
 		top: 50px;
 	}
 	
-	.compact-ui .app-mobile-fullscreen #main-menu-dropdown {
+	.compact-ui.app-mobile-fullscreen #main-menu-dropdown {
 		top: 90px;
 	}
 	 

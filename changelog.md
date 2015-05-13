@@ -1,6 +1,14 @@
 Change Log
 =======
 
+3.4.4 - 2015/05/12
+
+* New picker with default|languages|countries
+
+3.4.3 - 2015/04/05
+
+* Forward / Back buttons
+
 3.4.2 - 2015/02/27
 
 * Stemming search functionality

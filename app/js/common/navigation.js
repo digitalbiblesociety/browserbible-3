@@ -5,7 +5,7 @@ var PlaceKeeper = (function() {
 		currentData = null;
 
 	function storePlace() {
-		getFirstLocation();
+		currentData = getFirstLocation();
 	}
 
 	function getFirstLocation() {
@@ -13,7 +13,9 @@ var PlaceKeeper = (function() {
 							sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow'})[0] :
 							null;
 
-		currentData = (currentWindow != null) ? currentWindow.getData() : null;
+		var data = (currentWindow != null) ? currentWindow.getData() : null;
+		
+		return data;
 	}
 
 	function restorePlace() {
@@ -51,34 +53,28 @@ var TextNavigation = (function() {
 	var locations = [],
 		locationIndex = -1;
 
-	// $(window).on('popstate', handleNavigation);
+	$(window).on('popstate',  handleBrowserNavigation);
 
-	//$(window).on('popstate',  handleNavigation);
-	$(window).on('popstate',  handleNavigation);
-
-	function handleNavigation(e) {
+	function handleBrowserNavigation(e) {
 		console.log('handleNavigation', e, e.state);
 
 		if (e.originalEvent && e.originalEvent.state != null && typeof e.originalEvent.state.locationid != 'undefined') {
 			
-			var newlocationid =  e.originalEvent.state.locationid ;
+			var newlocationid =  e.originalEvent.state.locationid,
+				type = '';
 			
-			// check if at end
-			//if (locationIndex == locations.length-1) {				
-			//	locationIndex--;
-			//} else {
-				
-				if (locationIndex-1 > -1 && locations[locationIndex-1] == newlocationid) {
-					locationIndex--;
-				} else if (locationIndex+1 < locations.length && locations[locationIndex+1] == newlocationid) {
-					locationIndex++;
-				}
-			//}
-			
+						
+			if (locationIndex-1 > -1 && locations[locationIndex-1] == newlocationid) {
+				locationIndex--;
+				type = 'back';
+			} else if (locationIndex+1 < locations.length && locations[locationIndex+1] == newlocationid) {
+				locationIndex++;
+				type = 'forward';
+			}
 			
 			setLocation(newlocationid);	
 			
-			textNavigation.trigger('locationchange');		
+			textNavigation.trigger('locationchange', {type: type});		
 		}
 		
 	}
@@ -95,9 +91,7 @@ var TextNavigation = (function() {
 	}
 
 	// each additional change
-	function locationChange(locationid) {
-		
-		
+	function locationChange(locationid, type) {
 				
 		// slice off anything after this one
 		while (locationIndex > locations.length-1) {
@@ -110,7 +104,7 @@ var TextNavigation = (function() {
 		window.history.pushState({"locationid": locationid}, null, window.location.href);
 		
 		
-		textNavigation.trigger('locationchange');
+		textNavigation.trigger('locationchange', {type: type});
 	}
 	
 	
@@ -135,21 +129,31 @@ var TextNavigation = (function() {
 	}	
 	
 	function back() {
+		
+		window.history.go(-1);
+		
+		/*
 		if (locationIndex > 0) {
 			locationIndex--;
 			var locationid = locations[locationIndex];
 			setLocation(locationid);			
 		}
+		*/
 	}
 	
 	function forward() {
-		// 
+		
+		window.history.go(1);
+
+		
+		/*
 		if (locationIndex < locations.length-1) {
 			// get this location
 			locationIndex++;
 			var locationid = locations[locationIndex];
 			setLocation(locationid);
 		}
+		*/
 	}
 	
 

@@ -233,9 +233,7 @@ var AudioController = function(id, container, ui, scroller) {
 	});
 
 	if (scroller != null) {
-		scroller.on('locationchange', updateLocation);
-		//scroller.on('load', loadAudio);
-	
+		
 		function updateLocation(e) {
 	
 			var newLocationInfo = e.data;
@@ -250,6 +248,8 @@ var AudioController = function(id, container, ui, scroller) {
 				loadAudio(locationInfo.fragmentid);
 			}
 		}
+		
+		scroller.on('locationchange', updateLocation);
 	}
 	
 	function loadAudio(newFragmentid) {

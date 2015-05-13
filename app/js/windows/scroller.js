@@ -71,7 +71,6 @@ var Scroller = function(node) {
 			}
 		}
 
-;
 
 		var fragments = node.find( fragmentSelector );
 

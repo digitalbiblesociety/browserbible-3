@@ -154,6 +154,30 @@ padding: 10px;
 	text-overflow: ellipsis;
 }
 
+.text-chooser-row .text-chooser-audio,
+.text-chooser-row .text-chooser-lemma {
+	width: 16px;
+	text-align: top;
+}
+.text-chooser-row .text-chooser-audio span,
+.text-chooser-row .text-chooser-lemma span {
+	background-size: 16px 16px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: block;
+	width: 16px;
+	height: 16px;
+}
+.text-chooser-row .text-chooser-audio span {
+	background-image:  url(../../css/images/audio-ear.svg);
+}
+.text-chooser-row .text-chooser-lemma span {
+	background-image:  url(../../css/images/morphology-gray-dark.svg);
+	background-size: 14px 14px;
+	
+}
+
+
 /* countries */
 .text-chooser-row-header.country td,
 .text-chooser-row-header.collapsible-language td {
@@ -205,21 +229,40 @@ table.collapsible .text-chooser-row.collapsed {
 	border: solid 1px #999;
 	display: inline-block;
 	cursor: pointer;
-	text-align: center;
 	padding: 3px 0;
 	font-size: 0.8em;
+	text-align: left;
+	padding-left: 28px;
+	background-size: 12px 12px;
+	background-position: 8px center;
+	background-repeat: no-repeat;
 }
 .text-chooser-selector span.text-chooser-default {
 	border-right-width: 0;
 	border-radius: 4px 0 0 4px;
+	background-image: url(../../css/images/home-white.svg);
+	background-position-y: 4px;
 }
 .text-chooser-selector span.text-chooser-languages {
 	border-right-width: 0;
+	background-image: url(../../css/images/languages-gray-light.svg);	
 }
 .text-chooser-selector span.text-chooser-countries {
 	border-radius: 0 4px 4px 0;
+	background-image: url(../../css/images/earth-white.svg);
 }
 .text-chooser-selector span.selected {
-	background: #fff;
+	background-color: #fff;
 	color: #999;
+}
+
+
+.text-chooser-selector span.text-chooser-default.selected {
+	background-image: url(../../css/images/home-gray-dark.svg);
+}
+.text-chooser-selector span.text-chooser-languages.selected {
+	background-image: url(../../css/images/languages-gray-dark.svg);	
+}
+.text-chooser-selector span.text-chooser-countries.selected {
+	background-image: url(../../css/images/earth-gray-dark.svg);
 }

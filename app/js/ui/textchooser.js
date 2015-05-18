@@ -1,7 +1,7 @@
 sofia.config = $.extend(sofia.config, {
 
-	enableBibleSelectorTabs: true,
-	bibleSelectorDefaultList: ['eng-NASB']
+	enableBibleSelectorTabs: false,
+	bibleSelectorDefaultList: [] //'ENGNAS', 'ENGNIV']
 
 });
 
@@ -15,7 +15,6 @@ var TextChooser = function(container, target, text_type) {
 	// create me
 	var
 		isFull = false,
-		textsHaveRendered = false,
 		selectedTextInfo = null,
 		textSelector = $('<div class="text-chooser nav-drop-list">' +
 							'<span class="up-arrow"></span>' +
@@ -45,7 +44,7 @@ var TextChooser = function(container, target, text_type) {
 		closeBtn = textSelector.find('.close-button').hide(),
 		allTextsVisible = false,
 		hasDefaultTexts = false,
-		recentlyUsedKey = 'text-recently-used',
+		recentlyUsedKey = 'texts-recently-used',
 		recentlyUsed = AppSettings.getValue(recentlyUsedKey, {"recent":[]} ),
 		list_data = null;
 
@@ -55,7 +54,7 @@ var TextChooser = function(container, target, text_type) {
 
 	closeBtn.on('click', hide);
 	
-	if (sofia.config.enableBibleSelectorTabs) {
+	if (sofia.config.enableBibleSelectorTabs && sofia.config.bibleSelectorDefaultList && sofia.config.bibleSelectorDefaultList.length > 0) {
 	
 		listselector.on('click', 'span', function() {
 			$(this)
@@ -103,7 +102,7 @@ var TextChooser = function(container, target, text_type) {
 		
 		if (text == '') {
 			renderTexts(list_data);
-			updateRecentlyUsed();
+			//updateRecentlyUsed();
 		} else {
 
 			// filter by type
@@ -136,79 +135,6 @@ var TextChooser = function(container, target, text_type) {
 			main.html('<table cellspacing="0">' + html.join('') + '</table>');		
 			
 		}
-		
-		
-		
-		
-		return;
-
-		if (text == '') {
-
-			// remove all filtering from bibles
-			main.find('.text-chooser-row')
-					.removeClass('filtered')
-					
-			// remove filters from headers
-			main.find('.text-chooser-row-header')
-					.show();
-					
-			updateRecentlyUsed();
-
-		} else {
-		
-			var mode = getMode();
-			
-			if (mode == 'languages' || mode == 'default' || mode == 'none') {
-
-				// hide the headers
-				main.find('.text-chooser-row-header').hide();
-	
-				main.find('.text-chooser-row').each(function() {
-					var row = $(this),
-						abbr = row.find('.text-chooser-abbr'),
-						name = row.find('.text-chooser-name');
-	
-					if (
-						row.attr('data-lang-name').toLowerCase().indexOf(text) > -1 ||
-						row.attr('data-lang-name-english').toLowerCase().indexOf(text) > -1 ||
-						name.text().toLowerCase().indexOf(text) > -1 ||
-						abbr.text().toLowerCase().indexOf(text) > -1) {
-	
-						row.show().addClass('filtered');
-	
-					} else {
-	
-						row.hide().removeClass('filtered');
-	
-					}
-	
-				});
-	
-				// remove the recently used so there are no duplicates
-				main.find('.text-chooser-recently-used').hide().addClass('filtered');
-			
-			} else if (mode == 'countries') {
-								
-				main.find('.text-chooser-row-header').each(function() {
-					var row = $(this),
-						name = row.find('.name');
-	
-					if (name.text().toLowerCase().indexOf(text) > -1) {
-	
-						row.show().addClass('filtered');
-	
-					} else {
-	
-						row.hide().removeClass('filtered');
-	
-					}
-	
-				});
-				
-			}
-
-		}
-
 	}
 
 	// handle when user clicks on a text
@@ -219,18 +145,17 @@ var TextChooser = function(container, target, text_type) {
 		row.addClass('selected')
 			.siblings()
 			.removeClass('selected');
-
-
+						
+						
+		storeRecentlyUsed(textid);
+		updateRecentlyUsed();		
+		
+		hide();			
+			
 		TextLoader.getText(textid, function(data) {
 
+
 			selectedTextInfo = data;
-
-			hide();
-
-			storeRecentlyUsed(selectedTextInfo);
-
-			updateRecentlyUsed();
-
 			//console.log('chooser:change:click', selectedTextInfo);
 			ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 
@@ -241,19 +166,21 @@ var TextChooser = function(container, target, text_type) {
 
 	function storeRecentlyUsed(textInfo) {
 
-		if (textInfo.type != 'bible') {
+		if (text_type != 'bible') {
 			return;
 		}
+		
+		var textid = (typeof textInfo == 'string') ? textInfo : textInfo.id;
 
 		// look for this version
 		var existingVersions = recentlyUsed.recent.filter(function(t) {
-			return t.id == textInfo.id;
+			return t == textid;
 		});
 
 		if (existingVersions.length == 0) {
 
 			// store recent text
-			recentlyUsed.recent.unshift(textInfo);
+			recentlyUsed.recent.unshift(textid);
 
 			// limit to 5
 			while (recentlyUsed.recent.length > 5 ) {
@@ -268,6 +195,10 @@ var TextChooser = function(container, target, text_type) {
 	}
 
 	function updateRecentlyUsed() {
+		
+		if (list_data == null) {
+			return;
+		}
 
 		if (text_type != 'bible' || getMode() != 'default') {
 			main.find('.text-chooser-recently-used').remove();
@@ -280,9 +211,9 @@ var TextChooser = function(container, target, text_type) {
 			var isDefaultText = false;
 
 			// find if this should be a priority text shown at the beginning
-			if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
-				isDefaultText = true;
-			}
+			//if (sofia.config.topTexts && sofia.config.topTexts.length > 0) {
+			//	isDefaultText = true;
+			//}
 
 			var recentlyUsedHtml =
 					createHeaderRow(			
@@ -294,12 +225,13 @@ var TextChooser = function(container, target, text_type) {
 					);
 
 			for (var i=0, il=recentlyUsed.recent.length; i<il; i++) {
-				var textInfo = recentlyUsed.recent[i];
+				var textid = recentlyUsed.recent[i],
+					textInfo = list_data.filter(function(ti) { return ti.id == textid; })[0];
 
-
-				recentlyUsedHtml +=
-					createTextRow(textInfo, isDefaultText, 'text-chooser-recently-used' );
-
+				if (textInfo) {
+					recentlyUsedHtml +=
+						createTextRow(textInfo, isDefaultText, 'text-chooser-recently-used' );
+				}
 			}
 
 			// remove existing
@@ -450,15 +382,19 @@ var TextChooser = function(container, target, text_type) {
 	
 	
 			main.html('<table cellspacing="0" class="' + (mode == 'languages' ? 'collapsible' : '') + '">' + html.join('') + '</table>');
-	
-			updateRecentlyUsed();
+
+
 	
 			// find the selected text
 			if (selectedTextInfo != null) {
 				textSelector
-						.find('[data-id="' + selectedTextInfo.id + '"]')
+						.find('[data-id="' + selectedTextInfo.id + '"]')					
 						.addClass('selected');
 			}
+	
+			// do this after the 'selected' so it's not in the recently used
+			updateRecentlyUsed();
+
 
 		} else if (mode == "countries") {
 			
@@ -499,9 +435,6 @@ var TextChooser = function(container, target, text_type) {
 			
 		}
 		
-		textsHaveRendered = true;		
-
-		//ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
 	}
 	
 	main.on('click', '.collapsible .text-chooser-row-header', function() {
@@ -526,22 +459,36 @@ var TextChooser = function(container, target, text_type) {
 	
 	
 	function createTextRow(text, isDefaultText, className) {
+		var hasAudio = 	text.hasAudio || 
+						typeof text.audioDirectory != 'undefined' ||
+						(typeof text.fcbh_audio_ot != 'undefined' || typeof text.fcbh_audio_nt != 'undefined' || 
+						 typeof text.fcbh_drama_ot != 'undefined' || typeof text.fcbh_drama_nt != 'undefined'),
+			hasLemma = text.hasLemma,
+			colspan = 3 - (hasAudio ? 1 : 0) - (hasLemma ? 1 : 0);
+			
+			
+			
+		
+		
 		var html = '<tr class="text-chooser-row' + (isDefaultText ? ' is-default-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
 					'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
-					'<td class="text-chooser-name">' +
+					'<td class="text-chooser-name" ' + (colspan > 1 ? ' colspan="' + colspan + '"' : '') + '>' +
 						'<span>' + text.name + '</span>' +
-						(text.hasLemma === true ? '<span class="text-chooser-option-lemma" alt="Lemma Data"></span>' : '') +
-						(text.hasAudio === true ? '<span class="text-chooser-option-audio" alt="Lemma Data"></span>' : '') +					
 					'</td>' +
+					(hasLemma === true ? '<td class="text-chooser-lemma"><span title="' + i18n.t('windows.bible.lemma') + '" data-i18n="[title]windows.bible.lemma"></span></td>' : '') +
+					(hasAudio === true ? '<td class="text-chooser-audio"><span title="' + i18n.t('windows.bible.audio') + '" data-i18n="[title]windows.bible.audio"></span></td>' : '') +				
 				'</tr>';
 				
-		console.log(text.name, text.hasLemma, text.hasAudio);
+		if (text.id == 'ENGNAS') {
+			console.log(text.id, text.name, text.hasLemma, text.hasAudio);
+			console.log(text);
+		}
 				
 		return html;		
 	}
 	
 	function createHeaderRow(id, name, englishName, additionalHtml, className) {
-		var html = '<tr class="text-chooser-row-header' + (className != '' ? ' ' + className : '') + '" data-id="' + id + '"><td colspan="2">' +
+		var html = '<tr class="text-chooser-row-header' + (className != '' ? ' ' + className : '') + '" data-id="' + id + '"><td colspan="4">' +
 					'<span class="name">' + name + '</span>' + 
 					additionalHtml + 
 					'</td></tr>';
@@ -565,7 +512,7 @@ var TextChooser = function(container, target, text_type) {
 
 		size();		
 
-		if (!textsHaveRendered) {
+		if (!list_data) {
 			main.addClass('loading-indicator');//.html('Loading');
 
 			TextLoader.loadTexts(function(data) {
@@ -579,9 +526,11 @@ var TextChooser = function(container, target, text_type) {
 					}
 				}				
 				
+				console.log('TextChoose.show(), load render');
 				main.removeClass('loading-indicator');
 				renderTexts(list_data);
-				updateRecentlyUsed();
+				
+				//updateRecentlyUsed();
 			});
 		} else {
 			main.removeClass('loading-indicator');
@@ -594,11 +543,12 @@ var TextChooser = function(container, target, text_type) {
 		if (!Detection.hasTouch) {
 			filter.focus();
 		}
+		console.log('TextChoose.show(), filter');		
 		filterVersions();
 
-		if (getMode() == 'languages') {
-			updateRecentlyUsed();
-		}
+		//if (getMode() == 'languages') {
+		//	updateRecentlyUsed();
+		//}
 	}
 
 	function hide() {

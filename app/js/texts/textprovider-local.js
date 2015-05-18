@@ -15,7 +15,7 @@ sofia.textproviders['local'] = (function() {
 
 				var textInfoData = data.textInfoData;
 
-				text_data = TextLoader.processTexts(textInfoData, providerName);
+				//text_data = TextLoader.processTexts(textInfoData, providerName);
 
 				callback(textInfoData);
 			},

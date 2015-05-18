@@ -92,7 +92,7 @@ TextLoader = (function() {
 					return info.id == textid;
 				})[0];
 	
-			if (textInfo) {
+			if (textInfo && typeof textInfo.providerName != 'undefined') {
 				providerName = textInfo.providerName;
 			} else {
 				providerName = 'local'; // ???
@@ -138,8 +138,16 @@ TextLoader = (function() {
 
 		sofia.textproviders[providerName].getTextInfo(textid, function(data) {
 
+			var initialInfo = textInfoData[textid];
+			data = $.extend({}, initialInfo, data, true);
+
+
 			processText(data, providerName)
-			//data.providerName = providerName;						
+			//data.providerName = providerName;	
+			
+			
+			
+								
 
 			// store
 			textData[data.id] = data;

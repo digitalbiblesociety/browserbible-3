@@ -43,9 +43,10 @@ var TextWindow = function(id, parent, init_data, text_type) {
 		wrapper = container.find('.scroller-text-wrapper'),
 		navui = header.find('.text-nav'),
 		textlistui = header.find('.text-list'),
+		textChooserFocused = false,
 
 		// objects
-		textChooser = new TextChooser(container, textlistui, text_type),
+		textChooser = sofia.globalTextChooser,
 		textNavigator = new TextNavigator(container, navui),
 		scroller = new Scroller(main),
 
@@ -70,6 +71,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 	infoBtn.on('click', function() {
 
 		textChooser.hide();
+		textChooserFocused = false;
 		textNavigator.hide();
 
 		flipper.toggleClass('showinfo');
@@ -119,35 +121,6 @@ var TextWindow = function(id, parent, init_data, text_type) {
 	});
 
 
-	// DOM to object stuff
-	function textChooserOffClick(e) {
-
-		//console.log('doc click');
-
-		var target = $(e.target),
-			clickedOnChooser = false;
-
-		while (target != null && target.length > 0) {
-
-			if (target[0] == textChooser.node()[0] || target[0] == textlistui[0] ) {
-				clickedOnChooser = true;
-				break;
-			}
-
-			target = target.parent();
-		}
-
-		//return;
-		if (!clickedOnChooser) {
-			e.preventDefault();
-
-			textChooser.hide();
-			$(document).off('click', textChooserOffClick);
-
-			return false;
-		}
-	}
-
 	textlistui.on('click', function(e) {
 
 		console.log('clicked');
@@ -155,15 +128,16 @@ var TextWindow = function(id, parent, init_data, text_type) {
 		if (flipper.hasClass('showinfo')) {
 			flipper.removeClass('showinfo')
 		}
-
-		textChooser.toggle();
-
-
-		if (textChooser.node().is(':visible')) {
-			//setTimeout( function() {
-				$(document).on('click', textChooserOffClick);
-			//}, 10);
+		
+		// if this is selected, then toggle
+		if (textChooser.getTarget() == textlistui) {
+			textChooser.toggle();
+		} else {			
+			textChooser.setTarget(container, textlistui, text_type);			
+			textChooser.setTextInfo(currentTextInfo);			
+			textChooser.show();			
 		}
+		textChooserFocused = true;
 	});
 
 
@@ -251,8 +225,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 					navui[0].blur();
 				}
 			}
-		})
-		;
+		});
 
 	textNavigator.on('change', function (e) {
 		//console.log('scrollerapp:navigator:change', e);
@@ -270,8 +243,12 @@ var TextWindow = function(id, parent, init_data, text_type) {
 	});
 
 	textChooser.on('change', function (e) {
-
-		var newTextInfo = e.data;
+		
+		if (e.data.target != textlistui) {
+			return;
+		}
+		
+		var newTextInfo = e.data.textInfo;
 
 		// ALWAYS UPDATE: for first load
 		// update version name

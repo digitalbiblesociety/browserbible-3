@@ -44,8 +44,10 @@ var SearchWindow = function(id, parent, init_data) {
 		input = header.find('.search-text'),
 		button = header.find('.search-button'),
 		
-		textui = header.find('.text-list'),
-		textChooser = new TextChooser(parent.node, textui, 'bible'),
+		textlistui = header.find('.text-list'),
+		//textChooser = new TextChooser(parent.node, textlistui, 'bible'),
+		textChooser = sofia.globalTextChooser, 
+		textChooserFocused = false,
 		
 		searchOptionsButton = header.find('.search-options-button'),
 		
@@ -91,24 +93,26 @@ var SearchWindow = function(id, parent, init_data) {
 	});
 
 	textChooser.on('change', function(e) {
-		setTextInfo(e.data, false);
 		
-		// reset UI
+		if (e.data.target != textlistui) {
+			return;
+		}
+
+		setTextInfo(e.data.textInfo, false);
 		
+		// reset UI			
 		clearResults();
-		
 	});
 	
-	textui.on('click', function(e) {
-		if (textChooser.node().is(':visible')) {
-			textChooser.hide();
+	textlistui.on('click', function(e) {
+		
+		if (textChooser.getTarget() == textlistui) {
+			textChooser.toggle();
 		} else {
+			textChooser.setTarget(parent.node, textlistui, 'bible');
+			textChooser.setTextInfo(selectedTextInfo);
 			textChooser.show();
-			
-			setTimeout(function() {
-				activeClickOffNodes = [textChooser.node()[0], textui[0]];
-				$(document).on('click', docClick);
-			}, 10);
+			textChooserFocused = true;
 		}		
 	});
 	
@@ -134,12 +138,7 @@ var SearchWindow = function(id, parent, init_data) {
 				top: top,
 				left: left
 			});
-
-			setTimeout(function() {
-				activeClickOffNodes = [divisionChooser[0], searchOptionsButton[0]];			
-				$(document).on('click', docClick);				
-			},10);
-
+			
 		}
 
 		// $(document).on('click', docClick);
@@ -254,38 +253,6 @@ var SearchWindow = function(id, parent, init_data) {
 		
 		checkDivisionHeader( checkbox.closest('.division-list') );		
 	});	
-
-	var activeClickOffNodes = [];
-
-	function docClick(e) {
-		////console.log('doc click');
-
-		var target = $(e.target),
-			clickedOnActiveNode = false;
-
-		while (target != null && target.length > 0) {
-
-			//if (target[0] == activeClickOffNode[0] || target[0] == textui[0] ) {
-			if (activeClickOffNodes.indexOf(target[0]) > -1) {
-				clickedOnActiveNode = true;
-				break;
-			}
-
-			target = target.parent();
-		}
-
-		//return;
-		if (!clickedOnActiveNode) {
-			e.preventDefault();
-
-			$(activeClickOffNodes[0]).hide();
-			//textChooser.hide();
-			
-			$(document).off('click', docClick);
-
-			return false;
-		}
-	}
 
 	resultsBlock.on('click', 'tr', function(e) {
 
@@ -710,11 +677,10 @@ var SearchWindow = function(id, parent, init_data) {
 		// store new one
 		selectedTextInfo = textInfo;
 	
-		textui.html(textInfo.abbr);	
+		textlistui.html(textInfo.abbr);	
 		
 		// draw books
 		drawDivisions();
-		
 		
 		if (sendToChooser) {
 			textChooser.setTextInfo(textInfo);

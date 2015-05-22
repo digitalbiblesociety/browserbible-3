@@ -2,6 +2,7 @@
 sofia.textproviders['local'] = (function() {
 
 	var providerName = 'local',
+		fullName = '',
 		textData = {};
 
 	function getTextManifest(callback) {
@@ -136,7 +137,8 @@ sofia.textproviders['local'] = (function() {
 		getTextManifest: getTextManifest,
 		getTextInfo: getTextInfo,
 		loadSection: loadSection,
-		startSearch: startSearch
+		startSearch: startSearch,
+		fullName: fullName
 	}
 
 })();

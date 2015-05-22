@@ -1,7 +1,7 @@
 sofia.config = $.extend(sofia.config, {
 
 	enableBibleSelectorTabs: false,
-	bibleSelectorDefaultList: [] //'ENGNAS', 'ENGNIV']
+	bibleSelectorDefaultList: ['ENGNAS', 'ENGNIV']
 
 });
 
@@ -11,12 +11,17 @@ sofia.config = $.extend(sofia.config, {
 TextChooser
 *******************/
 
-var TextChooser = function(container, target, text_type) {
+var TextChooser = function() {
 	// create me
 	var
+		// set by show() function
+		container = null,
+		text_type = null,
+		target = null,
+		
 		isFull = false,
 		selectedTextInfo = null,
-		textSelector = $('<div class="text-chooser nav-drop-list">' +
+		textChooser = $('<div class="text-chooser nav-drop-list">' +
 							'<span class="up-arrow"></span>' +
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +								
@@ -33,22 +38,22 @@ var TextChooser = function(container, target, text_type) {
 						'</div>')
 						.appendTo( $('body') )
 						.hide(),
-		header = textSelector.find('.text-chooser-header'),
-		main = textSelector.find('.text-chooser-main'),
-		listselector = textSelector.find('.text-chooser-selector'),
-		defaultSelector = textSelector.find('.text-chooser-default'),
-		languagesSelector = textSelector.find('.text-chooser-languages'),
-		countriesSelector = textSelector.find('.text-chooser-countries'),				
-		filter = textSelector.find('.text-chooser-filter-text'),
-		title = textSelector.find('.text-chooser-title'),
-		closeBtn = textSelector.find('.close-button').hide(),
+		header = textChooser.find('.text-chooser-header'),
+		main = textChooser.find('.text-chooser-main'),
+		listselector = textChooser.find('.text-chooser-selector'),
+		defaultSelector = textChooser.find('.text-chooser-default'),
+		languagesSelector = textChooser.find('.text-chooser-languages'),
+		countriesSelector = textChooser.find('.text-chooser-countries'),				
+		filter = textChooser.find('.text-chooser-filter-text'),
+		title = textChooser.find('.text-chooser-title'),
+		closeBtn = textChooser.find('.close-button').hide(),
 		allTextsVisible = false,
 		hasDefaultTexts = false,
 		recentlyUsedKey = 'texts-recently-used',
 		recentlyUsed = AppSettings.getValue(recentlyUsedKey, {"recent":[]} ),
 		list_data = null;
 
-	textSelector.find('.i18n').i18n();
+	//textChooser.find('.i18n').i18n();
 
 	title.html("Texts");
 
@@ -138,7 +143,7 @@ var TextChooser = function(container, target, text_type) {
 	}
 
 	// handle when user clicks on a text
-	textSelector.on('click', '.text-chooser-row', function() {
+	textChooser.on('click', '.text-chooser-row', function() {
 		var row = $(this),
 			textid = row.attr('data-id');
 
@@ -154,10 +159,10 @@ var TextChooser = function(container, target, text_type) {
 			
 		TextLoader.getText(textid, function(data) {
 
-
 			selectedTextInfo = data;
+			
 			//console.log('chooser:change:click', selectedTextInfo);
-			ext.trigger('change', {type:'change', target: this, data: selectedTextInfo});
+			ext.trigger('change', {type:'change', target: this, data: {textInfo: selectedTextInfo, target: target} });
 
 		});
 
@@ -196,11 +201,11 @@ var TextChooser = function(container, target, text_type) {
 
 	function updateRecentlyUsed() {
 		
-		if (list_data == null) {
+		if (list_data == null || text_type == null) {
 			return;
 		}
 
-		if (text_type != 'bible' || getMode() != 'default') {
+		if (text_type != 'bible' || (getMode() != 'default' && getMode() != 'none')) {
 			main.find('.text-chooser-recently-used').remove();
 			return;
 		}
@@ -280,6 +285,10 @@ var TextChooser = function(container, target, text_type) {
 	}
 
 	function renderTexts(data) {
+		
+		if (data == null || typeof data == 'undefined') {
+			return;
+		}
 
 		// render all the rows
 		var html = [],
@@ -383,14 +392,8 @@ var TextChooser = function(container, target, text_type) {
 	
 			main.html('<table cellspacing="0" class="' + (mode == 'languages' ? 'collapsible' : '') + '">' + html.join('') + '</table>');
 
-
-	
-			// find the selected text
-			if (selectedTextInfo != null) {
-				textSelector
-						.find('[data-id="' + selectedTextInfo.id + '"]')					
-						.addClass('selected');
-			}
+			
+			updateSelectedText();
 	
 			// do this after the 'selected' so it's not in the recently used
 			updateRecentlyUsed();
@@ -398,7 +401,7 @@ var TextChooser = function(container, target, text_type) {
 
 		} else if (mode == "countries") {
 			
-			textSelector.removeClass('show-more');
+			textChooser.removeClass('show-more');
 		
 			for (var i=0, il=sofia.countries.length; i<il; i++) {
 				
@@ -457,6 +460,22 @@ var TextChooser = function(container, target, text_type) {
 		
 	});
 	
+	function updateSelectedText() {
+	
+		// find the selected text
+		if (selectedTextInfo != null) {
+
+			textChooser
+					.find('table .selected')
+					.removeClass('selected');
+			
+			textChooser
+					.find('[data-id="' + selectedTextInfo.id + '"]')					
+					.addClass('selected');
+		}		
+		
+	}
+	
 	
 	function createTextRow(text, isDefaultText, className) {
 		var hasAudio = 	text.hasAudio || 
@@ -464,31 +483,28 @@ var TextChooser = function(container, target, text_type) {
 						(typeof text.fcbh_audio_ot != 'undefined' || typeof text.fcbh_audio_nt != 'undefined' || 
 						 typeof text.fcbh_drama_ot != 'undefined' || typeof text.fcbh_drama_nt != 'undefined'),
 			hasLemma = text.hasLemma,
-			colspan = 3 - (hasAudio ? 1 : 0) - (hasLemma ? 1 : 0);
 			
+			providerName = (typeof text.providerName != 'undefined' && text.providerName != 'local') ? text.providerName : '',
+			providerFullName = sofia.textproviders[text.providerName] && sofia.textproviders[text.providerName].fullName ? sofia.textproviders[text.providerName].fullName : '',
 			
-			
-		
+			colspan = 4 - (hasAudio ? 1 : 0) - (hasLemma ? 1 : 0) - (providerName != '' ? 1 : 0);
 		
 		var html = '<tr class="text-chooser-row' + (isDefaultText ? ' is-default-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
 					'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
 					'<td class="text-chooser-name" ' + (colspan > 1 ? ' colspan="' + colspan + '"' : '') + '>' +
 						'<span>' + text.name + '</span>' +
 					'</td>' +
+					
 					(hasLemma === true ? '<td class="text-chooser-lemma"><span title="' + i18n.t('windows.bible.lemma') + '" data-i18n="[title]windows.bible.lemma"></span></td>' : '') +
-					(hasAudio === true ? '<td class="text-chooser-audio"><span title="' + i18n.t('windows.bible.audio') + '" data-i18n="[title]windows.bible.audio"></span></td>' : '') +				
+					(hasAudio === true ? '<td class="text-chooser-audio"><span title="' + i18n.t('windows.bible.audio') + '" data-i18n="[title]windows.bible.audio"></span></td>' : '') +	
+					(providerName != '' ? '<td class="text-chooser-provider-' + providerName + '"><span title="' + providerFullName + '"></span></td>' : '') +									
 				'</tr>';
-				
-		if (text.id == 'ENGNAS') {
-			console.log(text.id, text.name, text.hasLemma, text.hasAudio);
-			console.log(text);
-		}
 				
 		return html;		
 	}
 	
 	function createHeaderRow(id, name, englishName, additionalHtml, className) {
-		var html = '<tr class="text-chooser-row-header' + (className != '' ? ' ' + className : '') + '" data-id="' + id + '"><td colspan="4">' +
+		var html = '<tr class="text-chooser-row-header' + (className != '' ? ' ' + className : '') + '" data-id="' + id + '"><td colspan="5">' +
 					'<span class="name">' + name + '</span>' + 
 					additionalHtml + 
 					'</td></tr>';
@@ -499,7 +515,7 @@ var TextChooser = function(container, target, text_type) {
 
 	function toggle() {
 
-		if (textSelector.is(':visible') ) {
+		if (textChooser.is(':visible') ) {
 			hide();
 		} else {
 			show();
@@ -507,8 +523,45 @@ var TextChooser = function(container, target, text_type) {
 
 	}
 
+	function setTarget(_container, _target, _text_type) {
+				
+		var needsToRerender = _text_type != text_type;;		
+								
+		container = _container;
+		target = _target;
+		text_type = _text_type;	
+		
+		if (needsToRerender) {
+			renderTexts(list_data);
+			
+			if (text_type == 'bible' && sofia.config.enableBibleSelectorTabs && sofia.config.bibleSelectorDefaultList && sofia.config.bibleSelectorDefaultList.length > 0) {
+				listselector
+					.find('.text-chooser-default')
+					.addClass('selected')
+						.siblings()
+							.removeClass('selected');
+				
+				listselector.show();				
+			} else {
+				
+				listselector
+					.find('span')
+					.removeClass('selected');				
+				
+				listselector.hide();
+			}
+		}
+	
+	}
+	
+	function getTarget() {
+		return target;
+	}
+
 	function show() {
 		//$('.nav-drop-list').hide();
+		
+		//console.log('textchooser.show');
 
 		size();		
 
@@ -526,25 +579,28 @@ var TextChooser = function(container, target, text_type) {
 					}
 				}				
 				
-				console.log('TextChoose.show(), load render');
+				//console.log('TextChoose.show(), load render');
 				main.removeClass('loading-indicator');
 				renderTexts(list_data);
 				
-				//updateRecentlyUsed();
 			});
 		} else {
 			main.removeClass('loading-indicator');
-			//updateRecentlyUsed();
 		}
 
-		textSelector.show();
+		textChooser.show();
 		size();
-		filter.val('');
-		if (!Detection.hasTouch) {
-			filter.focus();
+		
+		if (filter.val() != '') {
+			filter.val('');
+			if (!Detection.hasTouch) {
+				filter.focus();
+			}		
+			filterVersions();
 		}
-		console.log('TextChoose.show(), filter');		
-		filterVersions();
+		
+
+		$(document).on('click', textChooserOffClick);		
 
 		//if (getMode() == 'languages') {
 		//	updateRecentlyUsed();
@@ -552,7 +608,8 @@ var TextChooser = function(container, target, text_type) {
 	}
 
 	function hide() {
-		textSelector.hide();
+		//console.log('TextChoose.hide()');		
+		textChooser.hide();
 	}
 
 	function setTextInfo(text) {
@@ -560,7 +617,8 @@ var TextChooser = function(container, target, text_type) {
 
 		storeRecentlyUsed(selectedTextInfo);
 		updateRecentlyUsed();
-		//node.html( selectedTextInfo.name );
+
+		updateSelectedText();
 	}
 
 	function getTextInfo() {
@@ -568,7 +626,13 @@ var TextChooser = function(container, target, text_type) {
 	}
 
 	function size(width,height) {
-
+		
+		if (target == null || container == null) {
+			return;
+		}
+		
+		clearOffClickTimer();
+		
 		if (isFull) {
 
 			// cover the container area
@@ -577,7 +641,7 @@ var TextChooser = function(container, target, text_type) {
 				height = container.height();
 			}
 
-			textSelector
+			textChooser
 				.width(width)
 				.height(height)
 				.css({top: container.offset().top,left: container.offset().left});
@@ -587,11 +651,12 @@ var TextChooser = function(container, target, text_type) {
 				.height(height - header.outerHeight());
 
 		} else {
+			
 			// reasonable size!
 			var targetOffset = target.offset(),
 				targetOuterHeight = target.outerHeight(),
 				win = $(window),
-				selectorWidth = textSelector.outerWidth(),
+				selectorWidth = textChooser.outerWidth(),
 
 				top = targetOffset.top + targetOuterHeight + 10,
 				left = targetOffset.left,
@@ -607,7 +672,7 @@ var TextChooser = function(container, target, text_type) {
 			}
 
 
-			textSelector
+			textChooser
 				.outerHeight(maxHeight)
 				.css({top: top,left: left});
 
@@ -618,26 +683,73 @@ var TextChooser = function(container, target, text_type) {
 			// UP ARROW
 			var upArrowLeft = targetOffset.left - left + 20;
 
-			textSelector.find('.up-arrow, .up-arrow-border')
+			textChooser.find('.up-arrow, .up-arrow-border')
 				.css({left: upArrowLeft});
 
 		}
+		
 	}
+	
+	// DOM to object stuff
+	var offClickTimeout = null;
+	function startOffClickTimer() {
+		clearOffClickTimer();		
+		offClickTimeout = setTimeout(hide, 50);
+	}
+	function clearOffClickTimer() {
+		if (offClickTimeout != null) {
+			clearTimeout(offClickTimeout);
+			offClickTimeout = null;			
+		}
+	}
+	
+	
+	function textChooserOffClick(e) {
+		
+		//console.log('textChooser','textChooserOffClick');
+		
+		var clickTarget = $(e.target),
+			clickedOnChooser = false;
+
+		while (clickTarget != null && clickTarget.length > 0) {
+
+			if (clickTarget[0] == textChooser[0] || (target != null && target[0] == clickTarget[0]) ) {
+				clickedOnChooser = true;
+				break;
+			}
+
+			clickTarget = clickTarget.parent();
+		}
+
+		//return;
+		if (!clickedOnChooser) {
+			e.preventDefault();
+
+			//textChooser.hide();
+			startOffClickTimer();		
+			
+			$(document).off('click', textChooserOffClick);
+
+			return false;
+		}
+	}	
 
 	function isVisible() {
-		return textSelector.is(':visible');
+		return textChooser.is(':visible');
 	}
 
 	function node() {
-		return textSelector;
+		return textChooser;
 	}
 
 	function close() {
-		textSelector.remove();
+		textChooser.remove();
 		ext.clearListeners();
 	}
 
 	var ext = {
+		setTarget: setTarget,
+		getTarget: getTarget,
 		show: show,
 		hide: hide,
 		toggle: toggle,
@@ -656,3 +768,7 @@ var TextChooser = function(container, target, text_type) {
 	return ext;
 
 };
+
+sofia.initMethods.push(function() {
+	sofia.globalTextChooser = new TextChooser();
+});

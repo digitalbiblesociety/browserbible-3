@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27.02" height="27.02">
+    <desc iVinci="yes" version="4.6" gridStep="20" showGrid="no" snapToGrid="no" codePlatform="0"/>
+    <g id="Layer1" name="Layer 1" opacity="1">
+        <g id="Shape1">
+            <desc shapeID="1" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-9.68568,-9.7125,19.3714,19.425)" text="" font-familyName="" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,13.3595,15.7675)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="shapePath1" d="M3.674,24.876 C3.674,24.876 3.65,25.48 4.24,25.48 C4.974,25.48 11.051,25.472 11.051,25.472 L11.061,19.891 C11.061,19.891 10.965,18.971 11.858,18.971 L14.684,18.971 C15.74,18.971 15.675,19.891 15.675,19.891 L15.663,25.454 C15.663,25.454 21.425,25.454 22.33,25.454 C23.079,25.454 23.045,24.702 23.045,24.702 L23.045,14.413 L13.649,6.055 L3.674,14.413 C3.674,14.413 3.674,24.876 3.674,24.876 Z" style="stroke:none;fill-rule:evenodd;fill:#444444;fill-opacity:1;"/>
+        </g>
+        <g id="Shape2">
+            <desc shapeID="2" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-13.51,-6.39438,27.02,12.7888)" text="" font-familyName="" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,13.51,7.93438)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="shapePath2" d="M0,13.635 C0,13.635 0.847,15.196 2.694,13.635 L13.732,4.297 L24.081,13.577 C26.219,15.119 27.02,13.577 27.02,13.577 L13.732,1.54 L0,13.635 Z" style="stroke:none;fill-rule:evenodd;fill:#444444;fill-opacity:1;"/>
+        </g>
+    </g>
+</svg>

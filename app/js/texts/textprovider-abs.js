@@ -21,7 +21,8 @@ sofia.textproviders['abs'] = (function() {
 		
 		fums_loaded = false,
 		
-		providerName = 'abs';
+		providerName = 'abs',
+		fullName = 'American Bible Society Bibles API';
 
 	function getTextManifest (callback) {
 
@@ -366,7 +367,8 @@ sofia.textproviders['abs'] = (function() {
 		getTextManifest: getTextManifest,
 		getTextInfo: getTextInfo,
 		loadSection: loadSection,
-		startSearch: startSearch
+		startSearch: startSearch,
+		fullName: fullName
 	}
 
 })();

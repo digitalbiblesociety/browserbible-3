@@ -89,12 +89,12 @@ var TextNavigator = function(container, target) {
 
 		//$('.nav-drop-list').hide();
 
-		title.html( textInfo.name );
-
 		if (textInfo == null) {
 			console.warn('chooser has not textInfo!');
 			return;
-		}
+		}		
+
+		title.html( textInfo.name );
 
 		// reset width
 		size();

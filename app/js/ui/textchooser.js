@@ -114,6 +114,16 @@ var TextChooser = function() {
 			var arrayOfTexts = list_data;
 			
 			arrayOfTexts = arrayOfTexts.filter(function(t) {
+							
+				if (text_type == 'audio') {
+					var hasAudio = 	t.hasAudio || 
+						typeof t.audioDirectory != 'undefined' ||
+						(typeof t.fcbh_audio_ot != 'undefined' || typeof t.fcbh_audio_nt != 'undefined' || 
+						 typeof t.fcbh_drama_ot != 'undefined' || typeof t.fcbh_drama_nt != 'undefined');
+
+					return hasAudio == true;		
+				}
+				
 				var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;	
 				return thisTextType == text_type;
 			});
@@ -299,6 +309,16 @@ var TextChooser = function() {
 	
 			// filter by type
 			arrayOfTexts = arrayOfTexts.filter(function(t) {
+							
+				if (text_type == 'audio') {
+					var hasAudio = t.hasAudio || 
+						typeof t.audioDirectory != 'undefined' ||
+						(typeof t.fcbh_audio_ot != 'undefined' || typeof t.fcbh_audio_nt != 'undefined' || 
+						 typeof t.fcbh_drama_ot != 'undefined' || typeof t.fcbh_drama_nt != 'undefined');				
+													
+					return hasAudio === true;		
+				}				
+				
 				var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
 	
 				return thisTextType == text_type;
@@ -342,7 +362,7 @@ var TextChooser = function() {
 					langHtml = [];
 
 				// sort the texts by name
-				textsInLang = textsInLang.sort(function(a,b) {
+				textsInLang = textsInLang.sort(function (a, b) {
 					if (a.name == b.name) {
 						return 0;
 					} else if (a.name > b.name) {
@@ -531,6 +551,8 @@ var TextChooser = function() {
 		target = _target;
 		text_type = _text_type;	
 		
+		ext.setClickTargets([_target, textChooser]);
+		
 		if (needsToRerender) {
 			renderTexts(list_data);
 			
@@ -599,16 +621,11 @@ var TextChooser = function() {
 			filterVersions();
 		}
 		
-
-		$(document).on('click', textChooserOffClick);		
-
-		//if (getMode() == 'languages') {
-		//	updateRecentlyUsed();
-		//}
+		ext.onshow();
 	}
 
 	function hide() {
-		//console.log('TextChoose.hide()');		
+		ext.onhide();		
 		textChooser.hide();
 	}
 
@@ -631,7 +648,7 @@ var TextChooser = function() {
 			return;
 		}
 		
-		clearOffClickTimer();
+		//clearOffClickTimer();
 		
 		if (isFull) {
 
@@ -690,50 +707,6 @@ var TextChooser = function() {
 		
 	}
 	
-	// DOM to object stuff
-	var offClickTimeout = null;
-	function startOffClickTimer() {
-		clearOffClickTimer();		
-		offClickTimeout = setTimeout(hide, 50);
-	}
-	function clearOffClickTimer() {
-		if (offClickTimeout != null) {
-			clearTimeout(offClickTimeout);
-			offClickTimeout = null;			
-		}
-	}
-	
-	
-	function textChooserOffClick(e) {
-		
-		//console.log('textChooser','textChooserOffClick');
-		
-		var clickTarget = $(e.target),
-			clickedOnChooser = false;
-
-		while (clickTarget != null && clickTarget.length > 0) {
-
-			if (clickTarget[0] == textChooser[0] || (target != null && target[0] == clickTarget[0]) ) {
-				clickedOnChooser = true;
-				break;
-			}
-
-			clickTarget = clickTarget.parent();
-		}
-
-		//return;
-		if (!clickedOnChooser) {
-			e.preventDefault();
-
-			//textChooser.hide();
-			startOffClickTimer();		
-			
-			$(document).off('click', textChooserOffClick);
-
-			return false;
-		}
-	}	
-
 	function isVisible() {
 		return textChooser.is(':visible');
 	}
@@ -762,8 +735,10 @@ var TextChooser = function() {
 		close: close
 	};
 	ext = $.extend(true, ext, EventEmitter);
-
-
+	ext = $.extend(true, ext, ClickOff);
+	ext.on('offclick', function() {
+		hide();
+	});
 
 	return ext;
 

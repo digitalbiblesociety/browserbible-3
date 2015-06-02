@@ -5,7 +5,7 @@ if (typeof console == 'undefined') { window.console = {log:function() {}}; }
 window.sofia = {};
 
 // version
-sofia.version = '3.4.5';
+sofia.version = '3.5.0.beta-1';
 
 // allows items to register themselves
 sofia.plugins = [];

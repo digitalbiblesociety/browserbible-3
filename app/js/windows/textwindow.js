@@ -43,7 +43,6 @@ var TextWindow = function(id, parent, init_data, text_type) {
 		wrapper = container.find('.scroller-text-wrapper'),
 		navui = header.find('.text-nav'),
 		textlistui = header.find('.text-list'),
-		textChooserFocused = false,
 
 		// objects
 		textChooser = sofia.globalTextChooser,
@@ -70,8 +69,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 	infoBtn.on('click', function() {
 
-		textChooser.hide();
-		textChooserFocused = false;
+		textChooser.hide();	
 		textNavigator.hide();
 
 		flipper.toggleClass('showinfo');
@@ -123,7 +121,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 	textlistui.on('click', function(e) {
 
-		console.log('clicked');
+		//console.log('clicked');
 
 		if (flipper.hasClass('showinfo')) {
 			flipper.removeClass('showinfo')
@@ -137,7 +135,6 @@ var TextWindow = function(id, parent, init_data, text_type) {
 			textChooser.setTextInfo(currentTextInfo);			
 			textChooser.show();			
 		}
-		textChooserFocused = true;
 	});
 
 

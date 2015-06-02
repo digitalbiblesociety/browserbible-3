@@ -147,10 +147,17 @@ var inliner = {
 			
 			var fileName = file + '.' + type,
 				filePath = path.join(basePath, fileName),
-				size = fs.statSync(filePath).size;
+				size = 0;
 				
-			if (size > 5120) {
-				console.log('Skipping ' + filePath + ' (' + (Math.round(size/1024*100)/100) + 'k)');
+			try {
+				size = fs.statSync(filePath).size;
+			} catch (exp) {
+				console.log('Error: cannot find', filePath);
+				return '';				
+			}
+				
+			if (size > 6120) {
+				console.log('TOO BIG, skipping: ' + filePath + ' (' + (Math.round(size/1024*100)/100) + 'k)');
 				return match;
 			} else {
 				var base64 = '';

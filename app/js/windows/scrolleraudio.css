@@ -16,10 +16,11 @@
 	position: relative;
 	bottom: inherit;
 	left: inherit;	
-	margin: 10px;
+	margin: 30px 20px 20px;
 	width: auto;
 	background: transparent;
 	height: 200px;
+	border: none;
 }
 
 .audio-options {
@@ -88,13 +89,17 @@
 .audio-window-container .audio-controller .audio-play {
 	width: 100px;
 	height: 100px;
-	background-size: 70px; 70px;
+	background-size: 70px 70px;
 	margin-left: -50px;
 	background-position-x: 20px;
 }
 
 .audio-controller .audio-play.playing {
 	background-image: url(../../css/images/audio/pause-icon.svg);
+}
+
+.audio-window-container .audio-controller .audio-play.playing {
+	background-position-x: 15px;
 }
 
 .audio-controller .audio-prev,
@@ -193,8 +198,8 @@ left: 35px;
 	width: 100%;
 }
 .audio-window-container .audio-slider { 
-	top: inherit;
-	bottom: 0;
+/*	top: inherit;
+	bottom: 0;*/
 }
 
 .audio-controller .audio-slider .audio-slider-current {

@@ -317,7 +317,11 @@ var TextChooser = function() {
 						 typeof t.fcbh_drama_ot != 'undefined' || typeof t.fcbh_drama_nt != 'undefined');				
 													
 					return hasAudio === true;		
-				}				
+				} else {
+					if (t.hasText === false) {
+						return false;
+					}
+				}			
 				
 				var thisTextType = typeof t.type == 'undefined' ? 'bible' : t.type;
 	

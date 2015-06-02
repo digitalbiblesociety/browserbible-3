@@ -4,6 +4,8 @@ sofia.config = $.extend(sofia.config, {
 
 
 var AudioWindow = function(id, parent, init_data) {
+	
+	console.log('audiowindow init', init_data);
 
 	var
 		container =
@@ -17,6 +19,8 @@ var AudioWindow = function(id, parent, init_data) {
 				'</div>'+
 				'<div class="audio-window-main">' +
 				'</div>' +
+				'<div class="audio-window-version-info">' +
+				'</div>' +				
 			'</div>').appendTo(parent.node),
 			
 
@@ -24,6 +28,7 @@ var AudioWindow = function(id, parent, init_data) {
 		main = container.find('.audio-window-main'),
 		navui = header.find('.text-nav'),
 		textlistui = header.find('.text-list'),
+		versioninfo = container.find('.audio-window-version-info'),
 		
 		text_type = 'audio',
 		currentTextInfo = null,
@@ -31,7 +36,7 @@ var AudioWindow = function(id, parent, init_data) {
 
 		// objects
 		textChooser = sofia.globalTextChooser,
-		textNavigator = new TextNavigator(container, navui),
+		textNavigator = sofia.globalTextNavigator,
 		
 		scrollerMimic = {},
 		audioController = null;
@@ -52,13 +57,14 @@ var AudioWindow = function(id, parent, init_data) {
 				this.blur();
 			}
 
-			textNavigator.toggle();
-
-			/*
-			if (textNavigator.node().is(':visible')) {
-				$(document).on('click', textNavigatorOffClick);
+			// if this is selected, then toggle
+			if (textNavigator.getTarget() == navui) {
+				textNavigator.toggle();
+			} else {			
+				textNavigator.setTarget(container, navui);			
+				textNavigator.setTextInfo(currentTextInfo);			
+				textNavigator.show();			
 			}
-			*/
 		})
 		.on('keypress', function(e) {
 			if (e.keyCode == 13) {
@@ -68,63 +74,46 @@ var AudioWindow = function(id, parent, init_data) {
 					fragmentid = (bibleref.toSection) ? bibleref.toSection() : '',
 					sectionid = fragmentid.split('_')[0];
 
-				if (sectionid != '') {
-					
-					var newLocationInfo = {					
-						fragmentid: fragmentid,	
-						sectionid: sectionid
-					};
-					
-					currentLocationInfo = newLocationInfo;
-					
-//					if (sofia.analytics) {
-//						sofia.analytics.record('usernav', 'input', sectionid + ':' + currentTextInfo.id);
-//					}
-
-					//TextNavigation.locationChange(fragmentid);
-
-					//scroller.load('text', sectionid, fragmentid);
-					scrollerMimic.trigger('locationchange', {type:'locationchange', target: this, data: newLocationInfo});
-				
-					textNavigator.hide();
-
-					navui.val(bibleref.toString());
-					navui[0].blur();
+				if (sectionid != '') {					
+					changeLocation(fragmentid);
 				}
 			}
 		});
-
-	textNavigator.on('change', function (e) {
-		//console.log('scrollerapp:navigator:change', e);
-
-		//ext.trigger('globalmessage', {type: 'usernav', target: ext, data: {usernavtype: 'menu', sectionid: e.data, textid: currentTextInfo.id}});
-
-//		if (sofia.analytics) {
-//			sofia.analytics.record('usernav', 'menu', e.data + ':' + currentTextInfo.id);
-//		}
-//
-//		TextNavigation.locationChange(e.data);
-
-		var
-			sectionid = e.data,		
-			bibleref = new bible.Reference(sectionid),
+		
+	function changeLocation(inputLocation) {
+		var bibleref = new bible.Reference(inputLocation),
+			fragmentid = (bibleref.toSection) ? bibleref.toSection() : '',
+			sectionid = fragmentid.split('_')[0],
+		
 			newLocationInfo = {					
-				fragmentid: sectionid,	
+				fragmentid: fragmentid,	
 				sectionid: sectionid
 			};
-		
+				
 		currentLocationInfo = newLocationInfo;
-		
+
+		if (scrollerMimic.trigger) {
+			scrollerMimic.trigger('locationchange', {type:'locationchange', target: this, data: newLocationInfo});
+		}
+		if (ext && ext.trigger) {
+			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });
+		}
+	
+		textNavigator.hide();
+
 		navui.val(bibleref.toString());
 		navui[0].blur();		
+	}
 
-		// load new content
-		scrollerMimic.trigger('locationchange', {type:'locationchange', target: this, data: newLocationInfo});
+	textNavigator.on('change', function (e) {
+
+		if (e.data.target != navui) {
+			return;
+		}
+
+		changeLocation(e.data.sectionid);		
 	});	
 		
-	
-	
-	
 	// TEXT CHOOSER
 	textlistui.on('click', function(e) {
 		
@@ -144,6 +133,12 @@ var AudioWindow = function(id, parent, init_data) {
 		}
 		
 		var newTextInfo = e.data.textInfo;
+		
+		updateText(newTextInfo);
+	
+	});
+	
+	function updateText(newTextInfo) {
 
 		// ALWAYS UPDATE: for first load
 		// update version name
@@ -156,9 +151,10 @@ var AudioWindow = function(id, parent, init_data) {
 
 		audioController.setTextInfo(newTextInfo);
 		
+		currentTextInfo = newTextInfo;	
 		
-				
-	});
+		versioninfo.html(currentTextInfo.title);			
+	}
 	
 	
 	
@@ -171,6 +167,12 @@ var AudioWindow = function(id, parent, init_data) {
 		if (init_data == null) {
 			return;
 		}
+		
+		if (typeof init_data.fragmentid != 'undefined' && init_data.fragmentid != '') {
+			//var bibleRef = new bible.Reference(init_data.fragmentid);
+			//navui.val(bibleRef.toString());
+			changeLocation(init_data.fragmentid);
+		}		
 		
 		if (typeof init_data.textid == 'undefined' || init_data.textid == '') {
 			init_data.textid = sofia.config.newBibleWindowVersion;
@@ -185,7 +187,7 @@ var AudioWindow = function(id, parent, init_data) {
 				// store this setting
 				currentTextInfo = loadedTextInfo;
 				
-				startup();
+				updateText(loadedTextInfo);
 			},
 
 			// error handler
@@ -230,17 +232,6 @@ var AudioWindow = function(id, parent, init_data) {
 		});
 	}
 
-	function startup() {
-
-		// send to objects
-		textChooser.setTextInfo(currentTextInfo);
-		textlistui.html(currentTextInfo.abbr);
-		parent.tab.find('span').html( currentTextInfo.abbr );
-		textNavigator.setTextInfo(currentTextInfo);
-		audioController.setTextInfo(currentTextInfo);
-		scrollerMimic.setTextInfo(currentTextInfo);
-
-	}
 
 	init();	
 	
@@ -281,9 +272,9 @@ var AudioWindow = function(id, parent, init_data) {
 			label: currentLocationInfo.label,
 			labelTab: currentTextInfo.abbr,
 			labelLong: currentLocationInfo.labelLong,
-			hasFocus: hasFocus,
+			//hasFocus: hasFocus,
 			params: {
-				'win': text_type,
+				'win': 'audio',
 				'textid': currentTextInfo.providerid,
 				'fragmentid': currentLocationInfo.fragmentid
 			}
@@ -307,7 +298,6 @@ var AudioWindow = function(id, parent, init_data) {
 
 		ext.clearListeners();
 
-		removeHighlights();
 	}
 
 

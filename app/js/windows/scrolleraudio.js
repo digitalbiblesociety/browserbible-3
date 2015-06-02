@@ -563,8 +563,11 @@ var AudioController = function(id, container, ui, scroller) {
 
 						console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
 
-						block.hide();
-						if (ui) ui.hide();
+						
+						if (ui) {
+							ui.hide();
+							block.hide();
+						}
 					}
 				});
 			}

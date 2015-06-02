@@ -2,10 +2,12 @@
 Text Navigator
 *******************/
 
-var TextNavigator = function(container, target) {
+var TextNavigator = function() {
 	// create me
 
 	var
+		container = null,
+		target = null,
 		isFull = false,
 		changer = $('<div class="text-navigator nav-drop-list">' +
 							'<span class="up-arrow"></span>' +
@@ -73,6 +75,7 @@ var TextNavigator = function(container, target) {
 	function hide() {
 		changer.hide();
 		fullname.hide();
+		ext.onhide();
 	}
 
 	function toggle() {
@@ -99,6 +102,7 @@ var TextNavigator = function(container, target) {
 		// reset width
 		size();
 		changer.show();
+		ext.onshow();
 		size();
 
 		// remove all selections
@@ -263,7 +267,8 @@ var TextNavigator = function(container, target) {
 							.attr('data-id');
 
 		console.log('navigator selected', sectionid);
-		ext.trigger('change', {type:'change', target: this, data: sectionid});
+		ext.trigger('change', {type:'change', target: this, data: {sectionid: sectionid, target: target}});
+	
 		//navigation_changed_callback(sectionid);
 
 		changer.hide();
@@ -320,6 +325,9 @@ var TextNavigator = function(container, target) {
 				.css({left: upArrowLeft});			
 			*/
 			
+			if (target == null) {
+				return;
+			}
 
 			var 
 				targetOffset = target.offset(),
@@ -357,8 +365,9 @@ var TextNavigator = function(container, target) {
 	function setTextInfo(value) {
 		textInfo = value;
 
-		changer.find('.text-navigator-header').html( textInfo.title );
-
+		if (textInfo.title) {
+			changer.find('.text-navigator-header').html( textInfo.title );
+		}
 
 		// set names
 		if (textInfo.divisionNames) {
@@ -379,9 +388,23 @@ var TextNavigator = function(container, target) {
 
 		changer.remove();
 	}
+	
+	function setTarget(_container, _target) {
+										
+		container = _container;
+		target = _target;
+		
+		ext.setClickTargets([_target, changer]);		
+	}
+	
+	function getTarget() {
+		return target;		
+	}	
 
 	// this is the return object!
 	var ext = {
+		setTarget: setTarget,
+		getTarget: getTarget,		
 		show: show,
 		toggle: toggle,
 		hide: hide,
@@ -393,7 +416,15 @@ var TextNavigator = function(container, target) {
 	}
 
 	ext = $.extend(true, ext, EventEmitter);
+	ext = $.extend(true, ext, ClickOff);
+	ext.on('offclick', function() {
+		hide();
+	});	
 
 	return ext;
 
 };
+
+sofia.initMethods.push(function() {
+	sofia.globalTextNavigator = new TextNavigator();
+});

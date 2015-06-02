@@ -91,7 +91,8 @@
 	height: 100px;
 	background-size: 70px 70px;
 	margin-left: -50px;
-	background-position-x: 20px;
+	background-position-x: 20px;	
+	top: 40px;
 }
 
 .audio-controller .audio-play.playing {
@@ -108,7 +109,7 @@
 	height: 30px;
 	margin-left: 5px;
 	background-size: 15px 15px;
-	top: 20px;
+	top: 40px;
 }
 
 .audio-controller .audio-prev {

@@ -2,11 +2,16 @@
 	background-image: url(../../css/images/parallel.svg);
 }
 
+.parallel-list {
+	display: inline-block;
+}
+
 /* Parallels */
 .parallels-main {
 	padding: 15px;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
+	background-color: #fff;
 }
 
 .parallels-main table {

@@ -27,13 +27,12 @@ var ParallelsWindow = function(id, parent, init_data) {
 		textlistui = header.find('.text-list'),
 
 		// objects
-		textChooser = new TextChooser(container, textlistui, 'bible'),
+		textChooser = sofia.globalTextChooser,
 
 		parallelsList = container.find('.parallel-list select'),
 
 		// settings
 		currentTextInfo = null,
-		hasFocus = false,
 		textsInitialized = false,
 		parallelsData = null;
 
@@ -42,51 +41,28 @@ var ParallelsWindow = function(id, parent, init_data) {
 		loadParallelData();
 	});
 
-
-	// DOM to object stuff
-	function textChooserOffClick(e) {
-
-		//console.log('doc click');
-
-		var target = $(e.target),
-			clickedOnChooser = false;
-
-		while (target != null && target.length > 0) {
-
-			if (target[0] == textChooser.node()[0] || target[0] == textlistui[0] ) {
-				clickedOnChooser = true;
-				break;
-			}
-
-			target = target.parent();
-		}
-
-		//return;
-		if (!clickedOnChooser) {
-			e.preventDefault();
-
-			textChooser.hide();
-			$(document).off('click', textChooserOffClick);
-
-			return false;
-		}
-	}
-
 	textlistui.on('click', function(e) {
-		textChooser.toggle();
-
-		if (textChooser.node().is(':visible')) {
-			//setTimeout( function() {
-				$(document).on('click', textChooserOffClick);
-			//}, 10);
+		
+		// if this is selected, then toggle
+		if (textChooser.getTarget() == textlistui) {
+			textChooser.toggle();
+		} else {			
+			textChooser.setTarget(container, textlistui, 'bible');			
+			textChooser.setTextInfo(currentTextInfo);			
+			textChooser.show();			
 		}
+		
 	});
 
 
 
 	textChooser.on('change', function (e) {
 
-		var newTextInfo = e.data;
+		if (e.data.target != textlistui) {
+			return;
+		}
+
+		var newTextInfo = e.data.textInfo;
 
 		// ALWAYS UPDATE: for first load
 		// update version name

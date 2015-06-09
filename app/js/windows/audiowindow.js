@@ -1,5 +1,7 @@
 sofia.config = $.extend(sofia.config, {
-	enableAudioWindow: true
+	enableAudioWindow: true,
+	audioWindowDefaultBibleFragmentid: 'JN1_1',
+	audioWindowDefaultBibleVersion: 'ENGESV'
 });
 
 
@@ -153,7 +155,7 @@ var AudioWindow = function(id, parent, init_data) {
 		
 		currentTextInfo = newTextInfo;	
 		
-		versioninfo.html(currentTextInfo.title);			
+		//versioninfo.html( currentTextInfo.aboutHtml );			
 	}
 	
 	
@@ -330,8 +332,8 @@ sofia.initMethods.push(function() {
 					'fragmentid':'v'
 				},
 				init: {
-					'textid':sofia.config.newBibleWindowVersion,
-					'fragmentid':sofia.config.newBibleWindowVerse
+					'textid':sofia.config.audioWindowDefaultBibleVersion,
+					'fragmentid':sofia.config.audioWindowDefaultBibleFragmentid
 				}
 		});
 	}

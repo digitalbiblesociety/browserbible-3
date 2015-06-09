@@ -1,6 +1,20 @@
 Change Log
 =======
 
+
+3.5.2 - 2015/06/08
+
+* Added default Audio version to config
+
+3.5.1 - 2015/06/05
+
+* Fixed parallels to work with new TextChooser
+
+3.5.0 - 2015/06/01
+
+* New audio window
+* Revamped TextChooser / TextNavigator code that only requires one instance
+
 3.4.4 - 2015/05/12
 
 * New picker with default|languages|countries

@@ -15,9 +15,7 @@ var ClickOff = {
 		
 		var target = $(e.target),
 			clickedOnThis = false;
-			
-		console.log('docClick', this.clickTargets);
-
+		
 		// go through all nested clicked elements
 		while (target != null && target.length > 0) {
 
@@ -36,6 +34,8 @@ var ClickOff = {
 
 			target = target.parent();
 		}
+		
+		console.log('docClick', clickedOnThis, this.clickTargets);
 		
 		if (!clickedOnThis) {
 			e.preventDefault();
@@ -69,7 +69,7 @@ var ClickOff = {
 	},
 	
 	onshow: function() {
-		console.log('chooser', 'onshow');
+		console.log('clickoff', 'onshow');
 	
 		this.bindDocClick();
 	},
@@ -80,13 +80,11 @@ var ClickOff = {
 	},
 	
 	bindDocClick: function() {
-		//$(document).on('click', this.docClick);
-		$(document).on('click', $.proxy( this, "docClick" ));
+		$(document).on('click', $.proxy( this, 'docClick' ));
 	},
 	
 	unbindDocClick: function() {
 		$(document).off('click', this.docClick);
 	}
 	
-			
 }

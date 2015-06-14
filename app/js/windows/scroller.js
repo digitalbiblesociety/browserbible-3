@@ -160,15 +160,6 @@ var Scroller = function(node) {
 		locationInfo = newLocationInfo;
 	};
 
-	/* load testing
-	$(document).on('keypress', function(e) {
-		if (e.which == 109) {
-			load_more();
-		}
-
-		console.log(e.type, e.which);
-	});
-	*/
 
 	var load_more_timeout = null;
 	function start_load_more_timeout() {

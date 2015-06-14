@@ -2,6 +2,11 @@
 	margin: 5px 0 0 0;
 }
 
+#main-menu-dropdown #config-global-url {
+	margin: 0;
+	padding: 10px 0 10px 15px;
+}
+
 #config-global-url span {
 	background-image: url(../../css/images/link.svg);
 	width: 20px;

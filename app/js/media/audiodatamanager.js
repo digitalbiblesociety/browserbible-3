@@ -179,11 +179,12 @@ var LocalAudio = (function() {
 
 					break;
 				}
-
 			}
-
 		}
-		fragmentData.index = fragmentIndex;
+		
+		if (fragmentData != null) {
+			fragmentData.index = fragmentIndex;
+		}
 
 		return fragmentData;
 	}

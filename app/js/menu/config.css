@@ -2,10 +2,13 @@
 	right: 60px;
 }
 
+#config-window .movable-body {
+	overflow: hidden;
+}
 
 #main-config-box {
-	height: 390px;
-	z-index: 10;
+	padding: 25px 25px 0 25px;
+	overflow: hidden;
 }
 
 .config-section {

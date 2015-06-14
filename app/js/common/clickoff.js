@@ -1,5 +1,6 @@
 var ClickOff = {
 	
+	clickoffid: '',
 	clickTargets:[],
 	
 	getClickTargets: function() {
@@ -35,19 +36,21 @@ var ClickOff = {
 			target = target.parent();
 		}
 		
-		console.log('docClick', clickedOnThis, this.clickTargets);
+		console.log('clickoff', this.clickoffid, 'doc.click', clickedOnThis);
 		
 		if (!clickedOnThis) {
-			e.preventDefault();
+			//e.preventDefault();
 
-			this.startOffClickTimer();
+			//this.startOffClickTimer();
+			this.trigger('offclick');
 			
 			//$(document).off('click', this.docClick);
 			this.unbindDocClick();
 
-			return false;
+			//return false;
 		}
 	},
+	
 	offClickTimeout: null,
 	
 	startOffClickTimer: function () {
@@ -69,22 +72,30 @@ var ClickOff = {
 	},
 	
 	onshow: function() {
-		console.log('clickoff', 'onshow');
+		console.log('clickoff', this.clickoffid, 'onshow');
 	
 		this.bindDocClick();
 	},
 
 	onhide: function() {
+		console.log('clickoff', this.clickoffid, 'onhide');
+		
 		this.clearOffClickTimer();
 		this.unbindDocClick();
 	},
 	
 	bindDocClick: function() {
-		$(document).on('click', $.proxy( this, 'docClick' ));
+		this.unbindDocClick();
+		
+		var proxy = this.proxy = $.proxy( this, 'docClick' );
+		
+		$(document).on('click.' + this.clickoffid, proxy);
 	},
 	
 	unbindDocClick: function() {
-		$(document).off('click', this.docClick);
+		if (this.proxy) {
+			$(document).off('click.' + this.clickoffid, this.proxy);
+		}
 	}
 	
-}
+};

@@ -37,40 +37,38 @@ var MainMenuButton = function(node) {
 
 
 	function mainMenuClick(e) {
-
-		e.preventDefault();
-
-		if (mainMenuDropDown.is(':visible')) {
-			
-			mainMenuButton.removeClass('active');
-			mainMenuDropDown.hide();
-
-			$(document).off('click', docClick);			
-			
-		} else {
-			$('.window-overlay').hide();
-
-			mainMenuButton.addClass('active');			
-			mainMenuDropDown.show();
-			
-			setTimeout(function() {
-				$(document).on('click', docClick);
-			},50);
-		}
-
-		return false;
-	}
-
-	function docClick(e) {
-
-		if ($(e.target).closest('#add-button-box').length == 0) { // } && $(e.target).closest('#main-add-button').length == 0) {
-
-			mainMenuDropDown.hide();
-			mainMenuButton.removeClass('active');			
-
-			$(document).off('click', docClick);
+		
+		if (mainMenuDropDown.is(':visible')) {			
+			hide();		
+		} else {			
+			show();
 		}
 	}
+	
+	function show() {
+		mainMenuButton.addClass('active');
+		mainMenuDropDown.show();
+		ext.onshow();		
+	}	
+	
+	function hide() {
+		mainMenuButton.removeClass('active');
+		mainMenuDropDown.hide();
+		ext.onhide();		
+	}
+	
+	
+	var ext = {};
+	ext = $.extend(true, ext, EventEmitter);
+	ext = $.extend(true, ext, ClickOff);
+	ext.clickoffid = 'version picker';
+	ext.on('offclick', function() {
+		hide();
+	});
+	ext.setClickTargets([mainMenuButton, mainMenuDropDown]);
+
+	return ext;	
+	
 }
 
 

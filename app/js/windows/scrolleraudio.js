@@ -1,5 +1,5 @@
 
-var AudioController = function(id, container, ui, scroller) {
+var AudioController = function(id, container, toggleButton, scroller) {
 
 	var block = $(
 				'<div class="audio-controller">' +
@@ -64,6 +64,7 @@ var AudioController = function(id, container, ui, scroller) {
 		sectionid = '',
 		fragmentid = '',
 		fragmentAudioData = null,
+		loadAudioWhenPlayIsPressed = false,
 		sectionHeight = 0,
 		sectionNode = null,
 		hasAudio = false,
@@ -72,8 +73,8 @@ var AudioController = function(id, container, ui, scroller) {
 	// START UP
 	options.find('.i18n').i18n();
 
-	if (ui != null) {
-		ui.hide();
+	if (toggleButton != null) {
+		toggleButton.hide();
 		block.hide();
 	}
 	options.hide();
@@ -137,6 +138,7 @@ var AudioController = function(id, container, ui, scroller) {
 		fragmentid = '';
 		sectionid = '';
 		fragmentAudioData = null;
+		loadAudioWhenPlayIsPressed = false;
 
 		// stop audio
 		if (!audio.paused && !audio.ended) {
@@ -149,8 +151,8 @@ var AudioController = function(id, container, ui, scroller) {
 	}
 
 	// MAIN
-	if (ui != null) {
-		ui.on('click', function() {
+	if (toggleButton != null) {
+		toggleButton.on('click', function() {
 			if (block.is(':visible')) {
 				block.hide();
 			} else {
@@ -160,10 +162,19 @@ var AudioController = function(id, container, ui, scroller) {
 	}
 
 	playButton.on('click', function() {
-
-		if (audio.src == '') {
+	
+		if (audio.src == '' || audio.src == null) {
+			
+			if (loadAudioWhenPlayIsPressed) {
+				audio.src = fragmentAudioData.url;
+				audio.load();
+				$(audio).on('loadeddata', playWhenLoaded);
+				loadAudioWhenPlayIsPressed = false;	
+			}		
+			
 			return;
 		}
+		
 
 		if (audio.paused || audio.ended) {
 			audio.play();
@@ -276,8 +287,8 @@ var AudioController = function(id, container, ui, scroller) {
 
 							title.html('[No audio]');
 
-							if (ui) {
-								ui.hide();
+							if (toggleButton) {
+								toggleButton.hide();
 								block.hide();
 							}
 
@@ -286,7 +297,7 @@ var AudioController = function(id, container, ui, scroller) {
 						} else {
 
 							// if we get a URL, then show the ear icon again
-							if (ui) ui.show();
+							if (toggleButton) toggleButton.show();
 
 							// only when the previous data was null, do we reshow the control bar
 							if (fragmentAudioData == null) {
@@ -297,9 +308,14 @@ var AudioController = function(id, container, ui, scroller) {
 							fragmentAudioData = newFragmentAudioData;
 						}
 
-						//audio.currentTime = 0;
-						audio.src = fragmentAudioData.url;
-						audio.load();
+						// only load audio if player is visible
+						if (block.is(':visible')) {
+							//audio.currentTime = 0;
+							audio.src = fragmentAudioData.url;
+							audio.load();
+						} else {
+							loadAudioWhenPlayIsPressed = true;
+						}
 
 
 						// store height info
@@ -384,7 +400,7 @@ var AudioController = function(id, container, ui, scroller) {
 			}
 
 			// don't auto scroll if not checked or if there was no connecting UI
-			if (!scrollCheckbox.is(':checked') || ui == null) {
+			if (!scrollCheckbox.is(':checked') || toggleButton == null) {
 				return;
 			}
 
@@ -558,7 +574,7 @@ var AudioController = function(id, container, ui, scroller) {
 
 						// start load
 						//block.show();
-						if (ui) ui.show();
+						if (toggleButton) toggleButton.show();
 
 					} else {
 						hasAudio = false;
@@ -566,19 +582,14 @@ var AudioController = function(id, container, ui, scroller) {
 						console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
 
 						
-						if (ui) {
-							ui.hide();
+						if (toggleButton) {
+							toggleButton.hide();
 							block.hide();
 						}
 					}
 				});
-			}
-
-		}
-
-
-
-		// attempt to load
+			} // if text is bible
+		} // if this is a different text
 	}
 
 	function secondsToTimeCode(time) {

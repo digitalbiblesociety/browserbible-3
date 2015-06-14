@@ -8,24 +8,7 @@ var InfoWindow = function(id) {
 
 		body = container.find('.info-body'),
 		close = container.find('.close-button'),
-		win = $(window),
-		timerEnabled = true,
-		clickOffEnabled = true,
-		clickOffNode = null,
-		timer = new Timer(hide, 500);
-
-	container
-		.on('mouseout', function() {
-			if (timerEnabled) {
-				timer.start();
-			}
-		})
-		.on('mouseover', function() {
-			if (timerEnabled) {
-				timer.clear();
-			}
-		});
-
+		win = $(window);
 
 	close
 		.on('click', hide);
@@ -34,11 +17,7 @@ var InfoWindow = function(id) {
 	function show() {
 		container.show();
 
-		if (clickOffEnabled) {
-			setTimeout(function() {
-				$(document).on('click', doc_click);
-			});
-		}
+		ext.onshow();
 		ext.trigger('show');
 
 		return ext;
@@ -46,42 +25,13 @@ var InfoWindow = function(id) {
 	function hide() {
 		container.hide();
 
-		if (clickOffEnabled) {
-			$(document).off('click', doc_click);
-		}
+		ext.onhide();
 
 		ext.trigger('hide');
 
 		return ext;
 	}
-
-
-	function doc_click(e) {
-
-		var target = $(e.target),
-			clickedOnWindow = false;
-
-		// go through all nested clicked elements
-		while (target != null && target.length > 0) {
-
-			if (target[0] == container[0] || (clickOffNode != null && target[0] == clickOffNode[0]) ) {
-				clickedOnWindow = true;
-				break;
-			}
-
-			target = target.parent();
-		}
-
-		//return;
-		if (!clickedOnWindow) {
-			e.preventDefault();
-
-			hide();
-
-			return false;
-		}
-	}
-
+	
 	function center() {
 		var
 			infoWidth = container.outerWidth(),
@@ -94,6 +44,7 @@ var InfoWindow = function(id) {
 
 		return ext;
 	}
+	
 	function position(target) {
 		var tOffset = target.offset(),
 			tHeight = target.outerHeight(),
@@ -128,11 +79,16 @@ var InfoWindow = function(id) {
 		container: container,
 		body: body,
 		position: position,
-		center: center,
-		clickOffNode: clickOffNode
+		center: center
 	};
 
 	ext = $.extend(true, ext, EventEmitter);
+	ext = $.extend(true, ext, ClickOff);
+	ext.setClickTargets([container]);
+	ext.clickoffid = id;
+	ext.on('offclick', function() {
+		hide();
+	});
 
 
 

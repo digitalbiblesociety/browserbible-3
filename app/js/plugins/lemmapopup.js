@@ -11,7 +11,7 @@ var LemmaPopupPlugin = function(app) {
 		return;
 	}
 
-	var lemmaPopup = new InfoWindow(),
+	var lemmaPopup = new InfoWindow('lemma-popup'),
 		timer = new Timer(hidePopup, 500);
 
 
@@ -38,8 +38,6 @@ var LemmaPopupPlugin = function(app) {
 
 
 	$('.windows-main').on('click','.BibleWindow l', function(e) {
-
-		//$(document).off('click', handleDocClick);
 
 		var l = $(this);
 
@@ -143,6 +141,7 @@ var LemmaPopupPlugin = function(app) {
 
 
 		// show popup
+		lemmaPopup.setClickTargets([lemmaPopup.container, l]);
 		lemmaPopup.show();
 		lemmaPopup.position(l);
 
@@ -155,48 +154,53 @@ var LemmaPopupPlugin = function(app) {
 
 			for (var i=0, il=strongs.length; i<il; i++) {
 
-				(function(strongsNumber, morphKey) {
-					sofia.ajax({
-						dataType: 'json',
-						url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
-						success: function(data) {
-
-							var html = '<div class="lemma-word">' +
-											'<span lang="' + iso2iana.convert(langCode) + '" dir="' + dir + '">' + data.lemma + '</span>' +
-											' ' + 
-											'<span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' +
-										'</div>';
-
-
-
-							if (morphKey != '') {
-								html += '<span class="lemma-morphology">' + bible.morphology[morphType].format( morphKey ) + '</span>';
-							}
-
-							html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">' +
-								i18n.t('plugins.lemmapopup.findalloccurrences', {count: data.frequency}) +
-							'</span>';
-
-							html += '<div class="lemma-outline">' + data.outline + '</div>';
-
-							lemmaPopup.body.removeClass('loading-indicator');
-
-							lemmaPopup.body.append( html );
-
-							lemmaPopup.position(l);
-
-						},
-						error: function() {
-							lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs[0] );
-						}
-
-
-					});
-				})(strongs[i], i < morphs.length ? morphs[i] : '');
+				loadStrongsData(textid, strongs[i], i < morphs.length ? morphs[i] : '', morphType, langPrefix, langCode, l);
 
 			}
 		}
 	});
+	
+	
+	function loadStrongsData(textid, strongsNumber, morphKey, morphType, langPrefix, langCode, l) {
+		sofia.ajax({
+			dataType: 'json',
+			url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
+			success: function(data) {
+	
+				var html = '<div class="lemma-word">' +
+								'<span lang="' + iso2iana.convert(langCode) + '" dir="' + dir + '">' + data.lemma + '</span>' +
+								' ' + 
+								'<span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' +
+							'</div>';
+	
+	
+	
+				if (morphKey != '') {
+					html += '<span class="lemma-morphology">' + bible.morphology[morphType].format( morphKey ) + '</span>';
+				}
+	
+				html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">' +
+					i18n.t('plugins.lemmapopup.findalloccurrences', {count: data.frequency}) +
+				'</span>';
+	
+				html += '<div class="lemma-outline">' + data.outline + '</div>';
+	
+				lemmaPopup.body.removeClass('loading-indicator');
+	
+				lemmaPopup.body.append( html );
+	
+				lemmaPopup.position(l);
+	
+			},
+			error: function() {
+				lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs[0] );
+			}
+	
+	
+		});
+	}	
+	
+	
 };
 
 sofia.plugins.push('LemmaPopupPlugin');

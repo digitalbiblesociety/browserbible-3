@@ -503,6 +503,7 @@ var AudioController = function(id, container, ui, scroller) {
 						hasAudio = true;
 
 						sectionid = '';
+						fragmentAudioData = null;
 
 						if (audioInfo.type == 'local') {
 							optionsDramaticBox.hide();
@@ -541,6 +542,7 @@ var AudioController = function(id, container, ui, scroller) {
 							var newFragmentid = fragmentid;
 
 							fragmentid = '';
+							
 							// //console.log('AUDIO, new from old ', newFragmentid);
 							loadAudio(newFragmentid);
 						} else {

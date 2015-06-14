@@ -108,23 +108,24 @@ var TextWindow = function(id, parent, init_data, text_type) {
 	});
 
 
-	textlistui.on('click', function(e) {
-
-		//console.log('clicked');
-
-		if (flipper.hasClass('showinfo')) {
-			flipper.removeClass('showinfo')
-		}
-		
-		// if this is selected, then toggle
-		if (textChooser.getTarget() == textlistui) {
-			textChooser.toggle();
-		} else {			
-			textChooser.setTarget(container, textlistui, text_type);			
-			textChooser.setTextInfo(currentTextInfo);			
-			textChooser.show();			
-		}
-	});
+	textlistui
+		.on('click', function(e) {
+	
+			//console.log('clicked');
+	
+			if (flipper.hasClass('showinfo')) {
+				flipper.removeClass('showinfo')
+			}
+			
+			// if this is selected, then toggle
+			if (textChooser.getTarget() == textlistui) {
+				textChooser.toggle();
+			} else {			
+				textChooser.setTarget(container, textlistui, text_type);			
+				textChooser.setTextInfo(currentTextInfo);			
+				textChooser.show();			
+			}
+		});
 
 	navui
 		.on('click', function(e) {
@@ -137,7 +138,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 				flipper.removeClass('showinfo')
 			}
 
-			if (textNavigator.getTarget() == textlistui) {
+			if (textNavigator.getTarget() == navui) {
 				textNavigator.toggle();
 			} else {			
 				textNavigator.setTarget(container, navui);			

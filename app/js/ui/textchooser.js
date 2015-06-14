@@ -589,7 +589,10 @@ var TextChooser = function() {
 		
 		//console.log('textchooser.show');
 
-		size();		
+		size();	
+		textChooser.show();
+		ext.onshow();
+					
 
 		if (!list_data) {
 			main.addClass('loading-indicator');//.html('Loading');
@@ -614,7 +617,6 @@ var TextChooser = function() {
 			main.removeClass('loading-indicator');
 		}
 
-		textChooser.show();
 		size();
 		
 		if (filter.val() != '') {
@@ -625,12 +627,12 @@ var TextChooser = function() {
 			filterVersions();
 		}
 		
-		ext.onshow();
+		
 	}
 
 	function hide() {
-		ext.onhide();		
 		textChooser.hide();
+		ext.onhide();		
 	}
 
 	function setTextInfo(text) {
@@ -720,8 +722,8 @@ var TextChooser = function() {
 	}
 
 	function close() {
-		textChooser.remove();
-		ext.clearListeners();
+		//textChooser.remove();
+		//ext.clearListeners();
 	}
 
 	var ext = {
@@ -740,6 +742,7 @@ var TextChooser = function() {
 	};
 	ext = $.extend(true, ext, EventEmitter);
 	ext = $.extend(true, ext, ClickOff);
+	ext.clickoffid = 'version picker';
 	ext.on('offclick', function() {
 		hide();
 	});

@@ -384,9 +384,9 @@ var TextNavigator = function() {
 	}
 
 	function close() {
-		ext.clearListeners();
+		//ext.clearListeners();
 
-		changer.remove();
+		//changer.remove();
 	}
 	
 	function setTarget(_container, _target) {
@@ -417,6 +417,7 @@ var TextNavigator = function() {
 
 	ext = $.extend(true, ext, EventEmitter);
 	ext = $.extend(true, ext, ClickOff);
+	ext.clickoffid = 'book/chapter picker';
 	ext.on('offclick', function() {
 		hide();
 	});	

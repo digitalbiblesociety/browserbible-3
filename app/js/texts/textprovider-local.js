@@ -104,6 +104,24 @@ sofia.textproviders['local'] = (function() {
 	
 					content.attr('data-textid', textid);
 					content.attr('data-lang3', textInfo.lang);
+					
+					// FIX title after chapter number			
+					var c = content.find('.c'),
+						afterc = c.next();			
+					if (afterc.hasClass('s')) {
+						c.before(afterc);
+					}
+					
+					// FIX verse numbers inside verse
+					content.find('.v-num').each(function() {
+						var vnum = $(this),
+							v = vnum.closest('.v');
+						
+						if (v.length > 0) {
+							v.before(vnum);
+						}
+						
+					});
 	
 					var html = content.wrapAll('<div></div>').parent().html();
 	

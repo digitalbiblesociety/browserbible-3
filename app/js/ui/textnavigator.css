@@ -26,17 +26,6 @@
 
 /* NAV */
 .text-navigator {
-/*position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 100;
-	background: #ccc;
-	padding: 1px 0 0 1px;
-	font-family: Avenir, Helvetica, Arial;
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	width: 320px;
-	 */
 	width: 320px;
 	position: absolute;
 	top: 0;
@@ -104,6 +93,10 @@
 	padding: 4px;
 }
 
+.text-navigator .text-navigator-sections {
+	padding: 4px 1px;	
+}
+
 .text-navigator .text-navigator-division-header {
 	clear: both;
 	height: 30px;
@@ -116,20 +109,38 @@
 	width: 38px;
 	height: 38px;
 	margin: 1px 1px 0 0;
-	border: solid 1px transparent;
-	background: #eee;
+	-border: solid 1px transparent;
+	background: #f7f7f7;
 	color: #333;
 	text-align: center;
 	padding: 10px 0 0;
 	cursor: pointer;
+	border-style: solid;
+	border-width: 0 0 0 10px;	
+	
 }
 
-.text-navigator .text-navigator-division:hover {
-	border-bottom-color: #ccc;
+
+.text-navigator .text-navigator-division.selected {
+	float: none;
+	width: auto;
+	height: auto;
+	clear: both;
+	text-align: left;
+	margin: 1px 0;
+	padding-left: 4px;
+}
+.text-navigator .text-navigator-division.selected > span  {
+	font-weight: bold;	
+}
+
+.text-navigator .text-navigator-division:hover > span {
+	-border-bottom-color: #ccc;
+	font-weight: bold;
 }
 
 .text-navigator .text-navigator-section:hover {
-	outline: solid 1px #2a85e8;
+	-outline: solid 1px #2a85e8;
 }
 
 .text-navigator-divisions-full .text-navigator-division {
@@ -137,8 +148,13 @@
 	display: block;
 	text-align: left;
 	width: auto;
-	height: 30px;
+	min-height: 30px;
+	height: auto;
+	overflow: auto;
 	padding: 5px 0 0 10px;
+}
+.text-navigator-divisions-full  .text-navigator-division.selected {
+	padding: 5px 0 0 10px;	
 }
 
 .text-navigator-divisions-full[dir=rtl] .text-navigator-division {
@@ -159,115 +175,97 @@
 	cursor: pointer;
 	pointer-events: none;
 	font-size: 14px;
+
 }
 
-/* penta */
-.text-navigator .divisionid-GN,
-.text-navigator .divisionid-EX,
-.text-navigator .divisionid-LV,
-.text-navigator .divisionid-NU,
-.text-navigator .divisionid-DT {
+
+.text-navigator .division-section-penta {
+	border-color: #bfb;
+}
+.text-navigator .division-section-penta.selected {
 	background: #efe;
 }
 
-.text-navigator .divisionid-JS,
-.text-navigator .divisionid-JG,
-.text-navigator .divisionid-RT,
-.text-navigator .divisionid-S1,
-.text-navigator .divisionid-S2,
-.text-navigator .divisionid-K1,
-.text-navigator .divisionid-K2,
-.text-navigator .divisionid-R1,
-.text-navigator .divisionid-R2,
-.text-navigator .divisionid-ER,
-.text-navigator .divisionid-NH,
-.text-navigator .divisionid-ET {
+.text-navigator .division-section-hist {
+	border-color: #bbf;
+}
+.text-navigator .division-section-hist.selected {
 	background: #eef;
 }
 
-.text-navigator .divisionid-JB,.text-navigator .divisionid-PS,.text-navigator .divisionid-PR,.text-navigator .divisionid-EC,.text-navigator .divisionid-SS,/* out of order in English! */
-.text-navigator .divisionid-LM {
+.text-navigator .division-section-poet {
+	border-color: #fbf;
+}
+.text-navigator .division-section-poet.selected {
 	background: #fef;
 }
 
-.text-navigator .divisionid-IS,.text-navigator .divisionid-JR,/.text-navigator .divisionid-LM,*/
-.text-navigator .divisionid-EK,
-.text-navigator .divisionid-DN {
+.text-navigator .division-section-majorp {
+	border-color: #fbb;
+}
+.text-navigator .division-section-majorp.selected {
 	background: #fee;
 }
 
-.text-navigator .divisionid-HS,
-.text-navigator .divisionid-JL,
-.text-navigator .divisionid-AM,
-.text-navigator .divisionid-OB,
-.text-navigator .divisionid-JH,
-.text-navigator .divisionid-MC,
-.text-navigator .divisionid-NM,
-.text-navigator .divisionid-HK,
-.text-navigator .divisionid-ZP,
-.text-navigator .divisionid-HG,
-.text-navigator .divisionid-ZC,
-.text-navigator .divisionid-ML {
+.text-navigator .division-section-minorp {
+	border-color: #ffb;
+}
+.text-navigator .division-section-minorp.selected {
 	background: #ffe;
 }
 
 /* gospels */
-.text-navigator .divisionid-MT,
-.text-navigator .divisionid-MK,
-.text-navigator .divisionid-LK,
-.text-navigator .divisionid-JN {
+.text-navigator .division-section-gospel {
+	border-color: #fbb;
+}
+.text-navigator .division-section-gospel.selected {
 	background: #fee;
 }
 
-.text-navigator .divisionid-AC {
-	background: #fce;
+.text-navigator .division-section-acts {
+	border-color: #f4b;
+}
+.text-navigator .division-section-acts.selected {
+	background: #fef;
 }
 
-.text-navigator .divisionid-RM,
-.text-navigator .divisionid-C1,
-.text-navigator .divisionid-C2,
-.text-navigator .divisionid-GL,
-.text-navigator .divisionid-EP,
-.text-navigator .divisionid-PP,
-.text-navigator .divisionid-CL,
-.text-navigator .divisionid-H1,
-.text-navigator .divisionid-H2,
-.text-navigator .divisionid-T1,
-.text-navigator .divisionid-T2,
-.text-navigator .divisionid-TT,
-.text-navigator .divisionid-PM {
+.text-navigator .division-section-paul {
+	border-color: #bbf;
+}
+.text-navigator .division-section-paul.selected {
 	background: #eef;
 }
 
-.text-navigator .divisionid-HB,
-.text-navigator .divisionid-JM,
-.text-navigator .divisionid-P1,
-.text-navigator .divisionid-P2,
-.text-navigator .divisionid-J1,
-.text-navigator .divisionid-J2,
-.text-navigator .divisionid-J3,
-.text-navigator .divisionid-JD {
+.text-navigator .division-section-general {
+	border-color: #bff;
+}
+.text-navigator .division-section-general.selected {
 	background: #eff;
 }
 
-.text-navigator .divisionid-RV {
+.text-navigator .division-section-rev {
+	border-color: #fbf;
+}
+.text-navigator .division-section-rev.selected {
 	background: #fef;
 }
 
 .text-navigator .text-navigator-section {
 	float: left;
-	width: 38px;
-	height: 38px;
+	width: 36px;
+	height: 36px;
 	margin: 1px 1px 0 0;
-	background: #eee;
+	-x-background: rgba(210,210,210,0.5);
 	color: #333;
 	text-align: center;
 	padding: 10px 0 0;
 	cursor: pointer;
 }
 
-.text-navigator .text-navigator-section:hover {
-	outline: solid 1px #2a85e8;
+.text-navigator .text-navigator-section:hover,
+.text-navigator .text-navigator-section.selected {
+
+	font-weight: bold;
 }
 
 .text-navigator-sections[dir=rtl] .text-navigator-section {

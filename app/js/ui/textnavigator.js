@@ -18,7 +18,7 @@ var TextNavigator = function() {
 							'<span class="text-navigator-close">Close</span>' +
 						'</div>' +
 						'<div class="text-navigator-divisions"></div>' +
-						'<div class="text-navigator-sections"></div>' +
+						//'<div class="text-navigator-sections"></div>' +
  					'</div>'
 					)
 					//.css({height: $(window).height(), width: $(window).width()})
@@ -107,13 +107,37 @@ var TextNavigator = function() {
 
 		// remove all selections
 		changer.find('.selected').removeClass('selected');
+		changer.find('.text-navigator-divisions').scrollTop(0);
 
 		switch (textInfo.type.toLowerCase()) {
 			case 'bible':
 			case 'commentary':
+				
+				var textInputValue = target.val(),
+					biblereference = new bible.Reference(textInputValue),
+					fragmentid = (biblereference) ? biblereference.toSection() : null; 
+			
 				renderDivisions();
 				changer.find('.text-navigator-divisions').show().attr('dir', textInfo.dir).attr('lang', textInfo.lang);
-				changer.find('.text-navigator-sections').hide();
+				//changer.find('.text-navigator-sections').hide();
+				
+				if (fragmentid) {
+					var parts = fragmentid.split('_'),
+						sectionid = parts[0],
+						divisionid = sectionid.substring(0,2),
+						chapter = sectionid.substring(2);
+					
+					var divisionNode = changer.find('.divisionid-' + divisionid).addClass('selected');									
+					// scroll to it
+					var offset = divisionNode.position();
+					changer.find('.text-navigator-divisions').scrollTop(offset.top-40);
+					
+					renderSections(false);
+					
+					divisionNode.find('.section-' + sectionid).addClass('selected');
+					
+				}
+				
 				break;
 			case 'book':
 				renderSections();
@@ -122,6 +146,10 @@ var TextNavigator = function() {
 				break;
 
 		}
+	}
+	
+	function getBookSectionClass(bookid) {
+		return bible.BOOK_DATA[bookid].section;
 	}
 
 	// divisions = Bible books
@@ -136,6 +164,7 @@ var TextNavigator = function() {
 			hasPrintedAp = false;
 
 		fullBookMode = !(textInfo.divisionAbbreviations || textInfo.lang == 'eng') ;
+		fullBookMode = true;
 
 		//console.log(fullBookMode, textInfo.divisionAbbreviations , textInfo.divabbr);
 
@@ -186,11 +215,11 @@ var TextNavigator = function() {
 
 
 
-			html.push('<span class="text-navigator-division divisionid-' + divisionid + '" data-id="' + divisionid + '" data-chapters="' + num_of_chapters + '" data-name="' + divisionName + '">' + displayName + '</span>');
+			html.push('<div class="text-navigator-division divisionid-' + divisionid + ' division-section-' + getBookSectionClass(divisionid) + '" data-id="' + divisionid + '" data-chapters="' + num_of_chapters + '" data-name="' + divisionName + '"><span>' + displayName + '</span></div>');
 		} //
 
 		changer.find('.text-navigator-divisions').html(html).show();
-		changer.find('.text-navigator-sections').hide();
+		changer.find('.text-navigator-sections').remove();
 
 	}
 
@@ -198,21 +227,41 @@ var TextNavigator = function() {
 	// click a division (Bible book)
 	changer.on('click', '.text-navigator-division', function() {
 
-		$(this)
-			.addClass('selected')
+		var divisionNode = $(this);
+		
+		if (divisionNode.hasClass('selected')) {
+			return;
+		}
+		
+		divisionNode
+			.addClass('selected')		
 			.siblings()
-				.removeClass('selected')
-
-		//console.log('division click', this);
+				.removeClass('selected');
 
 		fullname.hide();
+		
+		// hide previous book's chapter
+		var divisions = changer.find('.text-navigator-divisions'), 
+			positionBefore = divisionNode.position(),			
+			scrollTopBefore = divisions.scrollTop();
 
-		renderSections();
+		// close the existing set of sections
+		changer.find('.text-navigator-sections').remove();
+		
+		var positionAfter = divisionNode.position();
+		
+		if (positionBefore.top > positionAfter.top) {
+			var newScrollTop = scrollTopBefore - (positionBefore.top - positionAfter.top);// + header.outerHeight(true);
+			
+			divisions.scrollTop(newScrollTop);
+		}		
+		
+		renderSections(true);
 	});
 
 
 	// sections = bible chapters
-	function renderSections() {
+	function renderSections(animated) {
 
 		console.log('renderSections', textInfo.type);
 
@@ -223,6 +272,7 @@ var TextNavigator = function() {
 			case 'commentary':
 				// print out chapters
 				var selected_division = changer.find('.text-navigator-division.selected'),
+					isLast = selected_division.next().length == 0,
 					divisionid = selected_division.attr('data-id'),
 					divisionname = selected_division.attr('data-name'),
 					num_of_chapters = parseInt(selected_division.attr('data-chapters'), 10),
@@ -231,9 +281,25 @@ var TextNavigator = function() {
 				title.html( divisionname );
 
 				for (var chapter=1; chapter<=num_of_chapters; chapter++) {
-					html.push('<span class="text-navigator-section" data-id="' + divisionid + chapter + '">' + numbers[chapter].toString() + '</span>');
+					html.push('<span class="text-navigator-section section-' + divisionid + chapter + '" data-id="' + divisionid + chapter + '">' + numbers[chapter].toString() + '</span>');
 				}
+				
+				var sectionNodes = $('<div class="text-navigator-sections" style="display:none;">' + html.join('') + '</div>');
+				
+				selected_division.find('span').after( sectionNodes );
+				
 
+				if (animated === true && !isLast) {
+					sectionNodes.slideDown();
+				} else {
+					sectionNodes.show();
+
+					if (isLast) {
+						var divisions = changer.find('.text-navigator-divisions');						
+						divisions.scrollTop( divisions.scrollTop() + 500 );
+					}
+				}
+				
 				break;
 			case 'book':
 
@@ -249,13 +315,14 @@ var TextNavigator = function() {
 				break;
 		}
 
-
+/*
 		changer.find('.text-navigator-divisions').hide();
 		changer.find('.text-navigator-sections')
 				.html(html)
 				.attr('dir', textInfo.dir)
 				.attr('lang', textInfo.lang)
 				.show();
+*/				
 	}
 
 
@@ -288,42 +355,6 @@ var TextNavigator = function() {
 				.height(height)
 				.css({top: container.offset().top,left: container.offset().left});
 		} else {
-			
-			// reasonable size!
-			/*
-			var targetOffset = target.offset(),
-				targetOuterHeight = target.outerHeight(),
-				win = $(window),
-				selectorWidth = textSelector.outerWidth(),
-
-				top = targetOffset.top + targetOuterHeight + 10,
-				left = targetOffset.left,
-				winHeight = win.height() - 40,
-				winWidth = win.width(),
-				maxHeight = winHeight - top;
-
-			if (winWidth < left + selectorWidth) {
-				left = winWidth - selectorWidth;
-				if (left < 0) {
-					left = 0;
-				}
-			}
-
-
-			textSelector
-				.outerHeight(maxHeight)
-				.css({top: top,left: left});
-
-			main
-				.outerHeight(maxHeight - header.outerHeight());
-
-
-			// UP ARROW
-			var upArrowLeft = targetOffset.left - left + 20;
-
-			textSelector.find('.up-arrow, .up-arrow-border')
-				.css({left: upArrowLeft});			
-			*/
 			
 			if (target == null) {
 				return;

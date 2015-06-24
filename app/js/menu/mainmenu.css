@@ -109,9 +109,9 @@
 		height: 40px;
 		width: 40px;
 		background-size: 30px 16px;
-		top: 30px;	
+		top: 0px;	
 	}
 	
 	.compact-ui #main-menu-dropdown {
-		top: 70px;
+		top: 40px;
 	}

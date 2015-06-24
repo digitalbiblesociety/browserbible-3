@@ -57,6 +57,10 @@ var MainMenuButton = function(node) {
 		ext.onhide();		
 	}
 	
+	mainMenuDropDown.on('click', '.main-menu-item', function() {
+		hide();
+	});
+	
 	
 	var ext = {};
 	ext = $.extend(true, ext, EventEmitter);

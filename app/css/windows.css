@@ -124,10 +124,10 @@ input:focus {
 .window-tab {	
 	display: none;	
 	position: absolute;
-	top: 9px;
+	top: 14px;
 	right: 0;
 	width: 82px;
-	height: 21px;
+	height: 26px;
 	background: transparent;
 	border-style: solid;
 	border-color: transparent transparent #999 transparent;
@@ -138,13 +138,13 @@ input:focus {
 
 .window-tab-inner {
 	width: 80px;
-	height: 20px;	
+	height: 25px;	
 	margin-left: -10px;
 	margin-top: 1px;
 	background: transparent;
 	border-style: solid;
 	border-color: transparent transparent #ccc transparent;
-	border-width: 0 10px 20px 10px;	
+	border-width: 0 10px 25px 10px;	
 }
 
 .window-tab.active { 
@@ -170,12 +170,13 @@ input:focus {
 	display: block;
 	background-size: 15px 15px;
 	background-repeat: no-repeat;	
+	background-position: left center;
 	top: 2px;
 	left: 0;
 	height: 20px;
 	width: 65px;
 	padding-left: 20px;
-	padding-top: 1px;
+	padding-top: 4px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -298,7 +299,7 @@ input:focus {
 		display: block;
 		z-index: 1;	
 		position: absolute;
-		top: 30px;			
+		top: 40px;			
 	}
 	.compact-ui .windows-main .window.active {
 		z-index: 2;
@@ -319,7 +320,7 @@ input:focus {
 	.compact-ui .window .window-header {
 		height: 40px;
 		padding: 7px;
-		padding-left: 40px;
+		--padding-left: 40px;
 	}
 	.compact-ui .window .close-button {
 		top: 10px; 	
@@ -332,7 +333,7 @@ input:focus {
 	 */
 	 
 	 .compact-ui .windows-header {
-		 height: 30px;
+		 height: 40px;
 	 }
 		 
 	 .compact-ui .header-icon {
@@ -348,15 +349,15 @@ input:focus {
 	}
 	 
 	.compact-ui.app-mobile-fullscreen .window-tab {
-		top: 29px;	 
+		top: 39px;	 
 	}
 	
 	.compact-ui.app-mobile-fullscreen #main-menu-button {
-		top: 50px;
+		top: 0px;
 	}
 	
 	.compact-ui.app-mobile-fullscreen #main-menu-dropdown {
-		top: 90px;
+		top: 40px;
 	}
 	 
 	 
@@ -378,7 +379,7 @@ input:focus {
 		display: none; 	
 	}
 	*/
-}
+
 
 .window .window-main {
 	margin: 0;

@@ -159,6 +159,8 @@
 
 .text-navigator-divisions-full[dir=rtl] .text-navigator-division {
 	text-align: right;
+	border-width: 0 5px 0 0;
+	padding: 5px 10px 0 0;
 }
 
 .text-navigator-fullname {
@@ -175,7 +177,6 @@
 	cursor: pointer;
 	pointer-events: none;
 	font-size: 14px;
-
 }
 
 
@@ -268,6 +269,6 @@
 	font-weight: bold;
 }
 
-.text-navigator-sections[dir=rtl] .text-navigator-section {
+.text-navigator-divisions[dir=rtl] .text-navigator-section {
 	float: right;
 }

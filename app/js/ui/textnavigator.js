@@ -178,15 +178,19 @@ var TextNavigator = function() {
 		for (var i=0, il= textInfo.divisions.length ; i<il; i++) {
 
 			var divisionid = textInfo.divisions[i],
-				divisionName = (textInfo.divisionNames) ? textInfo.divisionNames[i] : null,
+				divisionName = (textInfo.divisionNames) ? 
+									textInfo.divisionNames[i] : null,
 				divisionAbbr = (textInfo.divisionAbbreviations) ?
 									textInfo.divisionAbbreviations[i] : null,
 				displayName = fullBookMode ? divisionName :
-											divisionAbbr != null ? divisionAbbr.replace(/\s/i,'').substring(0,3) : divisionName.replace(/\s/i,'').substring(0,3),
+											divisionAbbr != null ? 
+												divisionAbbr.replace(/\s/i,'').substring(0,3) : 
+												divisionName.replace(/\s/i,'').substring(0,3),
 				book = bible.BOOK_DATA[divisionid];
 
-			if (typeof book == 'undefined')
+			if (typeof book == 'undefined') {
 				continue;
+			}
 
 			if (bible.OT_BOOKS.indexOf(divisionid) > -1 && !hasPrintedOt) {
 				html.push('<div class="text-navigator-division-header">' + i18n.t('windows.bible.ot') + '</div>');
@@ -230,6 +234,10 @@ var TextNavigator = function() {
 		var divisionNode = $(this);
 		
 		if (divisionNode.hasClass('selected')) {
+			divisionNode.find('.text-navigator-sections').slideUp({complete: function() {
+				divisionNode.removeClass('selected');	
+			}});
+			
 			return;
 		}
 		

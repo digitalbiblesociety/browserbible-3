@@ -10,7 +10,8 @@
     "jsdom"    :  "*",
     "progress": "*",
     "minimist": "*",
-    "mkdirp": "*"
+    "mkdirp": "*",
+    "natural": "*"
   },
   "license": "MIT"
 }

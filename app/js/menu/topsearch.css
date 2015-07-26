@@ -40,3 +40,40 @@
 	.compact-ui #main-search-box {
 		display: none;
 	}
+
+
+
+#main-search-suggestions {
+	background: #fff;
+	border: solid 1px #ccc;
+
+	width: 200px;
+	min-height: 25px;
+	position: absolute;
+	right: 20px;
+	top: 44px;
+	z-index: 1000;
+}
+
+.suggestion-item {
+	padding: 2px;
+	display: block;
+	margin: 2px;
+	font-size: 11px;
+}
+.suggestion-item:hover {
+	background-color: #d9e8ef;
+}
+
+.suggestion-item.selected {
+	background-color: #2a85e8;
+	color: #fff;
+}
+
+
+
+/* 
+	
+dark: #2a85e8
+light: #d9e8ef
+*/

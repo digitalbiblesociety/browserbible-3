@@ -20,7 +20,10 @@ sofia.resources['en'] = {
 				"thankyou": "Thank you for your feedback"
 			},
 			"search": {
-				"placeholder": "Search"
+				"placeholder": "Search",
+				"suggestversion": "Open <strong>{0}</strong> in new window",
+				"suggestreference": "Go to <strong>{0}</strong> in {1}",
+				"suggestsearch": "Search \"<strong>{0}</strong>\" in {1}"											
 			},
 			"config": {
 				"font": "Style",

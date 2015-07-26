@@ -4,6 +4,8 @@ Change Log
 3.6.0 - 2015/07/26
 
 * Suggestions in search (Search, go to version, go to verse)
+* Pull requests with typo fixes
+* Pull request for managing column width by size (pdattx)
 
 3.5.4 - 2015/06/24
 

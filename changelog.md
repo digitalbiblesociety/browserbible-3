@@ -1,6 +1,19 @@
 Change Log
 =======
 
+3.6.0 - 2015/07/26
+
+* Suggestions in search (Search, go to version, go to verse)
+
+3.5.4 - 2015/06/24
+
+* Moved menu button on mobile
+
+3.5.3 - 2015/06/15
+
+* Updated book/chapter navigator that keeps things on one screen
+* More audio window fixes
+* Removing a window no longer makes the dropdowns stop working
 
 3.5.2 - 2015/06/08
 

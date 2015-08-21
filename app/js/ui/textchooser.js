@@ -620,13 +620,13 @@ var TextChooser = function() {
 		size();
 		
 		if (filter.val() != '') {
-			filter.val('');
-			if (!Detection.hasTouch) {
-				filter.focus();
-			}		
+			filter.val('');	
 			filterVersions();
 		}
 		
+		if (!Detection.hasTouch) {
+			filter.focus();
+		}			
 		
 	}
 

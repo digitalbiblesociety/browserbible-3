@@ -11,7 +11,7 @@ var MediaLibraryPlugin = function(app) {
 	}
 
 	var mediaLibraries = null,
-		mediaPopup = new InfoWindow(),
+		mediaPopup = new InfoWindow('mediapopup'),
 		contentToProcess = [];
 
 	//console.log('MediaLibraryPlugin startup', MediaLibrary.getMediaLibraries);
@@ -50,7 +50,7 @@ var MediaLibraryPlugin = function(app) {
 
 			}
 
-			////console.log('media click', mediaLibrary);
+			console.log('media click', mediaLibrary);
 
 
 			mediaForVerse = mediaLibrary.data[verseid];
@@ -79,7 +79,7 @@ var MediaLibraryPlugin = function(app) {
 
 
 					//mediaPopup.center().show();
-					mediaPopup.clickOffNode = icon;
+					mediaPopup.setClickTargets( [icon] );
 					mediaPopup.position( icon ).show();
 
 					break;

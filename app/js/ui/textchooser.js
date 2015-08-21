@@ -287,7 +287,9 @@ var TextChooser = function() {
 	
 	function getMode() {
 		if (sofia.config.enableBibleSelectorTabs) { 
-			var mode = listselector.find('.selected').data('mode');
+			var selectedMode = listselector.find('.selected'),
+				mode = selectedMode.length > 0 ? selectedMode.data('mode') : 'none';
+			
 			return mode;
 		} else {
 			return 'none';

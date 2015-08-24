@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.6.1 - 2015/08/21
+
+* Fix clicking on inline images not working
+* Fix Bible picker list not showing during load or for audio
+* Focus on filter when clicking Bible dropdownlist
+
 3.6.0 - 2015/07/26
 
 * Suggestions in search (Search, go to version, go to verse)

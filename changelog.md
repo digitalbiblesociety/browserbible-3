@@ -1,6 +1,10 @@
 Change Log
 =======
 
+3.6.2 - 2015/08/26
+
+* Search window opens new Bible window if none is currently open
+
 3.6.1 - 2015/08/21
 
 * Fix clicking on inline images not working

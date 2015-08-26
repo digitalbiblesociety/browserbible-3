@@ -259,9 +259,27 @@ var SearchWindow = function(id, parent, init_data) {
 		var tr = $(this),
 			fragmentid = tr.attr('data-fragmentid');
 
-		//console.log('search click', fragmentid);
+		
+		
+		// is there a bible window?
+		var 
+			bibleWindows = sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow'});
 
-		ext.trigger('globalmessage', {
+console.log('search click', fragmentid, bibleWindows);
+
+		if (bibleWindows.length == 0) {
+			
+			// open new window
+			sofia.app.windowManager.add('BibleWindow', {
+				textid: sofia.config.newBibleWindowVersion,
+				fragmentid: fragmentid,
+				sectionid: fragmentid.split('_')[0],
+			});
+			
+		} else {
+		
+
+			ext.trigger('globalmessage', {
 								type: 'globalmessage',
 								target: this,
 								data: {
@@ -274,6 +292,7 @@ var SearchWindow = function(id, parent, init_data) {
 									}
 								}
 							});
+		}
 
 	});
 

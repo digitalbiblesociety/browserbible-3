@@ -3,16 +3,32 @@
 /******************
 ReaderSettings
 *******************/
-
 var AppSettings = (function() {
+	var storage = {};
+
+    function testlocalStorage() {
+        try {
+            window.localStorage.setItem('1', '2');
+            if (localStorage.getItem('1') !== '2') {
+                return false;
+            }
+            window.localStorage.removeItem('1');
+            return localStorage.getItem('1') !== '2';
+        } catch(e) {
+            return false;
+        }
+    }
+
+	if (testlocalStorage) {
+		storage = window.localStorage;
+	}
+
 	// create me
 	function getValue(key, defaultValue) {
-
-
 		key = sofia.config.settingsPrefix + key;
 
 
-		//console.log('getValue', key, defaultValue);
+		// console.log('getValue', key, defaultValue);
 
 		var returnValue = {},
 			storedValue = null;
@@ -25,12 +41,7 @@ var AppSettings = (function() {
 
 		//console.log('default', returnValue);
 
-		// require localStorage (no cookies!)
-		if (typeof window.localStorage == 'undefined') {
-			return returnValue;
-		}
-
-		storedValue = window.localStorage[key];
+		storedValue = storage[key];
 
 		//console.log('storedValue', 'key:' + key, storedValue);
 
@@ -59,14 +70,10 @@ var AppSettings = (function() {
 
 		key = sofia.config.settingsPrefix + key;
 
-		if (typeof window.localStorage != 'undefined') {
-
-			//console.log('STORE', 'key:' + key, value);
-
-			window.localStorage[key] = JSON.stringify(value);
-		}
+		// console.log('STORE', 'key:' + key, value);
+		storage[key] = JSON.stringify(value);
 	}
-	
+
 	/* From QuirksMode */
 	function getCookieValue(name) {
 		var nameEQ = name + "=";
@@ -76,7 +83,7 @@ var AppSettings = (function() {
 			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
 			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
 		}
-		return null;		
+		return null;
 	}
 
 	return {

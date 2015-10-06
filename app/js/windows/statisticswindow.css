@@ -21,3 +21,11 @@
 .statistics-results {
 	padding-left: 1em;
 }
+
+.statistics-wordcloud {
+	width: 400px;
+	height: 300px;
+	display: block;
+	clear: both;
+	position: relative;
+}

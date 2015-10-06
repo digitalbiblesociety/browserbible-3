@@ -1,6 +1,15 @@
 Change Log
 =======
 
+3.6.4 - 2015/10/06
+
+* Added word clouds to Statistics window
+
+3.6.3 - 2015/10/04
+
+* Jesus film data is loaded async so languages can be updated more dynamically
+* Statistics window calculates common/uncommon words
+
 3.6.2 - 2015/08/26
 
 * Search window opens new Bible window if none is currently open

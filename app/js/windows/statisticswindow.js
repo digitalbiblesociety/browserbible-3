@@ -1,5 +1,8 @@
 
 var StatisticsWindow = function(id, parent, data) {
+	
+
+	
 
 	var 
 		header = $('<div class="window-header"><span class="window-title i18n" data-i18n="[html]windows.stats.label"></span></div>').appendTo(parent.node),
@@ -13,7 +16,8 @@ var StatisticsWindow = function(id, parent, data) {
 	header.find('.i18n').i18n();
 	
 	
-	var textid = '',
+	var isReady = false,
+		textid = '',
 		sectionid = '',
 		textInfo = null,
 		isLoading = false,
@@ -22,6 +26,23 @@ var StatisticsWindow = function(id, parent, data) {
 		word_stats = [],
 		lemma_data = [],
 		has_lemma = false;
+		
+		
+	if (typeof WordCloud != 'undefined') {
+		isReady = true;
+
+	} else {	
+
+		$.ajax({
+			url: 'js/lib/wordcloud2.js',
+			dataType: "script",
+			success:  function() {
+				isReady = true;
+				loadIntro();		
+			}
+		});			
+		
+	}		
 		
 		
 	function startProcess(tid, sid) {
@@ -59,6 +80,14 @@ var StatisticsWindow = function(id, parent, data) {
 	}
 	
 	function loadIntro() {
+		
+		if (!isReady) {
+			return;
+		}
+		
+		if (sectionid == '' || textid == '') {
+			return;
+		}
 		
 		console.log('stats',textid,sectionid, 'intro start');				
 		
@@ -215,7 +244,8 @@ var StatisticsWindow = function(id, parent, data) {
 			}	
 			
 			// create HTML	
-			var wordle_data = '';
+			var wordle_data = '',
+				wordcloud_data = [];
 			for (var i in display_words) {
 				var word_info = display_words[i];
 				
@@ -223,7 +253,8 @@ var StatisticsWindow = function(id, parent, data) {
 					
 					var size = smallestSize +
 								((biggestSize-smallestSize) * word_info.count / (max-min) ),
-						displayWord = word_info.words ? word_info.words.join(', ') : word_info.word;
+						displayWord = word_info.words ? word_info.words.join(', ') : word_info.word,
+						wordleWord = word_info.word;
 						
 					if (word_info.strongs) {
 						displayWord = '<l s="' + word_info.strongs + '">' + displayWord + '</l>';
@@ -232,6 +263,7 @@ var StatisticsWindow = function(id, parent, data) {
 							
 					html += '<span class="word" style="font-size:' + size + 'px">' + displayWord + ' (' + word_info.count + ')</span>';
 					wordle_data += word_info.count + ' ' + displayWord + '\n';
+					wordcloud_data.push( [ wordleWord , word_info.count] );
 				}
 			}		
 			
@@ -241,6 +273,65 @@ var StatisticsWindow = function(id, parent, data) {
 			wordsNode
 				.html(html)
 				.removeClass('loading-indicator');
+				
+			var 
+				windowWidth = statsMainNode.width(),
+				
+				//wordle = $('<canvas class="statistics-wordcloud"></canvas>')
+				wordle = $('<div class="statistics-wordcloud"></div>')
+					.appendTo(wordsNode)
+					.width(windowWidth)
+					.height(windowWidth*3/4);
+				
+			WordCloud(wordle[0], {
+				//gridSize: Math.round(16 * wordle.width() / 1024),
+				//fontFamily: 'Times',
+				minSize: 5,
+				/*
+				weightFactor: function (size) {
+					return Math.pow(size, 2.3) * wordle.width() / 4000;
+				},
+				*/	
+				
+				weightFactor: function (size) {
+					
+					console.log(size);
+					
+					return size*3;
+					
+					var sizeMax = 50,
+						sizeMin = 10;
+						newSize = sizeMin + (Math.abs(sizeMax-sizeMin) * size / (max-min) );
+					
+					console.log(size, newSize);
+					return newSize;	
+				},
+							
+				list: wordcloud_data,
+				//backgroundColor: '#efefef',
+				hover: function() {
+					
+				}, 
+				color: function (word, weight) {
+					var rMax = 50,
+						rMin = 170,
+						rValue = Math.round( rMin + (Math.abs(rMax-rMin) * weight / (max-min) ) ),
+						gMax = 100,
+						gMin = 192,
+						gValue = Math.round( gMin + (Math.abs(gMax-gMin) * weight / (max-min) ) )
+						
+						;
+					//return '#ff0000';	
+					
+					//console.log(word, weight, rValue, gValue, 'rgb(' + rValue + ',' + gValue + ',215)');
+					//return 'rgb(' + rValue + ',' + gValue + ',215)';
+					//return 'rgb(' + (weight * 10) + ',' + (weight * 10) + ',215)';
+					return 'rgb(0,0,' + (weight * 10) + ')';
+				},				
+				click: function() {
+					
+				}				
+			});
 			
 			if (has_lemma) {
 				

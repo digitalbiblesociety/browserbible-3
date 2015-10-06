@@ -140,7 +140,10 @@ var Scroller = function(node) {
 					offset: topOfContentArea - fragment.offset().top,
 
 					label: label,
-					labelLong: labelLong
+					
+					labelLong: labelLong,
+					
+					textid: currentTextInfo.id
 
 				};
 				return false;

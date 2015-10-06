@@ -12,7 +12,7 @@ var LemmaMatchPlugin = function(app) {
 
 	if (!Detection.hasTouch) {
 
-		$('.windows-main').on('mouseover','.BibleWindow l', function(e) {
+		$('.windows-main').on('mouseover','l', function(e) {
 
 			//console.log('over');
 
@@ -27,8 +27,8 @@ var LemmaMatchPlugin = function(app) {
 				strongs = l.attr('s').replace('G','').replace('H',''),
 				verse = l.closest('.verse, .v'),
 				verseid = verse.attr('data-id'),
-				bookid = verseid.substring(0,2);
-				langPrefix = (bible.OT_BOOKS.indexOf(bookid) > -1) ? 'H' : 'G';
+				bookid = (verseid) ? verseid.substring(0,2) : '';
+				langPrefix = (bookid != '' && bible.OT_BOOKS.indexOf(bookid) > -1) ? 'H' : 'G';
 
 
 			var strongParts = strongs.split(' ');
@@ -41,8 +41,14 @@ var LemmaMatchPlugin = function(app) {
 				if (strong == '3588' && il > 1) {
 					continue;
 				}
-
-				$('.' + verseid ).find('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');
+				
+				
+				if (verseid) {
+					$('.' + verseid ).find('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');
+				} else {
+					$('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');					
+					
+				}
 
 			}
 

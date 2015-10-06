@@ -2,7 +2,7 @@
 var StatisticsWindow = function(id, parent, data) {
 
 	var 
-		header = $('<div class="window-header"><span class="window-title i18n" data-i18n="[html]windows.statistics.label"></span></div>').appendTo(parent.node),
+		header = $('<div class="window-header"><span class="window-title i18n" data-i18n="[html]windows.stats.label"></span></div>').appendTo(parent.node),
 		main = $('<div class="window-main">' +
 					'<div class="statistics-header"></div>' +
 					'<div class="statistics-content loading-indicator"></div>' +
@@ -215,6 +215,7 @@ var StatisticsWindow = function(id, parent, data) {
 			}	
 			
 			// create HTML	
+			var wordle_data = '';
 			for (var i in display_words) {
 				var word_info = display_words[i];
 				
@@ -230,8 +231,11 @@ var StatisticsWindow = function(id, parent, data) {
 				
 							
 					html += '<span class="word" style="font-size:' + size + 'px">' + displayWord + ' (' + word_info.count + ')</span>';
+					wordle_data += word_info.count + ' ' + displayWord + '\n';
 				}
 			}		
+			
+			console.log(wordle_data);
 			
 			// append
 			wordsNode

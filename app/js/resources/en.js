@@ -109,6 +109,9 @@ sofia.resources['en'] = {
 			},
 			"comparison": {
 				"label": "Comparison"
+			},
+			"stats": {
+				"label": "Statistics"
 			}
 		},
 		"names": {

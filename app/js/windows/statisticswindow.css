@@ -1,3 +1,8 @@
+#add-StatisticsWindow, .StatisticsWindow-tab {
+	background-image: url(../../css/images/stats.svg);
+}
+
+
 .statistics-header {
 	font-weight: bold;
 	font-size: 120%;	

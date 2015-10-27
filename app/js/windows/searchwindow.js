@@ -746,9 +746,9 @@ console.log('search click', fragmentid, bibleWindows);
 			} else {
 				// if it's just <span class="highlight">, replace it with text
 				var textFragment = document.createTextNode(el.textContent);
-				if (el && el.parent && el.parent.node) { 
-					el.parent.node.insertBefore(textFragment, el);
-					el.parent.node.removeChild(el);
+				if (el && el.parentNode) { 
+					el.parentNode.insertBefore(textFragment, el);
+					el.parentNode.removeChild(el);
 				}
 			}
 

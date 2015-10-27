@@ -1,4 +1,6 @@
-.lemma-highlight {
+l.lemma-highlight,
+.lemma-highlight,
+.lemma-highlight:hover {
 	background: #2a85e8;
 	color: #fff;
 }

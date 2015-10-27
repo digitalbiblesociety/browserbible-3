@@ -1,19 +1,15 @@
-
 var StatisticsWindow = function(id, parent, data) {
 	
-
-	
-
 	var 
 		header = $('<div class="window-header"><span class="window-title i18n" data-i18n="[html]windows.stats.label"></span></div>').appendTo(parent.node),
 		main = $('<div class="window-main">' +
-					'<div class="statistics-header"></div>' +
+					//'<div class="statistics-header"></div>' +
 					'<div class="statistics-content loading-indicator"></div>' +
 				'</div>').appendTo(parent.node),
-		statsHeaderNode = main.find('.statistics-header'),
+		//statsHeaderNode = main.find('.statistics-header'),
 		statsMainNode = main.find('.statistics-content');		
 
-	header.find('.i18n').i18n();
+	//header.find('.i18n').i18n();
 	
 	
 	var isReady = false,
@@ -58,6 +54,8 @@ var StatisticsWindow = function(id, parent, data) {
 			// do nothing, carry on!
 		} else {
 			
+			removeHighlights();
+			
 			// store the current ones
 			sectionid = sid;
 			textid = tid;
@@ -91,7 +89,7 @@ var StatisticsWindow = function(id, parent, data) {
 		
 		console.log('stats',textid,sectionid, 'intro start');				
 		
-		var intro = $('<div class="statistics-intro"><div>').appendTo(statsMainNode);
+		//var intro = $('<div class="statistics-intro"><div>').appendTo(statsMainNode);
 		
 		TextLoader.getText(textid, function(data) {
 				
@@ -102,7 +100,9 @@ var StatisticsWindow = function(id, parent, data) {
 			var bibleReference = new bible.Reference(sectionid);
 			bibleReference.lang = textInfo.lang;
 			
-			intro.html('<h2>' + bibleReference.toString() + ' Analysis</h2>');
+			if (bibleReference.toSection) {
+				header.find('span').html( bibleReference.toString() + ' (' + textInfo.abbr + ')');
+			}
 								
 			loadChapterInfo();	
 		});				
@@ -112,12 +112,16 @@ var StatisticsWindow = function(id, parent, data) {
 		
 		console.log('stats',textid,sectionid, 'loadChapterInfo start');		
 		
-		var wordsNode = $('<div class="statistics-section statistics-frequent-words">' + 
-								'<h3>Frequent Words</h3>' + 
+		var resultsNode = $('<div class="statistics-section statistics-frequent-words">' + 
+								'<h3>' + i18n.t('windows.stats.frequentwords') + '</h3>' + 
+								'<div class="statistics-wordcloud"></div>' +
 								'<div class="statistics-results loading-indicator"></div>' +
 							'<div>')
-								.appendTo(statsMainNode)
-								.find('.statistics-results');		
+								.appendTo(statsMainNode),
+			wordFrequenciesNode = resultsNode
+									.find('.statistics-results'),
+			wordCloudNode = resultsNode
+									.find('.statistics-wordcloud');									
 		
 		TextLoader.loadSection(textInfo, sectionid, function(content) {
 			
@@ -192,8 +196,6 @@ var StatisticsWindow = function(id, parent, data) {
 					// english?
 					words = verse_text.split(' ');
 						
-	
-						
 					for (var i=0, il=words.length; i<il; i++) {
 						var word = words[i];//.toLowerCase();
 						
@@ -203,7 +205,7 @@ var StatisticsWindow = function(id, parent, data) {
 						
 						var
 							word_infos = word_stats.filter(function(wi) {
-								return wi.word == word;
+								return wi.word == word || wi.word.toLowerCase() == word.toLowerCase();
 							});
 							
 						if (word_infos.length > 0) {
@@ -236,7 +238,7 @@ var StatisticsWindow = function(id, parent, data) {
 				biggestSize = 24;
 		
 			// remove uncommon words
-			var min_to_keep = 3,
+			var min_to_keep = 2,
 				display_words = word_stats;
 			
 			if (min_to_keep > 0) {
@@ -249,7 +251,7 @@ var StatisticsWindow = function(id, parent, data) {
 			for (var i in display_words) {
 				var word_info = display_words[i];
 				
-				if (exclusions.en.indexOf(word_info.word.toLowerCase()) == -1) {
+				//if (exclusions.en.indexOf(word_info.word.toLowerCase()) == -1) {
 					
 					var size = smallestSize +
 								((biggestSize-smallestSize) * word_info.count / (max-min) ),
@@ -261,29 +263,39 @@ var StatisticsWindow = function(id, parent, data) {
 					}
 				
 							
-					html += '<span class="word" style="font-size:' + size + 'px">' + displayWord + ' (' + word_info.count + ')</span>';
+					html += '<span class="word" style="font-size:' + size + 'px" data-wordindex="' + i + '">' + displayWord + ' (' + word_info.count + ')</span>';
 					wordle_data += word_info.count + ' ' + displayWord + '\n';
 					wordcloud_data.push( [ wordleWord , word_info.count] );
-				}
+				//}
 			}		
 			
+			console.log(word_stats);
 			console.log(wordle_data);
 			
 			// append
-			wordsNode
+			wordFrequenciesNode
 				.html(html)
 				.removeClass('loading-indicator');
 				
-			var 
-				windowWidth = statsMainNode.width(),
+			wordFrequenciesNode.find('.word')
+				.on('mouseout', function() { removeHighlights(); })
+				.on('mouseover', function() { 
+					var el = this,
+						index = parseInt($(el).attr('data-wordindex'), 10),
+						word_info = word_stats[index];
+						
+					//console.log(el, index, word_info);
+					createHighlights(word_info);
+					
+				})
 				
-				//wordle = $('<canvas class="statistics-wordcloud"></canvas>')
-				wordle = $('<div class="statistics-wordcloud"></div>')
-					.appendTo(wordsNode)
+			var windowWidth = statsMainNode.width();
+			
+			wordCloudNode			
 					.width(windowWidth)
 					.height(windowWidth*3/4);
 				
-			WordCloud(wordle[0], {
+			WordCloud(wordCloudNode[0], {
 				//gridSize: Math.round(16 * wordle.width() / 1024),
 				//fontFamily: 'Times',
 				minSize: 5,
@@ -295,38 +307,71 @@ var StatisticsWindow = function(id, parent, data) {
 				
 				weightFactor: function (size) {
 					
-					console.log(size);
+					//console.log(size, b, this);
 					
-					return size*3;
+					//return size * wordCloudNode.width() / 120;
 					
-					var sizeMax = 50,
-						sizeMin = 10;
-						newSize = sizeMin + (Math.abs(sizeMax-sizeMin) * size / (max-min) );
+					var sizeMax = Math.min(wordCloudNode.width() / 7, 80),
+						sizeMin = sizeMax * 0.1,
+						newSize = sizeMin + (Math.abs(sizeMax-sizeMin) * (size-min) / (max-min) );
 					
-					console.log(size, newSize);
+					// sizeMax = 10, sizeMin = 2
+					// size = 5, min=1, max=10
+					// 2 + (8 * 5 / 9)
+					
+					
+					//console.log(min, max, size, sizeMin, sizeMax, newSize);
 					return newSize;	
 				},
 							
 				list: wordcloud_data,
 				//backgroundColor: '#efefef',
-				hover: function() {
+				hover: function(hover_word_info, word_position, mouse_event) {
+										
+					removeHighlights();
+										
+					if (hover_word_info) {
+						var word = hover_word_info[0];
+						
+						var word_info = word_stats.filter(function(a) {
+							return a.word == word;
+						})[0];
+						
+						createHighlights(word_info);						
+					}
 					
 				}, 
-				color: function (word, weight) {
-					var rMax = 50,
-						rMin = 170,
-						rValue = Math.round( rMin + (Math.abs(rMax-rMin) * weight / (max-min) ) ),
-						gMax = 100,
-						gMin = 192,
-						gValue = Math.round( gMin + (Math.abs(gMax-gMin) * weight / (max-min) ) )
+				color: function (word, size) {
+					/*
+					var rMax = 42,
+						rMin = 138,
+						rValue = Math.round( rMax - (Math.abs(rMax-rMin) * (size-min) / (max-min) ) ),
+						gMax = 133,
+						gMin = 182,
+						gValue = Math.round( gMax - (Math.abs(gMax-gMin) * (size-min) / (max-min) ) )
 						
 						;
+					
 					//return '#ff0000';	
+					
+					var bMax = 232,
+						bMin = 230,
+						bValue = Math.round( bMin + (Math.abs(bMax-bMin) * (size-min) / (max-min) ) );	
+					*/
+					
+					// search blue = 42, 133, 232
+					// dark blue = 22, 71, 123
+					
+					var rValue = Math.round( getRangeValue(42,  22, min, max, size) ),
+						gValue = Math.round( getRangeValue(133, 71, min, max, size) ),
+						bValue = Math.round( getRangeValue(232, 123, min, max, size) );
+											
+					console.log(word, min, max, size, rValue, gValue, bValue);					
 					
 					//console.log(word, weight, rValue, gValue, 'rgb(' + rValue + ',' + gValue + ',215)');
 					//return 'rgb(' + rValue + ',' + gValue + ',215)';
 					//return 'rgb(' + (weight * 10) + ',' + (weight * 10) + ',215)';
-					return 'rgb(0,0,' + (weight * 10) + ')';
+					return 'rgb(' + rValue + ',' + gValue + ',' + bValue + ')';
 				},				
 				click: function() {
 					
@@ -340,6 +385,20 @@ var StatisticsWindow = function(id, parent, data) {
 			
 		});		
 	}
+	
+	function getRangeValue(value1, value2, minValue, maxValue, value) {
+		
+		if (value2 > value1) {
+			return value1 + (Math.abs(value1-value2) * (value-minValue) / (maxValue-minValue) );
+		} else if (value1 > value2) {
+			return value2 + (Math.abs(value1-value2) * (value-minValue) / (maxValue-minValue) );
+		} else {
+			return value1;			
+		}
+		
+	}
+	
+	sofia.getRangeValue = getRangeValue;
 
 	var currentLemmaIndex = 0;
 	function loadLemmaInfo() {
@@ -411,6 +470,61 @@ var StatisticsWindow = function(id, parent, data) {
 		}
 	}
 
+
+	function removeHighlights() {
+		$('.BibleWindow .highlight-stats').each(function(i, el) {
+		
+			if (el.tagName.toLowerCase() == 'l') {
+				// for Lemma tags, jsut remove hte hlight
+				el.className = el.className.replace(/highlight/gi, '');
+			} else {
+				// if it's just <span class="highlight">, replace it with text
+				var textFragment = document.createTextNode(el.textContent);
+				if (el && el.parentNode) { 
+					el.parentNode.insertBefore(textFragment, el);
+					el.parentNode.removeChild(el);
+				}
+			}
+
+		});
+	}
+
+	function createHighlights(word_info) {
+
+		removeHighlights();	
+	
+			
+		// do for all sections / chapters
+		$('.' + sectionid).each(function(i,el) {
+
+			if (typeof word_info.strongs != 'undefined') {
+				//var r = new RegExp('s=("|\')(\\w\\d{1,4}[a-z]?\\s)?' + '(G|H)?' + word_info.strongs.substr(1) + '[a-z]?(\\s\\w\\d{1,4}[a-z]?)?("|\')', 'gi');
+				
+				$(el).find('l[s*="' + word_info.strongs.substr(1) + '"],l[s*="' + word_info.strongs + '"]').addClass('highlight highlight-stats lemma-highlight');
+
+				// add the 'highlight' class to the <l> node
+				//el.innerHTML = el.innerHTML.replace(r, function(match) {
+				//	return match + ' class="highlight highlight-stats" ';
+				//});
+
+			} else {
+				
+				//var r = new RegExp('\b' + word_info.word + '\b', 'gi');
+				var r = new XRegExp( '\\b' + word_info.word + '\\b', 'gi');
+
+				// surround the word with a highlight
+				el.innerHTML = el.innerHTML.replace(r, function(match) {
+					return '<span class="highlight highlight-stats">' + match + '</span>';
+				});
+
+			}
+
+		});
+
+
+	}
+
+
 	function close() {
 
 		ext.clearListeners();
@@ -469,7 +583,7 @@ var exclusions = {
 	
 	"chs": ["─","：","，","。","（","）","！","；","一","？"],
 	
-	"en": [
+	"eng": [
 		// prepositions
 "a",
 "abaft",

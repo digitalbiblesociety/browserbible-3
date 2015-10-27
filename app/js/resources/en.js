@@ -111,7 +111,8 @@ sofia.resources['en'] = {
 				"label": "Comparison"
 			},
 			"stats": {
-				"label": "Statistics"
+				"label": "Statistics",
+				"frequentwords":"Frequent Words"
 			}
 		},
 		"names": {

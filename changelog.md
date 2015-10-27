@@ -1,6 +1,11 @@
 Change Log
 =======
 
+3.6.4 - 2015/10/27
+
+* Update to Word Clouds (hover functionality)
+* Fixed competing hover text colors
+
 3.6.4 - 2015/10/06
 
 * Added word clouds to Statistics window

@@ -1,7 +1,7 @@
 Change Log
 =======
 
-3.6.4 - 2015/10/27
+3.6.5 - 2015/10/27
 
 * Update to Word Clouds (hover functionality)
 * Fixed competing hover text colors

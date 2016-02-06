@@ -1,0 +1,15 @@
+{
+  "name": "BrowserBible",
+  "version": "3.6.2",
+  "description": "Bible software that runs in the browser.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalbiblesociety/browserbible-3"
+  },
+  "author": "John Dyer",
+  "license": "MIT",
+  "dependencies": {
+    "uglifyjs": "^2.4.10"
+  },
+  "devDependencies": {}
+}

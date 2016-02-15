@@ -337,12 +337,57 @@ var TextChooser = function() {
 			for (var index in arrayOfTexts) {
 				var text = arrayOfTexts[index];
 
+				/* ORDER BY native name */
+				/*
 				if (languages.indexOf(text.langName) == -1) {
 					languages.push( text.langName );
 				}
+				*/
+				
+				/* ORDER BY  English Name */
+				var langKey = text.langNameEnglish;
+				if (langKey == undefined || langKey == '') {
+					langKey = text.langName;	
+				}
+				
+				if (languages.indexOf(langKey) == -1) {
+					languages.push( langKey );
+				}
 			}
 
-			// remove pinned
+			// PINNED			
+			var pinnedLanguages = [];
+			if (sofia.config.pinnedLanguages && sofia.config.pinnedLanguages.length && sofia.config.pinnedLanguages.length > 0) {
+				console.log('finding pins');
+				
+				for (var i=0, il  = sofia.config.pinnedLanguages.length; i<il; i++) {
+					var pinnedLanguage = sofia.config.pinnedLanguages[i];
+					
+					var pinnedIndex = languages.indexOf(pinnedLanguage);
+					if (pinnedIndex > -1) {
+						// pull it out
+						languages.splice(pinnedIndex, 1);
+						
+						// store for later
+						pinnedLanguages.push(pinnedLanguage);
+					}
+				}
+			}
+
+			// sort
+			languages.sort();
+
+			// put it back in
+			if (pinnedLanguages.length > 0) {
+				
+				languages.splice.apply(languages, [0, 0].concat(pinnedLanguages));
+			
+			}
+			
+			
+			
+			/* PINNED BY SINGLE LANGUAGE */
+			/*
 			var pinnedIndex = -1;
 			if (sofia.config.pinnedLanguage && sofia.config.pinnedLanguage != '') {
 
@@ -360,12 +405,13 @@ var TextChooser = function() {
 			if (pinnedIndex > -1) {
 				languages.splice(0,0, sofia.config.pinnedLanguage);
 			}
+			*/
 
 			for (var index in languages) {
 
 				// get all the ones with this language
 				var langName = languages[index],
-					textsInLang = arrayOfTexts.filter(function(t) { if (t.langName == langName) { return t; } }),
+					textsInLang = arrayOfTexts.filter(function(t) { return (t.langName == langName || t.langNameEnglish == langName) }),
 					hasDefaultText = false,
 					langHtml = [];
 
@@ -401,11 +447,30 @@ var TextChooser = function() {
 				}
 
 				if (mode == 'none' || mode == 'languages' || (hasDefaultText && mode == 'default')) {
+					
+					var languageDisplayTitle = '';
+					
+					// vernacular first
+					/*
+					languageDisplayTitle = textsInLang[0].langName +
+									( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : '');
+					*/
+					
+					// english first
+					var langName = textsInLang[0].langName,
+						langNameEnglish = textsInLang[0].langNameEnglish;					
+						
+					if (langNameEnglish != '' && langNameEnglish != undefined) {
+						languageDisplayTitle = 	langNameEnglish + (langName != langNameEnglish ? ' (' + langName + ')' : '');
+					} else {
+						languageDisplayTitle = langName;
+					}
+					
+					
 					html.push(
 						createHeaderRow(
 							'',
-							textsInLang[0].langName +
-									( textsInLang[0].langName != textsInLang[0].langNameEnglish && typeof textsInLang[0].langNameEnglish != 'undefined' ? ' (' + textsInLang[0].langNameEnglish + ')' : ''),
+							languageDisplayTitle,
 							'',
 							'',
 							mode == 'languages' ? 'collapsible-language collapsed' : ''

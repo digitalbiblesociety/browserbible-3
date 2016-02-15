@@ -263,7 +263,7 @@ var StatisticsWindow = function(id, parent, data) {
 					}
 				
 							
-					html += '<span class="word" style="font-size:' + size + 'px" data-wordindex="' + i + '">' + displayWord + ' (' + word_info.count + ')</span>';
+					html += '<span class="word" style="font-size:' + size + 'px" data-wordindex="' + i + '"><span dir="' + textInfo.dir + '">' + displayWord + '</span> <span dir="ltr">(' + word_info.count + ')</span></span>';
 					wordle_data += word_info.count + ' ' + displayWord + '\n';
 					wordcloud_data.push( [ wordleWord , word_info.count] );
 				//}
@@ -274,6 +274,7 @@ var StatisticsWindow = function(id, parent, data) {
 			
 			// append
 			wordFrequenciesNode
+				.attr('dir',textInfo.dir)
 				.html(html)
 				.removeClass('loading-indicator');
 				

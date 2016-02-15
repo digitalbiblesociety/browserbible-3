@@ -19,7 +19,8 @@
 }
 
 .text-chooser .text-chooser-filter-text {
-	background: #888;
+	-x-background: #888;
+	background: #5379A9;
 	border: solid 1px #666;
 	color: #fff;
 	padding: 4px;

@@ -1,6 +1,9 @@
 
 /* Used for shared images to make base64 encoded SVGs only visible once */
 .image-config {
+	background-image: url(images/gear-black.svg);
+}
+.image-config-light {
 	background-image: url(images/gear.svg);
 }
 .image-logo {

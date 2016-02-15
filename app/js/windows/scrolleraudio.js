@@ -16,7 +16,7 @@ var AudioController = function(id, container, toggleButton, scroller) {
 					'<span class="audio-duration">00:00</span>' +
 					'<span class="audio-title"></span>' +
 					'<span class="audio-subtitle"></span>' +
-					'<input type="button" class="audio-options-button image-config" />' +
+					'<input type="button" class="audio-options-button image-config-light" />' +
 				'</div>'
 				).appendTo(container),
 		optionsButton = block.find('.audio-options-button'),

@@ -19,7 +19,7 @@ var AppSettings = (function() {
         }
     }
 
-	if (testlocalStorage) {
+	if (testlocalStorage()) {
 		storage = window.localStorage;
 	}
 

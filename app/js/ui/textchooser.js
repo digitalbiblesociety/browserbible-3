@@ -33,8 +33,7 @@ var TextChooser = function() {
 								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +						
 								'<span class="close-button">Close</span>' +
 							'</div>' +
-							'<div class="text-chooser-main"></div>' +
-							
+							'<div class="text-chooser-main"></div>' +							
 						'</div>')
 						.appendTo( $('body') )
 						.hide(),
@@ -67,7 +66,10 @@ var TextChooser = function() {
 				.siblings()
 					.removeClass('selected');
 					
-			filter.val('');
+			filter
+				.val('')
+				.focus();
+				
 					
 			renderTexts(list_data);			
 		});

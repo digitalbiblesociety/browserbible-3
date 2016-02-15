@@ -66,7 +66,7 @@ sofia.resources['en'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "More",
 				"less": "Less",
-				"default": "Main",
+				"default": "Featured",
 				"languages": "Language",
 				"countries": "Country",
 				"lemma":"Greek/Hebrew Popups",

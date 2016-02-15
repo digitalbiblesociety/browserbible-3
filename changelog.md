@@ -1,6 +1,14 @@
 Change Log
 =======
 
+3.6.6 - 2016/02/15
+
+* Style updates to Bible picker
+* Order by English instead of natural language
+* Allow touchscreens to use filter
+* Multiple stuck languages
+* Update SVG colors
+
 3.6.5 - 2015/10/27
 
 * Update to Word Clouds (hover functionality)

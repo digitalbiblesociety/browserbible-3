@@ -67,9 +67,11 @@ var TextChooser = function() {
 					.removeClass('selected');
 					
 			filter
-				.val('')
-				.focus();
+				.val('');
 				
+			if (!Detection.hasTouch) {
+				filter.focus();
+			}
 					
 			renderTexts(list_data);			
 		});
@@ -83,16 +85,18 @@ var TextChooser = function() {
 	filter.on('keyup keypress', filterVersions);
 
 	filter.on('focus', function() {
+		/*
 		if (Detection.hasTouch) {
 			filter.blur();
 		}
+		*/
 	});
 
 	function filterVersions(e) {
 
 		// when the user presses return and there is only one version, attempt to go to that one
 		if (e && e.which == 13) {
-			var visibleRows = main.find('.text-chooser-row:visible');
+			var visibleRows = main.find('.text-chooser-row:visible, .text-chooser-row-divider:visible');
 
 			if (visibleRows.length == 1) {
 
@@ -365,8 +369,11 @@ var TextChooser = function() {
 					
 					var pinnedIndex = languages.indexOf(pinnedLanguage);
 					if (pinnedIndex > -1) {
-						// pull it out
-						languages.splice(pinnedIndex, 1);
+						
+						if (mode == 'default' || mode == 'none') {
+							// pull it out
+							languages.splice(pinnedIndex, 1);
+						}
 						
 						// store for later
 						pinnedLanguages.push(pinnedLanguage);
@@ -511,7 +518,97 @@ var TextChooser = function() {
 							'country collapsed')
 					
 					);
+					
+					// order by languages?
+					var languagesInCountry = [];
+
+					for (var index in textsInCountry) {
+						var text = textsInCountry[index];
+														
+						/* ORDER BY  English Name */
+						var langKey = text.langNameEnglish;
+						if (langKey == undefined || langKey == '') {
+							langKey = text.langName;	
+						}
 						
+						if (languagesInCountry.indexOf(langKey) == -1) {
+							languagesInCountry.push( langKey );
+						}
+					}
+					
+					languagesInCountry.sort();					
+					
+					for (var index in languagesInCountry) {
+		
+						// get all the ones with this language
+						var langName = languagesInCountry[index],
+							textsInLang = textsInCountry.filter(function(t) { return (t.langName == langName || t.langNameEnglish == langName) }),
+							hasDefaultText = false,
+							langHtml = [];
+							
+						
+						// LANGUAGE	
+						var languageDisplayTitle = '';
+						
+						// english first
+						var langName = textsInLang[0].langName,
+							langNameEnglish = textsInLang[0].langNameEnglish;					
+							
+						if (langNameEnglish != '' && langNameEnglish != undefined) {
+							languageDisplayTitle = 	langNameEnglish + (langName != langNameEnglish ? ' (' + langName + ')' : '');
+						} else {
+							languageDisplayTitle = langName;
+						}
+						
+						html.push(
+							createDividerRow(
+								languageDisplayTitle,
+								'collapsed'
+							)
+						);							
+							
+		
+						// sort the texts by name
+						textsInLang = textsInLang.sort(function (a, b) {
+							if (a.name == b.name) {
+								return 0;
+							} else if (a.name > b.name) {
+								return 1;
+							} else if (a.name < b.name) {
+								return -1;
+							}
+						});
+		
+		
+						// create HTML for the texts
+						for (var textIndex in textsInLang) {
+							var text = textsInLang[textIndex];
+		
+							langHtml.push(
+								createTextRow(
+										text, 
+										false, 
+										'collapsed'
+								)
+							);
+					
+							if (!hasDefaultText && isDefaultText) {
+								hasDefaultText = true;
+							}
+						}
+		
+							
+
+												
+						
+						html.push(langHtml.join(''));
+		
+					}					
+					
+					
+					
+					/* simple list in country */
+					/*
 					for (var textIndex in textsInCountry) {
 						var text = textsInCountry[textIndex];
 	
@@ -520,6 +617,7 @@ var TextChooser = function() {
 						);
 						
 					}
+					*/
 					
 				}				
 				
@@ -602,7 +700,20 @@ var TextChooser = function() {
 
 				
 		return html;		
-	}	
+	}
+	
+	function createDividerRow(name, className) {
+		var html = '<tr class="text-chooser-row-divider ' + (className != '' ? ' ' + className : '') + '">' + 
+					//'<td>&nbsp;</td>' +
+					//'<td colspan="4">' +
+					'<td colspan="5">' +
+						'<span class="name">' + name + '</span>' + 
+					'</td>' + 
+					'</tr>';
+
+				
+		return html;		
+	}		
 
 	function toggle() {
 

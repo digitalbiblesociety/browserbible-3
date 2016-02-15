@@ -228,6 +228,19 @@ table.collapsible .text-chooser-row.collapsed {
 	display: none;
 }
 
+.text-chooser-row-divider {
+	-x-background: #5379A9;
+	background: #777777;
+	color: #fff;
+}
+.text-chooser-row-divider span.name{
+	padding: 3px 10px;
+}
+
+table.collapsible .text-chooser-row-divider.collapsed {
+	display: none;
+}
+
 
 /* language : country switcher */
 .text-chooser-selector {

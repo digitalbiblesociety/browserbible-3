@@ -383,9 +383,7 @@ var TextChooser = function() {
 				languages.splice.apply(languages, [0, 0].concat(pinnedLanguages));
 			
 			}
-			
-			
-			
+						
 			/* PINNED BY SINGLE LANGUAGE */
 			/*
 			var pinnedIndex = -1;

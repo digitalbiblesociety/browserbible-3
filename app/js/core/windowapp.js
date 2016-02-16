@@ -16,9 +16,6 @@ var App = function() {
 
 	function init() {
 
-
-		
-
 		// create objects
 		mainMenu = new MainMenu(header);
 		windowManager = new WindowManager(main, ext);
@@ -33,7 +30,11 @@ var App = function() {
 		
 		// if not fullscreen and is touch screen
 		//if (Detection.hasTouch) {
+		try {
 			window.top.scrollTo(0, 1);
+		} catch {
+			
+		}
 		//}		
 
 
@@ -115,9 +116,9 @@ var App = function() {
 		PlaceKeeper.storePlace();
 		
 		if (windowManager && windowManager.getWindows().length == 1) {
-			$('body').addClass('one-window')
+			body.addClass('one-window')
 		} else {
-			$('body').removeClass('one-window')
+			body.removeClass('one-window')
 		}		
 
 		// get window size

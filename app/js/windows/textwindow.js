@@ -437,7 +437,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 	ext.on('message', function(e) {
 		var data = e.data;
 
-		if (data.messagetype == 'nav' && (data.type == 'bible' || data.type == 'commentary') && data.locationInfo != null) {
+		if (data.messagetype == 'nav' && (data.type == 'bible' || data.type == 'commentary'|| data.type == 'videobible' || data.type == 'deafbible') && data.locationInfo != null) {
 			//console.log(id, data.locationInfo.fragmentid, data.locationInfo.offset)
 			scroller.scrollTo( data.locationInfo.fragmentid, data.locationInfo.offset);
 		}

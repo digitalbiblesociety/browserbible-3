@@ -1,0 +1,42 @@
+#add-DeafBibleWindow, .DeafBible-tab {
+	background-image: url(../../css/images/sign-language.svg);
+}
+
+
+.deafbible .mt {
+	margin-top: 1.5em;
+}
+
+.deafbible .s {
+	margin-top: 0.5em;
+}
+
+.deafbible video{
+	margin: 0 0 2em 0;
+	width: 100%;
+	height: auto;
+	background: #333;
+}
+
+.deafbible .inline-icon {
+	display: none;
+}
+
+
+
+.deafbible .v {
+	display: block;
+}
+
+.deafbible .selected-verse {
+	background: none;
+}
+
+
+.deafbible .selected-verse {
+	background: none;
+	color: #d9e8ef;	
+}
+.deafbible .selected-verse video { 
+	outline: 5px solid #d9e8ef;	
+}

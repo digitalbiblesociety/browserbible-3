@@ -57,6 +57,12 @@ sofia.resources['en'] = {
 			}
 		},
 		"windows": {
+			"deafbible": {
+				"label": "Deaf Bible"	
+			},
+			"videobible": {
+				"label": "Video Bible"	
+			},			
 			"bible": {
 				"label": "Bible",
 				"recentlyused": "Recently Used",

@@ -111,6 +111,8 @@ var TextNavigator = function() {
 
 		switch (textInfo.type.toLowerCase()) {
 			case 'bible':
+			case 'deafbible':
+			case 'videobible':
 			case 'commentary':
 				
 				var textInputValue = target.val(),
@@ -129,12 +131,18 @@ var TextNavigator = function() {
 					
 					var divisionNode = changer.find('.divisionid-' + divisionid).addClass('selected');									
 					// scroll to it
-					var offset = divisionNode.position();
-					changer.find('.text-navigator-divisions').scrollTop(offset.top-40);
 					
-					renderSections(false);
+					if (divisionNode.length > 0) {
+						var offset = divisionNode.position();
 					
-					divisionNode.find('.section-' + sectionid).addClass('selected');
+						changer.find('.text-navigator-divisions').scrollTop(offset.top-40);
+						
+						renderSections(false);
+						
+						divisionNode.find('.section-' + sectionid).addClass('selected');						
+					}
+					
+
 					
 				}
 				
@@ -208,18 +216,21 @@ var TextNavigator = function() {
 			*/
 
 
+			/*
 			var num_of_chapters = 0;
 			for (var j=0, jl=textInfo.sections.length; j<jl; j++) {
 				if (textInfo.sections[j].substring(0,2) == divisionid) {
 					num_of_chapters++;
 				}
 			}
-			// or
-			//num_of_chapters = book.chapters.length;
-
-
-
 			html.push('<div class="text-navigator-division divisionid-' + divisionid + ' division-section-' + getBookSectionClass(divisionid) + '" data-id="' + divisionid + '" data-chapters="' + num_of_chapters + '" data-name="' + divisionName + '"><span>' + displayName + '</span></div>');
+			*/
+			
+			var chapters = textInfo.sections.filter(function(c) {
+				return c.substring(0,2) == divisionid;			
+			});
+
+			html.push('<div class="text-navigator-division divisionid-' + divisionid + ' division-section-' + getBookSectionClass(divisionid) + '" data-id="' + divisionid + '" data-chapters="' + chapters.join(',') + '" data-name="' + divisionName + '"><span>' + displayName + '</span></div>');
 		} //
 
 		changer.find('.text-navigator-divisions').html(html).show();
@@ -277,19 +288,28 @@ var TextNavigator = function() {
 
 		switch (textInfo.type.toLowerCase()) {
 			case 'bible':
+			case 'deafbible':
+			case 'videobible':
+			
 			case 'commentary':
 				// print out chapters
 				var selected_division = changer.find('.text-navigator-division.selected'),
 					isLast = selected_division.next().length == 0,
 					divisionid = selected_division.attr('data-id'),
 					divisionname = selected_division.attr('data-name'),
-					num_of_chapters = parseInt(selected_division.attr('data-chapters'), 10),
+					//num_of_chapters = parseInt(selected_division.attr('data-chapters'), 10),
+					chapters = selected_division.attr('data-chapters').split(','),
 					numbers = typeof textInfo.numbers != 'undefined' ? textInfo.numbers : bible.numbers.default;
 
 				title.html( divisionname );
+				
+				console.log('chapters',chapters);
 
-				for (var chapter=1; chapter<=num_of_chapters; chapter++) {
-					html.push('<span class="text-navigator-section section-' + divisionid + chapter + '" data-id="' + divisionid + chapter + '">' + numbers[chapter].toString() + '</span>');
+				for (var chapter=0; chapter<chapters.length; chapter++) {
+					var dbsChapterCode = chapters[chapter],
+						chapterNumber = parseInt(dbsChapterCode.substring(2));
+						
+					html.push('<span class="text-navigator-section section-' + dbsChapterCode + '" data-id="' + dbsChapterCode + '">' + numbers[chapterNumber].toString() + '</span>');
 				}
 				
 				var sectionNodes = $('<div class="text-navigator-sections" style="display:none;">' + html.join('') + '</div>');

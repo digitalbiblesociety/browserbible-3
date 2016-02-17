@@ -341,13 +341,6 @@ var TextChooser = function() {
 			for (var index in arrayOfTexts) {
 				var text = arrayOfTexts[index];
 
-				/* ORDER BY native name */
-				/*
-				if (languages.indexOf(text.langName) == -1) {
-					languages.push( text.langName );
-				}
-				*/
-				
 				/* ORDER BY  English Name */
 				var langKey = text.langNameEnglish;
 				if (langKey == undefined || langKey == '') {
@@ -385,32 +378,10 @@ var TextChooser = function() {
 			languages.sort();
 
 			// put it back in
-			if (pinnedLanguages.length > 0) {
-				
-				languages.splice.apply(languages, [0, 0].concat(pinnedLanguages));
-			
+			if (pinnedLanguages.length > 0) {				
+				languages.splice.apply(languages, [0, 0].concat(pinnedLanguages));			
 			}
 						
-			/* PINNED BY SINGLE LANGUAGE */
-			/*
-			var pinnedIndex = -1;
-			if (sofia.config.pinnedLanguage && sofia.config.pinnedLanguage != '') {
-
-				var pinnedIndex = languages.indexOf(sofia.config.pinnedLanguage);
-				if (pinnedIndex > -1) {
-					// pull it out
-					languages.splice(pinnedIndex, 1);
-				}
-			}
-
-			// sort
-			languages.sort();
-
-			// put it back in
-			if (pinnedIndex > -1) {
-				languages.splice(0,0, sofia.config.pinnedLanguage);
-			}
-			*/
 
 			for (var index in languages) {
 
@@ -436,22 +407,32 @@ var TextChooser = function() {
 					var text = textsInLang[textIndex],
 						isDefaultText = checkIsDefaultText(text.id);
 
-					if (mode == 'none' || mode == 'languages' || (isDefaultText && mode == 'default')) {
+					if (text_type == 'bible' ) {
+						if (mode == 'none' || mode == 'languages' || (isDefaultText && mode == 'default')) {
+							langHtml.push(
+								createTextRow(
+										text, 
+										isDefaultText, 
+										mode == 'languages' ? 'collapsed' : ''
+								)
+							);
+						}
+			
+						if (!hasDefaultText && isDefaultText) {
+							hasDefaultText = true;
+						}
+					} else if (text_type == 'deafbible' ) {
 						langHtml.push(
-							createTextRow(
+							createImageRow(
 									text, 
-									isDefaultText, 
 									mode == 'languages' ? 'collapsed' : ''
 							)
-						);
-					}
-			
-					if (!hasDefaultText && isDefaultText) {
-						hasDefaultText = true;
+						);						
+						
 					}
 				}
 
-				if (mode == 'none' || mode == 'languages' || (hasDefaultText && mode == 'default')) {
+				if (text_type == 'bible' && (mode == 'none' || mode == 'languages' || (hasDefaultText && mode == 'default')) ) {
 					
 					var languageDisplayTitle = '';
 					
@@ -471,7 +452,6 @@ var TextChooser = function() {
 						languageDisplayTitle = langName;
 					}
 					
-					
 					html.push(
 						createHeaderRow(
 							'',
@@ -480,7 +460,7 @@ var TextChooser = function() {
 							'',
 							mode == 'languages' ? 'collapsible-language collapsed' : ''
 						)
-					);
+					);					
 				}
 				
 				html.push(langHtml.join(''));
@@ -691,6 +671,27 @@ var TextChooser = function() {
 				
 		return html;		
 	}
+
+	function createImageRow(text, className) {
+		var 			
+			providerName = (typeof text.providerName != 'undefined' && text.providerName != 'local') ? text.providerName : '',
+			providerFullName = sofia.textproviders[text.providerName] && sofia.textproviders[text.providerName].fullName ? sofia.textproviders[text.providerName].fullName : '',
+			imageUrl = 'content/texts/' + text.id + '/' + text.id + '.png';
+			
+
+		var html = '<tr class="text-chooser-row' + (className != '' ? ' ' + className : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
+					'<td class="text-chooser-image">' +
+						'<img src="' + imageUrl + '" />' + 
+					'</td>' +
+					'<td class="text-chooser-name" >' +
+						'<span>' + text.name + '</span>' +
+					'</td>' +									
+				'</tr>';
+				
+		return html;		
+	}
+
+
 	
 	function createHeaderRow(id, name, englishName, additionalHtml, className) {
 		var html = '<tr class="text-chooser-row-header' + (className != '' ? ' ' + className : '') + '" data-id="' + id + '"><td colspan="5">' +

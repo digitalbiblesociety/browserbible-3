@@ -140,6 +140,14 @@ padding: 10px;
 	padding: 8px 10px 0 8px;
 }
 
+
+.text-chooser-row .text-chooser-image img {
+	height: 20px;
+	width: 40px;
+	display: block;
+	margin: 0 0 0 10px;
+}
+
 .text-chooser-row .text-chooser-name {
 	padding: 0;
 	height: 2em;

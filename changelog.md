@@ -1,6 +1,11 @@
 Change Log
 =======
 
+3.7.0 - 2016/02/17
+
+* Deaf Bible version
+
+
 3.6.6 - 2016/02/15
 
 * Style updates to Bible picker

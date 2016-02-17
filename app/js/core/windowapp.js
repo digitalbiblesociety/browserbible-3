@@ -32,7 +32,7 @@ var App = function() {
 		//if (Detection.hasTouch) {
 		try {
 			window.top.scrollTo(0, 1);
-		} catch {
+		} catch (ex) {
 			
 		}
 		//}		

@@ -198,7 +198,9 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 		// ALWAYS UPDATE: for first load
 		// update version name
-		textlistui.html( newTextInfo.abbr );
+		//textlistui.html( newTextInfo.abbr );
+		
+		setTextInfoUI(newTextInfo);		
 		
 		parent.tab.find('span').html( newTextInfo.abbr );
 
@@ -329,12 +331,29 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 		});
 	}
+	
+	function setTextInfoUI(textinfo) {
+
+		
+		switch (textinfo.type ) {
+			default:
+				textlistui.removeClass('app-list-image');			
+				textlistui.html( textinfo.abbr );				
+				break;
+			case 'deafbible':
+				textlistui.addClass('app-list-image');
+				textlistui.html( '<img src="content/texts/' + textinfo.id + '/' + textinfo.id + '.png" />' );				
+				break;				
+			
+		}
+
+	}
 
 	function startup() {
 
 		// send to objects
 		textChooser.setTextInfo(currentTextInfo);
-		textlistui.html(currentTextInfo.abbr);
+		setTextInfoUI(currentTextInfo);
 		parent.tab.find('span').html( currentTextInfo.abbr );
 		textNavigator.setTextInfo(currentTextInfo);
 		audioController.setTextInfo(currentTextInfo);

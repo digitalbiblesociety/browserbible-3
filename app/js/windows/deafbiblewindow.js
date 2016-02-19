@@ -1,14 +1,32 @@
 sofia.config = $.extend(sofia.config, {
 	enableDeafBibleWindow: true,
 	deafBibleWindowDefaultBibleFragmentid: 'JN1_1',
-	deafBibleWindowDefaultBibleVersion: 'ASESLV'
+	deafBibleWindowDefaultBibleVersion: 'deaf_ASESLV'
 });
 
 
 
 
 var DeafBibleWindow = function(id, node, init_data) {
-	return new TextWindow(id, node, init_data, 'deafbible');
+	
+	var window =  new TextWindow(id, node, init_data, 'deafbible');
+	
+	node.node.on('click', '.deaf-video-header input', function() {
+		var button = $(this),
+			url = button.attr('data-src'),
+			video = button.closest('.deaf-video').find('video');
+			
+		button
+			.addClass('active')
+			.siblings()
+				.removeClass('active');
+		
+		console.log(url, video);
+		
+		video.attr('src', url);		
+	});
+
+	return window;
 };
 
 sofia.initMethods.push(function() {
@@ -27,5 +45,7 @@ sofia.initMethods.push(function() {
 			}
 		});
 	}
+	
+
 	
 });

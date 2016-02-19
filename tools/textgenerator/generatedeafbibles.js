@@ -88,7 +88,8 @@ function processNextVersion() {
 						//versionInfo.language_name + ' ' +  versionInfo.volume_name,
 						versionInfo.language_name + ' (' + versionInfo.version_code + ')',
 						versionInfo.version_code,
-						infoData
+						infoData,
+						versionInfo
 					);
 				} else {
 					console.log('--skipping');
@@ -120,9 +121,10 @@ function processNextVersion() {
 					'deaf_' + versionInfo.language_code + versionInfo.version_code,
 					versionInfo.language_code,
 					versionInfo.language_name,
-					versionInfo.language_name + ' (' + versionInfo.version_code + ')', // + ' ' +  versionInfo.volume_name, // versionInfo.version_name,
+					versionInfo.language_name , // + ' ' +  versionInfo.volume_name, // versionInfo.version_name,
 					versionInfo.version_code,
-					infoData
+					infoData,
+					versionInfo
 				);
 
 
@@ -145,7 +147,7 @@ function processNextVersion() {
 }
 
 
-function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData) {
+function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, versionInfo) {
 
 	// START
 	var
@@ -603,7 +605,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData) {
 			videoFilename = videoPathParts[videoPathParts.length-1],
 			thumbPath = 'content/texts/' + id + '/images/' + videoFilename.split('.')[0] + '.jpg';
 
-		if (id != 'ASESLV') {
+		if (id != 'deaf_ASESLV') {
 			thumbPath = '';
 		}
 
@@ -612,6 +614,23 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData) {
 		if (is_sls_type) {
 			currentChapter.html += '<div class="mt">' + title + ' (' + verseRange + ')</div>' + bibleFormatter.breakChar;
 			
+			if (element.related_videos.length >= 3) {
+				currentChapter.html += 
+						'<div class="deaf-video">' + 
+							'<div class="deaf-video-header">' + 
+								'<input type="button" class="deaf-intro" data-src="http://video.dbt.io/' + element.related_videos[1].path + '" value="Introduction" />' +
+								'<input type="button" class="deaf-story active" data-src="http://video.dbt.io/' + videoPath + '" value="Story" />' +
+								'<input type="button" class="deaf-lessons" data-src="http://video.dbt.io/' + element.related_videos[2].path + '" value="Lessons" />' +
+							'</div>' + 
+							'<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>' + 
+						'</div>';	
+			} else {
+				currentChapter.html += '<div class="s">Story</div>';
+				currentChapter.html += '<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>';				
+			}
+			
+			
+			/*
 			if (element.related_videos.length >= 1) {
 				currentChapter.html += '<div class="s">Introduction</div>';
 				currentChapter.html += '<video src="http://video.dbt.io/' + element.related_videos[1].path + '" preload="none" class="inline-video" controls poster="' + thumbPath + '"></video>';
@@ -619,18 +638,12 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData) {
 
 			currentChapter.html += '<div class="s">Story</div>';
 			currentChapter.html += '<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>';
-
-			/*
-			if (element.related_videos.length >= 2) {
-				currentChapter.html += '<div class="s">Topic</div>';
-				currentChapter.html += '<video src="http://video.dbt.io/' + element.related_videos[1].path + '" preload="none" class="inline-video" controls poster="' + thumbPath + '"></video>';
-			}
-			*/
 			
 			if (element.related_videos.length >= 3) {
 				currentChapter.html += '<div class="s">Lessons</div>';
 				currentChapter.html += '<video src="http://video.dbt.io/' + element.related_videos[2].path + '" preload="none" class="inline-video" controls poster="' + thumbPath + '"></video>';
 			}
+			*/
 
 		} else {
 			currentChapter.html += '<div class="s">' + title + ' (' + verseRange + ')' + '</div>';
@@ -653,10 +666,34 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData) {
 	// spit out files
 
 
-
+	// INFO
 	fs.writeFileSync(path.join(outputPath, 'info.json'), JSON.stringify(info), 'utf8');
+	
+	
+	info.name = versionInfo.language_name;
+	
+	// ABOUT
+	var aboutHtml = bibleFormatter.openAboutPage(info) +
+				//'<dl>' +
+				'<dt>Source</dt>'+ 
+				'<dd>Video provided through the <a href="http://digitalbibleplatform.com/" target="_blank">Digital Bible Platform</a> from <a href="http://www.faithcomesbyhearing.com/" target="_blank">Faith Comes By Hearing</a> in association with the <a href="http://www.deafbiblesociety.com/" target="_blank">Deaf Bible Society</a>.</dd>' +
+				//'<dl>' +
+				'<dt>Volume Name</dt>'+ 
+				'<dd>' + versionInfo.volume_name + '</dd>' +
+				'<dt>Version Name</dt>'+ 
+				'<dd>' + versionInfo.version_name + '</dd>' +
+				'<dt>Language Name</dt>'+ 
+				'<dd>' + versionInfo.language_name + '</dd>' +
+				'<dt>DAM ID</dt>'+ 
+				'<dd>' + versionInfo.dam_id + '</dd>' +
+				//'<dl>' +				
+				bibleFormatter.closeAboutPage(info);
+				
+	fs.writeFileSync(path.join(outputPath, 'about.html'), aboutHtml, 'utf8');	
 
 
+
+	// CHAPTErs
 	for (var i=0, il=chapterData.length; i<il; i++) {
 
 		//consol

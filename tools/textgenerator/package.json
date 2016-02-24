@@ -5,7 +5,7 @@
   "description": "Generates HTML bibles for BrowserBible",
   "dependencies" : {
     "jquery"   :  "*",
-    "uglifyjs" : "*",
+    "uglify-js" : "*",
     "uglifycss" : "*",
     "jsdom"    :  "*",
     "progress": "*",

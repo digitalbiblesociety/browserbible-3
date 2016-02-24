@@ -6,7 +6,7 @@ An update to https://github.com/digitalbiblesociety/browserbible.
 
 ### Building Texts ###
 
-1. Install Node.js (http://nodejs.org/download/) for your platform
+1. Install Node.js (http://nodejs.org/download/) for your platform.
 2. Navigate to the `/tools/textgenerator` folder
 3. Run `npm install` to install dependencies
 4. Run `node generate.js -a` (`-a` will build every version `input` folder, run without `-a` to see help)
@@ -27,5 +27,5 @@ To create additional texts
 To create a "build" version, you'll need uglify-js
 
 1. Install uglify-js `npm install uglify-js`
-2. Rename `app/js/windows/config-custom-example.js` to `config-custom.js` and update configs to your needs
+2. Rename `app/js/core/config-custom-example.js` to `config-custom.js` and update configs to your needs
 3. Run `node builder.js` (creates build files to use with index-build.html)

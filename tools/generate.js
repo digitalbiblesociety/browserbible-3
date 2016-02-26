@@ -10,9 +10,9 @@
 // MODULES
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
-	verseIndexer = require('verse_indexer'),
+	bibleData = require('./data/bible_data.js'),
+	bibleFormatter = require('./bible_formatter.js'),
+	verseIndexer = require('./verse_indexer.js'),
 	ProgressBar = require('progress'),
 	argv = require('minimist')(process.argv.slice(2));
 
@@ -23,8 +23,8 @@ var fs = require('fs'),
 
 // VARS
 var
-	baseOutput = '../../app/content/texts/',
-	baseInput = 'input',
+	baseOutput = './app/content/texts/',
+	baseInput = './input',
 	createIndex = false,
 	progressBar = null;
 
@@ -38,7 +38,7 @@ function startProgress(total, label) {
 	if (progressBar != null) {
 		progressBar.terminate();
 	}
-	progressBar = new ProgressBar('[:bar] [:current/:total] :elapsed', { total: total, width: 50 });
+	progressBar = new ProgressBar('[:bar] [:current/:total] :elapseds', { total: total, width: 50 });
 }
 function updateProgress() {
 	progressBar.tick();
@@ -60,9 +60,10 @@ function convertFolder(inputPath) {
 
 
 		try {
-			generator = require('generate_' + generatorName);
+			var generatorPath = path.join(__dirname, 'generators', 'generate_' + generatorName + '.js');
+			generator = require(generatorPath);
 		} catch (ex) {
-			console.log("Can't find: " + generatorName);
+				console.error('Error processing generator "' + generatorName + '":', ex.message)
 			return;
 		}
 
@@ -178,15 +179,15 @@ function convertFolder(inputPath) {
 			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData, 'strongs');
 
 			console.timeEnd('createLemma');
-			
+
 			/*
 			console.time('createStemIndex');
 
 			verseIndexer.createHashedIndexFiles(info.lang, indexOutputPath, data.indexData, 'words');
 
-			console.timeEnd('createStemIndex');			
+			console.timeEnd('createStemIndex');
 			*/
-			
+
 		}
 
 		// save info

@@ -10,21 +10,21 @@ var
 	uglifyjs = require("uglify-js"),
 	uglifycss = require("uglifycss"),
 	mkdirp = require("mkdirp");
-	
+
 
 // START
 var
-	rootPath = '../../app/',
+	rootPath = './app/',
 	buildPath = path.join(rootPath, 'build'),
 	inputFilePath = path.join(rootPath, 'index.html'),
 	html = fs.readFileSync(inputFilePath, 'utf8'),
-	
+
 	linkRegExp = /<link(.)+href="([^"]+)"(.)+\/>/gi,
 	scriptRegExp = /<script(.)+src="([^"]+)"(.)+>/gi,
-	
+
 	linkMatch = null,
 	scriptMatch = null;
-	
+
 	//linkMatches = linkRegExp.exec(html),
 	//scriptMatches = scriptRegExp.exec(html);
 
@@ -42,7 +42,7 @@ var
 	minifiedScript = '',
 	outputJsPath = path.join(buildPath, 'build.js'),
 	outputJsPathMinified = path.join(buildPath, 'build.min.js'),
-	
+
 	sourceMap = ''
 	sourceMapPath = path.join(buildPath, 'build.min.js.map');
 
@@ -60,20 +60,20 @@ while ((scriptMatch = scriptRegExp.exec(html)) !== null) {
 	if (copyFile) {
 		copyFiles.push(src);
 	} else {
-		
+
 		var localPath = path.join(rootPath, src);
-		
+
 		combinedScript +=
 			'\n' +
 			'/*********\n' +
 			'* ' + localPath + '\n' +
 			'**********/\n' +
 			fs.readFileSync(localPath, 'utf8') +
-			'\n\n';	
-			
-			
+			'\n\n';
+
+
 		// test for errors
-		/*			
+		/*
 		try {
 			var result = uglifyjs.minify(localPath);
 		} catch (e) {
@@ -81,15 +81,15 @@ while ((scriptMatch = scriptRegExp.exec(html)) !== null) {
 			return;
 		}
 		*/
-				
+
 	}
 }
 
-	
+
 try {
 	var result = uglifyjs.minify(combinedScript, {fromString: true, outSourceMap: 'build.min.js.map'});
 	minifiedScript = result.code + '\n//# sourceMappingURL=build.min.js.map';
-	sourceMap = result.map;	
+	sourceMap = result.map;
 } catch (e) {
 	console.log('error minifiy', e);
 	return;
@@ -108,7 +108,7 @@ console.time('CSS: combine and minify');
 // CSS
 // find all stylesheet URLs
 //stylesheetNodes.each(function(i, el) {
-while ((linkMatch = linkRegExp.exec(html)) !== null) {	
+while ((linkMatch = linkRegExp.exec(html)) !== null) {
 	var href = linkMatch[2],
 		copyFile = linkMatch[0].indexOf('data-build="copy"') > -1;
 
@@ -119,16 +119,16 @@ while ((linkMatch = linkRegExp.exec(html)) !== null) {
 	if (copyFile) {
 		copyFiles.push(href);
 	} else {
-	
+
 		var localPath = path.join(rootPath, href);
-	
+
 		combinedCss +=
 			'\n' +
 			'/*--------------------------------------\n' +
 			' * ' + localPath + '\n' +
 			' *------------------------------------*/\n' +
 			fs.readFileSync(localPath, 'utf8') +
-			'\n\n';		
+			'\n\n';
 	}
 }
 
@@ -136,7 +136,7 @@ while ((linkMatch = linkRegExp.exec(html)) !== null) {
 function updateCssUrls(inputCss) {
 	var imagePathRe = /url\(\.\.\/\.\.\/css\/images\//gi;
 	return inputCss.replace(imagePathRe, 'url(images/');
-	
+
 }
 
 var inliner = {
@@ -144,36 +144,36 @@ var inliner = {
 	inlineImages: function(inputCss, basePath) {
 
 		var outputCss = inputCss.replace(/url\(["']?(\S*)\.(png|jpg|jpeg|gif|svg)["']?\)/g, function(match, file, type) {
-			
+
 			var fileName = file + '.' + type,
 				filePath = path.join(basePath, fileName),
 				size = 0;
-				
+
 			try {
 				size = fs.statSync(filePath).size;
 			} catch (exp) {
 				console.log('Error: cannot find', filePath);
-				return '';				
+				return '';
 			}
-				
+
 			if (size > 6120) {
 				console.log('TOO BIG, skipping: ' + filePath + ' (' + (Math.round(size/1024*100)/100) + 'k)');
 				return match;
 			} else {
 				var base64 = '';
-				
-				
+
+
 				if (type == 'svg') {
 					var content = fs.readFileSync(filePath).toString();
 					//content = content.replace(/\/\*.+?\*\/|\/\/.*(?=[\n\r])/g, '');
 					//content = content.replace(/\>[\n\t\s]+\</g,'');
 					content = content.replace(/\t+/g,' ');
-					
+
 					base64 = new Buffer(content).toString('base64');
 				} else {
 					base64 = fs.readFileSync(filePath).toString('base64');
 				}
-				
+
 				if (typeof(inliner.files[fileName]) !== 'undefined') {
 					console.log('Warning: ' + filePath + ' has already been base64 encoded in the css: ' + size);
 				}
@@ -181,9 +181,9 @@ var inliner = {
 				return 'url("data:image/' + (type === 'jpg' ? 'jpeg' : type === 'svg' ? 'svg+xml' : type) + ';base64,' + base64 + '")';
 			}
 		});
-		
+
 		return outputCss;
-	}	
+	}
 }
 
 
@@ -200,7 +200,7 @@ minifiedCss = uglifycss.processString(combinedCss);
 
 
 // inlined
-combinedCss = inliner.inlineImages(combinedCss, '../../app/css/');
+combinedCss = inliner.inlineImages(combinedCss, './app/css/');
 minifiedCss = uglifycss.processString(combinedCss);
 
 // write out
@@ -260,4 +260,3 @@ function copyRecursive(folderIn, folderOut) {
 	});
 
 }
-

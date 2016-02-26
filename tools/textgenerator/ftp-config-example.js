@@ -1,6 +1,0 @@
-{
-	"host": "",
-	"user": "",
-	"password": "",
-	"directory": ""
-}

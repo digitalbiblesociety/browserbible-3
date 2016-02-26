@@ -26,8 +26,8 @@ function formatText(text, noteNumber, chapterVerse) {
 					noteKey = content.substring(0, firstSpace),
 					noteText = content.substring(firstSpace + 1);
 
-				//return '<span class="note"><span class="key">' + noteKey + '</span><span class="text">' + noteText + '</span></span>';			
-				//return '<span class="note" id="note-' + noteKey + '"><a class="key" href="footnote-' + noteKey + '">' + noteKey + '</a><span class="text">' + noteText + '</span></span>';		
+				//return '<span class="note"><span class="key">' + noteKey + '</span><span class="text">' + noteText + '</span></span>';
+				//return '<span class="note" id="note-' + noteKey + '"><a class="key" href="footnote-' + noteKey + '">' + noteKey + '</a><span class="text">' + noteText + '</span></span>';
 
 				notes += '<span class="footnote" id="footnote-' + noteNumber + '">' +
 					'<span class="key">' + noteKey + '</span>' +
@@ -79,7 +79,7 @@ function formatText(text, noteNumber, chapterVerse) {
 			default:
 
 				if (unparsed.indexOf(key) == -1) {
-					console.log('unparsed', key);
+					// console.log('unparsed', key);
 					unparsed.push(key);
 				}
 

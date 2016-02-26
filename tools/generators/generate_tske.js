@@ -1,11 +1,11 @@
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
+	bibleData = require('../data/bible_data.js'),
+	bibleReference = require('../data/bible_reference.js'),
+	bibleFormatter = require('../bible_formatter.js'),
+	verseIndexer = require('../verse_indexer.js');
 	readline = require('readline');
-	stream = require('stream'),
-	verseIndexer = require('verse_indexer'),
-	bibleReference = require('bible_reference');
+	stream = require('stream');
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	var

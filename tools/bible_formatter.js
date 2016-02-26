@@ -1,5 +1,5 @@
 var fs = require('fs'),
-  iso2iana = require('iso2iana'),
+  iso2iana = require('./iso2iana.js'),
 	breakChar = '\n';
 
 

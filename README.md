@@ -6,11 +6,11 @@ Bible software that runs in the browser. See `changelog.md` for recent updates.
 
 Before BrowserBible is ready for deployment, the texts that will be deployed with it must be built.  To build texts, first install the dependencies:
 
-	`npm install`
+	npm install
 
 and then run:
 
-	`npm run build:content`
+	npm run build:content
 
 This will read the texts data from `input/` and build the files that BrowserBible will use to show and search texts and place them in `app/content/texts/`.
 

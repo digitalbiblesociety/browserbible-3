@@ -15,6 +15,23 @@ sofia.resources['fi'] = {
 				"default": "Normaali",
 				"sepia": "Seepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Noin",
+				"addwindow": "Lisää Window",
+				"settings": "Asetukset",
+				"feedback": "Palaute",
+				"options": "Vaihtoehdot"
+			},
+			"feedback": {
+				"name": "Nimi",
+				"email": "Sähköposti",
+				"comments": "Kommenttisi",
+				"feature": "Ominaisuus ehdotuksesi",
+				"bug": "Bug Report",
+				"other": "Muut",
+				"send": "Lähettää",
+				"thankyou": "Kiitos palautteesta"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['fi'] = {
 				"placeholder": "Haku",
 				"button": "Haku",
 				"results": "Tulokset",
-				"verses": "säkeet"
+				"verses": "säkeet",
+				"options": "Hakuvalinnat"
 			},
 			"media": {
 				"label": "Tiedotusvälineet"
@@ -73,6 +91,15 @@ sofia.resources['fi'] = {
 				"autoplay": "Autoplay Seuraava",
 				"drama": "Draama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Ladataan ...",
+				"showall": "Näytä kaikki",
+				"hideall": "Piilota kaikki"
+			},
+			"comparison": {
+				"label": "Vertailu"
 			}
 		},
 		"names": {

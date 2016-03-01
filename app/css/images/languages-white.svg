@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16.087" height="16.087">
+    <desc iVinci="yes" version="4.6" gridStep="20" showGrid="no" snapToGrid="no" codePlatform="0"/>
+    <g id="Layer1" name="Layer 1" opacity="1">
+        <g id="Shape1">
+            <desc shapeID="1" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-6.5,-5.5655,13,11.131)" text="" font-familyName="" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,6.5,9.0435)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="shapePath1" d="M6.5,3.478 C2.91,3.478 0,5.716 0,8.478 C0,9.832 0.701,11.063 1.839,11.963 C1.773,12.881 1.552,14.004 0.912,14.609 C2.186,14.609 3.488,13.811 4.311,13.187 C4.995,13.375 5.731,13.478 6.5,13.478 C10.09,13.478 13,11.241 13,8.478 C13,5.716 10.09,3.478 6.5,3.478 Z" style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;"/>
+        </g>
+        <g id="Shape2">
+            <desc shapeID="2" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-5.3705,-5.5655,10.741,11.131)" text="" font-familyName="" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1,0,0,1,10.7165,7.0435)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="shapePath2" d="M15.14,8.965 C15.687,8.234 16,7.384 16,6.478 C16,3.716 13.09,1.478 9.5,1.478 C7.92,1.478 6.472,1.912 5.346,2.632 C5.876,2.532 6.43,2.478 7,2.478 C10.866,2.478 14,4.941 14,7.978 C14,9.175 13.515,10.284 12.688,11.185 C13.509,11.809 14.813,12.609 16.087,12.609 C15.181,11.749 15.116,9.843 15.14,8.965 Z" style="stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;"/>
+        </g>
+    </g>
+</svg>

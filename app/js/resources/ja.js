@@ -15,6 +15,23 @@ sofia.resources['ja'] = {
 				"default": "通常の",
 				"sepia": "セピア",
 				"dark": "微光"
+			},
+			"labels": {
+				"about": "約",
+				"addwindow": "ウィンドウを追加",
+				"settings": "[設定]",
+				"feedback": "フィードバック",
+				"options": "オプション"
+			},
+			"feedback": {
+				"name": "名前",
+				"email": "メール",
+				"comments": "あなたのコメント",
+				"feature": "フィーチャー提案",
+				"bug": "バグレポート",
+				"other": "その他",
+				"send": "送信する",
+				"thankyou": "ご協力ありがとうございました"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ja'] = {
 				"placeholder": "検索",
 				"button": "検索",
 				"results": "結果",
-				"verses": "詩"
+				"verses": "詩",
+				"options": "検索オプション"
 			},
 			"media": {
 				"label": "メディア"
@@ -73,6 +91,15 @@ sofia.resources['ja'] = {
 				"autoplay": "自動再生次",
 				"drama": "ドラマ",
 				"nondrama": "非ドラマ"
+			},
+			"parallel": {
+				"label": "Parallelsの",
+				"loading": "読み込んでいます...",
+				"showall": "すべて表示",
+				"hideall": "すべて非表示にする"
+			},
+			"comparison": {
+				"label": "比較"
 			}
 		},
 		"names": {

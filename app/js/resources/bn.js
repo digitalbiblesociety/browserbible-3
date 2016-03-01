@@ -15,6 +15,23 @@ sofia.resources['bn'] = {
 				"default": "স্বাভাবিক",
 				"sepia": "ছবি আঁকার একধরনের কালচে - বাদামী রং",
 				"dark": "কম আলো"
+			},
+			"labels": {
+				"about": "প্রায়",
+				"addwindow": "যোগ উইন্ডো",
+				"settings": "সেটিংস",
+				"feedback": "প্রতিক্রিয়া",
+				"options": "বিকল্প"
+			},
+			"feedback": {
+				"name": "নাম",
+				"email": "ইমেল",
+				"comments": "আপনার মন্তব্য",
+				"feature": "বৈশিষ্ট্য পরামর্শ",
+				"bug": "বাগ রিপোর্ট",
+				"other": "অন্যান্য",
+				"send": "পাঠান",
+				"thankyou": "আপনার প্রতিক্রিয়ার জন্য ধন্যবাদ"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['bn'] = {
 				"placeholder": "অনুসন্ধান",
 				"button": "অনুসন্ধান",
 				"results": "ফলাফল",
-				"verses": "আয়াত"
+				"verses": "আয়াত",
+				"options": "অনুসন্ধান বিকল্প"
 			},
 			"media": {
 				"label": "মিডিয়া"
@@ -73,6 +91,15 @@ sofia.resources['bn'] = {
 				"autoplay": "অটোপ্লে পরবর্তী",
 				"drama": "নাটক",
 				"nondrama": "অ নাটক"
+			},
+			"parallel": {
+				"label": "সমান্তরাল",
+				"loading": "লোড হচ্ছে ...",
+				"showall": "সমস্ত দেখান",
+				"hideall": "সমস্ত লুকান"
+			},
+			"comparison": {
+				"label": "তুলনা"
 			}
 		},
 		"names": {

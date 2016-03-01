@@ -4,10 +4,16 @@
 	line-height: 1.8;
 }
 
+	.compact-ui .section,
+	.compact-ui .chapter {
+		line-height: 1.5;
+	}	
+
 .section p,
 .section div.p,
 .chapter div.p {
 	text-indent: 1em;
+	margin: 0;
 }
 
 .section ins {
@@ -40,23 +46,6 @@
 	font-family: Avenir, helvetica;
 }
 
-body:not(.config-font-family-Libertine) [lang=he],
-body:not(.config-font-family-Libertine) .section[lang=he] .p,
-body:not(.config-font-family-Libertine) .chapter[lang=he] .p {
-	font-family: 'SBL Hebrew', EzraSIL!important;
-}
-
-[lang=he],
-.section[lang=he] .p,
-.chapter[lang=he] .p {
-	font-size: 1.2em;
-}
-
-body:not(.config-font-family-Libertine) [lang=el],
-body:not(.config-font-family-Libertine) .section[lang=el] .p,
-body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
-	font-family: Gentium, GentiumPlus!important;
-}
 
 /* notes and cross references */
 .note,
@@ -75,6 +64,22 @@ body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
 	display: inline;
 	text-decoration: none;
 }
+
+.note  +.note,
+.note + .cf,
+.cf + .note,
+.cf + .cf {
+	padding-left: 0.20em;
+}
+
+
+	.compact-ui .note  +.note,
+	.compact-ui .note + .cf,
+	.compact-ui .cf + .note,
+	.compact-ui .cf + .cf {
+		padding-left: 0.50em;
+	}	
+
 
 .chapter .note .key:hover,
 .chapter .cf.key:hover {
@@ -101,14 +106,14 @@ body:not(.config-font-family-Libertine) .chapter[lang=el] .p {
 	font-style: italic;
 }
 
-.bibleref,
-.xt {
+.bibleref
+/*, .xt */{
 	color: #7491CE;
 	cursor: pointer;
 }
 
-.bibleref:hover,
-.xt:hover {
+.bibleref:hover
+/* ,.xt:hover */ {
 	text-decoration: underline;
 }
 
@@ -185,22 +190,40 @@ div.c + div.q .v-1 {
 	padding: .3em 0;
 }
 
-div[lang=he] .c {
+
+.section[lang=he] .p,
+.chapter[lang=he] .p,
+.section[lang=heb] .p,
+.chapter[lang=heb] .p {
+	font-size: 125%;
+}
+
+
+.windows-container .section[lang=he],
+.windows-container [lang=he],
+.windows-container .section[lang=heb],
+.windows-container [lang=heb] {
+	font-family: 'SBL Hebrew', EzraSIL;
+}
+
+
+.windows-container .section[lang=grc],
+.windows-container [lang=grc],
+.windows-container .section[lang=el],
+.windows-container [lang=el] {
+	font-family: GentiumPlus, 'Gentium Plus';
+}
+
+
+/* put chapter on other side */
+.section[dir=rtl] .c,
+.section[dir=rtl] .c {
 	float: right;
 	margin-right: 0;
 	margin-left: .2em;
 }
 
-div[lang=he] {
-	font-family: 'SBL Hebrew', EzraSIL;
-	direction: rtl;
-	text-align: right;
-}
 
-div[lang=he] div.p {
-	direction: rtl;
-	text-align: right;
-}
 
 h3.is1,
 div.s,

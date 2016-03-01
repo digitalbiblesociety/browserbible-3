@@ -15,6 +15,23 @@ sofia.resources['et'] = {
 				"default": "Tavaline",
 				"sepia": "Seepia",
 				"dark": "Vähese valguse"
+			},
+			"labels": {
+				"about": "Umbes",
+				"addwindow": "Lisa Window",
+				"settings": "Seaded",
+				"feedback": "Tagasiside",
+				"options": "Valikud"
+			},
+			"feedback": {
+				"name": "Nimi",
+				"email": "Post",
+				"comments": "Teie kommentaarid",
+				"feature": "Feature Soovituslikud",
+				"bug": "Vearaport",
+				"other": "Muu",
+				"send": "Saatma",
+				"thankyou": "Täname tagasiside"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['et'] = {
 				"placeholder": "Otsing",
 				"button": "Otsing",
 				"results": "Tulemused",
-				"verses": "salmid"
+				"verses": "salmid",
+				"options": "Otsingu valikud"
 			},
 			"media": {
 				"label": "Andmekandja"
@@ -73,6 +91,15 @@ sofia.resources['et'] = {
 				"autoplay": "Autoplay Järgmine",
 				"drama": "Draama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Näita kõik",
+				"hideall": "Peida kõik"
+			},
+			"comparison": {
+				"label": "Võrdlus"
 			}
 		},
 		"names": {

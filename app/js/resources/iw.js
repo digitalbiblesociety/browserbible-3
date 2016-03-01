@@ -15,6 +15,23 @@ sofia.resources['iw'] = {
 				"default": "נורמלי",
 				"sepia": "חום כהה",
 				"dark": "אור נמוך"
+			},
+			"labels": {
+				"about": "אודות",
+				"addwindow": "הוסף חלון",
+				"settings": "הגדרות",
+				"feedback": "משוב",
+				"options": "אפשרויות"
+			},
+			"feedback": {
+				"name": "שם",
+				"email": "דוא&quot;ל",
+				"comments": "התגובות שלך",
+				"feature": "הצעה תכונה",
+				"bug": "דווח על תקלה",
+				"other": "אחר",
+				"send": "שלח",
+				"thankyou": "תודה על המשוב שלך"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['iw'] = {
 				"placeholder": "לחפש",
 				"button": "לחפש",
 				"results": "תוצאות",
-				"verses": "פסוקים"
+				"verses": "פסוקים",
+				"options": "אפשרויות חיפוש"
 			},
 			"media": {
 				"label": "כלי תקשורת"
@@ -73,6 +91,15 @@ sofia.resources['iw'] = {
 				"autoplay": "הפעלה אוטומטית הבא",
 				"drama": "דרמה",
 				"nondrama": "ללא דרמה"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "הצג את כל",
+				"hideall": "הסתר הכל"
+			},
+			"comparison": {
+				"label": "השוואה"
 			}
 		},
 		"names": {

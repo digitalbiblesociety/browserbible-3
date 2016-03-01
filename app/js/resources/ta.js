@@ -15,6 +15,23 @@ sofia.resources['ta'] = {
 				"default": "வழக்கமான",
 				"sepia": "செபியா",
 				"dark": "குறைந்த ஒளி"
+			},
+			"labels": {
+				"about": "பற்றி",
+				"addwindow": "விண்டோ சேர்க்கவும்",
+				"settings": "அமைப்புகள்",
+				"feedback": "கருத்து",
+				"options": "விருப்பங்கள்"
+			},
+			"feedback": {
+				"name": "பெயர்",
+				"email": "மின்னஞ்சல்",
+				"comments": "உங்கள் கருத்து",
+				"feature": "வசதிகள் பரிந்துரை",
+				"bug": "பிழை அறிக்கை",
+				"other": "பிற",
+				"send": "அனுப்பவும்",
+				"thankyou": "உங்கள் கருத்துக்கு நன்றி"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ta'] = {
 				"placeholder": "தேடுதல்",
 				"button": "தேடுதல்",
 				"results": "முடிவுகள்",
-				"verses": "வசனங்கள்"
+				"verses": "வசனங்கள்",
+				"options": "தேடல் விருப்பங்கள்"
 			},
 			"media": {
 				"label": "ஊடகங்கள்"
@@ -73,6 +91,15 @@ sofia.resources['ta'] = {
 				"autoplay": "தானியங்கி அடுத்த",
 				"drama": "நாடகம்",
 				"nondrama": "அல்லாத நாடகங்கள்"
+			},
+			"parallel": {
+				"label": "சமாந்தரமான",
+				"loading": "ஏற்றுகிறது ...",
+				"showall": "அனைத்து காட்டு",
+				"hideall": "அனைத்து மறை"
+			},
+			"comparison": {
+				"label": "ஒப்பீடு"
 			}
 		},
 		"names": {

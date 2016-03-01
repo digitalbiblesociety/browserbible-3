@@ -1,7 +1,7 @@
 
 
 // test/sample types
-var SearchWindow = function(id, parentNode, init_data) {
+var SearchWindow = function(id, parent, init_data) {
 
 	var header = $('<div class="window-header search-header" >' +
 
@@ -13,7 +13,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
 						
 						//'<select class="search-list header-list" style="max-width: 100px; top: 22px; right: 5px; position: absolute;" ></select>' +
-					'</div>').appendTo(parentNode),
+					'</div>').appendTo(parent.node),
 		main = $('<div class="search-main"><div class="search-wrapper">' +
 					'<div class="search-top">' +
 						//'<h2></h2>' +
@@ -26,9 +26,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 						'<div class="search-lemma-info"></div>' +
 						'<div class="search-usage"></div>' +
 					'</div>' +
-					'<div class="search-results"></div>' +
-				'</div></div>').appendTo(parentNode),
-		footer = $('<div class="search-footer window-footer"></div>').appendTo(parentNode),
+					'<div class="search-results reading-text"></div>' +
+				'</div></div>').appendTo(parent.node),
+		footer = $('<div class="search-footer window-footer"></div>').appendTo(parent.node),
 
 		topLemmaInfo = main.find('.search-lemma-info').hide(),
 		topVisual = main.find('.search-visual').hide(),
@@ -44,8 +44,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 		input = header.find('.search-text'),
 		button = header.find('.search-button'),
 		
-		textui = header.find('.text-list'),
-		textChooser = new TextChooser(parentNode, textui, 'bible'),
+		textlistui = header.find('.text-list'),
+		//textChooser = new TextChooser(parent.node, textlistui, 'bible'),
+		textChooser = sofia.globalTextChooser, 
+		textChooserFocused = false,
 		
 		searchOptionsButton = header.find('.search-options-button'),
 		
@@ -91,24 +93,26 @@ var SearchWindow = function(id, parentNode, init_data) {
 	});
 
 	textChooser.on('change', function(e) {
-		setTextInfo(e.data, false);
 		
-		// reset UI
+		if (e.data.target != textlistui) {
+			return;
+		}
+
+		setTextInfo(e.data.textInfo, false);
 		
+		// reset UI			
 		clearResults();
-		
 	});
 	
-	textui.on('click', function(e) {
-		if (textChooser.node().is(':visible')) {
-			textChooser.hide();
+	textlistui.on('click', function(e) {
+		
+		if (textChooser.getTarget() == textlistui) {
+			textChooser.toggle();
 		} else {
+			textChooser.setTarget(parent.node, textlistui, 'bible');
+			textChooser.setTextInfo(selectedTextInfo);
 			textChooser.show();
-			
-			setTimeout(function() {
-				activeClickOffNodes = [textChooser.node()[0], textui[0]];
-				$(document).on('click', docClick);
-			}, 10);
+			textChooserFocused = true;
 		}		
 	});
 	
@@ -134,12 +138,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 				top: top,
 				left: left
 			});
-
-			setTimeout(function() {
-				activeClickOffNodes = [divisionChooser[0], searchOptionsButton[0]];			
-				$(document).on('click', docClick);				
-			},10);
-
+			
 		}
 
 		// $(document).on('click', docClick);
@@ -255,46 +254,32 @@ var SearchWindow = function(id, parentNode, init_data) {
 		checkDivisionHeader( checkbox.closest('.division-list') );		
 	});	
 
-	var activeClickOffNodes = [];
-
-	function docClick(e) {
-		////console.log('doc click');
-
-		var target = $(e.target),
-			clickedOnActiveNode = false;
-
-		while (target != null && target.length > 0) {
-
-			//if (target[0] == activeClickOffNode[0] || target[0] == textui[0] ) {
-			if (activeClickOffNodes.indexOf(target[0]) > -1) {
-				clickedOnActiveNode = true;
-				break;
-			}
-
-			target = target.parent();
-		}
-
-		//return;
-		if (!clickedOnActiveNode) {
-			e.preventDefault();
-
-			$(activeClickOffNodes[0]).hide();
-			//textChooser.hide();
-			
-			$(document).off('click', docClick);
-
-			return false;
-		}
-	}
-
 	resultsBlock.on('click', 'tr', function(e) {
 
 		var tr = $(this),
 			fragmentid = tr.attr('data-fragmentid');
 
-		//console.log('search click', fragmentid);
+		
+		
+		// is there a bible window?
+		var 
+			bibleWindows = sofia.app.windowManager.getWindows().filter(function(w) { return w.className == 'BibleWindow'});
 
-		ext.trigger('globalmessage', {
+console.log('search click', fragmentid, bibleWindows);
+
+		if (bibleWindows.length == 0) {
+			
+			// open new window
+			sofia.app.windowManager.add('BibleWindow', {
+				textid: sofia.config.newBibleWindowVersion,
+				fragmentid: fragmentid,
+				sectionid: fragmentid.split('_')[0],
+			});
+			
+		} else {
+		
+
+			ext.trigger('globalmessage', {
 								type: 'globalmessage',
 								target: this,
 								data: {
@@ -307,6 +292,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 									}
 								}
 							});
+		}
 
 	});
 
@@ -424,7 +410,9 @@ var SearchWindow = function(id, parentNode, init_data) {
 			html += '</table>';
 
 
-			resultsBlock.html( html );
+			resultsBlock
+				.html( html )
+				.find('.v-num').remove();
 
 			// render book list
 			renderResultsVisual(divisionCount, bookList);
@@ -641,13 +629,15 @@ var SearchWindow = function(id, parentNode, init_data) {
 
 		textInfo = textChooser.getTextInfo();
 
-		var text = input.val(),
+		var text = input.val().trim(),
 			//textid = list.val(),
 			textid = textInfo.id,
 			
 			divisions = getSelectedDivisions(),
 			
 			allDivisions = divisionChooser.find('.division-list-items input');
+		
+		parent.tab.find('span').html(text);
 
 		// don't send the list if it's all books
 		if (allDivisions.length == divisions.length) {
@@ -706,11 +696,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 		// store new one
 		selectedTextInfo = textInfo;
 	
-		textui.html(textInfo.abbr);	
+		textlistui.html(textInfo.abbr);	
 		
 		// draw books
 		drawDivisions();
-		
 		
 		if (sendToChooser) {
 			textChooser.setTextInfo(textInfo);
@@ -757,8 +746,10 @@ var SearchWindow = function(id, parentNode, init_data) {
 			} else {
 				// if it's just <span class="highlight">, replace it with text
 				var textFragment = document.createTextNode(el.textContent);
-				el.parentNode.insertBefore(textFragment, el);
-				el.parentNode.removeChild(el);
+				if (el && el.parentNode) { 
+					el.parentNode.insertBefore(textFragment, el);
+					el.parentNode.removeChild(el);
+				}
 			}
 
 		});
@@ -828,7 +819,7 @@ var SearchWindow = function(id, parentNode, init_data) {
 								[] : getSelectedDivisions();
 
 			return {
-				searchtext: input.val(),
+				searchtext: input.val().trim(),
 				textid: (selectedTextInfo != null) ? selectedTextInfo.providerid : null,
 				divisions: divisions,
 				params: {

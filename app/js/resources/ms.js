@@ -15,6 +15,23 @@ sofia.resources['ms'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Mengenai",
+				"addwindow": "Tambah Window",
+				"settings": "Tetapan",
+				"feedback": "Maklumbalas",
+				"options": "Pilihan"
+			},
+			"feedback": {
+				"name": "Nama",
+				"email": "E-mel",
+				"comments": "Komen anda",
+				"feature": "Cadangan ciri",
+				"bug": "Laporan Bug",
+				"other": "Lain-lain",
+				"send": "Hantar",
+				"thankyou": "Terima kasih atas maklum balas anda"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ms'] = {
 				"placeholder": "Carian",
 				"button": "Carian",
 				"results": "Keputusan",
-				"verses": "ayat-ayat"
+				"verses": "ayat-ayat",
+				"options": "Pilihan Carian"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['ms'] = {
 				"autoplay": "Autoplay Seterusnya",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Tunjukkan Semua",
+				"hideall": "Menyembunyikan Semua"
+			},
+			"comparison": {
+				"label": "Perbandingan"
 			}
 		},
 		"names": {

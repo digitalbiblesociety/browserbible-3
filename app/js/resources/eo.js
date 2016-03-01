@@ -15,6 +15,23 @@ sofia.resources['eo'] = {
 				"default": "Normala",
 				"sepia": "Sepia",
 				"dark": "Malaltaj Lumo"
+			},
+			"labels": {
+				"about": "Pri",
+				"addwindow": "Aldoni Fenestro",
+				"settings": "Agordoj",
+				"feedback": "Retroefiko",
+				"options": "Opcioj"
+			},
+			"feedback": {
+				"name": "Nomo",
+				"email": "Retpoŝto",
+				"comments": "Viaj Komentoj",
+				"feature": "Feature Sugesto",
+				"bug": "Bug Report",
+				"other": "Aliaj",
+				"send": "Sendu",
+				"thankyou": "Dankon pro via retroefiko"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['eo'] = {
 				"placeholder": "Serĉu",
 				"button": "Serĉu",
 				"results": "Rezultoj",
-				"verses": "versoj"
+				"verses": "versoj",
+				"options": "Serĉo Opcioj"
 			},
 			"media": {
 				"label": "Dosieroj"
@@ -73,6 +91,15 @@ sofia.resources['eo'] = {
 				"autoplay": "Autoplay Sekva",
 				"drama": "Dramo",
 				"nondrama": "Non-Dramo"
+			},
+			"parallel": {
+				"label": "Paralelojn",
+				"loading": "Ŝarĝante ...",
+				"showall": "Montri Ĉiuj",
+				"hideall": "Kaŝi Ĉiuj"
+			},
+			"comparison": {
+				"label": "Komparo"
 			}
 		},
 		"names": {

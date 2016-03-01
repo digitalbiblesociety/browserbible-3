@@ -5,7 +5,8 @@ sofia.textproviders['fcbh'] = (function() {
 		text_data_is_loaded = false,
 		text_data_is_loading = false,
 		text_data_callbacks = [],
-		providerName = 'fcbh';
+		providerName = 'fcbh',
+		fullName = 'Faith Comes by Hearing - Digital Bible Platform';
 
 	function getTextManifest (callback) {
 
@@ -364,7 +365,8 @@ sofia.textproviders['fcbh'] = (function() {
 		getTextManifest: getTextManifest,
 		getTextInfo: getTextInfo,
 		loadSection: loadSection,
-		startSearch: startSearch
+		startSearch: startSearch,
+		fullName: fullName
 	}
 
 })();

@@ -8,9 +8,9 @@ sofia.config = {
 
 	// first load
 	windows: [
-		{type: 'bible', data: {textid: 'eng-NASB1995', fragmentid: 'JN1_1'}},
+		{type: 'bible', data: {textid: 'ENGNAS', fragmentid: 'JN1_1'}},
 		{type: 'bible', data: {textid: 'grc_tisch', fragmentid: 'JN1_1'}},
-		{type: 'search', data: {textid: 'eng-NASB1995', searchtext:'truth love'}}
+		{type: 'search', data: {textid: 'ENGNAS', searchtext:'truth love'}}
 	],
 
 	// URL to content
@@ -50,6 +50,10 @@ sofia.config = {
 
 	// language for top
 	pinnedLanguage: 'English',
+
+	// language(s) for top
+	pinnedLanguages: ['English', 'Spanish'],
+
 	
 	// Override the browser and user's choice for UI language
 	defaultLanguage: '',

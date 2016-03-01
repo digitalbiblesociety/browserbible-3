@@ -24,6 +24,19 @@ input:focus {
 }
 
 /* reused images */
+.close-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	background: #f8f8f8;
+	z-index: 10;
+}
+.compact-ui .close-container {
+	height: 39px;	
+}
+
 .close-button {
 	font-family: arial;
 	font-size: 15px;
@@ -45,6 +58,43 @@ input:focus {
 	background-position: 0 -20px;
 	color: #fff;
 }
+
+
+/*
+.close-button {
+	font-family: arial;
+	font-size: 15px;
+	position: absolute;
+	z-index: 10;
+	top: 5px;
+	right: 10px;
+	cursor: pointer;
+	color: #666;
+	width: 30px;
+	height: 40px;
+	border-radius: 10px;
+	text-align: center;
+	center center no-repeat;
+	background-color: #ccc;
+	background-position: center center;
+	border-radius: 0;
+}
+
+.close-button:after {
+	background: url(images/close-button.svg);
+	border-radius: 0;
+	color: #666;
+	width: 20px;
+	height: 20px;
+	display: block;
+	border-radius: 10px;
+	content:'';
+}
+
+.close-button:hover:after {
+	background-color: #d5998b;
+}
+*/
 
 
 /* MAIN APP */
@@ -71,6 +121,68 @@ input:focus {
 	border-right: solid 1px #eee;
 }
 
+.window-tab {	
+	display: none;	
+	position: absolute;
+	top: 14px;
+	right: 0;
+	width: 82px;
+	height: 26px;
+	background: transparent;
+	border-style: solid;
+	border-color: transparent transparent #999 transparent;
+	border-width: 0 11px 21px 11px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.window-tab-inner {
+	width: 80px;
+	height: 25px;	
+	margin-left: -10px;
+	margin-top: 1px;
+	background: transparent;
+	border-style: solid;
+	border-color: transparent transparent #ccc transparent;
+	border-width: 0 10px 25px 10px;	
+}
+
+.window-tab.active { 
+	z-index: 2;
+	border-color: transparent transparent transparent transparent;
+}
+.window-tab.active .window-tab-inner { 
+	border-color: transparent transparent #f8f8f8 transparent;
+}
+
+.theme-dark .window-tab-label {	
+	color: #fff;
+}
+.theme-dark .window-tab-inner {
+	border-color: transparent transparent #444 transparent;
+}
+.theme-dark .window-tab.active .window-tab-inner {
+	border-color-bottom: transparent transparent #222 transparent;
+}
+
+.window-tab-label {
+	position: absolute;
+	display: block;
+	background-size: 15px 15px;
+	background-repeat: no-repeat;	
+	background-position: left center;
+	top: 2px;
+	left: 0;
+	height: 20px;
+	width: 65px;
+	padding-left: 20px;
+	padding-top: 4px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 11px;
+}
+
 .window .window-header {
 	margin: 0;
 	padding: 10px;
@@ -80,6 +192,8 @@ input:focus {
 	z-index: 1;
 	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
+	white-space: nowrap;	
+	vertical-align: middle;
 }
 
 .window-title {
@@ -90,7 +204,6 @@ input:focus {
 
 .app-input,
 .app-list {
-	float: left;
 	border: solid 1px #ddd;
 	padding: 7px 6px 6px 10px;
 	background: #fff;
@@ -99,7 +212,20 @@ input:focus {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	height: 30px;
+	border-radius: 0;
+	display: inline-block;	
+	vertical-align: top;
 }
+
+.app-list.app-list-image {
+	width: 50px;
+	padding: 2px;
+}
+.app-list.app-list-image img {
+	width: 100%;
+	height: 100%;
+}
+
 
 .app-input:hover,
 .app-list:hover {
@@ -115,7 +241,7 @@ input:focus {
 	padding-right: 20px;
 	cursor: pointer;
 	border-radius: 0;
-	background-image: url(images/down-arrow.svg);
+	background-image: url(images/arrow-down.svg);
 	background-position: right center;
 	background-repeat: no-repeat;
 }
@@ -128,12 +254,13 @@ input:focus {
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	display: block;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .window .header-icon,
 .text-chooser-header .header-icon {
-	float: left;
+	-x-float: left;
 }
 
 .header-icon:hover {
@@ -151,13 +278,14 @@ input:focus {
 
 
 .window .window-header .header-button {
-	padding: 5px;
+	padding: 8px 4px 6px 4px;
 	background: transparent;
 	border-radius: 5px;
 	cursor: pointer;
 	color: #0071ff;
 	border: 0;
 	font-size: 12px;
+	display: inline-block;
 }
 
 .window .close-button {
@@ -170,37 +298,98 @@ input:focus {
 .window .close-button:hover {
 }
 
-@media only screen and (max-width:460px) {
-	.windows-main .window {
-		display: none;
-	}
 
-	.windows-main .window:first-child {
+	.compact-ui .window-tab {
 		display: block;
 	}
+	
+	
+	.compact-ui .windows-main .window {
+		float: none;		
+		display: block;
+		z-index: 1;	
+		position: absolute;
+		top: 40px;			
+	}
+	.compact-ui .windows-main .window.active {
+		z-index: 2;
+	}	
+	.compact-ui .window .window-header .app-input {
+		width: 90px;
+		-x-min-width: 120px;
+		padding: 5px;
+		height: 25px;
 
-	/* .one-window */ .window .window-header .app-input {
-		width: 120px;
-		min-width: 120px;
-		border: 0;
-		background: none;
 	}
 
-	/* .one-window */  .window .window-header .app-list {
-		float: right;
-		border: 0;
-		background-color: transparent;
+	.compact-ui .window .window-header .app-list {
+		padding: 5px  20px 5px 5px;
+		height: 25px;
 	}
 
-	/* .one-window */ .window .window-header {
+	.compact-ui .window .window-header {
 		height: 40px;
-		padding: 6px;
+		padding: 7px;
+		--padding-left: 40px;
+	}
+	.compact-ui .window .close-button {
+		top: 10px; 	
+	}
+	 
+	 /*		 
+	 .window .window-header {
+		 padding-left: 50px;
+	 }
+	 */
+	 
+	 .compact-ui .windows-header {
+		 height: 40px;
+	 }
+		 
+	 .compact-ui .header-icon {
+		 margin-top: 1px;
+	 }
+	 
+	 .compact-ui.app-mobile-fullscreen .windows-header {
+		 height: 50px;		 
+	 }
+	 
+	.compact-ui.app-mobile-fullscreen  .windows-main .window {
+		top: 50px;	 
+	}
+	 
+	.compact-ui.app-mobile-fullscreen .window-tab {
+		top: 39px;	 
 	}
 	
-	 .window .close-button {
-	 	display: none;
+	.compact-ui.app-mobile-fullscreen #main-menu-button {
+		top: 0px;
+	}
+	
+	.compact-ui.app-mobile-fullscreen #main-menu-dropdown {
+		top: 40px;
+	}
+	 
+	 
+	/* for single app, no need for tabs */
+	/*
+		 .one-window .window-tab {
+		 display: none;
+	 } 
+	 .one-window .windows-header { 
+		 height: 0;
+     }
+	 .one-window .window-header {
+		 padding-left: 50px;		 
 	 }
-}
+	 .one-window .windows-main .window {
+		top: 0;	 
+     }
+     .one-window .window .close-button {
+		display: none; 	
+	}
+	*/
+
 
 .window .window-main {
 	margin: 0;

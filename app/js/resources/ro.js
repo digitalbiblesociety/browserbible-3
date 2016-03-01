@@ -15,6 +15,23 @@ sofia.resources['ro'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Lumină scăzută"
+			},
+			"labels": {
+				"about": "Despre",
+				"addwindow": "Adăugați Window",
+				"settings": "Setări",
+				"feedback": "Feedback",
+				"options": "Opțiuni"
+			},
+			"feedback": {
+				"name": "Nume",
+				"email": "E-mail",
+				"comments": "Comentariile tale",
+				"feature": "Caracteristică Sugestie",
+				"bug": "Bug Report",
+				"other": "Alte",
+				"send": "Trimite",
+				"thankyou": "Va multumim pentru sugestiile dvs"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ro'] = {
 				"placeholder": "Căutare",
 				"button": "Căutare",
 				"results": "Rezultate",
-				"verses": "versete"
+				"verses": "versete",
+				"options": "Optiuni de cautare"
 			},
 			"media": {
 				"label": "Mass-media"
@@ -73,6 +91,15 @@ sofia.resources['ro'] = {
 				"autoplay": "Autoplay Următorul",
 				"drama": "Dramă",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Se încarcă ...",
+				"showall": "Arata tot",
+				"hideall": "Ascunde toate"
+			},
+			"comparison": {
+				"label": "Comparație"
 			}
 		},
 		"names": {

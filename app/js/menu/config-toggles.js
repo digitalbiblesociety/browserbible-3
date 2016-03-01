@@ -9,7 +9,7 @@ sofia.config = $.extend(sofia.config, {
 
 var ConfigToggles = function(node) {
 
-	var body = $('#config-toggles .config-body'),
+	var body = $('#config-type .config-body'),
 		toggleNames = sofia.config.settingToggleNames,
 		toggleDefaults = sofia.config.settingToggleDefaults,
 		prefix = 'config-toggle-';

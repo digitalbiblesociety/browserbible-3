@@ -15,6 +15,23 @@ sofia.resources['ga'] = {
 				"default": "Gnáth",
 				"sepia": "Sepia",
 				"dark": "Solas Íseal"
+			},
+			"labels": {
+				"about": "Maidir",
+				"addwindow": "Cuir Fuinneog",
+				"settings": "Socruithe",
+				"feedback": "Aiseolas",
+				"options": "Roghanna"
+			},
+			"feedback": {
+				"name": "An t-ainm",
+				"email": "Ríomhphost",
+				"comments": "Do Thuairimí",
+				"feature": "Moltaí Gné",
+				"bug": "Tuairisc Bug",
+				"other": "Eile",
+				"send": "Seol",
+				"thankyou": "Go raibh maith agat as do chuid aiseolais"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ga'] = {
 				"placeholder": "Cuardaigh",
 				"button": "Cuardaigh",
 				"results": "Torthaí",
-				"verses": "véarsaí"
+				"verses": "véarsaí",
+				"options": "Roghanna Cuardaigh"
 			},
 			"media": {
 				"label": "Meáin"
@@ -73,6 +91,15 @@ sofia.resources['ga'] = {
 				"autoplay": "Autoplay Ar Aghaidh",
 				"drama": "Drámaíocht",
 				"nondrama": "Neamh-Drámaíocht"
+			},
+			"parallel": {
+				"label": "Línte",
+				"loading": "Ag luchtú ...",
+				"showall": "Taispeáin Gach",
+				"hideall": "Folaigh Gach"
+			},
+			"comparison": {
+				"label": "Comparáid"
 			}
 		},
 		"names": {

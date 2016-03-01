@@ -15,6 +15,23 @@ sofia.resources['ar'] = {
 				"default": "افتراضي",
 				"sepia": "بني داكن",
 				"dark": "خلفيفة غامقة"
+			},
+			"labels": {
+				"about": "حول",
+				"addwindow": "إضافة النافذة",
+				"settings": "الإعدادات",
+				"feedback": "ردود الفعل",
+				"options": "خيارات"
+			},
+			"feedback": {
+				"name": "اسم",
+				"email": "البريد الإلكتروني",
+				"comments": "تحديثاتك",
+				"feature": "ميزة اقتراح",
+				"bug": "تقرير علة",
+				"other": "آخر",
+				"send": "إرسال",
+				"thankyou": "شكرا لملاحظاتك"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ar'] = {
 				"placeholder": "بحث",
 				"button": "بحث",
 				"results": "النتائج",
-				"verses": "الآيات"
+				"verses": "الآيات",
+				"options": "خيارات أكثر للبحث"
 			},
 			"media": {
 				"label": "سمعيات وبصريات"
@@ -73,6 +91,15 @@ sofia.resources['ar'] = {
 				"autoplay": "تشغيل الأصحاح التالي تلقائياً",
 				"drama": "قراءة درامية",
 				"nondrama": "قراءة غير درامية"
+			},
+			"parallel": {
+				"label": "المتوازيات",
+				"loading": "تحميل ...",
+				"showall": "عرض جميع",
+				"hideall": "إخفاء الكل"
+			},
+			"comparison": {
+				"label": "مقارنة"
 			}
 		},
 		"names": {

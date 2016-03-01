@@ -15,6 +15,23 @@ sofia.resources['hmn'] = {
 				"default": "Ib txwm",
 				"sepia": "Sepia",
 				"dark": "Tsawg Lub teeb"
+			},
+			"labels": {
+				"about": "Hais txog",
+				"addwindow": "Ntxiv Qhov rai",
+				"settings": "Chaw",
+				"feedback": "Lub tswv yim",
+				"options": "Xaiv"
+			},
+			"feedback": {
+				"name": "Lub npe",
+				"email": "Email",
+				"comments": "Koj Comments",
+				"feature": "Feature Lo lus txhib",
+				"bug": "Kab Daim ntawv qhia txog",
+				"other": "Lwm yam",
+				"send": "Xa",
+				"thankyou": "Ua tsaug rau koj rau koj lub tswv yim"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['hmn'] = {
 				"placeholder": "Nrhiav",
 				"button": "Nrhiav",
 				"results": "Results",
-				"verses": "nqe lus no"
+				"verses": "nqe lus no",
+				"options": "Nrhiav Options"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['hmn'] = {
 				"autoplay": "Autoplay Next",
 				"drama": "Yeeb yam",
 				"nondrama": "Uas tsis yog-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Chaw thau khoom ...",
+				"showall": "Qhia Tag nrho cov",
+				"hideall": "Nkaum Tag nrho cov"
+			},
+			"comparison": {
+				"label": "Kev sib piv"
 			}
 		},
 		"names": {

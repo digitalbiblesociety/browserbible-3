@@ -1,39 +1,51 @@
 
-var MainLogo = function(node) {
+var AboutScreen = function(node) {
 	var
 		container = $('.windows-container'),
 		body = $(document.body),
 		win = $(window),
-		logo = $('<div id="app-logo" class="image-logo"></div>')
-					.appendTo(node)
-					.on('click', logoClick),
+		
+		aboutButton = $('<div class="main-menu-item about-logo i18n" data-i18n="[html]menu.labels.about">About</div>')
+					.appendTo( $('#main-menu-features') )
+					.on('click', aboutClick),
 
 		modalOverlay = $('<div class="modal-overlay"></div>')
 							.appendTo( body )
 							.hide(),
 		isAboutLoaded = false,
-		aboutWindow = new MovableWindow(500,250,'About');
+		aboutWindow = new MovableWindow(500, 250, i18n.t('menu.labels.about'));
 
 	aboutWindow.body
 					.css({padding: '20px'});
 
-	aboutWindow.closeButton.on('click', function() {
+	aboutWindow.title.addClass('i18n').attr('data-i18n','[html]menu.labels.about');
+					
+					
+	function hideAbout() {
 		aboutWindow.hide();
 		modalOverlay.hide();
-		container.removeClass('blur');
+		container.removeClass('blur');		
+	}
+
+	modalOverlay.on('click', function() {
+		hideAbout();
 	});
 
-	function logoClick() {
+	aboutWindow.closeButton.on('click', function() {
+		hideAbout();
+	});
+
+	function aboutClick() {
 		if (aboutWindow.container.is(':visible')) {
-			aboutWindow.hide();
-			modalOverlay.hide();
-			container.removeClass('blur');
+			hideAbout();
 		} else {
+
+			$('#main-menu-dropdown').hide();
 
 			var winWidth = win.width(),
 				winHeight = win.height();
 
-
+			
 			container.addClass('blur');
 
 			aboutWindow
@@ -120,6 +132,6 @@ var MainLogo = function(node) {
 		}
 	}
 
-	return logo;
+	return aboutButton;
 };
-sofia.menuComponents.push('MainLogo');
+sofia.menuComponents.push('AboutScreen');

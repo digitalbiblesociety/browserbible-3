@@ -15,6 +15,23 @@ sofia.resources['be'] = {
 				"default": "Нармальны",
 				"sepia": "Сэпія",
 				"dark": "Нізкая асветленасць"
+			},
+			"labels": {
+				"about": "Аб",
+				"addwindow": "Дадаць акно",
+				"settings": "Налады",
+				"feedback": "Зваротная сувязь",
+				"options": "Опцыі"
+			},
+			"feedback": {
+				"name": "Імя",
+				"email": "Email",
+				"comments": "Вашы каментары",
+				"feature": "Асаблівасць Прапанова",
+				"bug": "Паведамленне пра памылку",
+				"other": "Іншы",
+				"send": "Паслаць",
+				"thankyou": "Дзякуй за Ваш водгук"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['be'] = {
 				"placeholder": "Пошук",
 				"button": "Пошук",
 				"results": "Вынікі",
-				"verses": "віршы"
+				"verses": "віршы",
+				"options": "Параметры пошуку"
 			},
 			"media": {
 				"label": "Сродкі масавай інфармацыі"
@@ -73,6 +91,15 @@ sofia.resources['be'] = {
 				"autoplay": "Аўтазапуск Наступны",
 				"drama": "Драма",
 				"nondrama": "Нумары для Драма"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Паказаць усе",
+				"hideall": "Не паказваць усе"
+			},
+			"comparison": {
+				"label": "Параўнанне"
 			}
 		},
 		"names": {

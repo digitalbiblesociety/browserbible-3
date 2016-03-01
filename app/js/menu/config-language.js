@@ -14,7 +14,7 @@ var LanguageSetting = function(node) {
 	}
 
 	var
-		body = $('#config-toggles .config-body'),
+		body = $('#config-tools .config-body'),
 		list = $('<select id="config-language" class="app-list"></select>')
 					.appendTo(body),
 		langKeys = Object.keys(sofia.resources);

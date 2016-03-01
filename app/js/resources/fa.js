@@ -15,6 +15,23 @@ sofia.resources['fa'] = {
 				"default": "طبیعی",
 				"sepia": "رنگ قرمز قهوهای",
 				"dark": "نور پایین"
+			},
+			"labels": {
+				"about": "در باره",
+				"addwindow": "اضافه کردن پنجره",
+				"settings": "تنظیمات",
+				"feedback": "باز خورد",
+				"options": "گزینه"
+			},
+			"feedback": {
+				"name": "نام",
+				"email": "ایمیل",
+				"comments": "نظرات شما",
+				"feature": "پیشنهادات ویژگی",
+				"bug": "گزارش اشکالات",
+				"other": "دیگر",
+				"send": "ارسال",
+				"thankyou": "با تشکر از شما برای نظرات شما"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['fa'] = {
 				"placeholder": "جستجو",
 				"button": "جستجو",
 				"results": "نتایج",
-				"verses": "آیات"
+				"verses": "آیات",
+				"options": "گزینه های جستجو"
 			},
 			"media": {
 				"label": "رسانه ها"
@@ -73,6 +91,15 @@ sofia.resources['fa'] = {
 				"autoplay": "خودکار بعدی",
 				"drama": "درام",
 				"nondrama": "غیر درام"
+			},
+			"parallel": {
+				"label": "نحوهی",
+				"loading": "در حال بارگذاری ...",
+				"showall": "نمایش همه",
+				"hideall": "مخفی کردن همه"
+			},
+			"comparison": {
+				"label": "مقایسه"
 			}
 		},
 		"names": {

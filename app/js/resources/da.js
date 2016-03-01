@@ -15,6 +15,23 @@ sofia.resources['da'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Cirka",
+				"addwindow": "Tilføj Window",
+				"settings": "Indstillinger",
+				"feedback": "Feedback",
+				"options": "Indstillinger"
+			},
+			"feedback": {
+				"name": "Navn",
+				"email": "Email",
+				"comments": "Dine kommentarer",
+				"feature": "Feature forslag",
+				"bug": "Bug Report",
+				"other": "Andre",
+				"send": "Sende",
+				"thankyou": "Tak for din feedback"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['da'] = {
 				"placeholder": "Søg",
 				"button": "Søg",
 				"results": "Resultater",
-				"verses": "vers"
+				"verses": "vers",
+				"options": "Søgemuligheder"
 			},
 			"media": {
 				"label": "Medier"
@@ -73,6 +91,15 @@ sofia.resources['da'] = {
 				"autoplay": "Autoplay Næste",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Indlæser ...",
+				"showall": "Vis alle",
+				"hideall": "Skjul alt"
+			},
+			"comparison": {
+				"label": "Sammenligning"
 			}
 		},
 		"names": {

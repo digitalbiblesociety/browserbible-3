@@ -28,6 +28,12 @@ TextLoader = (function() {
 
 		if (textInfo != null && typeof textInfo == 'string') {
 			textid = textInfo;
+			
+			getText(textid, function(textInfo) {				
+				loadSection(textInfo, sectionid, successCallback, errorCallback);				
+			});
+			return;
+			
 		} else {
 			textid = textInfo.id;
 
@@ -35,6 +41,11 @@ TextLoader = (function() {
 			if (textInfo.sections && textInfo.sections.length > 0 && textInfo.sections.indexOf(sectionid) == -1) {
 				sectionid = textInfo.sections[0];
 			}
+		}
+		
+		// send analytics for loading
+		if (sofia.analytics && sofia.analytics.record) {
+			sofia.analytics.record('load', textInfo.id, sectionid);
 		}
 
 		// use stored text if present
@@ -81,7 +92,7 @@ TextLoader = (function() {
 					return info.id == textid;
 				})[0];
 	
-			if (textInfo) {
+			if (textInfo && typeof textInfo.providerName != 'undefined') {
 				providerName = textInfo.providerName;
 			} else {
 				providerName = 'local'; // ???
@@ -127,8 +138,16 @@ TextLoader = (function() {
 
 		sofia.textproviders[providerName].getTextInfo(textid, function(data) {
 
+			var initialInfo = textInfoData[textid];
+			data = $.extend({}, initialInfo, data, true);
+
+
 			processText(data, providerName)
-			//data.providerName = providerName;						
+			//data.providerName = providerName;	
+			
+			
+			
+								
 
 			// store
 			textData[data.id] = data;
@@ -244,6 +263,10 @@ TextLoader = (function() {
 		sofia.textproviders[providerName].startSearch(textid, divisions, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete);
 
 	}
+	
+	function getTextInfoData() {
+		return textInfoData;
+	}
 
 	// when the document is ready, start loading texts from providers
 	$(function() {
@@ -254,6 +277,7 @@ TextLoader = (function() {
 		getText: getText,
 		loadTexts: loadTexts,
 		textData: textData,
+		getTextInfoData: getTextInfoData,
 		loadSection: loadSection,
 		startSearch: startSearch,
 		processTexts: processTexts,

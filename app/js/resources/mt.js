@@ -15,6 +15,23 @@ sofia.resources['mt'] = {
 				"default": "Normali",
 				"sepia": "Sepja",
 				"dark": "Light baxxa"
+			},
+			"labels": {
+				"about": "Dwar",
+				"addwindow": "Żid Tieqa",
+				"settings": "Settings",
+				"feedback": "Feedback",
+				"options": "Għażliet"
+			},
+			"feedback": {
+				"name": "Isem",
+				"email": "Email",
+				"comments": "Kummenti tiegħek",
+				"feature": "Suġġeriment karatteristika",
+				"bug": "Rapport Bug",
+				"other": "Oħra",
+				"send": "Ibgħat",
+				"thankyou": "Grazzi għall-feedback tiegħek"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['mt'] = {
 				"placeholder": "Fittex",
 				"button": "Fittex",
 				"results": "Riżultati",
-				"verses": "versi"
+				"verses": "versi",
+				"options": "Fittex Għażliet"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['mt'] = {
 				"autoplay": "Autoplay jmiss",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Paralleli",
+				"loading": "Loading ...",
+				"showall": "Uri Kollha",
+				"hideall": "Aħbi Kollha"
+			},
+			"comparison": {
+				"label": "Paragun"
 			}
 		},
 		"names": {

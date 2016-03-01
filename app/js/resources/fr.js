@@ -15,6 +15,23 @@ sofia.resources['fr'] = {
 				"default": "Normal",
 				"sepia": "Sépia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Sur",
+				"addwindow": "Ajouter fenêtre",
+				"settings": "Paramètres",
+				"feedback": "Réaction",
+				"options": "Options"
+			},
+			"feedback": {
+				"name": "Nom",
+				"email": "Email",
+				"comments": "Vos commentaires",
+				"feature": "Caractéristique Suggestion",
+				"bug": "Rapport de Bug",
+				"other": "Autre",
+				"send": "Envoyer",
+				"thankyou": "Merci pour vos commentaires"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['fr'] = {
 				"placeholder": "Recherche",
 				"button": "Recherche",
 				"results": "Résultats",
-				"verses": "versets"
+				"verses": "versets",
+				"options": "options de recherche"
 			},
 			"media": {
 				"label": "Médias"
@@ -73,15 +91,19 @@ sofia.resources['fr'] = {
 				"autoplay": "Autoplay Suivant",
 				"drama": "Drame",
 				"nondrama": "Non Drame"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Chargement ...",
+				"showall": "Tout afficher",
+				"hideall": "Masquer tout"
+			},
+			"comparison": {
+				"label": "Comparaison"
 			}
 		},
 		"names": {
 			"en": "French"
-		},
-		"window": {
-			"bible": {
-				"languages": "indéfini"
-			}
 		}
 	}
 }

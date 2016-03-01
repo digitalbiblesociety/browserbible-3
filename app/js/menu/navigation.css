@@ -1,0 +1,66 @@
+#main-forward-button {
+	position: absolute;
+	top: 15px;
+	right: 300px;
+	background-size: 32px 32px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	background-image: url(../../css/images/arrow-right-gray-light.svg);
+}
+
+#main-back-button {
+	position: absolute;
+	top: 15px;
+	right: 330px;
+	background-size: 32px 32px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	background-image: url(../../css/images/arrow-left-gray-light.svg);	
+}
+
+#main-back-button.inactive,
+#main-forward-button.inactive  {
+	opacity: 0.5;
+	cursor: inherit;
+}
+
+
+	.compact-ui #main-back-button,
+	.compact-ui #main-forward-button {
+		display: none;
+	}
+	
+
+#compact-back-button {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #2a85e8;
+	color: #fff;
+	z-index: 1000;
+
+	background-size: 22px 22px;
+	background-repeat: no-repeat;
+	background-position: 5px center;	
+	background-image: url(../../css/images/arrow-left-gray-light.svg);	
+	
+	cursor: pointer;
+}
+#compact-back-button-label {
+	display: inline-block;
+	float: left;
+	padding: 8px 8px 8px 30px;
+	font-size: 10px;
+}
+
+.compact-ui #compact-back-button.active {
+	display: block;
+}

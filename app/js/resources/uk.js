@@ -15,6 +15,23 @@ sofia.resources['uk'] = {
 				"default": "Нормальний",
 				"sepia": "Сепія",
 				"dark": "Низька освітленість"
+			},
+			"labels": {
+				"about": "Про",
+				"addwindow": "Додати вікно",
+				"settings": "Налаштування",
+				"feedback": "Зворотній зв&#39;язок",
+				"options": "Опції"
+			},
+			"feedback": {
+				"name": "Ім&#39;я",
+				"email": "Email",
+				"comments": "Ваші коментарі",
+				"feature": "Особливість Пропозиція",
+				"bug": "Повідомлення про помилку",
+				"other": "Інший",
+				"send": "Послати",
+				"thankyou": "Дякуємо за Ваш відгук"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['uk'] = {
 				"placeholder": "Пошук",
 				"button": "Пошук",
 				"results": "Результати",
-				"verses": "вірші"
+				"verses": "вірші",
+				"options": "Параметри пошуку"
 			},
 			"media": {
 				"label": "Засоби масової інформації"
@@ -73,10 +91,18 @@ sofia.resources['uk'] = {
 				"autoplay": "Автозапуск Наступна",
 				"drama": "Драма",
 				"nondrama": "Номери для Драма"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Показати всі",
+				"hideall": "Приховати все"
+			},
+			"comparison": {
+				"label": "Порівняння"
 			}
 		},
 		"names": {
-			"en": "Ukrainian"
-		}
+			"en": "Ukrainian"		}
 	}
 }

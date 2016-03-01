@@ -1,6 +1,6 @@
 /**
 * Generates HTML that can function as standalone chapters or as chapters loaded by the main app
-* This attemps to load folders in the ./input/ directory, read the ./input/versoin/info.json and
+* This attemps to load folders in the ./input/ directory, read the ./input/version/info.json and
 * then use a renderer found in ./node_modules/generate_renderername.js
 *
 * See options for details on running
@@ -178,6 +178,15 @@ function convertFolder(inputPath) {
 			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData, 'strongs');
 
 			console.timeEnd('createLemma');
+			
+			/*
+			console.time('createStemIndex');
+
+			verseIndexer.createHashedIndexFiles(info.lang, indexOutputPath, data.indexData, 'words');
+
+			console.timeEnd('createStemIndex');			
+			*/
+			
 		}
 
 		// save info

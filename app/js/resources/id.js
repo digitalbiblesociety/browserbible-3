@@ -15,6 +15,23 @@ sofia.resources['id'] = {
 				"default": "Normal",
 				"sepia": "Warna coklat tua",
 				"dark": "Cahaya Rendah"
+			},
+			"labels": {
+				"about": "Tentang",
+				"addwindow": "Tambahkan Jendela",
+				"settings": "Pengaturan",
+				"feedback": "Umpan Balik",
+				"options": "Pilihan"
+			},
+			"feedback": {
+				"name": "Nama",
+				"email": "Email",
+				"comments": "Komentar Anda",
+				"feature": "Fitur Saran",
+				"bug": "Bug Report",
+				"other": "Yang Lainnya",
+				"send": "Mengirim",
+				"thankyou": "Terima kasih atas tanggapan Anda"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['id'] = {
 				"placeholder": "Pencarian",
 				"button": "Pencarian",
 				"results": "Hasil",
-				"verses": "ayat"
+				"verses": "ayat",
+				"options": "Opsi pencarian"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['id'] = {
 				"autoplay": "Autoplay Berikutnya",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Tampilkan Semua",
+				"hideall": "Sembunyikan Semua"
+			},
+			"comparison": {
+				"label": "Perbandingan"
 			}
 		},
 		"names": {

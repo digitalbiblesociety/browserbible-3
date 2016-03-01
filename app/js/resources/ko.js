@@ -15,6 +15,23 @@ sofia.resources['ko'] = {
 				"default": "표준",
 				"sepia": "세피아",
 				"dark": "저 조명"
+			},
+			"labels": {
+				"about": "약",
+				"addwindow": "추가 창",
+				"settings": "설정",
+				"feedback": "피드백",
+				"options": "옵션"
+			},
+			"feedback": {
+				"name": "이름",
+				"email": "이메일",
+				"comments": "여러분의 의견",
+				"feature": "기능 제안",
+				"bug": "버그 리포트",
+				"other": "다른",
+				"send": "보내기",
+				"thankyou": "피드백에 감사드립니다"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ko'] = {
 				"placeholder": "수색",
 				"button": "수색",
 				"results": "결과",
-				"verses": "절"
+				"verses": "절",
+				"options": "검색 옵션"
 			},
 			"media": {
 				"label": "미디어"
@@ -73,6 +91,15 @@ sofia.resources['ko'] = {
 				"autoplay": "자동 재생 다음",
 				"drama": "드라마",
 				"nondrama": "비 드라마"
+			},
+			"parallel": {
+				"label": "패러랠",
+				"loading": "로드 중 ...",
+				"showall": "모두보기",
+				"hideall": "모든 숨기기"
+			},
+			"comparison": {
+				"label": "비교"
 			}
 		},
 		"names": {

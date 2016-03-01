@@ -15,6 +15,23 @@ sofia.resources['cs'] = {
 				"default": "Normální",
 				"sepia": "Sépie",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "O",
+				"addwindow": "Přidat Okno",
+				"settings": "Nastavení",
+				"feedback": "Zpětná vazba",
+				"options": "Možnosti"
+			},
+			"feedback": {
+				"name": "Název",
+				"email": "E-mail",
+				"comments": "Vaše komentáře",
+				"feature": "Feature Návrh",
+				"bug": "Bug Report",
+				"other": "Další",
+				"send": "Odeslat",
+				"thankyou": "Děkujeme vám za vaši reakci"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['cs'] = {
 				"placeholder": "Hledání",
 				"button": "Hledání",
 				"results": "Výsledky",
-				"verses": "verše"
+				"verses": "verše",
+				"options": "Možnosti vyhledávání"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['cs'] = {
 				"autoplay": "Automatické přehrávání Další",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Zobrazit vše",
+				"hideall": "Skrýt vše"
+			},
+			"comparison": {
+				"label": "Porovnání"
 			}
 		},
 		"names": {

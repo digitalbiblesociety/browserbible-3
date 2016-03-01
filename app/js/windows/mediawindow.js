@@ -1,14 +1,14 @@
 
-var MediaWindow = function(id, parentNode, data) {
+var MediaWindow = function(id, parent, data) {
 
 	var mediaLibraries = null,
 		contentToProcess = null,
 		currentSectionId = '';
-		header = $('<div class="window-header"><span class="window-title i18n" data-i18n="[html]windows.media.label"></span></div>').appendTo(parentNode),
+		header = $('<div class="window-header"><span class="window-title i18n" data-i18n="[html]windows.media.label"></span></div>').appendTo(parent.node),
 		main = $('<div class="window-main">' +
 					'<div class="media-video"></div>' +
 					'<div class="media-content"></div>' +
-				'</div>').appendTo(parentNode),
+				'</div>').appendTo(parent.node),
 		videoArea = main.find('media-video'),
 		contentArea = main.find('media-content');
 

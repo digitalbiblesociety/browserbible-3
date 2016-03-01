@@ -15,6 +15,23 @@ sofia.resources['ka'] = {
 				"default": "ნორმალური",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "შესახებ",
+				"addwindow": "სანიშნეს Window",
+				"settings": "პარამეტრები",
+				"feedback": "კავშირი",
+				"options": "პარამეტრები"
+			},
+			"feedback": {
+				"name": "სახელი",
+				"email": "ელ",
+				"comments": "თქვენი კომენტარები",
+				"feature": "მხატვრული შემოთავაზება",
+				"bug": "Bug Report",
+				"other": "სხვა",
+				"send": "პირადი",
+				"thankyou": "დიდი მადლობა თქვენი კავშირი"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ka'] = {
 				"placeholder": "ძიება",
 				"button": "ძიება",
 				"results": "შედეგები",
-				"verses": "ლექსები"
+				"verses": "ლექსები",
+				"options": "ძებნის პარამეტრები"
 			},
 			"media": {
 				"label": "მედია"
@@ -73,6 +91,15 @@ sofia.resources['ka'] = {
 				"autoplay": "Autoplay შემდეგი",
 				"drama": "დრამა",
 				"nondrama": "არასამთავრობო დრამა"
+			},
+			"parallel": {
+				"label": "პარალელები",
+				"loading": "Loading ...",
+				"showall": "აჩვენე ყველა",
+				"hideall": "დამალვა ყველა"
+			},
+			"comparison": {
+				"label": "შედარება"
 			}
 		},
 		"names": {

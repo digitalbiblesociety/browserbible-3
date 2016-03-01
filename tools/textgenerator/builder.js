@@ -7,23 +7,28 @@
 var
 	fs = require('fs'),
 	path = require('path'),
-	jsdom = require("jsdom"),
-	$ = require('jquery')(jsdom.jsdom().createWindow()),
 	uglifyjs = require("uglify-js"),
 	uglifycss = require("uglifycss"),
 	mkdirp = require("mkdirp");
+	
 
 // START
 var
 	rootPath = '../../app/',
 	buildPath = path.join(rootPath, 'build'),
 	inputFilePath = path.join(rootPath, 'index.html'),
-	// change <script> to <scripty> since that means it won't get executed
-	html = fs.readFileSync(inputFilePath, 'utf8').replace(/script/gi, 'scripty'),
-	doc = $(html),
-	scriptNodes = doc.find('scripty[src]'),
-	stylesheetNodes = doc.find('link[rel="stylesheet"]'),
+	html = fs.readFileSync(inputFilePath, 'utf8'),
+	
+	linkRegExp = /<link(.)+href="([^"]+)"(.)+\/>/gi,
+	scriptRegExp = /<script(.)+src="([^"]+)"(.)+>/gi,
+	
+	linkMatch = null,
+	scriptMatch = null;
+	
+	//linkMatches = linkRegExp.exec(html),
+	//scriptMatches = scriptRegExp.exec(html);
 
+var
 	copyFiles = [],
 	scripts = [],
 	stylesheets = [],
@@ -41,16 +46,18 @@ var
 	sourceMap = ''
 	sourceMapPath = path.join(buildPath, 'build.min.js.map');
 
+console.log("===  SOFIA BUILDER  ====");
 
 console.time('Javascript: combine and minify');
 
 // JAVASCIPT
 // find all script URLs
-scriptNodes.each(function(i, el) {
-	var src = $(this).attr('src'),
-		build = $(this).attr('data-build');
+//for (var i=0, il=scriptMatches.length; i<il; i++) {
+while ((scriptMatch = scriptRegExp.exec(html)) !== null) {
+	var src = scriptMatch[2],
+		copyFile = scriptMatch[0].indexOf('data-build="copy"') > -1;
 
-	if (build === 'copy') {
+	if (copyFile) {
 		copyFiles.push(src);
 	} else {
 		
@@ -76,7 +83,7 @@ scriptNodes.each(function(i, el) {
 		*/
 				
 	}
-});
+}
 
 	
 try {
@@ -100,11 +107,16 @@ console.timeEnd('Javascript: combine and minify');
 console.time('CSS: combine and minify');
 // CSS
 // find all stylesheet URLs
-stylesheetNodes.each(function(i, el) {
-	var href = $(this).attr('href'),
-		build = $(this).attr('data-build');
+//stylesheetNodes.each(function(i, el) {
+while ((linkMatch = linkRegExp.exec(html)) !== null) {	
+	var href = linkMatch[2],
+		copyFile = linkMatch[0].indexOf('data-build="copy"') > -1;
 
-	if (build === 'copy') {
+	if (href.indexOf('.css') == -1) {
+		continue;
+	}
+
+	if (copyFile) {
 		copyFiles.push(href);
 	} else {
 	
@@ -118,7 +130,7 @@ stylesheetNodes.each(function(i, el) {
 			fs.readFileSync(localPath, 'utf8') +
 			'\n\n';		
 	}
-});
+}
 
 
 function updateCssUrls(inputCss) {
@@ -135,10 +147,17 @@ var inliner = {
 			
 			var fileName = file + '.' + type,
 				filePath = path.join(basePath, fileName),
-				size = fs.statSync(filePath).size;
+				size = 0;
 				
-			if (size > 5120) {
-				console.log('Skipping ' + filePath + ' (' + (Math.round(size/1024*100)/100) + 'k)');
+			try {
+				size = fs.statSync(filePath).size;
+			} catch (exp) {
+				console.log('Error: cannot find', filePath);
+				return '';				
+			}
+				
+			if (size > 6120) {
+				console.log('TOO BIG, skipping: ' + filePath + ' (' + (Math.round(size/1024*100)/100) + 'k)');
 				return match;
 			} else {
 				var base64 = '';
@@ -241,3 +260,4 @@ function copyRecursive(folderIn, folderOut) {
 	});
 
 }
+

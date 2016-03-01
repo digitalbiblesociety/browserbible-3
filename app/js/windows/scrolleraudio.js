@@ -1,5 +1,5 @@
 
-var AudioController = function(id, container, ui, scroller) {
+var AudioController = function(id, container, toggleButton, scroller) {
 
 	var block = $(
 				'<div class="audio-controller">' +
@@ -16,7 +16,7 @@ var AudioController = function(id, container, ui, scroller) {
 					'<span class="audio-duration">00:00</span>' +
 					'<span class="audio-title"></span>' +
 					'<span class="audio-subtitle"></span>' +
-					'<input type="button" class="audio-options-button image-config" />' +
+					'<input type="button" class="audio-options-button image-config-light" />' +
 				'</div>'
 				).appendTo(container),
 		optionsButton = block.find('.audio-options-button'),
@@ -64,23 +64,20 @@ var AudioController = function(id, container, ui, scroller) {
 		sectionid = '',
 		fragmentid = '',
 		fragmentAudioData = null,
+		loadAudioWhenPlayIsPressed = false,
 		sectionHeight = 0,
 		sectionNode = null,
 		hasAudio = false,
 		audioDataManager = new AudioDataManager();
-
-	//autoplayCheckbox.prop('checked',false);
-	//autoplayCheckbox.parent().hide();
-
+		
+	// START UP
 	options.find('.i18n').i18n();
 
-	block.hide();
-	ui.hide();
+	if (toggleButton != null) {
+		toggleButton.hide();
+		block.hide();
+	}
 	options.hide();
-
-
-
-
 
 	// OPTIONS
 	optionsButton.on('click', function() {
@@ -130,20 +127,18 @@ var AudioController = function(id, container, ui, scroller) {
 		}
 	}
 
-
 	optionsDramaticAudio.on('change', updateDramatic);
 	optionsDramaticDrama.on('change', updateDramatic);
 
 	function updateDramatic() {
-
-		//console.log('change dramatic');
-
+		
 		var storedFragmentid = fragmentid;
 
 		// kill all existing values
 		fragmentid = '';
 		sectionid = '';
 		fragmentAudioData = null;
+		loadAudioWhenPlayIsPressed = false;
 
 		// stop audio
 		if (!audio.paused && !audio.ended) {
@@ -155,21 +150,31 @@ var AudioController = function(id, container, ui, scroller) {
 		loadAudio(storedFragmentid);
 	}
 
-
 	// MAIN
-	ui.on('click', function() {
-		if (block.is(':visible')) {
-			block.hide();
-		} else {
-			block.show();
-		}
-	});
+	if (toggleButton != null) {
+		toggleButton.on('click', function() {
+			if (block.is(':visible')) {
+				block.hide();
+			} else {
+				block.show();
+			}
+		});
+	}
 
 	playButton.on('click', function() {
-
-		if (audio.src == '') {
+	
+		if (audio.src == '' || audio.src == null) {
+			
+			if (loadAudioWhenPlayIsPressed) {
+				audio.src = fragmentAudioData.url;
+				audio.load();
+				$(audio).on('loadeddata', playWhenLoaded);
+				loadAudioWhenPlayIsPressed = false;	
+			}		
+			
 			return;
 		}
+		
 
 		if (audio.paused || audio.ended) {
 			audio.play();
@@ -182,16 +187,14 @@ var AudioController = function(id, container, ui, scroller) {
 
 		audioDataManager.getPrevFragment(textInfo, audioInfo, fragmentid, function(prevFragmentid) {
 
-
-			// //console.log('prev', fragmentid, prevFragmentid);
-
 			if (prevFragmentid == null) {
 				return;
 			}
 
 			if (scrollCheckbox.is(':checked')) {
-				//scroller.scrollTo(nextSectionid + '_1', -10);
-				scroller.load('text', prevFragmentid.split('_')[0], prevFragmentid);
+				if (scroller != null && scroller.load) {
+					scroller.load('text', prevFragmentid.split('_')[0], prevFragmentid);
+				}
 			}
 
 			if (fragmentAudioData == null || prevFragmentid != fragmentAudioData.fragmentid) {
@@ -205,15 +208,14 @@ var AudioController = function(id, container, ui, scroller) {
 
 		audioDataManager.getNextFragment(textInfo, audioInfo, fragmentid, function(nextFragmentid) {
 
-			// //console.log('next', fragmentid, nextFragmentid);
-
 			if (nextFragmentid == null) {
 				return;
 			}
 
 			if (scrollCheckbox.is(':checked')) {
-				//scroller.scrollTo(nextSectionid + '_1', -10);
-				scroller.load('text', nextFragmentid.split('_')[0], nextFragmentid);
+				if (scroller != null && scroller.load) {
+					scroller.load('text', nextFragmentid.split('_')[0], nextFragmentid);
+				}
 			}
 
 			if (fragmentAudioData == null || nextFragmentid != fragmentAudioData.fragmentid) {
@@ -221,30 +223,29 @@ var AudioController = function(id, container, ui, scroller) {
 				$(audio).on('loadeddata', playWhenLoaded);
 			}
 		});
-
-		//alert('no implementation');
+		
 		return;
-
 	});
-
-	scroller.on('locationchange', updateLocation);
-	//scroller.on('load', loadAudio);
-
-	function updateLocation(e) {
-
-		var newLocationInfo = e.data;
-
-		//// //console.log('AUDIO:locationchange', e, newLocationInfo);
-
-		// found a fragment
-		if (newLocationInfo != null) {
-
-			locationInfo = newLocationInfo;
-
-			loadAudio(locationInfo.fragmentid);
+	
+	// only for the smaller player below a scroller
+	if (scroller != null) {
+		
+		function updateLocation(e) {
+	
+			var newLocationInfo = e.data;
+	
+			// found a fragment
+			if (newLocationInfo != null) {
+	
+				locationInfo = newLocationInfo;
+	
+				loadAudio(locationInfo.fragmentid);
+			}
 		}
+		
+		scroller.on('locationchange', updateLocation);
 	}
-
+	
 	function loadAudio(newFragmentid) {
 
 		if (!hasAudio) {
@@ -286,15 +287,17 @@ var AudioController = function(id, container, ui, scroller) {
 
 							title.html('[No audio]');
 
-							ui.hide();
-							block.hide();
+							if (toggleButton) {
+								toggleButton.hide();
+								block.hide();
+							}
 
 							fragmentAudioData = newFragmentAudioData;
 							return;
 						} else {
 
 							// if we get a URL, then show the ear icon again
-							ui.show();
+							if (toggleButton) toggleButton.show();
 
 							// only when the previous data was null, do we reshow the control bar
 							if (fragmentAudioData == null) {
@@ -305,9 +308,14 @@ var AudioController = function(id, container, ui, scroller) {
 							fragmentAudioData = newFragmentAudioData;
 						}
 
-						//audio.currentTime = 0;
-						audio.src = fragmentAudioData.url;
-						audio.load();
+						// only load audio if player is visible
+						if (block.is(':visible')) {
+							//audio.currentTime = 0;
+							audio.src = fragmentAudioData.url;
+							audio.load();
+						} else {
+							loadAudioWhenPlayIsPressed = true;
+						}
 
 
 						// store height info
@@ -391,15 +399,13 @@ var AudioController = function(id, container, ui, scroller) {
 				audioSliderHandle.css({left: (audio.currentTime / audio.duration * 100) + '%' });
 			}
 
-
-			if (!scrollCheckbox.is(':checked')) {
+			// don't auto scroll if not checked or if there was no connecting UI
+			if (!scrollCheckbox.is(':checked') || toggleButton == null) {
 				return;
 			}
 
 			if (sectionNode.length == 0) {
-
 				sectionNode = container.find('.section[data-id="' + sectionid + '"]');
-
 			}
 
 			sectionHeight = sectionNode.height();
@@ -500,22 +506,20 @@ var AudioController = function(id, container, ui, scroller) {
 					// boom!
 				}
 			}
-
-
+			
 			if (textInfo.type == 'bible') {
-
 
 				audioDataManager.getAudioInfo(textInfo, function(newAudioInfo) {
 
 					if (newAudioInfo != null) {
 						audioInfo = newAudioInfo;
 
-						//console.log('AUDIO: YES', textInfo.id, textInfo.lang, audioInfo.type);
+						console.log('AUDIO: YES', textInfo.id, textInfo.lang, audioInfo.type);
 
 						hasAudio = true;
 
 						sectionid = '';
-
+						fragmentAudioData = null;
 
 						if (audioInfo.type == 'local') {
 							optionsDramaticBox.hide();
@@ -529,7 +533,7 @@ var AudioController = function(id, container, ui, scroller) {
 										(typeof audioInfo.fcbh_drama_nt != 'undefined' && audioInfo.fcbh_drama_nt != '') ||
 										(typeof audioInfo.fcbh_drama_ot != 'undefined' && audioInfo.fcbh_drama_ot != '');
 
-							//console.log(audioInfo, 'drama', hasDrama, 'audio', hasNonDrama);
+							console.log(audioInfo, 'drama', hasDrama, 'audio', hasNonDrama);
 
 							// show hide
 							if (hasNonDrama && hasDrama) {
@@ -547,29 +551,14 @@ var AudioController = function(id, container, ui, scroller) {
 								optionsDramaticAudio.prop('checked', false);
 								optionsDramaticDrama.prop('checked', true);
 							}
-
-
-
 						}
 
-						/*
-						if (audioInfo.type == 'local') {
-							optionsDramaticBox.hide();
-
-						} else if (audioInfo.type == 'fcbh') {
-							optionsDramaticBox.show();
-
-							var hasDrama = (audioInfo.fcbh_audio_nt != '' || audioInfo.fcbh_audio_ot != ''),
-								hasAudio = (audioInfo.fcbh_drama_nt != '' || audioInfo.fcbh_drama_nt != '');
-						}
-						*/
-
-						//console.log("after dramatic switch");
-
+						
 						if (fragmentid != '') {
 							var newFragmentid = fragmentid;
 
 							fragmentid = '';
+							
 							// //console.log('AUDIO, new from old ', newFragmentid);
 							loadAudio(newFragmentid);
 						} else {
@@ -580,31 +569,27 @@ var AudioController = function(id, container, ui, scroller) {
 							if (locationInfo != null) {
 								loadAudio(locationInfo.fragmentid);
 							}
-
-
 						}
 						//}
 
 						// start load
 						//block.show();
-						ui.show();
+						if (toggleButton) toggleButton.show();
 
 					} else {
 						hasAudio = false;
 
-						// //console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
+						console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
 
-						block.hide();
-						ui.hide();
+						
+						if (toggleButton) {
+							toggleButton.hide();
+							block.hide();
+						}
 					}
 				});
-			}
-
-		}
-
-
-
-		// attempt to load
+			} // if text is bible
+		} // if this is a different text
 	}
 
 	function secondsToTimeCode(time) {

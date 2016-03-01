@@ -15,6 +15,23 @@ sofia.resources['lo'] = {
 				"default": "ຕາມ​ປົກ​ກະ​ຕິ",
 				"sepia": "Sepia",
 				"dark": "ແສງ​ຕ​່​ໍ​າ"
+			},
+			"labels": {
+				"about": "ກ່ຽວ​ກັບ",
+				"addwindow": "ຕື່ມ​ການ​ວິນ​ໂດ",
+				"settings": "ການ​ຕັ້ງ​ຄ່າ",
+				"feedback": "ຄໍາ​ຄຶດ​ຄໍາ​ເຫັນ",
+				"options": "ຕົວ​ເລືອກ"
+			},
+			"feedback": {
+				"name": "ຊື່",
+				"email": "Email",
+				"comments": "ຂອງ​ທ່ານ​ຄໍາ​ເຫັນ",
+				"feature": "ຄຸນ​ນະ​ສົມ​ບັດ​ຄໍາ​ແນະ​ນໍາ",
+				"bug": "ບົດ​ລາຍ​ງານ Bug",
+				"other": "ອື່ນ ໆ",
+				"send": "ສົ່ງ",
+				"thankyou": "ຂໍ​ຂອບ​ໃຈ​ສໍາ​ລັບ​ຄໍາ​ຄຶດ​ຄໍາ​ເຫັນ​ຂອງ​ທ່ານ​ທີ່​ທ່ານ"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['lo'] = {
 				"placeholder": "ຊອກ​ຫາ",
 				"button": "ຊອກ​ຫາ",
 				"results": "ຜົນ​ໄດ້​ຮັບ",
-				"verses": "ຂໍ້"
+				"verses": "ຂໍ້",
+				"options": "ຕົວ​ເລືອກ​ການ​ຊອກ​ຫາ"
 			},
 			"media": {
 				"label": "ສື່​ມວນ​ຊົນ"
@@ -73,6 +91,15 @@ sofia.resources['lo'] = {
 				"autoplay": "Autoplay ຕໍ່​ໄປ",
 				"drama": "ເຕັ້ນ",
 				"nondrama": "ບໍ່​ເຕັ້ນ​,"
+			},
+			"parallel": {
+				"label": "ຂະ​ຫນານ",
+				"loading": "ກໍາ​ລັງ​ໂຫລດ ...",
+				"showall": "ສະ​ແດງ​ໃຫ້​ເຫັນ​ທັງ​ຫມົດ",
+				"hideall": "ຊ່ອນ​ທັງ​ຫມົດ"
+			},
+			"comparison": {
+				"label": "ການ​ປຽບ​ທຽບ"
 			}
 		},
 		"names": {

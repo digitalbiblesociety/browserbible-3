@@ -1,6 +1,116 @@
 Change Log
 =======
 
+3.7.0 - 2016/02/17
+
+* Deaf Bible version
+
+
+3.6.6 - 2016/02/15
+
+* Style updates to Bible picker
+* Order by English instead of natural language
+* Allow touchscreens to use filter
+* Multiple stuck languages
+* Update SVG colors
+
+3.6.5 - 2015/10/27
+
+* Update to Word Clouds (hover functionality)
+* Fixed competing hover text colors
+
+3.6.4 - 2015/10/06
+
+* Added word clouds to Statistics window
+
+3.6.3 - 2015/10/04
+
+* Jesus film data is loaded async so languages can be updated more dynamically
+* Statistics window calculates common/uncommon words
+
+3.6.2 - 2015/08/26
+
+* Search window opens new Bible window if none is currently open
+
+3.6.1 - 2015/08/21
+
+* Fix clicking on inline images not working
+* Fix Bible picker list not showing during load or for audio
+* Focus on filter when clicking Bible dropdownlist
+
+3.6.0 - 2015/07/26
+
+* Suggestions in search (Search, go to version, go to verse)
+* Pull requests with typo fixes
+* Pull request for managing column width by size (pdattx)
+
+3.5.4 - 2015/06/24
+
+* Moved menu button on mobile
+
+3.5.3 - 2015/06/15
+
+* Updated book/chapter navigator that keeps things on one screen
+* More audio window fixes
+* Removing a window no longer makes the dropdowns stop working
+
+3.5.2 - 2015/06/08
+
+* Added default Audio version to config
+
+3.5.1 - 2015/06/05
+
+* Fixed parallels to work with new TextChooser
+
+3.5.0 - 2015/06/01
+
+* New audio window
+* Revamped TextChooser / TextNavigator code that only requires one instance
+
+3.4.4 - 2015/05/12
+
+* New picker with default|languages|countries
+
+3.4.3 - 2015/04/05
+
+* Forward / Back buttons
+
+3.4.2 - 2015/02/27
+
+* Stemming search functionality
+
+3.4.1 - 2015/02/18
+
+* Fixed positioning of main logo
+* Fixed Tischedorf rendering
+* Fixed errors in Map and TextComparison
+* Fixed wrong translation of language names
+
+3.4.0 - 2015/02/16
+
+* Major reorganization of menus
+* Text comparison tool
+* Feedback tool
+
+3.3.4 - 2015/01/12
+----
+
+* Added space between footnotes when two are next to one another
+* Fix: Firefox hiding config window when clicking on copy URL to clipboard (Flash)
+
+
+3.3.3 - 2015/01/08
+----
+
+* Fixed audio controller not visible on Android Chrome
+
+
+3.3.2 - 2014/10/01
+----
+
+* Some LXX work
+
+
 3.3.1 - 2014/09/24
 ----
 

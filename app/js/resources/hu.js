@@ -15,6 +15,23 @@ sofia.resources['hu'] = {
 				"default": "Normál",
 				"sepia": "Szépia",
 				"dark": "Kevés fény"
+			},
+			"labels": {
+				"about": "Körülbelül",
+				"addwindow": "Add Window",
+				"settings": "Beállítások",
+				"feedback": "Visszacsatolás",
+				"options": "Opciók"
+			},
+			"feedback": {
+				"name": "Név",
+				"email": "E-mail",
+				"comments": "Ön megjegyzései",
+				"feature": "Feature javaslat",
+				"bug": "Bug Report",
+				"other": "Más",
+				"send": "Küld",
+				"thankyou": "Köszönjük a visszajelzést"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['hu'] = {
 				"placeholder": "Keresés",
 				"button": "Keresés",
 				"results": "Eredmények",
-				"verses": "versek"
+				"verses": "versek",
+				"options": "Keresési beállítások"
 			},
 			"media": {
 				"label": "Média"
@@ -73,6 +91,15 @@ sofia.resources['hu'] = {
 				"autoplay": "Automatikus lejátszás Következő",
 				"drama": "Dráma",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Mutasd mindet",
+				"hideall": "Minden elrejtése"
+			},
+			"comparison": {
+				"label": "Összehasonlítás"
 			}
 		},
 		"names": {

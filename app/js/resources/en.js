@@ -2,8 +2,28 @@ sofia.resources['en'] = {
 	"translation": {
 		"name": "English",
 		"menu": {
+			"labels": {
+				"about": "About",
+				"addwindow": "Add Window",
+				"settings": "Settings",
+				"feedback": "Feedback",
+				"options": "Options"
+			},
+			"feedback": {
+				"name": "Name",
+				"email": "Email",
+				"comments": "Your Comments",
+				"feature": "Feature Suggestion",
+				"bug": "Bug Report",
+				"other": "Other",
+				"send": "Send",
+				"thankyou": "Thank you for your feedback"
+			},
 			"search": {
-				"placeholder": "Search"
+				"placeholder": "Search",
+				"suggestversion": "Open <strong>{0}</strong> in new window",
+				"suggestreference": "Go to <strong>{0}</strong> in {1}",
+				"suggestsearch": "Search \"<strong>{0}</strong>\" in {1}"											
 			},
 			"config": {
 				"font": "Style",
@@ -30,12 +50,19 @@ sofia.resources['en'] = {
 				"button": "English 2nd Person Plural",
 				"title": "English Second Person Plural",
 				"description": "Modern English does not distinguish between <em>you singular</em> and <em>you plural</em>, so this plugin uses regional English equivalents to represent the Hebrew and Greek forms."
+
 			},
 			"lemmapopup": {
 				"findalloccurrences": "Find all occurrences (approximately __count__)"
 			}
 		},
 		"windows": {
+			"deafbible": {
+				"label": "Deaf Bible"	
+			},
+			"videobible": {
+				"label": "Video Bible"	
+			},			
 			"bible": {
 				"label": "Bible",
 				"recentlyused": "Recently Used",
@@ -45,8 +72,11 @@ sofia.resources['en'] = {
 				"dc": "Deuterocanonical Books",
 				"more": "More",
 				"less": "Less",
-				"languages": "Languages",
-				"countries": "Countries"
+				"default": "Featured",
+				"languages": "Language",
+				"countries": "Country",
+				"lemma":"Greek/Hebrew Popups",
+				"audio":"Audio available"
 			},
 			"commentary": {
 				"label": "Commentary"
@@ -61,7 +91,7 @@ sofia.resources['en'] = {
 				"button": "Search",
 				"results": "Results",
 				"verses": "verses",
-				"options": "Search Options"							
+				"options": "Search Options"
 			},
 			"parallel": {
 				"label": "Parallels",
@@ -76,20 +106,37 @@ sofia.resources['en'] = {
 				"label": "Notes"
 			},
 			"audio": {
+				"label":"Audio",
 				"options": "Audio Options",
 				"synctext": "Sync Text (beta)",
 				"autoplay": "Autoplay Next",
 				"drama": "Dramatized",
 				"nondrama": "Spoken"
+			},
+			"comparison": {
+				"label": "Comparison"
+			},
+			"stats": {
+				"label": "Statistics",
+				"frequentwords":"Frequent Words"
 			}
 		},
 		"names": {
 			"en": "English",
-			"de": "Englisch",
-			"zh-TW": "英語",
-			"zh-CN": "英语",
+			"fr": "anglais",
 			"es": "Inglés",
-			"fr": "anglais"
+			"de": "Englisch",
+			"ru": "английский",
+			"hi": "अंग्रेजी",
+			"ar": "الإنجليزية",
+			"af": "Engels",
+			"bn": "ইংরেজি",
+			"id": "Bahasa Inggris",
+			"sw": "Kiingereza",
+			"tr": "ingilizce",
+			"ja": "英語",
+			"zh-TW": "英語",
+			"zh-CN": "英语"
 		}
 	}
 }

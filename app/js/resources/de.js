@@ -11,10 +11,27 @@ sofia.resources['de'] = {
 				"tools": "Werkzeuge"
 			},
 			"reset": "rücksetzen",
+			"labels": {
+				"about": "Über",
+				"addwindow": "Window",
+				"settings": "Einstellungen",
+				"feedback": "Rückkopplung",
+				"options": "Optionen"
+			},
+			"feedback": {
+				"name": "Name",
+				"email": "E-Mail",
+				"comments": "Ihre Kommentare",
+				"feature": "Feature-Vorschlag",
+				"bug": "Fehlerhinweis",
+				"other": "Andere",
+				"send": "Zukommen Lassen",
+				"thankyou": "Vielen Dank für Ihre Rückmeldung"
+			},
 			"themes": {
 				"default": "Normal",
 				"sepia": "Sepia",
-				"dark": "Low Light"
+				"dark": "wenig Licht"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['de'] = {
 				"placeholder": "Suche",
 				"button": "Suche",
 				"results": "Ergebnisse",
-				"verses": "Verse"
+				"verses": "Verse",
+				"options": "Suchoptionen"
 			},
 			"media": {
 				"label": "Medien"
@@ -73,6 +91,15 @@ sofia.resources['de'] = {
 				"autoplay": "Autoplay Weiter",
 				"drama": "Drama",
 				"nondrama": "Non-Drama-"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Wird Geladen ...",
+				"showall": "Alle anzeigen",
+				"hideall": "Alle ausblenden"
+			},
+			"comparison": {
+				"label": "Vergleich"
 			}
 		},
 		"names": {

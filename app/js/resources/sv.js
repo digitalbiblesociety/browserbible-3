@@ -15,6 +15,23 @@ sofia.resources['sv'] = {
 				"default": "Normal",
 				"sepia": "Sepia",
 				"dark": "Svagt ljus"
+			},
+			"labels": {
+				"about": "Om",
+				"addwindow": "Lägg Fönster",
+				"settings": "Inställningar",
+				"feedback": "Respons",
+				"options": "Val"
+			},
+			"feedback": {
+				"name": "Namn",
+				"email": "E",
+				"comments": "Dina kommentarer",
+				"feature": "Feature Förslag",
+				"bug": "Bug Rapport",
+				"other": "Annat",
+				"send": "Skicka",
+				"thankyou": "Tack för din feedback"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['sv'] = {
 				"placeholder": "Sökning",
 				"button": "Sökning",
 				"results": "Resultat",
-				"verses": "verser"
+				"verses": "verser",
+				"options": "Sökalternativ"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['sv'] = {
 				"autoplay": "Auto Nästa",
 				"drama": "Drama",
 				"nondrama": "Icke-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Laddar ...",
+				"showall": "Visa alla",
+				"hideall": "Göm alla"
+			},
+			"comparison": {
+				"label": "Jämförelse"
 			}
 		},
 		"names": {

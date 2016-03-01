@@ -15,6 +15,23 @@ sofia.resources['km'] = {
 				"default": "ធម្មតា",
 				"sepia": "Sepia",
 				"dark": "ពន្លឺ​ទាប"
+			},
+			"labels": {
+				"about": "អំពី",
+				"addwindow": "បង្អួច​បន្ថែម",
+				"settings": "ការ​កំណត់",
+				"feedback": "មតិ​អ្នក​ប្រើ",
+				"options": "ជេ​្រ​មើ​ស"
+			},
+			"feedback": {
+				"name": "ឈ្មោះ",
+				"email": "អ៊ី​ម៉ែ​ល",
+				"comments": "មតិ​របស់​អ្នក",
+				"feature": "មតិ​លក្ខណៈ​ពិសេស",
+				"bug": "រាយការណ៍​កំហុស",
+				"other": "ផ្សេង​ទៀត",
+				"send": "ផ្ញើ",
+				"thankyou": "សូម​អរគុណ​ចំពោះ​ការ​ឆ្លើយតប​របស់​អ្នក"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['km'] = {
 				"placeholder": "ស្វែងរក",
 				"button": "ស្វែងរក",
 				"results": "លទ្ធផល",
-				"verses": "ខ"
+				"verses": "ខ",
+				"options": "ជម្រើស​ស្វែងរក"
 			},
 			"media": {
 				"label": "ប្រព័ន្ធ​ផ្សព្វ​ផ្សាយ"
@@ -73,6 +91,15 @@ sofia.resources['km'] = {
 				"autoplay": "Autoplay បន្ទាប់",
 				"drama": "រឿង​មនោសញ្ចេតនា",
 				"nondrama": "មិន​មែន​សម្ដែង"
+			},
+			"parallel": {
+				"label": "ស្រប​គ្នា",
+				"loading": "កំពុង​ផ្ទុក ...",
+				"showall": "បង្ហាញ​ទាំងអស់",
+				"hideall": "លាក់​ទាំងអស់"
+			},
+			"comparison": {
+				"label": "ការ​ប្រៀបធៀប"
 			}
 		},
 		"names": {

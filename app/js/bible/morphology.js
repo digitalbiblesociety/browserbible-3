@@ -101,7 +101,7 @@ bible.morphology['robinson'] = {
 
 		}
 
-		return partOfSpeech + (formattedParsing != '' ? ': ' + formattedParsing: '');
+		return (typeof partOfSpeech != 'undefined' ? partOfSpeech + (formattedParsing != '' ? ': ' : '') : '') + formattedParsing;
 
 	},
 

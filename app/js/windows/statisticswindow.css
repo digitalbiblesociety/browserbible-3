@@ -1,0 +1,45 @@
+#add-StatisticsWindow, .StatisticsWindow-tab {
+	background-image: url(../../css/images/stats.svg);
+}
+
+
+.statistics-header {
+	font-weight: bold;
+	font-size: 120%;	
+	margin: 0 0 15px;
+}
+
+.statistics-content h3 {
+	font-size: 90%;
+}
+
+.statistics-content .word {
+	display: inline-block;
+	padding: 2px 2px 2px 0;
+	margin: 0 6px 2px 0;
+    cursor: default;
+}
+.statistics-content .word:hover {
+	background: #FF8;
+}
+
+.statistics-content {
+}
+
+.statistics-results {
+	padding-left: 1em;
+}
+
+.statistics-wordcloud {
+	width: 400px;
+	height: 300px;
+	display: block;
+	clear: both;
+	position: relative;
+	margin: 0 auto;
+}
+
+.statistics-wordcloud span:hover {
+	background: rgba(255, 255, 0, 0.5);
+    cursor: default;	
+}

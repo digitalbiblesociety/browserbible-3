@@ -11,7 +11,7 @@ var MediaLibraryPlugin = function(app) {
 	}
 
 	var mediaLibraries = null,
-		mediaPopup = new InfoWindow(),
+		mediaPopup = new InfoWindow('mediapopup'),
 		contentToProcess = [];
 
 	//console.log('MediaLibraryPlugin startup', MediaLibrary.getMediaLibraries);
@@ -50,7 +50,7 @@ var MediaLibraryPlugin = function(app) {
 
 			}
 
-			////console.log('media click', mediaLibrary);
+			console.log('media click', mediaLibrary);
 
 
 			mediaForVerse = mediaLibrary.data[verseid];
@@ -79,7 +79,7 @@ var MediaLibraryPlugin = function(app) {
 
 
 					//mediaPopup.center().show();
-					mediaPopup.clickOffNode = icon;
+					mediaPopup.setClickTargets( [icon] );
 					mediaPopup.position( icon ).show();
 
 					break;
@@ -96,9 +96,11 @@ var MediaLibraryPlugin = function(app) {
 
 					var lang = icon.closest('.section').attr('data-lang3'),
 						mediaInfo = mediaForVerse[0],
-						videoUrl = JesusFilmMediaApi.getPlayer(lang, mediaInfo.filename, function(iframeUrl) {
-
-							sofia.globals.showIframe(iframeUrl, mediaInfo.name);
+						videoUrl = JesusFilmMediaApi.getPlayer(lang, mediaInfo.filename, function(iframeUrl, iframeLang) {
+								
+							if (iframeUrl != null) {
+								sofia.globals.showIframe(iframeUrl, mediaInfo.name + ' (' + iframeLang + (lang != iframeLang ? '/' + lang : '') + ')');
+							}
 
 						});
 					

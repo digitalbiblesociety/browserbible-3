@@ -2,6 +2,7 @@
 sofia.textproviders['local'] = (function() {
 
 	var providerName = 'local',
+		fullName = '',
 		textData = {};
 
 	function getTextManifest(callback) {
@@ -15,7 +16,7 @@ sofia.textproviders['local'] = (function() {
 
 				var textInfoData = data.textInfoData;
 
-				text_data = TextLoader.processTexts(textInfoData, providerName);
+				//text_data = TextLoader.processTexts(textInfoData, providerName);
 
 				callback(textInfoData);
 			},
@@ -43,6 +44,7 @@ sofia.textproviders['local'] = (function() {
 
 		if (typeof textData[textid] != 'undefined') {
 			callback(textData[textid]);
+			return;
 		}
 
 		// load it!
@@ -102,6 +104,24 @@ sofia.textproviders['local'] = (function() {
 	
 					content.attr('data-textid', textid);
 					content.attr('data-lang3', textInfo.lang);
+					
+					// FIX title after chapter number			
+					var c = content.find('.c'),
+						afterc = c.next();			
+					if (afterc.hasClass('s')) {
+						c.before(afterc);
+					}
+					
+					// FIX verse numbers inside verse
+					content.find('.v-num').each(function() {
+						var vnum = $(this),
+							v = vnum.closest('.v');
+						
+						if (v.length > 0) {
+							v.before(vnum);
+						}
+						
+					});
 	
 					var html = content.wrapAll('<div></div>').parent().html();
 	
@@ -135,7 +155,8 @@ sofia.textproviders['local'] = (function() {
 		getTextManifest: getTextManifest,
 		getTextInfo: getTextInfo,
 		loadSection: loadSection,
-		startSearch: startSearch
+		startSearch: startSearch,
+		fullName: fullName
 	}
 
 })();

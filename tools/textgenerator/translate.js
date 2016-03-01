@@ -87,6 +87,7 @@ function langToFlat(langJson) {
 		parseNode(langJson.translation, '');
 	}
 
+
 	return output;
 }
 
@@ -334,5 +335,25 @@ function loadBaseLanguages() {
 
 var baseLangObj = readLang(baseLangCode),
 	baseFlatLangObj = langToFlat(baseLangObj);
+	
+
+// remove language names from the English one	
+var keysToDelete = [];
+for (var key in baseFlatLangObj) {
+
+	if (key.indexOf("names") == 0) {
+		keysToDelete.push(key);
+	}
+}
+
+for (var i=0,il=keysToDelete.length; i<il; i++) {
+	delete baseFlatLangObj[keysToDelete[i]];
+}	
+
+// custom delete
+delete baseFlatLangObj["plugins.eng2p.description"];
+	
+	
+//console.log(baseFlatLangObj);
 
 loadBaseLanguages();

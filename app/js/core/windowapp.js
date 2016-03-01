@@ -9,15 +9,16 @@ var App = function() {
 		main = $('<div class="windows-main"></div>').appendTo(container),
 		footer = $('<div class="windows-footer"></div>').appendTo(container),
 		settingsKey = 'app-windows',
-		ext = {};
+		ext = {},
+		windowManager = null,
+		mainMenu = null;
 
 
 	function init() {
 
-		var mainMenu = new MainMenu(header);
-
 		// create objects
-		var windowManager = new WindowManager(main);
+		mainMenu = new MainMenu(header);
+		windowManager = new WindowManager(main, ext);
 
 		ext.windowManager = windowManager;
 
@@ -25,18 +26,30 @@ var App = function() {
 		win.on('resize', resize);
 		win.on('orientationchange', resize);
 		resize();
+		
+		
+		// if not fullscreen and is touch screen
+		//if (Detection.hasTouch) {
+		try {
+			window.top.scrollTo(0, 1);
+		} catch (ex) {
+			
+		}
+		//}		
 
 
 		var settings = getWindowSettings(),
 			windowWidth = win.width();
 		//console.log('settings',settings, settings.length);
 
+		/*
 		if (windowWidth < 768 && settings.windows.length >= 3) {
 			settings.windows = settings.windows.slice(0,2);
 		}
 		if (windowWidth < 460 && settings.windows.length >= 2) {
 			settings.windows = settings.windows.slice(0,1);
 		}
+		*/
 
 		// create windows
 		for (var i=0, il=settings.windows.length; i<il; i++) {
@@ -58,6 +71,9 @@ var App = function() {
 			//console.log('create window', setting, windowClassName);
 			windowManager.add(windowClassName, setting.data);
 		}
+		// make sure first is active
+		$('.window, .window-tab').removeClass('active');
+		$('.window:first, .window-tab:first').addClass('active');
 
 		// get first window
 		var bibleWindows = settings.windows.filter(function(s) { return s.windowType == 'BibleWindow'; }),
@@ -97,8 +113,13 @@ var App = function() {
 
 	function resize() {
 		//console.log('app resize');
-
 		PlaceKeeper.storePlace();
+		
+		if (windowManager && windowManager.getWindows().length == 1) {
+			body.addClass('one-window')
+		} else {
+			body.removeClass('one-window')
+		}		
 
 		// get window size
 		var width = win.width(),
@@ -108,12 +129,14 @@ var App = function() {
 			areaHeight = height - header.outerHeight() + footer.outerHeight(),
 			areaWidth = width - parseInt(main.css('margin-left'), 10) - parseInt(main.css('margin-right'), 10);
 
+		/*
 		if (width < 460) {
-			header.hide();
+			//header.hide();
 			areaHeight = height;
 		} else {
 			header.show();
 		}
+		*/
 
 		// set height
 		main.height(areaHeight);
@@ -124,6 +147,7 @@ var App = function() {
 
 		PlaceKeeper.restorePlace();
 	}
+	ext.resize = resize;
 
 	function getWindowSettings() {
 
@@ -213,12 +237,14 @@ var App = function() {
 		}
 
 		// plugins
-		for (var i=0, il=ext.plugins.length; i<il; i++) {
-			var p = sofia.app.plugins[i];
-
-			if (p.trigger) {
-				// pass message down
-				p.trigger('message', e);
+		if (ext.plugins) {
+			for (var i=0, il=ext.plugins.length; i<il; i++) {
+				var p = sofia.app.plugins[i];
+	
+				if (p.trigger) {
+					// pass message down
+					p.trigger('message', e);
+				}
 			}
 		}
 

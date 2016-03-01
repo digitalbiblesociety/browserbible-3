@@ -67,7 +67,7 @@ TextSearch = function() {
 		isSearching = true;
 
 		// store variables
-		searchText = text;
+		searchText = text.trim();
 		searchTextid = textid;
 		searchDivisions = divisions;
 		textInfo = TextLoader.getText(searchTextid);
@@ -112,6 +112,22 @@ TextSearch = function() {
 
 				// create results
 				if (data && data.results) {
+
+					// STEMs?
+					if (typeof data.stem_words != 'undefinded' && data.stem_words.length > 0) {
+
+						searchType = 'OR';
+						// redo search terms
+						searchTermsRegExp = [];
+
+						for (var i=0, il=data.stem_words.length; i<il; i++) {
+							searchTermsRegExp.push( new XRegExp('\\b(' + data.stem_words[i] + ')\\b', 'gi') );
+						}
+
+					}
+
+
+
 					for (var i=0, il=data.results.length; i<il; i++) {
 						var result = data.results[i],
 							fragmentid = Object.keys(result)[0],
@@ -122,6 +138,8 @@ TextSearch = function() {
 
 						if (result.foundMatch) {
 							searchFinalResults.push({fragmentid: fragmentid, html: result.html});
+						} else {
+							console.log('no match', html);
 						}
 
 						// add to results
@@ -191,6 +209,25 @@ TextSearch = function() {
 			ext.trigger('indexcomplete', {type: 'indexcomplete', target:this, data: {searchIndexesData: e.data.loadedResults }});
 
 			// begin loading
+
+			if (e.data.stemInfo && e.data.stemInfo.length > 0) {
+
+				//if (typeof data.stem_words != 'undefinded' ) {
+
+					searchType = 'OR';
+					// redo search terms
+					searchTermsRegExp = [];
+
+					for (var si=0, sil=e.data.stemInfo.length; si <sil; si++) {
+						var stemWords = e.data.stemInfo[si].words;
+
+						for (var i=0, il=stemWords.length; i<il; i++) {
+							searchTermsRegExp.push( new XRegExp('\\b(' + stemWords[i] + ')\\b', 'gi') );
+						}
+
+					}
+				//}
+			}
 
 
 			searchIndexesData = e.data.loadedResults;
@@ -357,7 +394,7 @@ SearchTools = {
 
 				var part = strongNumbers[i];
 
-				searchTermsRegExp.push( new RegExp('s=("|\')(\\w\\d{1,4}\\s)?' + '(G|H)?' + part.substr(1) + '(\\s\\w\\d{1,4})?("|\')', 'gi') );
+				searchTermsRegExp.push( new RegExp('s=("|\')(\\w\\d{1,4}[a-z]?\\s)?' + '(G|H)?' + part.substr(1) + '[a-z]?(\\s\\w\\d{1,4}[a-z]?)?("|\')', 'gi') );
 
 			}
 
@@ -497,6 +534,9 @@ SearchIndexLoader = function() {
 		searchTerms = [],
 		searchTermsIndex = -1,
 		isLemmaSearch = false,
+		isStemEnabled = true,
+		stemmingData = {},
+		stemInfo = [],
 		searchDivisions = [],
 		// initial load: [{term:'light': occurrences: ['GN1_2', 'GN2_5']}, {term: 'love': ['JN3']}
 		loadedIndexes = [],
@@ -516,11 +556,47 @@ SearchIndexLoader = function() {
 		searchTermsIndex = -1;
 		loadedIndexes = [];
 		loadedResults = [];
+		stemInfo = [];
+		stemmingData = isLemmaSearch ? null : {};
 
 		searchType = /\bOR\b/gi.test(searchText) ? 'OR' : 'AND';
 
-		// start it up
-		loadNextIndex();
+		if (isStemEnabled && !isLemmaSearch) {
+			loadStemmingData();
+		} else {
+			loadNextIndex();
+		}
+	}
+
+	function loadStemmingData() {
+
+		var stemUrl = baseContentPath + textInfo.id + '/index/stems.json';
+
+		// attempt to load in index
+		$.ajax({
+			beforeSend: function(xhr){
+				if (xhr.overrideMimeType){
+					xhr.overrideMimeType("application/json");
+				}
+			},
+
+			dataType: 'json',
+			url: stemUrl,
+			success: function(data) {
+				console.log('Loaded Stems!', textInfo.id);
+
+				stemmingData = data;
+
+				loadNextIndex();
+			},
+			error: function() {
+				// set it to null in order to check later
+				stemmingData = null;
+				
+				console.log('No stem data for', textInfo.id);
+				loadNextIndex();
+			}
+		});
 	}
 
 
@@ -545,26 +621,30 @@ SearchIndexLoader = function() {
 	function loadSearchTermIndex(searchTerm) {
 
 		var indexUrl = '',
-			key = '';
+			key = '',
+			hash = '',
+			stem = '';
 
 		if (isLemmaSearch) {
 			key = searchTerm.toUpperCase();
 			var letter = key.substr(0,1),
 				firstNumber = searchTerm.length >= 5 ? searchTerm.substr(1,1) : '0';
 
-
-
 			indexUrl = baseContentPath + textInfo.id + '/indexlemma/_' + letter.toUpperCase() + firstNumber + '000' + '.json';
 
 		} else {
 			key = searchTerm.toLowerCase();
 
-			//var searchTermEncoded = base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
-			var hash = SearchTools.hashWord(key); //base32.encode(unescape(encodeURIComponent(searchTerm.toLowerCase())));
+			if (isStemEnabled && stemmingData != null) {
+				stem = stemmingData[key],
+				hash = SearchTools.hashWord(stem);
+				indexUrl = baseContentPath + textInfo.id + '/index/_stems_' + hash + '.json';
 
+			} else {
+				hash = SearchTools.hashWord(key);
+				indexUrl = baseContentPath + textInfo.id + '/index/_' + hash + '.json';
 
-
-			indexUrl = baseContentPath + textInfo.id + '/index/_' + hash + '.json';
+			}
 		}
 
 		if (searchTerm == 'undefined') {
@@ -586,7 +666,20 @@ SearchIndexLoader = function() {
 			url: indexUrl,
 			success: function(data) {
 
-				var fragments = data[key];
+				var fragments = null;
+
+				//console.log(key, stem, data, data[stem]);
+
+				if (isStemEnabled && stemmingData != null) {
+					fragments = data[stem].fragmentids;
+					stemInfo.push({
+						word: key,
+						stem: stem,
+						words: data[stem].words
+					});
+				} else {
+					fragments = data[key];
+				}
 
 				loadedIndexes.push(fragments);
 
@@ -684,12 +777,12 @@ SearchIndexLoader = function() {
 
 						var	sectionid = fragmentid.split('_')[0],
 							dbsBookCode = sectionid.substring(0,2);
-							
+
 						if (searchDivisions.length == 0 || searchDivisions.indexOf(dbsBookCode) > -1) {
-												
+
 							// see if we already created data for this section id
 							var sectionidInfo = $.grep(loadedResults, function(val){ return val.sectionid == sectionid; });
-	
+
 							// create new data
 							if (sectionidInfo.length == 0) {
 								loadedResults.push({sectionid: sectionid, fragmentids: [fragmentid]});
@@ -703,15 +796,15 @@ SearchIndexLoader = function() {
 				}
 			}
 		}
-
-
-		//console.log('SearchIndexLoader:processIndexes', 'DONe');
+	
 		// send up the chain
 		ext.trigger('complete', {type:'complete', target: this, data: {
 																	loadedIndexes: loadedIndexes,
 																	loadedResults: loadedResults,
-																	fragmentids: fragmentids
-																}});
+																	fragmentids: fragmentids,
+																	stemInfo: stemInfo,
+																}
+								});
 	}
 
 	var ext = {

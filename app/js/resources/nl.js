@@ -15,6 +15,23 @@ sofia.resources['nl'] = {
 				"default": "Normaal",
 				"sepia": "Sepia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "Over",
+				"addwindow": "Window",
+				"settings": "Instellingen",
+				"feedback": "Terugkoppeling",
+				"options": "Opties"
+			},
+			"feedback": {
+				"name": "Naam",
+				"email": "E-mail",
+				"comments": "Uw commentaar",
+				"feature": "Functie suggestie",
+				"bug": "Bug Report",
+				"other": "Ander",
+				"send": "Sturen",
+				"thankyou": "Hartelijk dank voor uw feedback"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['nl'] = {
 				"placeholder": "Zoeken",
 				"button": "Zoeken",
 				"results": "Resultaten",
-				"verses": "verzen"
+				"verses": "verzen",
+				"options": "Zoek opties"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['nl'] = {
 				"autoplay": "Autoplay Volgende",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Laden ...",
+				"showall": "Toon Alles",
+				"hideall": "Alles verbergen"
+			},
+			"comparison": {
+				"label": "Vergelijking"
 			}
 		},
 		"names": {

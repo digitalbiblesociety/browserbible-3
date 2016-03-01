@@ -15,6 +15,23 @@ sofia.resources['sk'] = {
 				"default": "Normálny",
 				"sepia": "Sépia",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "O",
+				"addwindow": "Pridať Okno",
+				"settings": "Nastavenie",
+				"feedback": "Spätná väzba",
+				"options": "Možnosti"
+			},
+			"feedback": {
+				"name": "Názov",
+				"email": "E-mail",
+				"comments": "Vaše komentáre",
+				"feature": "Feature Návrh",
+				"bug": "Bug Report",
+				"other": "Ďalší",
+				"send": "Odoslať",
+				"thankyou": "Ďakujeme vám za vašu reakciu"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['sk'] = {
 				"placeholder": "Hľadanie",
 				"button": "Hľadanie",
 				"results": "Výsledky",
-				"verses": "verše"
+				"verses": "verše",
+				"options": "Možnosti vyhľadávania"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['sk'] = {
 				"autoplay": "Automatické prehrávanie Ďalšia",
 				"drama": "Dráma",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Parallels",
+				"loading": "Loading ...",
+				"showall": "Zobraziť všetko",
+				"hideall": "Skryť všetko"
+			},
+			"comparison": {
+				"label": "Porovnanie"
 			}
 		},
 		"names": {

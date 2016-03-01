@@ -33,12 +33,18 @@ var CrossReferencePopupPlugin = function(app) {
 
 	sofia.globals.handleBibleRefClick = function(e) {
 		var link = $(this),
-			fragmentid = getFragmentidFromNode(link);
+			newfragmentid = getFragmentidFromNode(link);
+			
+		// where are we?
+		var currentLocationData = PlaceKeeper.getFirstLocation();
+		
+		// store the current one
+		TextNavigation.locationChange(currentLocationData.fragmentid);
 
 
-		if (fragmentid != null && fragmentid != '') {
+		if (newfragmentid != null && newfragmentid != '') {
 
-			TextNavigation.locationChange(fragmentid);
+			TextNavigation.locationChange(newfragmentid);
 
 			ext.trigger('globalmessage', {
 								type: 'globalmessage',
@@ -47,8 +53,8 @@ var CrossReferencePopupPlugin = function(app) {
 									messagetype:'nav',
 									type: 'bible',
 									locationInfo: {
-										fragmentid: fragmentid,
-										sectionid: fragmentid.split('_')[0],
+										fragmentid: newfragmentid,
+										sectionid: newfragmentid.split('_')[0],
 										offset: 0
 									}
 								}

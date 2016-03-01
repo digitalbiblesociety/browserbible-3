@@ -1,4 +1,4 @@
-#add-MapWindow {
+#add-MapWindow, .MapWindow-tab {
 	background-image: url(../../css/images/map.svg);
 }
 

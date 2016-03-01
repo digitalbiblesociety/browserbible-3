@@ -15,6 +15,23 @@ sofia.resources['hr'] = {
 				"default": "Normalan",
 				"sepia": "Sepija",
 				"dark": "Low Light"
+			},
+			"labels": {
+				"about": "O",
+				"addwindow": "Dodaj prozor",
+				"settings": "Postavke",
+				"feedback": "Povratna veza",
+				"options": "Mogućnosti"
+			},
+			"feedback": {
+				"name": "Naziv",
+				"email": "E-mail",
+				"comments": "Vaši Komentari",
+				"feature": "Značajka Prijedlozi",
+				"bug": "Bug Report",
+				"other": "Drugo",
+				"send": "Poslati",
+				"thankyou": "Hvala vam na Vašoj poruci"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['hr'] = {
 				"placeholder": "Pretraživanje",
 				"button": "Pretraživanje",
 				"results": "Rezultati",
-				"verses": "stihovi"
+				"verses": "stihovi",
+				"options": "Opcije pretraživanja"
 			},
 			"media": {
 				"label": "Medij"
@@ -73,6 +91,15 @@ sofia.resources['hr'] = {
 				"autoplay": "Autopsija Sljedeća",
 				"drama": "Drama",
 				"nondrama": "Non-Drama"
+			},
+			"parallel": {
+				"label": "Paralele",
+				"loading": "Loading ...",
+				"showall": "Prikaži sve",
+				"hideall": "Sakrij sve"
+			},
+			"comparison": {
+				"label": "Usporedba"
 			}
 		},
 		"names": {

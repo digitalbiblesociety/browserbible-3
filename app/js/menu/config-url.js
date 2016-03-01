@@ -11,21 +11,19 @@ var ConfigUrl = function(node) {
 		return;
 	}
 
-	var body = $('#config-tools .config-body'),
+	var // body = $('#config-tools .config-body'),
+		body = $('#main-menu-features'),
 		urlBox =
-		$('<div id="config-global-url">' +
-				//'<span class="config-header">URL</span>' +
-				'<span ></span>' +
-				'<input type="text" />' +
-				//'<div ></div>' +
-			'</div>'),
+				$('<div id="config-global-url">' +
+						//'<span class="config-header">URL</span>' +
+						'<span ></span>' +
+						'<input type="text" />' +
+						//'<div ></div>' +
+					'</div>'),
 		linkButton = urlBox.find('span'),
 		urlInput = urlBox.find('input'),
 		urlDiv = urlBox.find('div'),
 		clickables = [linkButton, urlInput, urlDiv];
-					//.on('focus', function() {
-					//	$(this).select();
-					//});
 
 	body.after(urlBox);
 
@@ -33,9 +31,7 @@ var ConfigUrl = function(node) {
 
 	setTimeout(function() {
 		sofia.app.windowManager.on('settingschange', function(e) {
-
-			////console.log('update');
-
+			
 			// title to show active window's position
 			urlTimer.start();
 
@@ -57,20 +53,26 @@ var ConfigUrl = function(node) {
 
 				client.setText( urlInput.val() );
 
+				urlInput.focus();
 				urlInput.select();
+							
+				console.log('flash clipboard clicked');
 			});
 		}
 	}
 
-
-
 	urlInput.on('click', function() {
 		updateUrl();
+		
+		urlInput.focus();
+		urlInput.select();
+		
 	});
 
 	linkButton.on('click', function() {
 		updateUrl();
 
+		urlInput.focus();
 		urlInput.select();
 	});
 

@@ -2,30 +2,13 @@
 	right: 60px;
 }
 
-#mobile-config-button {
-	display:none;
-
-	cursor: pointer;
-	width: 30px;
-	height: 30px;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 30px 15px;
-
-	position: absolute;
-	top: 4px;
-	left: 50%;
-	margin-left: -15px;
-}
-
-@media only screen and (max-width:460px) {
-	#mobile-config-button {
-		display:block;
-	}
+#config-window .movable-body {
+	overflow: hidden;
 }
 
 #main-config-box {
-	height: 420px;
+	padding: 25px 25px 0 25px;
+	overflow: hidden;
 }
 
 .config-section {

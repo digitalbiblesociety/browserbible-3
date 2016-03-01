@@ -1,6 +1,6 @@
 sofia.resources['ur'] = {
 	"translation": {
-		"name": "اردو",
+		"name": null,
 		"menu": {
 			"search": {
 				"placeholder": "تلاش"
@@ -15,6 +15,23 @@ sofia.resources['ur'] = {
 				"default": "عمومی",
 				"sepia": "سیپیا",
 				"dark": "کم روشنی"
+			},
+			"labels": {
+				"about": "کے بارے میں",
+				"addwindow": "شامل کریں ونڈو",
+				"settings": "ترتیبات",
+				"feedback": "آپ کی رائے",
+				"options": "اختیارات"
+			},
+			"feedback": {
+				"name": "نام",
+				"email": "دوستوں کوارسال کریں",
+				"comments": "آپ کے تبصرے",
+				"feature": "نمایاں کریں تجاویز",
+				"bug": "بگ رپورٹ",
+				"other": "دیگر",
+				"send": "ارسال",
+				"thankyou": "آپ کے تبصرے کا شکریہ"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['ur'] = {
 				"placeholder": "تلاش",
 				"button": "تلاش",
 				"results": "نتائج",
-				"verses": "آیات"
+				"verses": "آیات",
+				"options": "تلاش کے اختیارات"
 			},
 			"media": {
 				"label": "میڈیا"
@@ -73,6 +91,15 @@ sofia.resources['ur'] = {
 				"autoplay": "autoplay کے اگلا",
 				"drama": "ڈرامہ",
 				"nondrama": "غیر ڈرامہ"
+			},
+			"parallel": {
+				"label": "مماثلتیں",
+				"loading": "لوڈ ہورہا ہے ...",
+				"showall": "تمام دکھائیں",
+				"hideall": "تمام کو چھپانے کے"
+			},
+			"comparison": {
+				"label": "کمپیریزن"
 			}
 		},
 		"names": {

@@ -15,6 +15,23 @@ sofia.resources['eu'] = {
 				"default": "Normala",
 				"sepia": "Sepia",
 				"dark": "Argi txikia"
+			},
+			"labels": {
+				"about": "Buruz",
+				"addwindow": "Gehitu leiho",
+				"settings": "Ezarpenak",
+				"feedback": "Iradokizunak",
+				"options": "Aukerak"
+			},
+			"feedback": {
+				"name": "Izena",
+				"email": "Email",
+				"comments": "Zure Comments",
+				"feature": "Film Iradokizun",
+				"bug": "Akats txostena",
+				"other": "Beste",
+				"send": "Bidali",
+				"thankyou": "Eskerrik asko zure iritzia"
 			}
 		},
 		"plugins": {
@@ -59,7 +76,8 @@ sofia.resources['eu'] = {
 				"placeholder": "Search",
 				"button": "Search",
 				"results": "Emaitzak",
-				"verses": "bertsoak"
+				"verses": "bertsoak",
+				"options": "Bilaketa aukerak"
 			},
 			"media": {
 				"label": "Media"
@@ -73,6 +91,15 @@ sofia.resources['eu'] = {
 				"autoplay": "Autoplay Hurrengoa",
 				"drama": "Drama",
 				"nondrama": "Ez Drama"
+			},
+			"parallel": {
+				"label": "Paralelismoa",
+				"loading": "Kargatzen ...",
+				"showall": "Erakutsi guztiak",
+				"hideall": "Ezkutatu Guztiak"
+			},
+			"comparison": {
+				"label": "Konparazioa"
 			}
 		},
 		"names": {

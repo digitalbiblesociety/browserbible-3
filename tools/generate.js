@@ -1,7 +1,7 @@
 /**
-* Generates HTML that can function as standalone chapters or as chapters loaded by the main app
-* This attemps to load folders in the ./input/ directory, read the ./input/version/info.json and
-* then use a renderer found in ./node_modules/generate_renderername.js
+* Formats text data that can function as standalone chapters or as chapters loaded by the main app
+* This attempts to load folders in the ./input/ directory, read the ./input/version/info.json and
+* then use a renderer found in ./tools/generators/renderername.js
 *
 * See options for details on running
 */
@@ -94,7 +94,7 @@ function convertFolder(inputPath) {
 			generator = require(path.join(
 				__dirname,
 				'generators',
-				'generate_' + generatorName + '.js'
+				generatorName + '.js'
 			));
 		} catch (ex) {
 			console.error('Error processing generator "' + generatorName + '":', ex.message)

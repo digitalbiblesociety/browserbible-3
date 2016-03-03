@@ -19,15 +19,11 @@ var fs = require('fs'),
 	argv = require('minimist')(process.argv.slice(2));
 
 
-//console.log( bibleData.getBookInfoByUnboundCode('40N') );
-//return;
-
-
 // VARS
 var
 	baseOutput = './app/content/texts/',
 	baseInput = './input',
-	createIndex = false,
+	createIndex = !!argv['i'],
 	progressBar = null;
 
 
@@ -63,10 +59,12 @@ function convertFolder(inputPath) {
 			indexLemmaOutputPath = path.join(outputPath, 'indexlemma'),
 			generator = null;
 
-
 		try {
-			var generatorPath = path.join(__dirname, 'generators', 'generate_' + generatorName + '.js');
-			generator = require(generatorPath);
+			generator = require(path.join(
+				__dirname,
+				'generators',
+				'generate_' + generatorName + '.js'
+			));
 		} catch (ex) {
 				console.error('Error processing generator "' + generatorName + '":', ex.message)
 			return;
@@ -170,7 +168,6 @@ function convertFolder(inputPath) {
 		fs.writeFileSync(infoPath, JSON.stringify(info));
 
 		// save about
-
 		var aboutPage = bibleFormatter.openAboutPage(info) +
 						(typeof data.aboutHtml != 'undefined' ? data.aboutHtml : '') +
 						bibleFormatter.closeAboutPage(info),
@@ -187,11 +184,6 @@ function convertFolder(inputPath) {
 			fs.writeFileSync(outStylePath, inStyleText);
 
 			console.log('Copying stylesheet', inStylePath, outStylePath);
-
-			//fs.createReadStream(inStylePath).pipe(fs.createWriteStream(outStylePath));
-			//copyFile(inStylePath, outStylePath, function(error) {
-			//	console.log('Error', error);
-			//});
 		}
 
 
@@ -200,54 +192,16 @@ function convertFolder(inputPath) {
 
 
 	}
-	/*
-	if (progressBar != null) {
-		progressBar.terminate();
-	}
-	*/
 
 	return;
 }
 
+function convertTexts(baseInput, texts) {
+	texts = texts === undefined ? fs.readdirSync(baseInput) : texts;
 
-function copyFile(source, target, cb) {
-	var cbCalled = false;
-
-	var rd = fs.createReadStream(source);
-	rd.on("error", done);
-
-	var wr = fs.createWriteStream(target);
-	wr.on("error", done);
-	wr.on("close", function(ex) {
-		done();
+	texts.forEach(function(textFoldername) {
+		convertFolder(path.join(baseInput, textFoldername));
 	});
-	rd.pipe(wr);
-
-	function done(err) {
-		if (!cbCalled) {
-		cb(err);
-			cbCalled = true;
-		}
-	}
-}
-
-function convertFolders() {
-	var files = fs.readdirSync(baseInput),
-		startDate = new Date();
-
-	// DO ALL
-	for (var f in files) {
-		var folder = files[f],
-			inputPath = path.join(baseInput, folder);
-
-		convertFolder(inputPath);
-	}
-
-	var endDate = new Date();
-
-	console.log('TOTAL: ' + MillisecondsToDuration(endDate - startDate));
-
-	process.exit();
 }
 
 function MillisecondsToDuration(n) {
@@ -277,58 +231,31 @@ if (!fs.existsSync(baseInput)) {
 
 
 // parse arguments
-
-if (Object.keys(argv).length == 1) {
+if (argv['h']) {
 	console.log('----------------\n' +
 				'Generator Help\n' +
 				'-v VERSION,VERSION = only some versions\n' +
 				'-e VERSION,VERSION = exclude some versions\n' +
-				'-a = process all versions\n' +
 				'-i = create index\n');
 	return;
 }
 
+// Generate listed texts
+if (argv['v'] !== undefined) {
+	convertTexts(baseInput, argv['v'].split(','));
 
-
-if (argv['i']) {
-	createIndex = true;
-}
-
-// DO ALL
-if (argv['a']) {
-	convertFolders();
-
-// DO SOME
-} else if (typeof argv['v'] != 'undefined') {
-	var folders = argv['v'].split(',');
-
-	folders.forEach(function(folder) {
-		convertFolder(baseInput + '/' + folder);
-	});
-
-// DO SOME
+// Generate all but listed texts
 } else if (typeof argv['e'] != 'undefined') {
 	var foldersToExclude = argv['e'].split(',');
 
 	var folders = fs.readdirSync(baseInput);
 
-	// DO ALL
-	for (var f in folders) {
-		var folder = folders[f],
-			inputPath = path.join(baseInput, folder);
+	convertTexts(
+		baseInput,
+		folders.filter(function(name) { return foldersToExclude.indexOf(name) === -1; })
+	);
 
-		if (foldersToExclude.indexOf(folder) > -1) {
-			continue;
-		}
-
-		convertFolder(inputPath);
-	}
-
-
-	folders.forEach(function(folder) {
-		convertFolder(baseInput + '/' + folder);
-	});
+// Generate all texts
+} else {
+	convertTexts(baseInput);
 }
-
-process.exit();
-return;

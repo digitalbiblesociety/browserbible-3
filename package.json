@@ -9,7 +9,7 @@
   "author": "John Dyer",
   "license": "MIT",
   "scripts": {
-    "build:texts": "node tools/generate.js -a",
+    "build:texts": "node tools/generate.js",
     "build:index": "node tools/create_texts_index.js",
     "build:content": "npm run build:texts && npm run build:index",
     "build": "node tools/builder.js"

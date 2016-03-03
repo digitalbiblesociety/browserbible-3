@@ -10,6 +10,7 @@
 // MODULES
 var fs = require('fs'),
 	path = require('path'),
+	rmrf = require('rimraf').sync,
 	bibleData = require('./data/bible_data.js'),
 	bibleFormatter = require('./bible_formatter.js'),
 	verseIndexer = require('./verse_indexer.js'),
@@ -72,7 +73,7 @@ function convertFolder(inputPath) {
 
 		// DELETE: existing data
 		if (fs.existsSync(outputPath)) {
-			deleteAllFiles(outputPath);
+			rmrf(path.join(outputPath, '*'));
 		} else {
 			fs.mkdirSync(outputPath);
 		}
@@ -80,13 +81,13 @@ function convertFolder(inputPath) {
 		// DELETE: index data
 		if (createIndex) {
 			if (fs.existsSync(indexOutputPath)) {
-				deleteAllFiles(indexOutputPath);
+				rmrf(indexOutputPath);
 			} else {
 				fs.mkdirSync(indexOutputPath);
 			}
 
 			if (fs.existsSync(indexLemmaOutputPath)) {
-				deleteAllFiles(indexLemmaOutputPath);
+				rmrf(indexLemmaOutputPath);
 			} else {
 				fs.mkdirSync(indexLemmaOutputPath);
 			}
@@ -274,22 +275,6 @@ function convertFolders() {
 
 	process.exit();
 }
-
-function deleteAllFiles(pathToDelete) {
-	if (fs.existsSync(pathToDelete)) {
-		var files = fs.readdirSync(pathToDelete);
-
-		// DELETE all files
-		files.forEach(function(data) {
-			var filePath = path.join(pathToDelete, data);
-			if (fs.statSync(filePath).isFile()) {
-				fs.unlinkSync(filePath);
-			}
-		});
-	}
-
-}
-
 
 function MillisecondsToDuration(n) {
 	var hms = "";

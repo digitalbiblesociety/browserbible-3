@@ -11,6 +11,7 @@
 var fs = require('fs'),
 	path = require('path'),
 	rmrf = require('rimraf').sync,
+	mkdirp = require('mkdirp').sync,
 	bibleData = require('./data/bible_data.js'),
 	bibleFormatter = require('./bible_formatter.js'),
 	verseIndexer = require('./verse_indexer.js'),
@@ -29,20 +30,23 @@ var
 	createIndex = false,
 	progressBar = null;
 
-console.log('\r\r\r');
-
 
 function startProgress(total, label) {
-
 	label = label || 'Progress';
 
 	if (progressBar != null) {
 		progressBar.terminate();
 	}
-	progressBar = new ProgressBar('[:bar] [:current/:total] :elapseds', { total: total, width: 50 });
+	progressBar = new ProgressBar('[:bar] [:current/:total] :elapseds', {total: total, width: 50});
 }
+
 function updateProgress() {
 	progressBar.tick();
+}
+
+function cleanFolder(folderPath) {
+	mkdirp(folderPath);
+	rmrf(path.join(folderPath, '*'));
 }
 
 function convertFolder(inputPath) {
@@ -72,26 +76,7 @@ function convertFolder(inputPath) {
 		console.log(info['name'],  outputPath);
 
 		// DELETE: existing data
-		if (fs.existsSync(outputPath)) {
-			rmrf(path.join(outputPath, '*'));
-		} else {
-			fs.mkdirSync(outputPath);
-		}
-
-		// DELETE: index data
-		if (createIndex) {
-			if (fs.existsSync(indexOutputPath)) {
-				rmrf(indexOutputPath);
-			} else {
-				fs.mkdirSync(indexOutputPath);
-			}
-
-			if (fs.existsSync(indexLemmaOutputPath)) {
-				rmrf(indexLemmaOutputPath);
-			} else {
-				fs.mkdirSync(indexLemmaOutputPath);
-			}
-		}
+		cleanFolder(outputPath);
 
 		// RUN GENERATOR
 		console.time('processText');
@@ -169,26 +154,15 @@ function convertFolder(inputPath) {
 
 		// do index
 		if (createIndex && data.indexData) {
+			cleanFolder(indexOutputPath);
 			console.time('createIndex');
-
 			verseIndexer.createIndexFiles(indexOutputPath, data.indexData, 'words');
-
 			console.timeEnd('createIndex');
 
+			cleanFolder(indexLemmaOutputPath);
 			console.time('createLemma');
-
 			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData, 'strongs');
-
 			console.timeEnd('createLemma');
-
-			/*
-			console.time('createStemIndex');
-
-			verseIndexer.createHashedIndexFiles(info.lang, indexOutputPath, data.indexData, 'words');
-
-			console.timeEnd('createStemIndex');
-			*/
-
 		}
 
 		// save info

@@ -21,12 +21,43 @@ var fs = require('fs'),
 
 // VARS
 var
-	baseOutput = './app/content/texts/',
-	baseInput = './input',
+	baseOutput = path.join('app', 'content', 'texts'),
+	baseInput = 'input',
 	createIndex = !!argv['i'],
 	progressBar = null;
 
+// parse arguments
+if (argv['h']) {
+	console.log('----------------\n' +
+				'Generator Help\n' +
+				'-v VERSION,VERSION = only some versions\n' +
+				'-e VERSION,VERSION = exclude some versions\n' +
+				'-i = create index\n');
+	return;
+}
 
+// Generate listed texts
+if (argv['v'] !== undefined) {
+	convertTexts(baseInput, argv['v'].split(','));
+
+// Generate all but listed texts
+} else if (typeof argv['e'] != 'undefined') {
+	var foldersToExclude = argv['e'].split(',');
+
+	var folders = fs.readdirSync(baseInput);
+
+	convertTexts(
+		baseInput,
+		folders.filter(function(name) { return foldersToExclude.indexOf(name) === -1; })
+	);
+
+// Generate all texts
+} else {
+	convertTexts(baseInput);
+}
+
+
+// Functions
 function startProgress(total, label) {
 	label = label || 'Progress';
 
@@ -66,7 +97,7 @@ function convertFolder(inputPath) {
 				'generate_' + generatorName + '.js'
 			));
 		} catch (ex) {
-				console.error('Error processing generator "' + generatorName + '":', ex.message)
+			console.error('Error processing generator "' + generatorName + '":', ex.message)
 			return;
 		}
 
@@ -123,7 +154,6 @@ function convertFolder(inputPath) {
 
 			booksIndexHtml += '<li><a href="' + dbsCode + '.html">' + bookName + '</a></li>' + bibleFormatter.breakChar;
 
-
 			// do all chapters?
 			var singleBookIndexHtml = bibleFormatter.openBookIndex(info, bookName);
 
@@ -138,17 +168,13 @@ function convertFolder(inputPath) {
 			}
 			singleBookIndexHtml += bibleFormatter.closeBookIndex();
 			fs.writeFileSync( path.join(outputPath, dbsCode + '.html') , singleBookIndexHtml);
-
-
 		}
 		booksIndexHtml += bibleFormatter.closeVersionIndex(info);
-
 
 		fs.writeFileSync( path.join(outputPath, 'index.html') , booksIndexHtml);
 
 
 		// DO chapters index
-
 
 		// do index
 		if (createIndex && data.indexData) {
@@ -186,17 +212,15 @@ function convertFolder(inputPath) {
 			console.log('Copying stylesheet', inStylePath, outStylePath);
 		}
 
-
-		var endDate = new Date();
-		console.log('-time: ' + MillisecondsToDuration(endDate - startDate));
-
-
+		console.log('-time: ' + MillisecondsToDuration((new Date()) - startDate));
 	}
 
 	return;
 }
 
 function convertTexts(baseInput, texts) {
+	mkdirp(baseOutput);
+
 	texts = texts === undefined ? fs.readdirSync(baseInput) : texts;
 
 	texts.forEach(function(textFoldername) {
@@ -218,44 +242,4 @@ function MillisecondsToDuration(n) {
 	hms += s.substr(s.length-2) + "." + cs.substr(cs.length-2);
 
 	return hms;
-}
-
-
-// START
-
-
-// make /texts/ folder
-if (!fs.existsSync(baseInput)) {
-	fs.mkdirSync(baseInput);
-}
-
-
-// parse arguments
-if (argv['h']) {
-	console.log('----------------\n' +
-				'Generator Help\n' +
-				'-v VERSION,VERSION = only some versions\n' +
-				'-e VERSION,VERSION = exclude some versions\n' +
-				'-i = create index\n');
-	return;
-}
-
-// Generate listed texts
-if (argv['v'] !== undefined) {
-	convertTexts(baseInput, argv['v'].split(','));
-
-// Generate all but listed texts
-} else if (typeof argv['e'] != 'undefined') {
-	var foldersToExclude = argv['e'].split(',');
-
-	var folders = fs.readdirSync(baseInput);
-
-	convertTexts(
-		baseInput,
-		folders.filter(function(name) { return foldersToExclude.indexOf(name) === -1; })
-	);
-
-// Generate all texts
-} else {
-	convertTexts(baseInput);
 }

@@ -73,12 +73,12 @@ sofia.textproviders['local'] = (function() {
 		getTextInfo(textid, function(textInfo) {
 
 			var url = 'content/texts/' + textid + '/' + sectionid + '.html';
-	
+
 			sofia.ajax({
 				dataType: 'text',
 				url: url,
 				success: function(data) {
-	
+
 					// text to treat this like JSON or text/html
 					var text = data,
 						// split at the closing head tag to prevent problems with loading head material
@@ -86,7 +86,7 @@ sofia.textproviders['local'] = (function() {
 						content = main.filter('.section'),
 						footnotes = main.filter('.footnotes'),
 						notes = footnotes.find('.footnote');
-	
+
 					// move notes into place
 					if (notes.length > 0) {
 						notes.each(function() {
@@ -94,44 +94,44 @@ sofia.textproviders['local'] = (function() {
 								noteid = footnote.find('a').attr('href'),
 								footnotetext = footnote.find('.text'),
 								noteintext = content.find(noteid);
-	
+
 							//console.log(noteid, noteintext);
-	
+
 							noteintext.append(footnotetext);
-	
+
 						});
 					}
-	
+
 					content.attr('data-textid', textid);
 					content.attr('data-lang3', textInfo.lang);
-					
-					// FIX title after chapter number			
+
+					// FIX title after chapter number
 					var c = content.find('.c'),
-						afterc = c.next();			
+						afterc = c.next();
 					if (afterc.hasClass('s')) {
 						c.before(afterc);
 					}
-					
+
 					// FIX verse numbers inside verse
 					content.find('.v-num').each(function() {
 						var vnum = $(this),
 							v = vnum.closest('.v');
-						
+
 						if (v.length > 0) {
 							v.before(vnum);
 						}
-						
+
 					});
-	
+
 					var html = content.wrapAll('<div></div>').parent().html();
-	
+
 					callback(html);
-	
+
 				}, error: function(jqXHR, textStatus, errorThrown) {
 					if (errorCallback) {
 						errorCallback(textid, sectionid);
 					}
-	
+
 					//console.log('error', textStatus, errorThrown, jqXHR );
 				}
 			});

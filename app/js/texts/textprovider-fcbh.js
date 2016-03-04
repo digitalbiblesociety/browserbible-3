@@ -91,11 +91,11 @@ sofia.textproviders['fcbh'] = (function() {
 					'<dd><a href="https://www.digitalbibleplatform.com/eula/">End User License Agreement</a> for API</dd>' +
 				'</dl>';
 	}
-	
+
 	function getProviderid(textid) {
 		var parts = textid.split(':'),
 			fullid = providerName + ':' + (parts.length > 1 ? parts[1] : parts[0]);
-			
+
 		return fullid;
 	}
 
@@ -108,8 +108,8 @@ sofia.textproviders['fcbh'] = (function() {
 			});
 			return;
 		}
-		
-		var providerid = getProviderid(textid);		
+
+		var providerid = getProviderid(textid);
 
 		// get initial data
 		var info = text_data.filter(function(text) {
@@ -319,7 +319,7 @@ sofia.textproviders['fcbh'] = (function() {
 				}
 			},
 			dataType: 'jsonp',
-			
+
 			// One giant call seems faster, than doing all the books individually?
 			url: 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
 			success: function(data) {

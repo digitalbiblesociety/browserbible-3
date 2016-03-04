@@ -25,7 +25,6 @@ sofia.ajax = function(params) {
 		if (sofia.config.baseContentApiPath != '') {
 			$params.dataType = 'jsonp';
 		}
-
 	}
 
 	$params.success = function(data) {

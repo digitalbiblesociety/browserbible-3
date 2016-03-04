@@ -7,7 +7,7 @@
 	.compact-ui .section,
 	.compact-ui .chapter {
 		line-height: 1.5;
-	}	
+	}
 
 .section p,
 .section div.p,
@@ -78,7 +78,7 @@
 	.compact-ui .cf + .note,
 	.compact-ui .cf + .cf {
 		padding-left: 0.50em;
-	}	
+	}
 
 
 .chapter .note .key:hover,

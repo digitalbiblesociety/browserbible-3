@@ -1,9 +1,7 @@
 var Detection = (function() {
 	var detection = {};
 
-
 	detection.hasTouch = 'ontouchend' in document;
-
 
 	detection.hasFlash = (function() {
 		if (navigator.plugins != null && navigator.plugins.length > 0){
@@ -23,8 +21,6 @@ var Detection = (function() {
 
 	return detection;
 })();
-
-
 
 if (!Array.prototype.filter) {
   Array.prototype.filter = function(fun /*, thisp */) {

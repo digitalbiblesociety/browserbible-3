@@ -7,11 +7,11 @@
 	padding: 20px;
 }
 
-.feedback-body .app-input, 
+.feedback-body .app-input,
 .feedback-body .app-list {
 	width: 100%;
 	display: block;
-	margin: 0 0 8px 0;	
+	margin: 0 0 8px 0;
 }
 
 .feedback-body textarea {
@@ -25,7 +25,7 @@
 	background-color: #2a85e8;
 	color: #fff;
 	font-size: 90%;
-	cursor: pointer;	
+	cursor: pointer;
 	border: none;
 	font-size: 12px;
 }

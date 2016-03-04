@@ -181,7 +181,7 @@ var LocalAudio = (function() {
 				}
 			}
 		}
-		
+
 		if (fragmentData != null) {
 			fragmentData.index = fragmentIndex;
 		}

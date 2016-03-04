@@ -1,6 +1,5 @@
 
 var App = function() {
-
 	// create nodes
 	var	win = $(window),
 		body = $(document.body),
@@ -13,9 +12,7 @@ var App = function() {
 		windowManager = null,
 		mainMenu = null;
 
-
 	function init() {
-
 		// create objects
 		mainMenu = new MainMenu(header);
 		windowManager = new WindowManager(main, ext);
@@ -26,16 +23,16 @@ var App = function() {
 		win.on('resize', resize);
 		win.on('orientationchange', resize);
 		resize();
-		
-		
+
+
 		// if not fullscreen and is touch screen
 		//if (Detection.hasTouch) {
 		try {
 			window.top.scrollTo(0, 1);
 		} catch (ex) {
-			
+
 		}
-		//}		
+		//}
 
 
 		var settings = getWindowSettings(),
@@ -114,12 +111,12 @@ var App = function() {
 	function resize() {
 		//console.log('app resize');
 		PlaceKeeper.storePlace();
-		
+
 		if (windowManager && windowManager.getWindows().length == 1) {
 			body.addClass('one-window')
 		} else {
 			body.removeClass('one-window')
-		}		
+		}
 
 		// get window size
 		var width = win.width(),
@@ -206,9 +203,7 @@ var App = function() {
 		return settings;
 	}
 
-
 	function storeSettings() {
-
 			// get settings from all windows
 		var windowSettings = ext.windowManager.getSettings(),
 			// later we'll need these
@@ -240,7 +235,7 @@ var App = function() {
 		if (ext.plugins) {
 			for (var i=0, il=ext.plugins.length; i<il; i++) {
 				var p = sofia.app.plugins[i];
-	
+
 				if (p.trigger) {
 					// pass message down
 					p.trigger('message', e);
@@ -252,17 +247,17 @@ var App = function() {
 
 	ext.init = init;
 	ext.handleGlobalMessage = handleGlobalMessage;
-	
+
 	// internationalization: i18n
-	
+
 	// if this is the first visit, we need a way to set the language
-	var lngSetting = '',	
+	var lngSetting = '',
 		i18nCookieValue = AppSettings.getCookieValue('i18next');
-		
+
 	if (i18nCookieValue == '' || i18nCookieValue == null && sofia.config.defaultLanguage != '') {
 		lngSetting = sofia.config.defaultLanguage;
 	}
-	
+
 	i18n.init({fallbackLng: 'en', lng: lngSetting, resStore: sofia.resources});
 
 	setTimeout(function() {
@@ -275,7 +270,7 @@ var App = function() {
 		if (lang != langSelector.val() ) {
 			langSelector.val(  lang.split('-')[0] );
 		}
-		
+
 		if (langSelector[0] && langSelector[0].localizeLanguages) {
 			langSelector[0].localizeLanguages();
 		}

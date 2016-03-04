@@ -62,7 +62,6 @@ bible.ReferenceFinder = (function() {
 				}
 				formattedText += '<span class="v-link" data-fragmentid="' + ref.toSection() + '">' + subPart + '</a>';
 
-
 				console.log(subPart, ref.toString());
 
 				refs.push( ref );
@@ -78,7 +77,6 @@ bible.ReferenceFinder = (function() {
 		return formattedText;
 
 	}
-
 
 	return {
 		createLinks: createLinks

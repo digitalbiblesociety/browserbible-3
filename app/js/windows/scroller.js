@@ -144,9 +144,9 @@ var Scroller = function(node) {
 					offset: topOfContentArea - fragment.offset().top,
 
 					label: label,
-					
+
 					labelLong: labelLong,
-					
+
 					textid: currentTextInfo.id
 
 				};
@@ -197,14 +197,14 @@ var Scroller = function(node) {
 
 		// add below
 		if (below_bottom < node_height*2) {
-			
+
 			fragmentid = sections
 							.last() // the last chapter (bottom)
 							.attr( 'data-nextid' );
-							
+
 			if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {
 				load('next', fragmentid);
-			}	
+			}
 
 
 		}
@@ -328,31 +328,31 @@ var Scroller = function(node) {
 
 					var	node_scrolltop_before = node.scrollTop(),
 						first_item = node.find('.section').children().first();
-				
-					
+
+
 					if (first_item.length > 0) {
 						var first_item_offset_top_before = first_item.offset().top;
-	
+
 						// add to top and measure
 						wrapper.prepend(content);
-						
+
 						var first_item_offset_top_after = first_item.offset().top,
 							offest_difference = first_item_offset_top_after - first_item_offset_top_before,
 							new_scrolltop = node_scrolltop_before + offest_difference;
-	
+
 						node.scrollTop( Math.abs(new_scrolltop));
 					}
-					
+
 					// add to bottom, then move down
 					/*
 					var wrapper_height_before = wrapper.height();
 					wrapper.append(content);
-					var wrapper_height_after = wrapper.height();					
+					var wrapper_height_after = wrapper.height();
 					wrapper.prepent(content);
-					
+
 					var height_difference = wrapper_height_after - wrapper_height_before,
 						new_scrolltop = node_scrolltop_before + height_difference;
-					
+
 					node.scrollTop( Math.abs(new_scrolltop ));
 					*/
 

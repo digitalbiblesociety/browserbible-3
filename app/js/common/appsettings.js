@@ -1,5 +1,3 @@
-
-
 /******************
 ReaderSettings
 *******************/
@@ -26,7 +24,6 @@ var AppSettings = (function() {
 	// create me
 	function getValue(key, defaultValue) {
 		key = sofia.config.settingsPrefix + key;
-
 
 		// console.log('getValue', key, defaultValue);
 

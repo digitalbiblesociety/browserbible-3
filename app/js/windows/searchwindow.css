@@ -21,7 +21,7 @@
 
 .search-header .search-text {
 	width: 100px;
-	min-width: inherit;	
+	min-width: inherit;
 }
 
 .search-wrapper {
@@ -105,17 +105,17 @@
 .search-division-chooser {
 	position: absolute;
 	display: none;
-	background: #fff;	
+	background: #fff;
 	font-size: 80%;
 	width: 320px;
-	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;	
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;
 }
 .search-division-chooser .search-division-header {
 	color: #fff;
 	background: #444;
 	padding: 8px;
 	font-weight: bold;
-	
+
 }
 .search-division-chooser .search-division-main {
 	padding: 10px;
@@ -129,13 +129,13 @@
 }
 
 .search-division-chooser .division-header {
-	display: block;	
+	display: block;
 	font-weight: bold;
 }
 
 
 .search-division-chooser .division-name {
-	display: block;	
+	display: block;
 	white-space: nowrap;
 }
 

@@ -592,7 +592,7 @@ SearchIndexLoader = function() {
 			error: function() {
 				// set it to null in order to check later
 				stemmingData = null;
-				
+
 				console.log('No stem data for', textInfo.id);
 				loadNextIndex();
 			}
@@ -796,7 +796,7 @@ SearchIndexLoader = function() {
 				}
 			}
 		}
-	
+
 		// send up the chain
 		ext.trigger('complete', {type:'complete', target: this, data: {
 																	loadedIndexes: loadedIndexes,

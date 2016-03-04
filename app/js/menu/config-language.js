@@ -1,7 +1,7 @@
 sofia.config = $.extend(sofia.config, {
 
 	enableLanguageSelector: true,
-	
+
 	languageSelectorFallbackLang: 'en'
 
 });
@@ -38,13 +38,13 @@ var LanguageSetting = function(node) {
 
 		i18n.setLng(newLang);
 		$('.i18n').i18n();
-		
+
 		localizeLanguages();
 	});
-	
+
 	function localizeLanguages() {
 		var usersLanguage = i18n.lng();
-		
+
 		// go through options and add new info
 		list.children('option').each(function() {
 			var option = $(this),
@@ -54,21 +54,21 @@ var LanguageSetting = function(node) {
 				fallbackName = resourceData.names[sofia.config.languageSelectorFallbackLang],
 				localizedName = resourceData.names[usersLanguage],
 				fullname = name;
-		
+
 			// use the localized name if possible
 			if (localizedName != null && typeof localizedName != 'undefined' && localizedName != fullname) {
 				fullname += ' (' + localizedName + ')';
-				
+
 			// fallback to english
 			} else if (fallbackName != null && typeof fallbackName != 'undefined' && fullname != fallbackName) {
 				fullname += ' (' + fallbackName + ')';
 			}
-				
+
 			option.html(fullname);
-			
+
 		});
 	}
-	
+
 	list[0].localizeLanguages = localizeLanguages;
 };
 

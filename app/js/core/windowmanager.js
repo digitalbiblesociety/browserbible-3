@@ -3,7 +3,6 @@ var WindowManager = function(node, app) {
 
 	var windows = [];
 
-
 	function addWindow(className, data) {
 
 		var id = 'win' + (new Date()).getTime().toString();
@@ -19,9 +18,9 @@ var WindowManager = function(node, app) {
 		// create window and add to array
 		var win = new Window(id, node, className, data, ext);
 		windows.push(win);
-		
+
 		var tabWidth = win.tab.outerWidth();
-		
+
 		//win.tab.css({right: '0px'});
 
 		// when a window reports a settings change
@@ -35,11 +34,10 @@ var WindowManager = function(node, app) {
 
 		//size();
 		setTimeout(function() {
-			app.resize();		
+			app.resize();
 		},10);
 	}
 	function removeWindow(id) {
-
 
 		// find window
 		var windowsToClose = windows.filter(function(win) {
@@ -62,25 +60,25 @@ var WindowManager = function(node, app) {
 		// remove from DOM, run delete functions
 		windowToClose.close();
 		windowToClose = null;
-	
+
 		// resize and reset
 		//size();
 		PlaceKeeper.restorePlace();
-		
-		
+
+
 		var tabWidth = windows[0].tab.outerWidth() - 10;
 		for (var i=0,il=windows.length; i<il; i++) {
 			windows[i].tab.css({right: ((il-i) * tabWidth) +'px'});
 		}
-		
+
 		windows[0].tab.addClass('active');
-		windows[0].node.addClass('active');		
-		
+		windows[0].node.addClass('active');
+
 		setTimeout(function() {
-			app.resize();		
+			app.resize();
 		},10);
-		
-		
+
+
 		// trigger save
 		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
 	}
@@ -96,29 +94,29 @@ var WindowManager = function(node, app) {
 		}
 
 		//console.log('manage resize', windows.length);
-		
+
 		var sizeThreshold = 560;
-		
-		if (width < sizeThreshold) {			
-			$('body').addClass('compact-ui');	
+
+		if (width < sizeThreshold) {
+			$('body').addClass('compact-ui');
 		} else {
 			$('body').removeClass('compact-ui');
 		}
-		
+
 
 		if (windows.length > 0) {
 
 			if (width < sizeThreshold) {
-				
+
 				//$('body').addClass('compact-ui');
-								
-								
-				var tabWidth = windows[0].tab.outerWidth()-10;				
-								
+
+
+				var tabWidth = windows[0].tab.outerWidth()-10;
+
 				// resize all windows to the same
 				for (var i=0, il=windows.length; i<il; i++) {
-					windows[i].size(width, height);	
-					windows[i].tab.css({right: ((il-i-1) * tabWidth) +'px'});						
+					windows[i].size(width, height);
+					windows[i].tab.css({right: ((il-i-1) * tabWidth) +'px'});
 				}
 
 			} else {
@@ -126,7 +124,7 @@ var WindowManager = function(node, app) {
 				//$('body').removeClass('compact-ui');
 
 				// all windows to a percent of the width
-				
+
 				var windowWidth = Math.floor(width/windows.length),
 					firstMarginLeft = parseInt(windows[0].node.css('margin-left'), 10),
 					firstMarginRight =parseInt(windows[0].node.css('margin-right'), 10);
@@ -186,21 +184,21 @@ var Window = function(id, parentNode, className, data, manager) {
 
 						manager.remove(id);
 					}),
-		tab = $('<div class="window-tab ' + className + ' active">' + 
-					'<div class="window-tab-inner">' + 
-						'<span class="window-tab-label ' + className + '-tab">' + className + '</span>' + 
-					'</div>' + 
+		tab = $('<div class="window-tab ' + className + ' active">' +
+					'<div class="window-tab-inner">' +
+						'<span class="window-tab-label ' + className + '-tab">' + className + '</span>' +
+					'</div>' +
 				'</div>')
 					.appendTo( $('body') );
-					
+
 	// make sure this one is selected
 	node.siblings('.window').removeClass('active');
-	tab.siblings('.window-tab').removeClass('active');	
-	
+	tab.siblings('.window-tab').removeClass('active');
+
 	ext.id = id;
-	ext.className = className;	
+	ext.className = className;
 	ext.node = node;
-	ext.tab = tab;	
+	ext.tab = tab;
 
 	var controller = new window[className](id, ext, data);
 	ext.controller = controller;
@@ -222,15 +220,15 @@ var Window = function(id, parentNode, className, data, manager) {
 	node.on('mouseleave', function(e) {
 		controller.trigger('blur', {});
 	});
-	
+
 	tab.on('click', function(e) {
 		// dectivate all other tabs and windows
 		$('.window, .window-tab').removeClass('active');
 
 		tab.addClass('active');
-		node.addClass('active');		
-	});	
-	
+		node.addClass('active');
+	});
+
 
 	function size(width, height) {
 		node.outerWidth(width)
@@ -256,20 +254,20 @@ var Window = function(id, parentNode, className, data, manager) {
 		node.remove();
 	}
 
-	
+
 	ext.size = size;
 	ext.quit = quit;
 	ext.getData =  function() {
 			return controller.getData();
 	};
 	ext.close =  close;
-	
+
 	ext = $.extend(true, ext, EventEmitter);
 
 	// receive from App, send down to controller
 	ext.on('message', function(e) {
 		controller.trigger('message', e);
-		
+
 		if (e.data.labelTab) {
 			tab.find('span').html( e.data.labelTab );
 		}

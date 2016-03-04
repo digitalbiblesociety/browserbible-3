@@ -3,19 +3,15 @@ $(function() {
 	// hide initial text area
 	$('#startup').hide();
 
-
 	// test for local file support
 	if (window.location.protocol === 'file:') {
-
 
 		$.ajax({
 			dataType: 'text',
 
 			url: 'about.html',
 			success: function() {
-
 				init();
-
 			},
 			error: function(e) {
 				var modal = new MovableWindow( Math.min(500, $(window).width()) ,250, 'Local Files Error'),
@@ -34,12 +30,9 @@ $(function() {
 							'<p>Mac, Terminal</p>' +
 							'<code>/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --allow-file-access-from-files</code>';
 					}
-
 				} else {
-
 					errorMessage =
 						'<p>Unknown error loading files (cannot load about.html)' + e + '</p>';
-
 				}
 
 				modal.body.css({background: '#000', color: '#fff' }).html(
@@ -52,9 +45,7 @@ $(function() {
 		});
 
 	} else {
-
 		init();
-
 	}
 
 	function init() {
@@ -74,10 +65,9 @@ $(function() {
 		if (typeof sofia.config.customCssUrl != 'undefined' && sofia.config.customCssUrl != '') {
 			$('<link href="' + sofia.config.customCssUrl + '" rel="stylesheet" />').appendTo( $('head') );
 		}
-		
-		
+
 		var isiOSApp = (navigator.userAgent.toLowerCase().indexOf('ipad') > -1 || navigator.userAgent.toLowerCase().indexOf('iphone') > -1) && window.location.protocol === 'file:';
-		
+
 		if (window.navigator.standalone === true || isiOSApp) {
 			$('body').addClass('app-mobile-fullscreen');
 		}
@@ -92,6 +82,5 @@ $(function() {
 		sofia.app.init();
 
 		$('.i18n').i18n();
-
 	}
 });

@@ -21,7 +21,7 @@
 	width: 32px;
 	height: 32px;
 	cursor: pointer;
-	background-image: url(../../css/images/arrow-left-gray-light.svg);	
+	background-image: url(../../css/images/arrow-left-gray-light.svg);
 }
 
 #main-back-button.inactive,
@@ -35,7 +35,7 @@
 	.compact-ui #main-forward-button {
 		display: none;
 	}
-	
+
 
 #compact-back-button {
 	display: none;
@@ -49,9 +49,9 @@
 
 	background-size: 22px 22px;
 	background-repeat: no-repeat;
-	background-position: 5px center;	
-	background-image: url(../../css/images/arrow-left-gray-light.svg);	
-	
+	background-position: 5px center;
+	background-image: url(../../css/images/arrow-left-gray-light.svg);
+
 	cursor: pointer;
 }
 #compact-back-button-label {

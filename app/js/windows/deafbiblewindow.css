@@ -35,10 +35,10 @@
 
 .deafbible .selected-verse {
 	background: none;
-	color: #d9e8ef;	
+	color: #d9e8ef;
 }
-.deafbible .selected-verse video { 
-	outline: 5px solid #d9e8ef;	
+.deafbible .selected-verse video {
+	outline: 5px solid #d9e8ef;
 }
 
 .deaf-video-header {
@@ -55,14 +55,14 @@
 	--background-color:#c5dcf2;
 	background-color: #fff;
 	border: solid 1px #ccc;
-	cursor: pointer;	
+	cursor: pointer;
 	background-repeat: no-repeat;
 	text-align: right;
 	padding: 10px;
 	background-position-x: 10px;
 }
 .deaf-video-header input[type=button]:first-child {
-	margin-left: 0;	
+	margin-left: 0;
 }
 
 .deaf-video-header input[type=button]:hover {

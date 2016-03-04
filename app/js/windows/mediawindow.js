@@ -311,7 +311,7 @@ var MediaWindow = function(id, parent, data) {
 			selectedChapter = (firstWindowSettings && firstWindowSettings.data) ? firstWin.find('.section[data-id="' + firstWindowSettings.data.sectionid + '"]').first() : null;
 
 		if (selectedChapter != null) {
-			contentToProcess = selectedChapter;	
+			contentToProcess = selectedChapter;
 			processContent();
 		}
 

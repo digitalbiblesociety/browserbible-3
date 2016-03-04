@@ -41,13 +41,13 @@ var LemmaMatchPlugin = function(app) {
 				if (strong == '3588' && il > 1) {
 					continue;
 				}
-				
-				
+
+
 				if (verseid) {
 					$('.' + verseid ).find('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');
 				} else {
-					$('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');					
-					
+					$('l[s*="' + strong + '"],l[s*="' + langPrefix + strong + '"]').addClass('lemma-highlight');
+
 				}
 
 			}

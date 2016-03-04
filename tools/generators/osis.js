@@ -272,7 +272,7 @@ function processBook(data, bookXml, info, inputPath, createIndex) {
 
 								if (createIndex) {
 									var ss = strongs.split(' ');
-									for (var si=0; sil=ss.length; si++) {
+									for (var si=0, sil=ss.length; si<sil; si++) {
 										verseIndexer.indexStrongs(dbsVerseCode, ss[si], data.indexLemmaData, info.lang);
 									}
 								}

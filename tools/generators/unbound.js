@@ -62,7 +62,6 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		if (bookInfo == null) {
 			console.log("Can't find: " + unboundCode);
 			continue;
-
 		}
 
 		if (parts.length == 9) {

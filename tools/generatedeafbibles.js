@@ -1,5 +1,5 @@
 /**
-* Quick script to build a bible for deaf peopel
+* Quick script to build video Bibles for the deaf.
 **/
 
 // REQUIRE
@@ -7,9 +7,9 @@ var
 	fs = require('fs'),
 	http = require('http'),
 	path = require('path'),
-	uglifyjs = require("uglifyjs"),
+	uglifyjs = require("uglify-js"),
 	uglifycss = require("uglifycss"),
-	mkdirp = require("mkdirp"),
+	mkdirp = require("mkdirp").sync,
 
 	bibleData = require('./data/bible_data.js'),
 	bibleReference = require('./data/bible_reference.js'),
@@ -68,9 +68,6 @@ function processNextVersion() {
 
 		var infoUrl = 'http://dbt.io/video/videopath?key=111a125057abd2f8931f6d6ad9f2921f&dam_id=' + versionInfo.dam_id + '&encoding=mp4&v=2';
 
-		//processNextVersion();
-		//return;
-
 		download(infoUrl, function(dataString) {
 			var infoData = JSON.parse(dataString);
 
@@ -100,9 +97,6 @@ function processNextVersion() {
 
 		});
 	} else if (versionInfo.collection_code == 'OT') {
-
-		//console.log('OT', versionInfo);
-
 		var otInfoUrl = 'http://dbt.io/video/videopath?key=111a125057abd2f8931f6d6ad9f2921f&dam_id=' + versionInfo.dam_id + '&encoding=mp4&v=2',
 			ntInfoUrl = 'http://dbt.io/video/videopath?key=111a125057abd2f8931f6d6ad9f2921f&dam_id=' + versionInfo.dam_id.replace('O2DV','N2DV') + '&encoding=mp4&v=2';
 
@@ -135,15 +129,8 @@ function processNextVersion() {
 
 
 	} else {
-		//console.log(versionInfo.collection_code);
-
 		processNextVersion();
 	}
-
-
-
-
-
 }
 
 
@@ -154,9 +141,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 		outputBasePath = '../app/content/texts/',
 		outputPath = path.join(outputBasePath, id);
 
-	if (!fs.existsSync(outputPath)) {
-		fs.mkdirSync(outputPath);
-	}
+	mkdirp(outputPath);
 
 	var chapterData = [],
 		info = {

@@ -27,5 +27,5 @@ To create additional texts
 To create a "build" version, you'll need uglify-js
 
 1. Install uglify-js `npm install uglify-js`
-2. Rename `app/js/windows/config-custom-example.js` to `config-custom.js` and update configs to your needs
+2. Rename `app/js/core/config-custom-example.js` to `config-custom.js` and update configs to your needs
 3. Run `node builder.js` (creates build files to use with index-build.html)

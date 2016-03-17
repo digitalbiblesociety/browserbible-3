@@ -21,7 +21,7 @@ To add texts:
 1. Create a folder under `input/MyNewVersion/`
 2. Create a `info.json` file in that folder with the id, name, language, information.
 3. Put content in the folder (currently USFM files and bibles from http://unbound.biola.edu/)
-4. Run `node run build:content`
+4. Run `npm run build:content`
 
 ### Build (minify) ###
 

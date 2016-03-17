@@ -119,15 +119,17 @@ var bibleFormatter = {
 				this.closeDocument();
 	},
 
-	openChapter: function(info, chapterData) {
+	openChapter: function(info, chapterData, classes) {
 
 		//<div class="section chapter
 		var type = info.type;
 		if (typeof type == 'undefined' || type == 'bible') {
 			type = 'chapter';
 		}
+		
+		classes = classes || '';
 
-		var chapterHtml =  '<div class="section ' + type + ' ' + chapterData.id.substr(0,2) + ' ' + chapterData.id + ' ' + info.id + ' ' + info.lang + '"' +
+		var chapterHtml =  '<div class="section ' + type + ' ' + chapterData.id.substr(0,2) + ' ' + chapterData.id + ' ' + info.id + ' ' + info.lang + ' ' + classes + '"' +
 					(info.dir ? ' dir="' + info.dir + '"' : '') +
 					(info.lang ? ' lang="' + iso2iana.convert(info.lang) + '"' : '') +
 					' data-id="' + chapterData.id + '"' +

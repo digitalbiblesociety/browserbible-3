@@ -145,6 +145,11 @@ var inliner = {
 
 		var outputCss = inputCss.replace(/url\(["']?(\S*)\.(png|jpg|jpeg|gif|svg)["']?\)/g, function(match, file, type) {
 
+			if (file.substring(0,2) == '//') {
+				console.log('external URL', match);
+				return match;
+			}
+			
 			var fileName = file + '.' + type,
 				filePath = path.join(basePath, fileName),
 				size = 0;

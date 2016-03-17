@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.8.0 - 2016/03/17
+
+* Project reorganization: All scripts run through NPM in /tools/ folder
+* WordCloud now shows all words (previously 2 or more)
+* Added missing image/SVGs
+
 3.7.1 - 2016/02/18
 
 * Deaf Bible - flag shows in dropdown

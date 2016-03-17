@@ -4,10 +4,10 @@ sofia.config = $.extend(sofia.config, {
 
 	// enables all possible English options (false = just color 'you')
 	eng2pEnableAll: true,
-		
+
 	eng2pDefaultSetting: 'none',
-	
-	eng2pShowWindowAtStartup: false	
+
+	eng2pShowWindowAtStartup: false
 });
 
 
@@ -163,10 +163,10 @@ var Eng2pPlugin = function(node) {
 		// see if there is a matching value
 		if ($('#eng2p-option-' + tempEng2pSetting).length > 0) {
 			eng2pSetting.eng2p = tempEng2pSetting;
-		
+
 		}
 	}
-	
+
 	if (typeof params['eng2pshow'] != 'undefined' || sofia.config.eng2pShowWindowAtStartup === true) {
 		engWindow.show();
 		engWindow.container.css({left: $(window).width() - engWindow.container.outerWidth(true) - 10});

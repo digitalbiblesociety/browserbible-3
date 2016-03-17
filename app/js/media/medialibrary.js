@@ -117,16 +117,16 @@ sofia.globals.mediaVideoJfmClick = function(e) {
 		//segmentNumber = link.attr('href'),
 		segmentData = link.attr('data-filename'),
 		title = link.attr('title'),
-		
+
 		firstSection = $('.section:first'),
-		
+
 		lang = firstSection.length > 0 ? firstSection.attr('data-lang3') : 'eng';
-		
-				
+
+
 	JesusFilmMediaApi.getPlayer(lang, segmentData, function(iframeUrl) {
 		sofia.globals.showIframe(iframeUrl, title);
 	});
-	
+
 	return false;
 };
 

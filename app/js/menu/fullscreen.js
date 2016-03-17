@@ -4,7 +4,7 @@ var FullScreenButton = function(node) {
 	if (!fullScreenApi.supportsFullScreen) {
 		return null;
 	}
-	
+
 	$('html').addClass('supports-fullscreen');
 
 	var

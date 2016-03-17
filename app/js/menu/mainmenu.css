@@ -2,7 +2,7 @@
 	position: absolute;
 	top: 0;
 	left: 60px;
-	height: 60px;	
+	height: 60px;
 }
 
 #main-menu-button {
@@ -30,11 +30,11 @@
 	-x-height: 280px;
 	position: absolute;
 	z-index: 8;
-	background: #fff;	
+	background: #fff;
 	top: 59px;
 	left: 0px;
 	-x-border: solid 1px #ccc;
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);	
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .main-menu-heading {
@@ -72,7 +72,7 @@
 	background-size: 25px 25px;
 	background-position: center 8px;
 	text-align: center;
-	
+
 }
 */
 
@@ -89,8 +89,8 @@
 	font-family: Avenir, Helvetica, Arial;
 	font-size: 12px;
 	float: left;
-	
-	
+
+
 }
 
 
@@ -102,16 +102,16 @@
 
 
 	.compact-ui #app-logo {
-		display: none;	
+		display: none;
 	}
-	
+
 	.compact-ui #main-menu-button {
 		height: 40px;
 		width: 40px;
 		background-size: 30px 16px;
-		top: 0px;	
+		top: 0px;
 	}
-	
+
 	.compact-ui #main-menu-dropdown {
 		top: 40px;
 	}

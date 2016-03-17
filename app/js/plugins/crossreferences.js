@@ -34,10 +34,10 @@ var CrossReferencePopupPlugin = function(app) {
 	sofia.globals.handleBibleRefClick = function(e) {
 		var link = $(this),
 			newfragmentid = getFragmentidFromNode(link);
-			
+
 		// where are we?
 		var currentLocationData = PlaceKeeper.getFirstLocation();
-		
+
 		// store the current one
 		TextNavigation.locationChange(currentLocationData.fragmentid);
 

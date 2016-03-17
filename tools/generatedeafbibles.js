@@ -1,5 +1,5 @@
 /**
-* Quick script to build a bible for deaf peopel
+* Quick script to build video Bibles for the deaf.
 **/
 
 // REQUIRE
@@ -9,11 +9,11 @@ var
 	path = require('path'),
 	uglifyjs = require("uglify-js"),
 	uglifycss = require("uglifycss"),
-	mkdirp = require("mkdirp"),
+	mkdirp = require("mkdirp").sync,
 
-	bibleData = require('bible_data'),
-	bibleReference = require('bible_reference'),
-	bibleFormatter = require('bible_formatter');
+	bibleData = require('./data/bible_data.js'),
+	bibleReference = require('./data/bible_reference.js'),
+	bibleFormatter = require('./bible_formatter.js');
 
 
 function download(url, cb) {
@@ -68,9 +68,6 @@ function processNextVersion() {
 
 		var infoUrl = 'http://dbt.io/video/videopath?key=111a125057abd2f8931f6d6ad9f2921f&dam_id=' + versionInfo.dam_id + '&encoding=mp4&v=2';
 
-		//processNextVersion();
-		//return;
-
 		download(infoUrl, function(dataString) {
 			var infoData = JSON.parse(dataString);
 
@@ -100,9 +97,6 @@ function processNextVersion() {
 
 		});
 	} else if (versionInfo.collection_code == 'OT') {
-
-		//console.log('OT', versionInfo);
-
 		var otInfoUrl = 'http://dbt.io/video/videopath?key=111a125057abd2f8931f6d6ad9f2921f&dam_id=' + versionInfo.dam_id + '&encoding=mp4&v=2',
 			ntInfoUrl = 'http://dbt.io/video/videopath?key=111a125057abd2f8931f6d6ad9f2921f&dam_id=' + versionInfo.dam_id.replace('O2DV','N2DV') + '&encoding=mp4&v=2';
 
@@ -135,15 +129,8 @@ function processNextVersion() {
 
 
 	} else {
-		//console.log(versionInfo.collection_code);
-
 		processNextVersion();
 	}
-
-
-
-
-
 }
 
 
@@ -151,12 +138,10 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 	// START
 	var
-		outputBasePath = '../../app/content/texts/',
+		outputBasePath = '../app/content/texts/',
 		outputPath = path.join(outputBasePath, id);
 
-	if (!fs.existsSync(outputPath)) {
-		fs.mkdirSync(outputPath);
-	}
+	mkdirp(outputPath);
 
 	var chapterData = [],
 		info = {
@@ -200,17 +185,17 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 			switch (element.segment_order) {
 				case '1':
 					title = 'God Creates Everything';
-					verseRange = 'Genesis 1:1-2:4';					
+					verseRange = 'Genesis 1:1-2:4';
 					bookID = 'Gen';
 					chapter_start = 1;
 					verse_start = 1;
 					chapter_end = 2;
 					verse_end = 4;
 					break;
-					
+
 				case '2':
 					title = 'God Makes First Man & Woman';
-					verseRange = 'Genesis 2:7-25';					
+					verseRange = 'Genesis 2:7-25';
 					bookID = 'Gen';
 					chapter_start = 2;
 					verse_start = 7;
@@ -220,7 +205,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 				case '3':
 					title = 'Man and Woman Disobey God';
-					verseRange = 'Genesis 3:1-24';					
+					verseRange = 'Genesis 3:1-24';
 					bookID = 'Gen';
 					chapter_start = 3;
 					verse_start = 1;
@@ -230,7 +215,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 				case '4':
 					title = 'Can and Abel';
-					verseRange = 'Genesis 4:1-17, 25-26';					
+					verseRange = 'Genesis 4:1-17, 25-26';
 					bookID = 'Gen';
 					chapter_start = 4;
 					verse_start = 1;
@@ -240,7 +225,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 				case '5':
 					title = 'The Great Flood';
-					verseRange = 'Genesis 6:1-9:17';					
+					verseRange = 'Genesis 6:1-9:17';
 					bookID = 'Gen';
 					chapter_start = 6;
 					verse_start = 1;
@@ -250,17 +235,17 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 				case '6':
 					title = 'God Chooses Abraham';
-					verseRange = 'Genesis 12:1-13:4';					
+					verseRange = 'Genesis 12:1-13:4';
 					bookID = 'Gen';
 					chapter_start = 12;
 					verse_start = 1;
 					chapter_end = 13;
 					verse_end = 4;
 					break;
-					
+
 				case '7':
 					title = 'God Challenges Abraham';
-					verseRange = 'Genesis 22:1-19';					
+					verseRange = 'Genesis 22:1-19';
 					bookID = 'Gen';
 					chapter_start = 22;
 					verse_start = 1;
@@ -270,14 +255,14 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 				case '8':
 					title = 'God Chooses Moses';
-					verseRange = 'Exodus 3:1-20';					
+					verseRange = 'Exodus 3:1-20';
 					bookID = 'Exod';
 					chapter_start = 3;
 					verse_start = 1;
 					chapter_end = 4;
 					verse_end = 20;
 					break;
-					
+
 
 				case '9':
 					title = 'Passover';
@@ -288,7 +273,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					chapter_end = 13;
 					verse_end = 19;
 					break;
-					
+
 
 				case '10':
 					title = 'The Ten Commandments';
@@ -297,8 +282,8 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					chapter_start = 19;
 					verse_start = 1;
 					chapter_end = 24;
-					verse_end = 8; // 
-					break;										
+					verse_end = 8; //
+					break;
 
 				case '11':
 					title = 'David Goes Astray';
@@ -307,8 +292,8 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					chapter_start = 11;
 					verse_start = 1;
 					chapter_end = 12;
-					verse_end = 25; // 
-					break;										
+					verse_end = 25; //
+					break;
 
 				case '12':
 					title = 'God Promise to Send the Messiah';
@@ -317,8 +302,8 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					chapter_start = 7;
 					verse_start = 14;
 					chapter_end = 9;
-					verse_end = 7; 
-					break;										
+					verse_end = 7;
+					break;
 
 				case '13':
 					title = 'Angel Announces Jesus\' Birth';
@@ -328,7 +313,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 18;
 					chapter_end = 1;
 					verse_end = 25;
-					break;										
+					break;
 
 				case '14':
 					title = 'John Baptizes Jesus';
@@ -338,7 +323,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 1;
 					chapter_end = 3;
 					verse_end = 7;
-					break;										
+					break;
 
 				case '15':
 					title = 'God\'s Chosen Lamb';
@@ -348,7 +333,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 29;
 					chapter_end = 1;
 					verse_end = 34;
-					break;										
+					break;
 
 				case '16':
 					title = 'Nicodemus Meets Jesus';
@@ -358,8 +343,8 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 1;
 					chapter_end = 3;
 					verse_end = 21;
-					break;										
-				
+					break;
+
 				case '17':
 					title = 'Jesus Meets with a Samaritan Woman';
 					verseRange = 'John 4:4-42';
@@ -368,7 +353,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 4;
 					chapter_end = 4;
 					verse_end = 42;
-					break;										
+					break;
 
 				case '18':
 					title = 'Jesus Meets with a Samaritan Woman';
@@ -378,7 +363,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 1;
 					chapter_end = 2;
 					verse_end = 12;
-					break;										
+					break;
 
 				case '19':
 					title = 'Jesus Picks Matthew';
@@ -388,8 +373,8 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 13;
 					chapter_end = 2;
 					verse_end = 17;
-					break;	
-														
+					break;
+
 				case '20':
 					title = 'A Woman Washes Jesus\'s Feet';
 					verseRange = 'Luke 7:36-50';
@@ -398,7 +383,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 26;
 					chapter_end = 7;
 					verse_end = 50;
-					break;										
+					break;
 
 				case '21':
 					title = 'Jesus Faces the Storm and a Troubled Man';
@@ -408,7 +393,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 35;
 					chapter_end = 5;
 					verse_end = 20;
-					break;										
+					break;
 
 				case '22':
 					title = 'Jesus Helps a Bleeding Woman & Darius\'s Daughter';
@@ -418,7 +403,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 21;
 					chapter_end = 5;
 					verse_end = 43;
-					break;										
+					break;
 
 				case '23':
 					title = 'Jesus Heals a Deaf Man';
@@ -428,7 +413,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 31;
 					chapter_end = 7;
 					verse_end = 37;
-					break;										
+					break;
 
 				case '24':
 					title = 'Rich Man & Lazarus';
@@ -438,7 +423,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 19;
 					chapter_end = 16;
 					verse_end = 31;
-					break;										
+					break;
 
 				case '25':
 					title = 'Jesus\'s Last Supper';
@@ -448,7 +433,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 7;
 					chapter_end = 22;
 					verse_end = 20;
-					break;										
+					break;
 
 				case '26':
 					title = 'Jesus Has a Trial Before the Jewish Leaders';
@@ -458,7 +443,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 47;
 					chapter_end = 27;
 					verse_end = 5;
-					break;										
+					break;
 
 				case '27':
 					title = 'Jesus Has a Trial Before the Roman Governor';
@@ -468,7 +453,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 15;
 					chapter_end = 27;
 					verse_end = 31;
-					break;										
+					break;
 
 				case '28':
 					title = 'The Romans Crucify Jesus';
@@ -478,7 +463,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 32;
 					chapter_end = 27;
 					verse_end = 60;
-					break;										
+					break;
 
 				case '29':
 					title = 'Jesus Rises from the Dead';
@@ -488,7 +473,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 1;
 					chapter_end = 28;
 					verse_end = 4;
-					break;										
+					break;
 
 				case '30':
 					title = 'Jesus\'s Last Teaching';
@@ -498,7 +483,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 16;
 					chapter_end = 28;
 					verse_end = 20;
-					break;										
+					break;
 
 				case '31':
 					title = 'The Father\'s Promises Arrives';
@@ -508,7 +493,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 1;
 					chapter_end = 2;
 					verse_end = 41;
-					break;										
+					break;
 
 				case '32':
 					title = 'His Church Gathers';
@@ -518,7 +503,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 					verse_start = 42;
 					chapter_end = 2;
 					verse_end = 47;
-					break;										
+					break;
 
 
 
@@ -592,7 +577,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 		if (verseRange == '') {
 			verseRange = chapter_start + ':' + verse_start;
-	
+
 			if (chapter_start != chapter_end) {
 				verseRange +=  '&ndash;' + chapter_end + ':' + verse_end;
 			} else if (verse_start != verse_end) {
@@ -613,23 +598,23 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 		if (is_sls_type) {
 			currentChapter.html += '<div class="mt">' + title + ' (' + verseRange + ')</div>' + bibleFormatter.breakChar;
-			
+
 			if (element.related_videos.length >= 3) {
-				currentChapter.html += 
-						'<div class="deaf-video">' + 
-							'<div class="deaf-video-header">' + 
+				currentChapter.html +=
+						'<div class="deaf-video">' +
+							'<div class="deaf-video-header">' +
 								'<input type="button" class="deaf-intro" data-src="http://video.dbt.io/' + element.related_videos[1].path + '" value="Introduction" />' +
 								'<input type="button" class="deaf-story active" data-src="http://video.dbt.io/' + videoPath + '" value="Story" />' +
 								'<input type="button" class="deaf-lessons" data-src="http://video.dbt.io/' + element.related_videos[2].path + '" value="Lessons" />' +
-							'</div>' + 
-							'<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>' + 
-						'</div>';	
+							'</div>' +
+							'<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>' +
+						'</div>';
 			} else {
 				currentChapter.html += '<div class="s">Story</div>';
-				currentChapter.html += '<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>';				
+				currentChapter.html += '<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>';
 			}
-			
-			
+
+
 			/*
 			if (element.related_videos.length >= 1) {
 				currentChapter.html += '<div class="s">Introduction</div>';
@@ -638,7 +623,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 			currentChapter.html += '<div class="s">Story</div>';
 			currentChapter.html += '<video src="http://video.dbt.io/' + videoPath + '" preload="none" class="inline-video" controls poster="//cloud.faithcomesbyhearing.com/segment-art/700X510/DOOR-' + element.segment_order +'.jpg"></video>';
-			
+
 			if (element.related_videos.length >= 3) {
 				currentChapter.html += '<div class="s">Lessons</div>';
 				currentChapter.html += '<video src="http://video.dbt.io/' + element.related_videos[2].path + '" preload="none" class="inline-video" controls poster="' + thumbPath + '"></video>';
@@ -668,28 +653,28 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 	// INFO
 	fs.writeFileSync(path.join(outputPath, 'info.json'), JSON.stringify(info), 'utf8');
-	
-	
+
+
 	info.name = versionInfo.language_name;
-	
+
 	// ABOUT
 	var aboutHtml = bibleFormatter.openAboutPage(info) +
 				//'<dl>' +
-				'<dt>Source</dt>'+ 
+				'<dt>Source</dt>'+
 				'<dd>Video provided through the <a href="http://digitalbibleplatform.com/" target="_blank">Digital Bible Platform</a> from <a href="http://www.faithcomesbyhearing.com/" target="_blank">Faith Comes By Hearing</a> in association with the <a href="http://www.deafbiblesociety.com/" target="_blank">Deaf Bible Society</a>.</dd>' +
 				//'<dl>' +
-				'<dt>Volume Name</dt>'+ 
+				'<dt>Volume Name</dt>'+
 				'<dd>' + versionInfo.volume_name + '</dd>' +
-				'<dt>Version Name</dt>'+ 
+				'<dt>Version Name</dt>'+
 				'<dd>' + versionInfo.version_name + '</dd>' +
-				'<dt>Language Name</dt>'+ 
+				'<dt>Language Name</dt>'+
 				'<dd>' + versionInfo.language_name + '</dd>' +
-				'<dt>DAM ID</dt>'+ 
+				'<dt>DAM ID</dt>'+
 				'<dd>' + versionInfo.dam_id + '</dd>' +
-				//'<dl>' +				
+				//'<dl>' +
 				bibleFormatter.closeAboutPage(info);
-				
-	fs.writeFileSync(path.join(outputPath, 'about.html'), aboutHtml, 'utf8');	
+
+	fs.writeFileSync(path.join(outputPath, 'about.html'), aboutHtml, 'utf8');
 
 
 

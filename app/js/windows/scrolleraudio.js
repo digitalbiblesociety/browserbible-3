@@ -69,7 +69,7 @@ var AudioController = function(id, container, toggleButton, scroller) {
 		sectionNode = null,
 		hasAudio = false,
 		audioDataManager = new AudioDataManager();
-		
+
 	// START UP
 	options.find('.i18n').i18n();
 
@@ -131,7 +131,7 @@ var AudioController = function(id, container, toggleButton, scroller) {
 	optionsDramaticDrama.on('change', updateDramatic);
 
 	function updateDramatic() {
-		
+
 		var storedFragmentid = fragmentid;
 
 		// kill all existing values
@@ -162,19 +162,19 @@ var AudioController = function(id, container, toggleButton, scroller) {
 	}
 
 	playButton.on('click', function() {
-	
+
 		if (audio.src == '' || audio.src == null) {
-			
+
 			if (loadAudioWhenPlayIsPressed) {
 				audio.src = fragmentAudioData.url;
 				audio.load();
 				$(audio).on('loadeddata', playWhenLoaded);
-				loadAudioWhenPlayIsPressed = false;	
-			}		
-			
+				loadAudioWhenPlayIsPressed = false;
+			}
+
 			return;
 		}
-		
+
 
 		if (audio.paused || audio.ended) {
 			audio.play();
@@ -223,29 +223,29 @@ var AudioController = function(id, container, toggleButton, scroller) {
 				$(audio).on('loadeddata', playWhenLoaded);
 			}
 		});
-		
+
 		return;
 	});
-	
+
 	// only for the smaller player below a scroller
 	if (scroller != null) {
-		
+
 		function updateLocation(e) {
-	
+
 			var newLocationInfo = e.data;
-	
+
 			// found a fragment
 			if (newLocationInfo != null) {
-	
+
 				locationInfo = newLocationInfo;
-	
+
 				loadAudio(locationInfo.fragmentid);
 			}
 		}
-		
+
 		scroller.on('locationchange', updateLocation);
 	}
-	
+
 	function loadAudio(newFragmentid) {
 
 		if (!hasAudio) {
@@ -506,7 +506,7 @@ var AudioController = function(id, container, toggleButton, scroller) {
 					// boom!
 				}
 			}
-			
+
 			if (textInfo.type == 'bible') {
 
 				audioDataManager.getAudioInfo(textInfo, function(newAudioInfo) {
@@ -553,12 +553,12 @@ var AudioController = function(id, container, toggleButton, scroller) {
 							}
 						}
 
-						
+
 						if (fragmentid != '') {
 							var newFragmentid = fragmentid;
 
 							fragmentid = '';
-							
+
 							// //console.log('AUDIO, new from old ', newFragmentid);
 							loadAudio(newFragmentid);
 						} else {
@@ -581,7 +581,7 @@ var AudioController = function(id, container, toggleButton, scroller) {
 
 						console.log('AUDIO: NO', textInfo.id, textInfo.lang, newAudioInfo);
 
-						
+
 						if (toggleButton) {
 							toggleButton.hide();
 							block.hide();

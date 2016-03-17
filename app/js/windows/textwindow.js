@@ -69,7 +69,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 	infoBtn.on('click', function() {
 
-		textChooser.hide();	
+		textChooser.hide();
 		textNavigator.hide();
 
 		flipper.toggleClass('showinfo');
@@ -110,20 +110,20 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 	textlistui
 		.on('click', function(e) {
-	
+
 			//console.log('clicked');
-	
+
 			if (flipper.hasClass('showinfo')) {
 				flipper.removeClass('showinfo')
 			}
-			
+
 			// if this is selected, then toggle
 			if (textChooser.getTarget() == textlistui) {
 				textChooser.toggle();
-			} else {			
-				textChooser.setTarget(container, textlistui, text_type);			
-				textChooser.setTextInfo(currentTextInfo);			
-				textChooser.show();			
+			} else {
+				textChooser.setTarget(container, textlistui, text_type);
+				textChooser.setTextInfo(currentTextInfo);
+				textChooser.show();
 			}
 		});
 
@@ -140,10 +140,10 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 			if (textNavigator.getTarget() == navui) {
 				textNavigator.toggle();
-			} else {			
-				textNavigator.setTarget(container, navui);			
-				textNavigator.setTextInfo(currentTextInfo);			
-				textNavigator.show();			
+			} else {
+				textNavigator.setTarget(container, navui);
+				textNavigator.setTextInfo(currentTextInfo);
+				textNavigator.show();
 			}
 		})
 		.on('keypress', function(e) {
@@ -173,10 +173,10 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 	textNavigator.on('change', function (e) {
 		//console.log('scrollerapp:navigator:change', e);
-		
+
 		if (e.data.target != navui) {
 			return;
-		}		
+		}
 
 		if (sofia.analytics) {
 			sofia.analytics.record('usernav', 'menu', e.data + ':' + currentTextInfo.id);
@@ -189,19 +189,19 @@ var TextWindow = function(id, parent, init_data, text_type) {
 	});
 
 	textChooser.on('change', function (e) {
-		
+
 		if (e.data.target != textlistui) {
 			return;
 		}
-		
+
 		var newTextInfo = e.data.textInfo;
 
 		// ALWAYS UPDATE: for first load
 		// update version name
 		//textlistui.html( newTextInfo.abbr );
-		
-		setTextInfoUI(newTextInfo);		
-		
+
+		setTextInfoUI(newTextInfo);
+
 		parent.tab.find('span').html( newTextInfo.abbr );
 
 		// update the navigator with the latest header
@@ -271,7 +271,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 		if (init_data == null) {
 			return;
 		}
-		
+
 		if (typeof init_data.textid == 'undefined' || init_data.textid == '') {
 			init_data.textid = sofia.config.newBibleWindowVersion;
 		}
@@ -331,20 +331,20 @@ var TextWindow = function(id, parent, init_data, text_type) {
 
 		});
 	}
-	
+
 	function setTextInfoUI(textinfo) {
 
-		
+
 		switch (textinfo.type ) {
 			default:
-				textlistui.removeClass('app-list-image');			
-				textlistui.html( textinfo.abbr );				
+				textlistui.removeClass('app-list-image');
+				textlistui.html( textinfo.abbr );
 				break;
 			case 'deafbible':
 				textlistui.addClass('app-list-image');
-				textlistui.html( '<img src="content/texts/' + textinfo.id + '/' + textinfo.id + '.png" />' );				
-				break;				
-			
+				textlistui.html( '<img src="content/texts/' + textinfo.id + '/' + textinfo.id + '.png" />' );
+				break;
+
 		}
 
 	}

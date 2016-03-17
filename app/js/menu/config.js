@@ -1,11 +1,11 @@
 
 var ConfigButton = function(node) {
-	var 
-	
+	var
+
 		container = $('.windows-container'),
 		body = $(document.body),
-		win = $(window),			
-	
+		win = $(window),
+
 		configButton = $('<div class="main-menu-item image-config i18n" data-i18n="[html]menu.labels.settings"></div>')
 					.appendTo( $('#main-menu-features') )
 					.on('click', buttonClick),
@@ -13,7 +13,7 @@ var ConfigButton = function(node) {
 		modalOverlay = $('<div class="modal-overlay"></div>')
 							.appendTo( body )
 							.hide(),
-							
+
 		configWindow = new MovableWindow(300, 380, i18n.t('menu.labels.settings'), 'config-window');
 
 		configWindow.body.html(
@@ -37,30 +37,30 @@ var ConfigButton = function(node) {
 						'</div>' +
 					'</div>'
 					);
-					
+
 	function showConfig() {
 		var winWidth = win.width(),
-			winHeight = win.height();		
-		
+			winHeight = win.height();
+
 		modalOverlay
 			.width( winWidth )
-			.height( winHeight )		
+			.height( winHeight )
 			.show();
-		
-		configWindow			
+
+		configWindow
 			.show()
 			.center();
-		
-		container.addClass('blur');	
-		
+
+		container.addClass('blur');
+
 		$('#main-menu-dropdown').hide();
-		$('#main-menu-button').removeClass('active');	
+		$('#main-menu-button').removeClass('active');
 	}
 
 	function hideConfig() {
 		configWindow.hide();
 		modalOverlay.hide();
-		container.removeClass('blur');		
+		container.removeClass('blur');
 	}
 
 	modalOverlay.on('click', function() {
@@ -69,20 +69,20 @@ var ConfigButton = function(node) {
 
 	configWindow.closeButton.on('click', function() {
 		hideConfig();
-	});			
-					
+	});
+
 	function buttonClick(e) {
 
 		e.preventDefault();
 
 		if (configWindow.container.is(':visible')) {
-			
+
 			hideConfig();
-			
+
 		} else {
 
 			showConfig();
-			
+
 		}
 
 		return false;

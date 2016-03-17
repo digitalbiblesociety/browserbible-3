@@ -247,5 +247,5 @@ sofia.countries =  [
 {"name":"Western Sahara","alpha-2":"EH","alpha-3":"ESH"},
 {"name":"Yemen","alpha-2":"YE","alpha-3":"YEM"},
 {"name":"Zambia","alpha-2":"ZM","alpha-3":"ZMB"},
-{"name":"Zimbabwe","alpha-2":"ZW","alpha-3":"ZWE"}	
+{"name":"Zimbabwe","alpha-2":"ZW","alpha-3":"ZWE"}
 ];

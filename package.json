@@ -1,0 +1,34 @@
+{
+  "name": "BrowserBible",
+  "version": "3.6.5",
+  "description": "Bible software that runs in the browser.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalbiblesociety/browserbible-3"
+  },
+  "author": "John Dyer",
+  "license": "MIT",
+  "scripts": {
+    "build:texts": "node tools/generate.js -i",
+    "build:index": "node tools/create_texts_index.js",
+    "build:deafbibles": "node tools/generatedeafbibles.js",
+    "build:content": "npm run build:texts && npm run build:deafbibles && npm run build:index",
+    "build": "node tools/builder.js"
+  },
+  "dependencies": {
+    "base32": "0.0.6",
+    "jquery": "^2.2.1",
+    "jsdom": "=7.2.2",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "natural": "^0.2.1",
+    "progress": "^1.1.8",
+    "readline": "^1.3.0",
+    "rimraf": "^2.5.2",
+    "stream": "0.0.2",
+    "uglify-js": "^2.6.2",
+    "uglifycss": "0.0.20",
+    "xregexp": "^3.1.0"
+  },
+  "devDependencies": {}
+}

@@ -95,7 +95,7 @@ var TextNavigator = function() {
 		if (textInfo == null) {
 			console.warn('chooser has not textInfo!');
 			return;
-		}		
+		}
 
 		title.html( textInfo.name );
 
@@ -114,38 +114,38 @@ var TextNavigator = function() {
 			case 'deafbible':
 			case 'videobible':
 			case 'commentary':
-				
+
 				var textInputValue = target.val(),
 					biblereference = new bible.Reference(textInputValue),
-					fragmentid = (biblereference) ? biblereference.toSection() : null; 
-			
+					fragmentid = (biblereference) ? biblereference.toSection() : null;
+
 				renderDivisions();
 				changer.find('.text-navigator-divisions').show().attr('dir', textInfo.dir).attr('lang', textInfo.lang);
 				//changer.find('.text-navigator-sections').hide();
-				
+
 				if (fragmentid) {
 					var parts = fragmentid.split('_'),
 						sectionid = parts[0],
 						divisionid = sectionid.substring(0,2),
 						chapter = sectionid.substring(2);
-					
-					var divisionNode = changer.find('.divisionid-' + divisionid).addClass('selected');									
+
+					var divisionNode = changer.find('.divisionid-' + divisionid).addClass('selected');
 					// scroll to it
-					
+
 					if (divisionNode.length > 0) {
 						var offset = divisionNode.position();
-					
-						changer.find('.text-navigator-divisions').scrollTop(offset.top-40);
-						
-						renderSections(false);
-						
-						divisionNode.find('.section-' + sectionid).addClass('selected');						
-					}
-					
 
-					
+						changer.find('.text-navigator-divisions').scrollTop(offset.top-40);
+
+						renderSections(false);
+
+						divisionNode.find('.section-' + sectionid).addClass('selected');
+					}
+
+
+
 				}
-				
+
 				break;
 			case 'book':
 				renderSections();
@@ -155,7 +155,7 @@ var TextNavigator = function() {
 
 		}
 	}
-	
+
 	function getBookSectionClass(bookid) {
 		return bible.BOOK_DATA[bookid].section;
 	}
@@ -186,13 +186,13 @@ var TextNavigator = function() {
 		for (var i=0, il= textInfo.divisions.length ; i<il; i++) {
 
 			var divisionid = textInfo.divisions[i],
-				divisionName = (textInfo.divisionNames) ? 
+				divisionName = (textInfo.divisionNames) ?
 									textInfo.divisionNames[i] : null,
 				divisionAbbr = (textInfo.divisionAbbreviations) ?
 									textInfo.divisionAbbreviations[i] : null,
 				displayName = fullBookMode ? divisionName :
-											divisionAbbr != null ? 
-												divisionAbbr.replace(/\s/i,'').substring(0,3) : 
+											divisionAbbr != null ?
+												divisionAbbr.replace(/\s/i,'').substring(0,3) :
 												divisionName.replace(/\s/i,'').substring(0,3),
 				book = bible.BOOK_DATA[divisionid];
 
@@ -225,9 +225,9 @@ var TextNavigator = function() {
 			}
 			html.push('<div class="text-navigator-division divisionid-' + divisionid + ' division-section-' + getBookSectionClass(divisionid) + '" data-id="' + divisionid + '" data-chapters="' + num_of_chapters + '" data-name="' + divisionName + '"><span>' + displayName + '</span></div>');
 			*/
-			
+
 			var chapters = textInfo.sections.filter(function(c) {
-				return c.substring(0,2) == divisionid;			
+				return c.substring(0,2) == divisionid;
 			});
 
 			html.push('<div class="text-navigator-division divisionid-' + divisionid + ' division-section-' + getBookSectionClass(divisionid) + '" data-id="' + divisionid + '" data-chapters="' + chapters.join(',') + '" data-name="' + divisionName + '"><span>' + displayName + '</span></div>');
@@ -243,38 +243,38 @@ var TextNavigator = function() {
 	changer.on('click', '.text-navigator-division', function() {
 
 		var divisionNode = $(this);
-		
+
 		if (divisionNode.hasClass('selected')) {
 			divisionNode.find('.text-navigator-sections').slideUp({complete: function() {
-				divisionNode.removeClass('selected');	
+				divisionNode.removeClass('selected');
 			}});
-			
+
 			return;
 		}
-		
+
 		divisionNode
-			.addClass('selected')		
+			.addClass('selected')
 			.siblings()
 				.removeClass('selected');
 
 		fullname.hide();
-		
+
 		// hide previous book's chapter
-		var divisions = changer.find('.text-navigator-divisions'), 
-			positionBefore = divisionNode.position(),			
+		var divisions = changer.find('.text-navigator-divisions'),
+			positionBefore = divisionNode.position(),
 			scrollTopBefore = divisions.scrollTop();
 
 		// close the existing set of sections
 		changer.find('.text-navigator-sections').remove();
-		
+
 		var positionAfter = divisionNode.position();
-		
+
 		if (positionBefore.top > positionAfter.top) {
 			var newScrollTop = scrollTopBefore - (positionBefore.top - positionAfter.top);// + header.outerHeight(true);
-			
+
 			divisions.scrollTop(newScrollTop);
-		}		
-		
+		}
+
 		renderSections(true);
 	});
 
@@ -290,7 +290,7 @@ var TextNavigator = function() {
 			case 'bible':
 			case 'deafbible':
 			case 'videobible':
-			
+
 			case 'commentary':
 				// print out chapters
 				var selected_division = changer.find('.text-navigator-division.selected'),
@@ -302,20 +302,20 @@ var TextNavigator = function() {
 					numbers = typeof textInfo.numbers != 'undefined' ? textInfo.numbers : bible.numbers.default;
 
 				title.html( divisionname );
-				
+
 				console.log('chapters',chapters);
 
 				for (var chapter=0; chapter<chapters.length; chapter++) {
 					var dbsChapterCode = chapters[chapter],
 						chapterNumber = parseInt(dbsChapterCode.substring(2));
-						
+
 					html.push('<span class="text-navigator-section section-' + dbsChapterCode + '" data-id="' + dbsChapterCode + '">' + numbers[chapterNumber].toString() + '</span>');
 				}
-				
+
 				var sectionNodes = $('<div class="text-navigator-sections" style="display:none;">' + html.join('') + '</div>');
-				
+
 				selected_division.find('span').after( sectionNodes );
-				
+
 
 				if (animated === true && !isLast) {
 					sectionNodes.slideDown();
@@ -323,11 +323,11 @@ var TextNavigator = function() {
 					sectionNodes.show();
 
 					if (isLast) {
-						var divisions = changer.find('.text-navigator-divisions');						
+						var divisions = changer.find('.text-navigator-divisions');
 						divisions.scrollTop( divisions.scrollTop() + 500 );
 					}
 				}
-				
+
 				break;
 			case 'book':
 
@@ -350,7 +350,7 @@ var TextNavigator = function() {
 				.attr('dir', textInfo.dir)
 				.attr('lang', textInfo.lang)
 				.show();
-*/				
+*/
 	}
 
 
@@ -363,7 +363,7 @@ var TextNavigator = function() {
 
 		console.log('navigator selected', sectionid);
 		ext.trigger('change', {type:'change', target: this, data: {sectionid: sectionid, target: target}});
-	
+
 		//navigation_changed_callback(sectionid);
 
 		changer.hide();
@@ -383,12 +383,12 @@ var TextNavigator = function() {
 				.height(height)
 				.css({top: container.offset().top,left: container.offset().left});
 		} else {
-			
+
 			if (target == null) {
 				return;
 			}
 
-			var 
+			var
 				targetOffset = target.offset(),
 				targetOuterHeight = target.outerHeight(),
 				top = targetOffset.top + targetOuterHeight + 10,
@@ -398,22 +398,22 @@ var TextNavigator = function() {
 				winHeight = win.height() - 40,
 				winWidth = win.width(),
 				maxHeight = winHeight - top;
-				
+
 			if (winWidth < left + changerWidth) {
 				left = winWidth - changerWidth;
 				if (left < 0) {
 					left = 0;
 				}
-			}				
+			}
 
 			changer
 				.outerHeight(maxHeight)
 				.css({top: top, left: left});
-				
+
 			var upArrowLeft = targetOffset.left - left + 20;
 
 			changer.find('.up-arrow, .up-arrow-border')
-				.css({left: upArrowLeft});					
+				.css({left: upArrowLeft});
 
 			changer.find('.text-navigator-divisions, .text-navigator-sections')
 				.outerHeight(maxHeight - header.outerHeight());
@@ -447,23 +447,23 @@ var TextNavigator = function() {
 
 		//changer.remove();
 	}
-	
+
 	function setTarget(_container, _target) {
-										
+
 		container = _container;
 		target = _target;
-		
-		ext.setClickTargets([_target, changer]);		
+
+		ext.setClickTargets([_target, changer]);
 	}
-	
+
 	function getTarget() {
-		return target;		
-	}	
+		return target;
+	}
 
 	// this is the return object!
 	var ext = {
 		setTarget: setTarget,
-		getTarget: getTarget,		
+		getTarget: getTarget,
 		show: show,
 		toggle: toggle,
 		hide: hide,
@@ -479,7 +479,7 @@ var TextNavigator = function() {
 	ext.clickoffid = 'book/chapter picker';
 	ext.on('offclick', function() {
 		hide();
-	});	
+	});
 
 	return ext;
 

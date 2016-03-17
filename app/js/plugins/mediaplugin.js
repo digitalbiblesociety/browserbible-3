@@ -97,13 +97,13 @@ var MediaLibraryPlugin = function(app) {
 					var lang = icon.closest('.section').attr('data-lang3'),
 						mediaInfo = mediaForVerse[0],
 						videoUrl = JesusFilmMediaApi.getPlayer(lang, mediaInfo.filename, function(iframeUrl, iframeLang) {
-								
+
 							if (iframeUrl != null) {
 								sofia.globals.showIframe(iframeUrl, mediaInfo.name + ' (' + iframeLang + (lang != iframeLang ? '/' + lang : '') + ')');
 							}
 
 						});
-					
+
 					break;
 
 			}

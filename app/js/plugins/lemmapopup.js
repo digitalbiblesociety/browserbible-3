@@ -87,31 +87,31 @@ var LemmaPopupPlugin = function(app) {
 
 		// check for language (greek or hebrew, noting LXX is greek)
 		var sectionLang = l.closest('.section').attr('lang');
-		
-		if (sectionLang == 'el' || 
-			sectionLang == 'gr' || 
-			sectionLang == 'grc' || 
-			sectionLang == 'grk' || 
-			sectionLang == 'el' || 
+
+		if (sectionLang == 'el' ||
+			sectionLang == 'gr' ||
+			sectionLang == 'grc' ||
+			sectionLang == 'grk' ||
+			sectionLang == 'el' ||
 			bible.NT_BOOKS.indexOf(book_id) > -1 ||
 			bible.AP_BOOKS.indexOf(book_id) > -1
 			) {
 				langPrefix = 'G';
 				langCode = 'el';
 				dir = 'ltr';
-				morphType = 'Greek';				
-				
+				morphType = 'Greek';
+
 		} else if (
-			sectionLang == 'he' || 
-			sectionLang == 'heb' || 			
+			sectionLang == 'he' ||
+			sectionLang == 'heb' ||
 			bible.OT_BOOKS.indexOf(book_id) > -1){
 				langPrefix = 'H';
 				langCode = 'he';
 				dir = 'rtl';
-				morphType = 'Hebrew';			
-			
+				morphType = 'Hebrew';
+
 		}
-		
+
 		// remove G3588 and H853 (the) when there is more than two
 		if (strongs.length > 0) {
 			var articleIndex = -1;
@@ -159,48 +159,48 @@ var LemmaPopupPlugin = function(app) {
 			}
 		}
 	});
-	
-	
+
+
 	function loadStrongsData(textid, strongsNumber, morphKey, morphType, langPrefix, langCode, l) {
 		sofia.ajax({
 			dataType: 'json',
 			url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
 			success: function(data) {
-	
+
 				var html = '<div class="lemma-word">' +
 								'<span lang="' + iso2iana.convert(langCode) + '" dir="' + dir + '">' + data.lemma + '</span>' +
-								' ' + 
+								' ' +
 								'<span class="lemma-strongs" dir="ltr"> (' + strongsNumber + ')</span>' +
 							'</div>';
-	
-	
-	
+
+
+
 				if (morphKey != '') {
 					html += '<span class="lemma-morphology">' + bible.morphology[morphType].format( morphKey ) + '</span>';
 				}
-	
+
 				html += '<span class="lemma-findall" data-lemma="' + langPrefix + strongsNumber + '" data-textid="' + textid + '">' +
 					i18n.t('plugins.lemmapopup.findalloccurrences', {count: data.frequency}) +
 				'</span>';
-	
+
 				html += '<div class="lemma-outline">' + data.outline + '</div>';
-	
+
 				lemmaPopup.body.removeClass('loading-indicator');
-	
+
 				lemmaPopup.body.append( html );
-	
+
 				lemmaPopup.position(l);
-	
+
 			},
 			error: function() {
 				lemmaPopup.body.html('Error loading ... ' + langPrefix + strongs[0] );
 			}
-	
-	
+
+
 		});
-	}	
-	
-	
+	}
+
+
 };
 
 sofia.plugins.push('LemmaPopupPlugin');

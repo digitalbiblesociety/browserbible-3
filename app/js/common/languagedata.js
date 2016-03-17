@@ -1,13 +1,13 @@
 window.data = window.data || {};
 
 data.language = {
-	
+
 	rtl: ['ar','arz','arc','dv','fa','ha','he','heb','khw','ks','ku','ps','ur','yi'],
-	
-	isRTL: function(lang) {		
-		return data.language.rtl.indexOf(lang) > -1;		
+
+	isRTL: function(lang) {
+		return data.language.rtl.indexOf(lang) > -1;
 	},
-	
+
 	codes:  {
 		ara: 'Afar',
 		abk: 'Abkhazian',

@@ -8,15 +8,14 @@ var
 	removeRegChars = ['\\', '^', '$', '.', '|', '?', '*', '+', '(', ')', '[', ']', '{', '}'];
 	otherRemoveChars = [
 		// roman
-		',',';', '!', '-', '–', '―', '—', '~', ':', '"','/', "'s", '’s', "'", '‘', '’', '“', '”', '¿', '<', '>', '&',
-		// chinese
-		'。', '：', '，', '”', '“', '）', '（', '~', '「', '」'
-	],
+		',',';', '!', '-', '–', '―', '—', '~', ':', '"', '/', "'s", '’s', "'", '‘', '’', '“', '”', '¿', '<', '>', '&',
+		// Chinese
+		'。', '：', '，', '”', '“', '）', '（', '~', '「', '」'];
 
-	//removeChars = ['.',',',';','?','!','-','–','―','—','~',':','"',')','(','[',']','/','\\',"'s",'’s',"'",'‘','’','“','”', '¿', '*', '<','>','&','{','}'],
+	// removeChars = ['.',',',';','?','!','-','–','―','—','~',':','"',')','(','[',']','/','\\',"'s",'’s',"'",'‘','’','“','”', '¿', '*', '<','>','&','{','}'],
 
 
-	restrictedWords = ['a', 'and', 'about', 'above', 'across', 'after', 'against', 'along', 'among', 'around', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'but', 'by', 'despite', 'down', 'during', 'except', 'for', 'from', 'in', 'inside', 'into', 'like', 'near', 'of', 'off', 'on', 'onto', 'id', 'outside', 'over', 'past', 'since', 'the', 'through', 'throughout', 'till', 'to', 'toward', 'under', 'underneath', 'until', 'up', 'upon', 'with', 'within', 'without'],
+	restrictedWords = ['a', 'and', 'about', 'above', 'across', 'after', 'against', 'along', 'among', 'around', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'but', 'by', 'constructor', 'despite', 'down', 'during', 'except', 'for', 'from', 'in', 'inside', 'into', 'like', 'near', 'of', 'off', 'on', 'onto', 'id', 'outside', 'over', 'past', 'since', 'the', 'through', 'throughout', 'till', 'to', 'toward', 'under', 'underneath', 'until', 'up', 'upon', 'with', 'within', 'without'],
 	regExp = new RegExp('(' + '\\' + removeRegChars.join('|\\') + '|' + otherRemoveChars.join('|') + ')', 'gi');
 
 function indexVerse(verseCode, text, indexData, lang) {
@@ -51,13 +50,8 @@ function indexVerse(verseCode, text, indexData, lang) {
 				indexData[key] = wordData;
 			}
 
-			try {
-				if (wordData['occurrences'].indexOf(verseCode) == -1) {
-					wordData['occurrences'].push(verseCode);
-				}
-			} catch (e) {
-				console.log("error", e, key);
-
+			if (wordData['occurrences'].indexOf(verseCode) == -1) {
+				wordData['occurrences'].push(verseCode);
 			}
 		}
 	}
@@ -201,43 +195,43 @@ function createIndexFiles(indexPath, indexData, type) {
 function createHashedIndexFiles(lang, indexPath, indexData, type) {
 
 	var words_to_stem = {};
-	var stem_to_words = {};	
-	var stemmer = null; 
-	
+	var stem_to_words = {};
+	var stemmer = null;
+
 	switch (lang) {
 		case 'eng':
 			stemmer = natural.PorterStemmer;
 			break;
 		case 'esp':
 			stemmer = natural.PorterStemmerEs;
-			break;					
+			break;
 	}
-	
+
 	//console.log('trying to create index', stemmer);
 
 	if (type == 'words' && stemmer != null) {
-		
+
 		// make stems
 		for (var key in indexData) {
-			
+
 			var wordData = indexData[key],
 				stemmedWord = stemmer.stem(key);
-				
+
 			words_to_stem[key] = stemmedWord;
-				
+
 			var words_from_stem = stem_to_words[stemmedWord];
-			
+
 			if (typeof words_from_stem == 'undefined') {
 				stem_to_words[stemmedWord] = [];
-			}			
+			}
 
 			stem_to_words[stemmedWord].push(key);
 		}
 
 		//console.log(stemData);
-		
+
 		fs.writeFileSync(path.join(indexPath, 'words_to_stem.js'), JSON.stringify(words_to_stem));
-		fs.writeFileSync(path.join(indexPath, 'stem_to_words.js'), JSON.stringify(stem_to_words));		
+		fs.writeFileSync(path.join(indexPath, 'stem_to_words.js'), JSON.stringify(stem_to_words));
 
 	} else if (type == 'strongs') {
 

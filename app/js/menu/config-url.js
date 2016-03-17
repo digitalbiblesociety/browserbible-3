@@ -31,7 +31,7 @@ var ConfigUrl = function(node) {
 
 	setTimeout(function() {
 		sofia.app.windowManager.on('settingschange', function(e) {
-			
+
 			// title to show active window's position
 			urlTimer.start();
 
@@ -55,7 +55,7 @@ var ConfigUrl = function(node) {
 
 				urlInput.focus();
 				urlInput.select();
-							
+
 				console.log('flash clipboard clicked');
 			});
 		}
@@ -63,10 +63,10 @@ var ConfigUrl = function(node) {
 
 	urlInput.on('click', function() {
 		updateUrl();
-		
+
 		urlInput.focus();
 		urlInput.select();
-		
+
 	});
 
 	linkButton.on('click', function() {

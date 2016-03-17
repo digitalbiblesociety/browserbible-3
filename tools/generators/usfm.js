@@ -1,13 +1,13 @@
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
-	usfmParser = require('usfm_parser'),
-	readline = require('readline');
-stream = require('stream'),
-jsdom = require("jsdom"),
-$ = require('jquery')(jsdom.jsdom().createWindow()),
-verseIndexer = require('verse_indexer');
+	bibleData = require('../data/bible_data.js'),
+	bibleFormatter = require('../bible_formatter.js'),
+	verseIndexer = require('../verse_indexer.js'),
+	usfmParser = require('./usfm_parser.js'),
+	readline = require('readline'),
+	stream = require('stream'),
+	jsdom = require("jsdom"),
+	$ = require('jquery')(jsdom.jsdom().defaultView);
 
 function generate(inputBasePath, info, createIndex, startProgress, updateProgress) {
 	var breakChar = '\n';

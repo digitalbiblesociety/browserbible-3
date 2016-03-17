@@ -31,7 +31,7 @@ var InfoWindow = function(id) {
 
 		return ext;
 	}
-	
+
 	function center() {
 		var
 			infoWidth = container.outerWidth(),
@@ -44,7 +44,7 @@ var InfoWindow = function(id) {
 
 		return ext;
 	}
-	
+
 	function position(target) {
 		var tOffset = target.offset(),
 			tHeight = target.outerHeight(),

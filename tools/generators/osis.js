@@ -1,10 +1,10 @@
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
-	verseIndexer = require('verse_indexer'),
+	bibleData = require('../data/bible_data.js'),
+	bibleFormatter = require('../bible_formatter.js'),
+	verseIndexer = require('../verse_indexer.js'),
 	jsdom = require("jsdom"),
-	$ = require('jquery')(jsdom.jsdom().createWindow());
+	$ = require('jquery')(jsdom.jsdom('').defaultView);
 
 unparsedTags = [];
 
@@ -272,7 +272,7 @@ function processBook(data, bookXml, info, inputPath, createIndex) {
 
 								if (createIndex) {
 									var ss = strongs.split(' ');
-									for (var si=0; sil=ss.length; si++) {
+									for (var si=0, sil=ss.length; si<sil; si++) {
 										verseIndexer.indexStrongs(dbsVerseCode, ss[si], data.indexLemmaData, info.lang);
 									}
 								}

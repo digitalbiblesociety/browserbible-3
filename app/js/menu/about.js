@@ -4,7 +4,7 @@ var AboutScreen = function(node) {
 		container = $('.windows-container'),
 		body = $(document.body),
 		win = $(window),
-		
+
 		aboutButton = $('<div class="main-menu-item about-logo i18n" data-i18n="[html]menu.labels.about">About</div>')
 					.appendTo( $('#main-menu-features') )
 					.on('click', aboutClick),
@@ -19,12 +19,12 @@ var AboutScreen = function(node) {
 					.css({padding: '20px'});
 
 	aboutWindow.title.addClass('i18n').attr('data-i18n','[html]menu.labels.about');
-					
-					
+
+
 	function hideAbout() {
 		aboutWindow.hide();
 		modalOverlay.hide();
-		container.removeClass('blur');		
+		container.removeClass('blur');
 	}
 
 	modalOverlay.on('click', function() {
@@ -45,7 +45,7 @@ var AboutScreen = function(node) {
 			var winWidth = win.width(),
 				winHeight = win.height();
 
-			
+
 			container.addClass('blur');
 
 			aboutWindow

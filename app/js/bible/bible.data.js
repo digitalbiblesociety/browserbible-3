@@ -266,7 +266,7 @@ bible.BOOK_DATA = {
     "names":{"eng":["Titus","Ti","Tit","Tt","Ts"]}},
 "PM":{"name":"Paul's Letter to Philemon","sortOrder":87,"shortCode":"PM","usfm":"PHM","osis":"Phlm","section":"paul",
     "chapters":[25],
-    "names":{"eng":["Philemon","Pm","Phile","Phile","Philm","Pm"]}},    
+    "names":{"eng":["Philemon","Pm","Phile","Phile","Philm","Pm"]}},
 "HB":{"name":"The Letter to the Hebrews","sortOrder":88,"shortCode":"HB","usfm":"HEB","osis":"Heb","section":"general",
     "chapters":[14,18,19,16,14,20,28,13,28,39,40,29,25],
     "names":{"eng":["Hebrews","He","Heb","Hw"]}},

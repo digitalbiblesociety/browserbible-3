@@ -14,7 +14,7 @@ var PlaceKeeper = (function() {
 							null;
 
 		var data = (currentWindow != null) ? currentWindow.getData() : null;
-		
+
 		return data;
 	}
 
@@ -36,20 +36,17 @@ var PlaceKeeper = (function() {
 
 	}
 
-
 	return {
 		storePlace: storePlace,
 		restorePlace: restorePlace,
 		getFirstLocation: getFirstLocation
 	}
 
-
 })();
-
 
 /* stores locations for back/foward buttons on browser */
 var TextNavigation = (function() {
-	
+
 	var locations = [],
 		locationIndex = -1;
 
@@ -59,11 +56,11 @@ var TextNavigation = (function() {
 		console.log('handleNavigation', e, e.state);
 
 		if (e.originalEvent && e.originalEvent.state != null && typeof e.originalEvent.state.locationid != 'undefined') {
-			
+
 			var newlocationid =  e.originalEvent.state.locationid,
 				type = '';
-			
-						
+
+
 			if (locationIndex-1 > -1 && locations[locationIndex-1] == newlocationid) {
 				locationIndex--;
 				type = 'back';
@@ -71,43 +68,43 @@ var TextNavigation = (function() {
 				locationIndex++;
 				type = 'forward';
 			}
-			
-			setLocation(newlocationid);	
-			
-			textNavigation.trigger('locationchange', {type: type});		
+
+			setLocation(newlocationid);
+
+			textNavigation.trigger('locationchange', {type: type});
 		}
-		
+
 	}
-	
+
 
 	// upon startup, store the first place
 	function firstState(locationid) {
 		console.log('firststate',locationid);
-		
+
 		locations.push(locationid);
 		locationIndex = 0;
-		
+
 		window.history.replaceState({"locationid": locationid}, null, window.location.href);
 	}
 
 	// each additional change
 	function locationChange(locationid, type) {
-				
+
 		// slice off anything after this one
 		while (locationIndex > locations.length-1) {
 			locations.pop();
 		}
-		
+
 		locations.push(locationid);
 		locationIndex++;
-		
+
 		window.history.pushState({"locationid": locationid}, null, window.location.href);
-		
-		
+
+
 		textNavigation.trigger('locationchange', {type: type});
 	}
-	
-	
+
+
 	function setLocation(locationid) {
 		// break off and be sure to add the trailing verse 1 (JN1_1)
 		var fragmentid = locationid.indexOf('_') > -1 ? locationid : locationid + '_1',
@@ -125,27 +122,27 @@ var TextNavigation = (function() {
 					offset: 0
 				}
 			}
-		});		
-	}	
-	
+		});
+	}
+
 	function back() {
-		
+
 		window.history.go(-1);
-		
+
 		/*
 		if (locationIndex > 0) {
 			locationIndex--;
 			var locationid = locations[locationIndex];
-			setLocation(locationid);			
+			setLocation(locationid);
 		}
 		*/
 	}
-	
+
 	function forward() {
-		
+
 		window.history.go(1);
 
-		
+
 		/*
 		if (locationIndex < locations.length-1) {
 			// get this location
@@ -155,18 +152,14 @@ var TextNavigation = (function() {
 		}
 		*/
 	}
-	
 
-	
 	function getLocations() {
 		return locations;
 	}
-	
-	
+
 	function getLocationIndex() {
 		return locationIndex;
 	}
-	
 
 
 	var textNavigation =  {
@@ -178,8 +171,7 @@ var TextNavigation = (function() {
 		getLocations: getLocations
 	}
 
-	textNavigation = $.extend(true, textNavigation, EventEmitter);	
-	
+	textNavigation = $.extend(true, textNavigation, EventEmitter);
 
 	return textNavigation;
 })();

@@ -6,7 +6,7 @@ sofia.config = $.extend(sofia.config, {
 
 
 var AudioWindow = function(id, parent, init_data) {
-	
+
 	console.log('audiowindow init', init_data);
 
 	var
@@ -22,16 +22,16 @@ var AudioWindow = function(id, parent, init_data) {
 				'<div class="audio-window-main">' +
 				'</div>' +
 				'<div class="audio-window-version-info">' +
-				'</div>' +				
+				'</div>' +
 			'</div>').appendTo(parent.node),
-			
+
 
 		header = container.find('.audio-window-header'),
 		main = container.find('.audio-window-main'),
 		navui = header.find('.text-nav'),
 		textlistui = header.find('.text-list'),
 		versioninfo = container.find('.audio-window-version-info'),
-		
+
 		text_type = 'audio',
 		currentTextInfo = null,
 		currentLocationInfo = null,
@@ -39,18 +39,18 @@ var AudioWindow = function(id, parent, init_data) {
 		// objects
 		textChooser = sofia.globalTextChooser,
 		textNavigator = sofia.globalTextNavigator,
-		
+
 		scrollerMimic = {},
 		audioController = null;
-	
-	// make something that functions like the text scroller so that the AudioController can understand it			
+
+	// make something that functions like the text scroller so that the AudioController can understand it
 	scrollerMimic = $.extend(true, scrollerMimic, EventEmitter);
-	scrollerMimic.getLocationInfo = function() {		
-		return currentLocationInfo;		
+	scrollerMimic.getLocationInfo = function() {
+		return currentLocationInfo;
 	};
-	
-	audioController = new AudioController(id, main, null, scrollerMimic);		
-	
+
+	audioController = new AudioController(id, main, null, scrollerMimic);
+
 	// TEXT NAVIGATOR
 	navui
 		.on('click', function(e) {
@@ -62,10 +62,10 @@ var AudioWindow = function(id, parent, init_data) {
 			// if this is selected, then toggle
 			if (textNavigator.getTarget() == navui) {
 				textNavigator.toggle();
-			} else {			
-				textNavigator.setTarget(container, navui);			
-				textNavigator.setTextInfo(currentTextInfo);			
-				textNavigator.show();			
+			} else {
+				textNavigator.setTarget(container, navui);
+				textNavigator.setTextInfo(currentTextInfo);
+				textNavigator.show();
 			}
 		})
 		.on('keypress', function(e) {
@@ -76,22 +76,22 @@ var AudioWindow = function(id, parent, init_data) {
 					fragmentid = (bibleref.toSection) ? bibleref.toSection() : '',
 					sectionid = fragmentid.split('_')[0];
 
-				if (sectionid != '') {					
+				if (sectionid != '') {
 					changeLocation(fragmentid);
 				}
 			}
 		});
-		
+
 	function changeLocation(inputLocation) {
 		var bibleref = new bible.Reference(inputLocation),
 			fragmentid = (bibleref.toSection) ? bibleref.toSection() : '',
 			sectionid = fragmentid.split('_')[0],
-		
-			newLocationInfo = {					
-				fragmentid: fragmentid,	
+
+			newLocationInfo = {
+				fragmentid: fragmentid,
 				sectionid: sectionid
 			};
-				
+
 		currentLocationInfo = newLocationInfo;
 
 		if (scrollerMimic.trigger) {
@@ -100,11 +100,11 @@ var AudioWindow = function(id, parent, init_data) {
 		if (ext && ext.trigger) {
 			ext.trigger('settingschange', {type: 'settingschange', target: this, data: getData() });
 		}
-	
+
 		textNavigator.hide();
 
 		navui.val(bibleref.toString());
-		navui[0].blur();		
+		navui[0].blur();
 	}
 
 	textNavigator.on('change', function (e) {
@@ -113,19 +113,19 @@ var AudioWindow = function(id, parent, init_data) {
 			return;
 		}
 
-		changeLocation(e.data.sectionid);		
-	});	
-		
+		changeLocation(e.data.sectionid);
+	});
+
 	// TEXT CHOOSER
 	textlistui.on('click', function(e) {
-		
+
 		// if this is selected, then toggle
 		if (textChooser.getTarget() == textlistui) {
 			textChooser.toggle();
-		} else {			
-			textChooser.setTarget(container, textlistui, text_type);			
-			textChooser.setTextInfo(currentTextInfo);			
-			textChooser.show();			
+		} else {
+			textChooser.setTarget(container, textlistui, text_type);
+			textChooser.setTextInfo(currentTextInfo);
+			textChooser.show();
 		}
 	});
 
@@ -133,49 +133,49 @@ var AudioWindow = function(id, parent, init_data) {
 		if (e.data.target != textlistui) {
 			return;
 		}
-		
+
 		var newTextInfo = e.data.textInfo;
-		
+
 		updateText(newTextInfo);
-	
+
 	});
-	
+
 	function updateText(newTextInfo) {
 
 		// ALWAYS UPDATE: for first load
 		// update version name
 		textlistui.html( newTextInfo.abbr );
-		
+
 		parent.tab.find('span').html( newTextInfo.abbr );
 
 		// update the navigator with the latest header
 		textNavigator.setTextInfo(newTextInfo);
 
 		audioController.setTextInfo(newTextInfo);
-		
-		currentTextInfo = newTextInfo;	
-		
-		//versioninfo.html( currentTextInfo.aboutHtml );			
+
+		currentTextInfo = newTextInfo;
+
+		//versioninfo.html( currentTextInfo.aboutHtml );
 	}
-	
-	
-	
+
+
+
 	function init() {
 
 		// TEMP
 		navui.html('Reference').val('Reference');
 		textlistui.html('Version');
-		
+
 		if (init_data == null) {
 			return;
 		}
-		
+
 		if (typeof init_data.fragmentid != 'undefined' && init_data.fragmentid != '') {
 			//var bibleRef = new bible.Reference(init_data.fragmentid);
 			//navui.val(bibleRef.toString());
 			changeLocation(init_data.fragmentid);
-		}		
-		
+		}
+
 		if (typeof init_data.textid == 'undefined' || init_data.textid == '') {
 			init_data.textid = sofia.config.newBibleWindowVersion;
 		}
@@ -188,7 +188,7 @@ var AudioWindow = function(id, parent, init_data) {
 
 				// store this setting
 				currentTextInfo = loadedTextInfo;
-				
+
 				updateText(loadedTextInfo);
 			},
 
@@ -235,8 +235,8 @@ var AudioWindow = function(id, parent, init_data) {
 	}
 
 
-	init();	
-	
+	init();
+
 
 
 	function size(width, height) {
@@ -247,7 +247,7 @@ var AudioWindow = function(id, parent, init_data) {
 				.width(width)
 				.height(height); // - header.outerHeight());
 	}
-	
+
 
 	function getData() {
 		// get data
@@ -283,7 +283,7 @@ var AudioWindow = function(id, parent, init_data) {
 		};
 
 		return data;
-	}	
+	}
 
 //	function getData() {
 //
@@ -313,7 +313,7 @@ var AudioWindow = function(id, parent, init_data) {
 
 
 	ext.on('message', function(e) {
-		if (e.data.messagetype == 'textload') {			
+		if (e.data.messagetype == 'textload') {
 		}
 	});
 
@@ -323,7 +323,7 @@ var AudioWindow = function(id, parent, init_data) {
 sofia.initMethods.push(function() {
 
 	if (sofia.config.enableAudioWindow) {
-		
+
 		sofia.windowTypes.push( {
 				className:'AudioWindow',
 				param: 'audio',

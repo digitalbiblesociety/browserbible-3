@@ -1,7 +1,7 @@
 /**
-* Generates HTML that can function as standalone chapters or as chapters loaded by the main app
-* This attemps to load folders in the ./input/ directory, read the ./input/version/info.json and
-* then use a renderer found in ./node_modules/generate_renderername.js
+* Formats text data that can function as standalone chapters or as chapters loaded by the main app
+* This attempts to load folders in the ./input/ directory, read the ./input/version/info.json and
+* then use a renderer found in ./tools/generators/renderername.js
 *
 * See options for details on running
 */
@@ -10,38 +10,70 @@
 // MODULES
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
-	verseIndexer = require('verse_indexer'),
+	rmrf = require('rimraf').sync,
+	mkdirp = require('mkdirp').sync,
+	bibleData = require('./data/bible_data.js'),
+	bibleFormatter = require('./bible_formatter.js'),
+	verseIndexer = require('./verse_indexer.js'),
 	ProgressBar = require('progress'),
 	argv = require('minimist')(process.argv.slice(2));
 
 
-//console.log( bibleData.getBookInfoByUnboundCode('40N') );
-//return;
-
-
 // VARS
 var
-	baseOutput = '../../app/content/texts/',
+	baseOutput = path.join('app', 'content', 'texts'),
 	baseInput = 'input',
-	createIndex = false,
+	createIndex = !!argv['i'],
 	progressBar = null;
 
-console.log('\r\r\r');
+// parse arguments
+if (argv['h']) {
+	console.log('----------------\n' +
+				'Generator Help\n' +
+				'-v VERSION,VERSION = only some versions\n' +
+				'-e VERSION,VERSION = exclude some versions\n' +
+				'-i = create index\n');
+	return;
+}
+
+// Generate listed texts
+if (argv['v'] !== undefined) {
+	convertTexts(baseInput, argv['v'].split(','));
+
+// Generate all but listed texts
+} else if (typeof argv['e'] != 'undefined') {
+	var foldersToExclude = argv['e'].split(',');
+
+	var folders = fs.readdirSync(baseInput);
+
+	convertTexts(
+		baseInput,
+		folders.filter(function(name) { return foldersToExclude.indexOf(name) === -1; })
+	);
+
+// Generate all texts
+} else {
+	convertTexts(baseInput);
+}
 
 
+// Functions
 function startProgress(total, label) {
-
 	label = label || 'Progress';
 
 	if (progressBar != null) {
 		progressBar.terminate();
 	}
-	progressBar = new ProgressBar('[:bar] [:current/:total] :elapsed', { total: total, width: 50 });
+	progressBar = new ProgressBar('[:bar] [:current/:total] :elapseds', {total: total, width: 50});
 }
+
 function updateProgress() {
 	progressBar.tick();
+}
+
+function cleanFolder(folderPath) {
+	mkdirp(folderPath);
+	rmrf(path.join(folderPath, '*'));
 }
 
 function convertFolder(inputPath) {
@@ -58,11 +90,14 @@ function convertFolder(inputPath) {
 			indexLemmaOutputPath = path.join(outputPath, 'indexlemma'),
 			generator = null;
 
-
 		try {
-			generator = require('generate_' + generatorName);
+			generator = require(path.join(
+				__dirname,
+				'generators',
+				generatorName + '.js'
+			));
 		} catch (ex) {
-			console.log("Can't find: " + generatorName);
+			console.error('Error processing generator "' + generatorName + '":', ex.message)
 			return;
 		}
 
@@ -70,26 +105,7 @@ function convertFolder(inputPath) {
 		console.log(info['name'],  outputPath);
 
 		// DELETE: existing data
-		if (fs.existsSync(outputPath)) {
-			deleteAllFiles(outputPath);
-		} else {
-			fs.mkdirSync(outputPath);
-		}
-
-		// DELETE: index data
-		if (createIndex) {
-			if (fs.existsSync(indexOutputPath)) {
-				deleteAllFiles(indexOutputPath);
-			} else {
-				fs.mkdirSync(indexOutputPath);
-			}
-
-			if (fs.existsSync(indexLemmaOutputPath)) {
-				deleteAllFiles(indexLemmaOutputPath);
-			} else {
-				fs.mkdirSync(indexLemmaOutputPath);
-			}
-		}
+		cleanFolder(outputPath);
 
 		// RUN GENERATOR
 		console.time('processText');
@@ -138,7 +154,6 @@ function convertFolder(inputPath) {
 
 			booksIndexHtml += '<li><a href="' + dbsCode + '.html">' + bookName + '</a></li>' + bibleFormatter.breakChar;
 
-
 			// do all chapters?
 			var singleBookIndexHtml = bibleFormatter.openBookIndex(info, bookName);
 
@@ -153,40 +168,25 @@ function convertFolder(inputPath) {
 			}
 			singleBookIndexHtml += bibleFormatter.closeBookIndex();
 			fs.writeFileSync( path.join(outputPath, dbsCode + '.html') , singleBookIndexHtml);
-
-
 		}
 		booksIndexHtml += bibleFormatter.closeVersionIndex(info);
-
 
 		fs.writeFileSync( path.join(outputPath, 'index.html') , booksIndexHtml);
 
 
 		// DO chapters index
 
-
 		// do index
 		if (createIndex && data.indexData) {
+			cleanFolder(indexOutputPath);
 			console.time('createIndex');
-
 			verseIndexer.createIndexFiles(indexOutputPath, data.indexData, 'words');
-
 			console.timeEnd('createIndex');
 
+			cleanFolder(indexLemmaOutputPath);
 			console.time('createLemma');
-
 			verseIndexer.createIndexFiles(indexLemmaOutputPath, data.indexLemmaData, 'strongs');
-
 			console.timeEnd('createLemma');
-			
-			/*
-			console.time('createStemIndex');
-
-			verseIndexer.createHashedIndexFiles(info.lang, indexOutputPath, data.indexData, 'words');
-
-			console.timeEnd('createStemIndex');			
-			*/
-			
 		}
 
 		// save info
@@ -194,7 +194,6 @@ function convertFolder(inputPath) {
 		fs.writeFileSync(infoPath, JSON.stringify(info));
 
 		// save about
-
 		var aboutPage = bibleFormatter.openAboutPage(info) +
 						(typeof data.aboutHtml != 'undefined' ? data.aboutHtml : '') +
 						bibleFormatter.closeAboutPage(info),
@@ -211,84 +210,23 @@ function convertFolder(inputPath) {
 			fs.writeFileSync(outStylePath, inStyleText);
 
 			console.log('Copying stylesheet', inStylePath, outStylePath);
-
-			//fs.createReadStream(inStylePath).pipe(fs.createWriteStream(outStylePath));
-			//copyFile(inStylePath, outStylePath, function(error) {
-			//	console.log('Error', error);
-			//});
 		}
 
-
-		var endDate = new Date();
-		console.log('-time: ' + MillisecondsToDuration(endDate - startDate));
-
-
+		console.log('-time: ' + MillisecondsToDuration((new Date()) - startDate));
 	}
-	/*
-	if (progressBar != null) {
-		progressBar.terminate();
-	}
-	*/
 
 	return;
 }
 
+function convertTexts(baseInput, texts) {
+	mkdirp(baseOutput);
 
-function copyFile(source, target, cb) {
-	var cbCalled = false;
+	texts = texts === undefined ? fs.readdirSync(baseInput) : texts;
 
-	var rd = fs.createReadStream(source);
-	rd.on("error", done);
-
-	var wr = fs.createWriteStream(target);
-	wr.on("error", done);
-	wr.on("close", function(ex) {
-		done();
+	texts.forEach(function(textFoldername) {
+		convertFolder(path.join(baseInput, textFoldername));
 	});
-	rd.pipe(wr);
-
-	function done(err) {
-		if (!cbCalled) {
-		cb(err);
-			cbCalled = true;
-		}
-	}
 }
-
-function convertFolders() {
-	var files = fs.readdirSync(baseInput),
-		startDate = new Date();
-
-	// DO ALL
-	for (var f in files) {
-		var folder = files[f],
-			inputPath = path.join(baseInput, folder);
-
-		convertFolder(inputPath);
-	}
-
-	var endDate = new Date();
-
-	console.log('TOTAL: ' + MillisecondsToDuration(endDate - startDate));
-
-	process.exit();
-}
-
-function deleteAllFiles(pathToDelete) {
-	if (fs.existsSync(pathToDelete)) {
-		var files = fs.readdirSync(pathToDelete);
-
-		// DELETE all files
-		files.forEach(function(data) {
-			var filePath = path.join(pathToDelete, data);
-			if (fs.statSync(filePath).isFile()) {
-				fs.unlinkSync(filePath);
-			}
-		});
-	}
-
-}
-
 
 function MillisecondsToDuration(n) {
 	var hms = "";
@@ -305,70 +243,3 @@ function MillisecondsToDuration(n) {
 
 	return hms;
 }
-
-
-// START
-
-
-// make /texts/ folder
-if (!fs.existsSync(baseInput)) {
-	fs.mkdirSync(baseInput);
-}
-
-
-// parse arguments
-
-if (Object.keys(argv).length == 1) {
-	console.log('----------------\n' +
-				'Generator Help\n' +
-				'-v VERSION,VERSION = only some versions\n' +
-				'-e VERSION,VERSION = exclude some versions\n' +
-				'-a = process all versions\n' +
-				'-i = create index\n');
-	return;
-}
-
-
-
-if (argv['i']) {
-	createIndex = true;
-}
-
-// DO ALL
-if (argv['a']) {
-	convertFolders();
-
-// DO SOME
-} else if (typeof argv['v'] != 'undefined') {
-	var folders = argv['v'].split(',');
-
-	folders.forEach(function(folder) {
-		convertFolder(baseInput + '/' + folder);
-	});
-
-// DO SOME
-} else if (typeof argv['e'] != 'undefined') {
-	var foldersToExclude = argv['e'].split(',');
-
-	var folders = fs.readdirSync(baseInput);
-
-	// DO ALL
-	for (var f in folders) {
-		var folder = folders[f],
-			inputPath = path.join(baseInput, folder);
-
-		if (foldersToExclude.indexOf(folder) > -1) {
-			continue;
-		}
-
-		convertFolder(inputPath);
-	}
-
-
-	folders.forEach(function(folder) {
-		convertFolder(baseInput + '/' + folder);
-	});
-}
-
-process.exit();
-return;

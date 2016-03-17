@@ -1,10 +1,10 @@
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
-	readline = require('readline');
-	stream = require('stream'),
-	verseIndexer = require('verse_indexer');
+	bibleData = require('../data/bible_data.js'),
+	bibleFormatter = require('../bible_formatter.js'),
+	verseIndexer = require('../verse_indexer.js'),
+	readline = require('readline'),
+	stream = require('stream');
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	var
@@ -73,7 +73,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 			if (isNewBook) {
 
 				bookName = bibleData.getBookName(dbsBookCode, info['lang']);
-				
+
 				if (bookName == null) {
 					bookName = bookInfo['name'].split('/')[0];
 				}
@@ -83,7 +83,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 				if (validBookNames.indexOf(bookName) == -1) {
 					validBookNames.push(bookName)
 				}
-				
+
 				// reset
 				lastChapterNumber = -1;
 				lastVerseNumber = -1;
@@ -130,8 +130,8 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 
 				lastChapterNumber = chapterNumber;
 				lastVerseNumber = -1;
-				
-		
+
+
 			}
 
 			// new verse
@@ -160,12 +160,12 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 
 			// add word
 			currentChapter.html += '<l ' + (strongs != 'undefined' && typeof strongs != 'undefined' ? 's="' + 'G' + strongs + '"' : '') + ( morph ? ' m="' + morph + '"' : '') + '>' + word + '</l> ';
-			
+
 
 			if (createIndex && strongs) {
 				verseIndexer.indexStrongs(verseCode, 'G' + strongs, data.indexLemmaData, info.lang);
 			}
-			
+
 		}
 
 		updateProgress();

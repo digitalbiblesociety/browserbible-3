@@ -28,12 +28,12 @@ TextLoader = (function() {
 
 		if (textInfo != null && typeof textInfo == 'string') {
 			textid = textInfo;
-			
-			getText(textid, function(textInfo) {				
-				loadSection(textInfo, sectionid, successCallback, errorCallback);				
+
+			getText(textid, function(textInfo) {
+				loadSection(textInfo, sectionid, successCallback, errorCallback);
 			});
 			return;
-			
+
 		} else {
 			textid = textInfo.id;
 
@@ -42,7 +42,7 @@ TextLoader = (function() {
 				sectionid = textInfo.sections[0];
 			}
 		}
-		
+
 		// send analytics for loading
 		if (sofia.analytics && sofia.analytics.record) {
 			sofia.analytics.record('load', textInfo.id, sectionid);
@@ -82,41 +82,41 @@ TextLoader = (function() {
 	function getProviderName(input) {
 
 		// if not loaded, get it from provider
-		var 		
-			parts = input.split(':'),			
+		var
+			parts = input.split(':'),
 			textid = parts.length > 1 ? parts[1] : parts[0],
 			providerName = parts.length > 1 ? parts[0] : '';
-			
+
 		if (providerName == '') {
 			var textInfo = textInfoData.filter(function(info) {
 					return info.id == textid;
 				})[0];
-	
+
 			if (textInfo && typeof textInfo.providerName != 'undefined') {
 				providerName = textInfo.providerName;
 			} else {
 				providerName = 'local'; // ???
-			}			
+			}
 		}
 
 		return providerName;
 	}
-	
+
 	function getProviderId(input) {
-		
+
 		// assume we have the full providerid
 		if (input.indexOf(':') > -1) {
 			return input;
-		} else {		
+		} else {
 			// assume we only have the textid
 			var textid = input,
 				textInfo = textInfoData.filter(function(info) {
 					return info.id == textid;
-				})[0];				
-				
+				})[0];
+
 			return textInfo.providerid;
 		}
-	}	
+	}
 
 
 	function getText(textid, callback, errorCallback) {
@@ -143,11 +143,11 @@ TextLoader = (function() {
 
 
 			processText(data, providerName)
-			//data.providerName = providerName;	
-			
-			
-			
-								
+			//data.providerName = providerName;
+
+
+
+
 
 			// store
 			textData[data.id] = data;
@@ -226,34 +226,34 @@ TextLoader = (function() {
 	function processTexts(text_array, providerName) {
 		// add providerName, providerid, and id to each one
 		for (var i=0, il=text_array.length; i<il; i++) {
-			
+
 			var text = text_array[i];
-					
+
 			processText(text, providerName);
-		}		
+		}
 	}
-	
+
 	function processText(text, providerName) {
 		// remove any provider info from the id
 		if (text.id.split(':').length > 1) {
 			text.id = text.id.split(':')[1];
 		}
-		
+
 		text.providerName = providerName;
 		text.providerid = providerName + ':' + text.id;
-				
+
 		// TEMP for DBS
 		if (typeof text.country != 'undefined' && typeof text.countries == 'undefined' && text.country != text.langName && text.country != text.langNameEnglish) {
 			text.countries = [];
-			
+
 			var possibleCountryMatches = sofia.countries.filter(function(c) {
-				return c.name.indexOf(text.country) == 0;				
+				return c.name.indexOf(text.country) == 0;
 			});
-			
+
 			if (possibleCountryMatches.length > 0) {
 				text.countries.push( possibleCountryMatches[0]['alpha-2'] );
 			}
-		}		
+		}
 	}
 
 	function startSearch(textid, divisions, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
@@ -263,7 +263,7 @@ TextLoader = (function() {
 		sofia.textproviders[providerName].startSearch(textid, divisions, searchTerms, onSearchLoad, onSearchIndexComplete, onSearchComplete);
 
 	}
-	
+
 	function getTextInfoData() {
 		return textInfoData;
 	}

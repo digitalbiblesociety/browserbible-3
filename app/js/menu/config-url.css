@@ -23,13 +23,13 @@
 	opacity: 1;
 	width: 210px;
 	height: 28px;
-	padding: 3px;	
+	padding: 3px;
 	margin: 0;
 	border: solid 1px #ddd;
 	padding: 6px 5px 5px 6px;
 	background: #fff;
 	color: #919191;
-	vertical-align: top;	
+	vertical-align: top;
 	-webkit-appearance: none;
 }
 #config-global-url input:hover {

@@ -94,7 +94,7 @@
 }
 
 .text-navigator .text-navigator-sections {
-	padding: 4px 1px;	
+	padding: 4px 1px;
 }
 
 .text-navigator .text-navigator-division-header {
@@ -116,8 +116,8 @@
 	padding: 10px 0 0;
 	cursor: pointer;
 	border-style: solid;
-	border-width: 0 0 0 10px;	
-	
+	border-width: 0 0 0 10px;
+
 }
 
 
@@ -131,7 +131,7 @@
 	padding-left: 4px;
 }
 .text-navigator .text-navigator-division.selected > span  {
-	font-weight: bold;	
+	font-weight: bold;
 }
 
 .text-navigator .text-navigator-division:hover > span {
@@ -154,7 +154,7 @@
 	padding: 5px 0 0 10px;
 }
 .text-navigator-divisions-full  .text-navigator-division.selected {
-	padding: 5px 0 0 10px;	
+	padding: 5px 0 0 10px;
 }
 
 .text-navigator-divisions-full[dir=rtl] .text-navigator-division {

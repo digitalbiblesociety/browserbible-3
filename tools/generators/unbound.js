@@ -1,10 +1,10 @@
 var fs = require('fs'),
 	path = require('path'),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
+	bibleData = require('../data/bible_data.js'),
+	bibleFormatter = require('../bible_formatter.js'),
 	readline = require('readline');
 	stream = require('stream'),
-	verseIndexer = require('verse_indexer');
+	verseIndexer = require('../verse_indexer.js');
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	var
@@ -62,7 +62,6 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		if (bookInfo == null) {
 			console.log("Can't find: " + unboundCode);
 			continue;
-
 		}
 
 		if (parts.length == 9) {

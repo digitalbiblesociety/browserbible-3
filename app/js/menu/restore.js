@@ -4,7 +4,7 @@ sofia.config = $.extend(sofia.config, {
 
 
 var RestoreButton = function(node) {
-	
+
 	if (!sofia.config.enableRestore) {
 		return;
 	}

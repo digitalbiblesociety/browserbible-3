@@ -1,8 +1,6 @@
 
 var ParallelsWindow = function(id, parent, init_data) {
 
-
-
 	var
 		parallelsDataFolder = 'content/parallels/',
 
@@ -42,16 +40,16 @@ var ParallelsWindow = function(id, parent, init_data) {
 	});
 
 	textlistui.on('click', function(e) {
-		
+
 		// if this is selected, then toggle
 		if (textChooser.getTarget() == textlistui) {
 			textChooser.toggle();
-		} else {			
-			textChooser.setTarget(container, textlistui, 'bible');			
-			textChooser.setTextInfo(currentTextInfo);			
-			textChooser.show();			
+		} else {
+			textChooser.setTarget(container, textlistui, 'bible');
+			textChooser.setTextInfo(currentTextInfo);
+			textChooser.show();
 		}
-		
+
 	});
 
 

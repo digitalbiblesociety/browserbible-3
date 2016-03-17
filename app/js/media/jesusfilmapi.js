@@ -1,21 +1,20 @@
 var JesusFilmMediaApi = (function() {
 
-	var 
+	var
 		isLoaded = false,
 		isLoading = false,
 		jfmLanguages = null,
 		getPlayerCallbacks = [];
 
-
 	function load() {
-		
+
 		if (isLoaded || isLoading) {
 			return;
 		}
-		
+
 		isLoading = true;
 		isLoaded = false;
-		
+
 		$.ajax({
 
 			url: 'content/media/jesusfilmmedia/jesusfilmlanguages.json',
@@ -23,7 +22,7 @@ var JesusFilmMediaApi = (function() {
 
 				isLoading = true;
 				isLoaded = true;
-				
+
 				jfmLanguages = data;
 
 				findPlayers();
@@ -45,7 +44,7 @@ var JesusFilmMediaApi = (function() {
 				load();
 			}
 		} else {
-			findPlayers();	
+			findPlayers();
 		}
 	}
 
@@ -80,7 +79,7 @@ var JesusFilmMediaApi = (function() {
 
 		callback(iframeUrl, lang);
 	}
-	
+
 	var ext = {
 		getPlayer: getPlayer
 

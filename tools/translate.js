@@ -7,7 +7,7 @@ var fs = require('fs'),
 
 var translate_settings = JSON.parse( fs.readFileSync( 'translate-config.js', 'utf8') ),
 	gKey = translate_settings.googleKey,
-	baseFolder = '../../app/js/resources',
+	baseFolder = '../app/js/resources',
 	baseLangCode = 'en',
 	baseLangData = null,
 	overwrite = false,
@@ -335,9 +335,9 @@ function loadBaseLanguages() {
 
 var baseLangObj = readLang(baseLangCode),
 	baseFlatLangObj = langToFlat(baseLangObj);
-	
 
-// remove language names from the English one	
+
+// remove language names from the English one
 var keysToDelete = [];
 for (var key in baseFlatLangObj) {
 
@@ -348,12 +348,12 @@ for (var key in baseFlatLangObj) {
 
 for (var i=0,il=keysToDelete.length; i<il; i++) {
 	delete baseFlatLangObj[keysToDelete[i]];
-}	
+}
 
 // custom delete
 delete baseFlatLangObj["plugins.eng2p.description"];
-	
-	
+
+
 //console.log(baseFlatLangObj);
 
 loadBaseLanguages();

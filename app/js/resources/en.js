@@ -23,7 +23,7 @@ sofia.resources['en'] = {
 				"placeholder": "Search",
 				"suggestversion": "Open <strong>{0}</strong> in new window",
 				"suggestreference": "Go to <strong>{0}</strong> in {1}",
-				"suggestsearch": "Search \"<strong>{0}</strong>\" in {1}"											
+				"suggestsearch": "Search \"<strong>{0}</strong>\" in {1}"
 			},
 			"config": {
 				"font": "Style",
@@ -58,11 +58,11 @@ sofia.resources['en'] = {
 		},
 		"windows": {
 			"deafbible": {
-				"label": "Deaf Bible"	
+				"label": "Deaf Bible"
 			},
 			"videobible": {
-				"label": "Video Bible"	
-			},			
+				"label": "Video Bible"
+			},
 			"bible": {
 				"label": "Bible",
 				"recentlyused": "Recently Used",

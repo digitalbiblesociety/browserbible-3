@@ -1,10 +1,10 @@
 var fs = require('fs'),
 	path = require('path'),
 	jsdom = require("jsdom"),
-	$ = require('jquery')(jsdom.jsdom().createWindow()),
-	bibleData = require('bible_data'),
-	bibleFormatter = require('bible_formatter'),
-	verseIndexer = require('verse_indexer');
+	$ = require('jquery')(jsdom.jsdom('').defaultView),
+	bibleData = require('../data/bible_data.js'),
+	bibleFormatter = require('../bible_formatter.js'),
+	verseIndexer = require('../verse_indexer.js');
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 

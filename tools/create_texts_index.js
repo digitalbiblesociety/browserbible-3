@@ -39,7 +39,7 @@
 var fs = require('fs');
 
 var
-	baseInput = '../../app/content/texts',
+	baseInput = './app/content/texts',
 	dirItem = fs.readdirSync(baseInput),
 	html = '',
 	texts = {textIds:[], textInfoData:[]};

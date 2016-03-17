@@ -1,10 +1,14 @@
 Change Log
 =======
 
+3.7.1 - 2016/02/18
+
+* Deaf Bible - flag shows in dropdown
+* Deaf Bible - changed story version layout
+
 3.7.0 - 2016/02/17
 
 * Deaf Bible version
-
 
 3.6.6 - 2016/02/15
 

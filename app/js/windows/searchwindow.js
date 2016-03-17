@@ -421,9 +421,34 @@ console.log('search click', fragmentid, bibleWindows);
 				renderLemmaInfo();
 				renderUsage();
 			}
-
+			
+			// TEMP 
+			var strongsUsage = {}; 
+			resultsBlock.find('.highlight').each(function() { 
+				var h = $(this), l = h.closest('l'); 
+				if (l.length > 0) { 
+					var strongs = l.attr('s').split(' ')[0]; 
+					if (typeof strongsUsage[strongs] != 'undefined') {
+						strongsUsage[strongs].count++;
+					} else {
+						strongsUsage[strongs] = { count: 1 };
+					}
+				} 
+			});
+			var strongsHtml = '';
+			var strongsKeys = Object.keys(strongsUsage);
+			for (var i=0, il=strongsKeys.length; i<il; i++) {
+				strongsHtml += '<tr><td>' + strongsKeys[i] + '</td><td>' + strongsUsage[strongsKeys[i]].count + '</td></tr>';
+			}
+			topUsage
+				.append( $('<table>' + strongsHtml + '</table>') )
+				.show();
+			
+			
 
 			createHighlights();
+			
+			//createLemmaUsage();
 		} else {
 
 			resultsBlock.html( "No results" );
@@ -798,6 +823,24 @@ console.log('search click', fragmentid, bibleWindows);
 
 		}
 
+	}
+	
+	function createLemmaUsage() {
+		var strongsUsage = {}; 
+		
+		$('.highlight').each(function() { 
+		   var h = $(this), l = h.closest('l'); 
+		   if (l.length > 0) { 
+		      var strongs = l.attr('s').split(' ')[0]; 
+		      if (typeof words[strongs] != 'undefined') {
+		         strongsUsage[strongs]++;
+		      } else {
+		         strongsUsage[strongs] = 1;
+		      }
+		   } 
+		});
+		console.log(words);
+		
 	}
 
 	function close() {

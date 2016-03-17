@@ -238,7 +238,7 @@ var StatisticsWindow = function(id, parent, data) {
 				biggestSize = 24;
 
 			// remove uncommon words
-			var min_to_keep = 2,
+			var min_to_keep = 0,
 				display_words = word_stats;
 
 			if (min_to_keep > 0) {

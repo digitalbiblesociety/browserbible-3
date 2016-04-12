@@ -1,24 +1,52 @@
+sofia.config = $.extend(sofia.config, {
+	windowTypesOrder: []
+});
+
+
+
 var AddWindowButton = function(node) {
 
 	var buttonMenu = $('#main-menu-windows-list');
 
 
 	// create window buttons from window Types
-	windowTools = [];
-	for (var i=0, il=sofia.windowTypes.length; i<il; i++) {
-		var winType = sofia.windowTypes[i];
-
-		windowTools.push({
-			type: winType.className,
-			label: winType.param,
-			data: winType.init
-		});
-
-
+	var windowTools = [];
+	
+	if (sofia.config.windowTypesOrder.length > 0 ) {
+		
+		
+		for (var i=0, il=sofia.config.windowTypesOrder.length; i<il; i++) {
+			var windowTypeName = sofia.config.windowTypesOrder[i],
+				winType = sofia.windowTypes.filter(function(wt) { return wt.className == windowTypeName});
+				
+			if (winType.length > 0) {
+				winType = winType[0];
+				
+				windowTools.push({
+					type: winType.className,
+					label: winType.param,
+					data: winType.init
+				});
+			}
+		}		
+		
+		
+	} else {
+	
+		// build default array
+		
+		for (var i=0, il=sofia.windowTypes.length; i<il; i++) {
+			var winType = sofia.windowTypes[i];
+	
+			windowTools.push({
+				type: winType.className,
+				label: winType.param,
+				data: winType.init
+			});
+		}
 	}
 
-
-
+	// add buttons
 	for (var x in windowTools) {
 		var tool = windowTools[x];
 		// ADD Button

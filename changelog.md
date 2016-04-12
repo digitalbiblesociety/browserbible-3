@@ -1,6 +1,11 @@
 Change Log
 =======
 
+3.8.1 - 2016/04/11
+
+* Fixed issues with new window in Deaf versions
+* Enabled custom order of new windows using 'windowTypesOrder: `['BibleWindow','DeafBibleWindow', 'ComparisonWindow']`
+
 3.8.0 - 2016/03/17
 
 * Project reorganization: All scripts run through NPM in /tools/ folder

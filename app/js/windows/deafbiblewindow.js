@@ -37,8 +37,8 @@ sofia.initMethods.push(function() {
 				'fragmentid':'v'
 			},
 			init: {
-				'textid': sofia.config.deafBibleWindowDefaultBibleFragmentid,
-				'fragmentid':sofia.config.deafBibleWindowDefaultBibleVersion
+				'textid': sofia.config.deafBibleWindowDefaultBibleVersion,
+				'fragmentid': sofia.config.deafBibleWindowDefaultBibleFragmentid
 			}
 		});
 	}

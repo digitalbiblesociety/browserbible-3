@@ -266,7 +266,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 		navui.html('Reference').val('Reference');
 		textlistui.html('Version');
 
-		// console.log('textsindow init',init_data, isInitialized);
+		console.log('textsindow init', init_data, isInitialized, text_type);
 
 		if (init_data == null) {
 			return;
@@ -299,8 +299,10 @@ var TextWindow = function(id, parent, init_data, text_type) {
 				TextLoader.loadTexts(function(textInfoData) {
 
 					// find a text with the same language
+					// REMOVED b/c the ids no longer use the lang_version syntax
+					/*
 					var newTextInfo = null,
-						lang = init_data.textid.toString().split('-')[0].split('_')[0];
+						lang = init_data.textid.toString().split('-')[0].split('_')[0];		
 
 					for (var i=0, il=textInfoData.length; i<il; i++) {
 						var textInfo = textInfoData[i];
@@ -309,6 +311,12 @@ var TextWindow = function(id, parent, init_data, text_type) {
 							newTextInfo = textInfo;
 							break;
 						}
+					}
+					*/
+					var textsWithType = textInfoData.filter(function(ti) { return ti.type == text_type; });
+					
+					if (textsWithType.lenght > 0) {
+						newTextInfo = textsWithType[0];
 					}
 
 					// still nothing

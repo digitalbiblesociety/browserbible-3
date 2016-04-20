@@ -8,7 +8,7 @@ var SearchWindow = function(id, parent, init_data) {
 						'<input type="text" class="search-text app-input i18n" data-i18n="[placeholder]windows.search.placeholder" />' +
 						'<div class="text-list app-list" style="">&nbsp;</div>' +
 
-						'<div class="search-options-button header-icon" style=""></div>' +
+						'<div class="search-options-button header-icon" style=""><svg class="icon"><use xlink:href="build/is3.svg#settings-button"></use></svg></div>' +
 
 						'<input type="button" value="Search" data-i18n="[value]windows.search.button" class="search-button header-button i18n" />' +
 

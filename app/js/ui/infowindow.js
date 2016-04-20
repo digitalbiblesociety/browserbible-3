@@ -1,6 +1,6 @@
 var InfoWindow = function(id) {
 	var container = $(	'<div class="info-window"' + (id ? ' id="' + id + '"' : '') + '>'+
-							'<span class="close-button"></span>' +
+							'<span class="close-button"><svg class="icon"><use xlink:href="build/is3.svg#close-button"></use></svg></span>' +
 							'<div class="info-body"></div>' +
 						'</div>')
 							.appendTo( $(document.body) )

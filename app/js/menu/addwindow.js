@@ -50,7 +50,7 @@ var AddWindowButton = function(node) {
 	for (var x in windowTools) {
 		var tool = windowTools[x];
 		// ADD Button
-		var addButton = $('<div class="main-menu-item window-add i18n" id="add-' + tool.type + '" data-i18n="[html]windows.' + tool.label + '.label"></div>')
+		var addButton = $('<div class="window-add main-menu-item" id="add-' + tool.type + '"><svg class="icon"><use xlink:href="build/is3.svg#' + tool.type + '-button"></use></svg><div class="i18n" data-i18n="[html]windows.' + tool.label + '.label"></div></div>')
 					.appendTo(buttonMenu)
 					.data('init', tool);
 	}

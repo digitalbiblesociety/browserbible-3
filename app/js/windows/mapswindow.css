@@ -1,7 +1,3 @@
-#add-MapWindow, .MapWindow-tab {
-	background-image: url(../../css/images/map.svg);
-}
-
 .MapWindow .window-close-button {
 	background-color: #e5bfb7;
 }

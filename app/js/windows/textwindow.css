@@ -1,20 +1,4 @@
-#add-BibleWindow, .BibleWindow-tab {
-	background-image: url(../../css/images/bible1.svg);
-}
 
-#add-CommentaryWindow, .CommentaryWindow-tab {
-	background-image: url(../../css/images/commentary.svg);
-}
-
-/*
-<div class="scroller-container">
-<div class="scroller-flipper">
-<div class="scroller-info">
-</div>
-<div class="scroller-main">
-</div>
-</div>
-</div> */
 .window .scroller-container.supports-3d {
 	-webkit-perspective: 800px;
 	-moz-perspective: 800px;

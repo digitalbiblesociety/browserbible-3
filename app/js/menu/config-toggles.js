@@ -31,7 +31,7 @@ var ConfigToggles = function(node) {
 			toggleSetting = AppSettings.getValue(toggleId, toggleDefaultSetting),
 			toggle = $('<div id="config-toggle-' + toggleId + '" class="config-toggle">' +
 						'<input id="config-toggle-' + toggleId + '-input" type="checkbox" value="' + toggleId + '" />' +
-						'<label for="config-toggle-' + toggleId + '-input" title="' + toggleName + '">' + toggleName + '</label>' +
+						'<label for="config-toggle-' + toggleId + '-input" title="' + toggleName + '"><svg class="icon"><use xlink:href="build/is3.svg#' + toggleId + '-toggle"></use></svg>' + toggleName + '</label>' +
 					'</div>')
 						.appendTo(body);
 

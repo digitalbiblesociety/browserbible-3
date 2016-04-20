@@ -1,21 +1,10 @@
 /* IMAGE LIBRARY */
 .inline-icon {
 	display: inline-block;
-	width: 20px;
-	height: 20px;
 	cursor: pointer;
-	border-radius: 4px;
 	margin-right: 5px;
-	opacity: .5;
-	background-size: 20px 20px;
-}
-
-.image-icon {
-	background-image: url(../../css/images/pictures.svg);
-}
-
-.map-icon {
-	background-image: url(../../css/images/map.svg);
+	text-indent:0;
+	color:#555;
 }
 
 .inline-image-library-thumbs,
@@ -106,18 +95,11 @@
 	z-index: 100;
 }
 
-/* Video */
-.video-icon {
-	background-image: url(../../css/images/video.svg);
-}
-
 .image-library-thumbs li span.media-video-play {
 	position: absolute;
 	display: block;
 	top: 20px;
 	left: 40px;
-	background: transparent;
 	width: 20px;
 	height: 20px;
-	background: transparent url(../../css/images/video-icon-overlay.svg) center center no-repeat;
 }

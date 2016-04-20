@@ -9,7 +9,7 @@ var MainSearchBox = function(node) {
 							//'<input type="search" placeholder="' + i18n.t('menu.search.placeholder') + '" id="main-search-input" />' +
 							'<input type="search" class="i18n" data-i18n="[placeholder]menu.search.placeholder" id="main-search-input" />' +
 
-							'<input type="button" id="main-search-button" value="" />' +
+							'<div type="button" id="main-search-button"><svg class="icon"><use xlink:href="build/is3.svg#search"></use></svg></div>' +
 					'</div>')
 						.appendTo(node),
 

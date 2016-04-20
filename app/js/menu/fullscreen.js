@@ -9,9 +9,9 @@ var FullScreenButton = function(node) {
 
 	var
 		el = document.body,
-		//fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-item">Fullscreen</div>')
-		//	.appendTo( $('#main-menu-features') )
-		fullscreenButton = $('<div id="main-fullscreen-button"></div>')
+		// fullscreenButton = $('<div id="main-fullscreen-button" class="main-menu-item">Fullscreen</div>')
+		// .appendTo( $('#main-menu-features') )
+		fullscreenButton = $('<div id="main-fullscreen-button"><svg class="icon"><use xlink:href="build/is3.svg#fullscreen"></use></svg></div>')
 			.appendTo( $('.windows-header') )
 			.on('click', toggleFullscreen),
 

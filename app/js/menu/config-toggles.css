@@ -21,10 +21,6 @@
 	cursor: pointer;
 	opacity: .5;
 	border: solid 1px #eee;
-	background-size: 100% 100%;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-color: #fff;
 }
 
 .toggle-on label {
@@ -36,10 +32,6 @@
 	border-color: #7491CE;
 }
 
-/* VERSES */
-#config-toggle-verses label {
-	background-image: url(../../css/images/toggles/verses.svg);
-}
 
 .toggle-verses-off .verse-num,
 .toggle-verses-off .v-num {
@@ -47,8 +39,13 @@
 }
 
 /* CHAPTERS */
-#config-toggle-chapters label {
-	background-image: url(../../css/images/toggles/chapters.svg);
+.config-toggle label svg {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
 }
 
 .toggle-chapters-off .c,
@@ -75,9 +72,6 @@
 /* Justification really only makes sense if you can also do decent hyphenation.
  * Chrome does not yet (as of v35) support hyphenation, but FF, Safari, and IE
  * all have for some time. The html lang= attribute must be correctly set. */
-#config-toggle-justify label {
-	background-image: url(../../css/images/toggles/justify.svg);
-}
 
 .toggle-justify-on .section {
 	text-align: justify;
@@ -92,41 +86,20 @@
 	hyphens: auto;
 }
 
-/* TITLES */
-#config-toggle-titles label {
-	background-image: url(../../css/images/toggles/titles.svg);
-}
-
 .toggle-titles-off .is1,
 .toggle-titles-off .is2,
 .toggle-titles-off .s {
 	display: none;
 }
-
-/* WORD OF JESUS */
-#config-toggle-wordsofchrist label {
-	background-image: url(../../css/images/toggles/christwords.svg);
-}
-
 .toggle-wordsofchrist-off .woj,
 .toggle-wordsofchrist-off .wj,
 .toggle-wordsofchrist-off .woc {
 	color: inherit;
 }
 
-/* NOTES	*/
-#config-toggle-notes label {
-	background-image: url(../../css/images/toggles/notes.svg);
-}
-
 .toggle-notes-off .note,
 .toggle-notes-off .cf {
 	display: none;
-}
-
-/* MEDIA	*/
-#config-toggle-media label {
-	background-image: url(../../css/images/toggles/media.svg);
 }
 
 .toggle-media-off .image-icon,

@@ -175,7 +175,7 @@ var Window = function(id, parentNode, className, data, manager) {
 	var ext = {},
 		node = $('<div class="window ' + className + ' active"></div>')
 					.appendTo(parentNode),
-		closeBtn = $('<div class="close-container"><span class="close-button"></span></div>')
+		closeBtn = $('<div class="close-container"><span class="close-button"><svg class="icon"><use xlink:href="build/is3.svg#close-button"></use></svg></span></div>')
 					.appendTo(node)
 					.find('.close-button')
 					.on('click', function() {

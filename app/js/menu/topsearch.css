@@ -2,7 +2,6 @@
 	position: absolute;
 	top: 18px;
 	right: 20px;
-
 	height: 26px;
 	font-size: 15px;
 	padding: 0;
@@ -27,13 +26,15 @@
 	width: 30px;
 	cursor: pointer;
 	height: 26px;
-	border: solid 1px #ccc;
-	vertical-align: middle;
-	border-width: 1px 1px 1px 0;
-	border: 0;
-	background: #2a85e8 url(../../css/images/search-button.svg) center center no-repeat;
-	-webkit-appearance: none;
-	border-radius: 0;
+	line-height:26px;
+	text-align:center;
+	background-color: #28E;
+	float: right;
+	color:#FFF;
+}
+
+#main-search-button svg {
+
 }
 
 
@@ -61,12 +62,10 @@
 	margin: 2px;
 	font-size: 11px;
 }
-.suggestion-item:hover {
-	background-color: #d9e8ef;
-}
+.suggestion-item:hover {background-color: #DEE;}
 
 .suggestion-item.selected {
-	background-color: #2a85e8;
+	background-color: #28E;
 	color: #fff;
 }
 

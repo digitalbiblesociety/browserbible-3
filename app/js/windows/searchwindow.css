@@ -1,12 +1,6 @@
-#add-SearchWindow, .SearchWindow-tab {
-	background-image: url(../../css/images/search.svg);
+.compact-ui .SearchWindow .search-text {
+	width: 100px;
 }
-
-
-	.compact-ui .SearchWindow .search-text {
-		width: 100px;
-	}
-
 
 /* search */
 .search-main {
@@ -14,11 +8,6 @@
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 }
-
-.search-main .loading-indicator {
-	min-height: 50px;
-}
-
 .search-header .search-text {
 	width: 100px;
 	min-width: inherit;
@@ -96,10 +85,6 @@
 	display: block;
 	background: #ccc;
 	border-right: solid 1px #fff;
-}
-
-.search-options-button {
-	background-image: url(../../css/images/gear.svg);
 }
 
 .search-division-chooser {

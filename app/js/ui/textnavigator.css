@@ -19,7 +19,7 @@
 	width: 0;
 	height: 0;
 	display: block;
-	border-bottom: 10px solid #ccc;
+	border-bottom: 10px solid #CCC;
 	border-right: 10px solid transparent;
 	border-left: 10px solid transparent;
 }
@@ -31,11 +31,11 @@
 	top: 0;
 	left: 0;
 	z-index: 100;
-	background: #fff;
+	background: #FFF;
 	padding: 0;
 	font-family: Avenir, Helvetica, Arial;
 	font-size: 14px;
-	-x-border: solid 1px #ccc;
+	-x-border: solid 1px #CCC;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;
 }
 
@@ -61,7 +61,7 @@
 	width: 0;
 	height: 0;
 	display: block;
-	border-bottom: 10px solid #ccc;
+	border-bottom: 10px solid #CCC;
 	border-right: 10px solid transparent;
 	border-left: 10px solid transparent;
 }
@@ -75,7 +75,7 @@
 	padding: 8px;
 	color: #fff;
 	position: relative;
-	-x-border-bottom: solid 1px #ccc;
+	-x-border-bottom: solid 1px #CCC;
 	background: #444;
 }
 
@@ -110,7 +110,7 @@
 	height: 38px;
 	margin: 1px 1px 0 0;
 	-border: solid 1px transparent;
-	background: #f7f7f7;
+	background: #FFF;
 	color: #333;
 	text-align: center;
 	padding: 10px 0 0;
@@ -135,12 +135,12 @@
 }
 
 .text-navigator .text-navigator-division:hover > span {
-	-border-bottom-color: #ccc;
+	-border-bottom-color: #CCC;
 	font-weight: bold;
 }
 
 .text-navigator .text-navigator-section:hover {
-	-outline: solid 1px #2a85e8;
+	-outline: solid 1px #28E;
 }
 
 .text-navigator-divisions-full .text-navigator-division {
@@ -166,11 +166,10 @@
 .text-navigator-fullname {
 	position: absolute;
 	z-index: 110;
-	border-bottom-color: #ccc;
 	height: 38px;
 	margin: 1px 1px 0 0;
-	border: solid 1px #ccc;
-	background: #eee;
+	border: 1px solid #CCC;
+	background: #EEE;
 	color: #333;
 	text-align: left;
 	padding: 10px 10px 0;
@@ -181,74 +180,74 @@
 
 
 .text-navigator .division-section-penta {
-	border-color: #bfb;
+	border-color: #BFB;
 }
 .text-navigator .division-section-penta.selected {
-	background: #efe;
+	background: #EFE;
 }
 
 .text-navigator .division-section-hist {
-	border-color: #bbf;
+	border-color: #BBF;
 }
 .text-navigator .division-section-hist.selected {
-	background: #eef;
+	background: #EEF;
 }
 
 .text-navigator .division-section-poet {
-	border-color: #fbf;
+	border-color: #FBF;
 }
 .text-navigator .division-section-poet.selected {
-	background: #fef;
+	background: #FEF;
 }
 
 .text-navigator .division-section-majorp {
-	border-color: #fbb;
+	border-color: #FBB;
 }
 .text-navigator .division-section-majorp.selected {
-	background: #fee;
+	background: #FEE;
 }
 
 .text-navigator .division-section-minorp {
-	border-color: #ffb;
+	border-color: #FFB;
 }
 .text-navigator .division-section-minorp.selected {
-	background: #ffe;
+	background: #FFE;
 }
 
 /* gospels */
 .text-navigator .division-section-gospel {
-	border-color: #fbb;
+	border-color: #FBB;
 }
 .text-navigator .division-section-gospel.selected {
-	background: #fee;
+	background: #FEE;
 }
 
 .text-navigator .division-section-acts {
-	border-color: #f4b;
+	border-color: #F4B;
 }
 .text-navigator .division-section-acts.selected {
-	background: #fef;
+	background: #FEF;
 }
 
 .text-navigator .division-section-paul {
-	border-color: #bbf;
+	border-color: #BBF;
 }
 .text-navigator .division-section-paul.selected {
-	background: #eef;
+	background: #EEF;
 }
 
 .text-navigator .division-section-general {
-	border-color: #bff;
+	border-color: #BFF;
 }
 .text-navigator .division-section-general.selected {
 	background: #eff;
 }
 
 .text-navigator .division-section-rev {
-	border-color: #fbf;
+	border-color: #FBF;
 }
 .text-navigator .division-section-rev.selected {
-	background: #fef;
+	background: #FEF;
 }
 
 .text-navigator .text-navigator-section {
@@ -265,7 +264,6 @@
 
 .text-navigator .text-navigator-section:hover,
 .text-navigator .text-navigator-section.selected {
-
 	font-weight: bold;
 }
 

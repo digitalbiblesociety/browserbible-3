@@ -28,18 +28,24 @@ var DeafBibleWindow = function(id, node, init_data) {
 
 sofia.initMethods.push(function() {
 
+	var deafWindowData = {
+				className:'DeafBibleWindow',
+				param: 'deafbible',
+				paramKeys: {
+					'textid': 't',
+					'fragmentid':'v'
+				},
+				init: {
+					'textid': sofia.config.deafBibleWindowDefaultBibleVersion,
+					'fragmentid': sofia.config.deafBibleWindowDefaultBibleFragmentid
+				}
+			};
+
 	if (sofia.config.enableDeafBibleWindow)	{
-		sofia.windowTypes.push({
-			className:'DeafBibleWindow',
-			param: 'deafbible',
-			paramKeys: {
-				'textid': 't',
-				'fragmentid':'v'
-			},
-			init: {
-				'textid': sofia.config.deafBibleWindowDefaultBibleVersion,
-				'fragmentid': sofia.config.deafBibleWindowDefaultBibleFragmentid
-			}
-		});
+		if(sofia.config.deafCentric) {
+			sofia.windowTypes.unshift(deafWindowData);			
+		} else {
+			sofia.windowTypes.push(deafWindowData);	
+		}
 	}
 });

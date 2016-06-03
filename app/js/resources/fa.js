@@ -1,37 +1,40 @@
 sofia.resources['fa'] = {
 	"translation": {
-		"name": "فارسی",
+		"name": "انگلیسی",
 		"menu": {
+			"labels": {
+				"about": "درباره",
+				"addwindow": "اضافه کردن پنجره",
+				"settings": "تنظیمات",
+				"feedback": "فیدبک",
+				"options": "اختیارات"
+			},
+			"feedback": {
+				"name": "اسم",
+				"email": "ایمیل",
+				"comments": "نظرات",
+				"feature": "پیشنهادات ",
+				"bug": "گزارش خطا",
+				"other": "دیگر",
+				"send": "ارسال",
+				"thankyou": "سپاسگزاریم"
+			},
 			"search": {
-				"placeholder": "جستجو"
+				"placeholder": "جستجو",
+				"suggestversion": "باز <strong>{0}</strong>",
+				"suggestreference": "Go to <strong>{0}</strong> / {1}",
+				"suggestsearch": "جستجو \"<strong>{0}</strong>\" / {1}"
 			},
 			"config": {
-				"font": "فونت",
+				"font": "نوع قلم",
 				"settings": "تنظیمات",
 				"tools": "ابزار"
 			},
-			"reset": "تنظیم مجدد",
+			"reset": "ذخیره مجدد",
 			"themes": {
-				"default": "طبیعی",
-				"sepia": "رنگ قرمز قهوهای",
-				"dark": "نور پایین"
-			},
-			"labels": {
-				"about": "در باره",
-				"addwindow": "اضافه کردن پنجره",
-				"settings": "تنظیمات",
-				"feedback": "باز خورد",
-				"options": "گزینه"
-			},
-			"feedback": {
-				"name": "نام",
-				"email": "ایمیل",
-				"comments": "نظرات شما",
-				"feature": "پیشنهادات ویژگی",
-				"bug": "گزارش اشکالات",
-				"other": "دیگر",
-				"send": "ارسال",
-				"thankyou": "با تشکر از شما برای نظرات شما"
+				"default": "معمولی",
+				"sepia": "کرم",
+				"dark": "کم نور"
 			}
 		},
 		"plugins": {
@@ -39,71 +42,96 @@ sofia.resources['fa'] = {
 				"button": "فیلتر تصویری",
 				"title": "فیلتر تصویری",
 				"newfilter": "فیلتر جدید",
-				"strongsnumber": "# قوی",
-				"morphology": "ریخت شناسی",
+				"strongsnumber": "کد #",
+				"morphology": "تبدیل",
 				"style": "سبک"
 			},
 			"eng2p": {
-				"button": "انگلیسی 2 شخص جمع",
-				"title": "انگلیسی دوم شخص جمع"
+				"button": "انگلیسی دوم شخص جمع",
+				"title": "انگلیسی دوم شخص جمع",
+				"description": "Modern English does not distinguish between <em>you singular</em> and <em>you plural</em>, so this plugin uses regional English equivalents to represent the Hebrew and Greek forms."
+
 			},
 			"lemmapopup": {
-				"findalloccurrences": "یافتن تمام موارد (حدود __count__)"
+				"findalloccurrences": "پیدا کردن تمام موارد(approximately __count__)"
 			}
 		},
 		"windows": {
 			"bible": {
-				"label": "کتاب مقدس",
-				"filter": "فیلتر ...",
-				"ot": "کتب عهد عتیق",
-				"nt": "کتب عهد جدید مسیحیان",
-				"dc": "Deuterocanonical کتاب",
-				"more": "بیشتر",
-				"less": "کمتر",
+				"label": "کتابمقدس فارسی",
 				"recentlyused": "به تازگی مورد استفاده",
+				"filter": "فیلتر‫...‬",
+				"ot": "عهد عتیق",
+				"nt": "عهد جدید",
+				"dc": "کتابهای آپاگرفا",
+				"more": "بیشتر",
+				"less": "کم",
+				"default": "اصلی",
 				"languages": "زبان",
-				"countries": "کشورها"
+				"countries": "کشور",
+				"lemma":"یونانی/عبری پنجره",
+				"audio":"فایلهای صورتی موجود"
 			},
 			"commentary": {
 				"label": "تفسیر"
 			},
 			"map": {
 				"label": "نقشه",
-				"placeholder": "جستجو ..."
+				"placeholder": " جستجو‫...‬"
 			},
 			"search": {
-				"label": "جستجو",
-				"placeholder": "جستجو",
+				"label": "جستجوی فارسی",
+				"placeholder": "جستجوی فارسی",
 				"button": "جستجو",
-				"results": "نتایج",
-				"verses": "آیات",
-				"options": "گزینه های جستجو"
-			},
-			"media": {
-				"label": "رسانه ها"
-			},
-			"notes": {
-				"label": "یادداشت ها"
-			},
-			"audio": {
-				"options": "گزینه های صوتی",
-				"synctext": "همگام سازی متن (بتا)",
-				"autoplay": "خودکار بعدی",
-				"drama": "درام",
-				"nondrama": "غیر درام"
+				"results": "نتیجه",
+				"verses": "آیه",
+				"options": "اختیارات جستجو"
 			},
 			"parallel": {
-				"label": "نحوهی",
-				"loading": "در حال بارگذاری ...",
+				"label": "موازی",
+				"loading": "بارگیری‫...‬",
 				"showall": "نمایش همه",
-				"hideall": "مخفی کردن همه"
+				"hideall": "پنهان کردن همه"
+			},
+			"media": {
+				"label": "رسانه"
+			},
+			"notes": {
+				"label": "یاداشت"
+			},
+			"audio": {
+				"label":"صوتی",
+				"options": "انتخابات صورت",
+				"synctext": "همگام سازی(beta)",
+				"autoplay": "نمایش اتوماتیک بعدی",
+				"drama": "نمایش رادیویی",
+				"nondrama": "گویا"
 			},
 			"comparison": {
 				"label": "مقایسه"
+			},
+			"stats": {
+				"label": "آمار",
+				"frequentwords":"کلمات تکرارشده"
 			}
 		},
 		"names": {
-			"en": "Persian"
+			"en": "English",
+			"fa": "فارسی (Farsi)",
+			"fr": "anglais",
+			"es": "Inglés",
+			"de": "Englisch",
+			"ru": "английский",
+			"hi": "अंग्रेजी",
+			"ar": "الإنجليزية",
+			"af": "Engels",
+			"bn": "ইংরেজি",
+			"id": "Bahasa Inggris",
+			"sw": "Kiingereza",
+			"tr": "ingilizce",
+			"ja": "英語",
+			"zh-TW": "英語",
+			"zh-CN": "英语"
 		}
 	}
 }

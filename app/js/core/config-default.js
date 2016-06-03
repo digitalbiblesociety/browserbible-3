@@ -8,9 +8,9 @@ sofia.config = {
 
 	// first load
 	windows: [
-		{type: 'bible', data: {textid: 'ENGNAS', fragmentid: 'JN1_1'}},
+		{type: 'bible', data: {textid: 'eng_kjv', fragmentid: 'JN1_1'}},
 		{type: 'deafbible', data: {textid: 'grc_tisch', fragmentid: 'JN1_1'}},
-		{type: 'search', data: {textid: 'ENGNAS', searchtext:'truth love'}}
+		{type: 'search', data: {textid: 'eng_kjv', searchtext:'truth love'}}
 	],
 
 	// URL to content
@@ -40,7 +40,7 @@ sofia.config = {
 	topTexts: [],
 
 	// new window
-	newBibleWindowVersion: 'ENGNAS',
+	newBibleWindowVersion: 'eng_kjv',
 
 	// new bible verse
 	newWindowFragmentid: 'JN1_1',

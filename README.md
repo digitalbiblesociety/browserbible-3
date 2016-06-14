@@ -11,8 +11,12 @@ Before BrowserBible is ready for deployment, the texts that will be deployed wit
 and then run:
 
 	npm run build:content
+	
+(nodejs >= 4 is required here.)
 
 This will read the texts data from `input/` and build the files that BrowserBible will use to show and search texts and place them in `app/content/texts/`.
+
+Now you can open `app/index.html` in the browser.
 
 ## Adding Bibles and other Texts
 

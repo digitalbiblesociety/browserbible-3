@@ -16,8 +16,8 @@ var ConfigUrl = function(node) {
 		urlBox =
 				$('<div id="config-global-url">' +
 						//'<span class="config-header">URL</span>' +
-						'<span ></span>' +
-						'<input type="text" />' +
+						'<span data-clipboard-action="copy" data-clipboard-target="#config-global-url-input"></span>' +
+						'<input type="text" id="config-global-url-input" />' +
 						//'<div ></div>' +
 					'</div>'),
 		linkButton = urlBox.find('span'),
@@ -41,6 +41,10 @@ var ConfigUrl = function(node) {
 	}, 1000);
 
 
+	var clipboard1 = new Clipboard(linkButton[0]);
+	var clipboard2 = new Clipboard('#config-global-url-input');	
+
+	/*
 	if (Detection.hasFlash) {
 		ZeroClipboard.config( { moviePath: sofia.config.baseContentUrl + 'build/ZeroClipboard.swf' } );
 		for (var c in clickables) {
@@ -60,6 +64,7 @@ var ConfigUrl = function(node) {
 			});
 		}
 	}
+	*/
 
 	urlInput.on('click', function() {
 		updateUrl();

@@ -3,6 +3,7 @@ var Detection = (function() {
 
 	detection.hasTouch = 'ontouchend' in document;
 
+	/*
 	detection.hasFlash = (function() {
 		if (navigator.plugins != null && navigator.plugins.length > 0){
 			return navigator.plugins["Shockwave Flash"] && true;
@@ -17,6 +18,7 @@ var Detection = (function() {
 		}
 		return false;
 	})();
+	*/
 
 
 	return detection;

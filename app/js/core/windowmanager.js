@@ -23,14 +23,6 @@ var WindowManager = function(node, app) {
 
 		//win.tab.css({right: '0px'});
 
-		// when a window reports a settings change
-		win.on('settingschange', function(e) {
-
-			// pass up to root
-			ext.trigger('settingschange', e);
-		});
-
-		win.on('globalmessage', sofia.app.handleGlobalMessage);
 
 		//size();
 		setTimeout(function() {
@@ -65,11 +57,12 @@ var WindowManager = function(node, app) {
 		//size();
 		PlaceKeeper.restorePlace();
 
-
+		/*
 		var tabWidth = windows[0].tab.outerWidth() - 10;
 		for (var i=0,il=windows.length; i<il; i++) {
 			windows[i].tab.css({right: ((il-i) * tabWidth) +'px'});
 		}
+		*/
 
 		windows[0].tab.addClass('active');
 		windows[0].node.addClass('active');
@@ -214,10 +207,18 @@ var Window = function(id, parentNode, className, data, manager) {
 
 
 	// send focus/blur events down to controller
-	node.on('mouseenter', function(e) {
+	node.on('mouseenter touchstart', function(e) {
 		controller.trigger('focus', {});
+		node
+			.addClass('focused')
+			.siblings()
+				.removeClass('focused')
+				.trigger('windowblur');
 	});
-	node.on('mouseleave', function(e) {
+	node.on('mouseleave windowblur', function(e) {
+		node
+			.removeClass('focused')		
+		
 		controller.trigger('blur', {});
 	});
 
@@ -272,6 +273,16 @@ var Window = function(id, parentNode, className, data, manager) {
 			tab.find('span').html( e.data.labelTab );
 		}
 	});
+	
+
+	// when a window reports a settings change
+	ext.on('settingschange', function(e) {
+
+		// pass up to root
+		manager.trigger('settingschange', e);
+	});
+
+	ext.on('globalmessage', sofia.app.handleGlobalMessage);	
 
 	return ext;
 };

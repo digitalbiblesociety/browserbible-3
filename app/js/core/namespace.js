@@ -17,3 +17,10 @@ sofia.globals = {};
 
 // language
 sofia.resources = {};
+
+
+if (window.location.protocol === 'file:') {
+	sofia.protocol = 'https:';
+} else {
+	sofia.protocol = '';
+}

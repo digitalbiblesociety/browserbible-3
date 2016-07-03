@@ -7,6 +7,7 @@ sofia.textproviders['fcbh'] = (function() {
 		text_data_callbacks = [],
 		providerName = 'fcbh',
 		fullName = 'Faith Comes by Hearing - Digital Bible Platform';
+	
 
 	function getTextManifest (callback) {
 
@@ -163,7 +164,7 @@ sofia.textproviders['fcbh'] = (function() {
 				}
 			},
 			dataType: 'jsonp',
-			url: 'http://dbt.io/library/book?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id,
+			url: /*sofia.protocol + */ 'http://dbt.io/library/book?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id,
 			success: function(data) {
 
 				// push data onto info object
@@ -219,7 +220,7 @@ sofia.textproviders['fcbh'] = (function() {
 				sectionIndex = textinfo.sections.indexOf(sectionid),
 				previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
 				nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
-				url = 'http://dbt.io/library/verse?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
+				url = /*sofia.protocol + */ 'http://dbt.io/library/verse?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&book_id=' + usfmbook + '&chapter_id=' + chapter; // format=osis (sadly doesn't do anything)
 
 			//console.log(url);
 
@@ -321,7 +322,7 @@ sofia.textproviders['fcbh'] = (function() {
 			dataType: 'jsonp',
 
 			// One giant call seems faster, than doing all the books individually?
-			url: 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
+			url: /*sofia.protocol + */ 'http://dbt.io/text/search?v=2&reply=jsonp&key=' + sofia.config.fcbhKey + '&dam_id=' + dam_id + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
 			success: function(data) {
 
 				for (var i=0, il=data[1].length; i<il; i++) {

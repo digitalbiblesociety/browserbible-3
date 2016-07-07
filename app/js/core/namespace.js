@@ -5,7 +5,7 @@ if (typeof console == 'undefined') { window.console = {log:function() {}}; }
 window.sofia = {};
 
 // version
-sofia.version = '3.8.2';
+sofia.version = '3.8.2.beta';
 
 // allows items to register themselves
 sofia.plugins = [];
@@ -17,3 +17,10 @@ sofia.globals = {};
 
 // language
 sofia.resources = {};
+
+
+if (window.location.protocol === 'file:') {
+	sofia.protocol = 'https:';
+} else {
+	sofia.protocol = '';
+}

@@ -75,7 +75,7 @@ var JesusFilmMediaApi = (function() {
 			lang = 'eng';
 		}
 
-		iframeUrl = 'http://api.arclight.org/videoPlayerUrl?refId=1_' + languageId + '-jf61' + segmentNumber + '-0-0&amp;apiSessionId=' + sofia.config.jfmKey + '&playerStyle=vanilla';
+		iframeUrl = sofia.protocol + '//api.arclight.org/videoPlayerUrl?refId=1_' + languageId + '-jf61' + segmentNumber + '-0-0&amp;apiSessionId=' + sofia.config.jfmKey + '&playerStyle=vanilla';
 
 		callback(iframeUrl, lang);
 	}

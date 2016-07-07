@@ -254,7 +254,7 @@ var FaithComesByHearingAudio = (function() {
 	function loadFcbHearingLocations() {
 		$.ajax({
 			dataType: 'jsonp',
-			url: 'http://dbt.io/audio/location?v=2&reply=jsonp&key=' + sofia.config.fcbhKey,
+			url: sofia.protocol + '//dbt.io/audio/location?v=2&reply=jsonp&key=' + sofia.config.fcbhKey,
 			success: function(data) {
 				fcbhLocation = data;
 			},
@@ -267,7 +267,7 @@ var FaithComesByHearingAudio = (function() {
 	function loadFcbHearingInfo() {
 		$.ajax({
 			dataType: 'jsonp',
-			url: 'http://dbt.io/library/volume?v=2&reply=jsonp&media=audio&delivery=web&key=' + sofia.config.fcbhKey,
+			url: sofia.protocol + '//dbt.io/library/volume?v=2&reply=jsonp&media=audio&delivery=web&key=' + sofia.config.fcbhKey,
 			success: function(data) {
 				fcbhList = data;
 
@@ -517,7 +517,7 @@ var FaithComesByHearingAudio = (function() {
 		}
 
 		var
-			url = 'http://dbt.io/audio/path?v=2&reply=jsonp&dam_id=' + dam_id + '&book_id=' + bookInfo.osis.toLowerCase() + '&chapter_id=' + chapterNum.toString() + '&key=' + sofia.config.fcbhKey;
+			url = sofia.protocol + '//dbt.io/audio/path?v=2&reply=jsonp&dam_id=' + dam_id + '&book_id=' + bookInfo.osis.toLowerCase() + '&chapter_id=' + chapterNum.toString() + '&key=' + sofia.config.fcbhKey;
 
 		$.ajax({
 			dataType: 'jsonp',

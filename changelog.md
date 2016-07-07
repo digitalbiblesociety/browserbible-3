@@ -1,6 +1,12 @@
 Change Log
 =======
 
+3.8.2 - 2016/07/XX
+
+* Replaced ZeroClipboard (Flash) with clipboard.js
+* Updated window focus code to better handle touch events and scroll syncing
+
+
 3.8.1 - 2016/04/11
 
 * Fixed issues with new window in Deaf versions

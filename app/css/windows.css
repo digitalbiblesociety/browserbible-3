@@ -120,6 +120,12 @@ input:focus {
 	padding: 0;
 	border-right: solid 1px #eee;
 }
+/*
+.window.focused {
+	outline: 2px solid yellow;
+	z-index: 5;
+}
+*/
 
 .window-tab {
 	display: none;

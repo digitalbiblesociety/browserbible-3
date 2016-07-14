@@ -10,12 +10,12 @@ sofia.resources['de'] = {
 				"settings": "Einstellungen",
 				"tools": "Werkzeuge"
 			},
-			"reset": "rücksetzen",
+			"reset": "zurücksetzen",
 			"labels": {
 				"about": "Über",
-				"addwindow": "Window",
+				"addwindow": "Neues Fenster",
 				"settings": "Einstellungen",
-				"feedback": "Rückkopplung",
+				"feedback": "Rückmeldung",
 				"options": "Optionen"
 			},
 			"feedback": {
@@ -24,14 +24,14 @@ sofia.resources['de'] = {
 				"comments": "Ihre Kommentare",
 				"feature": "Feature-Vorschlag",
 				"bug": "Fehlerhinweis",
-				"other": "Andere",
-				"send": "Zukommen Lassen",
+				"other": "Sonstiges",
+				"send": "Absenden",
 				"thankyou": "Vielen Dank für Ihre Rückmeldung"
 			},
 			"themes": {
 				"default": "Normal",
 				"sepia": "Sepia",
-				"dark": "wenig Licht"
+				"dark": "Wenig Licht"
 			}
 		},
 		"plugins": {
@@ -52,17 +52,25 @@ sofia.resources['de'] = {
 			}
 		},
 		"windows": {
+			"deafbible": {
+				"label": "Bibel für Taube"
+			},
+			"videobible": {
+				"label": "Video-Bibel"
+			},
 			"bible": {
 				"label": "Bibel",
 				"filter": "Filter ...",
-				"ot": "Alte Testament",
+				"ot": "Altes Testament",
 				"nt": "Neues Testament",
 				"dc": "Deuterokanonische Bücher",
 				"more": "Mehr",
 				"less": "Weniger",
-				"recentlyused": "Zuletzt verwendete",
+				"recentlyused": "Zuletzt verwendet",
 				"languages": "Sprachen",
-				"countries": "Länder"
+				"countries": "Länder",
+				"lemma":"Griechisch/Hebräisch-Popups",
+				"audio":"Audio verfügbar"
 			},
 			"commentary": {
 				"label": "Kommentar"
@@ -83,23 +91,27 @@ sofia.resources['de'] = {
 				"label": "Medien"
 			},
 			"notes": {
-				"label": "Aufzeichnungen"
+				"label": "Notizen"
 			},
 			"audio": {
 				"options": "Audio-Optionen",
-				"synctext": "Sync Text (beta)",
-				"autoplay": "Autoplay Weiter",
-				"drama": "Drama",
-				"nondrama": "Non-Drama-"
+				"synctext": "Text synchron halten (beta)",
+				"autoplay": "Automatisch nächstes spielen",
+				"drama": "Dramatisiert",
+				"nondrama": "Vorgelesen"
 			},
 			"parallel": {
-				"label": "Parallels",
-				"loading": "Wird Geladen ...",
+				"label": "Parallelstellen",
+				"loading": "Wird geladen ...",
 				"showall": "Alle anzeigen",
 				"hideall": "Alle ausblenden"
 			},
 			"comparison": {
 				"label": "Vergleich"
+			},
+			"stats": {
+				"label": "Statistiken",
+				"frequentwords":"Häufige Wörter"
 			}
 		},
 		"names": {

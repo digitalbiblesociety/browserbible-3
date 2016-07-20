@@ -45,12 +45,14 @@ function indexVerse(verseCode, text, indexData, lang) {
 			if (!wordData) {
 				wordData = {
 					"term": word,
+					"map": {},
 					"occurrences": []
 				}
 				indexData[key] = wordData;
 			}
 
-			if (wordData['occurrences'].indexOf(verseCode) == -1) {
+			if (!wordData['map'][verseCode]) {
+				wordData['map'][verseCode] = true;
 				wordData['occurrences'].push(verseCode);
 			}
 		}
@@ -73,12 +75,14 @@ function indexStrongs(verseCode, strongsData, lemmaIndexData, lang) {
 		if (!wordData) {
 			wordData = {
 				"term": strongsNumber,
+				"map": {},
 				"occurrences": []
 			}
 			lemmaIndexData[strongsNumber] = wordData;
 		}
 
-		if (wordData['occurrences'].indexOf(verseCode) == -1) {
+		if (!wordData['map'][verseCode]) {
+			wordData['map'][verseCode] = true;
 			wordData['occurrences'].push(verseCode);
 		}
 	}

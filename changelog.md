@@ -1,11 +1,12 @@
 Change Log
 =======
 
-3.8.2 - 2016/07/XX
+3.8.2 - 2016/07/23
 
 * Replaced ZeroClipboard (Flash) with clipboard.js
 * Updated window focus code to better handle touch events and scroll syncing
-
+* Language Fixes
+* Speedier TSK conversion
 
 3.8.1 - 2016/04/11
 

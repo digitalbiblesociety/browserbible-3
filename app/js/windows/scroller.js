@@ -183,7 +183,7 @@ var Scroller = function(node) {
 	}
 
 	function load_more() {
-
+		
 		// measure top and bottom height
 		var
 			fragmentid = null;
@@ -326,10 +326,11 @@ var Scroller = function(node) {
 
 				case 'prev':
 
+					// add to top, measure, then reset scroll position
+					/*
 					var	node_scrolltop_before = node.scrollTop(),
 						first_item = node.find('.section').children().first();
-
-
+					
 					if (first_item.length > 0) {
 						var first_item_offset_top_before = first_item.offset().top;
 
@@ -342,19 +343,20 @@ var Scroller = function(node) {
 
 						node.scrollTop( Math.abs(new_scrolltop));
 					}
+					*/
 
-					// add to bottom, then move down
-					/*
+					// add to bottom, then move up
+
+					var	node_scrolltop_before = node.scrollTop();
 					var wrapper_height_before = wrapper.height();
 					wrapper.append(content);
 					var wrapper_height_after = wrapper.height();
-					wrapper.prepent(content);
+					wrapper.prepend(content);
 
 					var height_difference = wrapper_height_after - wrapper_height_before,
 						new_scrolltop = node_scrolltop_before + height_difference;
 
 					node.scrollTop( Math.abs(new_scrolltop ));
-					*/
 
 					break;
 
@@ -378,7 +380,8 @@ var Scroller = function(node) {
 											}
 										});
 
-			load_more();
+			//load_more();
+			start_load_more_timeout();
 		});
 
 	}

@@ -241,8 +241,9 @@ var Eng2pPlugin = function(node) {
 	ext.on('message', function(e) {
 		if (e.data.messagetype == 'textload' && e.data.type == 'bible') {
 
-
-			if ((e.data.content.attr('lang') == 'en' || e.data.content.attr('lang') == 'eng') && eng2pSetting.eng2p != 'none') {
+			var lang = e.data.content.attr('lang').toLowerCase();
+			
+			if ((lang == 'en-gb' || lang == 'en-us' || lang == 'en' || lang == 'eng') && eng2pSetting.eng2p != 'none') {
 				//console.log('Eng2P', e.data.content.attr('data-id'));
 
 				runPluralTransforms(e.data.content);

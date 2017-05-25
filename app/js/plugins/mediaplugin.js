@@ -152,7 +152,7 @@ var MediaLibraryPlugin = function(app) {
 							// check if it's already been added
 							//if (verse.closest('.chapter').find('.' + verseid).find('.' + iconClassName).length == 0) {
 
-								var icon = $('<span class="inline-icon ' + iconClassName + ' mediathumb" data-mediafolder="' + mediaLibrary.folder + '"></span>'),
+								var icon = $('<span class="inline-icon mediathumb" data-mediafolder="' + mediaLibrary.folder + '"><svg class="icon"><use xlink:href="build/is3.svg#' + iconClassName + '"></use></svg></span>'),
 									verseNumber = verse.find('.verse-num, v-num');
 
 								if (verseNumber.length > 0) {

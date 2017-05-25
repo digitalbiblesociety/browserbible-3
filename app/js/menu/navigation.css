@@ -1,65 +1,38 @@
-#main-forward-button {
+#main-forward-button,#main-back-button {
 	position: absolute;
-	top: 15px;
-	right: 300px;
-	background-size: 32px 32px;
-	background-repeat: no-repeat;
-	background-position: center center;
+	cursor: pointer;
 	width: 32px;
 	height: 32px;
-	cursor: pointer;
-	background-image: url(../../css/images/arrow-right-gray-light.svg);
+	top: 15px;
+	color:#FFF;
+	font-size:1.5rem;
 }
 
-#main-back-button {
-	position: absolute;
-	top: 15px;
-	right: 330px;
-	background-size: 32px 32px;
-	background-repeat: no-repeat;
-	background-position: center center;
-	width: 32px;
-	height: 32px;
-	cursor: pointer;
-	background-image: url(../../css/images/arrow-left-gray-light.svg);
-}
+#main-forward-button 	{right: 300px}
+#main-back-button 		{right: 330px}
 
 #main-back-button.inactive,
-#main-forward-button.inactive  {
-	opacity: 0.5;
-	cursor: inherit;
+#main-forward-button.inactive {opacity:.5}
+
+.compact-ui #main-back-button,
+.compact-ui #main-forward-button {
+	display: none;
 }
-
-
-	.compact-ui #main-back-button,
-	.compact-ui #main-forward-button {
-		display: none;
-	}
-
 
 #compact-back-button {
-	display: none;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	background: #2a85e8;
-	color: #fff;
-	z-index: 1000;
-
-	background-size: 22px 22px;
-	background-repeat: no-repeat;
-	background-position: 5px center;
-	background-image: url(../../css/images/arrow-left-gray-light.svg);
-
-	cursor: pointer;
+	display:none;
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	background:#28E;
+	color:#fff;
+	z-index:1000;
+	cursor:pointer;
+	line-height:30px;
 }
-#compact-back-button-label {
-	display: inline-block;
-	float: left;
-	padding: 8px 8px 8px 30px;
-	font-size: 10px;
-}
+#compact-back-button svg {float:left;margin:7px}
+#compact-back-button-label {display: inline-block;float: left;font-size: 10px}
 
 .compact-ui #compact-back-button.active {
 	display: block;

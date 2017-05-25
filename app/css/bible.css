@@ -4,10 +4,10 @@
 	line-height: 1.8;
 }
 
-	.compact-ui .section,
-	.compact-ui .chapter {
-		line-height: 1.5;
-	}
+.compact-ui .section,
+.compact-ui .chapter {
+	line-height: 1.5;
+}
 
 .section p,
 .section div.p,
@@ -59,7 +59,7 @@
 	font-size: 60%;
 	font-weight: normal;
 	font-style: normal;
-	color: #7491CE;
+	color: #79C;
 	cursor: pointer;
 	display: inline;
 	text-decoration: none;
@@ -108,7 +108,7 @@
 
 .bibleref
 /*, .xt */{
-	color: #7491CE;
+	color: #79C;
 	cursor: pointer;
 }
 
@@ -198,23 +198,6 @@ div.c + div.q .v-1 {
 	font-size: 125%;
 }
 
-
-.windows-container .section[lang=he],
-.windows-container [lang=he],
-.windows-container .section[lang=heb],
-.windows-container [lang=heb] {
-	font-family: 'SBL Hebrew', EzraSIL;
-}
-
-
-.windows-container .section[lang=grc],
-.windows-container [lang=grc],
-.windows-container .section[lang=el],
-.windows-container [lang=el] {
-	font-family: GentiumPlus, 'Gentium Plus';
-}
-
-
 /* put chapter on other side */
 .section[dir=rtl] .c,
 .section[dir=rtl] .c {
@@ -222,8 +205,6 @@ div.c + div.q .v-1 {
 	margin-right: 0;
 	margin-left: .2em;
 }
-
-
 
 h3.is1,
 div.s,
@@ -301,26 +282,22 @@ div.is1 {
 .mt2 + .mt2 {
 	margin-top: 0;
 }
-
 /* introduction */
 .is {
 	margin-top: 1em;
 	text-align: center;
 }
-
 .ip {
 	line-height: 1.4;
 	font-size: .9em;
 	text-indent: 1.5em;
 }
-
 /* commentaries */
 .comm-v-num {
 	font-weight: bold;
 	display: block;
 	margin: 3em 0 0;
 }
-
 .commentary {
 	line-height: 1.5;
 	font-size: .9em;

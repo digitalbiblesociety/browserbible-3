@@ -23,7 +23,7 @@ var MainMenuButton = function(node) {
 		container = $('.windows-container'),
 		mainMenuLogo = $('<div id="app-logo"></div>')
 					.appendTo(node),
-		mainMenuButton = $('<div id="main-menu-button"></div>')
+		mainMenuButton = $('<div id="main-menu-button">☰</div>')
 					.appendTo(node)
 					.on('click', mainMenuClick),
 		mainMenuDropDown = $('<div id="main-menu-dropdown">' +

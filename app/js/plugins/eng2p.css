@@ -48,9 +48,16 @@
 }
 
 #config-eng2p-button {
-	background: url(../../css/images/two-people.svg) left center no-repeat;
-	background-size: 20px 20px;
-	padding: 5px 0 5px 25px;
+	line-height:30px;
+	height:30px;
+}
+
+#config-eng2p-button .icon {
+	width:30px;
+	height:30px;
+	float:left;
+	text-align: center;
+	line-height:30px;
 }
 
 #config-eng2p p {

@@ -230,8 +230,8 @@ copyFiles.forEach(function(url) {
 console.timeEnd('CSS: combine and minify');
 
 
-// copy fonts and images folders
-var copyFolders = ['css/fonts', 'css/images'];
+// copy images folders
+var copyFolders = ['css/images'];
 
 copyFolders.forEach(function(copyFolder) {
 	var folderIn = path.join(rootPath, copyFolder),

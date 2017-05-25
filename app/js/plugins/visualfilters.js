@@ -103,7 +103,7 @@ var VisualFilters = function(node) {
 										tbody.append(row);
 									}),
 
-		openVisualizationsButton = $('<span class="config-button i18n" data-i18n="[html]plugins.visualfilters.button" id="config-visualfilters-button"></span>')
+		openVisualizationsButton = $('<div class="config-button" id="config-visualfilters-button"><svg class="icon"><use xlink:href="build/is3.svg#visualfilters-button"></use></svg><span class="i18n" data-i18n="[html]plugins.visualfilters.button"></span></div>')
 						.appendTo( $('#config-tools .config-body') );
 
 	//console.log('LOADED VIZ',visualSettings);

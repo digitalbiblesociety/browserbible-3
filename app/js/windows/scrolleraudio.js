@@ -9,9 +9,9 @@ var AudioController = function(id, container, toggleButton, scroller) {
 						'<div class="audio-slider-loaded"></div>' +
 						'<span class="audio-slider-handle"></span>' +
 					'</div>' +
-					'<input type="button" class="audio-prev" value="Prev" />' +
-					'<input type="button" class="audio-play" value="Play" />' +
-					'<input type="button" class="audio-next" value="Next" />' +
+					'<div type="button" class="audio-prev" value="Prev"><svg class="icon"><use xlink:href="build/is3.svg#audio-prev"></use></svg></div>' +
+					'<div type="button" class="audio-play" value="Play"><svg class="icon"><use xlink:href="build/is3.svg#audio-toggle"></use></svg></div>' +
+					'<div type="button" class="audio-next" value="Next"><svg class="icon"><use xlink:href="build/is3.svg#audio-next"></use></svg></div>' +
 					'<span class="audio-currenttime">00:00</span>' +
 					'<span class="audio-duration">00:00</span>' +
 					'<span class="audio-title"></span>' +

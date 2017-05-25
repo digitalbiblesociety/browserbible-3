@@ -26,9 +26,9 @@ var TextChooser = function() {
 							'<span class="up-arrow-border"></span>' +
 							'<div class="text-chooser-header">' +
 								'<div class="text-chooser-selector">' +
-									'<span class="text-chooser-default selected i18n" data-mode="default" data-i18n="[html]windows.bible.default"></span>' +
-									'<span class="text-chooser-languages i18n" data-mode="languages" data-i18n="[html]windows.bible.languages"></span>' +
-									'<span class="text-chooser-countries i18n" data-mode="countries" data-i18n="[html]windows.bible.countries"></span>' +
+									'<div class="text-chooser-default selected" data-mode="default"><svg class="icon"><use xlink:href="build/is3.svg#book"></use></svg><span class="i18n" data-i18n="[html]windows.bible.default"></span></div>' +
+									'<div class="text-chooser-languages" data-mode="languages"><svg class="icon"><use xlink:href="build/is3.svg#language"></use></svg><span class="i18n" data-i18n="[html]windows.bible.languages"></span></div>' +
+									'<div class="text-chooser-countries" data-mode="countries"><svg class="icon"><use xlink:href="build/is3.svg#earth"></use></svg><span class="i18n" data-i18n="[html]windows.bible.countries"></span></div>' +
 								'</div>' +
 								'<input type="text" class="text-chooser-filter-text i18n" data-i18n="[placeholder]windows.bible.filter" />' +
 								'<span class="close-button">Close</span>' +
@@ -60,7 +60,7 @@ var TextChooser = function() {
 
 	if (sofia.config.enableBibleSelectorTabs && sofia.config.bibleSelectorDefaultList && sofia.config.bibleSelectorDefaultList.length > 0) {
 
-		listselector.on('click', 'span', function() {
+		listselector.on('click', 'div', function() {
 			$(this)
 				.addClass('selected')
 				.siblings()

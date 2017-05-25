@@ -5,14 +5,14 @@
 }
 
 .movable-header {
-	background: #f8f8f8;
+	background: #FFF;
 	height: 30px;
 	padding: 5px;
 }
 
 .movable-body {
 	overflow: auto;
-	background: #fff;
+	background: #FFF;
 }
 
 .movable-window .close-button {

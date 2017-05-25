@@ -7,22 +7,17 @@
 
 #main-menu-button {
 	cursor: pointer;
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 60px;
 	height: 60px;
-	background-size: 26px 26px;
-	background-repeat: no-repeat;
-	background-position: center center;
+	line-height:60px;
+	font-size:2.5rem;
+	color:#ccc;
+	text-align: center;
 	z-index: 9;
-	border: solid 1px transparent;
-	-x-border-width: 1px 1px 0 1px;
-	background-image: url(../../css/images/menu-gray.svg);
 }
 #main-menu-button.active {
 	background-color: #666;
-	-x-border-color: #ccc;
+	color:#9BD;
 }
 
 #main-menu-dropdown {
@@ -49,69 +44,45 @@
 	overflow: hidden;
 }
 
-/*
-.main-menu-item {
-	cursor: pointer;
-	margin: 0;
-	padding: 8px 5px 8px 55px;
-	text-align: left;
-	background-size: 25px 25px;
-	background-position: 25px center;
-	background-repeat: no-repeat;
-	font-family: Avenir, Helvetica, Arial;
-	font-size: 12px;
-	float: left;
-	width: 150px;
-}
-
-
-#main-menu-windows-list .main-menu-item {
-	width: 75px;
-	margin: 0;
-	padding: 35px 0 10px 0;
-	background-size: 25px 25px;
-	background-position: center 8px;
-	text-align: center;
-
-}
-*/
-
-
 .main-menu-item {
 	cursor: pointer;
 	width: 75px;
-	margin: 0;
-	padding: 35px 0 10px 0;
-	background-size: 25px 25px;
-	background-position: center 8px;
-		background-repeat: no-repeat;
+	padding: 15px 0;
+	font-size:.75rem;
 	text-align: center;
-	font-family: Avenir, Helvetica, Arial;
-	font-size: 12px;
 	float: left;
-
-
+	font-weight: 600;
+	color: #444;
 }
-
+.main-menu-item svg {
+	font-size:2rem;
+}
 
 .main-menu-item:hover {
-	-x-color: #0071ff;
 	background-color: #ddd;
 }
 
+.compact-ui #app-logo {
+	display: none;
+}
 
+.compact-ui #main-menu-button {
+	height: 40px;
+	width: 40px;
+	background-size: 30px 16px;
+	top: 0px;
+}
 
-	.compact-ui #app-logo {
-		display: none;
-	}
+.compact-ui #main-menu-dropdown {
+	top: 40px;
+}
 
-	.compact-ui #main-menu-button {
-		height: 40px;
-		width: 40px;
-		background-size: 30px 16px;
-		top: 0px;
-	}
+#add-MediaWindow svg {
+	color:#E6E6E6;
+	fill:#C6C6C6;
+}
 
-	.compact-ui #main-menu-dropdown {
-		top: 40px;
-	}
+#add-MediaWindow:hover svg {
+	fill:#28E;
+	color:#0d0;
+}

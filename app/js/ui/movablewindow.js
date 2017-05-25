@@ -7,7 +7,7 @@ var MovableWindow = function(width,height,titleText,id) {
 	var container = $(	'<div class="movable-window" ' + (id ? ' id="' + id + '"' : '') + '>' +
 							'<div class="movable-header">' +
 								'<span class="movable-header-title">' + titleText + '</span>' +
-								'<span class="close-button"></span>' +
+								'<span class="close-button"><svg class="icon"><use xlink:href="build/is3.svg#close-button"></use></svg></span>' +
 							'</div>' +
 							'<div class="movable-body"></div>' +
 						'</div>')

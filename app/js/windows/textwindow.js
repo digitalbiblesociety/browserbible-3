@@ -22,8 +22,8 @@ var TextWindow = function(id, parent, init_data, text_type) {
 						//(Detection.hasTouch ? '<span class="header-input text-nav" ></span>' : '<input type="text" class="header-input text-nav" />') +
 						'<input type="text" class="app-input text-nav" />' +
 						'<div class="app-list text-list"></div>'+
-						'<span class="header-icon info-button"></span>'+
-						'<span class="header-icon audio-button"></span>'+
+						'<span class="header-icon info-button"><svg class="icon"><use xlink:href="build/is3.svg#aboutWindow-button"></use></svg></span>'+
+						'<span class="header-icon audio-button"><svg class="icon"><use xlink:href="build/is3.svg#AudioWindow-button"></use></svg></span>'+
 					'</div>'+
 				'</div>'+
 				'<div class="scroller-flipper">' +
@@ -322,6 +322,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 					// still nothing
 					if (newTextInfo == null) {
 						newTextInfo = textInfoData[0];
+						console.log(textInfoData[0]);
 					}
 
 					// let's try again with first one

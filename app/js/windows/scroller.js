@@ -5,13 +5,8 @@ var Scroller = function(node) {
 		wrapper = node.find('.scroller-text-wrapper'),
 		currentTextInfo = null,
 		locationInfo = {},
-		ignoreScrollEvent = false,
-		speedLastPos = null,
-		speedDelta = null;
-		
-		//speedIndicator = $('<div class="scroller-speed" style="z-index: 50; position: absolute; top: 0; left: 0; width: 50; background: black; padding: 5px;color:#fff"></div>')
-		//					.appendTo(node.parent());;
-	
+		ignoreScrollEvent = false;
+
 
 	var globalTimeout = null;
 
@@ -41,51 +36,8 @@ var Scroller = function(node) {
 		ext.trigger('scroll', {type: 'scroll', target: this, data: {locationInfo: locationInfo}});
 		startGlobalTimeout();
 
-		//start_load_more_timeout();
-		
-		start_speed_test();
-		
+		start_load_more_timeout();
 	});
-	
-	
-	var speedInterval = null;
-	
-	function start_speed_test() {
-		if (speedInterval == null) {
-			speedInterval = setInterval(checkSpeed, 100);
-		}
-	}
-	
-	function stop_speed_test() {
-		if (speedInterval != null) {
-			stopInterval(speedInterval);
-		}		
-		
-	}
-	
-	function checkSpeed() {
-			
-		var speedNewPos = node.scrollTop();
-		if ( speedLastPos != null ){ // && newPos < maxScroll 
-			speedDelta = speedNewPos -  speedLastPos;
-		}
-		speedLastPos = speedNewPos;
-		
-		if (speedDelta === 0) {
-			
-			load_more();
-			stop_speed_test();
-			
-		}
-				
-/*
-		if (speedDelta != null) {
-			speedIndicator.html(speedDelta);
-		}		
-*/
-		
-	}
-	
 
 
 	// find the top most visible node (verse, page, etc.)
@@ -216,7 +168,6 @@ var Scroller = function(node) {
 	};
 
 
-	/*
 	var load_more_timeout = null;
 	function start_load_more_timeout() {
 
@@ -230,10 +181,9 @@ var Scroller = function(node) {
 
 		}
 	}
-	*/
 
 	function load_more() {
-			
+		
 		// measure top and bottom height
 		var
 			fragmentid = null;
@@ -245,82 +195,66 @@ var Scroller = function(node) {
 			total_height = 0,
 			below_bottom = wrapper_height /*total_height*/ - node_height - node_scrolltop;
 
+		// add below
+		if (below_bottom < node_height*2) {
 
-		// only load if stopped
-		if (speedDelta == 0) {
-			
-			
-			
-			
-	
-	
-			// add below
-			if (below_bottom < node_height*2) {
-	
-				fragmentid = sections
-								.last() // the last chapter (bottom)
-								.attr( 'data-nextid' );
-	
-				if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {
-					load('next', fragmentid);
-				}
-	
-	
+			fragmentid = sections
+							.last() // the last chapter (bottom)
+							.attr( 'data-nextid' );
+
+			if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {
+				load('next', fragmentid);
 			}
-	
-			// add above
-			else if (above_top < node_height*2) {
-	
-				fragmentid = sections
-								.first() // the first chapter (top)
-								.attr( 'data-previd' );
-	
-				//console.warn('load prev', fragmentid);
-	
-				if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {
-					load('prev',fragmentid);
-				}
-	
-			}
-			
-			
-				
-			// remove above
-			else if (above_top > node_height*15) {
-				//console.warn('remove above');
-	
-				if (wrapper.children().length >= 2) {
-	
-					// we're removing the first section, so we need to find the first one and
-					// measure where its first child should appear
-					var first_node_of_second_section = wrapper.find('.section:eq(1)').children().first(),
-						first_node_offset_before = first_node_of_second_section.offset().top;
-	
-					wrapper.find('.section:first').remove();
-	
-					// now, remeasure where the first node appears and adjust the scrolltop
-					var
-						first_node_offset_after = first_node_of_second_section.offset().top,
-						offset_difference = first_node_offset_after - first_node_offset_before;
-						new_scrolltop = node.scrollTop();
-						updated_scrolltop = new_scrolltop - Math.abs(offset_difference);
-	
-					node.scrollTop(updated_scrolltop);
-				}
-			}
-			
-	
-			// remove below
-			else if (sections_count > 4 && below_bottom > node_height*15) {
-				//console.warn('remove below', below_bottom, node_height);
-	
-				wrapper.find('.section:last').remove();
-			}
-		} else {
-			
-			
+
+
 		}
-				
+
+		// add above
+		else if (above_top < node_height*2) {
+
+			fragmentid = sections
+							.first() // the first chapter (top)
+							.attr( 'data-previd' );
+
+			//console.warn('load prev', fragmentid);
+
+			if (fragmentid != null && fragmentid != 'null' && sections.length < 50) {
+				load('prev',fragmentid);
+			}
+
+		}
+
+
+		// remove above
+		else if (above_top > node_height*15) {
+			//console.warn('remove above');
+
+			if (wrapper.children().length >= 2) {
+
+				// we're removing the first section, so we need to find the first one and
+				// measure where its first child should appear
+				var first_node_of_second_section = wrapper.find('.section:eq(1)').children().first(),
+					first_node_offset_before = first_node_of_second_section.offset().top;
+
+				wrapper.find('.section:first').remove();
+
+				// now, remeasure where the first node appears and adjust the scrolltop
+				var
+					first_node_offset_after = first_node_of_second_section.offset().top,
+					offset_difference = first_node_offset_after - first_node_offset_before;
+					new_scrolltop = node.scrollTop();
+					updated_scrolltop = new_scrolltop - Math.abs(offset_difference);
+
+				node.scrollTop(updated_scrolltop);
+			}
+		}
+
+		// remove below
+		else if (sections_count > 4 && below_bottom > node_height*15) {
+			//console.warn('remove below', below_bottom, node_height);
+
+			wrapper.find('.section:last').remove();
+		}
 	}
 
 	function load(loadType, sectionid, fragmentid) {
@@ -446,8 +380,8 @@ var Scroller = function(node) {
 											}
 										});
 
-			load_more();
-			//start_load_more_timeout();
+			//load_more();
+			start_load_more_timeout();
 		});
 
 	}

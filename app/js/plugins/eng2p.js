@@ -263,7 +263,7 @@ sofia.plugins.push('Eng2pPlugin');
 
 bible.eng2p = {
 
-	youPluralRegExp:  /\b([yY])(ou(r|rs|rselves)|e)?\b/g,
+	youPluralRegExp:  /\b([yY])ou(r|rs|rselves)?\b/g,
 
 	youPluralSubject: "Y'all",
 	youPluralPossessiveDeterminer: "Y'all's",
@@ -306,7 +306,6 @@ bible.eng2p = {
 
 			// you, your, yours checker
 			switch (match.toLowerCase()) {
-				case 'ye':
 				case 'you':
 					replacement = bible.eng2p.youPluralSubject;
 					break;

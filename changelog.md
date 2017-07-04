@@ -1,6 +1,15 @@
 Change Log
 =======
 
+3.8.4 - 2017/07/04
+
+* Updated infinite scroll mechanism (again). Now it waits until scrolling has stopped before loading another chapter. This prevents issues where scrolling became erratic on desktop and mobile.
+* fixed a few dark theme issues
+
+3.8.3 - 2017/03/01
+
+* Changed scrolling calculation to account for changes in Desktop Chrome.
+
 3.8.2 - 2016/07/23
 
 * Replaced ZeroClipboard (Flash) with clipboard.js

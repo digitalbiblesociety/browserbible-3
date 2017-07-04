@@ -166,15 +166,6 @@ input:focus {
 	border-color: transparent transparent #f8f8f8 transparent;
 }
 
-.theme-dark .window-tab-label {
-	color: #fff;
-}
-.theme-dark .window-tab-inner {
-	border-color: transparent transparent #444 transparent;
-}
-.theme-dark .window-tab.active .window-tab-inner {
-	border-color-bottom: transparent transparent #222 transparent;
-}
 
 .window-tab-label {
 	position: absolute;

@@ -74,6 +74,21 @@ border-bottom: solid 1px #5F4B32;
 	color: #fff;
 }
 
+
+.theme-dark .window-tab-label {
+	color: #fff;
+}
+.theme-dark .window-tab-inner {
+	border-color: transparent transparent #444 transparent;
+}
+.theme-dark .window-tab.active .window-tab-inner {
+	border-color: transparent transparent #222 transparent;
+}
+
+.theme-dark .close-container {
+	background: #222;
+}
+
 .theme-dark .scroller-info {
 	background: #111;
 	color: #fff;

@@ -131,6 +131,7 @@ transform: rotateY( 180deg );
 .scroller-text-wrapper {
 	max-width: 800px;
 	margin: 0 auto;
+	padding: 50px 0;
 }
 
 .config-font-size-14 .scroller-text-wrapper {

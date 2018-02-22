@@ -8,9 +8,7 @@ sofia.config = {
 
 	// first load
 	windows: [
-		{type: 'bible', data: {textid: 'ENGNAS', fragmentid: 'JN1_1'}},
-		{type: 'bible', data: {textid: 'grc_tisch', fragmentid: 'JN1_1'}},
-		{type: 'search', data: {textid: 'ENGNAS', searchtext:'truth love'}}
+		{type: 'bible', data: {textid: 'eng_kjv', fragmentid: 'JN1_1'}},
 	],
 
 	// URL to content

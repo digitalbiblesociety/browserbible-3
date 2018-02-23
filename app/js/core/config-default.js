@@ -44,7 +44,7 @@ sofia.config = {
 	newWindowFragmentid: 'JN1_1',
 
 	// new commentary window
-	newCommentaryWindowTextId: 'comm_eng_wesley',
+	newCommentaryWindowTextId: 'comm_eng_tske',
 
 	// language for top
 	pinnedLanguage: 'English',

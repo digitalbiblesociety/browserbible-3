@@ -1,0 +1,11 @@
+{
+	"id": "punjabi_ulb",
+	"abbr": "ULB",
+	"name": "Unlocked Literal Bible",
+	"nameEnglish": "Punjabi",
+	"lang": "pnb",
+	"langName": "Punjabi",
+	"langNameEnglish": "Punjabi",
+	"dir": "ltr",
+	"generator": "usfm"
+}

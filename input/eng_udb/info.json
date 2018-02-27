@@ -1,0 +1,11 @@
+{
+	"id": "english_udb",
+	"abbr": "UDB",
+	"name": "Unlocked Dynamic Bible",
+	"nameEnglish": "English",
+	"lang": "eng",
+	"langName": "English",
+	"langNameEnglish": "English",
+	"dir": "ltr",
+	"generator": "usfm"
+}

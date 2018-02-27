@@ -1,0 +1,11 @@
+{
+	"id": "kannada_ulb",
+	"abbr": "ULB",
+	"name": "Unlocked Literal Bible",
+	"nameEnglish": "Kannada",
+	"lang": "kan",
+	"langName": "Kannada",
+	"langNameEnglish": "Kannada",
+	"dir": "ltr",
+	"generator": "usfm"
+}

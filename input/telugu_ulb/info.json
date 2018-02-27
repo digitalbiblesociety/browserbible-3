@@ -1,0 +1,11 @@
+{
+	"id": "telugu_ulb",
+	"abbr": "ULB",
+	"name": "Unlocked Literal Bible",
+	"nameEnglish": "Telugu",
+	"lang": "tel",
+	"langName": "Telugu",
+	"langNameEnglish": "Telugu",
+	"dir": "ltr",
+	"generator": "usfm"
+}

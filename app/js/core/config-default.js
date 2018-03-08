@@ -8,7 +8,7 @@ sofia.config = {
 
 	// first load
 	windows: [
-		{type: 'bible', data: {textid: 'eng_kjv', fragmentid: 'JN1_1'}},
+		{type: 'bible', data: {textid: 'hindi_ulb', fragmentid: 'TT1_1'}},
 	],
 
 	// URL to content
@@ -41,7 +41,7 @@ sofia.config = {
 	newBibleWindowVersion: 'eng-NASB1995',
 
 	// new bible verse
-	newWindowFragmentid: 'JN1_1',
+	newWindowFragmentid: 'TT1_1',
 
 	// new commentary window
 	newCommentaryWindowTextId: 'comm_eng_tske',

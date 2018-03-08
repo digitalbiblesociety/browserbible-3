@@ -103,6 +103,9 @@ var LocalAudio = (function() {
 
 				audioInfo.type = 'local';
 				audioInfo.directory = checkDirectory;
+				console.log(textInfo)
+				audioInfo.src = sofia.config.baseContentUrl + 'content/' + 'audio/' + audioInfo.directory + '/' + textInfo.filename + '.' + textInfo.exts[0]
+
 
 				if (!audioInfo.title) {
 					audioInfo.title = 'Local';
@@ -164,7 +167,7 @@ var LocalAudio = (function() {
 			var fragmentFileinfo = audioInfo.fragments[i],
 				startFragmentParts = fragmentFileinfo.start.split('_'),
 				startSectionid = startFragmentParts[0];
-
+				console.log(startSectionid)
 			// if matching chapter then check if verse
 			if (sectionid == startSectionid) {
 				var startVerseNumber = parseInt(startFragmentParts[1], 10),
@@ -185,6 +188,7 @@ var LocalAudio = (function() {
 		if (fragmentData != null) {
 			fragmentData.index = fragmentIndex;
 		}
+
 
 		return fragmentData;
 	}
@@ -222,12 +226,11 @@ var LocalAudio = (function() {
 			callback(null);
 		}
 	}
-
 	var audio = {
 		getAudioInfo: getAudioInfo,
 		getFragmentAudio: getFragmentAudio	,
-		getNextFragment: getNextFragment,
-		getPrevFragment: getPrevFragment
+		// getNextFragment: getNextFragment,
+		// getPrevFragment: getPrevFragment
 	};
 	return audio;
 })();

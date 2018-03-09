@@ -130,7 +130,7 @@ padding: 10px;
 
 .text-chooser-row .text-chooser-abbr {
 	font-weight: bold;
-	text-align: right;
+	text-align: left;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	height: 2em;

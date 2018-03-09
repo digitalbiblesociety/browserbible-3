@@ -38,7 +38,7 @@ sofia.config = {
 	topTexts: [],
 
 	// new window
-	newBibleWindowVersion: 'eng-NASB1995',
+	newBibleWindowVersion: 'hindi_ulb',
 
 	// new bible verse
 	newWindowFragmentid: 'TT1_1',

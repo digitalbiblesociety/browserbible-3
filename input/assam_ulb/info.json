@@ -1,11 +1,11 @@
 {
 	"id": "assam_ulb",
-	"abbr": "ULB",
+	"abbr": "Assamese ULB",
 	"name": "Unlocked Literal Bible",
-	"nameEnglish": "Assamese",
+	"nameEnglish": "",
 	"lang": "asm",
-	"langName": "Assamese",
-	"langNameEnglish": "Assamese",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
 	"dir": "ltr",
 	"generator": "usfm"
 }

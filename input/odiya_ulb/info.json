@@ -1,11 +1,11 @@
 {
 	"id": "odiya_ulb",
-	"abbr": "ULB",
+	"abbr": "Odiya ULB",
 	"name": "Unlocked Literal Bible",
-	"nameEnglish": "Odiya",
+	"nameEnglish": "",
 	"lang": "odiya",
-	"langName": "Odiya",
-	"langNameEnglish": "Odiya",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
 	"dir": "ltr",
 	"generator": "usfm"
 }

@@ -684,7 +684,7 @@ var TextChooser = function() {
 			colspan = 4 - (hasAudio ? 1 : 0) - (hasLemma ? 1 : 0) - (providerName != '' ? 1 : 0);
 
 		var html = '<tr class="text-chooser-row' + (isDefaultText ? ' is-default-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
-					'<td class="text-chooser-abbr">' + text.langName + ' '+ text.abbr + '</td>' +
+					'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
 					'<td class="text-chooser-name" ' + (colspan > 1 ? ' colspan="' + colspan + '"' : '') + '>' +
 						'<span>' + text.name + '</span>' +
 					'</td>' +

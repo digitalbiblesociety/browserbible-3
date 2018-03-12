@@ -1,11 +1,11 @@
 {
-	"id": "gujrati_ulb",
-	"abbr": "ULB",
+	"id": "gujarati_ulb",
+	"abbr": "Gujarati ULB",
 	"name": "Unlocked Literal Bible",
-	"nameEnglish": "Gujrati",
+	"nameEnglish": "Gujarati",
 	"lang": "guj",
-	"langName": "Gujrati",
-	"langNameEnglish": "Gujrati",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
 	"dir": "ltr",
 	"generator": "usfm"
 }

@@ -1,11 +1,11 @@
 {
 	"id": "marathi_ulb",
-	"abbr": "ULB",
+	"abbr": "Marathi ULB",
 	"name": "Unlocked Literal Bible",
-	"nameEnglish": "Marathi",
+	"nameEnglish": "",
 	"lang": "mar",
-	"langName": "Marathi",
-	"langNameEnglish": "Marathi",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
 	"dir": "ltr",
 	"generator": "usfm"
 }

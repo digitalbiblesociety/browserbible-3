@@ -1,11 +1,11 @@
 {
 	"id": "bengali_ulb",
-	"abbr": "ULB",
+	"abbr": "Bengali ULB",
 	"name": "Unlocked Literal Bible",
-	"nameEnglish": "Bengali",
+	"nameEnglish": "",
 	"lang": "bangla",
-	"langName": "Bengali",
-	"langNameEnglish": "Bengali",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
 	"dir": "ltr",
 	"generator": "usfm"
 }

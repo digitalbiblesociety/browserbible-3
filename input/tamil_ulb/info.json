@@ -1,11 +1,11 @@
 {
 	"id": "tamil_ulb",
-	"abbr": "ULB",
+	"abbr": "Tamil ULB",
 	"name": "Unlocked Literal Bible",
-	"nameEnglish": "Tamil",
+	"nameEnglish": "",
 	"lang": "tam",
-	"langName": "Tamil",
-	"langNameEnglish": "Tamil",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
 	"dir": "ltr",
 	"generator": "usfm"
 }

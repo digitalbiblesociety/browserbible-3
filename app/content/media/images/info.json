@@ -10691,7 +10691,7 @@
 	],
 	"TT1_1": [
 		{
-			"filename": "titus_decorated",
+			"filename": "Folio_english",
 			"exts": [
 				"jpg"
 			],
@@ -10699,7 +10699,31 @@
 			"description": ""
 		},
 		{
-			"filename": "Crete_Titus_CNM29-Titus",
+			"filename": "Folio_hindi",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "holy.jpg_english",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "holy.jpg_hindi",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "Crete_Titus_CNM29-Titus.inddenglish",
 			"exts": [
 				"jpg"
 			],
@@ -10715,7 +10739,7 @@
 			"description": ""
 		},
 		{
-			"filename": "Modern_day_Crete-Greece",
+			"filename": "Modern-day-Crete-Greece.indd_hindi",
 			"exts": [
 				"jpg"
 			],
@@ -10723,17 +10747,19 @@
 			"description": ""
 		},
 		{
-			"filename": "Saint_Titus_-_Kosovo_14th_c._Pech_Patriarch_-_St._Nicholas_church",
+			"filename": "Modern-day-Crete-Greece_English",
 			"exts": [
 				"jpg"
 			],
 			"title": "",
 			"description": ""
 		}
+
+		
 	],
 	"TT2_1": [
 		{
-			"filename": "titus_decorated",
+			"filename": "Folio_english",
 			"exts": [
 				"jpg"
 			],
@@ -10741,7 +10767,31 @@
 			"description": ""
 		},
 		{
-			"filename": "Crete_Titus_CNM29-Titus",
+			"filename": "Folio_hindi",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "holy.jpg_english",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "holy.jpg_hindi",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "Crete_Titus_CNM29-Titus.inddenglish",
 			"exts": [
 				"jpg"
 			],
@@ -10757,7 +10807,7 @@
 			"description": ""
 		},
 		{
-			"filename": "Modern_day_Crete-Greece",
+			"filename": "Modern-day-Crete-Greece.indd_hindi",
 			"exts": [
 				"jpg"
 			],
@@ -10765,7 +10815,7 @@
 			"description": ""
 		},
 		{
-			"filename": "Saint_Titus_-_Kosovo_14th_c._Pech_Patriarch_-_St._Nicholas_church",
+			"filename": "Modern-day-Crete-Greece_English",
 			"exts": [
 				"jpg"
 			],
@@ -10775,7 +10825,7 @@
 	],
 	"TT3_1": [
 		{
-			"filename": "titus_decorated",
+			"filename": "Folio_english",
 			"exts": [
 				"jpg"
 			],
@@ -10783,7 +10833,31 @@
 			"description": ""
 		},
 		{
-			"filename": "Crete_Titus_CNM29-Titus",
+			"filename": "Folio_hindi",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "holy.jpg_english",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "holy.jpg_hindi",
+			"exts": [
+				"jpg"
+			],
+			"title": "",
+			"description": ""
+		},
+		{
+			"filename": "Crete_Titus_CNM29-Titus.inddenglish",
 			"exts": [
 				"jpg"
 			],
@@ -10799,7 +10873,7 @@
 			"description": ""
 		},
 		{
-			"filename": "Modern_day_Crete-Greece",
+			"filename": "Modern-day-Crete-Greece.indd_hindi",
 			"exts": [
 				"jpg"
 			],
@@ -10807,13 +10881,15 @@
 			"description": ""
 		},
 		{
-			"filename": "Saint_Titus_-_Kosovo_14th_c._Pech_Patriarch_-_St._Nicholas_church",
+			"filename": "Modern-day-Crete-Greece_English",
 			"exts": [
 				"jpg"
 			],
 			"title": "",
 			"description": ""
 		}
+
+		
 	]
 
 

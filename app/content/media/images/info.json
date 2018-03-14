@@ -10691,30 +10691,6 @@
 	],
 	"TT1_1": [
 		{
-			"filename": "Folio_english",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
-			"filename": "Folio_hindi",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
-			"filename": "holy.jpg_english",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
 			"filename": "holy.jpg_hindi",
 			"exts": [
 				"jpg"
@@ -10723,7 +10699,7 @@
 			"description": ""
 		},
 		{
-			"filename": "Crete_Titus_CNM29-Titus.inddenglish",
+			"filename": "Folio_hindi",
 			"exts": [
 				"jpg"
 			],
@@ -10747,42 +10723,17 @@
 			"description": ""
 		},
 		{
-			"filename": "Modern-day-Crete-Greece_English",
+			"filename": "GL-Bible-Study-Resources_1.jpg_hindi",
 			"exts": [
 				"jpg"
 			],
 			"title": "",
 			"description": ""
 		}
-
 		
 	],
 	"TT2_1": [
 		{
-			"filename": "Folio_english",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
-			"filename": "Folio_hindi",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
-			"filename": "holy.jpg_english",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
 			"filename": "holy.jpg_hindi",
 			"exts": [
 				"jpg"
@@ -10791,7 +10742,7 @@
 			"description": ""
 		},
 		{
-			"filename": "Crete_Titus_CNM29-Titus.inddenglish",
+			"filename": "Folio_hindi",
 			"exts": [
 				"jpg"
 			],
@@ -10815,39 +10766,17 @@
 			"description": ""
 		},
 		{
-			"filename": "Modern-day-Crete-Greece_English",
+			"filename": "GL-Bible-Study-Resources_1.jpg_hindi",
 			"exts": [
 				"jpg"
 			],
 			"title": "",
 			"description": ""
 		}
+		
 	],
 	"TT3_1": [
-		{
-			"filename": "Folio_english",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
-			"filename": "Folio_hindi",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
-		{
-			"filename": "holy.jpg_english",
-			"exts": [
-				"jpg"
-			],
-			"title": "",
-			"description": ""
-		},
+
 		{
 			"filename": "holy.jpg_hindi",
 			"exts": [
@@ -10856,8 +10785,9 @@
 			"title": "",
 			"description": ""
 		},
+		
 		{
-			"filename": "Crete_Titus_CNM29-Titus.inddenglish",
+			"filename": "Folio_hindi",
 			"exts": [
 				"jpg"
 			],
@@ -10881,14 +10811,13 @@
 			"description": ""
 		},
 		{
-			"filename": "Modern-day-Crete-Greece_English",
+			"filename": "GL-Bible-Study-Resources_1.jpg_hindi",
 			"exts": [
 				"jpg"
 			],
 			"title": "",
 			"description": ""
 		}
-
 		
 	]
 

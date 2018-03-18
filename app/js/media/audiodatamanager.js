@@ -163,11 +163,13 @@ var LocalAudio = (function() {
 			]
 		},
 		*/
+		console.log(audioInfo.fragments)
 		for (var i=0, il=audioInfo.fragments.length; i<il; i++) {
 			var fragmentFileinfo = audioInfo.fragments[i],
 				startFragmentParts = fragmentFileinfo.start.split('_'),
 				startSectionid = startFragmentParts[0];
 				console.log(startSectionid)
+				console.log(sectionid)
 			// if matching chapter then check if verse
 			if (sectionid == startSectionid) {
 				var startVerseNumber = parseInt(startFragmentParts[1], 10),
@@ -229,8 +231,8 @@ var LocalAudio = (function() {
 	var audio = {
 		getAudioInfo: getAudioInfo,
 		getFragmentAudio: getFragmentAudio	,
-		// getNextFragment: getNextFragment,
-		// getPrevFragment: getPrevFragment
+		getNextFragment: getNextFragment,
+		getPrevFragment: getPrevFragment
 	};
 	return audio;
 })();
@@ -601,12 +603,12 @@ var FaithComesByHearingAudio = (function() {
 
 // FCBH First (March 2014)
 sofia.initMethods.push(function() {
-	if (typeof sofia != 'undefined') {
-		if (sofia.config.enableOnlineSources) {
+	// if (typeof sofia != 'undefined') {
+	// 	if (sofia.config.enableOnlineSources) {
 
-			sofia.audioSources.push(FaithComesByHearingAudio);
-		}
-	}
+	// 		sofia.audioSources.push(FaithComesByHearingAudio);
+	// 	}
+	// }
 
 	if (typeof sofia != 'undefined') {
 		sofia.audioSources.push(LocalAudio);

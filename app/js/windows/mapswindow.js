@@ -141,7 +141,7 @@ var MapWindow = function(id, parent, data) {
 
 		var script = document.createElement('script');
 		script.type = 'text/javascript';
-		script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=' + loadMapFunctionName;
+		script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD1X6Jfw8hqYMgq-kbBrmfX61gsA-kM9uQv=3.exp&sensor=false&callback=' + loadMapFunctionName;
 
 		document.body.appendChild(script);
 	} else {

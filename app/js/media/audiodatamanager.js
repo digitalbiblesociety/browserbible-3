@@ -103,6 +103,8 @@ var LocalAudio = (function() {
 
 				audioInfo.type = 'local';
 				audioInfo.directory = checkDirectory;
+				audioInfo.src = sofia.config.baseContentUrl + 'content/' + 'audio/' + audioInfo.directory + '/' + textInfo.filename + '.' + textInfo.exts[0]
+
 
 				if (!audioInfo.title) {
 					audioInfo.title = 'Local';
@@ -143,11 +145,17 @@ var LocalAudio = (function() {
 
 	function findFragmentData(audioInfo, fragmentid) {
 		// split through all the files
+
 		var verseParts = fragmentid.split('_'),
 			sectionid = verseParts[0],
 			verseNumber = parseInt(verseParts[1], 10),
 			fragmentIndex = 0,
 			fragmentData = null;
+			// sandeep temp fix to play mp3 file by selecting chapter*
+			if(isNaN(verseNumber)){
+				verseNumber = 1
+			}
+			//fix end 
 
 		// look through all the ranges
 		/*
@@ -164,7 +172,6 @@ var LocalAudio = (function() {
 			var fragmentFileinfo = audioInfo.fragments[i],
 				startFragmentParts = fragmentFileinfo.start.split('_'),
 				startSectionid = startFragmentParts[0];
-
 			// if matching chapter then check if verse
 			if (sectionid == startSectionid) {
 				var startVerseNumber = parseInt(startFragmentParts[1], 10),
@@ -185,6 +192,7 @@ var LocalAudio = (function() {
 		if (fragmentData != null) {
 			fragmentData.index = fragmentIndex;
 		}
+
 
 		return fragmentData;
 	}
@@ -222,7 +230,6 @@ var LocalAudio = (function() {
 			callback(null);
 		}
 	}
-
 	var audio = {
 		getAudioInfo: getAudioInfo,
 		getFragmentAudio: getFragmentAudio	,
@@ -598,12 +605,12 @@ var FaithComesByHearingAudio = (function() {
 
 // FCBH First (March 2014)
 sofia.initMethods.push(function() {
-	if (typeof sofia != 'undefined') {
-		if (sofia.config.enableOnlineSources) {
+	// if (typeof sofia != 'undefined') {
+	// 	if (sofia.config.enableOnlineSources) {
 
-			sofia.audioSources.push(FaithComesByHearingAudio);
-		}
-	}
+	// 		sofia.audioSources.push(FaithComesByHearingAudio);
+	// 	}
+	// }
 
 	if (typeof sofia != 'undefined') {
 		sofia.audioSources.push(LocalAudio);

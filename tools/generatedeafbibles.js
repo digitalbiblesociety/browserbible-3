@@ -44,9 +44,7 @@ var versions = null,
 	currentVersionIndex = -1;
 
 function processVersions(versionsString) {
-	versions = JSON.parse(versionsString);
-	console.log(versions.length);
-
+	versions = JSON.parse(JSON.stringify(versionsString));
 	processNextVersion();
 }
 
@@ -138,7 +136,7 @@ function createDeafVideoVersion(id, langCode, langName, name, abbr, jsonData, ve
 
 	// START
 	var
-		outputBasePath = '../app/content/texts/',
+		outputBasePath = './app/content/texts/',
 		outputPath = path.join(outputBasePath, id);
 
 	mkdirp(outputPath);

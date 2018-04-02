@@ -8,9 +8,7 @@ sofia.config = {
 
 	// first load
 	windows: [
-		{type: 'bible', data: {textid: 'ENGNAS', fragmentid: 'JN1_1'}},
-		{type: 'bible', data: {textid: 'grc_tisch', fragmentid: 'JN1_1'}},
-		{type: 'search', data: {textid: 'ENGNAS', searchtext:'truth love'}}
+		{type: 'bible', data: {textid: 'hindi_ulb', fragmentid: 'TT1_1'}},
 	],
 
 	// URL to content
@@ -40,13 +38,13 @@ sofia.config = {
 	topTexts: [],
 
 	// new window
-	newBibleWindowVersion: 'eng-NASB1995',
+	newBibleWindowVersion: 'hindi_ulb',
 
 	// new bible verse
-	newWindowFragmentid: 'JN1_1',
+	newWindowFragmentid: 'TT1_1',
 
 	// new commentary window
-	newCommentaryWindowTextId: 'comm_eng_wesley',
+	newCommentaryWindowTextId: 'comm_eng_tske',
 
 	// language for top
 	pinnedLanguage: 'English',

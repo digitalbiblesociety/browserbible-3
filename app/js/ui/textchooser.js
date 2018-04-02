@@ -244,14 +244,13 @@ var TextChooser = function() {
 						'',
 						'text-chooser-recently-used' + (isDefaultText ? ' is-default-text' : '')
 					);
-
 			for (var i=0, il=recentlyUsed.recent.length; i<il; i++) {
 				var textid = recentlyUsed.recent[i],
 					textInfo = list_data.filter(function(ti) { return ti.id == textid; })[0];
 
 				if (textInfo) {
 					recentlyUsedHtml +=
-						createTextRow(textInfo, isDefaultText, 'text-chooser-recently-used' );
+						createRecentTextRow(textInfo, isDefaultText, 'text-chooser-recently-used' );
 				}
 			}
 
@@ -647,6 +646,32 @@ var TextChooser = function() {
 
 
 	function createTextRow(text, isDefaultText, className) {
+		var hasAudio = 	text.hasAudio ||
+						typeof text.audioDirectory != 'undefined' ||
+						(typeof text.fcbh_audio_ot != 'undefined' || typeof text.fcbh_audio_nt != 'undefined' ||
+						 typeof text.fcbh_drama_ot != 'undefined' || typeof text.fcbh_drama_nt != 'undefined'),
+			hasLemma = text.hasLemma,
+
+			providerName = (typeof text.providerName != 'undefined' && text.providerName != 'local') ? text.providerName : '',
+			providerFullName = sofia.textproviders[text.providerName] && sofia.textproviders[text.providerName].fullName ? sofia.textproviders[text.providerName].fullName : '',
+
+			colspan = 4 - (hasAudio ? 1 : 0) - (hasLemma ? 1 : 0) - (providerName != '' ? 1 : 0);
+
+		var html = '<tr class="text-chooser-row' + (isDefaultText ? ' is-default-text' : '') + (className != '' ? ' ' + className : '') + '" data-id="' + text.id + '" data-lang-name="' + text.langName + '" data-lang-name-english="' + text.langNameEnglish + '">' +
+					'<td class="text-chooser-abbr">' + text.abbr + '</td>' +
+					'<td class="text-chooser-name" ' + (colspan > 1 ? ' colspan="' + colspan + '"' : '') + '>' +
+						'<span>' + text.name + '</span>' +
+					'</td>' +
+
+					(hasLemma === true ? '<td class="text-chooser-lemma"><span title="' + i18n.t('windows.bible.lemma') + '" data-i18n="[title]windows.bible.lemma"></span></td>' : '') +
+					(hasAudio === true ? '<td class="text-chooser-audio"><span title="' + i18n.t('windows.bible.audio') + '" data-i18n="[title]windows.bible.audio"></span></td>' : '') +
+					(providerName != '' ? '<td class="text-chooser-provider-' + providerName + '"><span title="' + providerFullName + '"></span></td>' : '') +
+				'</tr>';
+
+		return html;
+	}
+
+	function createRecentTextRow(text, isDefaultText, className) {
 		var hasAudio = 	text.hasAudio ||
 						typeof text.audioDirectory != 'undefined' ||
 						(typeof text.fcbh_audio_ot != 'undefined' || typeof text.fcbh_audio_nt != 'undefined' ||

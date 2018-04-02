@@ -1,0 +1,11 @@
+{
+	"id": "urdu_ulb",
+	"abbr": "Urdu ULB",
+	"name": "Unlocked Literal Bible",
+	"nameEnglish": "",
+	"lang": "urd",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
+	"dir": "ltr",
+	"generator": "usfm"
+}

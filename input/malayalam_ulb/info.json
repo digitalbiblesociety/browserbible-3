@@ -1,0 +1,11 @@
+{
+	"id": "malayalam_ulb",
+	"abbr": "Malayalam ULB",
+	"name": "Unlocked Literal Bible",
+	"nameEnglish": "",
+	"lang": "mal",
+	"langName": "Indian Language",
+	"langNameEnglish": "Indian Language",
+	"dir": "ltr",
+	"generator": "usfm"
+}

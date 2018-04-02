@@ -3,8 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="google" value="notranslate" />
-	<link href="css/images/favicon.png" rel="icon" />
-	<title>Bible - Windows</title>
+	<!-- <link href="css/images/favicon.png" rel="icon" /> -->
+	<title>VachanOnline | Alpha Test</title>
 
 	<!-- Apple specific code -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,7 +174,6 @@
 
 	<!-- <script src="js/core/config-dbs.js" data-build="copy"></script> -->
 	<script src="js/core/config-custom.js" data-build="copy"></script>
-	<link rel="stylesheet" href="css/custom.css" data-build="copy" />
 
 	<noscript><meta http-equiv="refresh" content="1; url=content/texts/"></noscript>
 	<!--[if lte IE 8]>
@@ -188,13 +187,14 @@
 		background-image: url(css/images/biblewebapp.svg);
 	}
 	#app-logo {
-		width: 150px;
-		height: 33px;
-		margin-top: 14px;
+		width: 320px;
+		height: 75px;
 		background-size: 100% 100%;
-		background-image: url(css/images/inscript_title.png);
+		background-image: url(css/images/app-logo.png);
+		cursor: pointer;
 	}
 	</style>
+
 </head>
 <body>
 
@@ -209,4 +209,9 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+		$(document).on("click", "#app-logo", function(){
+			window.location.reload();
+		})
+	</script>
 </html>

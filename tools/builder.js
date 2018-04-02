@@ -14,7 +14,7 @@ var
 
 // START
 var
-	rootPath = '../app/',
+	rootPath = './app/',
 	buildPath = path.join(rootPath, 'build'),
 	inputFilePath = path.join(rootPath, 'index.html'),
 	html = fs.readFileSync(inputFilePath, 'utf8'),
@@ -205,7 +205,7 @@ minifiedCss = uglifycss.processString(combinedCss);
 
 
 // inlined
-combinedCss = inliner.inlineImages(combinedCss, '../app/css/');
+combinedCss = inliner.inlineImages(combinedCss, './app/css/');
 minifiedCss = uglifycss.processString(combinedCss);
 
 // write out

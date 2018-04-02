@@ -103,7 +103,6 @@ var LocalAudio = (function() {
 
 				audioInfo.type = 'local';
 				audioInfo.directory = checkDirectory;
-				console.log(textInfo)
 				audioInfo.src = sofia.config.baseContentUrl + 'content/' + 'audio/' + audioInfo.directory + '/' + textInfo.filename + '.' + textInfo.exts[0]
 
 
@@ -146,11 +145,17 @@ var LocalAudio = (function() {
 
 	function findFragmentData(audioInfo, fragmentid) {
 		// split through all the files
+
 		var verseParts = fragmentid.split('_'),
 			sectionid = verseParts[0],
 			verseNumber = parseInt(verseParts[1], 10),
 			fragmentIndex = 0,
 			fragmentData = null;
+			// sandeep temp fix to play mp3 file by selecting chapter*
+			if(isNaN(verseNumber)){
+				verseNumber = 1
+			}
+			//fix end 
 
 		// look through all the ranges
 		/*
@@ -163,13 +168,10 @@ var LocalAudio = (function() {
 			]
 		},
 		*/
-		console.log(audioInfo.fragments)
 		for (var i=0, il=audioInfo.fragments.length; i<il; i++) {
 			var fragmentFileinfo = audioInfo.fragments[i],
 				startFragmentParts = fragmentFileinfo.start.split('_'),
 				startSectionid = startFragmentParts[0];
-				console.log(startSectionid)
-				console.log(sectionid)
 			// if matching chapter then check if verse
 			if (sectionid == startSectionid) {
 				var startVerseNumber = parseInt(startFragmentParts[1], 10),

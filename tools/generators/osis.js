@@ -50,7 +50,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		startProgress(chunks.length-1, 'Books');
 
 		// run through books
-		for (var i=1; i<chunks.length-1; i++) {
+		for (var i=1; i<=chunks.length-1; i++) {
 			var bookXml = separator + chunks[i];
 
 			processBook(data, bookXml, info, inputPath, createIndex);

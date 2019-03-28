@@ -8,7 +8,7 @@ You'll need to install dependencies first.
 
 ```
 npm install
-npm start
+npm run watch
 ```
 
 ## Configuration

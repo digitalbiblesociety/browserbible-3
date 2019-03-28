@@ -1,0 +1,27 @@
+.image-library-thumbs {
+
+    a {
+      display: block;
+      float: left;
+      text-align: center;
+      margin: 0 15px 20px 0;
+      opacity: .75;
+      max-width: 100px;
+      max-height: 100px;
+
+      &:hover {
+        opacity: 1;
+      }
+
+    }
+}
+
+.big-image {
+	position: absolute;
+	z-index: 100;
+}
+
+.map-icon svg {
+  color: #ccc;
+  fill: #888;
+}

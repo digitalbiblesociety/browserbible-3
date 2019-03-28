@@ -1,0 +1,65 @@
+.eng2p-original {
+	text-decoration: line-through;
+	color: #444;
+	display: none;
+}
+
+.eng2p-corrected {
+	color: #393;
+}
+.lemma-highlight .eng2p-corrected {
+	color: #02d602;
+}
+
+.eng2p-highlight,
+.eng2p-highlight-demo {
+	color: #393;
+}
+
+.config-eng2p-off .eng2p-original {
+	text-decoration: inherit;
+	color: inherit;
+	display: inherit;
+}
+
+.config-eng2p-off .eng2p-corrected {
+	display: none;
+}
+
+#config-eng2p table {
+	border-collapse: collapse;
+	margin: 10px auto;
+	width: 490px;
+}
+
+#config-eng2p {
+	font-size: 13px;
+}
+
+#config-eng2p th {
+	white-space: nowrap;
+}
+
+#config-eng2p td,
+#config-eng2p th {
+	border: solid 1px #ddd;
+	padding: 2px;
+	text-align: left;
+}
+
+#config-eng2p-button {
+	line-height:30px;
+	height:30px;
+}
+
+#config-eng2p-button .icon {
+	width:30px;
+	height:30px;
+	float:left;
+	text-align: center;
+	line-height:30px;
+}
+
+#config-eng2p p {
+	margin: 10px 30px 0 ;
+}

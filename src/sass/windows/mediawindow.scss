@@ -1,0 +1,51 @@
+.media-library-thumbs a {
+	display: block;
+	float: left;
+	position: relative;
+	-overflow: hidden;
+}
+
+.media-library-thumbs a:hover {
+	outline: solid 1px rgba(43,134,232,1);
+}
+
+.media-library-thumbs a span {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	color: #fff;
+	font-family: arial;
+	font-size: 10px;
+	text-shadow: 0 0 1px #000;
+	text-align: right;
+}
+
+.media-library-thumbs b {
+	display: block;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	margin-left: -20px;
+	margin-top: -20px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	background: rgba(0,0,0,0.7);
+}
+
+.media-library-thumbs a:hover b {
+	background: rgba(43,134,232,0.51);
+}
+
+.media-library-thumbs b i {
+	width: 1px;
+	height: 1px;
+	background: transparent;
+	border-style: solid;
+	border-color: transparent transparent transparent rgba(255,255,255,1);
+	border-width: 8px 0 8px 13px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -8px 0 0 -5px;
+}

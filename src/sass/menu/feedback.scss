@@ -1,0 +1,35 @@
+.feedback-body {
+	padding: 20px;
+}
+
+.feedback-body .app-input,
+.feedback-body .app-list {
+	width: 100%;
+	display: block;
+	margin: 0 0 8px 0;
+}
+
+.feedback-body textarea {
+	height: 100px;
+}
+
+.feedback-body input[type="button"] {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+	padding: 8px 10px;
+	background-color: $primary-color;
+	color: #fff;
+	font-size: 90%;
+	cursor: pointer;
+	border: none;
+	font-size: 12px;
+}
+
+.feedback-body input[type="button"]:hover {
+	background-color: #72aff0;
+}
+
+.feedback-body .invalid {
+	border-color: #ff6666;
+	background: #ffc4c4;
+}

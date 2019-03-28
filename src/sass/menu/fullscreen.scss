@@ -1,0 +1,19 @@
+#main-fullscreen-button {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	line-height:30px;
+	font-size:2rem;
+	color:#CCC;
+}
+
+.supports-fullscreen #main-search-box {
+	right: 60px;
+}
+
+.compact-ui #main-fullscreen-button {
+	display: none;
+}

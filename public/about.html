@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="light">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="google" value="notranslate" />
+	<link href="build/images/favicon.png" rel="icon" />
+	<title>Bible - Windows</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no,width=device-width">
+	<link rel="stylesheet" href="build/app.css?v=4.0.1" />
+	<script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="build/app.js?v=4.0.1"></script>
+	<script>
+		sofia.config = $.extend(sofia.config, {
+			siteTitle: "Sophia!",
+			icons: 'build/icons.svg',
+			settingsPrefix: '20160425',
+			// first load
+			windows: [
+				{type: 'bible', data: {textid: 'ENGKJV', fragmentid: 'JN3_16'}},
+				{type: 'bible', data: {textid: 'ENGNAS', fragmentid: 'JN3_16'}}
+			],
+			newCommentaryWindowTextId: "comm_eng_tske",
+
+			enableBibleSelectorTabs: false,
+			textsIndexPath: 'dbs_texts.json',
+			baseContentUrl: 'https://bible.cab/inscript/',
+			baseAPIUrl: 'http://api.biblecloud.dev/',
+			dbpBaseUrl: 'http://api.biblecloud.dev/bible/partners/fcbh/handshake/',
+			serverSearchPath: 'http://api.biblecloud.dev/bible/study/search/',
+			enableOnlineSources: true,
+			enableFeedback: true,
+			feedbackUrl: 'http://api.biblecloud.dev/feedback/',
+			fcbhKey: '111a125057abd2f8931f6d6ad9f2921f',
+			jfmKey: '52b06248a3c6e8.12980089',
+			gaKey: 'UA-3734687-19',
+			enableAmericanBibleSociety: true,
+			eng2pEnableAll: false,
+			deafCentric: false,
+			enableDeafBibleWindow: true,
+			deafBibleWindowDefaultBibleVersion: 'ASESLV'
+		});
+	</script>
+	<style>
+	#app-logo { line-height:60px; color:#FFF;text-decoration:none; font-size:x-large;}
+
+	</style>
+
+	<!-- Fallback -->
+	<noscript><meta http-equiv="refresh" content="1; url=https://bible.cloud/reader/"></noscript>
+	<!--[if lte IE 8]>
+	<meta http-equiv="refresh" content="1; url=https://bible.cloud/reader/">
+	<![endif]-->
+
+
+</head>
+<body>
+	<div id="startup">
+		<h1>inScript Bible Browser (4.0)</h1>
+		<p>inScript 4.0 is a Bible-study tool created by the Digital Bible Society for both online and offline use.</p>
+		<p>The software is open-source, browser-based, multi-lingual, and free-to-use. It requires no installation and supports a wide variety of web-browsers and media platforms: thumb drives, DVDs, micro SD chips, etc.</p>
+		<p>Developed by <a href="https://www.dbs.org/">Digital Bible Society</a> with major contributions from <a href="https://j.hn/">John Dyer</a> and <a href="https://ebible.org/">Michael Johnson</a>. Audio provided by <a href="https://www.faithcomesbyhearing.com/‎">Faith Comes by Hearing</a> and video by <A href="https://www.jesusfilm.org/‎">Jesus Film Project</a>.</p>
+		<br/>
+		<h3>This page is visible when an error may have occurred. You might try updating your browser, or insuring JavaScript is enabled.</h3>
+		<p>If you have used older versions of inScript, you may also need to clear your browser cache.</p>
+	</div>
+
+</body>
+</html>

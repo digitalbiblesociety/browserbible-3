@@ -1,0 +1,147 @@
+.config-theme-toggle {
+	display: inline-block;
+	width: 70px;
+	padding: 6px;
+	margin: 10px 10px 0 0;
+	border: solid 1px #aaa;
+	font-size: 10px;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+}
+.config-theme-toggle:hover {
+	border-color: $primary-color;
+}
+
+.config-theme-toggle-selected {
+	border: solid 1px #3246b5;
+}
+
+#config-theme-default {
+	background-color: #fff;
+	color: #111;
+}
+
+#config-theme-sepia {
+	background-color: #FBF0D9;
+	color: #5F4B32;
+}
+
+#config-theme-dark {
+	background-color: #111;
+	color: #fff;
+}
+
+/* Themes */
+.theme-sepia .window {
+	border-right-color: #d6bd9d;
+}
+
+.theme-sepia .window .scroller-main,
+.theme-sepia .window .search-main,
+.theme-sepia .window .window-main {
+	background-color: #FBF0D9;
+	color: #5F4B32;
+}
+
+/*
+.theme-sepia .window .window-header	{
+background: #5F4B32;
+border-bottom: solid 1px #5F4B32;
+}
+	*/
+/* DARK: LOW LIGHT */
+.theme-dark {
+}
+
+.theme-dark .window {
+	border-right: solid 1px #555;
+	background-color: #555;
+}
+
+.theme-dark .window .scroller-main,
+.theme-dark .window .search-main,
+.theme-dark .window .window-main {
+	background: #111;
+	color: #fff;
+}
+
+.theme-dark .window .window-header,
+.theme-dark .window .window-footer {
+	background: #222;
+	border-bottom: solid 1px #444;
+	color: #fff;
+}
+
+.theme-dark .scroller-info {
+	background: #111;
+	color: #fff;
+	box-shadow: 0 0 30px #222 inset;
+}
+
+.theme-dark .v-num,
+.theme-dark .verse-num {
+	color: #ccc;
+}
+
+.theme-dark .selected-verse {
+	background: #666;
+}
+
+.theme-dark .info-window {
+	color: #fff;
+	background: #333;
+	border: solid 1px #111;
+	box-shadow: 0 0 10px rgba(100,100,100,0.5), 0 0 30px #222 inset;
+}
+
+.theme-dark .window .window-header .header-input,
+.theme-dark .window .window-header .header-list {
+	background-color: #666;
+	border: solid 1px #333;
+}
+
+.compact-ui .theme-dark .window .window-header .header-input,
+.compact-ui .theme-dark .window .window-header .header-list {
+	background-color: transparent;
+	border: solid 1px transparent;
+}
+
+.theme-dark #main-search-input {
+	background-color: #666;
+	border: solid 1px #666;
+}
+
+.theme-dark .window-overlay {
+	color: #fff;
+	background: #333;
+	border: solid 1px #111;
+	box-shadow: 0 0 10px rgba(100,100,100,0.5), 0 0 30px #222 inset;
+}
+
+.theme-dark .image-library-thumbs li a {
+	color: #ccc;
+}
+
+.theme-dark .inline-icon {
+	background-color: #ccc;
+}
+
+.theme-dark .search-result-book-bar span {
+	border-right-color: #111;
+}
+
+.theme-dark .search-wrapper table tr:hover {
+	background-color: #666;
+}
+
+.theme-dark .highlight {
+	background-color: #bab432;
+}
+
+.theme-dark h3.is1,
+.theme-dark div.s,
+.theme-dark div.is1 {
+	color: #eee;
+}

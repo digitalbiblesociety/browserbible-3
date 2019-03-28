@@ -1,0 +1,21 @@
+.movable-window {
+	position: absolute;
+	z-index: 1000;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.movable-header {
+	background: #FFF;
+	height: 30px;
+	padding: 5px;
+}
+
+.movable-body {
+	overflow: auto;
+	background: #FFF;
+}
+
+.movable-window .close-button {
+	top: 5px;
+	right: 5px;
+}

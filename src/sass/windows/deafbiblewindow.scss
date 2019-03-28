@@ -1,0 +1,63 @@
+.deafbible .mt {
+	margin-top: 1.5em;
+}
+
+.deafbible .s {
+	margin-top: 0.5em;
+}
+
+.deafbible video{
+	margin: 0 0 2em 0;
+	width: 100%;
+	height: auto;
+	background: #333;
+}
+
+.deafbible .inline-icon {
+	display: none;
+}
+
+.deafbible .v {
+	display: block;
+}
+
+.deafbible .selected-verse {
+	background: none;
+}
+
+
+.deafbible .selected-verse {
+	background: none;
+	color: #d9e8ef;
+}
+.deafbible .selected-verse video {
+	outline: 5px solid #d9e8ef;
+}
+
+.deaf-video-header {
+	width: 100%;
+	-x-background: #333;;
+}
+
+.deaf-video-header input[type=button] {
+	margin: 2% 0 2% 2%;
+	width: 31%;
+	display: inline-block;
+	height: 58px;
+	background-color: #fff;
+	border: solid 1px #ccc;
+	cursor: pointer;
+	text-align: right;
+	padding: 10px;
+}
+.deaf-video-header input[type=button]:first-child {
+	margin-left: 0;
+}
+
+.deaf-video-header input[type=button]:hover {
+	background-color:#e2effa;
+}
+.deaf-video-header input[type=button].active {
+	background-color: $primary-color;
+	color: #fff;
+}

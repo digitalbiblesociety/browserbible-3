@@ -1,0 +1,9 @@
+.audio-window-container {background: #FFF}
+
+.theme-dark .audio-controller,
+.theme-dark .audio-window-container {background:#111}
+.theme-dark .audio-controller span 	{color:#FFF}
+
+.theme-sepia .audio-controller,
+.theme-sepia .audio-window-container 	{background:#FFD}
+.theme-sepia .audio-controller span 	{color:#543;font-weight:bold}

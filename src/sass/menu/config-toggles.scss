@@ -1,0 +1,109 @@
+/* toggles */
+.config-toggle {
+	width: 30px;
+	float: left;
+	margin: 10px 5px 0 0;
+	position: relative;
+}
+
+.config-toggle input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+.config-toggle label {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	text-indent: -9999px;
+	cursor: pointer;
+	opacity: .5;
+	border: solid 1px #eee;
+}
+
+.toggle-on label {
+	opacity: 1;
+	border-color: #bbb;
+}
+
+.config-toggle label:hover {
+	border-color: #7491CE;
+}
+
+
+.toggle-verses-off .verse-num,
+.toggle-verses-off .v-num {
+	display: none;
+}
+
+/* CHAPTERS */
+.config-toggle label svg {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+}
+
+.toggle-chapters-off .c,
+.toggle-chapters-off .chapter-num {
+	display: none;
+}
+
+/* special cases for verse 1 */
+.toggle-chapters-off .v-1 {
+	display: inline;
+}
+
+.toggle-chapters-off.toggle-verses-off .v-1 {
+	display: none;
+}
+
+/* always show Psalm headings */
+.PS .toggle-chapters-off .c,
+.PS .toggle-chapters-off .chapter-num {
+	display: block;
+}
+
+/* JUSTIFY */
+/* Justification really only makes sense if you can also do decent hyphenation.
+ * Chrome does not yet (as of v35) support hyphenation, but FF, Safari, and IE
+ * all have for some time. The html lang= attribute must be correctly set. */
+
+.toggle-justify-on .section {
+	text-align: justify;
+	-webkit-text-align-last: start;
+	-moz-text-align-last: start;
+	-o-text-align-last: start;
+	text-align-last: start;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+}
+
+.toggle-titles-off .is1,
+.toggle-titles-off .is2,
+.toggle-titles-off .s {
+	display: none;
+}
+.toggle-wordsofchrist-off .woj,
+.toggle-wordsofchrist-off .wj,
+.toggle-wordsofchrist-off .woc {
+	color: inherit;
+}
+
+.toggle-notes-off .note,
+.toggle-notes-off .cf {
+	display: none;
+}
+
+.toggle-media-off .image-icon,
+.toggle-media-off .map-icon,
+.toggle-media-off .video-icon {
+	display: none;
+}

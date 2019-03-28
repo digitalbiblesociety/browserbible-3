@@ -1,0 +1,121 @@
+#config-visualfilters-button {
+	line-height: 30px;
+	height:30px;
+}
+
+#config-visualfilters-button .icon {
+	width:30px;
+	height:30px;
+	float:left;
+	text-align: center;
+	line-height:30px;
+}
+
+#visualfilters-config {
+	padding: 20px;
+}
+
+#visualfilters-config table {
+	border-collapse: collapse;
+}
+
+#visualfilters-config th,
+#visualfilters-config td {
+	padding: 4px 4px 4px 0;
+	text-align: left;
+}
+
+#visualfilters-config td input[type=text] {
+	width: 100px;
+}
+
+.visualfilters-morph select {
+	width: 80px;
+}
+
+.visualfilters-style {
+	width: 120px;
+}
+
+.visualfilters-style span {
+	font-size: 13px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.visualfilters-isactive,
+.visualfilters-remove {
+	width: 30px;
+}
+
+#visualfilters-config .close-button {
+	margin: 0 0 0 20px;
+	display: block;
+	position: inherit;
+}
+
+#visualfilters-styles {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150px;
+	height: 200px;
+	overflow: auto;
+	z-index: 1100;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#visualfilters-styles div {
+	margin: 0 0 4px;
+	padding: 4px 0 4px 10px;
+}
+
+#visualfilters-styles div span {
+	padding: 1px;
+	font-size: 11px;
+}
+
+#visualfilters-styles div:hover {
+	background-color: #DEE;
+}
+
+.morph-selector {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 150px;
+	height: 200px;
+	overflow: auto;
+	z-index: 1100;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-size: 12px;
+	padding: 10px;
+}
+
+.morph-selector th,
+.morph-selector td {
+	vertical-align: top;
+}
+
+.morph-selector table thead th {
+	padding: 0 6px 5px 4px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.morph-selector table tbody span {
+	display: block;
+	padding: 4px;
+	margin: 0 10px 4px 0;
+	cursor: pointer;
+}
+
+.morph-selector table tbody span:hover {
+	background: #BCE;
+}
+
+.morph-selector table tbody span.selected {
+	background: #7AE;
+}

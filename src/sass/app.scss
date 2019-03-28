@@ -1,0 +1,41 @@
+@import "colors.scss";
+@import "bible.scss";
+@import "windows.scss";
+@import "medialibrary.scss";
+
+@import "ui/textchooser.scss";
+@import "ui/textnavigator.scss";
+@import "ui/infowindow.scss";
+@import "ui/movablewindow.scss";
+
+@import "plugins/lemmainfo.scss";
+@import "plugins/lemmamatch.scss";
+@import "plugins/lemmapopup.scss";
+@import "plugins/versematch.scss";
+@import "plugins/eng2p.scss";
+@import "plugins/visualfilters.scss";
+
+@import "windows/textwindow.scss";
+@import "windows/searchwindow.scss";
+@import "windows/mapswindow.scss";
+@import "windows/mediawindow.scss";
+@import "windows/parallelswindow.scss";
+@import "windows/scrolleraudio.scss";
+@import "windows/textcomparisonwindow.scss";
+@import "windows/audiowindow.scss";
+@import "windows/statisticswindow.scss";
+@import "windows/deafbiblewindow.scss";
+
+@import "menu/mainmenu.scss";
+@import "menu/topsearch.scss";
+@import "menu/fullscreen.scss";
+@import "menu/config.scss";
+@import "menu/about.scss";
+@import "menu/feedback.scss";
+@import "menu/navigation.scss";
+
+@import "menu/config-fontfamily.scss";
+@import "menu/config-theme.scss";
+@import "menu/config-language.scss";
+@import "menu/config-toggles.scss";
+@import "menu/config-url.scss";

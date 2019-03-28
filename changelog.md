@@ -1,14 +1,18 @@
 Change Log
 =======
+4.0.2 - 2017/03/08
 
-3.8.4 - 2017/07/04
+* Scroll Fix for Chrome
 
-* Updated infinite scroll mechanism (again). Now it waits until scrolling has stopped before loading another chapter. This prevents issues where scrolling became erratic on desktop and mobile.
-* fixed a few dark theme issues
+4.0.1 - 2017/02/13
 
-3.8.3 - 2017/03/01
+* Minor style updates
 
-* Changed scrolling calculation to account for changes in Desktop Chrome.
+4.0.0s - 2016/07/23
+
+* Moved to a Different Build System
+* Using SVG sprites across the board
+* Added a CDN config feature
 
 3.8.2 - 2016/07/23
 

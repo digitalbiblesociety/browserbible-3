@@ -1,0 +1,368 @@
+.compact-ui .SearchWindow .search-text {
+	width: 100px;
+}
+
+/* search */
+.search-main {
+	background: #fff;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+.search-header .search-text {
+	width: 100px;
+	min-width: inherit;
+}
+
+.search-wrapper {
+	padding: 10px;
+}
+
+.search-wrapper table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.search-wrapper table td,
+.search-wrapper table th {
+	padding: 3px;
+}
+
+.search-wrapper table th {
+	text-align: left;
+	vertical-align: top;
+	white-space: nowrap;
+	font-size: .8em;
+}
+
+.search-wrapper table td .note,
+.search-wrapper table td .cf {
+	display: none;
+}
+
+.search-wrapper table tr:hover {
+	cursor: pointer;
+	background-color: #dbe9fa;
+}
+
+/* visual */
+.search-usage {
+	margin: 0 0 20px;
+	font-size: 12px;
+}
+
+.search-lemma-info .lemma-word {
+	margin: 0;
+}
+
+.search-visual {
+	height: 42px;
+	border-bottom: solid 1px #999;
+	padding: 0 5px;
+	margin-bottom: 25px;
+	margin-top: 20px;
+}
+
+.search-visual-label {
+	position: absolute;
+	font-size: 10px;
+	display: block;
+	z-index: 1000;
+	min-width: 50px;
+	height: 20px;
+	display: none;
+	white-space: nowrap;
+}
+
+.search-result-book-bar {
+	height: 40px;
+	display: block;
+	float: left;
+	cursor: pointer;
+}
+
+.search-result-book-bar span {
+	height: 40px;
+	display: block;
+	background: #ccc;
+	border-right: solid 1px #fff;
+}
+
+.search-division-chooser {
+	position: absolute;
+	display: none;
+	background: #fff;
+	font-size: 80%;
+	width: 320px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;
+}
+.search-division-chooser .search-division-header {
+	color: #fff;
+	background: #444;
+	padding: 8px;
+	font-weight: bold;
+
+}
+.search-division-chooser .search-division-main {
+	padding: 10px;
+	max-height: 250px;
+	overflow: auto;
+}
+
+.search-division-chooser .division-list {
+	float: left;
+	width: 50%;
+}
+
+.search-division-chooser .division-header {
+	display: block;
+	font-weight: bold;
+}
+
+
+.search-division-chooser .division-name {
+	display: block;
+	white-space: nowrap;
+}
+
+.search-division-chooser .division-list-items {
+	padding: 0 0 0 5px;
+}
+.search-division-chooser[dir=rtl] .division-list-items {
+	padding: 0 5px 0 0;
+}
+
+
+/* penta */
+.search-result-book-bar span.divisionid-GN,
+.search-result-book-bar span.divisionid-EX,
+.search-result-book-bar span.divisionid-LV,
+.search-result-book-bar span.divisionid-NU,
+.search-result-book-bar span.divisionid-DT {
+	background: #9bd79b;
+}
+
+.search-result-book-bar span.divisionid-JS,
+.search-result-book-bar span.divisionid-JG,
+.search-result-book-bar span.divisionid-RT,
+.search-result-book-bar span.divisionid-S1,
+.search-result-book-bar span.divisionid-S2,
+.search-result-book-bar span.divisionid-K1,
+.search-result-book-bar span.divisionid-K2,
+.search-result-book-bar span.divisionid-R1,
+.search-result-book-bar span.divisionid-R2,
+.search-result-book-bar span.divisionid-ER,
+.search-result-book-bar span.divisionid-NH,
+.search-result-book-bar span.divisionid-ET {
+	background: #8c8cca;
+}
+
+.search-result-book-bar span.divisionid-JB,
+.search-result-book-bar span.divisionid-PS,
+.search-result-book-bar span.divisionid-PR,
+.search-result-book-bar span.divisionid-EC,
+.search-result-book-bar span.divisionid-SS,/* out of order in English! */
+.search-result-book-bar span.divisionid-LM {
+	background: #c580c5;
+}
+
+.search-result-book-bar span.divisionid-IS,
+.search-result-book-bar span.divisionid-JR,
+/*.search-result-book-bar span.divisionid-LM, */
+.search-result-book-bar span.divisionid-EK,
+.search-result-book-bar span.divisionid-DN {
+	background: #d38c8c;
+}
+
+.search-result-book-bar span.divisionid-HS,
+.search-result-book-bar span.divisionid-JL,
+.search-result-book-bar span.divisionid-AM,
+.search-result-book-bar span.divisionid-OB,
+.search-result-book-bar span.divisionid-JH,
+.search-result-book-bar span.divisionid-MC,
+.search-result-book-bar span.divisionid-NM,
+.search-result-book-bar span.divisionid-HK,
+.search-result-book-bar span.divisionid-ZP,
+.search-result-book-bar span.divisionid-HG,
+.search-result-book-bar span.divisionid-ZC,
+.search-result-book-bar span.divisionid-ML {
+	background: #d1d16a;
+}
+
+/* gospels */
+.search-result-book-bar span.divisionid-MT,
+.search-result-book-bar span.divisionid-MK,
+.search-result-book-bar span.divisionid-LK,
+.search-result-book-bar span.divisionid-JN {
+	background: #ffa2a2;
+}
+
+.search-result-book-bar span.divisionid-AC {
+	background: #c476aa;
+}
+
+.search-result-book-bar span.divisionid-RM,
+.search-result-book-bar span.divisionid-C1,
+.search-result-book-bar span.divisionid-C2,
+.search-result-book-bar span.divisionid-GL,
+.search-result-book-bar span.divisionid-EP,
+.search-result-book-bar span.divisionid-PP,
+.search-result-book-bar span.divisionid-CL,
+.search-result-book-bar span.divisionid-H1,
+.search-result-book-bar span.divisionid-H2,
+.search-result-book-bar span.divisionid-T1,
+.search-result-book-bar span.divisionid-T2,
+.search-result-book-bar span.divisionid-TT,
+.search-result-book-bar span.divisionid-PM {
+	background: #9c9ce1;
+}
+
+.search-result-book-bar span.divisionid-HB,
+.search-result-book-bar span.divisionid-JM,
+.search-result-book-bar span.divisionid-P1,
+.search-result-book-bar span.divisionid-P2,
+.search-result-book-bar span.divisionid-J1,
+.search-result-book-bar span.divisionid-J2,
+.search-result-book-bar span.divisionid-J3,
+.search-result-book-bar span.divisionid-JD {
+	background: #8cc9c9;
+}
+
+.search-result-book-bar span.divisionid-RV {
+	background: #9575a1;
+}
+
+/*
+.search-results table .divisionid-GN,
+.search-results table .divisionid-EX,
+.search-results table .divisionid-LV,
+.search-results table .divisionid-NU,
+.search-results table .divisionid-DT	 {
+border-left: solid 3px #9bd79b;
+}
+
+.search-results table .divisionid-JS,
+.search-results table .divisionid-JG,
+.search-results table .divisionid-RT,
+.search-results table .divisionid-S1,
+.search-results table .divisionid-S2,
+.search-results table .divisionid-K1,
+.search-results table .divisionid-K2,
+.search-results table .divisionid-R1,
+.search-results table .divisionid-R2,
+.search-results table .divisionid-ER,
+.search-results table .divisionid-NH,
+.search-results table .divisionid-ET {
+	border-left: solid 3px #8c8cca;
+}
+
+.search-results table .divisionid-JB,
+.search-results table .divisionid-PS,
+.search-results table .divisionid-PR,
+.search-results table .divisionid-EC,
+.search-results table .divisionid-SS,
+
+.search-results table .divisionid-LM {
+	border-left: solid 3px #c580c5;
+}
+
+.search-results table .divisionid-IS,
+.search-results table .divisionid-JR,
+
+.search-results table .divisionid-EK,
+.search-results table .divisionid-DN {
+	border-left: solid 3px #d38c8c;
+}
+
+.search-results table .divisionid-HS,
+.search-results table .divisionid-JL,
+.search-results table .divisionid-AM,
+.search-results table .divisionid-OB,
+.search-results table .divisionid-JH,
+.search-results table .divisionid-MC,
+.search-results table .divisionid-NM,
+.search-results table .divisionid-HK,
+.search-results table .divisionid-ZP,
+.search-results table .divisionid-HG,
+.search-results table .divisionid-ZC,
+.search-results table .divisionid-ML {
+	border-left: solid 3px #d1d16a;
+}
+
+
+
+.search-results table .divisionid-MT,
+.search-results table .divisionid-MK,
+.search-results table .divisionid-LK,
+.search-results table .divisionid-JN {
+	border-left: solid 3px #ffa2a2;
+}
+
+.search-results table .divisionid-AC {
+	border-left: solid 3px #c476aa;
+}
+
+
+.search-results table .divisionid-RM,
+.search-results table .divisionid-C1,
+.search-results table .divisionid-C2,
+.search-results table .divisionid-GL,
+.search-results table .divisionid-EP,
+.search-results table .divisionid-PP,
+.search-results table .divisionid-CL,
+.search-results table .divisionid-H1,
+.search-results table .divisionid-H2,
+.search-results table .divisionid-T1,
+.search-results table .divisionid-T2,
+.search-results table .divisionid-TT,
+.search-results table .divisionid-PM {
+	border-left: solid 3px #9c9ce1;
+}
+
+
+.search-results table .divisionid-HB,
+.search-results table .divisionid-JM,
+.search-results table .divisionid-P1,
+.search-results table .divisionid-P2,
+.search-results table .divisionid-J1,
+.search-results table .divisionid-J2,
+.search-results table .divisionid-J3,
+.search-results table .divisionid-JD {
+	border-left: solid 3px #8cc9c9;
+}
+.search-results table .divisionid-RV {
+	border-left: solid 3px #9575a1;
+}
+*/
+.highlight {
+	background: #FF9;
+}
+
+.search-progress-bar {
+	border: solid 1px #ccc;
+	height: 1.5em;
+	width: 100%;
+	position: relative;
+	margin: 0 0 2em;
+}
+
+.search-progress-bar-inner {
+	width: 0;
+	background: $primary-color;
+	height: 100%;
+}
+
+.search-progress-bar-label {
+	display: block;
+	position: absolute;
+	height: 1.5em;
+	line-height: 1.5em;
+	font-size: .7em;
+	top: 0;
+	padding: 3px;
+	color: #fff;
+	text-align: right;
+}
+
+.search-progress-bar-label-outside {
+	color: #333;
+}

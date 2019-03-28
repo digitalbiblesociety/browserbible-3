@@ -1,0 +1,90 @@
+.parallel-list {
+	display: inline-block;
+}
+
+/* Parallels */
+.parallels-main {
+	padding: 15px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	background-color: #fff;
+}
+
+.parallels-main table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.parallels-main td,
+.parallels-main th {
+	text-align: left;
+	font-weight: normal;
+	padding: 2px;
+	vertical-align: top;
+	-x-border: 1px solid #ddd;
+}
+
+.parallels-main td {
+	border: 1px solid #ddd;
+	border-width: 0 1px;
+	padding: 8px;
+}
+
+.parallels-main table[dir=rtl] td,
+.parallels-main table[dir=rtl] th {
+	text-align: right;
+}
+
+.parallels-main .section-title {
+	padding: 20px 0;
+	font-weight: bold;
+	text-align: center;
+	-x-background: #eee;
+}
+
+.parallels-main .parallel-title {
+	padding: 20px 0 6px;
+	font-style: italic;
+}
+
+.parallels-main .parallel-passage {
+	text-align: center;
+}
+
+.parallels-main td .v-1 {
+	display: inline;
+}
+
+.parallels-main .passage-notloaded {
+	cursor: pointer;
+	color: $primary-color;
+}
+
+.parallel-entry-header {
+	cursor: pointer;
+}
+
+.parallel-entry-header .parallel-title {
+	padding: 8px;
+}
+
+.parallel-entry-text-collapsed {
+	display: none;
+}
+
+.parallels-list {
+}
+
+.parallels-buttons {
+	margin: 5px 0;
+}
+
+.parallels-buttons span {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+	padding: 8px 10px;
+	background-color: $primary-color;
+	color: #fff;
+	font-size: 90%;
+	cursor: pointer;
+}

@@ -1,0 +1,29 @@
+.info-window {
+	position: absolute;
+	background: #FFF;
+	border: solid 1px #ccc;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;
+	z-index: 100;
+	top: 100px;
+	left: 100px;
+	font-size: 14px;
+	color: #111;
+	padding: 15px 0 15px 15px;
+}
+
+.info-window .info-body {
+	width: 300px;
+	max-height: 200px;
+	overflow: auto;
+	padding: 0 15px 0 0;
+}
+
+.info-window .close-button {
+	top: 5px;
+	right: 5px;
+}
+
+.info-window .close-button:hover {
+	background-color: #D98;
+	color: #fff;
+}

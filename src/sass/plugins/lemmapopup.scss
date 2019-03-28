@@ -1,0 +1,64 @@
+.selected-lemma {
+	background: #33f;
+	color: #fff;
+}
+
+.lemma-word {
+	display: block;
+	font-weight: bold;
+	margin: 0 0 10px;
+}
+
+.lemma-strongs {
+	font-weight: normal;
+}
+
+.lemma-morphology {
+	font-style: italic;
+}
+
+.lemma-outline {
+	display: block;
+	margin: 5px 0;
+}
+
+.lemma-outline ul,
+.lemma-outline ol {
+	margin: 0 0 0 10px;
+	padding: 0;
+}
+
+.lemma-outline ol li {
+	list-style-type: decimal;
+	margin: 0 0 0 10px;
+}
+
+.lemma-outline ol li ol li {
+	list-style-type: lower-alpha;
+}
+
+.lemma-outline ol li ol li ol li {
+	list-style-type: lower-roman;
+}
+
+.lemma-outline ol li ol li ol li ol li {
+	list-style-type: decimal;
+}
+
+.lemma-findall {
+	display: block;
+	cursor: pointer;
+	color: $primary-color;
+}
+
+.lemma-findall:hover {
+	text-decoration: underline;
+}
+
+/*
+@media only screen and (max-width:460px) {
+	.lemma-findall {
+		display: none;
+	}
+}
+*/

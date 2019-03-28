@@ -1,0 +1,28 @@
+.comparison-main {
+	overflow: auto;
+	background: #fff;
+	-webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+	margin: 15px;
+}
+
+.comparison-table td,
+.comparison-table th {
+	vertical-align: top;
+}
+
+.comparison-table td {
+	padding: 0 2px 5px 2px;
+}
+
+.comparison-table ins {
+	color: #0071ff;
+	text-decoration: none;
+}
+
+.comparison-table del {
+	color: #999999;
+	text-decoration: line-through;
+}

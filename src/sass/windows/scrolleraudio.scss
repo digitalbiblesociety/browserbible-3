@@ -1,0 +1,237 @@
+.audio-controller {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: $light-gray;
+	border-top: solid 1px darken($light-gray,1);
+	padding: 5px;
+	height: 60px;
+	font-size: 12px;
+	z-index: 3; /* above the text pane which is 1 and 2 */
+}
+
+.audio-window-container .audio-controller {
+	position: relative;
+	bottom: inherit;
+	left: inherit;
+	margin: 30px 20px 20px;
+	width: auto;
+	height: 200px;
+	border: none;
+}
+
+.audio-options {
+	background: #f8f8f8;
+	position: absolute;
+	bottom: 50px;
+	left: 10px;
+	width: 200px;
+	padding: 10px;
+	height: 100px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-size: 12px;
+	z-index: 4;
+}
+
+.audio-options label {
+	display: block;
+}
+
+.audio-options .audio-dramatic-option {
+	margin-top: 5px;
+}
+
+.audio-options .audio-dramatic-option label {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.audio-options .close-button {
+	top: 5px;
+	right: 5px;
+}
+
+.audio-controller .audio-play,
+.audio-controller .audio-prev,
+.audio-controller .audio-next {
+	background-color: #DDD;
+	border-radius: 50px;
+	position: absolute;
+	left: 50%;
+	font-size: 2em;
+	line-height: 60px;
+	text-align: center;
+}
+
+.audio-controller .audio-play {
+	line-height: 100px;
+}
+.audio-controller .audio-play .icon {
+    fill: #000;  /* The Pause icon */
+    color: transparent;  /* The Play icon */
+}
+
+.audio-controller .audio-play:hover .icon {
+    fill: #28E;  /* The Pause icon */
+    cursor: pointer;
+    color: transparent;  /* The Play icon */
+}
+
+.audio-controller .audio-play.playing .icon {
+    fill: transparent; /* The Play icon */
+    color: #000; /* The Pause icon */
+}
+
+.audio-controller .audio-play.playing:hover .icon {
+    fill: transparent; /* The Play icon */
+    color: #28E; /* The Pause icon */
+}
+
+.audio-controller .audio-prev:hover,
+.audio-controller .audio-next:hover {
+	background-color: #eee;
+    color:#28E;
+	cursor: pointer;
+}
+
+.audio-controller .audio-play {
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	top: 15px;
+	margin-left: -20px;
+    font-size:1.5rem;
+}
+
+.audio-window-container .audio-controller .audio-play {
+	width: 100px;
+	height: 100px;
+	margin-left: -50px;
+	top: 40px;
+	line-height: 100px;
+	font-size:2.5rem;
+}
+
+.audio-controller .audio-prev,
+.audio-controller .audio-next {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+	top: 20px;
+}
+
+.audio-controller .audio-prev {
+	margin-left: -52px;
+}
+
+.audio-controller .audio-next {
+	margin-left: 24px;
+}
+
+.audio-window-container .audio-controller .audio-prev,
+.audio-window-container .audio-controller .audio-next {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 20px;
+	top: 40px;
+}
+.audio-window-container .audio-controller .audio-prev {
+	margin-left: -114px;
+}
+
+.audio-window-container .audio-controller .audio-next {
+	margin-left: 54px;
+}
+
+.audio-controller .audio-currenttime,
+.audio-controller .audio-duration,
+.audio-controller .audio-options-button,
+.audio-controller .audio-title,
+.audio-controller .audio-subtitle {
+	display: block;
+	position: absolute;
+	top: 25px;
+}
+
+.audio-controller .audio-currenttime {
+	right: 50px;
+}
+
+.audio-controller .audio-duration {
+	right: 10px;
+}
+
+.audio-controller .audio-title {
+	top: 20px;
+	left: 34px;
+}
+
+.audio-controller .audio-subtitle {
+	top: 35px;
+	left: 34px;
+	font-size: 90%;
+	color: #888;
+}
+
+.audio-controller .audio-options-button {
+	left: 8px;
+	width: 20px;
+	height: 20px;
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.audio-controller label {
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+	display: none;
+}
+
+.audio-controller .audio-slider {
+	background: #ccc;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 10px;
+	width: 100%;
+}
+.audio-window-container .audio-slider {
+/*	top: inherit;
+	bottom: 0;*/
+}
+
+.audio-controller .audio-slider .audio-slider-current {
+	background: #999;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 10px;
+}
+
+.audio-controller .audio-slider .audio-slider-loaded {
+	background: #CC9;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 10px;
+}
+
+.audio-controller .audio-slider .audio-slider-handle {
+	display: block;
+	border-radius: 2px;
+	border: solid 1px #AAA;
+	width: 16px;
+	height: 14px;
+	background: #BBB;
+	position: absolute;
+	top: -2px;
+	left: 0;
+	margin-left: -8px;
+	cursor: ew-resize;
+}

@@ -1,0 +1,50 @@
+#config-global-url {
+	margin: 5px 0 0 0;
+}
+
+#main-menu-dropdown #config-global-url {
+	margin: 0;
+	padding: 10px 0 10px 15px;
+}
+
+#config-global-url span {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	background-size: 20px 20px;
+	margin: 0 10px 0 0;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+#config-global-url input {
+	display: inline-block;
+	opacity: 1;
+	width: 210px;
+	height: 28px;
+	padding: 3px;
+	margin: 0;
+	border: solid 1px #ddd;
+	padding: 6px 5px 5px 6px;
+	background: #fff;
+	color: #919191;
+	vertical-align: top;
+	-webkit-appearance: none;
+}
+#config-global-url input:hover {
+	border-color: #ccc;
+}
+
+#config-global-url div {
+	opacity: 1;
+	width: 210px;
+	display: inline-block;
+	padding: 4px;
+	height: 25px;
+	margin: 0;
+	vertical-align: center;
+	border: solid 1px #bbb;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 10px;
+}

@@ -1,0 +1,40 @@
+#main-config-button {
+	right: 60px;
+}
+
+#config-window .movable-body {
+	overflow:hidden;
+}
+
+#main-config-box {
+	padding:25px 25px 0 25px;
+	overflow:hidden;
+}
+
+.config-section {
+	margin:0 0 15px;
+	clear:both;
+}
+
+.config-header {
+	display:block;
+	font-weight:normal;
+	color:#888;
+	border-bottom: solid 1px #888;
+	margin: 0 0 5px;
+	font-size: 14px;
+}
+
+.config-button {
+	cursor: pointer;
+	display: block;
+	font-size: 12px;
+}
+
+.config-button:hover {
+	color: #28E;
+}
+
+#font-size-table td {
+	height: 40px;
+}

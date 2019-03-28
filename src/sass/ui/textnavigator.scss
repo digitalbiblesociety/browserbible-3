@@ -1,0 +1,272 @@
+.up-arrow {
+	position: absolute;
+	top: -10px;
+	left: 20px;
+	z-index: 102;
+	width: 0;
+	height: 0;
+	display: block;
+	border-bottom: 10px solid #444;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+.up-arrow-border {
+	position: absolute;
+	top: -11px;
+	left: 20px;
+	z-index: 101;
+	width: 0;
+	height: 0;
+	display: block;
+	border-bottom: 10px solid #CCC;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+/* NAV */
+.text-navigator {
+	width: 320px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background: #FFF;
+	padding: 0;
+	font-family: Avenir, Helvetica, Arial;
+	font-size: 14px;
+	-x-border: solid 1px #CCC;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 30px #EEE inset;
+}
+
+.text-navigator .up-arrow {
+	position: absolute;
+	top: -10px;
+	left: 20px;
+	z-index: 102;
+	width: 0;
+	height: 0;
+	display: block;
+	border-bottom: 10px solid #444;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+.text-navigator .up-arrow-border {
+	display: none;
+	position: absolute;
+	top: -11px;
+	left: 20px;
+	z-index: 101;
+	width: 0;
+	height: 0;
+	display: block;
+	border-bottom: 10px solid #CCC;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+.text-navigator .text-navigator-header {
+/*background: #333;
+	padding: 8px;
+	color: #fff;
+	position: relative;
+	 */
+	padding: 8px;
+	color: #fff;
+	position: relative;
+	-x-border-bottom: solid 1px #CCC;
+	background: #444;
+}
+
+.text-navigator .text-navigator-close {
+	cursor: pointer;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.text-navigator .text-navigator-divisions,
+.text-navigator .text-navigator-sections {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	padding: 4px;
+}
+
+.text-navigator .text-navigator-sections {
+	padding: 4px 1px;
+}
+
+.text-navigator .text-navigator-division-header {
+	clear: both;
+	height: 30px;
+	padding: 10px 0 0 5px;
+	font-weight: bold;
+}
+
+.text-navigator .text-navigator-division {
+	float: left;
+	width: 38px;
+	height: 38px;
+	margin: 1px 1px 0 0;
+	-border: solid 1px transparent;
+	background: #FFF;
+	color: #333;
+	text-align: center;
+	padding: 10px 0 0;
+	cursor: pointer;
+	border-style: solid;
+	border-width: 0 0 0 10px;
+
+}
+
+
+.text-navigator .text-navigator-division.selected {
+	float: none;
+	width: auto;
+	height: auto;
+	clear: both;
+	text-align: left;
+	margin: 1px 0;
+	padding-left: 4px;
+}
+.text-navigator .text-navigator-division.selected > span  {
+	font-weight: bold;
+}
+
+.text-navigator .text-navigator-division:hover > span {
+	-border-bottom-color: #CCC;
+	font-weight: bold;
+}
+
+.text-navigator .text-navigator-section:hover {
+	-outline: solid 1px #28E;
+}
+
+.text-navigator-divisions-full .text-navigator-division {
+	float: none;
+	display: block;
+	text-align: left;
+	width: auto;
+	min-height: 30px;
+	height: auto;
+	overflow: auto;
+	padding: 5px 0 0 10px;
+}
+.text-navigator-divisions-full  .text-navigator-division.selected {
+	padding: 5px 0 0 10px;
+}
+
+.text-navigator-divisions-full[dir=rtl] .text-navigator-division {
+	text-align: right;
+	border-width: 0 5px 0 0;
+	padding: 5px 10px 0 0;
+}
+
+.text-navigator-fullname {
+	position: absolute;
+	z-index: 110;
+	height: 38px;
+	margin: 1px 1px 0 0;
+	border: 1px solid #CCC;
+	background: #EEE;
+	color: #333;
+	text-align: left;
+	padding: 10px 10px 0;
+	cursor: pointer;
+	pointer-events: none;
+	font-size: 14px;
+}
+
+
+.text-navigator .division-section-penta {
+	border-color: #BFB;
+}
+.text-navigator .division-section-penta.selected {
+	background: #EFE;
+}
+
+.text-navigator .division-section-hist {
+	border-color: #BBF;
+}
+.text-navigator .division-section-hist.selected {
+	background: #EEF;
+}
+
+.text-navigator .division-section-poet {
+	border-color: #FBF;
+}
+.text-navigator .division-section-poet.selected {
+	background: #FEF;
+}
+
+.text-navigator .division-section-majorp {
+	border-color: #FBB;
+}
+.text-navigator .division-section-majorp.selected {
+	background: #FEE;
+}
+
+.text-navigator .division-section-minorp {
+	border-color: #FFB;
+}
+.text-navigator .division-section-minorp.selected {
+	background: #FFE;
+}
+
+/* gospels */
+.text-navigator .division-section-gospel {
+	border-color: #FBB;
+}
+.text-navigator .division-section-gospel.selected {
+	background: #FEE;
+}
+
+.text-navigator .division-section-acts {
+	border-color: #F4B;
+}
+.text-navigator .division-section-acts.selected {
+	background: #FEF;
+}
+
+.text-navigator .division-section-paul {
+	border-color: #BBF;
+}
+.text-navigator .division-section-paul.selected {
+	background: #EEF;
+}
+
+.text-navigator .division-section-general {
+	border-color: #BFF;
+}
+.text-navigator .division-section-general.selected {
+	background: #eff;
+}
+
+.text-navigator .division-section-rev {
+	border-color: #FBF;
+}
+.text-navigator .division-section-rev.selected {
+	background: #FEF;
+}
+
+.text-navigator .text-navigator-section {
+	float: left;
+	width: 36px;
+	height: 36px;
+	margin: 1px 1px 0 0;
+	-x-background: rgba(210,210,210,0.5);
+	color: #333;
+	text-align: center;
+	padding: 10px 0 0;
+	cursor: pointer;
+}
+
+.text-navigator .text-navigator-section:hover,
+.text-navigator .text-navigator-section.selected {
+	font-weight: bold;
+}
+
+.text-navigator-divisions[dir=rtl] .text-navigator-section {
+	float: right;
+}

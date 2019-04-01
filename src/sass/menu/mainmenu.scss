@@ -1,97 +1,98 @@
 #app-logo {
-	position: absolute;
-	top: 0;
-	left: 60px;
-	height: 60px;
-	line-height: 60px;
-	color: #ccc;
-	font-size: 25px;
+  position: absolute;
+  top: 0;
+  left: 60px;
+  height: 60px;
+  line-height: 60px;
+  color: #ccc;
+  font-size: 25px;
 }
 
 #main-menu-button {
-	cursor: pointer;
-	width: 60px;
-	height: 60px;
-	line-height:60px;
-	font-size:2.5rem;
-	color:#ccc;
-	text-align: center;
-	z-index: 9;
-}
-#main-menu-button.active {
-	background-color: #666;
-	color:#9BD;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 2.5rem;
+  color: #ccc;
+  text-align: center;
+  z-index: 9;
+
+  &.active {
+    background-color: #666;
+    color: #9BD;
+  }
 }
 
 #main-menu-dropdown {
-	width: 300px;
-	-x-height: 280px;
-	position: absolute;
-	z-index: 8;
-	background: #fff;
-	top: 59px;
-	left: 0px;
-	-x-border: solid 1px #ccc;
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  width: 300px;
+  -x-height: 280px;
+  position: absolute;
+  z-index: 8;
+  background: #fff;
+  top: 59px;
+  left: 0px;
+  -x-border: solid 1px #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .main-menu-heading {
-	padding: 5px;
-	background: #666;
-	color: #fff;
-	font-size: 0.8em;
-	border-bottom: 1px solid #666;
+  padding: 5px;
+  background: #666;
+  color: #fff;
+  font-size: 0.8em;
+  border-bottom: 1px solid #666;
 }
 
 .main-menu-list {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .main-menu-item {
-	cursor: pointer;
-	width: 75px;
-	padding: 15px 0;
-	font-size:.75rem;
-	text-align: center;
-	float: left;
-	font-weight: 600;
-	color: #444;
+  cursor: pointer;
+  width: 75px;
+  padding: 15px 0;
+  font-size: .75rem;
+  text-align: center;
+  float: left;
+  font-weight: 600;
+  color: #444;
 }
 
 #add-MapWindow .icon {
-	fill:#CA7;
-	color:#97A
+  fill: #CA7;
+  color: #97A
 }
 
 .main-menu-item svg {
-	font-size:2rem;
+  font-size: 2rem;
 }
 
 .main-menu-item:hover {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 
 .compact-ui #app-logo {
-	display: none;
+  display: none;
 }
 
 .compact-ui #main-menu-button {
-	height: 40px;
-	width: 40px;
-	background-size: 30px 16px;
-	top: 0px;
+  height: 40px;
+  width: 40px;
+  background-size: 30px 16px;
+  top: 0px;
 }
 
 .compact-ui #main-menu-dropdown {
-	top: 40px;
+  top: 40px;
 }
 
 #add-MediaWindow svg {
-	color:#E6E6E6;
-	fill:#C6C6C6;
+  color: #E6E6E6;
+  fill: #C6C6C6;
 }
 
 #add-MediaWindow:hover svg {
-	fill:#28E;
-	color:#0d0;
+  fill: #28E;
+  color: #0d0;
 }

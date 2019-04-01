@@ -1,356 +1,357 @@
 * {
-	box-sizing: border-box /* Ch, Saf 5.1+, IE 8+, Op 9+ -- No prefixes necessary  */
+  box-sizing: border-box /* Ch, Saf 5.1+, IE 8+, Op 9+ -- No prefixes necessary  */
 }
 
 html,
 body {
-    margin:0;
-    padding:0
+  margin: 0;
+  padding: 0
 }
 
 body {
-    background: #FFF;
-    font-family: Avenir, Helvetica, Arial;
+  background: #FFF;
+  font-family: Avenir, Helvetica, Arial;
 }
 
 .clear {
-	clear: both;
+  clear: both;
 }
 
 input:focus {
-	outline: none;
+  outline: none;
 }
 
 .icon {
-    /* Size by changing the icon’s font-size */
-    width: 1em;
-    height: 1em;
-    /* Nice visual alignment for icons alongside text */
-    vertical-align: -0.15em;
-    /* Default path fill = value of the color property */
-    fill: currentColor;
-    /* Paths and strokes that overflow the viewBox can show in IE.
-       If you use normalize.css, it already sets this. */
-    overflow: hidden;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 
 /* reused images */
 .close-container {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 40px;
-	height: 40px;
-	z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
 }
+
 .compact-ui .close-container {
-	height: 39px;
+  height: 39px;
 }
 
 .close-button {
-	position: absolute;
-	z-index: 10;
-	top: 15px;
-	right: 10px;
-	cursor: pointer;
-    border-radius:1rem;
-    height: 1.5rem;
-    width: 1.5rem;
-    font-size: .75rem;
-    line-height: 1.5rem;
-    text-align: center;
-    color: #666;
-}
-.close-button:hover {
-	background-color: #D98;
-	color: #fff;
+  position: absolute;
+  z-index: 10;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: .75rem;
+  line-height: 1.5rem;
+  text-align: center;
+  color: #666;
+
+  &:hover {
+    background-color: #D98;
+    color: #fff;
+  }
 }
 
-/* MAIN APP */
 .windows-header {
-	background-color: #333;
-	height: 60px;
+  background-color: #333;
+  height: 60px;
 }
 
 .windows-footer {
-	height: 0;
+  height: 0;
 }
 
-/* WINDOWS */
 .window {
-	float: left;
-	overflow: hidden;
-	position: relative;
-	margin: 0;
-	padding: 0;
-	border-right: solid 1px #EEE;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-right: solid 1px #EEE;
 }
-/*
-.window.focused {
-	outline: 2px solid yellow;
-	z-index: 5;
-}
-*/
 
 .window-tab {
-	display: none;
-	position: absolute;
-	top: 14px;
-	right: 0;
-	width: 82px;
-	height: 26px;
-	background: transparent;
-	border-style: solid;
-	border-color: transparent transparent #999 transparent;
-	border-width: 0 11px 21px 11px;
-	z-index: 1;
-	cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 0;
+  width: 82px;
+  height: 26px;
+  background: transparent;
+  border-style: solid;
+  border-color: transparent transparent #999 transparent;
+  border-width: 0 11px 21px 11px;
+  z-index: 1;
+  cursor: pointer;
+
+  &.active {
+    z-index: 2;
+    border-color: transparent;
+
+    .window-tab-inner {
+      border-color: transparent transparent #EEE transparent;
+    }
+  }
+
 }
 
 .window-tab-inner {
-	width: 80px;
-	height: 25px;
-	margin-left: -10px;
-	margin-top: 1px;
-	background: transparent;
-	border-style: solid;
-	border-color: transparent transparent #CCC transparent;
-	border-width: 0 10px 25px 10px;
-}
-
-.window-tab.active {
-	z-index: 2;
-	border-color: transparent;
-}
-.window-tab.active .window-tab-inner {
-	border-color: transparent transparent #EEE transparent;
-}
-
-.theme-dark .window-tab-label {
-	color: #fff;
-}
-.theme-dark .window-tab-inner {
-	border-color: transparent transparent #444 transparent;
-}
-.theme-dark .window-tab.active .window-tab-inner {
-	border-color-bottom: transparent transparent #222 transparent;
+  width: 80px;
+  height: 25px;
+  margin-left: -10px;
+  margin-top: 1px;
+  background: transparent;
+  border-style: solid;
+  border-color: transparent transparent #CCC transparent;
+  border-width: 0 10px 25px 10px;
 }
 
 .window-tab-label {
-	position: absolute;
-	display: block;
-    top: 2px;
-	left: 0;
-	height: 20px;
-	width: 65px;
-	padding-left: 20px;
-	padding-top: 4px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	font-size: 11px;
+  position: absolute;
+  display: block;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 65px;
+  padding-left: 20px;
+  padding-top: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
 }
 
 .window .window-header {
-	margin: 0;
-	padding: 10px;
-	background: #EEE;
-	border-bottom: solid 1px #ccc;
-	height: 50px;
-	z-index: 1;
-	font-size: 12px;
-	white-space: nowrap;
-	vertical-align: middle;
+  margin: 0;
+  padding: 10px;
+  background: #EEE;
+  border-bottom: solid 1px #ccc;
+  height: 50px;
+  z-index: 1;
+  font-size: 12px;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .window-title {
-	display: block;
-	font-size: 18px;
-	margin: 5px 0 5px 10px;
+  display: block;
+  font-size: 18px;
+  margin: 5px 0 5px 10px;
+}
+
+.theme-dark {
+
+  .window-tab-label {
+    color: #fff;
+  }
+
+  .window-tab-inner {
+    border-color: transparent transparent #444 transparent;
+  }
+
+  .window-tab.active .window-tab-inner {
+    border-color-bottom: transparent transparent #222 transparent;
+  }
+
 }
 
 .app-input,
 .app-list {
-	border: solid 1px #DDD;
-	padding: 7px 6px 6px 10px;
-	background: #FFF;
-	margin: 0 5px 0 0;
-	color: #999;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	height: 30px;
-	border-radius: 0;
-	display: inline-block;
-	vertical-align: top;
+  border: solid 1px #DDD;
+  padding: 7px 6px 6px 10px;
+  background: #FFF;
+  margin: 0 5px 0 0;
+  color: #999;
+  height: 30px;
+  border-radius: 0;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .app-input:hover,
 .app-list:hover {
-	border-color: #CCC;
+  border-color: #CCC;
 }
 
 .app-input {
-	padding-top: 5px;
-	min-width: 140px;
+  padding-top: 5px;
+  min-width: 140px;
 }
 
 .app-list {
-	padding-right: 20px;
-	cursor: pointer;
-    position: relative;
-}
-.app-list:after {
-    content:"";
-    width: 0;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 3px solid #999;
-    position: absolute;
-    top: 14px;
-    right: 7px;
-}
-.header-icon {
-    font-size:1.5rem;
-    line-height:2rem;
-    width:2rem;
-    height:2rem;
-    text-align: center;
-    cursor: pointer;
-	display: inline-block;
-	vertical-align: top;
-    color:#666;
-    border: 1px solid transparent;
-    border-radius: 20px;
-}
-.header-icon.info-button {
-	color: #C6C6C6;
-}
-.header-icon.info-button:hover {
-	color: #43A6DD;
-}
-.header-icon.audio-button {
-	color: #C6C6C6;
-}
-.header-icon.audio-button:hover {
-	color: #43A6DD;
+  padding-right: 20px;
+  cursor: pointer;
+  position: relative;
 }
 
-#main-fullscreen-button {
-	color: #C6C6C6;
+.app-list:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 3px solid #999;
+  position: absolute;
+  top: 14px;
+  right: 7px;
 }
+
+.header-icon {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  color: #666;
+  border: 1px solid transparent;
+  border-radius: 20px;
+}
+
+.header-icon.info-button:hover,
+.header-icon.audio-button:hover,
 #main-fullscreen-button:hover {
-	color: #43A6DD;
+  color: #43A6DD
+}
+
+.header-icon.info-button,
+.header-icon.audio-button,
+#main-fullscreen-button {
+  color: #C6C6C6
 }
 
 
 .window .window-header .header-button {
-	padding: 8px 4px 6px 4px;
-	background: transparent;
-	border-radius: 5px;
-	cursor: pointer;
-	color: #07F;
-	border: 0;
-	font-size: 12px;
-	display: inline-block;
+  padding: 8px 4px 6px 4px;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #07F;
+  border: 0;
+  font-size: 12px;
+  display: inline-block;
 }
 
 .one-window .window .close-button {
-	display: none;
+  display: none
 }
 
-.compact-ui .window-tab {
-	display: block;
-}
-.compact-ui .windows-main .window {
-	float: none;
-	display: block;
-	z-index: 1;
-	position: absolute;
-	top: 40px;
-}
-.compact-ui .windows-main .window.active {
-	z-index: 2;
-}
-.compact-ui .window .window-header .app-input {
-	width: 90px;
-	padding: 5px;
-	height: 25px;
-}
-.compact-ui .window .window-header .app-list {
-	padding: 5px 20px 5px 5px;
-	height: 25px;
-}
+.compact-ui {
 
-.compact-ui .window .window-header {
-	height: 40px;
-    padding: 7px 7px 7px 40px;
+  .header-icon {
+    margin-top: 1px
+  }
+
+  .window-tab {
+    display: block
+  }
+
+  .windows-main .window {
+    float: none;
+    display: block;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+
+    &.active {
+      z-index: 2
+    }
+  }
+
+  .window {
+
+    .window-header {
+      height: 40px;
+      padding: 7px 7px 7px 40px;
+
+      .app-input {
+        height: 25px;
+        width: 90px;
+        padding: 5px;
+      }
+
+      .app-list {
+        height: 25px;
+        padding: 5px 20px 5px 5px
+      }
+    }
+
+    .close-button {
+      top: 10px
+    }
+  }
+
+  &.app-mobile-fullscreen {
+    .window-tab {
+      top: 39px
+    }
+
+    .windows-header {
+      height: 50px
+    }
+
+    .windows-main .window {
+      top: 50px
+    }
+
+    #main-menu-button {
+      top: 0
+    }
+
+    #main-menu-dropdown {
+      top: 40px
+    }
+  }
 }
-.compact-ui .window .close-button {
-	top: 10px;
-}
-.compact-ui .windows-header {
-	 height: 40px;
-}
-
-.compact-ui .header-icon {
-	 margin-top: 1px;
-}
-
-	 .compact-ui.app-mobile-fullscreen .windows-header {
-		 height: 50px;
-	 }
-
-	.compact-ui.app-mobile-fullscreen  .windows-main .window {
-		top: 50px;
-	}
-
-	.compact-ui.app-mobile-fullscreen .window-tab {
-		top: 39px;
-	}
-
-	.compact-ui.app-mobile-fullscreen #main-menu-button {
-		top: 0px;
-	}
-
-	.compact-ui.app-mobile-fullscreen #main-menu-dropdown {
-		top: 40px;
-	}
 
 .window .window-main {
-	margin: 0;
-	padding: 20px;
-	background: #fff;
-	border-bottom: solid 1px #ccc;
-	border-right: solid 1px #ccc;
-	height: 70px;
-	overflow: auto;
+  margin: 0;
+  padding: 20px;
+  background: #fff;
+  border-bottom: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  height: 70px;
+  overflow: auto;
 }
 
 .window .window-footer {
-	height: 30px;
-	padding: 8px;
-	background: #EEE;
-	border-top: solid 1px #ccc;
+  height: 30px;
+  padding: 8px;
+  background: #EEE;
+  border-top: solid 1px #ccc;
 }
 
 /* header */
 .window-overlay {
-	position: absolute;
-	top: 50px;
-	right: 10px;
-	width: 300px;
-	height: 300px;
-	padding: 25px 25px 0;
-	background: #fff;
-	border: solid 1px #ccc;
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	display: none;
-	z-index: 50;
-	overflow: auto;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  width: 300px;
+  height: 300px;
+  padding: 25px 25px 0;
+  background: #fff;
+  border: solid 1px #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 50;
+  overflow: auto;
 }
+
 .loading-indicator:after {
-  content:"";
+  content: "";
   display: block;
   height: 100px;
   width: 100px;
@@ -358,53 +359,44 @@ input:focus {
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
+  border: 1.1em solid rgba(68, 136, 187, 0.2);
   border-radius: 100%;
-  border-top: 1.1em solid rgba(68, 136, 187, 0.2);
-  border-right: 1.1em solid rgba(68, 136, 187, 0.2);
-  border-bottom: 1.1em solid rgba(68, 136, 187, 0.2);
-  border-left: 1.1em solid #48B;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-animation: load8 1.1s infinite linear;
   animation: load8 1.1s infinite linear;
 }
+
 @-webkit-keyframes load8 {
   0% {
-	-webkit-transform: rotate(0deg);
-	transform: rotate(0deg);
+    transform: rotate(0deg)
   }
   100% {
-	-webkit-transform: rotate(360deg);
-	transform: rotate(360deg);
+    transform: rotate(360deg)
   }
 }
+
 @keyframes load8 {
   0% {
-	-webkit-transform: rotate(0deg);
-	transform: rotate(0deg);
+    transform: rotate(0deg)
   }
   100% {
-	-webkit-transform: rotate(360deg);
-	transform: rotate(360deg);
+    transform: rotate(360deg)
   }
 }
 
 .modal-overlay {
-	background: rgba(0,0,0,0.3);
-	position: absolute;
-	z-index: 10;
-	top: 0;
-	left: 0;
-	display: none;
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: none;
 }
 
 .blur {
-	transition: all .25s ease-in;
-	-webkit-filter: blur(3px);
-	filter: blur(3px);
+  transition: all .25s ease-in;
+  filter: blur(3px);
 }
 
 .flag {
-	margin-right: 10px;
+  margin-right: 10px;
 }

@@ -1,104 +1,103 @@
 
 .window .scroller-container.supports-3d {
-	perspective: 800px;
+  perspective: 800px;
 }
 
 .supports-3d .scroller-flipper {
-	transition: transform 1s;
-	transform-style: preserve-3d;
-	position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  position: relative;
 }
 
 .scroller-flipper.showinfo .scroller-main {
-	display: none;
-    visibility: hidden;
+  display: none;
+  visibility: hidden;
 }
 
 .supports-3d .scroller-flipper.showinfo .scroller-main {
-	display: block;
+  display: block;
 }
 
 .supports-3d .showinfo .scroller-main {
-	transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .supports-3d .showinfo .scroller-info {
-	transform: rotateY(0);
+  transform: rotateY(0);
 }
 
 .window .supports-3d .scroller-info,
 .window .supports-3d .scroller-main {
-	transition: transform 1s;
-	transform-style: preserve-3d;
-	backface-visibility: hidden;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .window .scroller-main {
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	position: absolute;
-	font-size: 18px;
-	padding: 0 30px;
-	background: #fff;
-	z-index: 2;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  font-size: 18px;
+  padding: 0 30px;
+  background: #fff;
+  z-index: 2;
 }
 
 
-	.compact-ui .window .scroller-main {
-		padding: 0 15px;
+.compact-ui .window .scroller-main {
+  padding: 0 15px;
 
-	}
-
+}
 
 .supports-3d .scroller-main {
-	transform: rotateY(0);
+  transform: rotateY(0);
 }
 
 .window .scroller-info {
-	position: absolute;
-	background: #efefef;
-	overflow: auto;
-	padding: 20px;
-	box-shadow: 0 0 10px #ddd inset;
+  position: absolute;
+  background: #efefef;
+  overflow: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px #ddd inset;
 }
 
 .supports-3d .scroller-info {
-	transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
 .scroller-text-wrapper {
-	max-width: 800px;
-	margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .config-font-size-14 .scroller-text-wrapper {
-	max-width: 460px;
+  max-width: 460px;
 }
 
 .config-font-size-16 .scroller-text-wrapper {
-	max-width: 526px;
+  max-width: 526px;
 }
 
 .config-font-size-18 .scroller-text-wrapper {
-	max-width: 591px;
+  max-width: 591px;
 }
 
 .config-font-size-20 .scroller-text-wrapper {
-	max-width: 657px;
+  max-width: 657px;
 }
 
 .config-font-size-22 .scroller-text-wrapper {
-	max-width: 723px;
+  max-width: 723px;
 }
 
 .config-font-size-24 .scroller-text-wrapper {
-	max-width: 789px;
+  max-width: 789px;
 }
 
 .config-font-size-26 .scroller-text-wrapper {
-	max-width: 854px;
+  max-width: 854px;
 }
 
 .config-font-size-28 .scroller-text-wrapper {
-	max-width: 920px;
+  max-width: 920px;
 }

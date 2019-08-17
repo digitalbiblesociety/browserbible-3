@@ -1,6 +1,10 @@
 Change Log
 =======
 
+5.0.0 alpha - 2019/08
+
+* Initial rewrite to ES6 classes and zepto
+
 3.8.4 - 2017/07/04
 
 * Updated infinite scroll mechanism (again). Now it waits until scrolling has stopped before loading another chapter. This prevents issues where scrolling became erratic on desktop and mobile.

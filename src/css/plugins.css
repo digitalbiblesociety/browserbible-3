@@ -1,0 +1,7 @@
+/* Verse Highlighter */
+.v-hover {
+    background: #eee;
+}
+.v-hover-match {
+    background: #eef5ff;
+}

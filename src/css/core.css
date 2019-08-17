@@ -1,0 +1,56 @@
+
+/*** RESET ***/
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body * {
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+} 
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #FFF;
+    font-family: Avenir, Helvetica, Arial;
+    height: 100vh;
+}
+
+/*** CORE ***/
+#sofia-root {
+    height: 100vh;
+    width: 100vw;    
+}
+.sofia-container {
+    height: 100%;
+    width: 100%;
+    background: orange;
+    display: flex;
+    flex-direction: column;
+}
+
+    .sofia-header {
+        height: 60px;
+        flex: 0 0 auto;
+        background: var(--app-header-bg-color);
+        padding: 15px;
+        text-align: right;
+    }
+    .sofia-main {        
+        background: black;
+        height: 100%;
+        display: flex;
+        flex: 1 1 100%;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+        .close-container {
+            position: absolute;
+        }
+
+    .sofia-footer {
+        display: none;
+    }

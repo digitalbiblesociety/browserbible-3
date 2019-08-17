@@ -1,186 +1,180 @@
+class LocalTextProvider {
+    constructor(pathBase) {
+        this.pathBase = pathBase;
+        this.providerName = 'local',
+		this.name = 'Local Files',
 
-sofia.textproviders['local'] = (function() {
+        this.textInfoList = [];
+		this.textInfoListIsLoaded = false;
+		this.textInfoListIsLoading = false;
+		this.textInfoListCallbacks = [];     
+    }
 
-	var providerName = 'local',
-		fullName = '',
-		textData = {};
+    getTextList(callback) {
 
-	function getTextManifest(callback) {
-		var textsUrl = 'content/texts/' + sofia.config.textsIndexPath;
+		// if loaded immediately callback
+		if (this.textInfoListIsLoaded) {
+            callback(this.textInfoList);
+            return;
+		}
 
-		sofia.ajax({
+        // store callback
+        if (callback) {
+            this.textInfoListCallbacks.push(callback);
+        }
+
+        // don't continue
+        if (this.textInfoListIsLoading) {
+            return;
+        }
+
+        this.textInfoListIsLoading = true;
+
+		let textsUrl = this.pathBase + 'texts.json';
+
+		$.ajax({
 			url: textsUrl,
 			dataType: 'json',
 			cache: false,
-			success: function(data) {
+			success: (data) => {
+                
+                this.textInfoList = data.textInfoData;
 
-				var textInfoData = data.textInfoData;
+                this.finish();
+            },
+			error: (jqXHR, textStatus, errorThrown) => {
 
-				//text_data = TextLoader.processTexts(textInfoData, providerName);
-
-				callback(textInfoData);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				//console.log('error loading texts.json', jqXHR, textStatus, errorThrown);
-				//console.log(textStatus);
-
-				var modal = new MovableWindow(600,250, 'Texts Error');
-				//modal.size(500, 200).center();
-
-				modal.body.css({background: '#000', color: '#fff' }).html(
-					'<div style="padding: 20px;">' +
-						'<p>Problem loading <code>' + sofia.config.baseContentUrl + textsUrl + '</code></p>' +
-						'<p>Status: ' + textStatus + '</p>'+
-						'<p>Error: ' + errorThrown + '</p>'+
-					'</div>'
-				);
-				modal.show().center();
-
+				// let modal = new MovableWindow(600,250, 'Texts Error');
+				
+				// modal.body.css({background: '#000', color: '#fff' }).html(
+				// 	'<div style="padding: 20px;">' +
+				// 		'<p>Problem loading <code>' + sofia.config.baseContentUrl + textsUrl + '</code></p>' +
+				// 		'<p>Status: ' + textStatus + '</p>'+
+				// 		'<p>Error: ' + errorThrown + '</p>'+
+				// 	'</div>'
+				// );
+				// modal.show().center();
 			}
 		});
-	}
+    }
 
-	function getTextInfo(textid, callback, errorCallback) {
+    finish() {
+		this.textInfoListIsLoading = false;
+		this.textInfoListIsLoaded = true;
 
-		if (typeof textData[textid] != 'undefined') {
-			callback(textData[textid]);
-			return;
-		}
+		while (this.textInfoListCallbacks.length > 0) {
+            let callback = this.textInfoListCallbacks.pop();        
+			callback(this.textInfoList);
+		}        
+    }
 
-		// load it!
-		var infoUrl = 'content/texts/' + textid + '/info.json';
+    getTextInfo(textid, callback, errorCallback) {
 
-		sofia.ajax({
-			url: infoUrl,
-			dataType: 'json',
-			success: function(data) {
-				textData[textid] = data;
-				callback(data);
-			},
-			error: function(error) {
+        // check for cached
+        if (typeof this.textInfoList[textid] != 'undefined') {
+            callback(this.textInfoList[textid]);
+            return;
+        }
 
-				console.log("ERROR TextInfoLoader.getText", infoUrl);
+        // load it!
+        let infoUrl = `content/texts/${textid}/info.json`;
 
-				if (errorCallback) {
-					errorCallback(error);
-				}
-			}
-		});
-	}
+        $.ajax({
+            url: infoUrl,
+            dataType: 'json',
+            success: (data) => {
+                this.textInfoList[textid] = data;
+                callback(data);
+            },
+            error: (error) => {
+                if (errorCallback) {
+                    errorCallback(error);
+                }
+            }
+        });
+    }
 
-	function loadSection(textid, sectionid, callback, errorCallback) {
+    loadSection(textid, sectionid, callback, errorCallback) {
 
-		getTextInfo(textid, function(textInfo) {
+        this.getTextInfo(textid, (textInfo) => {
 
-			var url = 'content/texts/' + textid + '/' + sectionid + '.html';
+            let sectionUrl = `content/texts/${textid}/${sectionid}.html`;
 
-			sofia.ajax({
-				dataType: 'text',
-				url: url,
-				success: function(data) {
+            $.ajaxSettings.accepts['text'] = '*/*';
+            $.ajax({
+                dataType: 'text',
+                url: sectionUrl,
+                success: (data) => {
 
-					// text to treat this like JSON or text/html
-					var text = data,
-						// split at the closing head tag to prevent problems with loading head material
-						main = $( text.indexOf('</head>') > -1 ? text.split('</head>')[1] : text ),
-						content = main.filter('.section'),
-						footnotes = main.filter('.footnotes'),
-						notes = footnotes.find('.footnote');
+                    // text to treat this like JSON or text/html
+                    let text = data,
+                        html = this.formatText(textInfo, text);
 
-					// move notes into place
-					if (notes.length > 0) {
-						notes.each(function() {
-							var footnote = $(this),
-								noteid = footnote.find('a').attr('href'),
-								footnotetext = footnote.find('.text'),
-								noteintext = content.find(noteid);
+                    callback(html);
 
-							//console.log(noteid, noteintext);
+                }, error: function(jqXHR, textStatus, errorThrown) {
+                    if (errorCallback) {
+                        errorCallback(textid, sectionid);
+                    }
+                }
+            });
+        });
+    }
 
-							noteintext.append(footnotetext);
+    formatText(textInfo, text) {
 
-						});
-					}
+        let
+            // split at the closing head tag to prevent problems with loading head material
+            main = $( text.indexOf('</head>') > -1 ? text.split('</head>')[1] : text ),
+            content = main.filter('.section'),
+            footnotes = main.filter('.footnotes'),
+            notes = footnotes.find('.footnote');
 
-					content.attr('data-textid', textid);
-					content.attr('data-lang3', textInfo.lang);
+        // move notes into place
+        if (notes.length > 0) {
+            notes.each(() => {
+                let footnote = $(this),
+                    noteid = footnote.find('a').attr('href'),
+                    footnotetext = footnote.find('.text'),
+                    noteintext = content.find(noteid);
 
-					// FIX title after chapter number
-					var c = content.find('.c'),
-						afterc = c.next();
-					if (afterc.hasClass('s')) {
-						c.before(afterc);
-					}
+                noteintext.append(footnotetext);
+            });
+        }
 
-					// FIX verse numbers inside verse
-					content.find('.v-num').each(function() {
-						var vnum = $(this),
-							v = vnum.closest('.v');
+        content.attr('data-textid', textInfo.id);
+        content.attr('data-lang3', textInfo.lang);
 
-						if (v.length > 0) {
-							v.before(vnum);
-						}
+        // FIX title after chapter number
+        let c = content.find('.c'),
+            afterc = c.next();
+        if (afterc.hasClass('s')) {
+            c.before(afterc);
+        }
 
-					});
+        // FIX verse numbers inside verse
+        content.find('.v-num').each(function() {
+            let vnum = $(this),
+                v = vnum.closest('.v');
 
-					var html = content.wrapAll('<div></div>').parent().html();
+            if (v.length > 0) {
+                v.before(vnum);
+            }
+        });
 
-					callback(html);
+        let html = content.wrapAll('<div></div>').parent().html();
 
-				}, error: function(jqXHR, textStatus, errorThrown) {
-					if (errorCallback) {
-						errorCallback(textid, sectionid);
-					}
+        return html;
+    }
 
-					//console.log('error', textStatus, errorThrown, jqXHR );
-				}
-			});
-		});
+    startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
-	}
+        let textSearch = new TextSearch();
 
-	function startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
+        textSearch.on('load', onSearchLoad);
+        textSearch.on('indexcomplete', onSearchIndexComplete);
+        textSearch.on('complete', onSearchComplete);
 
-		var textSearch = new TextSearch();
-
-		textSearch.on('load', onSearchLoad);
-		textSearch.on('indexcomplete', onSearchIndexComplete);
-		textSearch.on('complete', onSearchComplete);
-
-		textSearch.start(textid, divisions, text);
-
-	}
-
-	return {
-		getTextManifest: getTextManifest,
-		getTextInfo: getTextInfo,
-		loadSection: loadSection,
-		startSearch: startSearch,
-		fullName: fullName
-	}
-
-})();
-
-/*
-sofia.textproviders['example'] = (function() {
-
-	function getTextManifest (callback) {
-		callback({});
-	}
-
-	function getTextInfo(textid, callback) {
-		callback({});
-	}
-
-	function loadSection(textid, sectionid, callback) {
-		callback(null);
-	}
-
-	return {
-		getTextManifest: getTextManifest,
-		getTextInfo: getTextInfo,
-		loadSection: loadSection
-	}
-
-})();
-*/
+        textSearch.start(textid, divisions, text);
+    }      
+}

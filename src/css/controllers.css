@@ -1,0 +1,67 @@
+
+/* TEXT CONTROLLER */
+.sofia-text-controller-container {
+    height: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+    overflow: auto;
+}
+.sofia-text-controller-padding {
+    padding: 10px 40px;
+}
+.sofia-text-controller-prev,
+.sofia-text-controller-next {
+    position: absolute;
+    top: 50%;       
+    cursor: pointer;
+    font-size: 40px;
+    display: none;
+    color: #bbb;
+}
+.sofia-text-controller-prev:hover,
+.sofia-text-controller-next:hover {
+    color: #333;
+}
+.sofia-window.focused .sofia-text-controller-prev,
+.sofia-window.focused .sofia-text-controller-next{
+   display: block;
+}
+.sofia-text-controller-prev {
+    left: 5px;
+}
+.sofia-text-controller-next {
+    right: 20px;
+}
+.sofia-text-controller-prev::after {
+    content: '‹';
+}
+.sofia-text-controller-next::after {
+    content: '›';
+}
+.sofia-text-controller-loading {
+    position: absolute;
+    top: 50%;  
+    left: calc(50% - 60px);     
+    cursor: pointer;
+    width: 120px;
+    height: 60px;
+    padding: 20px 10px;
+    background: rgba(255,255,255, 0.8);
+    border: solid 1px #ccc;
+    font-size: 16px;
+    text-align: center;
+    display: none;
+    color: #999;    
+}
+.sofia-text-controller-loading::after {
+    content: "loading...";
+}
+
+
+/* MAP CONTROLLER */
+.sofia-window-maps {
+    height: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+    overflow: auto;  
+}

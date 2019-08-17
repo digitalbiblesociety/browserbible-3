@@ -1,183 +1,155 @@
-sofia.config = $.extend(sofia.config, {
-	dbsEnabled: true,
-	dbsKey: '',
-	dbsBase: 'https://api.dbp4.org/',	
-	dbsIncludeList: [],
-	dbsExcludeList: [],
-});
+class DbsTextProvider {
 
+    constructor(dbsKey, dbsBase, includeList, excludeList) {
+        this.textInfoList = [];
+		this.textInfoListIsLoaded = false;
+		this.textInfoListIsLoading = false;
+		this.textInfoListCallbacks = [];
 
+		this.providerName = 'dbs';
+        this.name = 'Digital Bible Society';
 
-sofia.textproviders['dbs'] = (function() {
+        this.dbsBaseUrl = (dbsBase && dbsBase != '') ? dbsBase : 'https://api.dbp4.org/';
+        this.dbsKey = dbsKey;
+        this.includeList = includeList;
+        this.excludeList = excludeList;
+    }
 
-	var text_data = [],
-		text_data_is_loaded = false,
-		text_data_is_loading = false,
-		text_data_callbacks = [],
-
-		providerName = 'dbs',
-		fullName = 'Digital Bible Society';
-
-	function getTextManifest (callback) {
+	getTextList(callback) {
 
 		// check for offline use
-		if (!sofia.config.enableOnlineSources || !sofia.config.dbsEnabled || sofia.config.dbsKey == '' ) {
+		if ( this.dbsKey == '' ) {
 			callback(null);
 			return;
 		}
 
 		// if loaded immediately callback
-		if (text_data_is_loaded) {
+		if (this.textInfoListIsLoaded) {
+            callback(this.textInfoList);
+            return;
+		}
 
-			callback(text_data);
+        // store callback
+        if (callback) {
+            this.textInfoListCallbacks.push(callback);
+        }
 
-		} else {
+        // don't continue
+        if (this.textInfoListIsLoading) {
+            return;
+        }
 
-			// store callback
-			text_data_callbacks.push(callback);
+        this.textInfoListIsLoading = true;
 
-			// don't continue
-			if (text_data_is_loading) {
-				return;
-			}
+        $.ajax({
+            url: this.dbsBaseUrl + 'bibles?v=4&key=' + this.dbsKey,
+            dataType: 'json',
+            cache: false,
+            success: (data) => {
 
-			text_data_is_loading = true;
+                if (data == null || data.data == null) {
+                    finish();
+                    return;
+                }
 
-			$.ajax({
-				url: sofia.config.dbsBase + 'bibles?v=4&key=' + sofia.config.dbsKey,
-				/*
-				dataType: 'jsonp',
-				beforeSend:  function(xhr){
-					if (xhr.overrideMimeType) {
-						xhr.overrideMimeType('application/javascript');
-					}
-				},
-				*/
-				dataType: 'json',
-				cache: false,
-				success: function(data) {
+                this.textInfoList = [];
+                for (var id in data.data) {
 
-					if (data == null || data.data == null) {
-						finish();
-						return;
-					}
+                    let dbs = data.data[id];
 
-					// convert to older DBS version
-	/*
-	{
-		"id":"eng-CEV",
-		"name":"Contemporary English Version (US Version)",
-		"nameEnglish":"",
-		"abbr":"CEV",
-		"lang":"eng",
-		"langName":"English",
-		"langNameEnglish":"English",
-		"dir":"ltr",
-		"type":"bible",
-		"absid":"eng-CEV",
-		"absAudio":"NONE"
-	},
-	*/
-					text_data = [];
-					for (var id in data.data) {
+                    // skip not in include list
+                    if (this.includeList && this.includeList.length > 0 && this.includeList.indexOf(dbs.abbr) == -1) {
+                        continue;
+                    }
+                    
+                    // skip in exclude list
+                    if (this.excludeList && this.excludeList.length > 0 && this.excludeList.indexOf(dbs.abbr) > -1) {
+                        continue;
+                    }						
+                    
+                    // get fileset ids
+                    let text_plain = dbs.filesets['dbp-prod'].filter(function(fileset) { return fileset.type == "text_plain";}),
+                        text_format = dbs.filesets['dbp-prod'].filter(function(fileset) { return fileset.type == "text_format";});
+                    
+                    if (dbs.name != null && (text_plain.length > 0 || text_format.length > 0)) {
 
-						var dbs = data.data[id];
+                        let dbsPlainTextId = text_plain.length > 0 ? text_plain[0].id : '',
+                            dbsFormatTextId = text_format.length > 0 ? text_format[0].id : '',
+                            sofiabible = {
+                                type: 'bible',
+                                id: dbsFormatTextId !== '' ? dbsFormatTextId : dbsPlainTextId, // 'dbs-' + dbs.abbr, // this is sort of wrong?
+                                name: dbs.name,
+                                nameEnglish: dbs.vname,
+                                abbr: dbs.abbr.replace(/ENG/,''),
+                                lang: dbs.iso,
+                                langName: dbs.language,
+                                langNameEnglish: dbs.language,
+                                dbsPlainTextId: dbsPlainTextId,
+                                dbsFormatTextId: dbsFormatTextId,
+                                dbs: dbs
+                            };
+                        this.textInfoList.push(sofiabible);
+                    }
+                }
 
-						// skip not in include list
-						if (sofia.config.dbsIncludeList.length > 0 && sofia.config.dbsIncludeList.indexOf(dbs.abbr) == -1) {
-							continue;
-						}
-						
-						// skip in exclude list
-						if (sofia.config.dbsExcludeList.length > 0 && sofia.config.dbsExcludeList.indexOf(dbs.abbr) > -1) {
-							continue;
-						}						
-						
-						// keep this one!
-						if (dbs.name != null) {
-							var sofiabible = {
-								type: 'bible',
-								id: dbs.abbr,
-								name: dbs.name,
-								nameEnglish: dbs.vname,
-								abbr: dbs.abbr,
-								lang: dbs.iso,
-								langName: dbs.language,
-								langNameEnglish: dbs.language,
-								dbs: dbs
-							};
-							text_data.push(sofiabible);
-						}
-					}
+                textLoader.processTexts(this.textInfoList, this.providerName);
 
-					TextLoader.processTexts(text_data, providerName);
+                this.finish();
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
 
-					finish();
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
+                this.textInfoList = null;
+                this.finish();
+            }
+        });
+	}
 
-					text_data = null;
-					finish();
-				}
-			});
+	finish() {
+		this.textInfoListIsLoading = false;
+		this.textInfoListIsLoaded = true;
+
+		while (this.textInfoListCallbacks.length > 0) {
+            let callback = this.textInfoListCallbacks.pop();        
+			callback(this.textInfoList);
 		}
 	}
 
-	function finish() {
-		text_data_is_loading = false;
-		text_data_is_loaded = true;
-
-		while (text_data_callbacks.length > 0) {
-			var cb = text_data_callbacks.pop();
-			cb(text_data);
-		}
-	}
-
-	function getProviderid(textid) {
+	getProviderid(textid) {
 		var parts = textid.split(':'),
-			fullid = providerName + ':' + (parts.length > 1 ? parts[1] : parts[0]);
+			fullid = this.providerName + ':' + (parts.length > 1 ? parts[1] : parts[0]);
 
 		return fullid;
 	}
 
-	function getTextInfo(textid, callback) {
+	getTextInfo(textid, callback) {
 
-		if (!text_data_is_loaded) {
-
-			getTextManifest (function() {
-				getTextInfo(textid, callback);
+		if (!this.textInfoListIsLoaded) {
+			this.getTextList (() => {
+				this.getTextInfo(textid, callback);
 			});
 			return;
 		}
 
-		var providerid = getProviderid(textid);
-
 		// get initial data
-		var info = text_data.filter(function(text) {
-			return text.providerid == providerid;
+		let info = this.textInfoList.filter((text) => {
+			return text.id == textid;
 		})[0];
 
+        // text for divisions processing
 		if (typeof info.divisions == 'undefined' || info.divisions.length == 0) {
 
 			$.ajax({
-				url: sofia.config.dbsBase + 'bibles/' + info.id + '?v=4&key=' + sofia.config.dbsKey ,
+				// id here has been predetermined
+				url: this.dbsBaseUrl + 'bibles/' + info.id + '?v=4&key=' + this.dbsKey ,
 				dataType: 'json',
-				/*
-				dataType: 'jsonp',
-				beforeSend:  function(xhr){
-					if (xhr.overrideMimeType) {
-						xhr.overrideMimeType('application/javascript');
-					}
-				},
-				*/
 				cache: false,
-				success: function(data) {
+				success: (data) => {
 
 
 					// transfer books and chapters
 					/*
-					divisions: ['GN','EX']
-					sections: ['GN1','GN2']
+					divisions: ['GEN','EEX']
+					sections: ['GEN_1','GEN_2']
 					*/
 
 					info.divisions = [];
@@ -187,35 +159,20 @@ sofia.textproviders['dbs'] = (function() {
 					// book list (divisions)
 					for (var i=0, il=data.data.books.length; i<il; i++) {
 						var bookinfo = data.data.books[i],
-							usfmCode = bookinfo.book_id,
-							bookIndex = bible.APOCRYPHAL_BIBLE_USFM.indexOf(usfmCode),
-							dbsCode = bible.APOCRYPHAL_BIBLE[bookIndex];
+							usfmCode = bookinfo.book_id;
 
-						if (typeof dbsCode == 'undefined') {
-							console.warn(bookinfo, usfmCode);
-						}
-
-						info.divisions.push(dbsCode);
+						info.divisions.push(usfmCode);
 						info.divisionNames.push(bookinfo.name);
 
 						// chapter list (sections)
 						for (var j=0, jl=bookinfo.chapters.length; j<jl; j++) {
 
-							info.sections.push(dbsCode + (j+1));
+							info.sections.push(usfmCode + '_' + (j+1).toString());
 
 						}
-
 					}
 
-
-					console.log('converted DBS' + info.id);
-					console.log(info);
-
-
-
-					//$.extend(info, data);
 					callback(info);
-
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					callback(null);
@@ -231,112 +188,161 @@ sofia.textproviders['dbs'] = (function() {
 	}
 
 
-	function getTextInfoSync(textid) {
+	getTextInfoSync(textid) {
 
-		var providerid = getProviderid(textid);
+		// let providerid = this.getProviderid(textid);
 
-		// get initial data
-		var info = text_data.filter(function(text) {
-			return text.providerid == providerid;
-		})[0];
+		// // get initial data
+		// let info = this.textInfoList.filter(function(text) {
+		// 	return text.providerid == providerid;
+        // })[0];
+        
+        let info = this.textInfoList.filter(function(text) {
+            return text.id == textid;
+        })[0];        
 
 		return info;
 	}
 
 
-	function loadSection(textid, sectionid, callback) {
+	loadSection(textid, sectionid, callback) {		
 
-		loadSectionText(textid, sectionid, callback);
+        // need textInfo to format section
+		this.getTextInfo(textid, (textInfo) => {
 
-	}
+            // get common attributes needed for formatting
+            let 
+                lang = textInfo.lang,
+                sectionParts = sectionid.split('_'),
+                usfm = sectionParts[0],
+                chapterNum = sectionParts[1],
+				sectionIndex = textInfo.sections.indexOf(sectionid),
+                previd = sectionIndex > 0 ? textInfo.sections[sectionIndex-1] : null,
+                nextid = sectionIndex < textInfo.sections.length-1 ? textInfo.sections[sectionIndex+1] : null;                
+
+            // TEXT VERSION
+            if (textInfo.dbsFormatTextId != '') {
+                $.ajax({				
+                    url: `${this.dbsBaseUrl}bibles/filesets/${textInfo.dbsFormatTextId}/?type=text_format&v=4&key=${this.dbsKey}&book_id=${usfm}`,
+                    dataType: 'json',
+                    cache: false,
+                    success: (data) => {
+
+                        // find the correct chapter
+                        var chapters = data.data.filter(function(chapter_node) {
+                            return chapter_node.chapter_start == chapterNum;
+                        });
+
+                        // load the chapter
+                        if (chapters.length > 0) {
+                            $.ajax({
+                                url: chapters[0].path,
+                                dataType: 'html',
+                                success: (dbsHtml) => {
+
+                                    let html = this.formatDbsHtml(textInfo, sectionid, previd, nextid, usfm, chapterNum, lang, dbsHtml);                                
+                                    callback(html);
+                                }
+                            });
+                        }					
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        callback(null);
+                    }
+                });
+
+            } else {	
+
+                // load plain text
+                $.ajax({
+                    url: `${this.dbsBaseUrl}bibles/filesets/${textInfo.dbsPlainTextId}/${usfm}/${chapterNum}?v=4&key=${this.dbsKey}`,				
+                    dataType: 'json',
+                    cache: false,
+                    success: (data) => {
+
+                        let html = this.formatDbsPlain(textInfo, sectionid, previd, nextid, usfm, chapterNum, lang, data);
+                        callback(html);
+                    },
+                    error: (jqXHR, textStatus, errorThrown) => {
+                        callback(null);
+                    }
+                });
+            }
+        });
+    }
+    
+    formatDbsHtml(textInfo, sectionid, previd, nextid, usfm, chapterNum, lang, dbsHtml) {
+
+        var 
+            // split at the closing head tag to prevent problems with loading head material
+            main = $( dbsHtml.indexOf('</head>') > -1 ? dbsHtml.split('</head>')[1] : dbsHtml ),
+            content = main.filter('.section'),
+            footnotes = main.filter('.footnotes'),
+            notes = footnotes.find('.footnote');
+
+        // move notes into place
+        if (notes.length > 0) {
+            notes.each(function() {
+                var footnote = $(this),
+                    noteid = footnote.find('a').attr('href'),
+                    footnotetext = footnote.find('.text'),
+                    noteintext = content.find(noteid);
+
+                noteintext.append(footnotetext);
+            });
+        }
+
+        content.attr('data-id', sectionid);
+        content.attr('data-nextid', nextid);
+        content.attr('data-previd', previd);
+
+        let html = content.wrapAll('<div></div>').parent().html();        
+
+        return html;
+    }
+
+    formatDbsPlain(textInfo, sectionid, previd, nextid, usfm, chapterNum, lang, data) {
+
+        // create HTML
+        let html = [];
+
+        //<div class="section chapter AC AC1 eng_kjv eng" dir="ltr" lang="en" data-id="AC1" data-nextid="AC2" data-previd="JN21">
+        html.push('<div class="section chapter ' + textInfo.textid + ' ' + usfm + ' ' + sectionid + ' ' + ' " ' +
+                    ' data-textid="' + textInfo.textid + '"' +
+                    ' data-id="' + sectionid + '"' +
+                    ' data-nextid="' + nextid + '"' +
+                    ' data-previd="' + previd + '"' +
+                    ' lang="' + lang + '"' +
+                    //' data-lang3="' + lang + '"' +
+                    //' dir="' + dir + '"' +
+                    '>');
 
 
-	function loadSectionText(textid, sectionid, callback) {
+        if (chapterNum == '1') {
+            html.push('<div class="mt">' + textInfo.divisionNames[textInfo.divisions.indexOf(usfm)] + '</div>');
+        }
 
-		var textinfo = getTextInfoSync(textid),
+        html.push('<div class="c">' + chapterNum + '</div>');
 
-			lang3 = textinfo.lang,
-			lang = iso2iana.convert(lang3),
-			dir = (textinfo.dir && (textinfo.dir == 'ltr' || textinfo.dir == 'rtl')) ? textinfo.dir : data.language.isRTL(lang) ? 'rtl' : 'ltr',
+        html.push('<div class="p">');
+        for (var i=0, il=data.data.length; i<il; i++ ) {
+            var verse = data.data[i],
+                text = verse.verse_text,
+                vnum = verse.verse_start,
+                vid = sectionid + '_' + vnum;
 
+            html.push(' <span class="v-num v-' + vnum + '">' + vnum + '&nbsp;</span><span class="v ' + vid + '" data-id="' + vid + '">' + text + '</span>');
+        }
 
-			bookid = dbsBookCode = sectionid.substring(0,2),
-			usfm = bible.BOOK_DATA[dbsBookCode].usfm,
-			chapterNum = sectionid.substring(2),
+        html.push('</div>'); // p
+        html.push('</div>'); // section
 
-			sectionIndex = textinfo.sections.indexOf(sectionid),
-			previd = sectionIndex > 0 ? textinfo.sections[sectionIndex-1] : null,
-			nextid = sectionIndex < textinfo.sections.length ? textinfo.sections[sectionIndex+1] : null;
+        return html.join('');
+    }
 
+	startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
 
-		// TEXT VERSION
-
-
-		$.ajax({
-			url: sofia.config.dbsBase + 'bibles/filesets/' + textinfo.id + '/' + usfm + '/' + chapterNum + '?v=4&key=' + sofia.config.dbsKey ,
-			dataType: 'json',
-			/*
-			dataType: 'jsonp',
-			beforeSend:  function(xhr){
-				if (xhr.overrideMimeType) {
-					xhr.overrideMimeType('application/javascript');
-				}
-			},
-			*/
-			cache: false,
-			success: function(data) {
-
-				// create HTML
-				var html = [];
-
-				//<div class="section chapter AC AC1 eng_kjv eng" dir="ltr" lang="en" data-id="AC1" data-nextid="AC2" data-previd="JN21">
-				html.push('<div class="section chapter ' + textid + ' ' + bookid + ' ' + sectionid + ' ' + iso2iana.convert(lang) + ' " ' +
-							' data-textid="' + textid + '"' +
-							' data-id="' + sectionid + '"' +
-							' data-nextid="' + nextid + '"' +
-							' data-previd="' + previd + '"' +
-							' lang="' + lang + '"' +
-							' data-lang3="' + lang + '"' +
-							' dir="' + dir + '"' +
-							'>');
-
-
-				if (chapterNum == '1') {
-					html.push('<div class="mt">' + textinfo.divisionNames[textinfo.divisions.indexOf(bookid)] + '</div>');
-				}
-
-				html.push('<div class="c">' + chapterNum + '</div>');
-
-				html.push('<div class="p">');
-				for (var i=0, il=data.data.length; i<il; i++ ) {
-					var verse = data.data[i],
-						text = verse.verse_text,
-						vnum = verse.verse_start,
-						vid = sectionid + '_' + vnum;
-
-					html.push(' <span class="v-num v-' + vnum + '">' + vnum + '</span><span class="v ' + vid + '" data-id="' + vid + '">' + text + '</span>');
-
-				}
-
-				html.push('</div>'); // p
-				html.push('</div>'); // section
-
-
-
-				callback(html.join(''));
-
-
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				callback(null);
-			}
-
-		});
-	}
-
-	function startSearch(textid, divisions, text, onSearchLoad, onSearchIndexComplete, onSearchComplete) {
-
-		var e = {
+		let e = {
 			type:'complete',
 			target: this,
 			data: {
@@ -347,30 +353,21 @@ sofia.textproviders['dbs'] = (function() {
 			}
 		};
 
-		doSearch(textid, divisions, text, e, function() {
-
+		this.doSearch(textid, divisions, text, e, () => {
 			onSearchComplete(e);
-
 		});
 	}
-	function doSearch(textid, divisions, text, e, callback) {
+    
+    doSearch(textid, divisions, text, e, callback) {
 
-		var textinfo = getTextInfoSync(textid);
+		var textinfo = this.getTextInfoSync(textid);
 
 		$.ajax({
-			/*
-			beforeSend: function(xhr){
-				if (xhr.overrideMimeType){
-					xhr.overrideMimeType("application/javascript");
-				}
-			},
-			dataType: 'jsonp',
-			*/
 			dataType: 'json',
 
 			// One giant call seems faster, than doing all the books individually?
-			url: sofia.config.dbsBase + 'text/search?v=4&key=' + sofia.config.dbsKey + '&fileset_id=' + textid + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
-			success: function(data) {
+			url: this.dbsBaseUrl + 'text/search?v=4&key=' + this.dbsKey + '&fileset_id=' + textid + '&query=' + text.replace(/\s/gi, '+') + '&limit=2000',
+			success: (data) => {
 
 				for (var i=0, il=data.data.length; i<il; i++) {
 					var verse = data.data[i],
@@ -391,31 +388,20 @@ sofia.textproviders['dbs'] = (function() {
 		});
 	}
 
-	function highlightWords(text, searchTermsRegExp) {
+	highlightWords(text, searchTermsRegExp) {
 
-		var processedHtml = text;
+		let processedHtml = text;
 
-		for (var j=0, jl=searchTermsRegExp.length; j<jl; j++) {
+		for (let j=0, jl=searchTermsRegExp.length; j<jl; j++) {
 
 			searchTermsRegExp[j].lastIndex = 0;
 
 			// surround the word with a highlight
 			processedHtml = processedHtml.replace(searchTermsRegExp[j], function(match) {
-				return '<span class="highlight">' + match + '</span>';
+				return `<span class="highlight">${match}</span>`;
 			});
 		}
 
 		return processedHtml;
 	}
-
-
-
-	return {
-		getTextManifest: getTextManifest,
-		getTextInfo: getTextInfo,
-		loadSection: loadSection,
-		startSearch: startSearch,
-		fullName: fullName
-	}
-
-})();
+}

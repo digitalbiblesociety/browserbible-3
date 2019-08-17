@@ -1,288 +1,134 @@
+// import { Dispatcher } from './dispatcher.js'
+// import { Window } from './window.js'
 
-var WindowManager = function(node, app) {
+/**
+ * Handles multiple {Window} objects, creating, ordering, and destroying them.
+ */	
+class WindowManager extends Dispatcher {
+    constructor(node, app) {
+        super();
+        
+        this.node = node;
+        this.app = app;
+        this.windows = [];        
+    }
 
-	var windows = [];
+    /**
+     * Create a new {Window} object
+     * @param {class} controllerClass The type of window
+     * @param {object} data Initialization settings for window
+     */	
+	addWindow(controllerClass, data) {
 
-	function addWindow(className, data) {
-
-		var id = 'win' + (new Date()).getTime().toString();
-
-		if (className == 'TextWindow') {
-			className = 'BibleWindow';
-		}
-
-		// test for classname
-		if (typeof window[className] == 'undefined')
-			return;
+		let id = 'win' + (new Date()).getTime().toString(),
+			win = new Window(id, this.node, controllerClass, data, this);
 
 		// create window and add to array
-		var win = new Window(id, node, className, data, ext);
-		windows.push(win);
+		this.windows.push(win);
 
-		var tabWidth = win.tab.outerWidth();
-
-		//win.tab.css({right: '0px'});
-
-
-		//size();
-		setTimeout(function() {
-			app.resize();
-		},10);
+		this.makeDraggable(win);
 	}
-	function removeWindow(id) {
+
+     /**
+     * Removes a window and unhooks all its events
+     * @param {string} id The unique ID of the window
+     */	  
+	removeWindow(id) {
 
 		// find window
-		var windowsToClose = windows.filter(function(win) {
-				return win.id == id;
-			}),
+		const windowsToClose = this.windows.filter((win) => win.id == id),
 			windowToClose = (windowsToClose.length == 1) ? windowsToClose[0] : null;
 
-		if (windowToClose == null) {
-			console.log('ERROR', "Can't find window", id);
-			return;
-		}
-
 		// remove from array
-		windows = windows.filter(function(win) {
-			return win.id != id;
-		});
+		this.windows = this.windows.filter((win) => win.id != id);
 
-		PlaceKeeper.storePlace();
+		//app.PlaceKeeper.storePlace();
 
 		// remove from DOM, run delete functions
 		windowToClose.close();
 		windowToClose = null;
+	
+		//app.PlaceKeeper.restorePlace();
 
-		// resize and reset
-		//size();
-		PlaceKeeper.restorePlace();
-
-		/*
-		var tabWidth = windows[0].tab.outerWidth() - 10;
-		for (var i=0,il=windows.length; i<il; i++) {
-			windows[i].tab.css({right: ((il-i) * tabWidth) +'px'});
-		}
-		*/
-
-		windows[0].tab.addClass('active');
-		windows[0].node.addClass('active');
+		this.windows[0].tab.addClass('active');
+		this.windows[0].node.addClass('active');
 
 		setTimeout(function() {
-			app.resize();
+			this.app.resize();
 		},10);
 
+        this.dispatch('settingschange', {target: this, data: null});
+	}    	
 
-		// trigger save
-		ext.trigger('settingschange', {type: 'settingschange', target: this, data: null});
-	}
+	/**
+     * Adds events for {Window}s to be re-orderd by the user
+     */	
+	makeDraggable(win) {
 
-	function size(width, height) {
-		// set container size
-		if (width && height) {
-			node.width(width)
-				.height(height);
-		} else {
-			width = node.width();
-			height = node.height();
-		}
+		// store the window being moved here on the WindowManager
+		this.draggingWindow = null;
 
-		//console.log('manage resize', windows.length);
-
-		var sizeThreshold = 560;
-
-		if (width < sizeThreshold) {
-			$('body').addClass('compact-ui');
-		} else {
-			$('body').removeClass('compact-ui');
-		}
-
-
-		if (windows.length > 0) {
-
-			if (width < sizeThreshold) {
-
-				//$('body').addClass('compact-ui');
-
-
-				var tabWidth = windows[0].tab.outerWidth()-10;
-
-				// resize all windows to the same
-				for (var i=0, il=windows.length; i<il; i++) {
-					windows[i].size(width, height);
-					windows[i].tab.css({right: ((il-i-1) * tabWidth) +'px'});
-				}
-
-			} else {
-
-				//$('body').removeClass('compact-ui');
-
-				// all windows to a percent of the width
-
-				var windowWidth = Math.floor(width/windows.length),
-					firstMarginLeft = parseInt(windows[0].node.css('margin-left'), 10),
-					firstMarginRight =parseInt(windows[0].node.css('margin-right'), 10);
-
-
-				if (!isNaN(firstMarginLeft)) {
-					windowWidth = windowWidth - firstMarginLeft;
-				}
-				if (!isNaN(firstMarginRight)) {
-					windowWidth = windowWidth - firstMarginRight;
-				}
-
-				for (var i=0, il=windows.length; i<il; i++) {
-					windows[i].size(windowWidth, height);
-				}
+		// The header portion of each window is the draggable element
+		// but it works better on mousedown rather than always
+		win.header.on('mousedown', (e) => {
+			if ($(e.srcElement).hasClass('sofia-window-header')) {
+				win.node.attr('draggable', true);			
+				this.draggingWindow = win;
 			}
-		}
-	}
+		});
+		win.header.on('mouseup', (e) => {			
+			win.node.attr('draggable', false);
+			this.draggingWindow = null;
+		});	
 
-	function getSettings() {
-		var settingsForAllWindows = [];
+		// events on the Window object's main .node
+		win.node.on('dragstart', (e) => {
+			win.node.addClass('dragging');
+			this.draggingWindow = win;
+		});
+		win.node.on('dragend', (e) => {
+			e.preventDefault();			
+			win.node.removeClass('dragging');
+		});
 
-		for (var i=0, il=windows.length; i<il; i++) {
-			settingsForAllWindows.push({
-				'windowType': windows[i].className,
-				'data': windows[i].getData()
-			});
-		}
+		// events on the drop target
+		win.node.on('dragover', (e) => {		
+			e.preventDefault();
+			win.node.addClass('dragover');						
+		});
 
-		return settingsForAllWindows;
-	}
+		// move the window on dragenter (rather than 'drop') because it's much more intuitive
+		win.node.on('dragenter', (e) => {
+			e.preventDefault();
+			win.node.addClass('dragover');
+			
+			let src = $(e.srcElement),
+				parentWindowNode = src.closest('.sofia-window'),
+				droppedOnWindow = parentWindowNode[0].sofiaWindow;
 
-	var ext = {
-		add: addWindow,
-		remove: removeWindow,
-		size: size,
-		getSettings: getSettings,
-		getWindows: function() { return windows; }
-	};
+			if (droppedOnWindow != this.draggingWindow) {
+				
+				// if dragging is before, then insert after (1 on 2 or 3)
+				if (this.draggingWindow.node[0].compareDocumentPosition(droppedOnWindow.node[0]) == Node.DOCUMENT_POSITION_FOLLOWING) {					
+					droppedOnWindow.node.after(this.draggingWindow.node);
+				} else {
+					// if dragging is after, then insert before (3 on 1 or 2)
+					droppedOnWindow.node.before(this.draggingWindow.node);
+				}
 
-	ext = $.extend(true, ext, EventEmitter);
+				// TODO: reorder this.windows array
+			}			
+		});
+		win.node.on('dragleave', (e) => {
+			e.preventDefault();
+			win.node.removeClass('dragover');		
+		});		
+		win.node.on('drop', (e) => {
+			e.preventDefault();
+			win.node.removeClass('dragover');
+			this.draggingWindow = null;
+		});
+    }
+}
 
-	return ext;
-};
-
-var Window = function(id, parentNode, className, data, manager) {
-
-	var ext = {},
-		node = $('<div class="window ' + className + ' active"></div>')
-					.appendTo(parentNode),
-		closeBtn = $('<div class="close-container"><span class="close-button"></span></div>')
-					.appendTo(node)
-					.find('.close-button')
-					.on('click', function() {
-						console.log(id, 'remove', manager);
-
-
-						manager.remove(id);
-					}),
-		tab = $('<div class="window-tab ' + className + ' active">' +
-					'<div class="window-tab-inner">' +
-						'<span class="window-tab-label ' + className + '-tab">' + className + '</span>' +
-					'</div>' +
-				'</div>')
-					.appendTo( $('body') );
-
-	// make sure this one is selected
-	node.siblings('.window').removeClass('active');
-	tab.siblings('.window-tab').removeClass('active');
-
-	ext.id = id;
-	ext.className = className;
-	ext.node = node;
-	ext.tab = tab;
-
-	var controller = new window[className](id, ext, data);
-	ext.controller = controller;
-
-	// send settings up to the manager, up to the app
-	controller.on('settingschange', function(e) {
-		ext.trigger('settingschange', e); // {type: e.type, target: this, data: e.data});
-	});
-	controller.on('globalmessage', function(e) {
-		e.id = id;
-		ext.trigger('globalmessage', e); // {type: e.type, target: this, data: e.data});
-	});
-
-
-	// send focus/blur events down to controller
-	node.on('mouseenter touchstart', function(e) {
-		controller.trigger('focus', {});
-		node
-			.addClass('focused')
-			.siblings()
-				.removeClass('focused')
-				.trigger('windowblur');
-	});
-	node.on('mouseleave windowblur', function(e) {
-		node
-			.removeClass('focused')		
-		
-		controller.trigger('blur', {});
-	});
-
-	tab.on('click', function(e) {
-		// dectivate all other tabs and windows
-		$('.window, .window-tab').removeClass('active');
-
-		tab.addClass('active');
-		node.addClass('active');
-	});
-
-
-	function size(width, height) {
-		node.outerWidth(width)
-			.outerHeight(height);
-
-		controller.size(width, height);
-	}
-
-	function quit() {
-		controller.quit();
-	}
-
-	function close() {
-
-		if (typeof controller.close != 'undefined') {
-			controller.close();
-		}
-		controller = null;
-
-		ext.clearListeners();
-
-		tab.remove();
-		node.remove();
-	}
-
-
-	ext.size = size;
-	ext.quit = quit;
-	ext.getData =  function() {
-			return controller.getData();
-	};
-	ext.close =  close;
-
-	ext = $.extend(true, ext, EventEmitter);
-
-	// receive from App, send down to controller
-	ext.on('message', function(e) {
-		controller.trigger('message', e);
-
-		if (e.data.labelTab) {
-			tab.find('span').html( e.data.labelTab );
-		}
-	});
-	
-
-	// when a window reports a settings change
-	ext.on('settingschange', function(e) {
-
-		// pass up to root
-		manager.trigger('settingschange', e);
-	});
-
-	ext.on('globalmessage', sofia.app.handleGlobalMessage);	
-
-	return ext;
-};
+//export { WindowManager };

@@ -106,11 +106,20 @@ class BibleReference {
 	/**
 	 * Formatted code for Bible App
 	 *
-	 * @returns {string} USFM plus chapter and verse JHN_1_2
+	 * @returns {string} USFM plus chapter JHN_1
 	 */
 	toChapterCode() {
 		return this.bookid + '_' + (this.chapter1 > 0 ? this.chapter1 : '1');
 	}
+
+	/**
+	 * Formatted code for Bible App
+	 *
+	 * @returns {string} USFM plus chapter and verse JHN_1_2
+	 */
+	toVerseCode() {
+		return this.bookid + '_' + (this.chapter1 > 0 ? this.chapter1 : '1') + '_' + (this.verse1 > 0 ? this.verse1 : '1');
+	}	
 
 	/**
 	 * Takes a string and returns an class
@@ -201,7 +210,7 @@ class BibleReference {
 						if (c == '-' || c == '–') {
 							afterRange = true;
 							afterSeparator = false;
-						} else if (c == ':' || c == ',' || c == '.') {
+						} else if (c == ':' || c == ',' || c == '.' || c == '_') {
 							afterSeparator = true;
 						} else {
 							// ignore

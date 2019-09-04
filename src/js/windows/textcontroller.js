@@ -1,5 +1,3 @@
-//import { Dispatcher } from '../core/dispatcher.js'
-
 class TextController extends Dispatcher {
     constructor(id, window, data) {
         super();
@@ -8,40 +6,82 @@ class TextController extends Dispatcher {
         this.window = window;
         this.data = data;
         this.textid = this.data.textid;
-        this.sectionid = this.data.sectionid;
+        this.fragmentid = this.data.fragmentid;
 
-        this.createNodes();        
+        this.createNodes();  
+        this.start();      
+    }
+
+    start() {
 
         // first time load of text information and chapter
         if (this.textid) {
 
-            this.loading.show();
-
             textLoader.getTextInfo(this.textid, (textInfo) => {
                 this.textInfo = textInfo;
 
-                if (this.sectionid) {
-                    this.navigate(this.sectionid);
+                if (this.fragmentid) {
+                    this.textViewer.navigate(this.fragmentid);
                 }
             });
         } 
+
     }
 
     createNodes() {
+        this.textNavigator = new TextNavigator(this);
+        this.textChooser = new TextChooser(this, this.textid);        
+        this.textViewer = new TextViewerSingle(this);
 
-        this.createHeader();
-        this.createBody();
-        this.createNavs();
+        this.textViewer.on('textscroll', (e) => this.onViewerScroll(e));
+        this.textViewer.on('textnavigate', (e) => this.onViewerNavigate(e));
+        this.textViewer.on('textloaded', (e) => this.onViewerNavigate(e));
+
+        this.textNavigator.on('usernavigate', (e) => this.onUserNavigate(e));
+        this.textChooser.on('textchange', (e) => this.onUserTextChange(e));
     }
 
-    createHeader() {
-        // TODO: not use <select>, create UI
-        //this.textchooser = new TextChooser(this);   
-        //this.textnavigator = new TextNavigator(this);
-        
-        // verse reference input
+    onViewerScroll(e) {
+        // set input to show new location
+        this.fragmentid = e.fragmentid;
+        this.textNavigator.setLocation(this.fragmentid);
+        // send event up to app
+        this.window.manager.app.trigger('textnavigate', {fragmentid: this.fragmentid});
+    }
+
+    onViewerNavigate(e) {
+        // set input to show new location
+        this.fragmentid = e.fragmentid;
+        this.textNavigator.setLocation(this.fragmentid);
+        // send event up to app    
+    }
+
+    onUserNavigate(e) {
+        // pass to viewer
+        this.textViewer.navigate(e.fragmentid);
+    }
+
+    onUserTextChange(e) {
+        // pass to viewer
+        this.textid = e.textid;
+        //this.textViewer.changeText(e.textid);
+        this.textViewer.navigate(this.fragmentid);
+    }
+}
+
+class TextNavigator extends Dispatcher{
+    constructor(textController) {
+        super();
+
+        this.textController = textController;
+
+        this.createNodes();
+    }
+
+    createNodes() {
+                // verse reference input
         this.input = $(`<div class="sofia-text-chooser"><input class="sofia-header-input" type="text"></div>`)
-            .appendTo(this.window.header)
+            .appendTo(this.textController.window.header)
             .find('input');
 
         this.input.on('keydown', (e) => {            
@@ -50,18 +90,42 @@ class TextController extends Dispatcher {
                     bibleRef = new BibleReference(value);       
                 
                 if (bibleRef.isValid()) {
-                    this.navigate(bibleRef);
-                }  
+                    this.trigger('usernavigate', { fragmentid: bibleRef.toVerseCode() });
+                }
             }
         }); 
+    } 
 
-        // version list
-        this.list = $(`<div class="sofia-text-chooser"><select class="sofia-header-input" type="text"><option>${this.textid}</option></select>`)
-            .appendTo(this.window.header)
+    setLocation(fragmentid) {
+        let bibleRef = new BibleReference(fragmentid);
+
+        this.input.val(bibleRef.toString());
+    }
+}
+
+
+class TextChooser extends Dispatcher{
+    constructor(textController, textid) {
+        super();
+
+        this.textController = textController;
+        this.textid = textid;
+
+        this.createNodes();
+    }
+
+    createNodes() {
+        // create version list
+        this.list = $(`<div class="sofia-text-chooser">
+                            <select class="sofia-header-input" type="text">
+                                <option>${this.textid}</option>
+                            </select>
+                        </div>`)
+            .appendTo(this.textController.window.header)
             .find('select')
             .on('change', (e) => {
                 let newTextId = this.list.val();
-                this.setText(newTextId);
+                this.trigger('textchange', {textid: newTextId});
             });
 
         // load versions
@@ -75,87 +139,128 @@ class TextController extends Dispatcher {
 
                 options += `</optgroup>`;  
             }
-            // for (let textInfo of texts) {
-            //     options += `<option value="${textInfo.providerid}">${textInfo.abbr} - ${textInfo.name}</option>`;
-            // }
             this.list.html(options);
             this.list.val(this.textid);
         });
-    }
-
-    createBody() {
-        this.scroller = $(`<div class="sofia-text-controller-container"><div class="sofia-text-controller-padding"></div></div>`)
-                            .appendTo(this.window.body);  
-
-        this.content = this.scroller.find('div');                                
-    }
-
-
-    createNavs() { 
-        this.prevBtn = $(`<a class="sofia-text-controller-prev"></a>`)
-                            .appendTo(this.window.body)
-                            .on('click', () => this.prev());      
-
-        this.nextBtn = $(`<a class="sofia-text-controller-next"></a>`)
-                            .appendTo(this.window.body)
-                            .on('click', () => this.next());   
-                            
-        this.loading = $(`<div class="sofia-text-controller-loading"></div>`)
-                            .appendTo(this.window.body)                                                        
-
-    }    
-
-    setText(textid) {
-        this.textid = textid;
-        this.list.val(this.textid);
-        this.navigate(this.sectionid);
-    }   
-
-    setInput(bibleRef) {
-        let formattedReference = bibleRef.toString();
-
-        this.input.val(formattedReference);
-    }
-
-    loadText(bibleRef) {
-
-        let chapterCode = bibleRef.toChapterCode();
-
-        textLoader.loadSection(this.textid, chapterCode, (chapterNode) => {
-            this.content.empty();
-            this.content.append( chapterNode );  
-            this.scroller.scrollTop(0);
-
-            this.loading.hide();
-
-            this.sectionid = chapterCode;
-            this.setInput(bibleRef);
-        });
-    }
-
-    prev() {
-        let previd = this.content.find('.chapter').attr('data-previd'),
-            parts = previd.split('_'),
-            bibleRef = new BibleReference(parts[0], parts[1]);
-        this.navigate(bibleRef);
-    }
-
-    next() {
-        let nextid = this.content.find('.chapter').attr('data-nextid'),
-            parts = nextid.split('_'),
-            bibleRef = new BibleReference(parts[0], parts[1]);
-        this.navigate(bibleRef);
-    }
-
-    navigate(bibleRef) {
-        if (bibleRef instanceof BibleReference) {        
-            this.loadText(bibleRef);
-
-        } else if (typeof bibleRef == 'string') {
-            let newRef = new BibleReference(bibleRef);
-            this.navigate(newRef);
-        }
     } 
 }
 
-//export { TextController }
+class TextViewerSingle extends Dispatcher{
+    constructor(controller) {
+        super();
+
+        this.controller = controller;
+
+        this.createNodes();
+    }
+
+    createNodes() {
+        this.scroller = $(`<div class="sofia-text-controller-container"><div class="sofia-text-controller-padding"></div></div>`)
+                            .appendTo(this.controller.window.body);  
+
+        this.content = this.scroller.find('div');  
+        
+        this.scroller.on('scroll', (e) => this.onScrollerScroll(e) );
+
+        this.prevBtn = $(`<a class="sofia-text-controller-prev"></a>`)
+                            .appendTo(this.controller.window.body)
+                            .on('click', () => this.prev());      
+
+        this.nextBtn = $(`<a class="sofia-text-controller-next"></a>`)
+                            .appendTo(this.controller.window.body)
+                            .on('click', () => this.next());   
+                            
+        this.loading = $(`<div class="sofia-text-controller-loading"></div>`)
+                            .appendTo(this.controller.window.body);
+                            
+        this.on('textloading', () => { this.loading.show(); });
+        this.on('textloaded', () => { this.loading.hide(); });
+    }
+
+    onScrollerScroll(e) {
+        // find place
+        let fragmentid = this.getFragment();
+
+        this.trigger('textscroll', {fragmentid: fragmentid});
+    }
+
+    getFragment() {
+        let 
+            fragmentid = '',
+            fragmentSelector = '.v',            
+            topOfScroller = this.scroller.offset().top,
+            fragments = null;
+            
+            
+        fragments = this.content.find(fragmentSelector);
+
+        fragments.each(function(fragEl) {
+            let frag = $(this),
+                isFirstVisibleFragment = false;
+            
+            // is the top of the fragment at the top of the scroll pane
+			if (frag.offset().top - topOfScroller > -2) {
+                isFirstVisibleFragment = true;
+                
+                fragmentid = frag.attr('data-id');
+                // TODO: check for 
+				//let totalFragments = frag.parent().find('.' + fragmentid);
+            }
+
+            // when we find it, return false to stop looking
+            return !isFirstVisibleFragment;
+        });
+
+        // let fragmentid = this.content.find('.v').first().attr('data-id');
+
+        // TODO: detect actual chapter
+
+        return fragmentid;
+    }
+
+    prev() {
+        let previd = this.content.find('.chapter').attr('data-previd');
+            
+        this.navigate(previd);
+    }
+
+    next() {
+        let nextid = this.content.find('.chapter').attr('data-nextid');
+
+        this.navigate(nextid);
+    }
+
+    fragmentToSection(fragmentid) {
+        let parts = fragmentid.split('_'),
+            sectionid = parts[0] + '_' + parts[1];
+        
+        return sectionid;
+    }
+
+    navigate(fragmentid) {
+
+        let chapterCode = this.fragmentToSection(fragmentid);
+
+        this.trigger('textloading', {fragmentid: fragmentid});
+
+        textLoader.loadSection(this.controller.textid, chapterCode, (chapterNode) => {
+            this.content.empty();
+            this.content.append( chapterNode );  
+            //this.scroller.scrollTop(0);
+
+            // scroll to verse: fragmentid
+            let contentAreaTop = this.content.offset().top,
+                verseNode = this.content.find(`[data-id="${fragmentid}"]`),
+                verseNodeTop = verseNode.offset().top;
+            
+            this.scroller.scrollTop(verseNodeTop - contentAreaTop);
+            
+
+            //debugger;
+
+            this.trigger('textloaded', {fragmentid: fragmentid});
+    
+            this.controller.fragmentid = fragmentid;        
+        });
+    }   
+}

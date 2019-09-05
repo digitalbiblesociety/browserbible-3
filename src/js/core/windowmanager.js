@@ -18,10 +18,10 @@ class WindowManager extends Dispatcher {
      * @param {class} controllerClass The type of window
      * @param {object} data Initialization settings for window
      */	
-	addWindow(controllerClass, data) {
+	addWindow(WindowClass, data) {
 
 		let id = 'win' + (new Date()).getTime().toString(),
-			win = new Window(id, this.node, controllerClass, data, this);
+			win = new WindowClass(id, this.node, data, this);
 
 		// create window and add to array
 		this.windows.push(win);
@@ -36,7 +36,7 @@ class WindowManager extends Dispatcher {
 	removeWindow(id) {
 
 		// find window
-		const windowsToClose = this.windows.filter((win) => win.id == id),
+		let windowsToClose = this.windows.filter((win) => win.id == id),
 			windowToClose = (windowsToClose.length == 1) ? windowsToClose[0] : null;
 
 		// remove from array
@@ -54,10 +54,10 @@ class WindowManager extends Dispatcher {
 		this.windows[0].node.addClass('active');
 
 		setTimeout(function() {
-			this.app.resize();
+			//this.app.resize();
 		},10);
 
-        this.dispatch('settingschange', {target: this, data: null});
+        this.trigger('settingschange', {target: this, data: null});
 	}    	
 
 	/**

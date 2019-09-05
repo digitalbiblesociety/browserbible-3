@@ -1,15 +1,12 @@
-class TextController extends Dispatcher {
-    constructor(id, window, data) {
-        super();
+class TextWindow extends Window {
+    constructor(id, parentNode, data, manager) {
+        super(id, parentNode, data, manager);
 
-        this.id = id;    
-        this.window = window;
-        this.data = data;
         this.textid = this.data.textid;
         this.fragmentid = this.data.fragmentid;
 
         this.createNodes();  
-        this.start();      
+        this.start(); 
     }
 
     start() {
@@ -46,7 +43,7 @@ class TextController extends Dispatcher {
         this.fragmentid = e.fragmentid;
         this.textNavigator.setLocation(this.fragmentid);
         // send event up to app
-        this.window.manager.app.trigger('textnavigate', {fragmentid: this.fragmentid});
+        this.manager.app.trigger('textnavigate', {fragmentid: this.fragmentid});
     }
 
     onViewerNavigate(e) {
@@ -70,10 +67,10 @@ class TextController extends Dispatcher {
 }
 
 class TextNavigator extends Dispatcher{
-    constructor(textController) {
+    constructor(window) {
         super();
 
-        this.textController = textController;
+        this.window = window;
 
         this.createNodes();
     }
@@ -81,7 +78,7 @@ class TextNavigator extends Dispatcher{
     createNodes() {
                 // verse reference input
         this.input = $(`<div class="sofia-text-chooser"><input class="sofia-header-input" type="text"></div>`)
-            .appendTo(this.textController.window.header)
+            .appendTo(this.window.header)
             .find('input');
 
         this.input.on('keydown', (e) => {            
@@ -105,10 +102,10 @@ class TextNavigator extends Dispatcher{
 
 
 class TextChooser extends Dispatcher{
-    constructor(textController, textid) {
+    constructor(window, textid) {
         super();
 
-        this.textController = textController;
+        this.window = window;
         this.textid = textid;
 
         this.createNodes();
@@ -121,7 +118,7 @@ class TextChooser extends Dispatcher{
                                 <option>${this.textid}</option>
                             </select>
                         </div>`)
-            .appendTo(this.textController.window.header)
+            .appendTo(this.window.header)
             .find('select')
             .on('change', (e) => {
                 let newTextId = this.list.val();
@@ -146,32 +143,32 @@ class TextChooser extends Dispatcher{
 }
 
 class TextViewerSingle extends Dispatcher{
-    constructor(controller) {
+    constructor(window) {
         super();
 
-        this.controller = controller;
+        this.window = window;
 
         this.createNodes();
     }
 
     createNodes() {
         this.scroller = $(`<div class="sofia-text-controller-container"><div class="sofia-text-controller-padding"></div></div>`)
-                            .appendTo(this.controller.window.body);  
+                            .appendTo(this.window.body);  
 
         this.content = this.scroller.find('div');  
         
         this.scroller.on('scroll', (e) => this.onScrollerScroll(e) );
 
         this.prevBtn = $(`<a class="sofia-text-controller-prev"></a>`)
-                            .appendTo(this.controller.window.body)
+                            .appendTo(this.window.body)
                             .on('click', () => this.prev());      
 
         this.nextBtn = $(`<a class="sofia-text-controller-next"></a>`)
-                            .appendTo(this.controller.window.body)
+                            .appendTo(this.window.body)
                             .on('click', () => this.next());   
                             
         this.loading = $(`<div class="sofia-text-controller-loading"></div>`)
-                            .appendTo(this.controller.window.body);
+                            .appendTo(this.window.body);
                             
         this.on('textloading', () => { this.loading.show(); });
         this.on('textloaded', () => { this.loading.hide(); });
@@ -211,10 +208,6 @@ class TextViewerSingle extends Dispatcher{
             return !isFirstVisibleFragment;
         });
 
-        // let fragmentid = this.content.find('.v').first().attr('data-id');
-
-        // TODO: detect actual chapter
-
         return fragmentid;
     }
 
@@ -243,7 +236,7 @@ class TextViewerSingle extends Dispatcher{
 
         this.trigger('textloading', {fragmentid: fragmentid});
 
-        textLoader.loadSection(this.controller.textid, chapterCode, (chapterNode) => {
+        textLoader.loadSection(this.window.textid, chapterCode, (chapterNode) => {
             this.content.empty();
             this.content.append( chapterNode );  
             //this.scroller.scrollTop(0);
@@ -260,7 +253,7 @@ class TextViewerSingle extends Dispatcher{
 
             this.trigger('textloaded', {fragmentid: fragmentid});
     
-            this.controller.fragmentid = fragmentid;        
+            this.window.fragmentid = fragmentid;        
         });
     }   
 }

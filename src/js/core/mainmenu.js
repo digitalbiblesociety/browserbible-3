@@ -17,7 +17,7 @@ class MainMenu {
         this.addWindowBtn = $(`<div class="sofia-header-button add"></div>`)
             .appendTo(this.parentNode)
             .on('click', (e) => {
-                this.app.addWindow(TextController,{textid: 'dbs:ENGESV', sectionid: 'Prov 3:5'});
+                this.app.addWindow(TextWindow,{textid: 'local:eng_web', fragmentid: new BibleReference('Prov 3:5').toVerseCode()});
             });        
     }
 }

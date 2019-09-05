@@ -1,12 +1,9 @@
 //import { Dispatcher } from '../core/dispatcher.js'
 
-class MapController extends Dispatcher {
-    constructor(id, window, data) {
-        super();
+class MapWindow extends Window {
+    constructor(id, parentNode, data, manager) {
+        super(id, parentNode, data, manager);
 
-        this.id = id;    
-        this.window = window;
-        this.data = data;
         this.googleApiKey = this.data.googleApiKey;
 
         this.latitude = 31.7833;
@@ -19,10 +16,10 @@ class MapController extends Dispatcher {
     createNodes() {
 
         this.mapContainer = $(`<div class="sofia-window-maps" id="${this.id}"></div>`)
-                .appendTo(this.window.body); 
+                .appendTo(this.body); 
 
         this.input = $(`<div class="sofia-text-chooser"><input class="sofia-header-input" type="text"></div>`)
-                .appendTo(this.window.header)
+                .appendTo(this.header)
                 .find('input');
 
 

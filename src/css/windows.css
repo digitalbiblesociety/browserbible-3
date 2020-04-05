@@ -6,7 +6,6 @@
     background: var(--window-bg-color);
     border-right: solid 1px var(--window-outline-color);
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -23,15 +22,16 @@ body.dragging, body.dragging * {
 .sofia-window.dragover .sofia-window-header {
     background:#d9e8ef;
 }
-
-
     .sofia-window-header {
         background: var(--window-header-bg-color);
-        border-bottom: solid 1px var(--window-header-outline-color);        
-        height: 50px;
-        flex: 0 0 auto;
+        --border-bottom: solid 1px var(--window-header-outline-color);        
+        height: 50px;        
         padding: 10px;
         display: flex;
+
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --box-shadow: 0 5px 10px rgba(0,0,0,0.2);        
+        clip-path: inset(0 0 -15px 0 );        
     }
     .sofia-window-header.dragging {
         background: rgb(115, 115, 173);
@@ -42,7 +42,7 @@ body.dragging, body.dragging * {
     .sofia-window-body {
         background: var(--window-body-bg-color);
         height: 100%;
-        flex: 1 1 100%;
+        flex: 2;
         display: flex;
     }
     .sofia-window-close-container {

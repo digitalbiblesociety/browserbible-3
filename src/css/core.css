@@ -33,19 +33,18 @@ body {
 }
 
     .sofia-header {
-        height: 60px;
-        flex: 0 0 auto;
+        height: 60px;        
         background: var(--app-header-bg-color);
         padding: 15px;
         text-align: right;
     }
     .sofia-main {        
-        background: black;
-        height: 100%;
+        background: black;      
         display: flex;
-        flex: 1 1 100%;
+        flex: 2;
         flex-wrap: nowrap;
         justify-content: space-between;
+        overflow: hidden; /* needed so the windows have a fixed height */
     }
         .close-container {
             position: absolute;

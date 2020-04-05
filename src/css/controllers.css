@@ -8,6 +8,8 @@
 }
 .sofia-text-controller-padding {
     padding: 10px 40px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 .sofia-text-controller-prev,
 .sofia-text-controller-next {

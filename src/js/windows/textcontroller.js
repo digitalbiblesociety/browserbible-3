@@ -28,7 +28,7 @@ class TextWindow extends Window {
     createNodes() {
         this.textNavigator = new TextNavigator(this);
         this.textChooser = new TextChooser(this, this.textid);        
-        this.textViewer = new TextViewerSingle(this);
+        this.textViewer = new TextViewerInfinite(this);
 
         this.textViewer.on('textscroll', (e) => this.onViewerScroll(e));
         this.textViewer.on('textnavigate', (e) => this.onViewerNavigate(e));
@@ -94,7 +94,7 @@ class TextNavigator extends Dispatcher{
     } 
 
     setLocation(fragmentid) {
-        let bibleRef = new BibleReference(fragmentid);
+        let bibleRef = new BibleReference(fragmentid);   
 
         this.input.val(bibleRef.toString());
     }
@@ -256,4 +256,261 @@ class TextViewerSingle extends Dispatcher{
             this.window.fragmentid = fragmentid;        
         });
     }   
+}
+
+class TextViewerInfinite extends Dispatcher{
+    constructor(window) {
+        super();
+
+        this.window = window;
+
+        this.ignoreScrollEvent = false;
+        this.speedLastPos = null;
+        this.speedDelta = 0;
+        this.speedInterval = null;       
+
+        this.createNodes();
+    }
+
+    createNodes() {
+        this.scroller = $(`<div class="sofia-text-controller-container"><div class="sofia-text-controller-padding"></div></div>`)
+                            .appendTo(this.window.body);  
+
+        this.content = this.scroller.find('div');  
+        
+        this.scroller.on('scroll', (e) => this.onScrollerScroll(e) );
+                            
+        this.loading = $(`<div class="sofia-text-controller-loading"></div>`)
+                            .appendTo(this.window.body);
+                            
+        this.on('textloading', () => { this.loading.show(); });
+        this.on('textloaded', () => { this.loading.hide(); });
+    }
+
+    onScrollerScroll(e) {
+        // find place
+        let fragmentid = this.getFragment();
+
+        if (!this.ignoreScrollEvent) {
+            this.trigger('textscroll', {fragmentid: fragmentid});
+        }
+
+        this.startSpeedTest();
+    }
+
+    startSpeedTest() {
+		if (this.speedInterval == null) {
+			this.speedInterval = setInterval(() => this.checkSpeed(), 100);
+		}
+	}
+	
+	stopSpeedTest() {
+		if (this.speedInterval != null) {
+			clearInterval(this.speedInterval);
+			this.speedInterval = null;
+		}
+	}
+	
+	checkSpeed() {			
+		let speedNewPos = this.scroller.scrollTop();
+		if (this.speedLastPos != null ) {
+			this.speedDelta = speedNewPos - this.speedLastPos;
+		}
+		this.speedLastPos = speedNewPos;
+		
+		if (this.speedDelta === 0) {
+			this.loadMore();
+			this.stopSpeedTest();			
+		}
+	}    
+
+    getFragment() {
+        let 
+            fragmentid = '',
+            fragmentSelector = '.v',            
+            topOfScroller = this.scroller.offset().top,
+            fragments = null;
+            
+            
+        fragments = this.content.find(fragmentSelector);
+
+        fragments.each(function(fragEl) {
+            let frag = $(this),
+                isFirstVisibleFragment = false;
+            
+            // is the top of the fragment at the top of the scroll pane
+			if (frag.offset().top - topOfScroller > -2) {
+                isFirstVisibleFragment = true;
+                
+                fragmentid = frag.attr('data-id');
+                // TODO: check for 
+				//let totalFragments = frag.parent().find('.' + fragmentid);
+            }
+
+            // when we find it, return false to stop looking
+            return !isFirstVisibleFragment;
+        });
+
+        return fragmentid;
+    }
+
+    fragmentToSection(fragmentid) {
+        let parts = fragmentid.split('_'),
+            sectionid = parts[0] + '_' + parts[1];
+        
+        return sectionid;
+    }
+
+    navigate(fragmentid) {
+        let chapterCode = this.fragmentToSection(fragmentid);
+        this.load(chapterCode, fragmentid, 'text');
+    }
+
+    load(sectionid, fragmentid, method) {
+    
+        console.log('request', sectionid, method);
+
+
+
+
+        this.trigger('textloading', {fragmentid: fragmentid});
+
+        textLoader.loadSection(this.window.textid, sectionid, (chapterHtml) => {
+            
+            console.log('loaded', sectionid, method);
+
+            // while inserting text
+            this.ignoreScrollEvent = true;
+
+            let chapterNode = $(chapterHtml);
+
+            switch (method) {
+                default:
+                case 'text':
+
+                    this.content.empty();
+                    this.content.append( chapterNode );  
+                    this.scrollTo(fragmentid);
+
+                    break;
+
+                case 'after':
+                    
+                    this.content.append( chapterNode );  
+                    //this.scrollTo(fragmentid);
+
+                    break; 
+                    
+                case 'before':
+
+                    let	scrollerTopBefore = this.scroller.scrollTop(),
+                        contentHeightBefore = this.content.height(),
+                        contentHeightAfter = null;                    
+
+                    this.content.append(chapterNode);
+                    contentHeightAfter = this.content.height();                    
+                    this.content.prepend(chapterNode);
+
+                    var heightDifference = contentHeightAfter - contentHeightBefore,
+                        newScrollerTop = scrollerTopBefore + heightDifference;
+
+                    this.scroller.scrollTop( Math.abs(newScrollerTop ));
+
+                    //this.scrollTo(fragmentid);
+
+                    break;                     
+            }
+
+            this.ignoreScrollEvent = false;
+
+            this.trigger('textloaded', {fragmentid: fragmentid});
+    
+            this.window.fragmentid = fragmentid; 
+            
+            //this.loadMore();
+            this.startSpeedTest();
+        });
+    } 
+    
+    scrollTo(fragmentid) {
+        if (fragmentid == '') {
+            return;
+        }
+
+        let contentAreaTop = this.content.offset().top,
+            verseNode = this.content.find(`[data-id="${fragmentid}"]`),
+            verseNodeTop = verseNode.offset().top;
+        
+        this.ignoreScrollEvent = true;
+        this.scroller.scrollTop(verseNodeTop - contentAreaTop);        
+        this.ignoreScrollEvent = false;
+    }
+
+    loadMore() {
+        
+        // measure top and bottom height
+		let
+			sectionid = null,
+			contentHeight = this.content.height(),
+			scrollerHeight = this.scroller.height(),
+            scrollerScrollTop = this.scroller.scrollTop(),
+            aboveTop = scrollerScrollTop,
+			sections = this.content.find( '.section' ),
+			sectionsCount = sections.length,			
+            belowBottom = contentHeight - scrollerHeight - scrollerScrollTop;
+
+		// only load if stopped
+		if (this.speedDelta == 0) {
+			
+			// add below
+			if (belowBottom < scrollerHeight*2) {
+                
+                // the last chapter (bottom)
+				sectionid = sections.last().attr( 'data-nextid' );
+	
+				if (sectionid != null && sectionid != 'null' && sections.length < 50) {
+					this.load(sectionid, sectionid, 'after');
+				}
+			}
+	
+			// add above
+			else if (aboveTop < scrollerHeight*2) {
+                
+                // the first chapter (top)
+				sectionid = sections.first().attr( 'data-previd' );
+	
+				if (sectionid != null && sectionid != 'null' && sections.length < 50) {
+					this.load(sectionid, sectionid, 'before');
+				}
+			}
+
+			// remove above
+			else if (aboveTop > scrollerHeight*15) {
+				
+				if (sectionsCount >= 2) {
+	
+					// we're removing the first section, so we need to find the second one and
+					// measure where its first child should appear
+					let first_node_of_second_section = sections.eq(1).children().first(),
+						first_node_offset_before = first_node_of_second_section.offset().top;
+	
+                    sections.first().remove();
+	
+					// remeasure where the first node appears and adjust the scrolltop
+					let
+						first_node_offset_after = first_node_of_second_section.offset().top,
+						offset_difference = first_node_offset_after - first_node_offset_before,
+						new_scrolltop = this.scroller.scrollTop(),
+						updated_scrolltop = new_scrolltop - Math.abs(offset_difference);
+	
+					this.scroller.scrollTop(updated_scrolltop);
+				}
+			}
+			
+			// remove below
+			else if (sectionsCount > 4 && belowBottom > scrollerHeight*15) {
+				this.content.find('.section').last().remove();
+			}
+		}
+    }
 }

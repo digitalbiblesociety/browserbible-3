@@ -32,8 +32,8 @@ class Window extends Dispatcher {
         this.body = $(`<div class="sofia-window-body"></div>`).appendTo(this.node);
 
         // buttons
-        this.closeBtn = $(`<div class="sofia-window-close-container"><span class="sofia-window-close-button"></span></div>`)
-		 			.appendTo(this.node)
+        this.closeBtn = $(`<div class="sofia-window-close-container"><button class="sofia-window-close-button" type="button"></buton></div>`)
+		 			.appendTo(this.header)
 		 			.find('.sofia-window-close-button')
 					.on('click', (e) => {                        
                         this.manager.removeWindow(this.id);

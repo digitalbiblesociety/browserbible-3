@@ -60,6 +60,7 @@ body {
             grid-auto-flow: column;
             overflow-x: auto;
             column-gap: 1px;
+            scroll-snap-type: x mandatory;
         }
     }
       

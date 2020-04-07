@@ -1,3 +1,4 @@
 content/texts/*.*
 !content/texts/README.md
 node_modules/
+app/content/texts/

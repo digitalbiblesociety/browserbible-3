@@ -92,7 +92,13 @@ body.dragging, body.dragging * {
     }
 
 .sofia-window-tab {
-    display: none;
+    /* display: none; */
+    background-color: var(--grayblue-400);
+    border: 0;
+    padding: 0.625rem 1.25rem;
+}
+.sofia-window-tab.active {
+    background-color: var(--grayblue-600);
 }
 
 

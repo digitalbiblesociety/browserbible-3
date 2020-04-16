@@ -39,11 +39,11 @@ class Window extends Dispatcher {
                         this.manager.removeWindow(this.id);
                     });
 
-        this.tab = $(`<div class="sofia-window-tab active">
+        this.tab = $(`<button class="sofia-window-tab active" type="button">
                         <div class="sofia-window-tab-inner">
                             <span class="sofia-window-tab-label-tab">Tab</span>
                         </div>
-                    </div>`).appendTo( $('body') );
+                    </button>`).appendTo( $('.sofia-windownav') );
 
         // make sure this one is selected
         this.node.siblings('.sofia-window').removeClass('active');

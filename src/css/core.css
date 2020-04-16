@@ -36,6 +36,12 @@ body {
         display: grid;
         grid-template-rows: 60px 1fr;
     }
+
+    @media (max-width: 600px) {
+        .sofia-container {
+            grid-template-rows: 60px auto 1fr;
+        }
+    }
 }
     .sofia-header {
         height: 60px;        
@@ -61,6 +67,19 @@ body {
             overflow-x: auto;
             column-gap: 1px;
             scroll-snap-type: x mandatory;
+        }
+    }
+
+    .sofia-windownav {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        .sofia-windownav {
+            background-color: var(--gray-300);
+            display: grid;
+            gap: 1px;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
         }
     }
       

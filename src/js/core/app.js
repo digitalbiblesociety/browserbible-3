@@ -30,6 +30,7 @@ class SofiaApp extends Dispatcher {
 
 		this.container = $(`<div class="sofia-container"></div>`).appendTo(this.root);
 		this.header = $(`<div class="sofia-header"></div>`).appendTo(this.container);
+		this.windownav = $(`<nav class="sofia-windownav"></div>`).appendTo(this.container);
 		this.main = $(`<div class="sofia-main"></div>`).appendTo(this.container);
 		this.footer = $(`<div class="sofia-footer"></div>`).appendTo(this.container);
     }

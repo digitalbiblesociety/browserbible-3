@@ -6,10 +6,10 @@ class DbsTextProvider {
 		this.textInfoListIsLoading = false;
 		this.textInfoListCallbacks = [];
 
-		this.providerName = 'dbs';
-        this.name = 'Digital Bible Society';
+		this.providerName = 'fcbh';
+        this.name = 'Faith Comes By Hearing';
 
-        this.dbsBaseUrl = (dbsBase && dbsBase != '') ? dbsBase : 'https://api.dbp4.org/';
+        this.dbsBaseUrl = (dbsBase && dbsBase != '') ? dbsBase : 'https://api.v4.dbpt.io/';
         this.dbsKey = dbsKey;
         this.includeList = includeList;
         this.excludeList = excludeList;

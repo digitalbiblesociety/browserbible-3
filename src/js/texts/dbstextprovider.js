@@ -68,14 +68,16 @@ class DbsTextProvider {
                     }						
                     
                     // get fileset ids
-                    let text_plain = dbs.filesets['dbp-prod'].filter(function(fileset) { return fileset.type == "text_plain";}),
-                        text_format = dbs.filesets['dbp-prod'].filter(function(fileset) { return fileset.type == "text_format";});
-                    
-                    if (dbs.name != null && (text_plain.length > 0 || text_format.length > 0)) {
+                    let filesets = dbs.filesets['dbp-prod'],
+                        text_plain = filesets.filter(this.selectFileset, {'type':'text_plain'}),
+                        text_format = filesets.filter(this.selectFileset, {'type':'text_format'}),
+                        audio_plain_nt = filesets.filter(this.selectFileset, {'type':'audio','size':'NT'}),
+                        audio_plain_ot = filesets.filter(this.selectFileset, {'type':'audio','size':'OT'}),
+                        audio_drama_nt = filesets.filter(this.selectFileset, {'type':'audio_drama','size':'NT'}),
+                        audio_drama_ot = filesets.filter(this.selectFileset, {'type':'audio_drama','size':'OT'});
 
-                        let dbsPlainTextId = text_plain.length > 0 ? text_plain[0].id : '',
-                            dbsFormatTextId = text_format.length > 0 ? text_format[0].id : '',
-                            sofiabible = {
+                    if (dbs.name != null && (text_plain.length > 0 || text_format.length > 0)) {
+                        let sofiabible = {
                                 type: 'bible',
                                 id: dbsFormatTextId !== '' ? dbsFormatTextId : dbsPlainTextId, // 'dbs-' + dbs.abbr, // this is sort of wrong?
                                 name: dbs.name,
@@ -84,8 +86,12 @@ class DbsTextProvider {
                                 lang: dbs.iso,
                                 langName: dbs.language,
                                 langNameEnglish: dbs.language,
-                                dbsPlainTextId: dbsPlainTextId,
-                                dbsFormatTextId: dbsFormatTextId,
+                                dbsPlainTextId: text_plain.shift()?.id,
+                                dbsFormatTextId: text_format.shift()?.id,
+                                dbsAudioDramaNT: audio_drama_nt.shift()?.id,
+                                dbsAudioDramaOT: audio_drama_ot.shift()?.id,
+                                dbsAudioPlainNT: audio_plain_nt.shift()?.id,
+                                dbsAudioPlainOT: audio_plain_ot.shift()?.id,
                                 dbs: dbs
                             };
                         this.textInfoList.push(sofiabible);
@@ -103,6 +109,10 @@ class DbsTextProvider {
             }
         });
 	}
+
+    selectFileset(fileset) {
+        return Object.keys(this).every((key) => fileset[key] === this[key]);
+    }
 
 	finish() {
 		this.textInfoListIsLoading = false;

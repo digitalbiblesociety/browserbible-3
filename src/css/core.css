@@ -31,14 +31,25 @@ body {
     display: flex;
     flex-direction: column;
 }
+@supports (display: grid) {
+    .sofia-container {
+        display: grid;
+        grid-template-rows: 60px 1fr;
+    }
 
+    @media (max-width: 600px) {
+        .sofia-container {
+            grid-template-rows: 60px auto 1fr;
+        }
+    }
+}
     .sofia-header {
         height: 60px;        
         background: var(--app-header-bg-color);
         padding: 15px;
         text-align: right;
     }
-    .sofia-main {        
+    .sofia-main {
         background: black;      
         display: flex;
         flex: 2;
@@ -46,6 +57,32 @@ body {
         justify-content: space-between;
         overflow: hidden; /* needed so the windows have a fixed height */
     }
+    @supports (display: grid) {
+        .sofia-main {
+            background: var(--window-outline-color);
+            justify-content: start;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+            grid-auto-flow: column;
+            overflow-x: auto;
+            column-gap: 1px;
+            scroll-snap-type: x mandatory;
+        }
+    }
+
+    .sofia-windownav {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        .sofia-windownav {
+            background-color: var(--gray-300);
+            display: grid;
+            gap: 1px;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        }
+    }
+      
         .close-container {
             position: absolute;
         }

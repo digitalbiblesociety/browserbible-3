@@ -32,18 +32,18 @@ class Window extends Dispatcher {
         this.body = $(`<div class="sofia-window-body"></div>`).appendTo(this.node);
 
         // buttons
-        this.closeBtn = $(`<div class="sofia-window-close-container"><span class="sofia-window-close-button"></span></div>`)
-		 			.appendTo(this.node)
+        this.closeBtn = $(`<div class="sofia-window-close-container"><button class="sofia-window-close-button" type="button"></buton></div>`)
+		 			.appendTo(this.header)
 		 			.find('.sofia-window-close-button')
 					.on('click', (e) => {                        
                         this.manager.removeWindow(this.id);
                     });
 
-        this.tab = $(`<div class="sofia-window-tab active">
+        this.tab = $(`<button class="sofia-window-tab active" type="button">
                         <div class="sofia-window-tab-inner">
                             <span class="sofia-window-tab-label-tab">Tab</span>
                         </div>
-                    </div>`).appendTo( $('body') );
+                    </button>`).appendTo( $('.sofia-windownav') );
 
         // make sure this one is selected
         this.node.siblings('.sofia-window').removeClass('active');

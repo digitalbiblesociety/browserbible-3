@@ -1,0 +1,12 @@
+{"langName": "English",
+ "name": "Treasury of Scripture Knowledge (Enhanced)",
+ "nameEnglish": "",
+ "abbr": "TSKe",
+ "id": "comm_eng_tske",
+ "lang": "eng",
+ "langNameEnglish": "English",
+ "generator": "tske",
+ "filename": "tske.txt",
+ "type":"commentary",
+ "stylesheet":"style.css",
+ "dir": "ltr"}

@@ -106,7 +106,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		currentChapter = null,
 		chaperIndex = 0,
 		rawText = fs.readFileSync( sourceFilePath , 'utf8'),
-		lines = rawText.split('\r'),
+		lines = rawText.split('\n'),
 		foundFirstVerse = false,
 
 		startBookIndex = 0,
@@ -125,7 +125,6 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		bookNames = {};
 
 	//console.log('lines:', lines.length);
-
 
 	// PROCESS BOOKS
 	for (var i=startBookIndex, il=endBookIndex; i<il; i++) {

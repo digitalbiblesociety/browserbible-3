@@ -126,10 +126,8 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 
 	//console.log('lines:', lines.length);
 
-	console.log(lines, sourceFilePath);
 	// PROCESS BOOKS
 	for (var i=startBookIndex, il=endBookIndex; i<il; i++) {
-		console.log(i);
 		var line = lines[i].trim(),
 			verseBookCode = line.substr(0,3),
 			dbsBookCode = bookMap[verseBookCode],

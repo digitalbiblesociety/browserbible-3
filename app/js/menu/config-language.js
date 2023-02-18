@@ -2,7 +2,7 @@ sofia.config = $.extend(sofia.config, {
 
 	enableLanguageSelector: true,
 
-	languageSelectorFallbackLang: 'en'
+	languageSelectorFallbackLang: 'ro'
 
 });
 

@@ -10,7 +10,7 @@ sofia.resources['ro'] = {
 				"settings": "Setări",
 				"tools": "Instrumente"
 			},
-			"reset": "restabili",
+			"reset": "Restabilire",
 			"themes": {
 				"default": "Normal",
 				"sepia": "Sepia",
@@ -18,9 +18,9 @@ sofia.resources['ro'] = {
 			},
 			"labels": {
 				"about": "Despre",
-				"addwindow": "Adăugați Window",
+				"addwindow": "Adăugă fereastră",
 				"settings": "Setări",
-				"feedback": "Feedback",
+				"feedback": "Opinie",
 				"options": "Opțiuni"
 			},
 			"feedback": {
@@ -28,27 +28,27 @@ sofia.resources['ro'] = {
 				"email": "E-mail",
 				"comments": "Comentariile tale",
 				"feature": "Caracteristică Sugestie",
-				"bug": "Bug Report",
+				"bug": "Raportează",
 				"other": "Alte",
 				"send": "Trimite",
-				"thankyou": "Va multumim pentru sugestiile dvs"
+				"thankyou": "Îți mulțumim pentru sugestii"
 			}
 		},
 		"plugins": {
 			"visualfilters": {
 				"button": "Filtre vizuale",
 				"title": "Filtre vizuale",
-				"newfilter": "Nou filtru",
-				"strongsnumber": "# Strong",
+				"newfilter": "Filtru nou",
+				"strongsnumber": "# Îngroșat",
 				"morphology": "Morfologie",
 				"style": "Stil"
 			},
 			"eng2p": {
-				"button": "Engleză două Persoana Plural",
-				"title": "Engleză a doua persoană Plural"
+				"button": "Engleză, persoana a 2-a plural",
+				"title": "Engleză, persoana a 2-a plural"
 			},
 			"lemmapopup": {
-				"findalloccurrences": "Găsi toate aparițiile (aproximativ __count__)"
+				"findalloccurrences": "Găsește toate ocurențele (aproximativ __număr__)"
 			}
 		},
 		"windows": {
@@ -76,8 +76,8 @@ sofia.resources['ro'] = {
 				"placeholder": "Căutare",
 				"button": "Căutare",
 				"results": "Rezultate",
-				"verses": "versete",
-				"options": "Optiuni de cautare"
+				"verses": "Versete",
+				"options": "Opțiuni de căutare"
 			},
 			"media": {
 				"label": "Mass-media"
@@ -87,16 +87,16 @@ sofia.resources['ro'] = {
 			},
 			"audio": {
 				"options": "Opțiuni audio",
-				"synctext": "Sync Text (beta)",
-				"autoplay": "Autoplay Următorul",
+				"synctext": "Sincronizare text (beta)",
+				"autoplay": "Autoredare următorul",
 				"drama": "Dramă",
-				"nondrama": "Non-Drama"
+				"nondrama": "Non-dramă"
 			},
 			"parallel": {
-				"label": "Parallels",
+				"label": "Paralele",
 				"loading": "Se încarcă ...",
-				"showall": "Arata tot",
-				"hideall": "Ascunde toate"
+				"showall": "Araăa tot",
+				"hideall": "Ascunde tot"
 			},
 			"comparison": {
 				"label": "Comparație"

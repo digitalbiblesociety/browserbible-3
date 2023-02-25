@@ -26,8 +26,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	}
 
 
-	var bookMap = { Gen: 'GN',
-  Exo: 'EX',
+	var bookMap = { Exo: 'EX',
   Lev: 'LV',
   Num: 'NU',
   Deu: 'DT',

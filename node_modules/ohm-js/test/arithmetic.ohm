@@ -1,0 +1,24 @@
+Arithmetic {
+
+  exp
+    = addExp
+
+  addExp
+    = addExp "+" mulExp  -- plus
+    | addExp "-" mulExp  -- minus
+    | mulExp
+
+  mulExp
+    = mulExp "*" priExp  -- times
+    | mulExp "/" priExp  -- divide
+    | priExp
+
+  priExp
+    = "(" exp ")"        -- paren
+    | number
+
+  number  (a number)
+    = number digit       -- rec
+    | digit
+
+}

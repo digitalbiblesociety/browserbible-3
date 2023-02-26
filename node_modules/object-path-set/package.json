@@ -1,0 +1,30 @@
+{
+  "name": "object-path-set",
+  "version": "0.0.1",
+  "description": "set values in javascript objects by specifying a path",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "skratchdot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skratchdot/object-path-set/issues"
+  },
+  "homepage": "https://github.com/skratchdot/object-path-set",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skratchdot/object-path-set"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.1",
+    "gulp-jshint": "^1.6.3",
+    "gulp-nodeunit": "0.0.5"
+  },
+  "keywords": [
+    "object",
+    "path",
+    "helper",
+    "deep"
+  ]
+}

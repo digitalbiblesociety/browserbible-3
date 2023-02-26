@@ -1,0 +1,33 @@
+{
+  "name": "xregexp",
+  "version": "3.2.0",
+  "description": "Extended regular expressions",
+  "homepage": "http://xregexp.com/",
+  "author": "Steven Levithan <steves_list@hotmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slevithan/xregexp.git"
+  },
+  "keywords": [
+    "regex",
+    "regexp",
+    "regular expression",
+    "unicode"
+  ],
+  "main": "xregexp-all.js",
+  "files": [
+    "src",
+    "xregexp-all.js",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "browserify src/index.js --standalone XRegExp > xregexp-all.js",
+    "pretest": "npm run build",
+    "test": "jasmine JASMINE_CONFIG_PATH=tests/jasmine.json"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "jasmine": "^2.5.3"
+  }
+}

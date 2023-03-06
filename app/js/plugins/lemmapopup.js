@@ -164,7 +164,7 @@ var LemmaPopupPlugin = function(app) {
 	function loadStrongsData(textid, strongsNumber, morphKey, morphType, langPrefix, langCode, l) {
 		sofia.ajax({
 			dataType: 'json',
-			url: 'content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
+			url: 'https://biblewebapp.com/study/content/lexicons/strongs/entries/' + langPrefix + strongsNumber + '.json',
 			success: function(data) {
 
 				var html = '<div class="lemma-word">' +

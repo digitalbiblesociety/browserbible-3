@@ -1,68 +1,133 @@
-Exo	Descriere
-Lev	Descriereeeee
-Num	Descriereeeee
-Deu	Descriereeeee
-Jos	Descriereeeee
-Jdg	Descriereeeee
-Rth	Descriereeeee
-1Sa	Descriereeeee
-2Sa	Descriereeeee
-1Ki	Descriereeeee
-2Ki	Descriereeeee
-1Ch	Descriereeeee
-2Ch	Descriereeeee
-Ezr	Descriereeeee
-Neh	Descriereeeee
-Est	Descriereeeee
-Job	Descriereeeee
-Psa	Descriereeeee
-Pro	Descriereeeee
-Ecc	Descriereeeee
-Son	Descriereeeee
-Isa	Descriereeeee
-Jer	Descriereeeee
-Lam	Descriereeeee
-Eze	Descriereeeee
-Dan	Descriereeeee
-Hos	Descriereeeee
-Amo	Descriereeeee
-Mic	Descriereeeee
-Joe	Descriereeeee
-Oba	Descriereeeee
-Jon	Descriereeeee
-Nah	Descriereeeee
-Hab	Descriereeeee
-Zep	Descriereeeee
-Hag	Descriereeeee
-Zec	Descriereeeee
-Mal	Descriereeeee
-Mat	Descriereeeee
-Mrk	
-Luk	
-Jhn	
-Act	
-Rom	
-1Co	
-2Co	
-Gal	
-Eph	
-Php	
-Col	
-1Th	
-2Th	
-1Ti	
-2Ti	
-Tit	
-Phm	
-Heb	
-Jas	
-1Pe	
-2Pe	
-1Jh	
-2Jh	
-3Jn	
-Jud	
-Rev	
+Gen	În curând comentariu...
+Exo	În curând comentariu...
+Lev	În curând comentariu...
+Num	În curând comentariu...
+Deu	În curând comentariu...
+Jos	În curând comentariu...
+Jdg	În curând comentariu...
+Rth	În curând comentariu...
+1Sa	În curând comentariu...
+2Sa	În curând comentariu...
+1Ki	În curând comentariu...
+2Ki	În curând comentariu...
+1Ch	În curând comentariu...
+2Ch	În curând comentariu...
+Ezr	În curând comentariu...
+Neh	În curând comentariu...
+Est	În curând comentariu...
+Job	În curând comentariu...
+Psa	În curând comentariu...
+Pro	În curând comentariu...
+Ecc	În curând comentariu...
+Son	În curând comentariu...
+Isa	În curând comentariu...
+Jer	În curând comentariu...
+Lam	În curând comentariu...
+Eze	În curând comentariu...
+Dan	În curând comentariu...
+Hos	În curând comentariu...
+Amo	În curând comentariu...
+Mic	În curând comentariu...
+Joe	În curând comentariu...
+Oba	În curând comentariu...
+Jon	În curând comentariu...
+Nah	În curând comentariu...
+Hab	În curând comentariu...
+Zep	În curând comentariu...
+Hag	În curând comentariu...
+Zec	În curând comentariu...
+Mal	În curând comentariu...
+Tob	În curând comentariu...
+Jdt	În curând comentariu...
+Bar	În curând comentariu...
+Lje	În curând comentariu...
+S3y	În curând comentariu...
+1Es	În curând comentariu...
+Wis	În curând comentariu...
+Sir	În curând comentariu...
+Sus	În curând comentariu...
+Bel	În curând comentariu...
+1Ma	În curând comentariu...
+2Ma	În curând comentariu...
+3Ma	În curând comentariu...
+Man	În curând comentariu...
+Mat	În curând comentariu...
+Mrk	În curând comentariu...
+Luk	În curând comentariu...
+Jhn	În curând comentariu...
+Act	În curând comentariu...
+Rom	În curând comentariu...
+1Co	În curând comentariu...
+2Co	În curând comentariu...
+Gal	În curând comentariu...
+Eph	În curând comentariu...
+Php	În curând comentariu...
+Col	În curând comentariu...
+1Th	În curând comentariu...
+2Th	În curând comentariu...
+1Ti	În curând comentariu...
+2Ti	În curând comentariu...
+Tit	În curând comentariu...
+Phm	În curând comentariu...
+Heb	În curând comentariu...
+Jas	În curând comentariu...
+1Pe	În curând comentariu...
+2Pe	În curând comentariu...
+1Jh	În curând comentariu...
+2Jh	În curând comentariu...
+3Jn	În curând comentariu...
+Jud	În curând comentariu...
+Rev	În curând comentariu...
+Gen 1:	În curând comentariu...
+Gen 2:	
+Gen 3:	
+Gen 4:	
+Gen 5:	
+Gen 6:	
+Gen 7:	
+Gen 8:	
+Gen 9:	
+Gen 10:	
+Gen 11:	
+Gen 12:	
+Gen 13:	
+Gen 14:	
+Gen 15:	
+Gen 16:	
+Gen 17:	
+Gen 18:	
+Gen 19:	
+Gen 20:	
+Gen 21:	
+Gen 22:	
+Gen 23:	
+Gen 24:	
+Gen 25:	
+Gen 26:	
+Gen 27:	
+Gen 28:	
+Gen 29:	
+Gen 30:	
+Gen 31:	
+Gen 32:	
+Gen 33:	
+Gen 34:	
+Gen 35:	
+Gen 36:	
+Gen 37:	
+Gen 38:	
+Gen 39:	
+Gen 40:	
+Gen 41:	
+Gen 42:	
+Gen 43:	
+Gen 44:	
+Gen 45:	
+Gen 46:	
+Gen 47:	
+Gen 48:	
+Gen 49:	
+Gen 50:	
 Exo 1:	
 Exo 2:	
 Exo 3:	
@@ -942,11 +1007,20 @@ Zec 14:
 Mal 1:	
 Mal 2:	
 Mal 3:	
-Lam 1:	
-Lam 2:	
-Lam 3:	
-Lam 4:	
-Lam 5:	
+Tob 1:	
+Jdt 1:	
+Bar 1:	În curând comentariu...
+Lje 1:	În curând comentariu...
+S3y 1:	În curând comentariu...
+1Es 1:	În curând comentariu...
+Wis 1:	În curând comentariu...
+Sir 1:	În curând comentariu...
+Sus 1:	În curând comentariu...
+Bel 1:	În curând comentariu...
+1Ma 1:	În curând comentariu...
+2Ma 1:	În curând comentariu...
+3Ma 1:	În curând comentariu...
+Man 1:	În curând comentariu...
 Mat 1:	Cartea neamului lui Iisus Hristos, zămislirea, numele şi naşterea
 Mat 2:	Magii de la Răsărit. Fuga în Egipt. Irod ucide pruncii,
 întoarcerea din Egipt şi aşezarea în Nazaret
@@ -1208,6 +1282,1539 @@ Rev 19:
 Rev 20:	
 Rev 21:	
 Rev 22:	
+Gen 1:1	<b>În curând comentariu...:</b>
+Gen 1:2	<b>:</b>
+Gen 1:3	<b>:</b>
+Gen 1:4	<b>:</b>
+Gen 1:5	<b>:</b>
+Gen 1:6	<b>:</b>
+Gen 1:7	<b>:</b>
+Gen 1:8	<b>:</b>
+Gen 1:9	<b>:</b>
+Gen 1:10	<b>:</b>
+Gen 1:11	<b>:</b>
+Gen 1:12	<b>:</b>
+Gen 1:13	<b>:</b>
+Gen 1:14	<b>:</b>
+Gen 1:15	<b>:</b>
+Gen 1:16	<b>:</b>
+Gen 1:17	<b>:</b>
+Gen 1:18	<b>:</b>
+Gen 1:19	<b>:</b>
+Gen 1:20	<b>:</b>
+Gen 1:21	<b>:</b>
+Gen 1:22	<b>:</b>
+Gen 1:23	<b>:</b>
+Gen 1:24	<b>:</b>
+Gen 1:25	<b>:</b>
+Gen 1:26	<b>:</b>
+Gen 1:27	<b>:</b>
+Gen 1:28	<b>:</b>
+Gen 1:29	<b>:</b>
+Gen 1:30	<b>:</b>
+Gen 1:31	<b>:</b>
+Gen 2:1	<b>:</b>
+Gen 2:2	<b>:</b>
+Gen 2:3	<b>:</b>
+Gen 2:4	<b>:</b>
+Gen 2:5	<b>:</b>
+Gen 2:6	<b>:</b>
+Gen 2:7	<b>:</b>
+Gen 2:8	<b>:</b>
+Gen 2:9	<b>:</b>
+Gen 2:10	<b>:</b>
+Gen 2:11	<b>:</b>
+Gen 2:12	<b>:</b>
+Gen 2:13	<b>:</b>
+Gen 2:14	<b>:</b>
+Gen 2:15	<b>:</b>
+Gen 2:16	<b>:</b>
+Gen 2:17	<b>:</b>
+Gen 2:18	<b>:</b>
+Gen 2:19	<b>:</b>
+Gen 2:20	<b>:</b>
+Gen 2:21	<b>:</b>
+Gen 2:22	<b>:</b>
+Gen 2:23	<b>:</b>
+Gen 2:24	<b>:</b>
+Gen 2:25	<b>:</b>
+Gen 3:1	<b>:</b>
+Gen 3:2	<b>:</b>
+Gen 3:3	<b>:</b>
+Gen 3:4	<b>:</b>
+Gen 3:5	<b>:</b>
+Gen 3:6	<b>:</b>
+Gen 3:7	<b>:</b>
+Gen 3:8	<b>:</b>
+Gen 3:9	<b>:</b>
+Gen 3:10	<b>:</b>
+Gen 3:11	<b>:</b>
+Gen 3:12	<b>:</b>
+Gen 3:13	<b>:</b>
+Gen 3:14	<b>:</b>
+Gen 3:15	<b>:</b>
+Gen 3:16	<b>:</b>
+Gen 3:17	<b>:</b>
+Gen 3:18	<b>:</b>
+Gen 3:19	<b>:</b>
+Gen 3:20	<b>:</b>
+Gen 3:21	<b>:</b>
+Gen 3:22	<b>:</b>
+Gen 3:23	<b>:</b>
+Gen 3:24	<b>:</b>
+Gen 4:1	<b>:</b>
+Gen 4:2	<b>:</b>
+Gen 4:3	<b>:</b>
+Gen 4:4	<b>:</b>
+Gen 4:5	<b>:</b>
+Gen 4:6	<b>:</b>
+Gen 4:7	<b>:</b>
+Gen 4:8	<b>:</b>
+Gen 4:9	<b>:</b>
+Gen 4:10	<b>:</b>
+Gen 4:11	<b>:</b>
+Gen 4:12	<b>:</b>
+Gen 4:13	<b>:</b>
+Gen 4:14	<b>:</b>
+Gen 4:15	<b>:</b>
+Gen 4:16	<b>:</b>
+Gen 4:17	<b>:</b>
+Gen 4:18	<b>:</b>
+Gen 4:19	<b>:</b>
+Gen 4:20	<b>:</b>
+Gen 4:21	<b>:</b>
+Gen 4:22	<b>:</b>
+Gen 4:23	<b>:</b>
+Gen 4:24	<b>:</b>
+Gen 4:25	<b>:</b>
+Gen 4:26	<b>:</b>
+Gen 5:1	<b>:</b>
+Gen 5:2	<b>:</b>
+Gen 5:3	<b>:</b>
+Gen 5:4	<b>:</b>
+Gen 5:5	<b>:</b>
+Gen 5:6	<b>:</b>
+Gen 5:7	<b>:</b>
+Gen 5:8	<b>:</b>
+Gen 5:9	<b>:</b>
+Gen 5:10	<b>:</b>
+Gen 5:11	<b>:</b>
+Gen 5:12	<b>:</b>
+Gen 5:13	<b>:</b>
+Gen 5:14	<b>:</b>
+Gen 5:15	<b>:</b>
+Gen 5:16	<b>:</b>
+Gen 5:17	<b>:</b>
+Gen 5:18	<b>:</b>
+Gen 5:19	<b>:</b>
+Gen 5:20	<b>:</b>
+Gen 5:21	<b>:</b>
+Gen 5:22	<b>:</b>
+Gen 5:23	<b>:</b>
+Gen 5:24	<b>:</b>
+Gen 5:25	<b>:</b>
+Gen 5:26	<b>:</b>
+Gen 5:27	<b>:</b>
+Gen 5:28	<b>:</b>
+Gen 5:29	<b>:</b>
+Gen 5:30	<b>:</b>
+Gen 5:31	<b>:</b>
+Gen 5:32	<b>:</b>
+Gen 6:1	<b>:</b>
+Gen 6:2	<b>:</b>
+Gen 6:3	<b>:</b>
+Gen 6:4	<b>:</b>
+Gen 6:5	<b>:</b>
+Gen 6:6	<b>:</b>
+Gen 6:7	<b>:</b>
+Gen 6:8	<b>:</b>
+Gen 6:9	<b>:</b>
+Gen 6:10	<b>:</b>
+Gen 6:11	<b>:</b>
+Gen 6:12	<b>:</b>
+Gen 6:13	<b>:</b>
+Gen 6:14	<b>:</b>
+Gen 6:15	<b>:</b>
+Gen 6:16	<b>:</b>
+Gen 6:17	<b>:</b>
+Gen 6:18	<b>:</b>
+Gen 6:19	<b>:</b>
+Gen 6:20	<b>:</b>
+Gen 6:21	<b>:</b>
+Gen 6:22	<b>:</b>
+Gen 7:1	<b>:</b>
+Gen 7:2	<b>:</b>
+Gen 7:3	<b>:</b>
+Gen 7:4	<b>:</b>
+Gen 7:5	<b>:</b>
+Gen 7:6	<b>:</b>
+Gen 7:7	<b>:</b>
+Gen 7:8	<b>:</b>
+Gen 7:9	<b>:</b>
+Gen 7:10	<b>:</b>
+Gen 7:11	<b>:</b>
+Gen 7:12	<b>:</b>
+Gen 7:13	<b>:</b>
+Gen 7:14	<b>:</b>
+Gen 7:15	<b>:</b>
+Gen 7:16	<b>:</b>
+Gen 7:17	<b>:</b>
+Gen 7:18	<b>:</b>
+Gen 7:19	<b>:</b>
+Gen 7:20	<b>:</b>
+Gen 7:21	<b>:</b>
+Gen 7:22	<b>:</b>
+Gen 7:23	<b>:</b>
+Gen 7:24	<b>:</b>
+Gen 8:1	<b>:</b>
+Gen 8:2	<b>:</b>
+Gen 8:3	<b>:</b>
+Gen 8:4	<b>:</b>
+Gen 8:5	<b>:</b>
+Gen 8:6	<b>:</b>
+Gen 8:7	<b>:</b>
+Gen 8:8	<b>:</b>
+Gen 8:9	<b>:</b>
+Gen 8:10	<b>:</b>
+Gen 8:11	<b>:</b>
+Gen 8:12	<b>:</b>
+Gen 8:13	<b>:</b>
+Gen 8:14	<b>:</b>
+Gen 8:15	<b>:</b>
+Gen 8:16	<b>:</b>
+Gen 8:17	<b>:</b>
+Gen 8:18	<b>:</b>
+Gen 8:19	<b>:</b>
+Gen 8:20	<b>:</b>
+Gen 8:21	<b>:</b>
+Gen 8:22	<b>:</b>
+Gen 9:1	<b>:</b>
+Gen 9:2	<b>:</b>
+Gen 9:3	<b>:</b>
+Gen 9:4	<b>:</b>
+Gen 9:5	<b>:</b>
+Gen 9:6	<b>:</b>
+Gen 9:7	<b>:</b>
+Gen 9:8	<b>:</b>
+Gen 9:9	<b>:</b>
+Gen 9:10	<b>:</b>
+Gen 9:11	<b>:</b>
+Gen 9:12	<b>:</b>
+Gen 9:13	<b>:</b>
+Gen 9:14	<b>:</b>
+Gen 9:15	<b>:</b>
+Gen 9:16	<b>:</b>
+Gen 9:17	<b>:</b>
+Gen 9:18	<b>:</b>
+Gen 9:19	<b>:</b>
+Gen 9:20	<b>:</b>
+Gen 9:21	<b>:</b>
+Gen 9:22	<b>:</b>
+Gen 9:23	<b>:</b>
+Gen 9:24	<b>:</b>
+Gen 9:25	<b>:</b>
+Gen 9:26	<b>:</b>
+Gen 9:27	<b>:</b>
+Gen 9:28	<b>:</b>
+Gen 9:29	<b>:</b>
+Gen 10:1	<b>:</b>
+Gen 10:2	<b>:</b>
+Gen 10:3	<b>:</b>
+Gen 10:4	<b>:</b>
+Gen 10:5	<b>:</b>
+Gen 10:6	<b>:</b>
+Gen 10:7	<b>:</b>
+Gen 10:8	<b>:</b>
+Gen 10:9	<b>:</b>
+Gen 10:10	<b>:</b>
+Gen 10:11	<b>:</b>
+Gen 10:12	<b>:</b>
+Gen 10:13	<b>:</b>
+Gen 10:14	<b>:</b>
+Gen 10:15	<b>:</b>
+Gen 10:16	<b>:</b>
+Gen 10:17	<b>:</b>
+Gen 10:18	<b>:</b>
+Gen 10:19	<b>:</b>
+Gen 10:20	<b>:</b>
+Gen 10:21	<b>:</b>
+Gen 10:22	<b>:</b>
+Gen 10:23	<b>:</b>
+Gen 10:24	<b>:</b>
+Gen 10:25	<b>:</b>
+Gen 10:26	<b>:</b>
+Gen 10:27	<b>:</b>
+Gen 10:28	<b>:</b>
+Gen 10:29	<b>:</b>
+Gen 10:30	<b>:</b>
+Gen 10:31	<b>:</b>
+Gen 10:32	<b>:</b>
+Gen 11:1	<b>:</b>
+Gen 11:2	<b>:</b>
+Gen 11:3	<b>:</b>
+Gen 11:4	<b>:</b>
+Gen 11:5	<b>:</b>
+Gen 11:6	<b>:</b>
+Gen 11:7	<b>:</b>
+Gen 11:8	<b>:</b>
+Gen 11:9	<b>:</b>
+Gen 11:10	<b>:</b>
+Gen 11:11	<b>:</b>
+Gen 11:12	<b>:</b>
+Gen 11:13	<b>:</b>
+Gen 11:14	<b>:</b>
+Gen 11:15	<b>:</b>
+Gen 11:16	<b>:</b>
+Gen 11:17	<b>:</b>
+Gen 11:18	<b>:</b>
+Gen 11:19	<b>:</b>
+Gen 11:20	<b>:</b>
+Gen 11:21	<b>:</b>
+Gen 11:22	<b>:</b>
+Gen 11:23	<b>:</b>
+Gen 11:24	<b>:</b>
+Gen 11:25	<b>:</b>
+Gen 11:26	<b>:</b>
+Gen 11:27	<b>:</b>
+Gen 11:28	<b>:</b>
+Gen 11:29	<b>:</b>
+Gen 11:30	<b>:</b>
+Gen 11:31	<b>:</b>
+Gen 11:32	<b>:</b>
+Gen 12:1	<b>:</b>
+Gen 12:2	<b>:</b>
+Gen 12:3	<b>:</b>
+Gen 12:4	<b>:</b>
+Gen 12:5	<b>:</b>
+Gen 12:6	<b>:</b>
+Gen 12:7	<b>:</b>
+Gen 12:8	<b>:</b>
+Gen 12:9	<b>:</b>
+Gen 12:10	<b>:</b>
+Gen 12:11	<b>:</b>
+Gen 12:12	<b>:</b>
+Gen 12:13	<b>:</b>
+Gen 12:14	<b>:</b>
+Gen 12:15	<b>:</b>
+Gen 12:16	<b>:</b>
+Gen 12:17	<b>:</b>
+Gen 12:18	<b>:</b>
+Gen 12:19	<b>:</b>
+Gen 12:20	<b>:</b>
+Gen 13:1	<b>:</b>
+Gen 13:2	<b>:</b>
+Gen 13:3	<b>:</b>
+Gen 13:4	<b>:</b>
+Gen 13:5	<b>:</b>
+Gen 13:6	<b>:</b>
+Gen 13:7	<b>:</b>
+Gen 13:8	<b>:</b>
+Gen 13:9	<b>:</b>
+Gen 13:10	<b>:</b>
+Gen 13:11	<b>:</b>
+Gen 13:12	<b>:</b>
+Gen 13:13	<b>:</b>
+Gen 13:14	<b>:</b>
+Gen 13:15	<b>:</b>
+Gen 13:16	<b>:</b>
+Gen 13:17	<b>:</b>
+Gen 13:18	<b>:</b>
+Gen 14:1	<b>:</b>
+Gen 14:2	<b>:</b>
+Gen 14:3	<b>:</b>
+Gen 14:4	<b>:</b>
+Gen 14:5	<b>:</b>
+Gen 14:6	<b>:</b>
+Gen 14:7	<b>:</b>
+Gen 14:8	<b>:</b>
+Gen 14:9	<b>:</b>
+Gen 14:10	<b>:</b>
+Gen 14:11	<b>:</b>
+Gen 14:12	<b>:</b>
+Gen 14:13	<b>:</b>
+Gen 14:14	<b>:</b>
+Gen 14:15	<b>:</b>
+Gen 14:16	<b>:</b>
+Gen 14:17	<b>:</b>
+Gen 14:18	<b>:</b>
+Gen 14:19	<b>:</b>
+Gen 14:20	<b>:</b>
+Gen 14:21	<b>:</b>
+Gen 14:22	<b>:</b>
+Gen 14:23	<b>:</b>
+Gen 14:24	<b>:</b>
+Gen 15:1	<b>:</b>
+Gen 15:2	<b>:</b>
+Gen 15:3	<b>:</b>
+Gen 15:4	<b>:</b>
+Gen 15:5	<b>:</b>
+Gen 15:6	<b>:</b>
+Gen 15:7	<b>:</b>
+Gen 15:8	<b>:</b>
+Gen 15:9	<b>:</b>
+Gen 15:10	<b>:</b>
+Gen 15:11	<b>:</b>
+Gen 15:12	<b>:</b>
+Gen 15:13	<b>:</b>
+Gen 15:14	<b>:</b>
+Gen 15:15	<b>:</b>
+Gen 15:16	<b>:</b>
+Gen 15:17	<b>:</b>
+Gen 15:18	<b>:</b>
+Gen 15:19	<b>:</b>
+Gen 15:20	<b>:</b>
+Gen 15:21	<b>:</b>
+Gen 16:1	<b>:</b>
+Gen 16:2	<b>:</b>
+Gen 16:3	<b>:</b>
+Gen 16:4	<b>:</b>
+Gen 16:5	<b>:</b>
+Gen 16:6	<b>:</b>
+Gen 16:7	<b>:</b>
+Gen 16:8	<b>:</b>
+Gen 16:9	<b>:</b>
+Gen 16:10	<b>:</b>
+Gen 16:11	<b>:</b>
+Gen 16:12	<b>:</b>
+Gen 16:13	<b>:</b>
+Gen 16:14	<b>:</b>
+Gen 16:15	<b>:</b>
+Gen 16:16	<b>:</b>
+Gen 17:1	<b>:</b>
+Gen 17:2	<b>:</b>
+Gen 17:3	<b>:</b>
+Gen 17:4	<b>:</b>
+Gen 17:5	<b>:</b>
+Gen 17:6	<b>:</b>
+Gen 17:7	<b>:</b>
+Gen 17:8	<b>:</b>
+Gen 17:9	<b>:</b>
+Gen 17:10	<b>:</b>
+Gen 17:11	<b>:</b>
+Gen 17:12	<b>:</b>
+Gen 17:13	<b>:</b>
+Gen 17:14	<b>:</b>
+Gen 17:15	<b>:</b>
+Gen 17:16	<b>:</b>
+Gen 17:17	<b>:</b>
+Gen 17:18	<b>:</b>
+Gen 17:19	<b>:</b>
+Gen 17:20	<b>:</b>
+Gen 17:21	<b>:</b>
+Gen 17:22	<b>:</b>
+Gen 17:23	<b>:</b>
+Gen 17:24	<b>:</b>
+Gen 17:25	<b>:</b>
+Gen 17:26	<b>:</b>
+Gen 17:27	<b>:</b>
+Gen 18:1	<b>:</b>
+Gen 18:2	<b>:</b>
+Gen 18:3	<b>:</b>
+Gen 18:4	<b>:</b>
+Gen 18:5	<b>:</b>
+Gen 18:6	<b>:</b>
+Gen 18:7	<b>:</b>
+Gen 18:8	<b>:</b>
+Gen 18:9	<b>:</b>
+Gen 18:10	<b>:</b>
+Gen 18:11	<b>:</b>
+Gen 18:12	<b>:</b>
+Gen 18:13	<b>:</b>
+Gen 18:14	<b>:</b>
+Gen 18:15	<b>:</b>
+Gen 18:16	<b>:</b>
+Gen 18:17	<b>:</b>
+Gen 18:18	<b>:</b>
+Gen 18:19	<b>:</b>
+Gen 18:20	<b>:</b>
+Gen 18:21	<b>:</b>
+Gen 18:22	<b>:</b>
+Gen 18:23	<b>:</b>
+Gen 18:24	<b>:</b>
+Gen 18:25	<b>:</b>
+Gen 18:26	<b>:</b>
+Gen 18:27	<b>:</b>
+Gen 18:28	<b>:</b>
+Gen 18:29	<b>:</b>
+Gen 18:30	<b>:</b>
+Gen 18:31	<b>:</b>
+Gen 18:32	<b>:</b>
+Gen 18:33	<b>:</b>
+Gen 19:1	<b>:</b>
+Gen 19:2	<b>:</b>
+Gen 19:3	<b>:</b>
+Gen 19:4	<b>:</b>
+Gen 19:5	<b>:</b>
+Gen 19:6	<b>:</b>
+Gen 19:7	<b>:</b>
+Gen 19:8	<b>:</b>
+Gen 19:9	<b>:</b>
+Gen 19:10	<b>:</b>
+Gen 19:11	<b>:</b>
+Gen 19:12	<b>:</b>
+Gen 19:13	<b>:</b>
+Gen 19:14	<b>:</b>
+Gen 19:15	<b>:</b>
+Gen 19:16	<b>:</b>
+Gen 19:17	<b>:</b>
+Gen 19:18	<b>:</b>
+Gen 19:19	<b>:</b>
+Gen 19:20	<b>:</b>
+Gen 19:21	<b>:</b>
+Gen 19:22	<b>:</b>
+Gen 19:23	<b>:</b>
+Gen 19:24	<b>:</b>
+Gen 19:25	<b>:</b>
+Gen 19:26	<b>:</b>
+Gen 19:27	<b>:</b>
+Gen 19:28	<b>:</b>
+Gen 19:29	<b>:</b>
+Gen 19:30	<b>:</b>
+Gen 19:31	<b>:</b>
+Gen 19:32	<b>:</b>
+Gen 19:33	<b>:</b>
+Gen 19:34	<b>:</b>
+Gen 19:35	<b>:</b>
+Gen 19:36	<b>:</b>
+Gen 19:37	<b>:</b>
+Gen 19:38	<b>:</b>
+Gen 20:1	<b>:</b>
+Gen 20:2	<b>:</b>
+Gen 20:3	<b>:</b>
+Gen 20:4	<b>:</b>
+Gen 20:5	<b>:</b>
+Gen 20:6	<b>:</b>
+Gen 20:7	<b>:</b>
+Gen 20:8	<b>:</b>
+Gen 20:9	<b>:</b>
+Gen 20:10	<b>:</b>
+Gen 20:11	<b>:</b>
+Gen 20:12	<b>:</b>
+Gen 20:13	<b>:</b>
+Gen 20:14	<b>:</b>
+Gen 20:15	<b>:</b>
+Gen 20:16	<b>:</b>
+Gen 20:17	<b>:</b>
+Gen 20:18	<b>:</b>
+Gen 21:1	<b>:</b>
+Gen 21:2	<b>:</b>
+Gen 21:3	<b>:</b>
+Gen 21:4	<b>:</b>
+Gen 21:5	<b>:</b>
+Gen 21:6	<b>:</b>
+Gen 21:7	<b>:</b>
+Gen 21:8	<b>:</b>
+Gen 21:9	<b>:</b>
+Gen 21:10	<b>:</b>
+Gen 21:11	<b>:</b>
+Gen 21:12	<b>:</b>
+Gen 21:13	<b>:</b>
+Gen 21:14	<b>:</b>
+Gen 21:15	<b>:</b>
+Gen 21:16	<b>:</b>
+Gen 21:17	<b>:</b>
+Gen 21:18	<b>:</b>
+Gen 21:19	<b>:</b>
+Gen 21:20	<b>:</b>
+Gen 21:21	<b>:</b>
+Gen 21:22	<b>:</b>
+Gen 21:23	<b>:</b>
+Gen 21:24	<b>:</b>
+Gen 21:25	<b>:</b>
+Gen 21:26	<b>:</b>
+Gen 21:27	<b>:</b>
+Gen 21:28	<b>:</b>
+Gen 21:29	<b>:</b>
+Gen 21:30	<b>:</b>
+Gen 21:31	<b>:</b>
+Gen 21:32	<b>:</b>
+Gen 21:33	<b>:</b>
+Gen 21:34	<b>:</b>
+Gen 22:1	<b>:</b>
+Gen 22:2	<b>:</b>
+Gen 22:3	<b>:</b>
+Gen 22:4	<b>:</b>
+Gen 22:5	<b>:</b>
+Gen 22:6	<b>:</b>
+Gen 22:7	<b>:</b>
+Gen 22:8	<b>:</b>
+Gen 22:9	<b>:</b>
+Gen 22:10	<b>:</b>
+Gen 22:11	<b>:</b>
+Gen 22:12	<b>:</b>
+Gen 22:13	<b>:</b>
+Gen 22:14	<b>:</b>
+Gen 22:15	<b>:</b>
+Gen 22:16	<b>:</b>
+Gen 22:17	<b>:</b>
+Gen 22:18	<b>:</b>
+Gen 22:19	<b>:</b>
+Gen 22:20	<b>:</b>
+Gen 22:21	<b>:</b>
+Gen 22:22	<b>:</b>
+Gen 22:23	<b>:</b>
+Gen 22:24	<b>:</b>
+Gen 23:1	<b>:</b>
+Gen 23:2	<b>:</b>
+Gen 23:3	<b>:</b>
+Gen 23:4	<b>:</b>
+Gen 23:5	<b>:</b>
+Gen 23:6	<b>:</b>
+Gen 23:7	<b>:</b>
+Gen 23:8	<b>:</b>
+Gen 23:9	<b>:</b>
+Gen 23:10	<b>:</b>
+Gen 23:11	<b>:</b>
+Gen 23:12	<b>:</b>
+Gen 23:13	<b>:</b>
+Gen 23:14	<b>:</b>
+Gen 23:15	<b>:</b>
+Gen 23:16	<b>:</b>
+Gen 23:17	<b>:</b>
+Gen 23:18	<b>:</b>
+Gen 23:19	<b>:</b>
+Gen 23:20	<b>:</b>
+Gen 24:1	<b>:</b>
+Gen 24:2	<b>:</b>
+Gen 24:3	<b>:</b>
+Gen 24:4	<b>:</b>
+Gen 24:5	<b>:</b>
+Gen 24:6	<b>:</b>
+Gen 24:7	<b>:</b>
+Gen 24:8	<b>:</b>
+Gen 24:9	<b>:</b>
+Gen 24:10	<b>:</b>
+Gen 24:11	<b>:</b>
+Gen 24:12	<b>:</b>
+Gen 24:13	<b>:</b>
+Gen 24:14	<b>:</b>
+Gen 24:15	<b>:</b>
+Gen 24:16	<b>:</b>
+Gen 24:17	<b>:</b>
+Gen 24:18	<b>:</b>
+Gen 24:19	<b>:</b>
+Gen 24:20	<b>:</b>
+Gen 24:21	<b>:</b>
+Gen 24:22	<b>:</b>
+Gen 24:23	<b>:</b>
+Gen 24:24	<b>:</b>
+Gen 24:25	<b>:</b>
+Gen 24:26	<b>:</b>
+Gen 24:27	<b>:</b>
+Gen 24:28	<b>:</b>
+Gen 24:29	<b>:</b>
+Gen 24:30	<b>:</b>
+Gen 24:31	<b>:</b>
+Gen 24:32	<b>:</b>
+Gen 24:33	<b>:</b>
+Gen 24:34	<b>:</b>
+Gen 24:35	<b>:</b>
+Gen 24:36	<b>:</b>
+Gen 24:37	<b>:</b>
+Gen 24:38	<b>:</b>
+Gen 24:39	<b>:</b>
+Gen 24:40	<b>:</b>
+Gen 24:41	<b>:</b>
+Gen 24:42	<b>:</b>
+Gen 24:43	<b>:</b>
+Gen 24:44	<b>:</b>
+Gen 24:45	<b>:</b>
+Gen 24:46	<b>:</b>
+Gen 24:47	<b>:</b>
+Gen 24:48	<b>:</b>
+Gen 24:49	<b>:</b>
+Gen 24:50	<b>:</b>
+Gen 24:51	<b>:</b>
+Gen 24:52	<b>:</b>
+Gen 24:53	<b>:</b>
+Gen 24:54	<b>:</b>
+Gen 24:55	<b>:</b>
+Gen 24:56	<b>:</b>
+Gen 24:57	<b>:</b>
+Gen 24:58	<b>:</b>
+Gen 24:59	<b>:</b>
+Gen 24:60	<b>:</b>
+Gen 24:61	<b>:</b>
+Gen 24:62	<b>:</b>
+Gen 24:63	<b>:</b>
+Gen 24:64	<b>:</b>
+Gen 24:65	<b>:</b>
+Gen 24:66	<b>:</b>
+Gen 24:67	<b>:</b>
+Gen 25:1	<b>:</b>
+Gen 25:2	<b>:</b>
+Gen 25:3	<b>:</b>
+Gen 25:4	<b>:</b>
+Gen 25:5	<b>:</b>
+Gen 25:6	<b>:</b>
+Gen 25:7	<b>:</b>
+Gen 25:8	<b>:</b>
+Gen 25:9	<b>:</b>
+Gen 25:10	<b>:</b>
+Gen 25:11	<b>:</b>
+Gen 25:12	<b>:</b>
+Gen 25:13	<b>:</b>
+Gen 25:14	<b>:</b>
+Gen 25:15	<b>:</b>
+Gen 25:16	<b>:</b>
+Gen 25:17	<b>:</b>
+Gen 25:18	<b>:</b>
+Gen 25:19	<b>:</b>
+Gen 25:20	<b>:</b>
+Gen 25:21	<b>:</b>
+Gen 25:22	<b>:</b>
+Gen 25:23	<b>:</b>
+Gen 25:24	<b>:</b>
+Gen 25:25	<b>:</b>
+Gen 25:26	<b>:</b>
+Gen 25:27	<b>:</b>
+Gen 25:28	<b>:</b>
+Gen 25:29	<b>:</b>
+Gen 25:30	<b>:</b>
+Gen 25:31	<b>:</b>
+Gen 25:32	<b>:</b>
+Gen 25:33	<b>:</b>
+Gen 25:34	<b>:</b>
+Gen 26:1	<b>:</b>
+Gen 26:2	<b>:</b>
+Gen 26:3	<b>:</b>
+Gen 26:4	<b>:</b>
+Gen 26:5	<b>:</b>
+Gen 26:6	<b>:</b>
+Gen 26:7	<b>:</b>
+Gen 26:8	<b>:</b>
+Gen 26:9	<b>:</b>
+Gen 26:10	<b>:</b>
+Gen 26:11	<b>:</b>
+Gen 26:12	<b>:</b>
+Gen 26:13	<b>:</b>
+Gen 26:14	<b>:</b>
+Gen 26:15	<b>:</b>
+Gen 26:16	<b>:</b>
+Gen 26:17	<b>:</b>
+Gen 26:18	<b>:</b>
+Gen 26:19	<b>:</b>
+Gen 26:20	<b>:</b>
+Gen 26:21	<b>:</b>
+Gen 26:22	<b>:</b>
+Gen 26:23	<b>:</b>
+Gen 26:24	<b>:</b>
+Gen 26:25	<b>:</b>
+Gen 26:26	<b>:</b>
+Gen 26:27	<b>:</b>
+Gen 26:28	<b>:</b>
+Gen 26:29	<b>:</b>
+Gen 26:30	<b>:</b>
+Gen 26:31	<b>:</b>
+Gen 26:32	<b>:</b>
+Gen 26:33	<b>:</b>
+Gen 26:34	<b>:</b>
+Gen 26:35	<b>:</b>
+Gen 27:1	<b>:</b>
+Gen 27:2	<b>:</b>
+Gen 27:3	<b>:</b>
+Gen 27:4	<b>:</b>
+Gen 27:5	<b>:</b>
+Gen 27:6	<b>:</b>
+Gen 27:7	<b>:</b>
+Gen 27:8	<b>:</b>
+Gen 27:9	<b>:</b>
+Gen 27:10	<b>:</b>
+Gen 27:11	<b>:</b>
+Gen 27:12	<b>:</b>
+Gen 27:13	<b>:</b>
+Gen 27:14	<b>:</b>
+Gen 27:15	<b>:</b>
+Gen 27:16	<b>:</b>
+Gen 27:17	<b>:</b>
+Gen 27:18	<b>:</b>
+Gen 27:19	<b>:</b>
+Gen 27:20	<b>:</b>
+Gen 27:21	<b>:</b>
+Gen 27:22	<b>:</b>
+Gen 27:23	<b>:</b>
+Gen 27:24	<b>:</b>
+Gen 27:25	<b>:</b>
+Gen 27:26	<b>:</b>
+Gen 27:27	<b>:</b>
+Gen 27:28	<b>:</b>
+Gen 27:29	<b>:</b>
+Gen 27:30	<b>:</b>
+Gen 27:31	<b>:</b>
+Gen 27:32	<b>:</b>
+Gen 27:33	<b>:</b>
+Gen 27:34	<b>:</b>
+Gen 27:35	<b>:</b>
+Gen 27:36	<b>:</b>
+Gen 27:37	<b>:</b>
+Gen 27:38	<b>:</b>
+Gen 27:39	<b>:</b>
+Gen 27:40	<b>:</b>
+Gen 27:41	<b>:</b>
+Gen 27:42	<b>:</b>
+Gen 27:43	<b>:</b>
+Gen 27:44	<b>:</b>
+Gen 27:45	<b>:</b>
+Gen 27:46	<b>:</b>
+Gen 28:1	<b>:</b>
+Gen 28:2	<b>:</b>
+Gen 28:3	<b>:</b>
+Gen 28:4	<b>:</b>
+Gen 28:5	<b>:</b>
+Gen 28:6	<b>:</b>
+Gen 28:7	<b>:</b>
+Gen 28:8	<b>:</b>
+Gen 28:9	<b>:</b>
+Gen 28:10	<b>:</b>
+Gen 28:11	<b>:</b>
+Gen 28:12	<b>:</b>
+Gen 28:13	<b>:</b>
+Gen 28:14	<b>:</b>
+Gen 28:15	<b>:</b>
+Gen 28:16	<b>:</b>
+Gen 28:17	<b>:</b>
+Gen 28:18	<b>:</b>
+Gen 28:19	<b>:</b>
+Gen 28:20	<b>:</b>
+Gen 28:21	<b>:</b>
+Gen 28:22	<b>:</b>
+Gen 29:1	<b>:</b>
+Gen 29:2	<b>:</b>
+Gen 29:3	<b>:</b>
+Gen 29:4	<b>:</b>
+Gen 29:5	<b>:</b>
+Gen 29:6	<b>:</b>
+Gen 29:7	<b>:</b>
+Gen 29:8	<b>:</b>
+Gen 29:9	<b>:</b>
+Gen 29:10	<b>:</b>
+Gen 29:11	<b>:</b>
+Gen 29:12	<b>:</b>
+Gen 29:13	<b>:</b>
+Gen 29:14	<b>:</b>
+Gen 29:15	<b>:</b>
+Gen 29:16	<b>:</b>
+Gen 29:17	<b>:</b>
+Gen 29:18	<b>:</b>
+Gen 29:19	<b>:</b>
+Gen 29:20	<b>:</b>
+Gen 29:21	<b>:</b>
+Gen 29:22	<b>:</b>
+Gen 29:23	<b>:</b>
+Gen 29:24	<b>:</b>
+Gen 29:25	<b>:</b>
+Gen 29:26	<b>:</b>
+Gen 29:27	<b>:</b>
+Gen 29:28	<b>:</b>
+Gen 29:29	<b>:</b>
+Gen 29:30	<b>:</b>
+Gen 29:31	<b>:</b>
+Gen 29:32	<b>:</b>
+Gen 29:33	<b>:</b>
+Gen 29:34	<b>:</b>
+Gen 29:35	<b>:</b>
+Gen 30:1	<b>:</b>
+Gen 30:2	<b>:</b>
+Gen 30:3	<b>:</b>
+Gen 30:4	<b>:</b>
+Gen 30:5	<b>:</b>
+Gen 30:6	<b>:</b>
+Gen 30:7	<b>:</b>
+Gen 30:8	<b>:</b>
+Gen 30:9	<b>:</b>
+Gen 30:10	<b>:</b>
+Gen 30:11	<b>:</b>
+Gen 30:12	<b>:</b>
+Gen 30:13	<b>:</b>
+Gen 30:14	<b>:</b>
+Gen 30:15	<b>:</b>
+Gen 30:16	<b>:</b>
+Gen 30:17	<b>:</b>
+Gen 30:18	<b>:</b>
+Gen 30:19	<b>:</b>
+Gen 30:20	<b>:</b>
+Gen 30:21	<b>:</b>
+Gen 30:22	<b>:</b>
+Gen 30:23	<b>:</b>
+Gen 30:24	<b>:</b>
+Gen 30:25	<b>:</b>
+Gen 30:26	<b>:</b>
+Gen 30:27	<b>:</b>
+Gen 30:28	<b>:</b>
+Gen 30:29	<b>:</b>
+Gen 30:30	<b>:</b>
+Gen 30:31	<b>:</b>
+Gen 30:32	<b>:</b>
+Gen 30:33	<b>:</b>
+Gen 30:34	<b>:</b>
+Gen 30:35	<b>:</b>
+Gen 30:36	<b>:</b>
+Gen 30:37	<b>:</b>
+Gen 30:38	<b>:</b>
+Gen 30:39	<b>:</b>
+Gen 30:40	<b>:</b>
+Gen 30:41	<b>:</b>
+Gen 30:42	<b>:</b>
+Gen 30:43	<b>:</b>
+Gen 31:1	<b>:</b>
+Gen 31:2	<b>:</b>
+Gen 31:3	<b>:</b>
+Gen 31:4	<b>:</b>
+Gen 31:5	<b>:</b>
+Gen 31:6	<b>:</b>
+Gen 31:7	<b>:</b>
+Gen 31:8	<b>:</b>
+Gen 31:9	<b>:</b>
+Gen 31:10	<b>:</b>
+Gen 31:11	<b>:</b>
+Gen 31:12	<b>:</b>
+Gen 31:13	<b>:</b>
+Gen 31:14	<b>:</b>
+Gen 31:15	<b>:</b>
+Gen 31:16	<b>:</b>
+Gen 31:17	<b>:</b>
+Gen 31:18	<b>:</b>
+Gen 31:19	<b>:</b>
+Gen 31:20	<b>:</b>
+Gen 31:21	<b>:</b>
+Gen 31:22	<b>:</b>
+Gen 31:23	<b>:</b>
+Gen 31:24	<b>:</b>
+Gen 31:25	<b>:</b>
+Gen 31:26	<b>:</b>
+Gen 31:27	<b>:</b>
+Gen 31:28	<b>:</b>
+Gen 31:29	<b>:</b>
+Gen 31:30	<b>:</b>
+Gen 31:31	<b>:</b>
+Gen 31:32	<b>:</b>
+Gen 31:33	<b>:</b>
+Gen 31:34	<b>:</b>
+Gen 31:35	<b>:</b>
+Gen 31:36	<b>:</b>
+Gen 31:37	<b>:</b>
+Gen 31:38	<b>:</b>
+Gen 31:39	<b>:</b>
+Gen 31:40	<b>:</b>
+Gen 31:41	<b>:</b>
+Gen 31:42	<b>:</b>
+Gen 31:43	<b>:</b>
+Gen 31:44	<b>:</b>
+Gen 31:45	<b>:</b>
+Gen 31:46	<b>:</b>
+Gen 31:47	<b>:</b>
+Gen 31:48	<b>:</b>
+Gen 31:49	<b>:</b>
+Gen 31:50	<b>:</b>
+Gen 31:51	<b>:</b>
+Gen 31:52	<b>:</b>
+Gen 31:53	<b>:</b>
+Gen 31:54	<b>:</b>
+Gen 31:55	<b>:</b>
+Gen 32:1	<b>:</b>
+Gen 32:2	<b>:</b>
+Gen 32:3	<b>:</b>
+Gen 32:4	<b>:</b>
+Gen 32:5	<b>:</b>
+Gen 32:6	<b>:</b>
+Gen 32:7	<b>:</b>
+Gen 32:8	<b>:</b>
+Gen 32:9	<b>:</b>
+Gen 32:10	<b>:</b>
+Gen 32:11	<b>:</b>
+Gen 32:12	<b>:</b>
+Gen 32:13	<b>:</b>
+Gen 32:14	<b>:</b>
+Gen 32:15	<b>:</b>
+Gen 32:16	<b>:</b>
+Gen 32:17	<b>:</b>
+Gen 32:18	<b>:</b>
+Gen 32:19	<b>:</b>
+Gen 32:20	<b>:</b>
+Gen 32:21	<b>:</b>
+Gen 32:22	<b>:</b>
+Gen 32:23	<b>:</b>
+Gen 32:24	<b>:</b>
+Gen 32:25	<b>:</b>
+Gen 32:26	<b>:</b>
+Gen 32:27	<b>:</b>
+Gen 32:28	<b>:</b>
+Gen 32:29	<b>:</b>
+Gen 32:30	<b>:</b>
+Gen 32:31	<b>:</b>
+Gen 32:32	<b>:</b>
+Gen 33:1	<b>:</b>
+Gen 33:2	<b>:</b>
+Gen 33:3	<b>:</b>
+Gen 33:4	<b>:</b>
+Gen 33:5	<b>:</b>
+Gen 33:6	<b>:</b>
+Gen 33:7	<b>:</b>
+Gen 33:8	<b>:</b>
+Gen 33:9	<b>:</b>
+Gen 33:10	<b>:</b>
+Gen 33:11	<b>:</b>
+Gen 33:12	<b>:</b>
+Gen 33:13	<b>:</b>
+Gen 33:14	<b>:</b>
+Gen 33:15	<b>:</b>
+Gen 33:16	<b>:</b>
+Gen 33:17	<b>:</b>
+Gen 33:18	<b>:</b>
+Gen 33:19	<b>:</b>
+Gen 33:20	<b>:</b>
+Gen 34:1	<b>:</b>
+Gen 34:2	<b>:</b>
+Gen 34:3	<b>:</b>
+Gen 34:4	<b>:</b>
+Gen 34:5	<b>:</b>
+Gen 34:6	<b>:</b>
+Gen 34:7	<b>:</b>
+Gen 34:8	<b>:</b>
+Gen 34:9	<b>:</b>
+Gen 34:10	<b>:</b>
+Gen 34:11	<b>:</b>
+Gen 34:12	<b>:</b>
+Gen 34:13	<b>:</b>
+Gen 34:14	<b>:</b>
+Gen 34:15	<b>:</b>
+Gen 34:16	<b>:</b>
+Gen 34:17	<b>:</b>
+Gen 34:18	<b>:</b>
+Gen 34:19	<b>:</b>
+Gen 34:20	<b>:</b>
+Gen 34:21	<b>:</b>
+Gen 34:22	<b>:</b>
+Gen 34:23	<b>:</b>
+Gen 34:24	<b>:</b>
+Gen 34:25	<b>:</b>
+Gen 34:26	<b>:</b>
+Gen 34:27	<b>:</b>
+Gen 34:28	<b>:</b>
+Gen 34:29	<b>:</b>
+Gen 34:30	<b>:</b>
+Gen 34:31	<b>:</b>
+Gen 35:1	<b>:</b>
+Gen 35:2	<b>:</b>
+Gen 35:3	<b>:</b>
+Gen 35:4	<b>:</b>
+Gen 35:5	<b>:</b>
+Gen 35:6	<b>:</b>
+Gen 35:7	<b>:</b>
+Gen 35:8	<b>:</b>
+Gen 35:9	<b>:</b>
+Gen 35:10	<b>:</b>
+Gen 35:11	<b>:</b>
+Gen 35:12	<b>:</b>
+Gen 35:13	<b>:</b>
+Gen 35:14	<b>:</b>
+Gen 35:15	<b>:</b>
+Gen 35:16	<b>:</b>
+Gen 35:17	<b>:</b>
+Gen 35:18	<b>:</b>
+Gen 35:19	<b>:</b>
+Gen 35:20	<b>:</b>
+Gen 35:21	<b>:</b>
+Gen 35:22	<b>:</b>
+Gen 35:23	<b>:</b>
+Gen 35:24	<b>:</b>
+Gen 35:25	<b>:</b>
+Gen 35:26	<b>:</b>
+Gen 35:27	<b>:</b>
+Gen 35:28	<b>:</b>
+Gen 35:29	<b>:</b>
+Gen 36:1	<b>:</b>
+Gen 36:2	<b>:</b>
+Gen 36:3	<b>:</b>
+Gen 36:4	<b>:</b>
+Gen 36:5	<b>:</b>
+Gen 36:6	<b>:</b>
+Gen 36:7	<b>:</b>
+Gen 36:8	<b>:</b>
+Gen 36:9	<b>:</b>
+Gen 36:10	<b>:</b>
+Gen 36:11	<b>:</b>
+Gen 36:12	<b>:</b>
+Gen 36:13	<b>:</b>
+Gen 36:14	<b>:</b>
+Gen 36:15	<b>:</b>
+Gen 36:16	<b>:</b>
+Gen 36:17	<b>:</b>
+Gen 36:18	<b>:</b>
+Gen 36:19	<b>:</b>
+Gen 36:20	<b>:</b>
+Gen 36:21	<b>:</b>
+Gen 36:22	<b>:</b>
+Gen 36:23	<b>:</b>
+Gen 36:24	<b>:</b>
+Gen 36:25	<b>:</b>
+Gen 36:26	<b>:</b>
+Gen 36:27	<b>:</b>
+Gen 36:28	<b>:</b>
+Gen 36:29	<b>:</b>
+Gen 36:30	<b>:</b>
+Gen 36:31	<b>:</b>
+Gen 36:32	<b>:</b>
+Gen 36:33	<b>:</b>
+Gen 36:34	<b>:</b>
+Gen 36:35	<b>:</b>
+Gen 36:36	<b>:</b>
+Gen 36:37	<b>:</b>
+Gen 36:38	<b>:</b>
+Gen 36:39	<b>:</b>
+Gen 36:40	<b>:</b>
+Gen 36:41	<b>:</b>
+Gen 36:42	<b>:</b>
+Gen 36:43	<b>:</b>
+Gen 37:1	<b>:</b>
+Gen 37:2	<b>:</b>
+Gen 37:3	<b>:</b>
+Gen 37:4	<b>:</b>
+Gen 37:5	<b>:</b>
+Gen 37:6	<b>:</b>
+Gen 37:7	<b>:</b>
+Gen 37:8	<b>:</b>
+Gen 37:9	<b>:</b>
+Gen 37:10	<b>:</b>
+Gen 37:11	<b>:</b>
+Gen 37:12	<b>:</b>
+Gen 37:13	<b>:</b>
+Gen 37:14	<b>:</b>
+Gen 37:15	<b>:</b>
+Gen 37:16	<b>:</b>
+Gen 37:17	<b>:</b>
+Gen 37:18	<b>:</b>
+Gen 37:19	<b>:</b>
+Gen 37:20	<b>:</b>
+Gen 37:21	<b>:</b>
+Gen 37:22	<b>:</b>
+Gen 37:23	<b>:</b>
+Gen 37:24	<b>:</b>
+Gen 37:25	<b>:</b>
+Gen 37:26	<b>:</b>
+Gen 37:27	<b>:</b>
+Gen 37:28	<b>:</b>
+Gen 37:29	<b>:</b>
+Gen 37:30	<b>:</b>
+Gen 37:31	<b>:</b>
+Gen 37:32	<b>:</b>
+Gen 37:33	<b>:</b>
+Gen 37:34	<b>:</b>
+Gen 37:35	<b>:</b>
+Gen 37:36	<b>:</b>
+Gen 38:1	<b>:</b>
+Gen 38:2	<b>:</b>
+Gen 38:3	<b>:</b>
+Gen 38:4	<b>:</b>
+Gen 38:5	<b>:</b>
+Gen 38:6	<b>:</b>
+Gen 38:7	<b>:</b>
+Gen 38:8	<b>:</b>
+Gen 38:9	<b>:</b>
+Gen 38:10	<b>:</b>
+Gen 38:11	<b>:</b>
+Gen 38:12	<b>:</b>
+Gen 38:13	<b>:</b>
+Gen 38:14	<b>:</b>
+Gen 38:15	<b>:</b>
+Gen 38:16	<b>:</b>
+Gen 38:17	<b>:</b>
+Gen 38:18	<b>:</b>
+Gen 38:19	<b>:</b>
+Gen 38:20	<b>:</b>
+Gen 38:21	<b>:</b>
+Gen 38:22	<b>:</b>
+Gen 38:23	<b>:</b>
+Gen 38:24	<b>:</b>
+Gen 38:25	<b>:</b>
+Gen 38:26	<b>:</b>
+Gen 38:27	<b>:</b>
+Gen 38:28	<b>:</b>
+Gen 38:29	<b>:</b>
+Gen 38:30	<b>:</b>
+Gen 39:1	<b>:</b>
+Gen 39:2	<b>:</b>
+Gen 39:3	<b>:</b>
+Gen 39:4	<b>:</b>
+Gen 39:5	<b>:</b>
+Gen 39:6	<b>:</b>
+Gen 39:7	<b>:</b>
+Gen 39:8	<b>:</b>
+Gen 39:9	<b>:</b>
+Gen 39:10	<b>:</b>
+Gen 39:11	<b>:</b>
+Gen 39:12	<b>:</b>
+Gen 39:13	<b>:</b>
+Gen 39:14	<b>:</b>
+Gen 39:15	<b>:</b>
+Gen 39:16	<b>:</b>
+Gen 39:17	<b>:</b>
+Gen 39:18	<b>:</b>
+Gen 39:19	<b>:</b>
+Gen 39:20	<b>:</b>
+Gen 39:21	<b>:</b>
+Gen 39:22	<b>:</b>
+Gen 39:23	<b>:</b>
+Gen 40:1	<b>:</b>
+Gen 40:2	<b>:</b>
+Gen 40:3	<b>:</b>
+Gen 40:4	<b>:</b>
+Gen 40:5	<b>:</b>
+Gen 40:6	<b>:</b>
+Gen 40:7	<b>:</b>
+Gen 40:8	<b>:</b>
+Gen 40:9	<b>:</b>
+Gen 40:10	<b>:</b>
+Gen 40:11	<b>:</b>
+Gen 40:12	<b>:</b>
+Gen 40:13	<b>:</b>
+Gen 40:14	<b>:</b>
+Gen 40:15	<b>:</b>
+Gen 40:16	<b>:</b>
+Gen 40:17	<b>:</b>
+Gen 40:18	<b>:</b>
+Gen 40:19	<b>:</b>
+Gen 40:20	<b>:</b>
+Gen 40:21	<b>:</b>
+Gen 40:22	<b>:</b>
+Gen 40:23	<b>:</b>
+Gen 41:1	<b>:</b>
+Gen 41:2	<b>:</b>
+Gen 41:3	<b>:</b>
+Gen 41:4	<b>:</b>
+Gen 41:5	<b>:</b>
+Gen 41:6	<b>:</b>
+Gen 41:7	<b>:</b>
+Gen 41:8	<b>:</b>
+Gen 41:9	<b>:</b>
+Gen 41:10	<b>:</b>
+Gen 41:11	<b>:</b>
+Gen 41:12	<b>:</b>
+Gen 41:13	<b>:</b>
+Gen 41:14	<b>:</b>
+Gen 41:15	<b>:</b>
+Gen 41:16	<b>:</b>
+Gen 41:17	<b>:</b>
+Gen 41:18	<b>:</b>
+Gen 41:19	<b>:</b>
+Gen 41:20	<b>:</b>
+Gen 41:21	<b>:</b>
+Gen 41:22	<b>:</b>
+Gen 41:23	<b>:</b>
+Gen 41:24	<b>:</b>
+Gen 41:25	<b>:</b>
+Gen 41:26	<b>:</b>
+Gen 41:27	<b>:</b>
+Gen 41:28	<b>:</b>
+Gen 41:29	<b>:</b>
+Gen 41:30	<b>:</b>
+Gen 41:31	<b>:</b>
+Gen 41:32	<b>:</b>
+Gen 41:33	<b>:</b>
+Gen 41:34	<b>:</b>
+Gen 41:35	<b>:</b>
+Gen 41:36	<b>:</b>
+Gen 41:37	<b>:</b>
+Gen 41:38	<b>:</b>
+Gen 41:39	<b>:</b>
+Gen 41:40	<b>:</b>
+Gen 41:41	<b>:</b>
+Gen 41:42	<b>:</b>
+Gen 41:43	<b>:</b>
+Gen 41:44	<b>:</b>
+Gen 41:45	<b>:</b>
+Gen 41:46	<b>:</b>
+Gen 41:47	<b>:</b>
+Gen 41:48	<b>:</b>
+Gen 41:49	<b>:</b>
+Gen 41:50	<b>:</b>
+Gen 41:51	<b>:</b>
+Gen 41:52	<b>:</b>
+Gen 41:53	<b>:</b>
+Gen 41:54	<b>:</b>
+Gen 41:55	<b>:</b>
+Gen 41:56	<b>:</b>
+Gen 41:57	<b>:</b>
+Gen 42:1	<b>:</b>
+Gen 42:2	<b>:</b>
+Gen 42:3	<b>:</b>
+Gen 42:4	<b>:</b>
+Gen 42:5	<b>:</b>
+Gen 42:6	<b>:</b>
+Gen 42:7	<b>:</b>
+Gen 42:8	<b>:</b>
+Gen 42:9	<b>:</b>
+Gen 42:10	<b>:</b>
+Gen 42:11	<b>:</b>
+Gen 42:12	<b>:</b>
+Gen 42:13	<b>:</b>
+Gen 42:14	<b>:</b>
+Gen 42:15	<b>:</b>
+Gen 42:16	<b>:</b>
+Gen 42:17	<b>:</b>
+Gen 42:18	<b>:</b>
+Gen 42:19	<b>:</b>
+Gen 42:20	<b>:</b>
+Gen 42:21	<b>:</b>
+Gen 42:22	<b>:</b>
+Gen 42:23	<b>:</b>
+Gen 42:24	<b>:</b>
+Gen 42:25	<b>:</b>
+Gen 42:26	<b>:</b>
+Gen 42:27	<b>:</b>
+Gen 42:28	<b>:</b>
+Gen 42:29	<b>:</b>
+Gen 42:30	<b>:</b>
+Gen 42:31	<b>:</b>
+Gen 42:32	<b>:</b>
+Gen 42:33	<b>:</b>
+Gen 42:34	<b>:</b>
+Gen 42:35	<b>:</b>
+Gen 42:36	<b>:</b>
+Gen 42:37	<b>:</b>
+Gen 42:38	<b>:</b>
+Gen 43:1	<b>:</b>
+Gen 43:2	<b>:</b>
+Gen 43:3	<b>:</b>
+Gen 43:4	<b>:</b>
+Gen 43:5	<b>:</b>
+Gen 43:6	<b>:</b>
+Gen 43:7	<b>:</b>
+Gen 43:8	<b>:</b>
+Gen 43:9	<b>:</b>
+Gen 43:10	<b>:</b>
+Gen 43:11	<b>:</b>
+Gen 43:12	<b>:</b>
+Gen 43:13	<b>:</b>
+Gen 43:14	<b>:</b>
+Gen 43:15	<b>:</b>
+Gen 43:16	<b>:</b>
+Gen 43:17	<b>:</b>
+Gen 43:18	<b>:</b>
+Gen 43:19	<b>:</b>
+Gen 43:20	<b>:</b>
+Gen 43:21	<b>:</b>
+Gen 43:22	<b>:</b>
+Gen 43:23	<b>:</b>
+Gen 43:24	<b>:</b>
+Gen 43:25	<b>:</b>
+Gen 43:26	<b>:</b>
+Gen 43:27	<b>:</b>
+Gen 43:28	<b>:</b>
+Gen 43:29	<b>:</b>
+Gen 43:30	<b>:</b>
+Gen 43:31	<b>:</b>
+Gen 43:32	<b>:</b>
+Gen 43:33	<b>:</b>
+Gen 43:34	<b>:</b>
+Gen 44:1	<b>:</b>
+Gen 44:2	<b>:</b>
+Gen 44:3	<b>:</b>
+Gen 44:4	<b>:</b>
+Gen 44:5	<b>:</b>
+Gen 44:6	<b>:</b>
+Gen 44:7	<b>:</b>
+Gen 44:8	<b>:</b>
+Gen 44:9	<b>:</b>
+Gen 44:10	<b>:</b>
+Gen 44:11	<b>:</b>
+Gen 44:12	<b>:</b>
+Gen 44:13	<b>:</b>
+Gen 44:14	<b>:</b>
+Gen 44:15	<b>:</b>
+Gen 44:16	<b>:</b>
+Gen 44:17	<b>:</b>
+Gen 44:18	<b>:</b>
+Gen 44:19	<b>:</b>
+Gen 44:20	<b>:</b>
+Gen 44:21	<b>:</b>
+Gen 44:22	<b>:</b>
+Gen 44:23	<b>:</b>
+Gen 44:24	<b>:</b>
+Gen 44:25	<b>:</b>
+Gen 44:26	<b>:</b>
+Gen 44:27	<b>:</b>
+Gen 44:28	<b>:</b>
+Gen 44:29	<b>:</b>
+Gen 44:30	<b>:</b>
+Gen 44:31	<b>:</b>
+Gen 44:32	<b>:</b>
+Gen 44:33	<b>:</b>
+Gen 44:34	<b>:</b>
+Gen 45:1	<b>:</b>
+Gen 45:2	<b>:</b>
+Gen 45:3	<b>:</b>
+Gen 45:4	<b>:</b>
+Gen 45:5	<b>:</b>
+Gen 45:6	<b>:</b>
+Gen 45:7	<b>:</b>
+Gen 45:8	<b>:</b>
+Gen 45:9	<b>:</b>
+Gen 45:10	<b>:</b>
+Gen 45:11	<b>:</b>
+Gen 45:12	<b>:</b>
+Gen 45:13	<b>:</b>
+Gen 45:14	<b>:</b>
+Gen 45:15	<b>:</b>
+Gen 45:16	<b>:</b>
+Gen 45:17	<b>:</b>
+Gen 45:18	<b>:</b>
+Gen 45:19	<b>:</b>
+Gen 45:20	<b>:</b>
+Gen 45:21	<b>:</b>
+Gen 45:22	<b>:</b>
+Gen 45:23	<b>:</b>
+Gen 45:24	<b>:</b>
+Gen 45:25	<b>:</b>
+Gen 45:26	<b>:</b>
+Gen 45:27	<b>:</b>
+Gen 45:28	<b>:</b>
+Gen 46:1	<b>:</b>
+Gen 46:2	<b>:</b>
+Gen 46:3	<b>:</b>
+Gen 46:4	<b>:</b>
+Gen 46:5	<b>:</b>
+Gen 46:6	<b>:</b>
+Gen 46:7	<b>:</b>
+Gen 46:8	<b>:</b>
+Gen 46:9	<b>:</b>
+Gen 46:10	<b>:</b>
+Gen 46:11	<b>:</b>
+Gen 46:12	<b>:</b>
+Gen 46:13	<b>:</b>
+Gen 46:14	<b>:</b>
+Gen 46:15	<b>:</b>
+Gen 46:16	<b>:</b>
+Gen 46:17	<b>:</b>
+Gen 46:18	<b>:</b>
+Gen 46:19	<b>:</b>
+Gen 46:20	<b>:</b>
+Gen 46:21	<b>:</b>
+Gen 46:22	<b>:</b>
+Gen 46:23	<b>:</b>
+Gen 46:24	<b>:</b>
+Gen 46:25	<b>:</b>
+Gen 46:26	<b>:</b>
+Gen 46:27	<b>:</b>
+Gen 46:28	<b>:</b>
+Gen 46:29	<b>:</b>
+Gen 46:30	<b>:</b>
+Gen 46:31	<b>:</b>
+Gen 46:32	<b>:</b>
+Gen 46:33	<b>:</b>
+Gen 46:34	<b>:</b>
+Gen 47:1	<b>:</b>
+Gen 47:2	<b>:</b>
+Gen 47:3	<b>:</b>
+Gen 47:4	<b>:</b>
+Gen 47:5	<b>:</b>
+Gen 47:6	<b>:</b>
+Gen 47:7	<b>:</b>
+Gen 47:8	<b>:</b>
+Gen 47:9	<b>:</b>
+Gen 47:10	<b>:</b>
+Gen 47:11	<b>:</b>
+Gen 47:12	<b>:</b>
+Gen 47:13	<b>:</b>
+Gen 47:14	<b>:</b>
+Gen 47:15	<b>:</b>
+Gen 47:16	<b>:</b>
+Gen 47:17	<b>:</b>
+Gen 47:18	<b>:</b>
+Gen 47:19	<b>:</b>
+Gen 47:20	<b>:</b>
+Gen 47:21	<b>:</b>
+Gen 47:22	<b>:</b>
+Gen 47:23	<b>:</b>
+Gen 47:24	<b>:</b>
+Gen 47:25	<b>:</b>
+Gen 47:26	<b>:</b>
+Gen 47:27	<b>:</b>
+Gen 47:28	<b>:</b>
+Gen 47:29	<b>:</b>
+Gen 47:30	<b>:</b>
+Gen 47:31	<b>:</b>
+Gen 48:1	<b>:</b>
+Gen 48:2	<b>:</b>
+Gen 48:3	<b>:</b>
+Gen 48:4	<b>:</b>
+Gen 48:5	<b>:</b>
+Gen 48:6	<b>:</b>
+Gen 48:7	<b>:</b>
+Gen 48:8	<b>:</b>
+Gen 48:9	<b>:</b>
+Gen 48:10	<b>:</b>
+Gen 48:11	<b>:</b>
+Gen 48:12	<b>:</b>
+Gen 48:13	<b>:</b>
+Gen 48:14	<b>:</b>
+Gen 48:15	<b>:</b>
+Gen 48:16	<b>:</b>
+Gen 48:17	<b>:</b>
+Gen 48:18	<b>:</b>
+Gen 48:19	<b>:</b>
+Gen 48:20	<b>:</b>
+Gen 48:21	<b>:</b>
+Gen 48:22	<b>:</b>
+Gen 49:1	<b>:</b>
+Gen 49:2	<b>:</b>
+Gen 49:3	<b>:</b>
+Gen 49:4	<b>:</b>
+Gen 49:5	<b>:</b>
+Gen 49:6	<b>:</b>
+Gen 49:7	<b>:</b>
+Gen 49:8	<b>:</b>
+Gen 49:9	<b>:</b>
+Gen 49:10	<b>:</b>
+Gen 49:11	<b>:</b>
+Gen 49:12	<b>:</b>
+Gen 49:13	<b>:</b>
+Gen 49:14	<b>:</b>
+Gen 49:15	<b>:</b>
+Gen 49:16	<b>:</b>
+Gen 49:17	<b>:</b>
+Gen 49:18	<b>:</b>
+Gen 49:19	<b>:</b>
+Gen 49:20	<b>:</b>
+Gen 49:21	<b>:</b>
+Gen 49:22	<b>:</b>
+Gen 49:23	<b>:</b>
+Gen 49:24	<b>:</b>
+Gen 49:25	<b>:</b>
+Gen 49:26	<b>:</b>
+Gen 49:27	<b>:</b>
+Gen 49:28	<b>:</b>
+Gen 49:29	<b>:</b>
+Gen 49:30	<b>:</b>
+Gen 49:31	<b>:</b>
+Gen 49:32	<b>:</b>
+Gen 49:33	<b>:</b>
+Gen 50:1	<b>:</b>
+Gen 50:2	<b>:</b>
+Gen 50:3	<b>:</b>
+Gen 50:4	<b>:</b>
+Gen 50:5	<b>:</b>
+Gen 50:6	<b>:</b>
+Gen 50:7	<b>:</b>
+Gen 50:8	<b>:</b>
+Gen 50:9	<b>:</b>
+Gen 50:10	<b>:</b>
+Gen 50:11	<b>:</b>
+Gen 50:12	<b>:</b>
+Gen 50:13	<b>:</b>
+Gen 50:14	<b>:</b>
+Gen 50:15	<b>:</b>
+Gen 50:16	<b>:</b>
+Gen 50:17	<b>:</b>
+Gen 50:18	<b>:</b>
+Gen 50:19	<b>:</b>
+Gen 50:20	<b>:</b>
+Gen 50:21	<b>:</b>
+Gen 50:22	<b>:</b>
+Gen 50:23	<b>:</b>
+Gen 50:24	<b>:</b>
+Gen 50:25	<b>:</b>
+Gen 50:26	<b>:</b>
 Exo 1:1	<b>:</b>
 Exo 1:2	<b>:</b>
 Exo 1:3	<b>:</b>
@@ -22743,7 +24350,7 @@ Zec 14:17	<b>:</b>
 Zec 14:18	<b>:</b>
 Zec 14:19	<b>:</b>
 Zec 14:20	<b>:</b>
-Zec 14:21	<b>:</b>
+Zec 14:21	<b>:</b>			
 Mal 1:1	<b>:</b>
 Mal 1:2	<b>:</b>
 Mal 1:3	<b>:</b>
@@ -22799,6 +24406,20 @@ Mal 3:21	<b>:</b>
 Mal 3:22	<b>:</b>
 Mal 3:23	<b>:</b>
 Mal 3:24	<b>:</b>
+Tob 1:1	<b>În curând comentariu...:</b>
+Jdt 1:1	<b>În curând comentariu...:</b>
+Bar 1:1	<b>În curând comentariu...:</b>
+Lje 1:1	<b>În curând comentariu...:</b>
+S3y 1:1	<b>În curând comentariu...:</b>
+1Es 1:1	<b>În curând comentariu...:</b>
+Wis 1:1	<b>În curând comentariu...:</b>
+Sir 1:1	<b>În curând comentariu...:</b>
+Sus 1:1	<b>În curând comentariu...:</b>
+Bel 1:1	<b>În curând comentariu...:</b>
+1Ma 1:1	<b>În curând comentariu...:</b>
+2Ma 1:1	<b>În curând comentariu...:</b>
+3Ma 1:1	<b>În curând comentariu...:</b>
+Man 1:1	<b>În curând comentariu...:</b>
 Mat 1:1	<b>1,1<sup>a</sup>: Cartea neamului:</b><br>(1, 1<sup>a</sup>) <u>Romani_9:5</u> <b>:</b><br><p>Pentru ce n-a zis „videnia" sau „cuvântul", precum Proorocii? Căci aceia aşa începeau: „Videnia pe care a văzut-o Isaia" şi „Cuvântul care s-a făcut către Isaia" (<u>Isaia_1:1</u>; <u>Isaia_2:1</u>). Cauţi a te învăţa pentru ce [din ce pricină făceau aceasta]? Pentru că Proorocii vesteau pentru cei împietriţi cu inima şi nesupuşi, de aceea ziceau că este videnie dumnezeiască şi cuvânt de la Dumnezeu, ca să înfricoşeze norodul şi să nu fie defăimate cele zise. Dar Matei a grăit către oameni credincioşi, cu bună cunoştinţă şi supuşi, şi de aceea n-a început precum Proorocii.</p><b>:</b><br><p>Sau, pot spune şi altceva: Proorocii gânditor [cu gândul] vedeau cele pe care le grăiau ca închipuiri arătate prin Sfântul Duh şi de aceea le şi numeau videnii [vederi dumnezeieşti]. Dar Matei nu cu gândul L-a văzut pe Hristos şi nu în închipuire L-a văzut pe El, ci în chip simţit L-a cunoscut, auzindu-L şi văzându-L pe El în trup. Pentru aceasta, n-a zis „videnia [vederea dumnezeiască] pe care am văzut-o" - adică „închipuirea" -, ci [a scris] „Cartea neamului".</p><br><b>1,1<sup>b</sup>: Lui Iisus:</b><br><p>Numele acesta, „Iisus" nu este elinesc, ci evreiesc şi se tălmăceşte „Mântuitor". Pentru că evreieşte „Iao" înseamnă mântuire. </p><b>1,1<sup>c</sup>: Hristos:</b> <br><p>„Hristoşi" - adică „unşi" - se numeau împăraţii şi preoţii, pentru că erau unşi cu untdelemn sfinţit, care curgea din cornul care li se punea pe cap [asupra capului].</p>
 Mat 1:2	<b>1,2</b><sup>a</sup>: Avraam a născut pe Isaac:</b></p>(1, 2<sup>a</sup>) <u>Gen_21:2-3</u>; <u>Gen_26:18</u> / <u>Luca_3:34</u></p><br><p>De la Avraam începe povestirea neamului, pentru că acesta a fost părinte al evreilor (<u>Gen_15:1</u>,<u>Gen_13:1</u>,<u>Gen_16:1</u>) şi pentru că el este cel dintâi care a primit făgăduinţele, că întru seminţia lui se vor blagoslovi [binecuvânta] toate neamurile (<u>Gen_22:18</u>). Deci, cu cuviinţă de la acesta se numără neamul lui Hristos, că Hristos este din sămânţa lui Avraam, întru care ne-am binecuvântat toţi cei din neamuri (<u>Gen_17:5</u>), care mai înainte eram sub blestem. „<strong>Avraam</strong>" se tâlcuieşte „părinte al neamurilor", iar „<strong>Isaac</strong>" - „bucurie", „râs".</p><br><p>Şi nu pomeneşte Evanghelistul de fiii lui Avraam cei din ţiitoare [ca Agar, slujnica Sarrei] - adică de Ismail (<u>Gen_16:15</u>) şi de ceilalţi -, pentru că iudeii nu din aceştia se trăgeau, ci din Isaac (<u>Gen_24:6-8</u>).</p><p><br><b>1,2<sup>b</sup>: Isaac a născut pe Iacov; Iacov a născut pe Iuda şi pe fraţii lui;</b><br><p>(1,2<sup>b</sup>) <u>Gen_25:26</u>; <u>Gen_29:35</u> / <u>Luca_3:33</u> <br><p>Vezi că pentru aceasta a pomenit pe Iuda şi pe fraţii lui, pentru că dintru ei au fost cele douăsprezece seminţii.</p>
 Mat 1:3	<b>1, 3<sup>a</sup> Iuda a născut pe Fares şi pe Zara, din Tamar;:</b><p>(1, 3<sup>a</sup>) <u>Gen_38:1-30</u>; <u>Geb_46:12</u> / <u>1Ch_2:4</u> / <u>Luca_3:33</u><p>Iuda avea ca noră pe Tamar prin unul dintre feciorii lui, anume Ir, iar murind acesta fără să aibă feciori [prunci], i-a dat-o lui Onan, alt fecior al lui. Dar, secerându-se acesta din viaţă pentru răutatea lui, Iuda nu i-a mai dat ei alt soţ. Iar ea, dorind să facă copii din sămânţa lui Avraam, a lepădat vălul văduviei şi punându-şi veşmânt de femeie nărăvită [curvă] s-a împreunat cu socrul ei şi s-au zămislit din ea doi gemeni.</p><p>Şi când au fost să se nască, a scos feciorul cel dintâi mâna din pântece, ca şi cum ar fi vrut să se nască primul, iar moaşa a însemnat degrabă cu un fir de aţă roşie mâna copilului, ca să cunoască pe cel întâi născut. Dar acesta şi-a tras mâna înlăuntrul pântecelui şi s-a născut celălalt copil mai întâi şi abia după aceea cel ce scosese primul mâna.</p><p>Deci, cel ce s-a născut mai întâi a fost numit Fares, care înseamnă „tăiere" - fiindcă a tăiat rânduiala cea firească -, iar cel ce a tras mâna, Zara (<u>Gen_38:1-30</u>).</p><p>Şi însemnează istoria această taină, că precum Zara a arătat întâi mâna, şi a tras-o apoi, aşa şi vieţuirea cea după Hristos s-a arătat întru Sfinţii cei mai dinainte de Lege şi de tăierea împrejur. Pentru că toţi aceştia [sunt Sfinţi] nu din rânduielile şi proorociile Legii, ci pentru că au vieţuit viaţă evanghelicească. Şi socoteşte pe Avraam, care şi-a lăsat părinţii şi casa pentru Dumnezeu şi s-a lepădat şi de fire, socoteşte [apoi] pe Iov şi pe Melchisedec. Iar după ce a venit [s-a dat] Legea, s-a tras înapoi una ca această vieţuire. Şi precum acolo, după ce s-a născut Fares, mai pe urmă a ieşit iarăşi Zara, aşa, după ce s-a dat Legea, mai pe urmă a strălucit vieţuirea evanghelicească, însemnându-se aceasta cu aţă roşie - care este sângele lui Hristos. Că pentru aceasta a şi pomenit Evanghelistul de aceşti doi prunci, pentru că naşterea lor arată oarecare lucruri tainice.</p><p>Dar, şi pentru altă pricină pomeneşte de Tamar - deşi nu pare a fi lăudată, fiindcă s-a împreunat cu socrul ei: ca să arate că Hristos toate pentru noi primindu-le, a primit a avea ca strămoşi şi pe unii ca aceştia, ca şi prin aceasta - adică prin naşterea dintru ei - mai vârtos să-i sfinţească, pentru că nu a venit să cheme „pe cei drepţi, ci pe cei păcătoşi" (<u>Marcu_2:17</u>).</p>
@@ -22806,7 +24427,7 @@ Mat 1:3-5	<p><b>1, 3<sup>a</sup> - 5<sup>a</sup>: Fares a născut pe Esrom; Esro
 Mat 1:5	<b>1, 5<sup>b</sup>: Booz a născut pe Iobed, din Rut :</b><p>(1, 5<sup>b</sup>) <u>Rut_4:17</u>, <u>Rut_4:21</u> / <u>1Ch_2:12</u> / <u>Luca_3:32</u></p><p>Rut aceasta era de alt neam, dar s-a însoțit cu Booz.</p><p>Aşa şi Biserica cea din păgâni, de alt neam fiind şi afară de așezământ, a uitat norodul [a părăsit neamul] său şi închinarea la idoli și pe tatăl ei, diavolul și s-a luat spre nuntă cu Fiul lui Dumnezeu.</p>
 Mat 1:5-6	<b>1, 5<sup>c</sup>-6: Iobed a născut pe Iesei; (6) Iesei a născut pe David regele; David a născut pe Solomon din femeia lui Urie:</b><p> (1, 5<sup>c</sup>) <u>Rut_4:21</u> / <u>1Ch_2:12</u> / <u>Luca_3:32</u> </p> (1, 6) <u>Gen_17:6</u>, <u>Gen_17:16</u> / <u>1Sa_17:12</u> / <U>2Sa_12:24</U> / <u>1Ch_2:15</u> / <u>Luca_3:31</u></p><p>Iarăşi, pomeneşte de femeia lui Urie (<u>2Sa_12:14</u>), ca să se arate că nu se cuvine a ne ruşina de strămoşi, ci că mai vârtos, prin sârguința faptelor bune ale urmașilor se fac slăviţi şi aceia şi cum că toţi sunt primiţi la Dumnezeu - chiar de se vor naşte din curvă -, numai de vor avea faptă bună.</p>
 Mat 1:7-11	<b>1, 7-11: Solomon a născut pe Roboam; Roboam a născut pe Abia;  Abia a născut pe Asa; (8) Asa a născut pe Iosafat; Iosafat a născut pe Ioram; Ioram a născut pe Ozia; (9) Ozia a născut pe Ioatam; Ioatam a născut pe Ahaz; Ahaz a născut pe Iezechia; (10) Iezechia a născut pe Manase; Manase a născut pe Amon; Amon a născut pe Iosia; (11) Iosia a născut pe Iehonia şi pe fraţii lui, la strămutarea în Babilon:</b><p>(1, 7) <u>1Ki_11:43</u>; <u>1Ki_14:31</u>; <u>15:8</u> / <u>1Ch_3:10</u> (1,9) <u>2Ki_15:7</u>, <u>2Ki_15:38</u>; <u>2Ki_16:20</u> (1,10) <u>2Ki_20:20</u> / <u>1Ch_3:13</u> (1, 11) <u>2Ki_23:34</u>; <u>2Ki_24:6</u>; <u>2Ki_24:15</u>/ <u>1Ch_3:16</u> / <u>2Ch_36:8</u></p> <p> Strămutarea în Babilon este robia pe care mai pe urmă au pătimit-o evreii în Babilon, fiind duşi acolo toţi dimpreună.</p><p>Pentru că şi altădată au fost în război cu babilonienii, însă mai cu măsură i-au muncit [căznit] pe ei, dar mai apoi cu totul i-au strămutat pe ei din patria lor.</p>
-Mat 1:12-16	<b>1,12-16: După strămutarea în Babilon, Iehonia a născut pe Salatiel; Salatiel a născut pe Zorobabel; (13) Zorobabel a născut pe Abiud; Abiud a născut pe Eliachim; Eliachim a născut pe Azor; (14) Azor a născut pe Sadoc; Sadoc a născut pe Achim; Achim a născut pe Eliud; (15) Eliud a născut pe Eleazar; Eleazar a născut pe Matan; Matan a născut pe Iacov; (16) Iacov a născut pe Iosif, logodnicul Măriei, din care s-a născut Iisus, care se cheamă Hristos.:</b><p>(1, 12) <u>2Sa_24:6</u> / <u>1Ch_3:17</u> / <u>2Ch_36:8</u> / <u>1Ezdra_3:2</u>; <u>5:2</u> / <u>Luca_3:27</u></p><p>Din care pricină spune [este trecut aici] numele lui Iosif, iar nu al Născătoarei de Dumnezeu? Căci ce împărtăşire are Iosif cu naşterea cea fără de sămânţă? Au doară, cu adevărat tată al lui Hristos a fost Iosif, ca de la Iosif să se numere neamul Lui?</p><p>Ascultă, dar: cu adevărat, nici o împărtăşire nu are Iosif cu naşterea lui Hristos şi s-ar fi cuvenit ca neamul Născătoarei de Dumnezeu să-l spună, dar, de vreme ce era lege să nu se pomenească în numărul neamului femeile, de aceea nu a spus [nu a fost pomenit] neamul Fecioarei. Dar, pomenind neamul lui Iosif, şi neamul ei a fost pomenit, pentru că tot aşa era lege să nu se ia femeie din altă seminţie, nici din altă familie - adică din altă rudenie -, ci din aceeaşi seminţie şi rudenie (<u>Numeri_36:6</u>). Deci, de vreme ce era o astfel de lege, arătat este că numărându-se neamul lui Iosif, se aduce împreună şi numărul neamului Născătoarei de Dumnezeu, căci cu adevărat din aceeaşi seminţie era Născătoarea de Dumnezeu şi dintru acelaşi neam. Căci, dacă n-ar fi fost aşa, cum s-ar fi logodit cu el?</p><p>Pentru aceasta, Evanghelistul a păzit şi legea care poruncea a nu socoti femeile în numărul neamului, dar şi neamul Născătoarei de Dumnezeu l-a pomenit, numind neamul lui Iosif. Iar „bărbat al Măriei" l-a numit pe Iosif după obiceiul de obşte, pentru că numim bărbat al unei femei pe logodnicul ei, chiar dacă nunta nu s-a făcut încă.</p>
+Mat 1:12-16	<b>1,12-16: După strămutarea în Babilon, Iehonia a născut pe Salatiel; Salatiel a născut pe Zorobabel; (13) Zorobabel a născut pe Abiud; Abiud a născut pe Eliachim; Eliachim a născut pe Azor; (14) Azor a născut pe Sadoc; Sadoc a născut pe Achim; Achim a născut pe Eliud; (15) Eliud a născut pe Eleazar; Eleazar a născut pe Matan; Matan a născut pe Iacov; (16) Iacov a născut pe Iosif, logodnicul Măriei, din care s-a născut Iisus, care se cheamă Hristos.:</b><p>(1, 12) <u>2Sa_24:6</u> / <u>1Ch_3:17</u> / <u>2Ch_36:8</u> / <u>1Ezr_3:2</u>; <u>5:2</u> / <u>Luca_3:27</u></p><p>Din care pricină spune [este trecut aici] numele lui Iosif, iar nu al Născătoarei de Dumnezeu? Căci ce împărtăşire are Iosif cu naşterea cea fără de sămânţă? Au doară, cu adevărat tată al lui Hristos a fost Iosif, ca de la Iosif să se numere neamul Lui?</p><p>Ascultă, dar: cu adevărat, nici o împărtăşire nu are Iosif cu naşterea lui Hristos şi s-ar fi cuvenit ca neamul Născătoarei de Dumnezeu să-l spună, dar, de vreme ce era lege să nu se pomenească în numărul neamului femeile, de aceea nu a spus [nu a fost pomenit] neamul Fecioarei. Dar, pomenind neamul lui Iosif, şi neamul ei a fost pomenit, pentru că tot aşa era lege să nu se ia femeie din altă seminţie, nici din altă familie - adică din altă rudenie -, ci din aceeaşi seminţie şi rudenie (<u>Numeri_36:6</u>). Deci, de vreme ce era o astfel de lege, arătat este că numărându-se neamul lui Iosif, se aduce împreună şi numărul neamului Născătoarei de Dumnezeu, căci cu adevărat din aceeaşi seminţie era Născătoarea de Dumnezeu şi dintru acelaşi neam. Căci, dacă n-ar fi fost aşa, cum s-ar fi logodit cu el?</p><p>Pentru aceasta, Evanghelistul a păzit şi legea care poruncea a nu socoti femeile în numărul neamului, dar şi neamul Născătoarei de Dumnezeu l-a pomenit, numind neamul lui Iosif. Iar „bărbat al Măriei" l-a numit pe Iosif după obiceiul de obşte, pentru că numim bărbat al unei femei pe logodnicul ei, chiar dacă nunta nu s-a făcut încă.</p>
 Mat 1:17	<b>1, 17: Aşadar, toate neamurile de la Avraam până la David sunt paisprezece; şi de la David până la strămutarea în Babilon sunt paisprezece; şi de la strămutarea în Babilon până la Hristos sunt paisprezece neamuri.:</b><p>În trei aşezări au despărţit neamurile, pentru ca să arate că iudeii, deşi au fost cârmuiţi de judecători - cum a fost până la David -, iar apoi de împăraţi - până la strămutarea în Babilon -, şi în sfârşit de preoţi - cum a fost până la Hristos -, însă nu s-au folosit de aceasta spre fapta cea bună. Şi trebuinţă era de adevăratul Judecător şi împărat şi Preot, Carele este Hristos. Pentru că, după ce au lipsit cârmuitorii a venit Hristos, după proorocia lui Iacov (<u>Gen_49:10</u>).</p><p>Dar, cum sunt de la mutarea în Babilon până la Hristos „<strong>paisprezece neamuri</strong>", de vreme ce numai treisprezece feţe se află [nume sunt pomenite]? Pentru că, dacă s-ar fi pus în numărul neamului şi femeia, am fi putut pune aici şi pe Maria şi s-ar fi împlinit numărul. Iar, dacă, în numărul neamului nu se socoteşte femeia, cum vom dezlega această nedumerire? La aceasta unii zic că şi mutarea în Babilon a fost socotită în loc de faţă [ca un nume].</p>
 Mat 1:18	<b>1, 18<sup>a</sup>: Iar naşterea lui Iisus Hristos aşa a fost: Maria, mama Lui, fiind logodită cu Iosif:</b><p>(1,18 <sup>a</sup>) <u>Luca_1:27</u>, <u>Luca_1:34-35</u>; <u>Luca_2:5</u> </p><p>Pentru ce a lăsat Dumnezeu ca ea să se logodească şi cu totul a pricinui bănuială oamenilor că s-a împreunat cu dânsa Iosif? Pentru ca ea să aibă un purtător de grijă întru nevoi. Fiindcă el a avut grijă de ea în vremea fugii în Egipt şi a scăpat-o [din primejdii]. [Dar Născătoarea de Dumnezeu a fost logodită] încă şi ca să se tăinuiască de cel rău [taina întrupării], căci diavolul, auzind că Fecioara va avea în pântece (<u>Isaia_7:14</u>), [mai ales] pe fecioare le pândea. Deci, pentru ca să fie amăgit Amăgitorul, se logodeşte Iosif cu Pururea Fecioara [Maria], şi numai chip al însoţirii se face, iară lucru [faptă] nu.</p><b>1, 18<sup>b</sup>: Fără să fi fost ei înainte împreună, s-a aflat având în pântece de la Duhul Sfânt:</b><p>(1,18 <sup>a</sup>) <u>Luca_1:27</u>, <u>Luca_1:34-35</u>; <u>Luca_2:5</u> </p> <p>Aici „<strong>a se aduna</strong>", împreunare [adunare, luare] însemnează. Întrucât mai înainte de a se împreuna [a se aduna împreună] a zămislit ea. Pentru aceasta şi Evanghelistul se înspăimântează şi strigă: „<strong>S-a aflat</strong>!", ca despre un oarecare minunat lucru grăind.</p>
 Mat 1:19	<b>1, 19: Iosif, logodnicul ei, drept fiind şi nevrând s-o vădească, a voit s-o lase în ascuns.:</b> <p>(1, 19) <u>Numeri_5:12-31</u> / <u>Deuteronom_24:1-5</u></p><p>Cum este numit Iosif „<strong>drept</strong>", dacă Legea poruncea ca să fie vădită cea care săvârşise preacurvie şi să se arate şi să fie muncită [să fie omorâtă] (<u>Levitic_20:10</u>), iar el voia să acopere păcatul şi să calce Legea? Voi dezlega aceasta [nedumirire]: mai întâi, tocmai pentru aceasta este numit „<strong>drept</strong>", că nu voia să fie aspru, ci din multa bunătate era milostiv, arătându-se astfel pe sine ca fiind mai presus de Lege şi mai presus de poruncile Legii vieţuind. Apoi, el însuşi a cunoscut că din Duhul Sfânt a zămislit ea şi de aceea nu a vrut s-o vădească şi să-i facă rău, ca pe cea care nu din preacurvie,  ci de la Duhul Sfânt a zămislit, că zice: „<strong>S-a aflat având în pântece</strong>" (<u>Matei_1:18</u>). Dar de cine „<strong>s-a aflat</strong>"? De către Iosif, adică, a cunoscut că „<strong>din Duhul Sfânt</strong>" a zămislit. Drept aceea, „<strong>a voit pe ascuns s-o lase pe dânsa</strong>", fiindcă nu îndrăznea a avea de femeie [soţie] pe cea care se învrednicise de atâta dar [de la Dumnezeu].</p>
@@ -22822,7 +24443,7 @@ Mat 2:2	<b>2, 2<sup>b</sup>: Căci am văzut la Răsărit steaua Lui:</b><p>Cân
 Mat 2:3	<b>2, 3: Şi auzind, regele Irod s-a turburat şi tot Ierusalimul împreună cu el.:</b><p>Irod s-a turburat ca unul care era de alt neam şi se temea pentru împărăţia sa, căci cunoştea că era nevrednic de aceasta. Dar pentru care pricină s-au turburat iudeii? Că s-ar fi cuvenit ca ei mai vârtos să se bucure, că împărat al împăraţilor vor avea, de împăraţii persani închinat. Însă cu adevărat nebunesc lucru este răutatea!</p>
 Mat 2:4	<b>2, 4: Şi adunând pe toţi arhiereii şi cărturarii poporului, căuta să afle de la ei: Unde este să Se nască Hristos?:</b><p>Cărturarii erau dascălii poporului, la fel cu cei pe care noi îi numim grămătici [învăţaţi]. Şi iconomiseşte Dumnezeu ca să fie întrebaţi aceştia, ca să mărturisească adevărul şi dintru aceasta să fie osândiţi, pentru că ei L-au răstignit pe Acela pe Care mai înainte L-au mărturisit.</p>
 Mat 2:5	<b>2, 5: Iar ei au zis: în Betleemul Iudeii, că aşa este scris de Proorocul:</b><p>Prin care Prooroc? Prin Miheia, căci acela zice:</p>
-Mat 2:6	<b>2, 6<sup>a</sup>: Şi tu, Betleeme, pământul lui Iuda, nu eşti nicidecum cel mai mic între căpeteniile lui Iuda:</b><p>(2, 6<sup>a</sup>) <u>Miheia_5:1</u> / <u>Ioan_7:42</u></p><p>„<strong>Mic</strong>" fiind acesta, era defăimat, iar acum pentru Hristos, Cel Care a ieşit dintru el, este vestit, încât toţi de la marginile pământului vin să se închine acestui Betleem sfânt.</p> <b>2, 6<sup>b</sup>: Căci din tine va ieşi Conducătorul:</b><p>(2, 6<sup>b</sup>) <u>Gen_49:10</u> / <u>Apocalipsa_2:27</u></p><p>Bine s-a zis aceasta, că „<strong>va ieşi</strong>", iar nu „întru tine va petrece [vieţui]", căci Hristos nu a locuit în Betleem, ci din el a ieşit după ce S-a născut şi în Nazaret petrecea [vieţuia] mai mult.</p><p>Iar iudeii zic că acestea s-au proorocit pentru Zorobabel, dar mint cu neruşinare, pentru că s-a vădit că nu este aşa, căci Zorobabel s-a născut în Babilon, nu în Betleem (<u>1Ezdra_3:2</u>; <u>1Ezdra_5:2</u>). Iar aceasta ne-o arată chiar numele  lui: „Zoro" înseamnă „semănătura" ori „naşterea", iar „Babel" înseamnă Babilon, adică „în Babilon s-a semănat", sau „în Babilon s-a născut". Dar şi proorocia în chip adeverit [limpede] îi mustră pe ei, zicând: „<strong>Ieşirile Lui dintru început, din zilele veacului</strong>" (<u>Miheia_5:1</u>). Şi ale Cărui altuia ieşirile [obârşiile] sunt „<strong>dintru început</strong>" şi „<strong>din zilele veacului</strong>", afară de Hristos? Carele două ieşiri a avut, adică două naşteri: naşterea cea dintâi, adică „<strong>dintru început</strong>", este de la Tatăl; iar cea de-a doua, „<strong>din zilele veacului</strong>", din Născătoarea de Dumnezeu începându-Se şi sub vreme fiind.</p><p>Să spună dar iudeii: a fost Zorobabel „<strong>dintru început</strong>"? Dar nu pot a grăi nimic!</p><b>2, 6<sup>c</sup>: Care va paşte pe poporul Meu Israil.:</b> <p>(2, 6<sup>c</sup>) <u>Apocalipsa_2:27</u></p><p>„<strong>Va paşte</strong>", zice, iar nu „va tiranisi" sau „va mânca", pentru că ceilalţi împăraţi, nu păstori, ci lupi au fost [pentru popor]. Hristos este „<strong>Păstorul</strong>", precum însuşi zice: „<strong>Eu sunt Păstorul cel Bun</strong>" (<u>Ioan_10:11-16</u>).</p><p>Iar cu numele de „<strong>Israil</strong>" îi numeşte şi pe cei care dintre evrei au crezut,
+Mat 2:6	<b>2, 6<sup>a</sup>: Şi tu, Betleeme, pământul lui Iuda, nu eşti nicidecum cel mai mic între căpeteniile lui Iuda:</b><p>(2, 6<sup>a</sup>) <u>Miheia_5:1</u> / <u>Ioan_7:42</u></p><p>„<strong>Mic</strong>" fiind acesta, era defăimat, iar acum pentru Hristos, Cel Care a ieşit dintru el, este vestit, încât toţi de la marginile pământului vin să se închine acestui Betleem sfânt.</p> <b>2, 6<sup>b</sup>: Căci din tine va ieşi Conducătorul:</b><p>(2, 6<sup>b</sup>) <u>Gen_49:10</u> / <u>Apocalipsa_2:27</u></p><p>Bine s-a zis aceasta, că „<strong>va ieşi</strong>", iar nu „întru tine va petrece [vieţui]", căci Hristos nu a locuit în Betleem, ci din el a ieşit după ce S-a născut şi în Nazaret petrecea [vieţuia] mai mult.</p><p>Iar iudeii zic că acestea s-au proorocit pentru Zorobabel, dar mint cu neruşinare, pentru că s-a vădit că nu este aşa, căci Zorobabel s-a născut în Babilon, nu în Betleem (<u>Ezr_3:2</u>; <u>Ezr_5:2</u>). Iar aceasta ne-o arată chiar numele  lui: „Zoro" înseamnă „semănătura" ori „naşterea", iar „Babel" înseamnă Babilon, adică „în Babilon s-a semănat", sau „în Babilon s-a născut". Dar şi proorocia în chip adeverit [limpede] îi mustră pe ei, zicând: „<strong>Ieşirile Lui dintru început, din zilele veacului</strong>" (<u>Miheia_5:1</u>). Şi ale Cărui altuia ieşirile [obârşiile] sunt „<strong>dintru început</strong>" şi „<strong>din zilele veacului</strong>", afară de Hristos? Carele două ieşiri a avut, adică două naşteri: naşterea cea dintâi, adică „<strong>dintru început</strong>", este de la Tatăl; iar cea de-a doua, „<strong>din zilele veacului</strong>", din Născătoarea de Dumnezeu începându-Se şi sub vreme fiind.</p><p>Să spună dar iudeii: a fost Zorobabel „<strong>dintru început</strong>"? Dar nu pot a grăi nimic!</p><b>2, 6<sup>c</sup>: Care va paşte pe poporul Meu Israil.:</b> <p>(2, 6<sup>c</sup>) <u>Apocalipsa_2:27</u></p><p>„<strong>Va paşte</strong>", zice, iar nu „va tiranisi" sau „va mânca", pentru că ceilalţi împăraţi, nu păstori, ci lupi au fost [pentru popor]. Hristos este „<strong>Păstorul</strong>", precum însuşi zice: „<strong>Eu sunt Păstorul cel Bun</strong>" (<u>Ioan_10:11-16</u>).</p><p>Iar cu numele de „<strong>Israil</strong>" îi numeşte şi pe cei care dintre evrei au crezut,
 ca şi pe cei dintre neamuri. Pentru că „<strong>Israil</strong>" se tâlcuieşte „văzând pe Dumnezeu"; iar cei care îl văd pe Dumnezeu israiliteni sunt, chiar de-ar fi dintre neamuri.</p>
 Mat 2:7	<b>2, 7<sup>a</sup>: Atunci Irod chemând în ascuns pe magi:</b><p>Din pricina iudeilor i-a chemat „<strong>întru ascuns</strong>", căci Irod bănuia că poate iudeii foarte se vor îngriji pentru Prunc şi se vor sârgui să-L scape, ca pe Unul Care îi va slobozi pe ei. Deci, dintru această pricină, „<strong>întru ascuns</strong>" se sfătuieşte asupra Pruncului.</p><b>2, 7<sup>b</sup>: A aflat de la ei lămurit în ce vreme s-a arătat steaua.:</b><p>Adică în amănunţime a luat înştiinţare, deoarece înainte de a Se naşte Domnul, steaua s-a arătat magilor. Dar, pentru că multă vreme aveau ei să cheltuiască [petreacă] în călătorie, cu mult mai înainte li s-a arătat steaua,  ca să se închine Lui, încă în scutece fiind Hristos.</p><p>Iar unii zic că îndată ce S-a născut Iisus, s-a arătat steaua, iar magii au venit [călătorit] doi ani până au ajuns la El şi nu în scutece şi în iesle l-au aflat, ci în casă cu Maica Sa, doi ani având El.</p><p>Dar, tu, părerea cea dintâi să o aibi [ţii] mai bună.</p>
 Mat 2:8	<b>2, 8<sup>a</sup>: Şi trimiţându-i la Betleem, le-a zis: Mergeţi şi cercetaţi cu de-amănuntul despre Prunc:</b><p>Nu a zis „pentru împăratul", ci „<strong>pentru Prunc</strong>", că nici numele nu suferă a-l grăi. Drept aceea se vădeşte turbarea şi pizma ce o are asupra Pruncului Hristos.</p>
@@ -22835,15 +24456,15 @@ Mat 2:13	<b>2, 13<sup>a</sup>: După plecarea magilor, iată îngerul Domnului s
 Mat 2:14-15	<b>2, 14-15: Şi sculându-se, a luat, noaptea Pruncul şi pe mama Lui şi a plecat în Egipt. (15) Şi au stat acolo până la moartea lui Irod, ca să se împlinească cuvântul spus de Domnul, prin Proorocul: Din Egipt am chemat pe Fiul Meu.:</b><p>(2, 15) <u>Numeri_24:8</u> / <u>Osea_11:1</u></p><p>Iudeii zic că acestea s-au zis despre norodul care s-a întors din Egipt, prin Moise.</p> <p>Deci zicem: ce este de mirare că s-au zis acestea despre norod - dar cu închipuire - şi s-au plinit întru Hristos cu adevărat? Apoi, Cine este „Fiul" lui Dumnezeu, norodul care se închina idolului Belfegor şi celor cioplite (2Ki_17:9-13), sau Cel cu adevărat Fiul lui Dumnezeu?</p>
 Mat 2:16	<b>2, 16<sup>a</sup>: Iar când Irod a văzut că a fost amăgit de magi:</b><p>După cum Dumnezeu l-a batjocorit pe Faraon prin Moise (Ieşire cap. 7-11,14), aşa şi pe Irod l-a batjocorit prin magi, căci amândoi - şi Irod şi Faraon - au fost omorâtori de prunci: Faraon omorând partea bărbătească a evreilor celor ce erau în Egipt (<u>Exo_1:16</u>), iar Irod a celor ce erau în Betleem.</p><b>2, 16<sup>b</sup>: S-a mâniat foarte şi, trimiţând a ucis pe toţi pruncii care erau în Betleem:</b><p>Mânia cea asupra magilor o arată asupra celor care nu i-au făcut nici o nedreptate.</p><p>Dar, pentru care pricină a fost îngăduit să fie tăiaţi pruncii? Pentru ca să se arate răutatea lui Irod. Dar, poate vei zice: „Dar ca să se arate răutatea aceluia, pentru aceasta au fost nedreptăţiţi pruncii?" Ascultă, dar: n-au fost nedreptăţiţi, ci au fost învredniciţi cununilor, că oricine pătimeşte aici vreun rău, sau spre dezlegarea păcatelor pătimeşte, sau spre adăugirea cununilor; precum cu adevărat şi pruncii aceştia mai mult se vor încununa</p>
 Mat 2:16-17	<b>2, 16<sup>c</sup>: Şi în toate hotarele lui, de doi ani şi mai în jos, după timpul pe care îl aflase de la magi. (17) Atunci s-a împlinit ceea ce se spusese prin Ieremia Proorocul:</b><p>Ca să nu socotească [creadă] cineva că uciderea pruncilor s-a făcut fără voia lui Dumnezeu, arată că s-a spus şi s-a ştiut mai dinainte [lucrul acesta].</p>
-Mat 2:18	<b>2, 18<p>a</p>: Glas în Rama s-a auzit:</b><p>(2, 18<sup>a</sup>) <u>Jer_31:15</u></p><p>„<strong>Rama</strong>" este un loc înalt în Palestina, căci aceasta înseamnă numele acesta, „înalt".</p><p>Şi a căzut la sorţi spre moştenire seminţiei lui Veniamin, care era fiul Rahelei, iar Rahela a fost îngropată în Betleem. Deci, numeşte Proorocul Betleemul, „Rahela", de vreme ce în ţinutul Betleemului a fost ea îngropată (<u>Gen_35:19</u>). Iar tânguirea şi plângerea s-au auzit în locul cel înalt. Auzi dar, pe Proorocul [grăind]:</p><b>2, 18<sup>b</sup>: Plângere şi tânguire multă; Rahela îşi plânge copiii:</b><p>(2, 18<sup>b</sup>) <u>Jer_31:15</u></p><p>Doar în viaţa aceasta „<strong>nu sunt</strong>", de vreme ce sufletele sunt nemuritoare!</p>
+Mat 2:18	<b>2, 18<sup>a</sup>: Glas în Rama s-a auzit:</b><p>(2, 18<sup>a</sup>) <u>Jer_31:15</u></p><p>„<strong>Rama</strong>" este un loc înalt în Palestina, căci aceasta înseamnă numele acesta, „înalt".</p><p>Şi a căzut la sorţi spre moştenire seminţiei lui Veniamin, care era fiul Rahelei, iar Rahela a fost îngropată în Betleem. Deci, numeşte Proorocul Betleemul, „Rahela", de vreme ce în ţinutul Betleemului a fost ea îngropată (<u>Gen_35:19</u>). Iar tânguirea şi plângerea s-au auzit în locul cel înalt. Auzi dar, pe Proorocul [grăind]:</p><b>2, 18<sup>b</sup>: Plângere şi tânguire multă; Rahela îşi plânge copiii:</b><p>(2, 18<sup>b</sup>) <u>Jer_31:15</u></p><p>Doar în viaţa aceasta „<strong>nu sunt</strong>", de vreme ce sufletele sunt nemuritoare!</p>
 Mat 2:19	<b>2, 19<sup>a</sup>: După moartea lui Irod:</b><p>Amarnic sfârşit a avut acest Irod, cu friguri şi cu boală de vintre şi cu mâncărimea şi umflarea picioarelor şi cu putrezirea ce naşte viermi a mădularului celui de ruşine, cu năduşeală şi cu tremurături, cu zvâcnituri ale mădularelor, şi aşa şi-a lepădat sufletul lui cel rău.</p>
-Mat 2:19-20	<b>2, 19<strong>b</strong>-20<strong>a</strong> Iată că îngerul Domnului s-a arătat în vis lui Iosif în Egipt, (20) şi i-a zis: Scoală-te, ia Pruncul şi pe mama Lui şi mergi în pământul lui Israil:</b><p>(2, 20<strong>a</strong>) <u>Exo_4:19</u></p><p>Nu zice „<strong>fugi</strong>" (<u>Matei_2:13</u>) ci „<strong>mergi</strong>", că nu mai era pricină de temere.</p>
+Mat 2:19-20	<b>2, 19<sup>b</sup>-20<sup>a</sup> Iată că îngerul Domnului s-a arătat în vis lui Iosif în Egipt, (20) şi i-a zis: Scoală-te, ia Pruncul şi pe mama Lui şi mergi în pământul lui Israil:</b><p>(2, 20<sup>a</sup>) <u>Exo_4:19</u></p><p>Nu zice „<strong>fugi</strong>" (<u>Matei_2:13</u>) ci „<strong>mergi</strong>", că nu mai era pricină de temere.</p>
 Mat 2:20	<b>2, 20<sup>b</sup> Căci au murit cei ce căutau să ia sufletul Pruncului.:</b><p>Unde este Apolinarie, care zice că Domnul nu a luat suflet omenesc? Că spusa aceasta îl mustră.</p>
 Mat 2:21-22	<b>2, 21-22<sup>a</sup> Iosif, sculându-se, a luat Pruncul şi pe mama Lui şi a venit în pământul lui Israil. (22) Şi auzind că domneşte Arhelau în Iudeea, în locul lui Irod, tatăl său, s-a temut să meargă acolo:</b><p>Trei feciori a avut Irod: pe Filip, pe Antipa şi pe Arhelau. Deci a poruncit  ca Arhelau să fie împărat, iar ceilalţi erau stăpânitori pe câte o a patra parte [tetrarhi].</p><p>Şi s-a temut Iosif a merge „<strong>în pământul lui Israil</strong>", adică în Iudeea, pentru că şi Arhelau era asemenea tatălui său.</p><p>Iar acest Antipa este noul Irod, care l-a tăiat [ucis] pe Înaintemergătorul.</p>
 Mat 2:22	<b>2, 22<sup>b</sup>: Şi, luând poruncă în vis, s-a dus în părţile Galileii.:</b><p>(2, 22<sup>b</sup>) <u>Luca_2:39</u></p><p>Galileea nu era pământ al lui Israil, ci al neamurilor şi de aceea iudeii îi priveau pe galileieni ca pe o urâciune.</p>
 Mat 2:23	<b>2, 23<sup>a</sup>: Şi venind, a locuit în oraşul numit Nazaret:</b><p>(2, 23<sup>a</sup>) <u>Judecători_13:5</u> / <u>Luca_2:39</u> / <u>Ioan_1:45</u></p><p>Şi cum este cu putinţă ca Luca să spună că dacă s-au împlinit cele patruzeci de zile după Naştere şi a fost ţinut Pruncul în braţe de Simeon, S-a pogorât Domnul în Nazaret, iar Matei să scrie că după întoarcerea din  Egipt au venit în Nazaret? Învaţă-te, aşadar! Cele ce le-a trecut sub tăcere Matei, le-a spus Luca - adică după ce S-a născut, a împlinit cele patruzeci de zile şi după aceea S-a pogorât în Nazaret. Aşa spune Luca (<u>Luca_2:39</u>), iar Matei spune cele de după aceasta: că a fugit în Egipt, apoi s-a suit din Egipt în Nazaret. Deci, nu se împotrivesc unul altuia, ci unul - adică Luca - vorbeşte despre pogorârea de la Betleem în Nazaret, iar Matei de suirea de după aceea, din Egipt în Nazaret.</p><b>2, 23<sup>b</sup>: Ca să se împlinească ceea ce s-a spus prin Prooroci, că Nazarinean Se va chema.:</b><p>(2, 23<sup>b</sup>) <u>Judecători_13:5</u></p><p>Şi care Prooroc a zis aceasta nu se ştie acum, fiindcă din nepurtarea de grijă a iudeilor şi din pricina deselor robii, multe cărţi s-au pierdut. Insă, poate era aceasta o predanie nescrisă a iudeilor.</p><p>Iar „<strong>nazarinean</strong>" înseamnă „sfinţit". Deci, de vreme ce Sfânt este Hristos, după cuviinţă a fost numit <strong>nazarinean</strong>, că Domnul de mulţi Prooroci a fost numit „<strong>Sfântul lui Israil</strong>" (<u>Psalm_70:25</u>; <u>Psa_88:18</u>; <u>Isaia_1:4</u> etc).</p>
-Mat 3:1	<b>3, l<sup>a</sup> : În zilele acelea:</b><p>(3, l<sup>a</sup> ) <u>Marcu_1:4</u> / <u>Luca_1:80</u>; <u>Luca_3:2-3</u> / <u>Ioan_1:6</u>, <u>Ioan_1:28</u> / <u>Acts_13:24</u></p><p>Nu atunci când Domnul era Prunc şi locuia în Nazaret, ci zice aşa simplu, adică în vremea aceea de dinainte de neamul acesta de acum.</p><b>3, l<sup>b</sup>: A venit Ioan Botezătorul:</b><p>Ioan pentru aceasta a fost trimis de Dumnezeu ca, mustrând pe iudei, să-i plece spre a veni întru simţirea răutăţilor lor şi aşa să-L primească pe Hristos. Căci, dacă nu ajunge omul întru simţirea păcatelor sale, nu vine întru pocăinţă. Deci, a fost trimis Ioan.</p>
-Mat 3:1-2	<b>3, 1<sup>c</sup>-2<sup>a</sup>: Şi propovăduia în pustia Iudeii, (2) spunând: Pocăiţi-vă:</b><p>(2a) <u>Ezk_18:30</u> / <u>Matei_4:17</u>;<u>Matei_10:7</u> / <u>Marcu_1:15</u></p><p>Pentru că iudeii erau trufaşi, îi sileşte pe ei la pocăinţă.</p>
+Mat 3:1	<b>3, 1<sup>a</sup> : În zilele acelea:</b><p>(3, 1<sup>a</sup> ) <u>Marcu_1:4</u> / <u>Luca_1:80</u>; <u>Luca_3:2-3</u> / <u>Ioan_1:6</u>, <u>Ioan_1:28</u> / <u>Acts_13:24</u></p><p>Nu atunci când Domnul era Prunc şi locuia în Nazaret, ci zice aşa simplu, adică în vremea aceea de dinainte de neamul acesta de acum.</p><b>3, 1<sup>b</sup>: A venit Ioan Botezătorul:</b><p>Ioan pentru aceasta a fost trimis de Dumnezeu ca, mustrând pe iudei, să-i plece spre a veni întru simţirea răutăţilor lor şi aşa să-L primească pe Hristos. Căci, dacă nu ajunge omul întru simţirea păcatelor sale, nu vine întru pocăinţă. Deci, a fost trimis Ioan.</p>
+Mat 3:1-2	<b>3, 1<sup>c</sup>-2<sup>a</sup>: Şi propovăduia în pustia Iudeii, (2) spunând: Pocăiţi-vă:</b><p>(2a) <u>Eze_18:30</u> / <u>Matei_4:17</u>;<u>Matei_10:7</u> / <u>Marcu_1:15</u></p><p>Pentru că iudeii erau trufaşi, îi sileşte pe ei la pocăinţă.</p>
 Mat 3:2	<b>3, 2<sup>b</sup>: Că s-a apropiat Împărăţia Cerurilor:</b><p>Împărăţia Cerurilor numeşte cea dintâi şi cea de a doua Venire a lui Hristos, dar şi vieţuirea cu fapte bune. Căci dacă noi, călătorind pe pământ, ca în Ceruri petrecem [vieţuim], iar nu în împătimire vieţuim, Împărăţie avem a Cerurilor</p>
 Mat 3:3	<b>3, 3: El este acela despre care a zis Proorocul Isaia: Glasul celui ce strigă în pustie: Pregătiţi calea Domnului, drepte faceţi cărările Lui.:</b><p>(3, 3) <u>Isaia_40:3</u> / <u>Marcu_1:3</u> / <u>Luca_1:76</u>; <u></u> / <u>Ioan_1:23</u></p><p>„<strong>Cale</strong>" numeşte Evanghelia, iar „<strong>cărări</strong>", poruncile Legii, ca unele ce erau roase şi vechi. Deci, zice: „Gătiţi-vă pentru petrecerea evanghelicească, iar poruncile Legii, drepte, adică duhovniceşti le faceţi, că Duhul drept este".</p><p>Deci, atunci când îi vezi pe iudei că trupeşte înţeleg Legea, atunci să ştii că n-au făcut „<strong>drepte cărările</strong>", adică nu înţeleg Legea duhovniceşte.</p>
 Mat 3:4	<b>3, 4<sup>a</sup>: Iar Ioan avea îmbrăcămintea lui din păr de cămilă:</b><p>(3, 4<sup>a</sup>) <u>2Ki_1:8</u> / <u>Zaharia_13:4</u> / <u>Marcu_1:6</u></p><p>Şi cu portul lui îndemna spre pocăinţă, că purta haină de plângere. Se crede că între dobitoacele de mijloc se numără cămila: deoarece rumegă, este socotită dobitoc curat, dar pentru că are copita despicată, este dobitoc necurat (<u>Levitic_11:4</u>).</p><p>Deci, pentru că Ioan şi pe norodul ce părea a fi curat - adică pe iudei - şi pe cel necurat - adică al neamurilor - le-a adus lui Dumnezeu, şi pentru că a fost mijlocitor al Legii Vechi şi al celei Noi, pentru aceasta purta [îmbrăcăminte din] păr de cămilă.</p><b>3, 4<sup>b</sup>: Şi cingătoare de piele împrejurul mijlocului:</b><p>(3, 4<sup>b</sup>) <u>2Ki_1:8</u> / <u>Marcu_1:6</u></p><p>Toţii Sfinţii sunt arătaţi de Sfânta Scriptură încinşi, ca cei ce sunt pururea în lucrare - pentru că cei leneşi şi care trăiesc în desfătări nu se încing, cum sunt saracinii -, sau pentru că au omorât patimile poftei. Căci cureaua este parte de dobitoc mort.</p><b>3, 4<sup>c</sup>: Iar hrana lui era lăcuste și miere sălbatică:</b><p>(3, 4<sup>c</sup>) <u>Marcu_1:6</u></p><p>Unii zic că „acridele" sunt buruieni, alţii că sunt muguri de copaci, adică poame sălbatice. Iar „miere sălbatică" este cea făcută de albinele sălbatice şi care se găseşte în copaci şi în pietre [crăpăturile stâncilor].</p>
@@ -22861,15 +24482,15 @@ Mat 3:15-16	<b>3, 15<sup>c</sup>-16<sup>a</sup>: Atunci L-a lăsat. (16) Iar bot
 Mat 3:16	<b>3, 16<sup>b</sup>: Când ieşea din apă:</b><p>Maniheii spun că şi-a lăsat [lepădat] trupul Său în Iordan şi alt trup a arătat, după nălucire [închipuire]. Dar de aici li se astupă gura [lor păcătoasă], că Iisus, Cel Care a intrat în apă, Acelaşi a şi ieşit şi nu altul.</p><b>3, 16<sup>c</sup>: Îndată Cerurile s-au deschis:</b><p>Adam a încuiat Cerurile, iar pentru Hristos se deschid, ca să cunoşti şi tu că atunci când te botezi, Cerurile le deschizi.</p>
 Mat 3:16-17	<b>3, 16<sup>d</sup>-17<sup>a</sup>: Şi Duhul lui Dumnezeu S-a văzut pogorându-Se ca un porumbel şi venind peste El. (17) Şi iată glas din Ceruri zicând:</b><p>(3, 16<sup>d</sup>) <u>Isaia_11:2</u> / <u>Marcu_1:10</u> / <u>Luca_3:22</u> / <u>Ioan_1:32-33</u> </p><p>(3,17<sup>a</sup>) <u>Psalm_2:6</u> / <u>Mat_17:5</u> / <u>Marcu_1:11</u> / <u>Luca_3:22</u> / <u>Luca_9:35</u> / <u>2Petru_1:17</u> / <u>1Ioan_5:7-9</u></p><p>Duhul Sfânt Se pogoară pentru a mărturisi că mai mare este Cel Care Se botează, decât cel ce botează. Fiindcă iudeii pe Ioan îl aveau [la] mare [cinste], iar de Hristos nu atâta aveau grijă (<u>Ioan_1:26</u>). Şi au văzut toţi pe Duhul venind peste Iisus, ca să nu socotească ei că glasul care zicea: „<strong>Acesta este Fiul Meu Cel iubit</strong>" s-a făcut pentru Ioan, ci văzând pe Duhul Sfânt, să creadă că glasul este pentru Iisus. Şi [s-a arătat] ca un „<strong>porumbel</strong>", ca semn al bunătăţii şi blajinătăţii şi pentru că porumbelul este preacurat şi nu petrece [trăieşte] unde este împuţiciune [necurăţie]. Asemenea şi Sfântul Duh.</p><p>Precum în vremea lui Noe porumbiţa a vestit încetarea potopului (<u>Gen_8:8-11</u>), aducând mlădiţă de măslin, aşa şi aici, Duhul Sfânt arată încetarea păcatelor. Acolo mlădiţa de măslin, aici, mila lui Dumnezeu.</p>
 Mat 3:16-17	<b>3, 17<sup>b</sup>: „Acesta este Fiul Meu Cel iubit întru Care am binevoit".:</b><p>(3, 17<sup>b</sup>) <u>Psalm_2:7</u> / <u>Matei_17:5</u> / <u>Marcu_1:11</u> / <u>Luca_3:22</u> / <u>Luca_9:35</u> / <u>Ioan_5:37</u> / <u>Efeseni_1:6</u> / <u>Coloseni_1:13</u> / <u>2Petru_1:17</u> / <u>1Ioan_5:7-9</u></p><p>Adică „întru Care Mă odihnesc, întru Care Îmi place".</p>
-Mat 4:1	<b>4, 1<sup>a</sup>: Atunci Iisus a fost dus de Duhul în pustiu:</b><p>(4, l<sup>a</sup>) <u>Judecători_13:24</u> / <u>Iezechiil_3:14</u> / <u>Marcu_1:12</u> / <u>Luca_4:1</u></p><p>Învăţându-ne pe noi ca după Botez să ne aşteptăm mai vârtos la ispite, [Mântuitorul] este „dus" de Duhul cel Sfânt [în pustie]. Pentru că nimic nu făcea fără de Duhul. Şi Se duce în pustie, ca să ne arate nouă că diavolul atunci ne ispiteşte, când ne va vedea singuri şi neajutoraţi unul dinspre altul. Deci, se cuvine ca fără sfătuire să nu îndrăznim întru noi înşine.</p><b>4, 1<sup>b</sup>: Ca să fie ispitit de către diavolul.:</b><p></p>(4, 1<sup>b</sup>) <u>Sirah_2:1</u> / <u>Marcu_1:13</u> <p>„<strong>Diavol</strong>", care înseamnă „clevetitor", este numit, pentru că L-a clevetit pe Dumnezeu către Adam, zicându-i: „Dumnezeu vă zavistuieşte vouă [pizmuieşte slava voastră]" (<u>Gen_3:5-6</u>). Încă şi acum [diavolul] cleveteşte către noi fapta cea bună.</p>
+Mat 4:1	<b>4, 1<sup>a</sup>: Atunci Iisus a fost dus de Duhul în pustiu:</b><p>(4, l<sup>a</sup>) <u>Judecători_13:24</u> / <u>Eze_3:14</u> / <u>Marcu_1:12</u> / <u>Luca_4:1</u></p><p>Învăţându-ne pe noi ca după Botez să ne aşteptăm mai vârtos la ispite, [Mântuitorul] este „dus" de Duhul cel Sfânt [în pustie]. Pentru că nimic nu făcea fără de Duhul. Şi Se duce în pustie, ca să ne arate nouă că diavolul atunci ne ispiteşte, când ne va vedea singuri şi neajutoraţi unul dinspre altul. Deci, se cuvine ca fără sfătuire să nu îndrăznim întru noi înşine.</p><b>4, 1<sup>b</sup>: Ca să fie ispitit de către diavolul.:</b><p></p>(4, 1<sup>b</sup>) <u>Sirah_2:1</u> / <u>Marcu_1:13</u> <p>„<strong>Diavol</strong>", care înseamnă „clevetitor", este numit, pentru că L-a clevetit pe Dumnezeu către Adam, zicându-i: „Dumnezeu vă zavistuieşte vouă [pizmuieşte slava voastră]" (<u>Gen_3:5-6</u>). Încă şi acum [diavolul] cleveteşte către noi fapta cea bună.</p>
 Mat 4:2	<b>4, 2<sup>a</sup>: Și după ce a postit:</b><p>(4, 2<sup>a</sup>) <u>Exo_34:28</u> / <u>1Ki19:8</u> / <u>Luca_4:2</u></p><p>A postit ca să ne arate că postul este armă mare [puternică] împotriva ispitelor, după cum lăcomia pântecelui este începătura a tot păcatul.</p><b>4, 2<sup>b</sup>: Patruzeci de zile și patruzeci de nopţi:</b><p>(4, 2<sup>b</sup>)<u>Exo_34:28</u> / <u>Marcu_1:13</u></p><p>[Domnul Hristos] posteşte tot atâtea zile câte au postit şi Moise (<u>Exo_24:18</u>) şi Ilie (<u>1Ki_19:8</u>). Iar dacă ar fi postit [Domnul] mai multe zile, s-ar fi părut [crezut] că nălucire [închipuire] este Întruparea</p><b>4, 2<sup>c</sup>: La urmă a flămânzit.:</b><p>(4, 2<sup>c</sup>)<u>Luca_4:2</u></p><p>Când a dat voie [a îngăduit] firii, „<strong>a flămânzit</strong>" ca să dea pricină diavolului să vină la El şi să se lupte cu el prin foame şi aşa să-l biruiască şi să-l surpe, iar biruinţa să ne-o dea nouă în dar.</p>
 Mat 4:3	<b>4, 3: Şi apropiindu-se, ispititorul a zis către El: De eşti Tu Fiul lui Dumnezeu, zi ca pietrele acestea să se facă pâini.:</b><p>(4, 3)<u>Luca_4:3</u></p><p>A auzit tâlharul [diavol] glasul cel din Cer, dar văzându-L că flămânzeşte, se îndoia: „Cum să flămânzească Fiul lui Dumnezeu?" De aceea îl ispiteşte, ca să cunoască [afle]. Îl şi măguleşte, crezând că poate să-L amăgească, zicând: „<strong>De eşti Tu Fiul lui Dumnezeu</strong>".</p><p>Dar, poate te întrebi ce păcat este să faci pietrele pâini? Ascultă dar: păcat este a-l asculta pe diavol întru ceva. Şi iarăşi, întru alt chip [de înţelegere], n-a zis „piatra aceasta pâine să se facă", ci „pietrele", vrând ca să-L arunce pe Hristos pradă lăcomiei, căci celui flămând o pâine îi ajunge cu adevărat. De aceea, Hristos nu l-a ascultat pe el</p>
 Mat 4:4	<b>4, 4: Iar El, răspunzând, a zis: Scris este: Nu numai cu pâine va trăi omul, ci cu tot cuvântul care iese din gura lui Dumnezeu.:</b><p>(4, 4) <u>Deuteronom_8:3</u> / <u>Wis_16:26</u> / <u>Luca_4:4</u></p><p>Din Vechiul Testament este această mărturie şi al lui Moise este cuvântul (<u>Deuteronom_8:3</u>). Pentru că evreii au fost hrăniţi cu mană, care nu era pâine, dar prin cuvântul lui Dumnezeu împlinea toată trebuinţa lor şi se prefăcea în toate cele ce le dorea cel care o mânca. Deci, fie că poftea iudeul peşte sau ou sau brânză, acel fel de gust i-l da lui mana (<u>Wis_16:20-21</u>).</p>
-Mat 4:5	<b>4, 5: Atunci diavolul L-a dus în sfânta cetate, L-a pus pe aripa templului:</b><p>(4, 5) <u>Ezk_8:3</u>; <u>Ezk_11:1</u>; <u>Ezk_43:5</u> / <u>Luca_4:9</u></p><p>Aripa este o anume parte a templului, cum sunt la noi cele scoase afară din amândouă părţile bisericii [absidele], care par ca nişte aripi.</p>
+Mat 4:5	<b>4, 5: Atunci diavolul L-a dus în sfânta cetate, L-a pus pe aripa templului:</b><p>(4, 5) <u>Eze_8:3</u>; <u>Eze_11:1</u>; <u>Eze_43:5</u> / <u>Luca_4:9</u></p><p>Aripa este o anume parte a templului, cum sunt la noi cele scoase afară din amândouă părţile bisericii [absidele], care par ca nişte aripi.</p>
 Mat 4:6	<b>4, 6: Şi I-a zis: Dacă Tu eşti Fiul lui Dumnezeu, aruncă-Te jos, că scris este: Îngerilor Săi va porunci pentru Tine şi Te vor ridica pe mâini,
 ca nu cumva să izbeşti de piatră piciorul Tău.:</b><p>(4, 6) <u>1Sa_7:3</u> / <u>Psalm_70:3</u>; <u>Psa_90:11-12</u> / <u>Luca_4:9-11</u></p><p>„<strong>Dacă Tu eşti Fiul lui Dumnezeu</strong>", ca şi cum ar fi zis: „Eu nu cred glasului din Cer, însă Tu, de eşti Fiul lui Dumnezeu, arată-mi mie". Măcar că de era Fiul lui Dumnezeu, o, spurcatule, oare se cuvenea să Se arunce pe Sine jos? A cruzimii tale este aceasta, a-i arunca jos pe cei care se îndrăcesc, iar a lui Dumnezeu [este] a mântui!</p><p>Iar aceasta, „<strong>Te vor ridica pe mâini</strong>" (<u>Psalm_90:11-12</u>), nu pentru Hristos s-a scris, ci pentru Sfinţii care au trebuinţă de ajutorul îngeresc. Dar Hristos nu avea trebuinţă de acesta, Dumnezeu fiind.</p>
 Mat 4:7	<b>4, 7: Iisus i-a răspuns: Iarăşi este scris: Să nu ispiteşti pe Domnul Dumnezeul tău.:</b><p>(4, 7) <u>Deuteronom_6:16</u> / <u>Luca_4:12</u></p><p>Cu blândeţe îl goneşte [alungă] pe el Hristos, învăţându-ne pe noi [ca] prin blândeţe să-i biruim pe demoni.</p>
-Mat 4:8-9	<b>4, 8-9: Din nou diavolul L-a dus pe un munte foarte înalt şi I-a arătat toate împărăţiile lumii şi slava lor. (9) Şi I-a zis Lui: Acestea toate Ţi le voi da Ţie, dacă vei cădea înaintea mea şi Te vei închina mie.:</b><p>(4, 8) <u>Ezk_40:2</u> / <u>Luca_4:5</u> (4, 9) <u>Daniil_3:5</u> / <u>Luca_4:6-7</u></p><p>Unii socotesc că „<strong>munte foarte înalt</strong>" este patima iubirii de argint, întru care vrăjmaşul se nevoia să-L aducă pe Hristos, însă nu bine socotesc [cugetă]. Că în chip simţit I s-a arătat Lui diavolul, cu toate acestea Domnul gânduri nu a primit. Să nu fie! Deci în chip simţit I-a arătat Lui în munte toate împărăţiile, aducându-le înaintea ochilor Lui în chip de nălucire, zicându-I „<strong>acestea toate Ţi le voi da Ţie</strong>", căci din mândrie socotea că lumea ar fi a sa.</p><p>Aceleaşi le spune şi acum celor lacomi, întrucât cei ce se închină lui, aceia pe toate acestea le au.</p>
+Mat 4:8-9	<b>4, 8-9: Din nou diavolul L-a dus pe un munte foarte înalt şi I-a arătat toate împărăţiile lumii şi slava lor. (9) Şi I-a zis Lui: Acestea toate Ţi le voi da Ţie, dacă vei cădea înaintea mea şi Te vei închina mie.:</b><p>(4, 8) <u>Eze_40:2</u> / <u>Luca_4:5</u> (4, 9) <u>Daniil_3:5</u> / <u>Luca_4:6-7</u></p><p>Unii socotesc că „<strong>munte foarte înalt</strong>" este patima iubirii de argint, întru care vrăjmaşul se nevoia să-L aducă pe Hristos, însă nu bine socotesc [cugetă]. Că în chip simţit I s-a arătat Lui diavolul, cu toate acestea Domnul gânduri nu a primit. Să nu fie! Deci în chip simţit I-a arătat Lui în munte toate împărăţiile, aducându-le înaintea ochilor Lui în chip de nălucire, zicându-I „<strong>acestea toate Ţi le voi da Ţie</strong>", căci din mândrie socotea că lumea ar fi a sa.</p><p>Aceleaşi le spune şi acum celor lacomi, întrucât cei ce se închină lui, aceia pe toate acestea le au.</p>
 Mat 4:10	<b>4, 10: Atunci Iisus i-a zis: Piei, satano, căci scris este: Domnului Dumnezeului tău să te închini şi Lui singur să-I slujeşti.:</b><p>(4, 10) <u>Deuteronom_6:13</u>; <u>Deu_10:20</u> / <u>Iosua_24:14</u> / <u>Luca_4:8</u></p><p>Domnul se mânie asupra lui când vede că pe cele ce sunt ale lui Dumnezeu le făcea [socoteşte a fi] ale sale, zicându-I „<strong>acestea toate Ţi le voi da Ţie</strong>", ca şi cum ar fi ale lui. însă cunoaşte cât de folositoare sunt Scripturile, căci Domnul dintru acestea a astupat gura vrăjmaşului.</p>
 Mat 4:11	<b>4, 11: Atunci L-a lăsat diavolul şi iată Îngerii, venind la El, Îi slujeau.:</b><p>Domnul a biruit cele trei ispite: a lăcomiei pântecelui, a slavei deşarte şi a iubirii de bogăţie, care sunt patimile de căpetenie. Pe acestea biruindu-le, cu atât mai vârtos le-a biruit [Domnul] şi pe celelalte. Din această pricină Luca zice că diavolul „<strong>a sfârşit toată ispita</strong>" (<u>Luca_4:13</u>), pe capetele ispitelor sfârşindu-le. Drept aceea şi „<strong>Îngerii îi slujesc</strong>", arătându-ne că şi nouă, după biruinţă [asupra patimilor], ne vor sluji îngerii, căci pentru noi toate şi le face şi le arată Hristos, de vreme ce Lui, ca unui Dumnezeu îngerii de-a pururi îi slujesc.</p>
 Mat 4:12-13	<b>4, 12-13: Şi Iisus, auzind că Ioan a fost întemniţat, a plecat în Galileea. (13) Şi părăsind Nazaretul, a venit de a locuit în Capemaum, lângă mare, în hotarele lui Zabulon şi Neftali.:</b><p>(4,12) <u>Marcu_1:14</u> / <u>Luca_3:20</u>; <u>Luca_4:14</u> / <u>Ioan_4:43</u> (4,13) <u>Iosua_19:10</u> / <u>Iosua_19:33</u> / <u>Marcu_1:21</u> / <u>Luca_4:16</u> / <u>Luca_4:31</u></p><p>Iisus pleacă, pentru ca să ne înveţe şi pe noi să nu ne aruncăm singuri în primejdii. Şi se duce în „<strong>Galileea</strong>", care înseamnă „prăvălită jos", pentru că neamurile erau prăvălite şi se tăvăleau în păcate. Şi locuieşte în „<strong>Capemaum</strong>", care se tâlcuieşte „casă a mângâierii", că pentru însăşi aceasta S-a pogorât Domnul Hristos din Ceruri, ca să facă toate neamurile casă a Mângâietorului. „<strong>Zabulon</strong>" se tâlcuieşte „vânare de noapte", iar „<strong>Neftali</strong>", „lărgime". Deci, neamurile vieţuiau întru întuneric şi lărgime, pentru că nu pe calea cea strâmtă călătoreau, ci pe cea largă, care duce la pierzare (<u>Matei_7:13</u>).</p>

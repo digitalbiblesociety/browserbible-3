@@ -31,6 +31,7 @@ var iso2iana = {
     "nno": "nn",
     "nob": "nb",
     "por": "pt",
+    "ron": "ro",
     "rus": "ru",
     "slv": "sl",
     "spa": "es",

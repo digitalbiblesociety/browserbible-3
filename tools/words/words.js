@@ -6,11 +6,11 @@ const fs = require('fs'),
 
 function generate() {
     console.log('generating words');
-    var strongsPath = path.join('.', 'strongs.json'),
+    var strongsPath = path.join(__dirname, 'strongs.json'),
         strongsText = fs.readFileSync(strongsPath, 'utf8')
         strongsData = JSON.parse(strongsText),
         strongsLemmaKey = {};
-    var folderPath = path.join('../../','app', 'content', 'lexicons', 'entries');
+    var folderPath = path.join(__dirname, '../../','app', 'content', 'lexicons', 'strongs' ,'entries');
     if (!fs.existsSync(folderPath)){
         fs.mkdirSync(folderPath, { recursive: true });
     }

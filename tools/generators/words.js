@@ -10,9 +10,13 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
         strongsText = fs.readFileSync(strongsPath, 'utf8')
         strongsData = JSON.parse(strongsText),
         strongsLemmaKey = {};
-
+    var folderPath = path.join('app', 'content', 'lexicons', 'entries');
+    if (!fs.existsSync(folderPath)){
+        fs.mkdirSync(folderPath, { recursive: true });
+    }
     for (var strongsNumber in strongsData) {
-        const contentPath =  path.join('app', 'content', 'lexicons', 'entries', `${strongsNumber}.json`);
+        const contentPath =  path.join(folderPath, `${strongsNumber}.json`);
+
         strongsData[strongsNumber].frequency = frequencies[strongsNumber];
         strongsData[strongsNumber].outline = outlines[strongsNumber];
 

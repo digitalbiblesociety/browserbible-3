@@ -14,6 +14,7 @@ function generate() {
     if (!fs.existsSync(folderPath)){
         fs.mkdirSync(folderPath, { recursive: true });
     }
+    console.log(strongsPath);
     for (var strongsNumber in strongsData) {
         const contentPath =  path.join(folderPath, `${strongsNumber}.json`);
         strongsData[strongsNumber].frequency = frequencies[strongsNumber];

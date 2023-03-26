@@ -1,0 +1,418 @@
+Guidelines for the Morphological Analysis of the LXX
+
+
+The following guidelines were used by the staff of Computer-Assisted Tools for Septuagint Studies (CATSS) in preparing the Morphologically Analyzed Septuagint.  
+
+A) USING HATCH AND REDPATH: 
+
+      In general, Hatch-Redpath is considered the final arbiter for 
+questions of morphological analysis (there are exceptions, however, 
+outlined in what follows).  Thus many problems which are likely to arise 
+can be settled by consulting Hatch-Redpath. These include questions of 
+a) spelling; b) determining the lexical entry of a word; and c) parsing. 
+
+     a) Spelling: 
+
+     Frequently, the morph program errs in its spelling, since the
+stems were based on classical literature. We are correcting these 
+entries as they arise, but many others have yet to be detected. When
+you find inconsistencies in orthography, make sure they are corrected in
+line with Hatch and Redpath, not Liddell and Scott. 
+     If Hatch and Redpath give several different spellings, 
+choose the first. This is an arbitrary but necessary expedient. 
+
+    b) Using H-R to determine the lexical entry:
+
+    There are numerous cases in which it is difficult to decide what
+the lexical entry should be. Here are a few examples which occur
+repeatedly: 1) TI\ (meaning why) Is this from TI/ or TI/S? 2) OU(= (meaning 
+where). Should this be derived from OU(= or O(/S? 3) OU(/TWS (meaning 
+thus). From OU(/TWS or OU(=TOS? 4) I)DOU/ (meaning behold). From I)DOU/ 
+or O(RA/W? 5) KU/KLW| (meaning around). From the preposition KU/KLW| or from KU/KLOS? 
+    To settle these and related problems you should consult H-R to
+see how these words are handled. Note, for example that I)DOU/ is 
+a separate entry from O(RA/W; KU/KLW| is under the entry KU/KLOS; 
+OU(= is under the entry OU(=; OU(/TWS under OU(/TWS; etc. 
+
+   c) Using H-R to solve parsing problems:
+
+    Morphological analysis can often be extremely difficult because of the 
+inherent ambiguities of some words.  Take, for example, the words already 
+cited above. How should they be handled? Should KU/KLW| be parsed as a 
+preposition when it is used as a preposition, or as a DSM noun from 
+KU/KLOS? No clear-cut answer can be given to cover all cases. The most one 
+can strive for is consistency.
+    Again, H-R can be of some limited assistance in the analysis. Since H-R 
+(as against Arndt and Gingrich, which has KU/KLW| as a separate lexical 
+entry) lists KU/KLW| under KU/KLOS (see above, b), this would mean that 
+it is a declinable form from that noun. Thus, since we have opted to adhere 
+to H-R, your analysis should look like this: 
+KU/KLW|  N2  DSM  KU/KLOS, (not as a preposition).
+    On the other hand, take the form I)DOU/. Note that since H-R
+lists this as a separate form from O(RA/W, I)DOU/ should not be 
+treated as an imperative from O(RA/W, but as an interjection. Your
+analysis should, therefore, look like this: I)DOU/  I   I)DOU/ (the 
+'I' should go in the type field). 
+
+
+B) GENERAL CONSIDERATIONS 
+
+    For those cases in which H-R does not prove helpful, the
+general rule of thumb is to limit yourself as narrowly as possible to 
+"morphological analysis" and not worry excessively about the syntactic
+problems of the word. Of course, it should be recognized that there are 
+instances in which it is necessary to make some decision about a word's 
+function in a sentence before you can make a proper identification. 
+Some of the cases in which this is necessary include KAI/ (adverb or
+conjunction); E)NANTI/ON (preposition or adverb); E)NW/PION (preposition
+or adverb). You should examine the sentence and make your decision
+accordingly.
+
+Order of non-alphabetic symbols. These symbols should go in the 
+following order: 1) breathing; 2) accent; 3) iota subscript; and
+4) diaeresis. 
+
+
+C) THE "FIELDS" OF THE MORPHOLOGICAL ANALYSIS FILE
+
+     1) Lemma (text) field (left column): 
+
+     This column should list the word as it appears in
+Rahlfs' text. All punctuation and all extraneous signs (brackets, 
+parentheses, etc.) should be removed. (Punctuation should be removed
+only at the very last stage of correction.) Words which are capitalized 
+in Rahlfs' text (due to beginning a quotation, etc.)
+but which are not proper nouns (according to H-R) should
+have the asterisk removed, and their breathing and accent marks 
+should be rearranged as for a non-capitalized word. 
+
+     2) Dictionary field (right column):
+
+     In general, each word should appear in the dictionary column in the
+form in which it is listed in Hatch-Redpath, except that verbs
+are listed in PAI1S rather than infinitive form, and verbal prefixes
+are separated from the root.  (Several other exceptions are noted in what 
+follows.) An especially significant variation from Hatch-Redpath
+occurs in the treatment of proper nouns: see section D 1).
+N.B.: Verbs are the only words which should have "prefixes" 
+separated in the main dictionary entry. 
+
+     3) Type and parse codes: 
+
+     The "typing" and "parsing" of a word should conform to the 
+form of the word listed in the dictionary field (see above).
+The general principle is that a word is "typed" as it is used in
+the text, rather than by some preconceived notion of its "ideal"
+type or by an original or prototypical "type" (e.g. as it is used 
+in Attic Greek style). Type and parse coding is outlined on an
+accompanying sheet. Consult the creed for possible complications
+such as treatment of numbers, substantives, and adverbs.
+For the parsing of proper nouns, consult section D 1).
+
+
+D) SPECIFIC CATEGORIES OF WORDS 
+
+     1) Proper Nouns
+
+     Here a substantial deviation from Hatch-Redpath occurs.
+     The lemma (text) forms of proper nouns should be left as in Rahlfs'
+text. The form entered in the dictionary column should Dconform to that
+suggested by Rahlfs' text. THAT IS: If the textual lemma form 
+in Rahlfs' text (and thus in the lemma column of the morph. analysis) 
+1) is accented, 2) has a breathing mark, and/or 3) is inflected,
+provide for these features in the dictionary column. If the 
+textual lemma form lacks any of these features, omit them from the
+dictionary column. Breathing marks and accents (in that order)
+which go with the initial letter(s) of a proper noun should 
+be placed after the '*' and before the first letter of the noun,
+as in ordinary Greek usage. 
+     BPARSING OF PROPER NOUNS: If the textual lemma form is inflected
+(and the dictionary column thus records a Nom. Sing. form), 
+parse the word as you would any other noun. If it is not inflected, 
+place 'N' alone in the type code, and parse as fully as possible. 
+
+     2) Adverbs 
+
+     Adverbs are normally listed in H-R separately, under their own 
+form. Since the MORPH program often derives adverbs from an 
+adjectival or other form, output must be corrected in 
+accordance with H-R. Provided that H-R lists the adverb separately, it
+should be "typed" only as 'D', and the adverb itself should be
+listed in the dictionary column. "Prefixes" should never be 
+separated from an adverb in the dictionary column.
+
+     3) Prepositions
+
+     Any word clearly used as a preposition in syntactical
+function (regardless of its lexical or grammatical derivation), 
+and listed in its prepositional form in H-R, should be "typed"
+only as 'P'.
+
+     4) Numbers:
+
+     All indeclinable cardinal numbers should be parsed only as 
+'M' (in the type field). Declinable numbers should be treated as
+any other adjective. The only declinable numbers between 1 and 20 
+are EI(=S (1), TREI=S (3), and TE/SSARES (4). EI(=S is A3 in
+masc. and neut. forms and A1A in fem. forms. TREI=S and TE/SSARES 
+are A3. 
+     The lexical forms EI(=S, E(/N, and TREI=S are parsed by the
+MORPH program as 'M' and should be corrected to A3. 
+     The "indeclinable" number 2 (DU/O) does have several declinable forms
+[mainly DUSI/(N)]. DU/O should be typed only as 'M'. DUSI/(N) should be 
+typed as 'M,' and should be fully parsed as well (as plural, not dual). 
+
+     5) Substantives: 
+
+     On the question of substantives and whether to parse them as nouns 
+or adjectives: If an adjective is consistently used as a
+noun, parse it as a noun. An example of this is E)/RHMOS, which 
+LSJ identifies as an adjective. However, since this is consistently 
+used as a nominal form in the LXX, it should be parsed as a noun. 
+The same applies to E(RPETO/N (N2N, not A1) and PETEINO/N 
+(N2N, not A1).
+
+     6) Adjectives and adverbs of degree (compar. and superl.): 
+
+     a) In fourth column of parse field, indicate 'C' or 'S' if 
+it is an irregular form.
+     b) Check Hatch-Redpath to see if comparative or superlative form 
+is a separate entry. If so, list the comparative or 
+superlative form itself in the dictionary column. 
+
+
+    To assist in the morph process, we include here a description of
+problem words, and the ways we have solved them.
+
+
+(*THIS FILE CONTAINS A LIST OF PROBLEM WORDS IN THE MORPH ANALYSIS; PLEASE
+FEEL FREE TO CONSULT THIS FILE OR ADD TO IT WORDS THAT ARE CREATING 
+HARDSHIP, as long as such additions are approved by the council of
+elders.*) 
+
+I.] GENERAL NOTES (Arranged alphabetically by key word):
+
+
+ADJECTIVES and adverbs of degree (comparative and superlative): 
+   see above, section D 6). 
+
+When Hatch-Redpath gives ALTERNATE forms of a word, such as 
+    BORE/AS, BORE/HS, BORRA=S, use the first choice as the dictionary 
+    form, even if one of the others is closer to the form actually found
+    in the text you are parsing. The following are exceptions:
+       a) OU(/TWS  (dict. form should be OU(/TWS, not OU(/TW contra H-R). 
+       b) PROPER NAMES containing an I/EI variant (we, with Rahlfs, 
+          use the I form).
+       c) E)SQI/W, not E)/SQW 
+       d) A)RGUROU=S, not A)RGU/REOS
+
+ASTERISKED words: In the case of proper nouns, make sure
+    not to remove the asterisks from either column. All other words 
+    (verbs, common nouns, etc.) should have asterisks removed from both 
+    columns [see sections C 1) and D 1)]. 
+
+CRASIS: 
+                KA)GW\          C+RP NS        KAI/ + E)GW/ 
+                KA)\N           C+X            KAI/ + A)/N
+
+MIDDLE vs. Passive: 
+    Always distinguish these, even though the MORPH program parses
+    all ambiguous forms as Middle.
+
+Prepositional PREFIXES for verbs--List the prefix separately only 
+    if the unprefixed verb is attested as a form in its own right 
+    (consult unabridged Liddell-Scott). 
+
+The following words, while not adhering strictly to H-R, should not be
+    changed, but should remain as the PROGRAM analyzes them:
+             --MI verbs 
+
+All PROPER NOUNS should be fully parsed, as far as possible, in 
+    case, number and gender. If any of these are unclear, leave a blank.
+    (See section D 1).) 
+
+Examples of SUBSTANTIVES: 
+         E(RPETO/N    N2N   parse   E(RPETO/N 
+         PETEINO/N    N2N   parse   PETEINO/N 
+         E)XQRO/S     N2    parse   E)XQRO/S
+         E)/RHMOS     N2    parse   E)/RHMOS
+
+    HOWEVER, the following words should be parsed as ADJECTIVES:
+         A)/RSHN
+         QH=LUS 
+         H(/MISUS 
+
+SUBSTANTIVES: See also section D 5).
+
+For treatment of the various "types" of THIRD DECLENSION nouns and
+    adjectives (N3E, N3I, A3C, etc.), see the appended materials. 
+
+
+II.] SPECIFIC WORDS (Arranged in Roman alphabetical order): 
+
+
+A)F' OU(= .  See under OU(= . 
+
+Forms of A)MFO, A)MFO/TEROS, &c., are parsed by the program as A)MFW. 
+    This should be corrected to:
+               A1A     appropriate parse   A)MFO/TEROI    (see H-R).
+
+A)NA\ ME/SON: ME/SON should be neuter (see BAG, s.v. ME/SOS, #2): 
+                   A)NA\     P          A)NA/ 
+                   ME/SON    A1  ASN    ME/SOS
+    Similarly:  E)K ME/SOU    and    E)N ME/SW| 
+
+Prefer:   A)RGUROU=S  to  A)RGU/REOS
+          XALKOU=S    to  XA/LKOUS
+          XRUSOU=S    to  XRU/SEOS. 
+
+A)RGUROU=S .  See also under ALTERNATE. 
+
+A)/RSHN .  See under SUBSTANTIVES VS. ADJECTIVES. 
+
+TO\ DEU/TERON: Frequently, this expression is adverbial, meaning
+   the "second time." Both forms should, however, be parsed as
+   ASN. 
+       TO\       RP     ASN    O( 
+       DEU/TERON A3     ASN    DEU/TEROS
+
+DU/0 .  See above, section D 4).
+
+E)/GGISTA-- parse as adverb from E)GGU/S: 
+              E)/GGISTA          D            E)GGU/S 
+
+E)NANTI/ON and E)NW/PION: 
+    In order to analyze these forms, you must determine whether they
+    function as prepositions or adverbs. Since the program always parses
+    them as adverbs, you may have to make the necessary corrections.
+    When these forms are prepositions, the analysis should be:
+             E)NANTI/ON        P                E)NANTI/ON
+             E)NW/PION         P                E)NW/PION 
+    The same applies to E(/WS, O)PI/SW, E)/NANTI, PLH/N, PE/RAN, E)/CW, 
+    O)/PISQEN, U(PERA/NW, U(POKA/TW and U(POKA/TWQEN. When used as
+    prepositions indicate only with 'P' in type column. 
+
+E)PA/NW: This word is sometimes used as a preposition, sometimes
+             as an adverb: parse accordingly. 
+
+E)/RHMOS .  See under SUBSTANTIVES VS. ADJECTIVES.
+
+E(RPETO/N .  See under SUBSTANTIVES VS. ADJECTIVES. 
+
+E)RW= : All forms should be parsed under EI)=PON in dictionary column.
+        Similarly for its derivatives, EI)/RHKA and E)RRE/QHN.
+
+E)SQI/W .  See under ALTERNATE. 
+
+E(/WS OU(= :
+          E(/WS         P          E(/WS
+          OU(=          RR  GSM    O(/S  (agreeing with implied XRONOU).
+    The same applies to  OU(=  in  A)F' OU(= .
+
+E)XO/MENA: When this word is used in "frozen" form as a preposition,
+             parse as    V1   PMPAPN   from    E)/XW
+
+E)XQRO/S .  See under SUBSTANTIVES VS. ADJECTIVES.
+
+H(/MISUS .  See under SUBSTANTIVES VS. ADJECTIVES.
+
+I)DOU/ :
+    When it means "behold," it should be parsed as an interjection (I), 
+    following H-R. The output should be corrected, since the program
+    consistently parses this word as an aorist imperative from O(RA/W.
+                  I)DOU\          I             I)DOU/
+
+KA)GW\ .  See under CRASIS. 
+
+KA)\N .  See under CRASIS.
+
+KAI/ :  Be sure to distinguish between conjunctival and 
+   adverbial use. If it is an adverb, simply put D in the type field
+   (not C in the type field and D in the parse field).
+   a) Also note that with a subordinate construction (especially
+      when the subordinate clause is introduced by E)A/N),
+      KAI/ will frequently introduce the main clause. 
+
+KAQA/: Program declines as a preposition [KATA/ + O(/S], but this 
+   word is more correctly parsed as an adverb. The same applies to
+   KAQA/PER, KAQO/TI and KAQO/. Thus: 
+            KAQA/          D         KAQA/
+            KAQA/PER       D         KAQA/PER 
+            KAQO/TI        D         KAQO/TI
+            KAQO/          D         KAQO/
+
+KU/KLW|: Although this is sometimes used as a preposition or adverb,
+            simply give it as N2  DSM from KU/KLOS (pace H-R).
+
+MAKRA/N: When used adverbially it should be marked: 
+                  MAKRA\N         D         MAKRA/N      (see H-R). 
+
+A)NA\ ME/SON: ME/SON should be neuter (see BAG, s.v. ME/SOS, #2): 
+                   A)NA\     P          A)NA/ 
+                   ME/SON    A1  ASN    ME/SOS
+    Similarly:  E)K ME/SOU    and    E)N ME/SW| 
+
+Watch for O(/, which is frequently misparsed by the morph program 
+    as a masculine relative pronoun (should be neuter). 
+
+O)/LLUMI or O)LLU/W--choose the latter. 
+
+O(RA/W and OI)=DA: A slight deviation from H-R occurs here. 
+    All words under EI)DEI=N in H-R should be parsed under the dictionary 
+    form OI)=DA (these will be Perfects or Pluperfects). For
+    forms which H-R has under O(RA/W, continue to use the same
+    word, i.e. O(RA/W. For forms in H-R under I)DEI=N, parse under
+    O(RA/W (these will be 2 Aorists). 
+
+OU(=, from O(/S (meaning where): Since H-R has this under 
+    a separate lemma [OU(=], it should be parsed as follows:
+             OU(=              D                OU(=
+   [N.B. In H-R, this applies only to OU(= when it means "where". 
+   When OU(= has the adverbial meaning of "when" --as for example,
+   with E(/WS--then it should be parsed as RR GSM from O(/S.] 
+
+E(/WS OU(= :
+          E(/WS         P          E(/WS
+          OU(=          RR  GSM    O(/S  (agreeing with implied XRONOU).
+    The same applies to  OU(=  in  A)F' OU(= .
+
+OU(/TWS: Although the program handles OU(/TWS as an adverb from 
+             OU(=TOS, it should be an adverb from OU(/TWS (pace H-R): 
+                   OU(/TWS        D             OU(/TWS 
+
+OU(/TWS .  See also under ALTERNATE.
+
+PANTOS in DIA/ PA/NTOS is masculine (sc. XRO/NOU).
+
+PETEINO/N .  See under SUBSTANTIVES VS. ADJECTIVES. 
+
+PLHSI/ON: Parse as an adverb (D), modified (usually) by a masculine 
+          article.
+
+PRO/TERON: Note that when it is adverbial, it is listed in H-R
+    as a separate lexical entry. The following forms should be
+    categorized carefully according to H-R: 
+       PRO/TERON, PRO/TEROS, PRW=TON, PRW=TOS.
+
+TO\ PRWI/+ :
+                  TO\             RA   ASN      O(
+                  PRWI/+          D             PRWI/+
+
+QH=LUS .  See under SUBSTANTIVES VS. ADJECTIVES.
+
+TI/ , in its meaning "why," should be listed as:
+               TI\        RI   ASN           TI/S 
+    because it is so listed in Hatch-Redpath. 
+
+In I(/NA TI (sc. GE/NHTAI), TI/ O(/TI (sc. GE/GONEN), and 
+    TI/ GA/R:  TI should be nominative. 
+
+TI/S and TIS: These forms should be carefully distinguished (see H-R).
+    The interrogative form (TI/S) always has an acute accent on the first 
+    syllable; the indefinite (TIS) is either unaccented, or accented on 
+    the second syllable (and is enclitic).
+
+XALKOU=S .  See under A)RGUROU=S. 
+
+XRUSOU=S .  See under A)RGUROU=S. 
+

@@ -1,0 +1,198 @@
+             KEY TO CODING USED IN PACKARD'S MORPHOLOGICAL ANALYSIS
+
+"TYPE" CODES (3 columns maximum, to identify part of speech)
+
+ N = Noun (up to 3 columns)          V = Verbs (up to 3 cols.)  
+   N1 = 1st declension (fem. in -H)    (I in col.3 = augmented, 
+     N1A = stem ending in -A (fem.)        whatever the stem)   
+     N1M = masc. with nom. in -HS      "Progressive" Stems
+     N1S = stem in -H, nom. in -A (f.)   V1 = regular present     
+     N1T = masc. with nom. in -AS        V2 = contracts in -EW
+   N2 = 2nd declension (masc./fem.)      V3 =   "       in -AW  
+     N2N = neuters (in -ON)              V4 =   "       in -OW  
+   N3 = 3rd declension                   V5 = regular -MI verbs 
+     N3D,E,G,H,I,K,M,N,P,R,S,T,U,V,W     V6 = -A stem -MI verbs   
+       indicate categories of 3rd        V7 = -E stem  "    "   
+       decl. nouns (see other sheet)     V8 = -O stem  "    "     
+   N alone= indeclinable proper noun     V9 = EI)MI/ and EI)=MI   
+ A = Adjective (up to 3 cols.)         Aorist Stems               
+   A1 = -OS/-H/-ON pattern endings       VA = 1st aorist active   
+     A1A = -OS/-A/-ON                    VB = 2nd aorist act. #1
+     A1B = -OS/-OS/-ON                   VZ = 2nd   "     "   #2(irreg) 
+     A1C = -OUS/-OUS/-OUN                VH, VE, VO = -H, -E,       
+     A1S = nom. in -A, stem in -H          -O stem -MI verbs    
+   A3 = 3rd declension patterns          VC = #1 aor.& fut.pass.(Q-type)
+     A3E,H,N,U,C as for 3 decl. nouns    VD = #2  "  "  "   "   (non-Q) 
+ R = Pronouns (2 Columns)                VV = labial " " "  "     
+   RA = Article                          VS = dental " " "  " (+ zeta)
+   RD = Demonstrative                    VQ = guttural" " " "     
+   RI = Interrogative/Indefinite       Perfect Stems  
+   RP = Personal/Possessive            (I in col.3 = Plupf.augm.) 
+   RR = Relative                         VX = perfect active  
+   RX = O(/STIS                          VM =   "     middle    
+                                         VP = labial perf. midd.  
+ C = Conjunction                         VT = dental  "     " (+ zeta)
+ X = Particle                            VK = guttural "     "  
+ I = Interjection                      Future Stems               
+ M = Indeclinable Number                 VF = regular future  
+ P = Preposition                           VF2 = liquid type(+ zeta)
+ D = Adverb                                VF3 = E)LAU/NW type    
+                                           VFX = future perfect 
+
+"PARSE" CODE (up to 6 columns, as needed, to parse each form) 
+
+ Nouns and Pronouns (3 columns)      Verbs (to 5 cols, exc.Ptcp)        
+   col.1=case: N(om) G(en) D(at)       col.1=tense: P(resent)           
+     A(ccus) V(ocative)                  I(mperfect) F(ut) A(or)
+   col.2=number: S(ing) D(ual) P(l)      X(Perfect) Y(Pluperfect)       
+   col.3=gender: M(asc) F(em) N(eut)   col.2=voice: A(ctive)  
+ Adjectives (up to 4 columns)            M(iddle) P(assive)           
+   cols.1-3 as with Nouns (above)      col.3=mood: I(ndicative)       
+   col.4=degree if irregular:            D(Imperative) S(ubjunct)       
+     C(ompar) S(uperl)                   O(pt) N(Infin) P(Ptcp)   
+                                       col.4=person: 1 2 3
+                                       col.5=number as Noun col.2 
+                                       cols.4-6 Ptcpl as for Noun 
+
+               VARIETIES OF THIRD DECLENSION NOUNS AND ADJECTIVES
+
+   NOTE: These lists of third declension nouns and adjectives enumerate 
+     the types, or categories of these nouns and adjectives recognized  
+     by Packard's morph program. Under each category is given a 
+     representative sampling (not an exhaustive list) of its members. 
+     In general the letter after N3 or A3 corresponds to the last letter  
+     of the stem to which endings are added; however in some cases (e.g.  
+     N3H,N3M,N3V,N3W) this is not possible due to duplication.  
+
+                                     NOUNS
+
+ Nominative  Genitive   Stem   Gender  Nominative  Genitive   Stem   Gender
+N3
+A)NH/R       A)NDRO/S   A)NDR     M   EI)/RHN      -ENOS      EI)REN    M
+DA/MAR       DA/MARTOS  DAMART    F   PATH/R       PATRO/S    PATR      M
+DMW/S        DMWO/S     DMW       M   PU=R         PURO/S     PUR       N
+DRA/KWN      DRA/KONTOS DRAKONT   M   XEI/R        XEIRO/S    XEIR      F
+  
+N3D 
+FOINIKI/S    -I/DOS     FOINIKI   F   I)=RIS       I)/RIDOS   I)RI      F
+GENEIA/S     -A/DOS     GENEIA    F   XILIA/S      -A/DOS     XILIA     F
+EI)KA/S      -A/DOS     EI)KA     F 
+    
+N3E 
+A)/NQOS      -OUS+      A)NQ      N   O)/ROS       -OUS+      O)R       N
+KTH=NOS      -OUS+      KTHN      N   TE/LOS       -OUS+      TEL       N
+ME/LOS       -OUS+      MEL       N 
+                  +UNCONTRACTED FORM IS -EOS  
+  
+N3G 
+MA/STIC      -IGOS      MASTI     F   SA/LPIGC     -IGGOS     SALPIG    F
+PTE/RUC      -UGOS      PTERU     F   TE/TTIC      -IGOS      TETTI     M
+    
+N3H 
+MNHSTH/R     -H=ROS     MNHST     M   SWTH/R       -H=ROS     SWT       M
+PENTHKONTH/R -H=ROS     PENTHKONT M   XARAKTH/R    -H=ROS     XARAKT    M
+    
+N3I 
+O)/NHSIS     -EWS       O)NHS     F   R(H=SIS      -EWS       R(HS      F
+PANH/GURIS   -EWS       PANHGUR   F   SI/THSIS     -EWS       SITHS     F
+PO/LIS       -EWS       POL       F   O)/FIS       -EWS       O)F       M
+    
+N3K 
+E(/LIC       -IKOS      E(LI      F   GUNH/        -AIKO/S    GUNAI     F
+FU/LAC       -AKOS      FULA    M,F   SA/RC        -KO/S      SAR       F
+GLAU/C       -KO/S      GLAU      F 
+    
+N3M 
+A(/RMA       -ATOS      A(R       N   O)/NOMA      -ATOS      O)NO      N
+DO/MA        -ATOS      DO        N   STRA/TEUMA   -ATOS      STRATEU   N
+QE/MA        -ATOS      QE        N 
+    
+N3N 
+DAI/MWN      -ONOS      DAIM    M,F   H(GEMW/N     -O/NOS     H(GEM   M,F
+GEI/TWN      -ONOS      GEIT    M,F   KI/WN        -ONOS      KI      M,F
+KHDEMW/N     -O/NOS     KHDEM     M 
+          
+N3P 
+GRU/Y        GRUPO/S    GRU       M   MW/LWY       -WPOS      MWLW      M
+MU/WY        MU/WPOS    MUW     M,F   *PE/LOY      -OPOS      *PELO     M
+  
+N3R 
+A)LA/STWR    -OROS      A)LAST  M,F   PAIDOLE/TWR  -OROS      PAIDOLET  M
+MIA/STWR     -OROS      MIAST     M   R(H/TWR      -OROS      R(HT      M
+OI)KH/TWR    -OROS      OI)KHT    M 
+    
+N3S 
+*SWKRA/THS   -OUS       *SWKRAT 
+    
+N3T 
+A)KRO/THS    -HTOS      A)KROTH   F   GE/LWS       -WTOS      GELW      M
+BEBAIO/THS   -HTOS      BEBAIOTH  F   KE/RAS       -ATOS      KERA      N
+CHRO/THS     -HTOS      CHROTH    F   DAI/S        DAITO/S    DAI       F
+  
+N3U 
+DRU=S        DRUO/S     DR        F   O)SFU/S      -U/OS      O)SF      F
+A)/RKUS      -UOS       A)RK      F   STA/XUS      -UOS       STAX      M
+I)XQU/S      -U/OS      I)XQ      M 
+  
+N3V 
+BASILEU/S    -E/WS      BASIL     M   KERAMEU/S    -E/WS      KERAM     M
+I(EREU/S     -E/WS      I(ER      M   TROFEU/S     -E/WS      TROF      M
+    
+N3W 
+A)GW/N       -W=NOS     A)G       M   LEIMW/N      -W=NOS     LEIM      M
+KLU/DWN      -WNOS      KLUD      M   XITW/N       -W=NOS     XIT       M
+EI)/RWN      -WNOS      EI)R    M,F 
+
+
+                                   ADJECTIVES 
+
+ Nominatives (Genders)     Genitive                        Stem 
+
+A3
+A(/PAS,[A(/PASA],A(/PAN    A(/PANTOS,[A(/PASHS],A(/PANTOS  A(PANT 
+A)/KWN,[-OUSA],-ON         A)/KONTOS[A)/KOUSHS]A)/KONTOS   A)KONT 
+A)/PAIS  (M,F)             A)/PAIDOS                       A)PAID 
+A)/ZUC  (M,F,N)            A)/ZUGOS                        A)ZUG
+AU)TO/XEIR  (M,F)          AU)TO/XEIROS                    AU)TOXEIR
+DU/SERIS,-I                DUSE/RIDOS                      DUSERID
+E(KW/N,[-OU=SA],-ON        E(KO/NTOS,[E(KOU=SHS],E(KO/NTOS E(KONT 
+EI(=S,[MI/A],E(/N          E(NO/S,[MIA=S],E(NO/S           E(N
+EU)/ELPIS,-I               EU)E/LPIDOS                     EU)ELPID 
+KATAPLH/C  (M,F)           KATAPLH=GOS                     KATAPLHG 
+MW=NUC  (M,F,N)            MW/NUXOS                        MWNUX
+OU)DEI/S[OU)DEMI/A]OU)DE/N OU)DENO/S[OU)DEMIA=S]OU)DENO/S  OU)DEN 
+PA=S,[PA=SA],PA=N          PANTO/S,[PA/SHS],PANTO/S        PANT 
+  
+A3E 
+XARI/EIS[XARI/ESSA]XARI/EN XARI/ENTOS,[-ESSHS],-ENTOS      XARI 
+
+
+A3H 
+A)BLABH/S,-E/S             A)BLABOU=S+                     A)BLAB 
+KAKOTUXH/S,-E/S            KAKOTUXOU=S+                    KAKOTUX
+MONOEIDH/S,-E/S            MONOEIDOU=S+                    MONOEID
+SAFH/S,-E/S                SAFOU=S+                        SAF
+U(DARH/S,-E/S              U(DAROU=S+                      U(DAR
+                     +UNCONTRACTED FORM IS E/OS 
+  
+A3N 
+A)/FRWN,-ON                A)/FRONOS                       A)FR 
+DUSDAI/MWN,-ON             DUSDAI/MONOS                    DUSDAIM
+O)CU/FRWN  (M,F)           O)CU/FRONOS                     O)CUFR 
+SW/FRWN,SW=FRON            SW/FRONOS                       SWFR 
+TLH/MWN  (M,F)             TLH/MONOS                       TLHM 
+  
+A3U 
+BAQU/S,[-EI=A],-U/         BAQE/OS,[-EI/AS],-E/OS          BAQ
+DASU/S,[-EI=A],-U/         DASE/OS,[-EI/AS],-E/OS          DAS
+O)CU/S,[-EI=A],-U/         O)CE/OS,[-EI/AS],-E/OS          O)C
+PLATU/S,[-EI=A],-U/        PLATE/OS,[-EI/AS],-E/OS         PLAT 
+TAXU/S,[-EI=A],-U/         TAXE/OS,[-EI/AS],-E/OS          TAX
+
+A3C 
+COMP. OF A)GAQO/S [KREI/TTWN,-ON   Gen. -ONOS]             KREITT 
+COMP. OF A)GAQO/S [BELTI/WN,-ON  Gen. -ONOS]               BELTI
+COMP. OF A)LGEINO/S [A)LGI/WN,-ON  Gen. -ONOS]             A)LGI
+COMP. OF E)LAXU/S [E)LA/SSWN,-ON  Gen. -ONOS]              E)LASS 
+COMP. OF H(DU/S [H(DI/WN,-ON  Gen. -ONOS]                  H(DI 
+COMP. OF TAXU/S [QA/TTWN,QA=TTON  Gen. -ONOS]              QATT 

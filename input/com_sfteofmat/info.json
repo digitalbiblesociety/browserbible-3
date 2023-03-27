@@ -1,0 +1,12 @@
+{"langName": "Roumanian",
+ "name": "Tâlcuirea Sfintei Evanghelii de la Matei - Sfântul Teofilact Arhiepiscopul Bulgariei",
+ "nameEnglish": "",
+ "abbr": "Teofilact",
+ "id": "com_sfteofmat",
+ "lang": "eng",
+ "langNameEnglish": "Roumanian",
+ "generator": "teofilact",
+ "filename": "com-teofilact.txt",
+ "type":"commentary",
+ "stylesheet":"style.css",
+ "dir": "ltr"}

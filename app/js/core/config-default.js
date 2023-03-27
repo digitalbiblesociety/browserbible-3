@@ -8,9 +8,8 @@ sofia.config = {
 
 	// first load
 	windows: [
-		{type: 'bible', data: {textid: 'ENGNAS', fragmentid: 'JN1_1'}},
-		{type: 'bible', data: {textid: 'grc_tisch', fragmentid: 'JN1_1'}},
-		{type: 'search', data: {textid: 'ENGNAS', searchtext:'truth love'}}
+		{type: 'bible', data: {textid: 'ron_bor', fragmentid: 'MT1_1'}},
+		{type: 'commentary', data: {textid: 'com_sfteofmat', fragmentid: 'MT1_1'}}
 	],
 
 	// URL to content
@@ -40,19 +39,19 @@ sofia.config = {
 	topTexts: [],
 
 	// new window
-	newBibleWindowVersion: 'eng-NASB1995',
+	newBibleWindowVersion: 'ron_roa',
 
 	// new bible verse
-	newWindowFragmentid: 'JN1_1',
+	newWindowFragmentid: 'MT1_1',
 
 	// new commentary window
-	newCommentaryWindowTextId: 'comm_eng_wesley',
+	newCommentaryWindowTextId: 'com_sfteofmat',
 
 	// language for top
-	pinnedLanguage: 'English',
+	pinnedLanguage: 'Romanian',
 
 	// language(s) for top
-	pinnedLanguages: ['English', 'Spanish'],
+	pinnedLanguages: ['Romanian', 'Romanian'],
 
 	// Override the browser and user's choice for UI language
 	defaultLanguage: '',

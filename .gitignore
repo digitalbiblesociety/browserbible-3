@@ -1,12 +1,2 @@
-tests/
-tools/textgenerator/ftp-config.js
-tools/textgenerator/input/
-tools/utilities/
-tools/_old/
-content/texts/*.*
-build/
-config-custom.js
-app/content/texts/
-!app/content/texts/README.md
-**/node_modules/
-!**/node_modules/*.js
+node_modules/
+app/content/lexicons/**

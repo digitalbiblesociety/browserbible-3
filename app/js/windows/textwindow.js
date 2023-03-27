@@ -315,7 +315,7 @@ var TextWindow = function(id, parent, init_data, text_type) {
 					*/
 					var textsWithType = textInfoData.filter(function(ti) { return ti.type == text_type; });
 					
-					if (textsWithType.lenght > 0) {
+					if (textsWithType.length > 0) {
 						newTextInfo = textsWithType[0];
 					}
 

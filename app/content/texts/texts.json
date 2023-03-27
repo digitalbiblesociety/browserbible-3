@@ -1,0 +1,54 @@
+{
+	"textIds": [
+		"com_sfteofmat",
+		"grc_sblgnt",
+		"ron_bor",
+		"ron_roa"
+	],
+	"textInfoData": [
+		{
+			"id": "com_sfteofmat",
+			"name": "Tâlcuirea Sfintei Evanghelii de la Matei - Sfântul Teofilact Arhiepiscopul Bulgariei",
+			"nameEnglish": "",
+			"abbr": "Teofilact",
+			"lang": "eng",
+			"langName": "Roumanian",
+			"langNameEnglish": "Roumanian",
+			"dir": "ltr",
+			"type": "commentary"
+		},
+		{
+			"id": "grc_sblgnt",
+			"name": "SBL Greek New Testament",
+			"nameEnglish": "SBL Greek New Testament)",
+			"abbr": "SBLGNT",
+			"lang": "grc",
+			"langName": "ελληνικά",
+			"langNameEnglish": "Greek",
+			"dir": "ltr",
+			"type": "bible"
+		},
+		{
+			"id": "ron_bor",
+			"name": "Biblia Ortodoxă Română Sinodală (2006)",
+			"nameEnglish": "",
+			"abbr": "BOR",
+			"lang": "ron",
+			"langName": "Română",
+			"langNameEnglish": "Roumanian",
+			"dir": "ltr",
+			"type": "bible"
+		},
+		{
+			"id": "ron_roa",
+			"name": "BIBLIA SAU SFÂNTA SCRIPTURĂ versiune diortosită după Septuaginta, redactată, adnotată şi tipărită de Bartolomeu Valeriu Anania",
+			"nameEnglish": "",
+			"abbr": "ROA",
+			"lang": "ron",
+			"langName": "Română",
+			"langNameEnglish": "Roumanian",
+			"dir": "ltr",
+			"type": "bible"
+		}
+	]
+}

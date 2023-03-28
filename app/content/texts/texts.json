@@ -1,6 +1,7 @@
 {
 	"textIds": [
 		"com_sfteofmat",
+		"grc_lxx",
 		"grc_sblgnt",
 		"ron_bor",
 		"ron_roa"
@@ -16,6 +17,17 @@
 			"langNameEnglish": "Roumanian",
 			"dir": "ltr",
 			"type": "commentary"
+		},
+		{
+			"id": "grc_lxx",
+			"name": "LXX-Septuagint",
+			"nameEnglish": "LXX-Septuagint - Old testament",
+			"abbr": "LXX",
+			"lang": "grc",
+			"langName": "ελληνικά",
+			"langNameEnglish": "Greek",
+			"dir": "ltr",
+			"type": "bible"
 		},
 		{
 			"id": "grc_sblgnt",

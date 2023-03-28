@@ -3273,11 +3273,10 @@ OT_BOOKS = ["GN","EX","LV","NU","DT","JS","JG","RT","S1","S2","K1","K2","R1","R2
 NT_BOOKS = ["MT","MK","LK","JN","AC","RM","C1","C2","GL","EP","PP","CL","H1","H2","T1","T2","TT","PM","HB","JM","P1","P2","J1","J2","J3","JD","RV"]
 
 
-AP_BOOKS = ["TB","JT","ED","AE","WS","SR","BR","LJ","S3Y","SN","BL","M1","M2","E1"]
+AP_BOOKS = ["TB","JT","ED","AE","WS","SR","BR","LJ","S3Y","SN","BL","M1","M2","M3","E1"]
 
 DEFAULT_BIBLE = OT_BOOKS.concat(NT_BOOKS);
 APOCRYPHAL_BIBLE = OT_BOOKS.concat(AP_BOOKS, NT_BOOKS);
-
 
 function getBookInfoByDbsCode(dbsCode) {
 	return getBookInfoByProperty('dbsCode', dbsCode);
@@ -3380,7 +3379,6 @@ function getPrevChapter(dbsChapterCode, bookCodes) {
 			}			
 			
 			var prevBookInfo = getBookInfoByDbsCode(prevBookCode);
-			
 			return prevBookInfo.dbsCode + prevBookInfo.chapters.length.toString();
 		}
 

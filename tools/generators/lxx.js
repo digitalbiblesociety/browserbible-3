@@ -5,6 +5,7 @@ var fs = require('fs'),
 	verseIndexer = require('../verse_indexer.js'),
 	readline = require('readline');
 const bookMap = require('../bookMap.js');
+const { OT_BOOKS, AP_BOOKS } = require('../data/bible_data.js');
 	stream = require('stream');
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
@@ -53,32 +54,18 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		var filePath = path.join(inputPath, filename),
 			rawText = fs.readFileSync(filePath, 'utf8'),
 			chaptersTexts = rawText.split('\n\n');
-			var chapters = [];
 			chaptersTexts.forEach(ct => {
 				var lines = ct.split('\n');
-				// chapters.push({
-				// 	bookName: lines[0].split(' ')[0],
-				// 	chapterNumber: lines[0].split(' ')[1].split(':')[0], 
-				// 	verseNumber: lines[0].split(' ')[1].split(':')[1],
-				// 	content: lines.slice(1)
-				// });
 			if(lines.length === 1) return;
 			var bookNumber = parseInt(filename.split('.', 1)[0]),
 				bookName = lines[0].split(' ')[0],
 				chapterNumber= lines[0].split(' ')[1].split(':')[0], 
 				verseNumber= lines[0].split(' ')[1].split(':')[1],
 				content= lines.slice(1);
-			// if(['Od', 'PsSol'].includes(bookName)) return;
 			
-		//console.time('processTextFile');
+		console.time('processTextFile');
 		// READ TEXT
-		// console.log({
-		// 	bookNumber, 
-		// 	bookName, 
-		// 	chapterNumber,
-		// 	verseNumber, 
-		// 	content, 
-		// });
+
 		
 		var dbsCode = bookMap[bookName];
 		if(dbsCode === undefined) {
@@ -97,7 +84,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 				parsing = parts[1].trim().slice(2),
 				word = parts[2].trim(),
 				lemma = parts[0].trim(),
-				strongs = strongsLemmaKey[lemma],
+				strongs = strongsLemmaKey[lemma] ?? strongsLemmaKey[word] ,
 
 				dbsCode = bookInfo['dbsCode'],
 				chapterCode = dbsCode + '' + chapterNumber.toString(),
@@ -139,8 +126,8 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 				// create new
 				currentChapter = {
 					id: chapterCode,
-					//nextid: bibleData.getNextChapter(chapterCode),
-					//previd: bibleData.getPrevChapter(chapterCode),
+					nextid: bibleData.getNextChapter(chapterCode, [...OT_BOOKS, ...AP_BOOKS]),
+					previd: bibleData.getPrevChapter(chapterCode, [...OT_BOOKS, ...AP_BOOKS]),
 					html: '',
 					title: bookName + ' ' + chapterNumber,
 				};

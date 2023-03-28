@@ -106,7 +106,6 @@ function convertFolder(inputPath) {
 
 		// DELETE: existing data
 		cleanFolder(outputPath);
-
 		// RUN GENERATOR
 		console.time('processText');
 		var data = generator.generate(inputPath, info, createIndex, startProgress, updateProgress);

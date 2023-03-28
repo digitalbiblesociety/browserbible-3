@@ -76,10 +76,9 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		for (var i=1, il=content.length; i<il; i++) {
 			var line = lines[i].trim(),
 				parts = line.split(' ');
-			
+				if(parts.length < 3) return;
 			
 			var	bookInfo = bibleData.getBookInfoByDbsCode( dbsCode ),
-
 				partOfSpeech = parts[1].trim().slice(0,2),
 				parsing = parts[1].trim().slice(2),
 				word = parts[2].trim(),

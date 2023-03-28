@@ -7,10 +7,11 @@ var fs = require('fs'),
 const bookMap = require('../bookMap.js');
 const { OT_BOOKS, AP_BOOKS } = require('../data/bible_data.js');
 	stream = require('stream');
+const {EOL} = require('os');
+
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	var
-		breakChar = '\r';
 		data = {
 			chapterData: [],
 			indexData: {},
@@ -41,8 +42,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		strongsLemmaKey[strongsEntry.lemma] = strongsNumber;
 	}
 
-	startProgress(files.length, "Books");
-
+	startProgress(files.length, "LXX");
 	var notFoundBooks = [];
 	// process files
 	files.forEach(function(filename) {
@@ -53,17 +53,16 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 
 		var filePath = path.join(inputPath, filename),
 			rawText = fs.readFileSync(filePath, 'utf8'),
-			chaptersTexts = rawText.split('\n\n');
+			chaptersTexts = rawText.split(EOL+EOL);
 			chaptersTexts.forEach(ct => {
-				var lines = ct.split('\n');
-			if(lines.length === 1) return;
-			var bookNumber = parseInt(filename.split('.', 1)[0]),
-				bookName = lines[0].split(' ')[0],
-				chapterNumber= lines[0].split(' ')[1].split(':')[0], 
-				verseNumber= lines[0].split(' ')[1].split(':')[1],
-				content= lines.slice(1);
-			
-		console.time('processTextFile');
+				var lines = ct.split(EOL);
+				if(lines.length === 1) return;
+				var bookNumber = parseInt(filename.split('.', 1)[0]),
+					bookName = lines[0].split(' ')[0],
+					chapterNumber= lines[0].split(' ')[1].split(':')[0], 
+					verseNumber= lines[0].split(' ')[1].split(':')[1],
+					content= lines.slice(1);
+				
 		// READ TEXT
 
 		
@@ -180,12 +179,11 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 				verseIndexer.indexStrongs(verseCode, strongs, data.indexLemmaData, info.lang);
 			}
 		}
-
-		updateProgress();
-	})
+		
+	})//end chapters loop
+	updateProgress();
 	});
 	console.log([...new Set(notFoundBooks)]);
-
 	currentChapter.html += '</span>' + bibleFormatter.breakChar +
 						'</div>' + bibleFormatter.breakChar +
 						+ bibleFormatter.closeChapter();

@@ -45,7 +45,7 @@ sofia.config = {
 	newWindowFragmentid: 'MT1_1',
 
 	// new commentary window
-	newCommentaryWindowTextId: 'com_sfteofmat',
+	newCommentaryWindowTextId: 'com_sfteofilact',
 
 	// language for top
 	pinnedLanguage: 'Romanian',

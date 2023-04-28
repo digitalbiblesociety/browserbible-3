@@ -9,7 +9,7 @@ sofia.config = {
 	// first load
 	windows: [
 		{type: 'bible', data: {textid: 'ron_bor', fragmentid: 'MT1_1'}},
-		{type: 'commentary', data: {textid: 'com_sfteofmat', fragmentid: 'MT1_1'}}
+		{type: 'commentary', data: {textid: 'com_sfteofilact', fragmentid: 'MT1_1'}}
 	],
 
 	// URL to content

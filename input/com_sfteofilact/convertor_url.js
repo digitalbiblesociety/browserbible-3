@@ -21,7 +21,7 @@ function replaceExpressionsInFile(filePath, replacements) {
 }
 
 /// Define the file path and the replacements to make
-const filePath = 'D:/browserbible-3/input/com_sfteofmat/com-teofilact.txt';
+const filePath = 'D:/browserbible-3/input/com_sfteofilact/com-teofilact.txt';
 const replacements = {
   'Facere 1, 1':'<u>Gen_1:1</u>','Facere 1,1':'<u>Gen_1:1</u>',
   'Facere 1, 2':'<u>Gen_1:2</u>','Facere 1,2':'<u>Gen_1:2</u>',
@@ -8866,6 +8866,7 @@ const replacements = {
   '3 Regi 4, 31':'<u>1Ki_4:31</u>','3 Regi 4,31':'<u>1Ki_4:31</u>',
   '3 Regi 4, 32':'<u>1Ki_4:32</u>','3 Regi 4,32':'<u>1Ki_4:32</u>',
   '3 Regi 4, 33':'<u>1Ki_4:33</u>','3 Regi 4,33':'<u>1Ki_4:33</u>',
+  '3 Regi 4, 34':'<u>1Ki_4:34</u>','3 Regi 4,34':'<u>1Ki_4:34</u>',
   '3 Regi 5, 1':'<u>1Ki_5:1</u>','3 Regi 5,1':'<u>1Ki_5:1</u>',
   '3 Regi 5, 2':'<u>1Ki_5:2</u>','3 Regi 5,2':'<u>1Ki_5:2</u>',
   '3 Regi 5, 3':'<u>1Ki_5:3</u>','3 Regi 5,3':'<u>1Ki_5:3</u>',

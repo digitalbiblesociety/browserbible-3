@@ -8,7 +8,7 @@
 	width: 32px;
 	height: 32px;
 	cursor: pointer;
-	background-image: url(../../css/images/arrow-right-gray-light.svg);
+	background-image: url(../../css/images/arrow-right-white.svg);
 }
 
 #main-back-button {
@@ -21,12 +21,12 @@
 	width: 32px;
 	height: 32px;
 	cursor: pointer;
-	background-image: url(../../css/images/arrow-left-gray-light.svg);
+	background-image: url(../../css/images/arrow-left-white.svg);
 }
 
 #main-back-button.inactive,
 #main-forward-button.inactive  {
-	opacity: 0.5;
+	opacity: 1;
 	cursor: inherit;
 }
 

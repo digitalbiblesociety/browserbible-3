@@ -18,7 +18,7 @@
 	z-index: 9;
 	border: solid 1px transparent;
 	-x-border-width: 1px 1px 0 1px;
-	background-image: url(../../css/images/menu-gray.svg);
+	background-image: url(../../css/images/menu-white.svg);
 }
 #main-menu-button.active {
 	background-color: #666;

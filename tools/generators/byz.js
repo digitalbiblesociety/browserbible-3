@@ -31,15 +31,8 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	// LOAD strongs
 	var strongsPath = filePath = path.join(inputPath, 'strongs.json'),
 		strongsText = fs.readFileSync(strongsPath, 'utf8')
-		strongsData = JSON.parse(strongsText),
-		strongsLemmaKey = {};
-
-	//create strongs mapping 
-	for (var strongsNumber in strongsData) {
-		var strongsEntry = strongsData[strongsNumber];
-
-		strongsLemmaKey[strongsEntry.lemma] = strongsNumber;
-	}
+		strongsData = JSON.parse(strongsText)
+	;
 
 	startProgress(files.length, "Byz");
 	var notFoundBooks = [];
@@ -85,8 +78,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 				parsing = parts[2].trim().replace('{', '') + '---',
 				partOfSpeech = parsing.slice(0,2),
 				word = parts[0].trim(),
-				lemma = parts[0].trim(),
-				strongs = strongsLemmaKey[lemma] ?? strongsLemmaKey[word] ,
+				strongs = "G" + parts[1],
 
 				dbsCode = bookInfo['dbsCode'],
 				chapterCode = dbsCode + '' + chapterNumber.toString(),

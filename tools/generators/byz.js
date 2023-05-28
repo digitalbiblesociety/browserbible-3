@@ -41,44 +41,49 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		strongsLemmaKey[strongsEntry.lemma] = strongsNumber;
 	}
 
-	startProgress(files.length, "LXX");
+	startProgress(files.length, "Byz");
 	var notFoundBooks = [];
+	var bookNumber = 0;
 	// process files
 	files.forEach(function(filename) {
-
+		bookNumber++;
 		if (filename.indexOf('.UB5') == -1) {
 			return;
 		}
 
 		var filePath = path.join(inputPath, filename),
 			rawText = fs.readFileSync(filePath, 'utf8'),
-            versesTexts = rawText.split(`/${EOL}\s+/`);
+            versesTexts = rawText.split(/\n\s+/);
 			
 			versesTexts.forEach(v => {
-				if(lines.length === 1) return;
-				var verseContent = v.split(' '),
-					bookName = filename.split('.')[0].replace(/[0-9]/g, ''),
-					chapterNumber= verseContent[0].split(':')[0], 
-					verseNumber= verseContent[0].split(':')[1],
-					content= verseContent[1];
-				
+				v=v.trim();
+				var verseNumberSeparator = v.indexOf(' ');
+				var verseContent = v.slice(verseNumberSeparator+1), //+1 for the extra space
+					verseInfo = v.slice(0,verseNumberSeparator),
+					bookName = filename.split('.')[0].toLowerCase()
+					chapterNumber= verseInfo.split(':')[0], 
+					verseNumber= verseInfo.split(':')[1];				
 		// READ TEXT
 
-		
+		//convert bookName to match the bookMap keys
+		const upperCasePoz = isNaN(bookName[0]) ? 0 : 1;
+		bookName = (upperCasePoz === 1 ? bookName[0] : '') + bookName.charAt(upperCasePoz).toUpperCase() + bookName.slice(upperCasePoz+1);
 		var dbsCode = bookMap[bookName];
 		if(dbsCode === undefined) {
 			notFoundBooks.push(bookName);
 			return;
 		}
-		if(verseNumber===undefined || bookNumber===undefined) return;
-		for (var i=1, il=content.length; i<il; i++) {
-			var line = content.trim().split('} '),
-				parts = line.split(' ');
+		if(verseNumber===undefined) return;
+		const verseWords = verseContent.trim().split('} ');
+		for (var i=1, il=verseWords.length; i<il; i++) {
+			var 
+				parts = verseWords[i].replace(/\n/, ' ').replace(/\r/, ' ').split(/\s+/);
 				if(parts.length < 3) return;
 			
 			var	bookInfo = bibleData.getBookInfoByDbsCode( dbsCode ),
 				// partOfSpeech = parts[1].trim().slice(0,2),
-				parsing = parts[3].trim().replace('{', '') + '---',
+				parsing = parts[2].trim().replace('{', '') + '---',
+				partOfSpeech = parsing.slice(0,2),
 				word = parts[0].trim(),
 				lemma = parts[0].trim(),
 				strongs = strongsLemmaKey[lemma] ?? strongsLemmaKey[word] ,

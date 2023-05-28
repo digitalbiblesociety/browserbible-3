@@ -3303,6 +3303,7 @@ function getBookInfoByProperty(propName, value) {
 			return bookInfo;
 		}
 	}
+	console.log(value);
 	return null;
 }
 
@@ -3368,7 +3369,7 @@ function getPrevChapter(dbsChapterCode, bookCodes) {
 		return dbsCode + chapter.toString();
 	} else {
 		// prev book
-		if (bookIndex == 0) {
+		if (bookIndex <= 0) {
 			return null;
 		} else {
 			var prevBookCode = bookCodes[bookIndex-1];
@@ -3377,7 +3378,7 @@ function getPrevChapter(dbsChapterCode, bookCodes) {
 			if (prevBookCode == '') {
 				prevBookCode = bookCodes[bookIndex-2];
 			}			
-			
+			console.log(bookIndex, dbsChapterCode, prevBookCode);
 			var prevBookInfo = getBookInfoByDbsCode(prevBookCode);
 			return prevBookInfo.dbsCode + prevBookInfo.chapters.length.toString();
 		}

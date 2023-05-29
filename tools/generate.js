@@ -6,7 +6,6 @@
 * See options for details on running
 */
 
-
 // MODULES
 var fs = require('fs'),
 	path = require('path'),
@@ -77,7 +76,7 @@ function cleanFolder(folderPath) {
 }
 
 function convertFolder(inputPath) {
-
+	console.log({inputPath});
 	var infoFilePath = path.join(inputPath, 'info.json'),
 		startDate = new Date();
 
@@ -108,6 +107,7 @@ function convertFolder(inputPath) {
 		cleanFolder(outputPath);
 		// RUN GENERATOR
 		console.time('processText');
+		// if(generatorName !== 'byz') return;
 		var data = generator.generate(inputPath, info, createIndex, startProgress, updateProgress);
 		console.timeEnd('processText');
 
@@ -221,7 +221,6 @@ function convertTexts(baseInput, texts) {
 	mkdirp(baseOutput);
 
 	texts = texts === undefined ? fs.readdirSync(baseInput) : texts;
-
 	texts.forEach(function(textFoldername) {
 		convertFolder(path.join(baseInput, textFoldername));
 	});

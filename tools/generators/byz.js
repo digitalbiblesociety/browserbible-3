@@ -6,10 +6,10 @@ var fs = require('fs'),
 const bookMap = require('../bookMap.js');
 const { OT_BOOKS, AP_BOOKS } = require('../data/bible_data.js');
 	stream = require('stream');
-const {EOL} = require('os');
 
 
 function generate(inputPath, info, createIndex, startProgress, updateProgress) {
+	const {EOL} = require('os');
 	var
 		data = {
 			chapterData: [],
@@ -31,8 +31,15 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	// LOAD strongs
 	var strongsPath = filePath = path.join(inputPath, 'strongs.json'),
 		strongsText = fs.readFileSync(strongsPath, 'utf8')
-		strongsData = JSON.parse(strongsText)
-	;
+		strongsData = JSON.parse(strongsText),
+		strongsLemmaKey = {};
+		;
+
+	for (var strongsNumber in strongsData) {
+		var strongsEntry = strongsData[strongsNumber];
+
+		strongsLemmaKey[strongsEntry.lemma] = strongsNumber;
+	}
 
 	startProgress(files.length, "Byz");
 	var notFoundBooks = [];
@@ -40,22 +47,25 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 	// process files
 	files.forEach(function(filename) {
 		bookNumber++;
-		if (filename.indexOf('.UB5') == -1) {
+		if (filename.indexOf('.csv') == -1) {
 			return;
 		}
 
 		var filePath = path.join(inputPath, filename),
 			rawText = fs.readFileSync(filePath, 'utf8'),
-            versesTexts = rawText.split(/\n\s+/);
-			
+            versesTexts = rawText.split(new RegExp(EOL+'(?=[1-9])', 'g'));
+			versesTexts.shift(); //remove header chapter, verse, text
 			versesTexts.forEach(v => {
-				v=v.trim();
-				var verseNumberSeparator = v.indexOf(' ');
-				var verseContent = v.slice(verseNumberSeparator+1), //+1 for the extra space
-					verseInfo = v.slice(0,verseNumberSeparator),
-					bookName = filename.split('.')[0].toLowerCase()
-					chapterNumber= verseInfo.split(':')[0], 
-					verseNumber= verseInfo.split(':')[1];				
+				v = v.replace(new RegExp(EOL, 'g'), '');
+				let [chapterNumber, verseNumber] = v.split(',', 2);
+				chapterNumber = parseInt(chapterNumber);
+				verseNumber = parseInt(verseNumber);
+				const getVerseContentPosition = (string, subString, index) => {
+					return string.split(subString, index).join(subString).length;
+				}; //finds position of the comma in front of the verse
+				let verseContentStartPos = getVerseContentPosition(v, ',', 2)+1;
+				let verseContent = v.substring(verseContentStartPos);
+				var bookName = filename.split('.')[0].toLowerCase();
 		// READ TEXT
 
 		//convert bookName to match the bookMap keys
@@ -67,23 +77,18 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 			return;
 		}
 		if(verseNumber===undefined) return;
-		const verseWords = verseContent.trim().split('} ');
+		const verseWords = verseContent.replaceAll('"', '').split(" ");
 		for (var i=1, il=verseWords.length; i<il; i++) {
-			var 
-				parts = verseWords[i].replace(/\n/, ' ').replace(/\r/, ' ').split(/\s+/);
-				if(parts.length < 3) return;
 			
 			var	bookInfo = bibleData.getBookInfoByDbsCode( dbsCode ),
-				// partOfSpeech = parts[1].trim().slice(0,2),
-				parsing = parts[2].trim().replace('{', '') + '---',
-				partOfSpeech = parsing.slice(0,2),
-				word = parts[0].trim(),
-				strongs = "G" + parts[1],
-
+				word = verseWords[i],
+				lemma = word.replaceAll(',', ''),
+				partOfSpeech = '', //todo see if u can take this in the future from somewhere
+				parsing = '',//todo see if u can take this in the future from somewhere
 				dbsCode = bookInfo['dbsCode'],
 				chapterCode = dbsCode + '' + chapterNumber.toString(),
 				verseCode = chapterCode + '_' + verseNumber.toString();
-
+				strongs = strongsLemmaKey[lemma];
 
 			// new book
 			if (bookNumber != lastBookNumber) {

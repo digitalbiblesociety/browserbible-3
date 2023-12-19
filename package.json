@@ -13,7 +13,7 @@
     "build:index": "node tools/create_texts_index.js",
     "build:deafbibles": "node tools/generatedeafbibles.js",
     "build:words": "node tools/words/words.js",
-    "build:content": "npm run build:texts && npm run build:deafbibles && npm run build:index && npm run build:words",
+    "build:content": "npm run build:texts && npm run build:index && npm run build:words",
     "build": "node tools/builder.js"
   },
   "dependencies": {

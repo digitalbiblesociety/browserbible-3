@@ -12240,6 +12240,7 @@ const replacements = {
   '1 Ezdra 10, 42':'<u>Ezr_10:42</u>','1 Ezdra 10,42':'<u>Ezr_10:42</u>',
   '1 Ezdra 10, 43':'<u>Ezr_10:43</u>','1 Ezdra 10,43':'<u>Ezr_10:43</u>',
   '1 Ezdra 10, 44':'<u>Ezr_10:44</u>','1 Ezdra 10,44':'<u>Ezr_10:44</u>',
+  'Înțelepciune 1, 1':'<u>Wis_1:1</u>','Înțelepciune 1,1':'<u>Wis_1:1</u>',
   'Neemia 1, 1':'<u>Neh_1:1</u>','Neemia 1,1':'<u>Neh_1:1</u>',
   'Neemia 1, 2':'<u>Neh_1:2</u>','Neemia 1,2':'<u>Neh_1:2</u>',
   'Neemia 1, 3':'<u>Neh_1:3</u>','Neemia 1,3':'<u>Neh_1:3</u>',

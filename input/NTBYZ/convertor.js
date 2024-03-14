@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 //Read file info to a string
-fs.readFile('05-ACTBYZ.usfm', 'utf-8', (err, contents) => {
+fs.readFile('10-2JNBYZ.usfm', 'utf-8', (err, contents) => {
   if (err) {
     return console.error(err)
   }
@@ -19,7 +19,7 @@ replace(/8,/gi,'8 ').
 replace(/9,/gi,'9 ')
 
 // Write back to file
-  fs.writeFile('05-ACTBYZ.usfm', updated, 'utf-8', err2 => {
+  fs.writeFile('10-2JNBYZ.usfm', updated, 'utf-8', err2 => {
     if (err2) {
       console.log(err2)
     }

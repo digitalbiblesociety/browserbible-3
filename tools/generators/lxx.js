@@ -72,7 +72,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 			return;
 		}
 		if(verseNumber===undefined || bookNumber===undefined) return;
-		for (var i=1, il=content.length; i<il; i++) {
+		for (var i=1, il=content.length; i<=il; i++) {
 			var line = lines[i].trim(),
 				parts = line.split(' ');
 				if(parts.length < 3) return;

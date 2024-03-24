@@ -1,6 +1,6 @@
 {
 	"textIds": [
-		"com_sfteofmat",
+		"com_sfteofilact",
 		"grc_lxx",
 		"grc_sblgnt",
 		"ron_bor",
@@ -8,8 +8,8 @@
 	],
 	"textInfoData": [
 		{
-			"id": "com_sfteofmat",
-			"name": "Tâlcuirea Sfintei Evanghelii de la Matei - Sfântul Teofilact Arhiepiscopul Bulgariei",
+			"id": "com_sfteofilact",
+			"name": "Tâlcuirile Sfântului Teofilact Arhiepiscopul Bulgariei",
 			"nameEnglish": "",
 			"abbr": "Teofilact",
 			"lang": "eng",

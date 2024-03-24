@@ -95,7 +95,7 @@ sofia.resources['ro'] = {
 			"parallel": {
 				"label": "Paralele",
 				"loading": "Se încarcă ...",
-				"showall": "Araăa tot",
+				"showall": "Arată tot",
 				"hideall": "Ascunde tot"
 			},
 			"comparison": {

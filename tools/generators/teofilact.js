@@ -125,12 +125,12 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 		foundFirstVerse = false,
 
 		startBookIndex = 0,
-		endBookIndex = 35,
+		endBookIndex = 1,
 
-		startChapterIndex = 35,
-		endChapterIndex = 1207,
+		startChapterIndex = 1,
+		endChapterIndex = 29,
 
-		startVerseIndex = 1207,
+		startVerseIndex = 29,
 		endVerseIndex = lines.length,
 		//endVerseIndex = startVerseIndex + 50,
 
@@ -222,7 +222,7 @@ function generate(inputPath, info, createIndex, startProgress, updateProgress) {
 			chapterNumber = verseReferenceParts.length > 0 ? verseReferenceParts[0] : '',
 			verseNumber = verseReferenceParts.length > 1 ? verseReferenceParts[1] : '',
 			bookInfo = bibleData.getBookInfoByDbsCode(dbsBookCode);
-
+		console.log({verseNumber})
 		
 		if (bookInfo == null) {
 			continue;
